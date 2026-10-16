@@ -1,0 +1,1323 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+PY-M14-01,Custom Exception Hierarchy,Module 14: Advanced OOP,Easy,Define base AppError and subclasses ValidationError and AuthError.,command-driver,O(1) per command,O(users),"Task: Build your own exception classes, so one except clause can catch a whole family of errors.
+• class AppError(Exception) with a class attribute code = 500
+• class ValidationError(AppError) with code = 400
+• class AuthError(AppError) with code = 401
+
+Write a class UserStore that keeps usernames and passwords:
+• register(self, user, pwd): raise ValidationError('password too short') if pwd has fewer than 6 characters, raise ValidationError('user exists') if the user is already registered, otherwise store the user
+• login(self, user, pwd): raise AuthError('invalid credentials') if the user is unknown or the password is wrong
+
+Commands:
+• REGISTER user pwd → print REGISTERED user
+• LOGIN user pwd → print WELCOME user
+• For both commands, catch AppError (the BASE class) and print <ClassName>[<code>]: <message>, for example ValidationError[400]: user exists
+
+Example: REGISTER asha secret1, LOGIN asha nope prints REGISTERED asha and AuthError[401]: invalid credentials.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.","1 <= Q <= 1000
+User names and passwords are words without spaces","2
+REGISTER asha secret1
+LOGIN asha nope","REGISTERED asha
+AuthError[401]: invalid credentials","1
+REGISTER ben 123",ValidationError[400]: password too short,class ValidationError(AppError): code = 400 is a complete class: it inherits everything else from AppError.,"except AppError as e: also catches ValidationError and AuthError, because they are subclasses.","type(e).__name__ gives the class name, and e.code finds the class attribute of the subclass.","class AppError(Exception):
+    code = 500
+
+
+class ValidationError(AppError):
+    code = 400
+
+
+class AuthError(AppError):
+    code = 401
+
+
+class UserStore:
+    def __init__(self):
+        self.users = {}
+
+    def register(self, user, pwd):
+        if len(pwd) < 6:
+            raise ValidationError(""password too short"")
+        if user in self.users:
+            raise ValidationError(""user exists"")
+        self.users[user] = pwd
+
+    def login(self, user, pwd):
+        if self.users.get(user) != pwd:
+            raise AuthError(""invalid credentials"")
+
+
+store = UserStore()
+
+q = int(input())
+for _ in range(q):
+    command, user, pwd = input().split()
+    try:
+        if command == ""REGISTER"":
+            store.register(user, pwd)
+            print(f""REGISTERED {user}"")
+        elif command == ""LOGIN"":
+            store.login(user, pwd)
+            print(f""WELCOME {user}"")
+    except AppError as e:               # catches every subclass too
+        print(f""{type(e).__name__}[{e.code}]: {e}"")","[{""input"": ""2\nREGISTER asha secret1\nLOGIN asha nope"", ""output"": ""REGISTERED asha\nAuthError[401]: invalid credentials"", ""is_hidden"": false}, {""input"": ""1\nREGISTER ben 123"", ""output"": ""ValidationError[400]: password too short"", ""is_hidden"": false}, {""input"": ""3\nREGISTER cy abcdef\nREGISTER cy ghijkl\nLOGIN cy abcdef"", ""output"": ""REGISTERED cy\nValidationError[400]: user exists\nWELCOME cy"", ""is_hidden"": false}, {""input"": ""1\nLOGIN ghost whatever"", ""output"": ""AuthError[401]: invalid credentials"", ""is_hidden"": true}, {""input"": ""4\nREGISTER a 12345\nREGISTER a 123456\nLOGIN a 12345\nLOGIN a 123456"", ""output"": ""ValidationError[400]: password too short\nREGISTERED a\nAuthError[401]: invalid credentials\nWELCOME a"", ""is_hidden"": true}, {""input"": ""3\nREGISTER x passwd\nREGISTER y passwd\nLOGIN y passwd"", ""output"": ""REGISTERED x\nREGISTERED y\nWELCOME y"", ""is_hidden"": true}, {""input"": ""2\nLOGIN Z secret\nREGISTER z secret"", ""output"": ""AuthError[401]: invalid credentials\nREGISTERED z"", ""is_hidden"": true}, {""input"": ""3\nREGISTER m longpassword\nLOGIN M longpassword\nLOGIN m longpassword"", ""output"": ""REGISTERED m\nAuthError[401]: invalid credentials\nWELCOME m"", ""is_hidden"": true}]"
+PY-M14-02,Vehicle Hierarchy with Super,Module 14: Advanced OOP,Easy,Implement Vehicle base and Car subclass extending __init__ via super().,command-driver,"O(1) per command, O(N) per LIST",O(N),"Task: Write three classes that build on each other with super():
+• Vehicle: __init__(self, make, model, year) stores the three values. Class attribute wheels = 0. describe(self) returns '<year> <make> <model>'
+• Car(Vehicle): __init__(self, make, model, year, doors) calls super().__init__(make, model, year) and stores doors. Class attribute wheels = 4. describe(self) returns super().describe() + ' (<doors> doors)'
+• ElectricCar(Car): __init__(self, make, model, year, doors, kwh) calls super().__init__(...) and stores kwh. describe(self) returns super().describe() + ' [<kwh> kWh]'
+
+Commands:
+• VEHICLE make model year, CAR make model year doors, ECAR make model year doors kwh → create the object and keep it in a list (prints nothing)
+• LIST → print describe() of every object in creation order
+• INFO i → for the object at index i (from 0) print: <ClassName>, wheels=<wheels>, is Car: <True/False>. Use isinstance(obj, Car)
+
+Example: CAR Toyota Corolla 2020 4 then LIST prints 2020 Toyota Corolla (4 doors).","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description). INFO always uses a valid index.",LIST prints one line per object; INFO prints one line. Create commands print nothing.,"1 <= Q <= 1000
+Makes and models are words without spaces
+year, doors and kwh are integers","2
+CAR Toyota Corolla 2020 4
+LIST",2020 Toyota Corolla (4 doors),"2
+VEHICLE Honda Cub 1958
+INFO 0","Vehicle, wheels=0, is Car: False","super().__init__(make, model, year) lets Vehicle set the shared attributes, so Car does not repeat that code.",ElectricCar inherits wheels = 4 from Car without writing it again.,"isinstance(obj, Car) is True for an ElectricCar too, because ElectricCar is a subclass of Car.","class Vehicle:
+    wheels = 0
+
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def describe(self):
+        return f""{self.year} {self.make} {self.model}""
+
+
+class Car(Vehicle):
+    wheels = 4
+
+    def __init__(self, make, model, year, doors):
+        super().__init__(make, model, year)
+        self.doors = doors
+
+    def describe(self):
+        return super().describe() + f"" ({self.doors} doors)""
+
+
+class ElectricCar(Car):
+    def __init__(self, make, model, year, doors, kwh):
+        super().__init__(make, model, year, doors)
+        self.kwh = kwh
+
+    def describe(self):
+        return super().describe() + f"" [{self.kwh} kWh]""
+
+
+vehicles = []
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""VEHICLE"":
+        vehicles.append(Vehicle(parts[1], parts[2], int(parts[3])))
+    elif command == ""CAR"":
+        vehicles.append(Car(parts[1], parts[2], int(parts[3]), int(parts[4])))
+    elif command == ""ECAR"":
+        vehicles.append(ElectricCar(parts[1], parts[2], int(parts[3]), int(parts[4]), int(parts[5])))
+    elif command == ""LIST"":
+        for v in vehicles:
+            print(v.describe())
+    elif command == ""INFO"":
+        v = vehicles[int(parts[1])]
+        print(f""{type(v).__name__}, wheels={v.wheels}, is Car: {isinstance(v, Car)}"")","[{""input"": ""2\nCAR Toyota Corolla 2020 4\nLIST"", ""output"": ""2020 Toyota Corolla (4 doors)"", ""is_hidden"": false}, {""input"": ""2\nVEHICLE Honda Cub 1958\nINFO 0"", ""output"": ""Vehicle, wheels=0, is Car: False"", ""is_hidden"": false}, {""input"": ""4\nECAR Tesla Model3 2023 4 75\nLIST\nINFO 0\nCAR VW Golf 2019 5"", ""output"": ""2023 Tesla Model3 (4 doors) [75 kWh]\nElectricCar, wheels=4, is Car: True"", ""is_hidden"": false}, {""input"": ""5\nVEHICLE Ford T 1908\nCAR Fiat Uno 1990 3\nECAR Nissan Leaf 2018 5 40\nLIST\nINFO 1"", ""output"": ""1908 Ford T\n1990 Fiat Uno (3 doors)\n2018 Nissan Leaf (5 doors) [40 kWh]\nCar, wheels=4, is Car: True"", ""is_hidden"": true}, {""input"": ""3\nCAR Mini Cooper 2001 2\nINFO 0\nLIST"", ""output"": ""Car, wheels=4, is Car: True\n2001 Mini Cooper (2 doors)"", ""is_hidden"": true}, {""input"": ""4\nVEHICLE A B 1\nVEHICLE C D 2\nINFO 1\nLIST"", ""output"": ""Vehicle, wheels=0, is Car: False\n1 A B\n2 C D"", ""is_hidden"": true}, {""input"": ""3\nECAR BYD Seal 2024 4 82\nINFO 0\nLIST"", ""output"": ""ElectricCar, wheels=4, is Car: True\n2024 BYD Seal (4 doors) [82 kWh]"", ""is_hidden"": true}, {""input"": ""2\nCAR Kia Rio 2015 4\nINFO 0"", ""output"": ""Car, wheels=4, is Car: True"", ""is_hidden"": true}]"
+PY-M14-03,Dataclass with Ordering,Module 14: Advanced OOP,Easy,Implement @dataclass(order=True) for items comparing by price.,command-driver,O(N log N) per SORTED,O(N),"Task: The dataclasses module writes __init__, __repr__, __eq__ and, with order=True, also <, <=, > and >= for you.
+
+Write a dataclass Item:
+@dataclass(order=True)
+class Item:
+price: float
+name: str
+
+Comparisons use the fields in the order they are written: first price, then name (only when the prices are equal).
+
+Commands:
+• ADD name price → create an Item and keep it in a list (prints nothing)
+• SORTED → print the items from cheapest to most expensive, one per line, using repr (the dataclass repr, like Item(price=2.5, name='pen'))
+• CHEAPEST → print min(items) using repr
+• COMPARE i j → compare the items at indexes i and j (from 0) and print <, == or >
+
+Example: ADD pen 2.5, ADD book 12.0, CHEAPEST prints Item(price=2.5, name='pen').","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description). SORTED, CHEAPEST and COMPARE are only used when the list has the items they need.",SORTED prints one line per item; CHEAPEST and COMPARE print one line. ADD prints nothing.,"1 <= Q <= 1000
+Names are words without spaces
+0 <= price <= 10^6","3
+ADD pen 2.5
+ADD book 12.0
+CHEAPEST","Item(price=2.5, name='pen')","4
+ADD b 5
+ADD a 5
+SORTED
+COMPARE 0 1","Item(price=5.0, name='a')
+Item(price=5.0, name='b')
+>","from dataclasses import dataclass, then put @dataclass(order=True) on the line above class Item.","Create items with Item(float(price), name): the fields come in the order they are declared.","sorted(items) and min(items) work directly, because order=True gives the class comparison methods.","from dataclasses import dataclass
+
+
+@dataclass(order=True)
+class Item:
+    price: float
+    name: str
+
+
+items = []
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""ADD"":
+        items.append(Item(float(parts[2]), parts[1]))
+    elif command == ""SORTED"":
+        for item in sorted(items):
+            print(repr(item))
+    elif command == ""CHEAPEST"":
+        print(repr(min(items)))
+    elif command == ""COMPARE"":
+        a = items[int(parts[1])]
+        b = items[int(parts[2])]
+        if a < b:
+            print(""<"")
+        elif a == b:
+            print(""=="")
+        else:
+            print("">"")","[{""input"": ""3\nADD pen 2.5\nADD book 12.0\nCHEAPEST"", ""output"": ""Item(price=2.5, name='pen')"", ""is_hidden"": false}, {""input"": ""4\nADD b 5\nADD a 5\nSORTED\nCOMPARE 0 1"", ""output"": ""Item(price=5.0, name='a')\nItem(price=5.0, name='b')\n>"", ""is_hidden"": false}, {""input"": ""3\nADD x 1\nADD x 1\nCOMPARE 0 1"", ""output"": ""=="", ""is_hidden"": false}, {""input"": ""5\nADD tv 999.99\nADD cable 4.5\nADD remote 15\nSORTED\nCOMPARE 0 2"", ""output"": ""Item(price=4.5, name='cable')\nItem(price=15.0, name='remote')\nItem(price=999.99, name='tv')\n>"", ""is_hidden"": true}, {""input"": ""2\nADD free 0\nCHEAPEST"", ""output"": ""Item(price=0.0, name='free')"", ""is_hidden"": true}, {""input"": ""4\nADD z 3\nADD y 2\nADD x 1\nSORTED"", ""output"": ""Item(price=1.0, name='x')\nItem(price=2.0, name='y')\nItem(price=3.0, name='z')"", ""is_hidden"": true}, {""input"": ""3\nADD a 10\nADD b 9.99\nCOMPARE 1 0"", ""output"": ""<"", ""is_hidden"": true}, {""input"": ""6\nADD m 7\nADD n 7\nADD l 7\nSORTED\nCHEAPEST\nCOMPARE 2 1"", ""output"": ""Item(price=7.0, name='l')\nItem(price=7.0, name='m')\nItem(price=7.0, name='n')\nItem(price=7.0, name='l')\n<"", ""is_hidden"": true}]"
+PY-M14-04,Employee Payroll Polymorphism,Module 14: Advanced OOP,Medium,Base Employee with Salaried and Hourly polymorphic earnings.,command-driver,O(N) per PAYROLL,O(N),"Task: Polymorphism means different classes answer the same method call in their own way.
+
+Write a base class and two subclasses:
+• Employee: __init__(self, name). monthly_pay(self) raises NotImplementedError, because a plain Employee has no pay rule
+• Salaried(Employee): __init__(self, name, annual). monthly_pay returns annual / 12
+• Hourly(Employee): __init__(self, name, rate, hours). monthly_pay returns rate * hours for the first 160 hours, plus 1.5 * rate for every hour above 160
+
+Commands:
+• SALARIED name annual, HOURLY name rate hours → create the employee (prints nothing)
+• PAYROLL → print one line per employee in creation order: <name> (<ClassName>): <pay with 2 decimals>, then a last line TOTAL: <sum with 2 decimals>. The loop must just call e.monthly_pay() for every employee, without checking the type
+
+Example: SALARIED asha 60000, HOURLY ben 20 170, PAYROLL prints
+asha (Salaried): 5000.00
+ben (Hourly): 3500.00
+TOTAL: 8500.00","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","For every PAYROLL: one line per employee, then the TOTAL line.","1 <= Q <= 1000
+0 <= annual <= 10^7
+0 <= rate <= 10^4
+0 <= hours <= 744","3
+SALARIED asha 60000
+HOURLY ben 20 170
+PAYROLL","asha (Salaried): 5000.00
+ben (Hourly): 3500.00
+TOTAL: 8500.00","1
+PAYROLL",TOTAL: 0.00,Call super().__init__(name) in both subclasses.,"Overtime hours are max(0, hours - 160); normal hours are min(hours, 160).",The PAYROLL loop calls employee.monthly_pay() and Python picks the right version for each object.,"class Employee:
+    def __init__(self, name):
+        self.name = name
+
+    def monthly_pay(self):
+        raise NotImplementedError
+
+
+class Salaried(Employee):
+    def __init__(self, name, annual):
+        super().__init__(name)
+        self.annual = annual
+
+    def monthly_pay(self):
+        return self.annual / 12
+
+
+class Hourly(Employee):
+    def __init__(self, name, rate, hours):
+        super().__init__(name)
+        self.rate = rate
+        self.hours = hours
+
+    def monthly_pay(self):
+        normal = min(self.hours, 160)
+        overtime = max(0, self.hours - 160)
+        return self.rate * normal + 1.5 * self.rate * overtime
+
+
+staff = []
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    if parts[0] == ""SALARIED"":
+        staff.append(Salaried(parts[1], float(parts[2])))
+    elif parts[0] == ""HOURLY"":
+        staff.append(Hourly(parts[1], float(parts[2]), float(parts[3])))
+    elif parts[0] == ""PAYROLL"":
+        total = 0
+        for e in staff:
+            pay = e.monthly_pay()       # polymorphic call
+            total += pay
+            print(f""{e.name} ({type(e).__name__}): {pay:.2f}"")
+        print(f""TOTAL: {total:.2f}"")","[{""input"": ""3\nSALARIED asha 60000\nHOURLY ben 20 170\nPAYROLL"", ""output"": ""asha (Salaried): 5000.00\nben (Hourly): 3500.00\nTOTAL: 8500.00"", ""is_hidden"": false}, {""input"": ""1\nPAYROLL"", ""output"": ""TOTAL: 0.00"", ""is_hidden"": false}, {""input"": ""2\nHOURLY cy 15 160\nPAYROLL"", ""output"": ""cy (Hourly): 2400.00\nTOTAL: 2400.00"", ""is_hidden"": false}, {""input"": ""2\nHOURLY dee 10 200\nPAYROLL"", ""output"": ""dee (Hourly): 2200.00\nTOTAL: 2200.00"", ""is_hidden"": true}, {""input"": ""3\nSALARIED a 100000\nSALARIED b 50000\nPAYROLL"", ""output"": ""a (Salaried): 8333.33\nb (Salaried): 4166.67\nTOTAL: 12500.00"", ""is_hidden"": true}, {""input"": ""4\nHOURLY x 12.5 40\nPAYROLL\nSALARIED y 12\nPAYROLL"", ""output"": ""x (Hourly): 500.00\nTOTAL: 500.00\nx (Hourly): 500.00\ny (Salaried): 1.00\nTOTAL: 501.00"", ""is_hidden"": true}, {""input"": ""2\nHOURLY zero 0 300\nPAYROLL"", ""output"": ""zero (Hourly): 0.00\nTOTAL: 0.00"", ""is_hidden"": true}, {""input"": ""3\nSALARIED big 10000000\nHOURLY max 10000 744\nPAYROLL"", ""output"": ""big (Salaried): 833333.33\nmax (Hourly): 10360000.00\nTOTAL: 11193333.33"", ""is_hidden"": true}]"
+PY-M14-05,Payment Gateway Polymorphism,Module 14: Advanced OOP,Medium,"Abstract PaymentGateway with CreditCard, UPI, and Crypto classes.",command-driver,O(1) per command,O(1),"Task: An abstract class describes what every subclass must provide, and cannot be created itself.
+
+Write the classes using the abc module:
+• PaymentGateway(ABC) with an abstract method fee(self, amount), and a normal method pay(self, amount) that returns (amount + fee, fee)
+• CreditCard: fee = 2.9% of the amount + 0.30
+• UPI: fee = 0
+• Crypto: fee = 1.00 + 1% of the amount
+
+Commands:
+• PAY method amount → method is CARD, UPI or CRYPTO. Print <ClassName>: charged <total> (fee <fee>), both with 2 decimals. If the amount <= 0 print INVALID AMOUNT. If the method is unknown print UNKNOWN METHOD
+• ABSTRACT → try to create PaymentGateway() directly. Python raises TypeError because it has an abstract method: catch it and print CANNOT INSTANTIATE PaymentGateway
+
+Example: PAY CARD 100 prints CreditCard: charged 103.20 (fee 3.20).","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.","1 <= Q <= 1000
+-10^6 <= amount <= 10^6","1
+PAY CARD 100",CreditCard: charged 103.20 (fee 3.20),"2
+ABSTRACT
+PAY UPI 50","CANNOT INSTANTIATE PaymentGateway
+UPI: charged 50.00 (fee 0.00)","from abc import ABC, abstractmethod; put @abstractmethod above def fee.","Keep a dictionary {'CARD': CreditCard(), 'UPI': UPI(), 'CRYPTO': Crypto()} to pick the gateway.","pay() is written once in the base class and calls self.fee(amount), which runs the subclass version.","from abc import ABC, abstractmethod
+
+
+class PaymentGateway(ABC):
+    @abstractmethod
+    def fee(self, amount):
+        pass
+
+    def pay(self, amount):
+        fee = self.fee(amount)
+        return amount + fee, fee
+
+
+class CreditCard(PaymentGateway):
+    def fee(self, amount):
+        return amount * 0.029 + 0.30
+
+
+class UPI(PaymentGateway):
+    def fee(self, amount):
+        return 0.0
+
+
+class Crypto(PaymentGateway):
+    def fee(self, amount):
+        return 1.00 + amount * 0.01
+
+
+gateways = {""CARD"": CreditCard(), ""UPI"": UPI(), ""CRYPTO"": Crypto()}
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    if parts[0] == ""ABSTRACT"":
+        try:
+            PaymentGateway()
+        except TypeError:
+            print(""CANNOT INSTANTIATE PaymentGateway"")
+    elif parts[0] == ""PAY"":
+        method, amount = parts[1], float(parts[2])
+        if method not in gateways:
+            print(""UNKNOWN METHOD"")
+        elif amount <= 0:
+            print(""INVALID AMOUNT"")
+        else:
+            gateway = gateways[method]
+            total, fee = gateway.pay(amount)
+            print(f""{type(gateway).__name__}: charged {total:.2f} (fee {fee:.2f})"")","[{""input"": ""1\nPAY CARD 100"", ""output"": ""CreditCard: charged 103.20 (fee 3.20)"", ""is_hidden"": false}, {""input"": ""2\nABSTRACT\nPAY UPI 50"", ""output"": ""CANNOT INSTANTIATE PaymentGateway\nUPI: charged 50.00 (fee 0.00)"", ""is_hidden"": false}, {""input"": ""3\nPAY CRYPTO 200\nPAY BANK 10\nPAY CARD 0"", ""output"": ""Crypto: charged 203.00 (fee 3.00)\nUNKNOWN METHOD\nINVALID AMOUNT"", ""is_hidden"": false}, {""input"": ""2\nPAY UPI -5\nPAY CRYPTO 1"", ""output"": ""INVALID AMOUNT\nCrypto: charged 2.01 (fee 1.01)"", ""is_hidden"": true}, {""input"": ""3\nPAY CARD 1000\nPAY UPI 1000\nPAY CRYPTO 1000"", ""output"": ""CreditCard: charged 1029.30 (fee 29.30)\nUPI: charged 1000.00 (fee 0.00)\nCrypto: charged 1011.00 (fee 11.00)"", ""is_hidden"": true}, {""input"": ""1\nABSTRACT"", ""output"": ""CANNOT INSTANTIATE PaymentGateway"", ""is_hidden"": true}, {""input"": ""2\nPAY CARD 10\nPAY CRYPTO 50"", ""output"": ""CreditCard: charged 10.59 (fee 0.59)\nCrypto: charged 51.50 (fee 1.50)"", ""is_hidden"": true}, {""input"": ""2\nPAY card 10\nPAY UPI 999999"", ""output"": ""UNKNOWN METHOD\nUPI: charged 999999.00 (fee 0.00)"", ""is_hidden"": true}]"
+PY-M14-06,Shape Geometry Polymorphism,Module 14: Advanced OOP,Medium,Base Shape with Circle and Polygon computing polymorphic area.,command-driver,O(V) per POLYGON,O(total vertices),"Task: Write a base class Shape and two subclasses:
+• Shape: area(self) raises NotImplementedError
+• Circle(Shape): __init__(self, r); area = math.pi * r * r
+• Polygon(Shape): __init__(self, points) with a list of (x, y) tuples. If there are fewer than 3 points, raise ValueError('polygon needs at least 3 points'). Area with the shoelace formula: abs(sum of x[i] * y[i+1] - x[i+1] * y[i] over all i, wrapping around to the first point) / 2
+
+Commands:
+• CIRCLE r → add a circle (prints nothing)
+• POLYGON x1 y1 x2 y2 ... → add a polygon. If it raises ValueError, print INVALID: <message> and do not add it
+• LIST → one line per shape in the order added: <ClassName>: <area with 2 decimals>
+• TOTAL → the sum of all areas with 2 decimals
+• LARGEST → <ClassName>: <area> of the shape with the biggest area (the first one on a tie), or NONE if there are no shapes
+
+Example: CIRCLE 1, POLYGON 0 0 4 0 4 3, LIST prints Circle: 3.14 and Polygon: 6.00.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One line for every TOTAL, LARGEST and rejected POLYGON; one line per shape for every LIST.","1 <= Q <= 1000
+0 < r <= 10^3
+-10^3 <= coordinates <= 10^3","3
+CIRCLE 1
+POLYGON 0 0 4 0 4 3
+LIST","Circle: 3.14
+Polygon: 6.00","2
+POLYGON 0 0 1 1
+LARGEST","INVALID: polygon needs at least 3 points
+NONE","Pair the coordinates with zip: list(zip(nums[0::2], nums[1::2])).","In the shoelace sum, the next point of the last point is the first one: points[(i + 1) % n].","max(shapes, key=lambda s: s.area()) returns the first shape with the largest area.","import math
+
+
+class Shape:
+    def area(self):
+        raise NotImplementedError
+
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+
+    def area(self):
+        return math.pi * self.r * self.r
+
+
+class Polygon(Shape):
+    def __init__(self, points):
+        if len(points) < 3:
+            raise ValueError(""polygon needs at least 3 points"")
+        self.points = points
+
+    def area(self):
+        n = len(self.points)
+        total = 0
+        for i in range(n):
+            x1, y1 = self.points[i]
+            x2, y2 = self.points[(i + 1) % n]
+            total += x1 * y2 - x2 * y1
+        return abs(total) / 2
+
+
+shapes = []
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""CIRCLE"":
+        shapes.append(Circle(float(parts[1])))
+    elif command == ""POLYGON"":
+        nums = [float(p) for p in parts[1:]]
+        try:
+            shapes.append(Polygon(list(zip(nums[0::2], nums[1::2]))))
+        except ValueError as e:
+            print(f""INVALID: {e}"")
+    elif command == ""LIST"":
+        for s in shapes:
+            print(f""{type(s).__name__}: {s.area():.2f}"")
+    elif command == ""TOTAL"":
+        print(f""{sum(s.area() for s in shapes):.2f}"")
+    elif command == ""LARGEST"":
+        if shapes:
+            big = max(shapes, key=lambda s: s.area())
+            print(f""{type(big).__name__}: {big.area():.2f}"")
+        else:
+            print(""NONE"")","[{""input"": ""3\nCIRCLE 1\nPOLYGON 0 0 4 0 4 3\nLIST"", ""output"": ""Circle: 3.14\nPolygon: 6.00"", ""is_hidden"": false}, {""input"": ""2\nPOLYGON 0 0 1 1\nLARGEST"", ""output"": ""INVALID: polygon needs at least 3 points\nNONE"", ""is_hidden"": false}, {""input"": ""4\nCIRCLE 2\nPOLYGON 0 0 10 0 10 10 0 10\nTOTAL\nLARGEST"", ""output"": ""112.57\nPolygon: 100.00"", ""is_hidden"": false}, {""input"": ""2\nTOTAL\nLIST"", ""output"": ""0.00"", ""is_hidden"": true}, {""input"": ""3\nPOLYGON 0 0 0 4 4 4 4 0\nPOLYGON 1 1 3 1 2 5\nLIST"", ""output"": ""Polygon: 16.00\nPolygon: 4.00"", ""is_hidden"": true}, {""input"": ""4\nCIRCLE 0.5\nCIRCLE 10\nLARGEST\nTOTAL"", ""output"": ""Circle: 314.16\n314.94"", ""is_hidden"": true}, {""input"": ""3\nPOLYGON -1 -1 1 -1 1 1 -1 1\nCIRCLE 1\nLARGEST"", ""output"": ""Polygon: 4.00"", ""is_hidden"": true}, {""input"": ""3\nPOLYGON 5 5\nPOLYGON 0 0 2 0 0 2\nLIST"", ""output"": ""INVALID: polygon needs at least 3 points\nPolygon: 2.00"", ""is_hidden"": true}]"
+PY-M14-07,Sequence Magic Methods,Module 14: Advanced OOP,Medium,Implement __len__ and __getitem__ to enable indexing and slicing.,command-driver,"O(1) per GET, O(K) per SLICE",O(N),"Task: When a class defines __len__ and __getitem__, Python lets you use len(obj), obj[i] and obj[a:b] on it, like on a list.
+
+Write a class SongList that wraps a list of song names:
+• __init__(self, songs=None) stores a copy of the list (an empty list when songs is None)
+• add(self, song) appends a song
+• __len__(self) returns the number of songs
+• __getitem__(self, index): if index is a slice object, return a NEW SongList with the selected songs; otherwise return the song at that index. A bad index raises IndexError by itself
+• __repr__(self) returns SongList(<list of songs>)
+
+Commands:
+• ADD song → add a song (the song name is one word; prints nothing)
+• LEN → print len(songs)
+• GET i → print songs[i], or INDEX ERROR if it raises IndexError
+• SLICE a b [step] → print repr(songs[a:b]) or repr(songs[a:b:step]) when a step is given
+
+Example: ADD a, ADD b, ADD c, GET -1, SLICE 0 2 prints c and SongList(['a', 'b']).","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every LEN, GET and SLICE command.","1 <= Q <= 1000
+-10^4 <= i, a, b <= 10^4
+step != 0","5
+ADD a
+ADD b
+ADD c
+GET -1
+SLICE 0 2","c
+SongList(['a', 'b'])","2
+LEN
+GET 0","0
+INDEX ERROR","isinstance(index, slice) tells you whether obj[a:b] was used.",self.songs[index] already understands both ints and slices; just wrap a slice result in SongList(...).,"Python turns songs[0:2] into songs.__getitem__(slice(0, 2, None)).","class SongList:
+    def __init__(self, songs=None):
+        self.songs = list(songs) if songs is not None else []
+
+    def add(self, song):
+        self.songs.append(song)
+
+    def __len__(self):
+        return len(self.songs)
+
+    def __getitem__(self, index):
+        if isinstance(index, slice):
+            return SongList(self.songs[index])
+        return self.songs[index]
+
+    def __repr__(self):
+        return f""SongList({self.songs})""
+
+
+songs = SongList()
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""ADD"":
+        songs.add(parts[1])
+    elif command == ""LEN"":
+        print(len(songs))
+    elif command == ""GET"":
+        try:
+            print(songs[int(parts[1])])
+        except IndexError:
+            print(""INDEX ERROR"")
+    elif command == ""SLICE"":
+        a, b = int(parts[1]), int(parts[2])
+        if len(parts) == 4:
+            print(repr(songs[a:b:int(parts[3])]))
+        else:
+            print(repr(songs[a:b]))","[{""input"": ""5\nADD a\nADD b\nADD c\nGET -1\nSLICE 0 2"", ""output"": ""c\nSongList(['a', 'b'])"", ""is_hidden"": false}, {""input"": ""2\nLEN\nGET 0"", ""output"": ""0\nINDEX ERROR"", ""is_hidden"": false}, {""input"": ""6\nADD x\nADD y\nADD z\nLEN\nGET 3\nGET -3"", ""output"": ""3\nINDEX ERROR\nx"", ""is_hidden"": false}, {""input"": ""5\nADD 1\nADD 2\nADD 3\nADD 4\nSLICE 0 4 2"", ""output"": ""SongList(['1', '3'])"", ""is_hidden"": true}, {""input"": ""4\nADD p\nADD q\nSLICE 5 9\nSLICE -1 -3 -1"", ""output"": ""SongList([])\nSongList(['q', 'p'])"", ""is_hidden"": true}, {""input"": ""4\nADD solo\nGET 0\nGET -2\nLEN"", ""output"": ""solo\nINDEX ERROR\n1"", ""is_hidden"": true}, {""input"": ""6\nADD a\nADD b\nADD c\nADD d\nSLICE 3 0 -1\nSLICE -2 100"", ""output"": ""SongList(['d', 'c', 'b'])\nSongList(['c', 'd'])"", ""is_hidden"": true}, {""input"": ""3\nADD m\nSLICE 0 1\nLEN"", ""output"": ""SongList(['m'])\n1"", ""is_hidden"": true}]"
+PY-M14-08,Value Equality & Hashing,Module 14: Advanced OOP,Medium,Implement __eq__ and __hash__ for hash table compatibility in sets/dicts.,command-driver,O(1) per command,O(N),"Task: By default two objects are equal only if they are the SAME object. To use objects as set items or dict keys by their VALUE, a class needs __eq__ and a matching __hash__: equal objects must have equal hashes.
+
+Write a class Point:
+• __init__(self, x, y)
+• __eq__(self, other): True when other is a Point with the same x and y. For anything else return NotImplemented
+• __hash__(self): return hash((self.x, self.y))
+• __repr__(self): Point(x, y)
+
+Commands:
+• ADD x y → add Point(x, y) to a set. Print ADDED, or DUPLICATE if an equal point is already there
+• HAS x y → print True or False (is an equal point in the set?)
+• COUNT → print the size of the set
+• LABEL x y name → store name in a dict under the key Point(x, y) (a new name replaces the old one; prints nothing)
+• NAME x y → print the label of Point(x, y), or NONE
+
+Example: ADD 1 2, ADD 1 2, COUNT prints ADDED, DUPLICATE, 1.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every ADD, HAS, COUNT and NAME command.","1 <= Q <= 1000
+-10^9 <= x, y <= 10^9 (integers)
+Labels are words without spaces","3
+ADD 1 2
+ADD 1 2
+COUNT","ADDED
+DUPLICATE
+1","3
+HAS 0 0
+ADD 0 0
+HAS 0 0","False
+ADDED
+True","Without __hash__, defining __eq__ makes the class unhashable, so it cannot go in a set.","Hashing the tuple (x, y) gives equal points equal hashes.","Point(1, 2) in points calls __hash__ first, then __eq__ to confirm the match.","class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __eq__(self, other):
+        if not isinstance(other, Point):
+            return NotImplemented
+        return self.x == other.x and self.y == other.y
+
+    def __hash__(self):
+        return hash((self.x, self.y))       # equal points -> equal hashes
+
+    def __repr__(self):
+        return f""Point({self.x}, {self.y})""
+
+
+points = set()
+labels = {}
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""COUNT"":
+        print(len(points))
+        continue
+    p = Point(int(parts[1]), int(parts[2]))
+    if command == ""ADD"":
+        if p in points:
+            print(""DUPLICATE"")
+        else:
+            points.add(p)
+            print(""ADDED"")
+    elif command == ""HAS"":
+        print(p in points)
+    elif command == ""LABEL"":
+        labels[p] = parts[3]
+    elif command == ""NAME"":
+        print(labels.get(p, ""NONE""))","[{""input"": ""3\nADD 1 2\nADD 1 2\nCOUNT"", ""output"": ""ADDED\nDUPLICATE\n1"", ""is_hidden"": false}, {""input"": ""3\nHAS 0 0\nADD 0 0\nHAS 0 0"", ""output"": ""False\nADDED\nTrue"", ""is_hidden"": false}, {""input"": ""3\nLABEL 5 5 home\nNAME 5 5\nNAME 5 6"", ""output"": ""home\nNONE"", ""is_hidden"": false}, {""input"": ""4\nADD 1 2\nADD 2 1\nCOUNT\nHAS 2 1"", ""output"": ""ADDED\nADDED\n2\nTrue"", ""is_hidden"": true}, {""input"": ""4\nLABEL 0 0 a\nLABEL 0 0 b\nNAME 0 0\nCOUNT"", ""output"": ""b\n0"", ""is_hidden"": true}, {""input"": ""2\nNAME -1 -1\nCOUNT"", ""output"": ""NONE\n0"", ""is_hidden"": true}, {""input"": ""5\nADD -1000000000 1000000000\nADD -1000000000 1000000000\nHAS 1000000000 -1000000000\nLABEL -1000000000 1000000000 far\nNAME -1000000000 1000000000"", ""output"": ""ADDED\nDUPLICATE\nFalse\nfar"", ""is_hidden"": true}, {""input"": ""4\nADD 3 4\nLABEL 3 4 x\nADD 3 4\nNAME 3 4"", ""output"": ""ADDED\nDUPLICATE\nx"", ""is_hidden"": true}]"
+PY-M14-09,Fraction Arithmetic Dunders,Module 14: Advanced OOP,Medium,"Implement __add__, __sub__, and __mul__ on Fraction with GCD reduction.",command-driver,O(log V) per operation,O(1),"Task: Write a class Frac for exact fractions (do not use the fractions module):
+• __init__(self, num, den): if den is 0 raise ZeroDivisionError('zero denominator'). Store the fraction in lowest terms: divide both by math.gcd(num, den), and keep the sign in the numerator (the denominator is always positive)
+• __add__, __sub__ and __mul__ each return a NEW Frac
+a/b + c/d = (a*d + c*b) / (b*d), a/b - c/d = (a*d - c*b) / (b*d), a/b * c/d = (a*c) / (b*d)
+• __str__ returns 'num/den', or just 'num' when den is 1
+
+Each input line is one expression: <fraction> <op> <fraction>, where a fraction is written num/den and op is +, - or *. Print the result with str(). If creating a fraction raises ZeroDivisionError, print ERROR: zero denominator.
+
+Examples: 1/2 + 1/3 → 5/6, 2/4 * 2/1 → 1, 1/0 + 1/2 → ERROR: zero denominator.","Line 1: the number of expressions Q.
+Next Q lines: <num>/<den> <op> <num>/<den>, separated by spaces.","Q lines: the result, or ERROR: zero denominator.","1 <= Q <= 1000
+-10^6 <= num, den <= 10^6","3
+1/2 + 1/3
+2/4 * 2/1
+1/0 + 1/2","5/6
+1
+ERROR: zero denominator","1
+1/2 - 1/2",0,"math.gcd always returns a non-negative number; math.gcd(0, 5) is 5, so 0/5 becomes 0/1.","If den < 0 after reducing, multiply both num and den by -1.",a + b on two Frac objects calls a.__add__(b).,"import math
+
+
+class Frac:
+    def __init__(self, num, den):
+        if den == 0:
+            raise ZeroDivisionError(""zero denominator"")
+        g = math.gcd(num, den)
+        num //= g
+        den //= g
+        if den < 0:                 # keep the sign in the numerator
+            num, den = -num, -den
+        self.num = num
+        self.den = den
+
+    def __add__(self, other):
+        return Frac(self.num * other.den + other.num * self.den, self.den * other.den)
+
+    def __sub__(self, other):
+        return Frac(self.num * other.den - other.num * self.den, self.den * other.den)
+
+    def __mul__(self, other):
+        return Frac(self.num * other.num, self.den * other.den)
+
+    def __str__(self):
+        if self.den == 1:
+            return str(self.num)
+        return f""{self.num}/{self.den}""
+
+
+q = int(input())
+for _ in range(q):
+    left, op, right = input().split()
+    try:
+        a = Frac(*map(int, left.split(""/"")))
+        b = Frac(*map(int, right.split(""/"")))
+        if op == ""+"":
+            print(a + b)
+        elif op == ""-"":
+            print(a - b)
+        else:
+            print(a * b)
+    except ZeroDivisionError as e:
+        print(f""ERROR: {e}"")","[{""input"": ""3\n1/2 + 1/3\n2/4 * 2/1\n1/0 + 1/2"", ""output"": ""5/6\n1\nERROR: zero denominator"", ""is_hidden"": false}, {""input"": ""1\n1/2 - 1/2"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""2\n3/-4 + 1/4\n-1/-3 * 3/1"", ""output"": ""-1/2\n1"", ""is_hidden"": false}, {""input"": ""1\n5/1 - 7/1"", ""output"": ""-2"", ""is_hidden"": true}, {""input"": ""2\n1/3 * 0/5\n2/3 - 5/6"", ""output"": ""0\n-1/6"", ""is_hidden"": true}, {""input"": ""1\n1000000/999999 * 999999/1000000"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""2\n1/2 + 1/0\n4/8 + 0/1"", ""output"": ""ERROR: zero denominator\n1/2"", ""is_hidden"": true}, {""input"": ""1\n-7/3 - -2/3"", ""output"": ""-5/3"", ""is_hidden"": true}]"
+PY-M14-10,Diamond MRO Inspection,Module 14: Advanced OOP,Medium,Demonstrate method resolution order (__mro__) across diamond hierarchy.,command-driver,O(1) per command,O(1),"Task: In a diamond hierarchy, two classes inherit from the same base, and a fourth class inherits from both. Python decides the lookup order with the MRO (method resolution order), and super() follows that order.
+
+Write these classes. Every hello(self) returns its own class name, followed by ' -> ' and super().hello(), except Base, which just returns 'Base':
+• Base
+• Left(Base)
+• Right(Base)
+• Child(Left, Right)
+• Child2(Right, Left)
+
+Commands (ClassName is one of the five names):
+• MRO ClassName → print the names in ClassName.__mro__ joined with ' -> ' (this includes object at the end)
+• CALL ClassName → print ClassName().hello()
+• If the class name is not one of the five, print UNKNOWN CLASS
+
+Examples: CALL Child prints Child -> Left -> Right -> Base. Base runs only once, even though two classes inherit from it.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.",1 <= Q <= 100,"2
+CALL Child
+MRO Child","Child -> Left -> Right -> Base
+Child -> Left -> Right -> Base -> object","1
+CALL Base",Base,"Keep the classes in a dictionary by name: {'Base': Base, 'Left': Left, ...}.",Each class's __name__ attribute gives its name: [c.__name__ for c in cls.__mro__].,"super().hello() in Left calls Right.hello() when the object is a Child: super() follows the MRO of the object, not the parent written in the class.","class Base:
+    def hello(self):
+        return ""Base""
+
+
+class Left(Base):
+    def hello(self):
+        return ""Left -> "" + super().hello()
+
+
+class Right(Base):
+    def hello(self):
+        return ""Right -> "" + super().hello()
+
+
+class Child(Left, Right):
+    def hello(self):
+        return ""Child -> "" + super().hello()
+
+
+class Child2(Right, Left):
+    def hello(self):
+        return ""Child2 -> "" + super().hello()
+
+
+classes = {c.__name__: c for c in (Base, Left, Right, Child, Child2)}
+
+q = int(input())
+for _ in range(q):
+    command, name = input().split()
+    if name not in classes:
+        print(""UNKNOWN CLASS"")
+        continue
+    cls = classes[name]
+    if command == ""MRO"":
+        print("" -> "".join(c.__name__ for c in cls.__mro__))
+    elif command == ""CALL"":
+        print(cls().hello())","[{""input"": ""2\nCALL Child\nMRO Child"", ""output"": ""Child -> Left -> Right -> Base\nChild -> Left -> Right -> Base -> object"", ""is_hidden"": false}, {""input"": ""1\nCALL Base"", ""output"": ""Base"", ""is_hidden"": false}, {""input"": ""2\nMRO Child2\nCALL Child2"", ""output"": ""Child2 -> Right -> Left -> Base -> object\nChild2 -> Right -> Left -> Base"", ""is_hidden"": false}, {""input"": ""2\nCALL Left\nMRO Right"", ""output"": ""Left -> Base\nRight -> Base -> object"", ""is_hidden"": true}, {""input"": ""1\nCALL Parent"", ""output"": ""UNKNOWN CLASS"", ""is_hidden"": true}, {""input"": ""3\nMRO Base\nMRO Left\nCALL Right"", ""output"": ""Base -> object\nLeft -> Base -> object\nRight -> Base"", ""is_hidden"": true}, {""input"": ""2\nMRO child\nCALL Child"", ""output"": ""UNKNOWN CLASS\nChild -> Left -> Right -> Base"", ""is_hidden"": true}, {""input"": ""4\nCALL Child2\nCALL Child\nMRO Child\nMRO Child2"", ""output"": ""Child2 -> Right -> Left -> Base\nChild -> Left -> Right -> Base\nChild -> Left -> Right -> Base -> object\nChild2 -> Right -> Left -> Base -> object"", ""is_hidden"": true}]"
+PY-M14-11,Property Decorator Validation,Module 14: Advanced OOP,Medium,Use @property and @setter to enforce validation on private attribute.,command-driver,O(1) per command,O(1),"Task: A property looks like a normal attribute from outside, but runs your code when it is read or assigned. That lets a class reject bad values.
+
+Write a class Product:
+• __init__(self, name, price) stores the name in a read-only property and assigns self.price = price, so the setter checks the starting price too
+• The real value is kept in self._price (the underscore means ""private"")
+• @property price returns self._price
+• @price.setter: if the value is negative, raise ValueError('price cannot be negative'); otherwise store it
+• @property name returns self._name, with NO setter, so obj.name = ... raises AttributeError
+• apply_discount(self, pct): if pct is not between 0 and 100, raise ValueError('discount must be 0-100'); otherwise self.price = self.price * (1 - pct / 100)
+
+The first line creates the product. If that raises ValueError, print ERROR: <message> and stop. Commands:
+• GET → print <name>: <price with 2 decimals>
+• SET p → assign product.price = p
+• DISCOUNT pct → call apply_discount
+• RENAME new → try product.name = new
+For SET, DISCOUNT and RENAME print OK, or ERROR: <message> for ValueError, or ERROR: read-only for AttributeError.
+
+Example: product pen 10, then SET -5, DISCOUNT 50, GET prints ERROR: price cannot be negative, OK, pen: 5.00.","Line 1: the product name and the starting price.
+Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).",ERROR: <message> if the product cannot be created. Otherwise one output line for every command.,"1 <= Q <= 1000
+-10^6 <= prices <= 10^6
+-1000 <= pct <= 1000","pen 10
+3
+SET -5
+DISCOUNT 50
+GET","ERROR: price cannot be negative
+OK
+pen: 5.00","bad -1
+1
+GET",ERROR: price cannot be negative,"The setter method has the same name as the property: @price.setter then def price(self, value).","Inside the class, assign self.price = ..., not self._price = ..., so every change goes through the check.",A property without a setter raises AttributeError when you assign to it.,"class Product:
+    def __init__(self, name, price):
+        self._name = name
+        self.price = price          # goes through the setter
+
+    @property
+    def name(self):
+        return self._name
+
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, value):
+        if value < 0:
+            raise ValueError(""price cannot be negative"")
+        self._price = value
+
+    def apply_discount(self, pct):
+        if pct < 0 or pct > 100:
+            raise ValueError(""discount must be 0-100"")
+        self.price = self.price * (1 - pct / 100)
+
+
+name, start = input().split()
+q = int(input())
+
+try:
+    product = Product(name, float(start))
+except ValueError as e:
+    print(f""ERROR: {e}"")
+else:
+    for _ in range(q):
+        parts = input().split()
+        command = parts[0]
+        if command == ""GET"":
+            print(f""{product.name}: {product.price:.2f}"")
+            continue
+        try:
+            if command == ""SET"":
+                product.price = float(parts[1])
+            elif command == ""DISCOUNT"":
+                product.apply_discount(float(parts[1]))
+            elif command == ""RENAME"":
+                product.name = parts[1]
+            print(""OK"")
+        except ValueError as e:
+            print(f""ERROR: {e}"")
+        except AttributeError:
+            print(""ERROR: read-only"")","[{""input"": ""pen 10\n3\nSET -5\nDISCOUNT 50\nGET"", ""output"": ""ERROR: price cannot be negative\nOK\npen: 5.00"", ""is_hidden"": false}, {""input"": ""bad -1\n1\nGET"", ""output"": ""ERROR: price cannot be negative"", ""is_hidden"": false}, {""input"": ""cup 4\n3\nRENAME mug\nGET\nSET 0"", ""output"": ""ERROR: read-only\ncup: 4.00\nOK"", ""is_hidden"": false}, {""input"": ""lamp 80\n4\nDISCOUNT 101\nDISCOUNT -1\nDISCOUNT 100\nGET"", ""output"": ""ERROR: discount must be 0-100\nERROR: discount must be 0-100\nOK\nlamp: 0.00"", ""is_hidden"": true}, {""input"": ""tv 999.99\n3\nDISCOUNT 10\nGET\nSET 1000000"", ""output"": ""OK\ntv: 899.99\nOK"", ""is_hidden"": true}, {""input"": ""book 20\n2\nGET\nGET"", ""output"": ""book: 20.00\nbook: 20.00"", ""is_hidden"": true}, {""input"": ""free 0\n2\nDISCOUNT 50\nGET"", ""output"": ""OK\nfree: 0.00"", ""is_hidden"": true}, {""input"": ""chair 45\n5\nSET 60\nDISCOUNT 25\nRENAME seat\nSET -0.01\nGET"", ""output"": ""OK\nOK\nERROR: read-only\nERROR: price cannot be negative\nchair: 45.00"", ""is_hidden"": true}]"
+PY-M14-12,State Pattern Workflow,Module 14: Advanced OOP,Hard,Implement state transitions (DRAFT->PAID->SHIPPED) with validation.,command-driver,O(1) per command,O(1),"Task: In the State pattern, every state is its own class, and the object hands each action to its current state. A state either returns the next state or refuses the action.
+
+Order life cycle:
+• DRAFT --pay--> PAID --ship--> SHIPPED --deliver--> DELIVERED
+• cancel is allowed from DRAFT and PAID and leads to CANCELLED
+• Every other action is not allowed
+
+Write:
+• class InvalidTransition(Exception)
+• class State with name = 'STATE' and methods pay, ship, deliver and cancel that all raise InvalidTransition(f'cannot {action} when {self.name}')
+• One subclass per state (Draft, Paid, Shipped, Delivered, Cancelled) with its own name in capitals, overriding ONLY the actions it allows; each allowed action returns the next state object
+• class Order with self.state = Draft() and a method do(self, action) that calls the matching method of the state and stores the returned state
+
+Commands:
+• PAY, SHIP, DELIVER, CANCEL → print the new state's name, or INVALID: <message>
+• STATUS → print the current state's name
+
+Example: PAY, DELIVER, SHIP prints PAID, INVALID: cannot deliver when PAID, SHIPPED.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.",1 <= Q <= 1000,"3
+PAY
+DELIVER
+SHIP","PAID
+INVALID: cannot deliver when PAID
+SHIPPED","2
+STATUS
+SHIP","DRAFT
+INVALID: cannot ship when DRAFT",Write the 'not allowed' behaviour once in the base State class; subclasses only override what they allow.,"getattr(self.state, action)() calls the method named by action, for example 'pay'.",Delivered and Cancelled need no methods at all: every action is invalid there.,"class InvalidTransition(Exception):
+    pass
+
+
+class State:
+    name = ""STATE""
+
+    def _refuse(self, action):
+        raise InvalidTransition(f""cannot {action} when {self.name}"")
+
+    def pay(self):
+        self._refuse(""pay"")
+
+    def ship(self):
+        self._refuse(""ship"")
+
+    def deliver(self):
+        self._refuse(""deliver"")
+
+    def cancel(self):
+        self._refuse(""cancel"")
+
+
+class Draft(State):
+    name = ""DRAFT""
+
+    def pay(self):
+        return Paid()
+
+    def cancel(self):
+        return Cancelled()
+
+
+class Paid(State):
+    name = ""PAID""
+
+    def ship(self):
+        return Shipped()
+
+    def cancel(self):
+        return Cancelled()
+
+
+class Shipped(State):
+    name = ""SHIPPED""
+
+    def deliver(self):
+        return Delivered()
+
+
+class Delivered(State):
+    name = ""DELIVERED""
+
+
+class Cancelled(State):
+    name = ""CANCELLED""
+
+
+class Order:
+    def __init__(self):
+        self.state = Draft()
+
+    def do(self, action):
+        self.state = getattr(self.state, action)()
+        return self.state.name
+
+
+order = Order()
+
+q = int(input())
+for _ in range(q):
+    command = input().strip()
+    if command == ""STATUS"":
+        print(order.state.name)
+        continue
+    try:
+        print(order.do(command.lower()))
+    except InvalidTransition as e:
+        print(f""INVALID: {e}"")","[{""input"": ""3\nPAY\nDELIVER\nSHIP"", ""output"": ""PAID\nINVALID: cannot deliver when PAID\nSHIPPED"", ""is_hidden"": false}, {""input"": ""2\nSTATUS\nSHIP"", ""output"": ""DRAFT\nINVALID: cannot ship when DRAFT"", ""is_hidden"": false}, {""input"": ""5\nPAY\nSHIP\nDELIVER\nCANCEL\nSTATUS"", ""output"": ""PAID\nSHIPPED\nDELIVERED\nINVALID: cannot cancel when DELIVERED\nDELIVERED"", ""is_hidden"": false}, {""input"": ""3\nCANCEL\nPAY\nSTATUS"", ""output"": ""CANCELLED\nINVALID: cannot pay when CANCELLED\nCANCELLED"", ""is_hidden"": true}, {""input"": ""4\nPAY\nCANCEL\nSHIP\nSTATUS"", ""output"": ""PAID\nCANCELLED\nINVALID: cannot ship when CANCELLED\nCANCELLED"", ""is_hidden"": true}, {""input"": ""4\nPAY\nPAY\nSHIP\nSHIP"", ""output"": ""PAID\nINVALID: cannot pay when PAID\nSHIPPED\nINVALID: cannot ship when SHIPPED"", ""is_hidden"": true}, {""input"": ""2\nDELIVER\nCANCEL"", ""output"": ""INVALID: cannot deliver when DRAFT\nCANCELLED"", ""is_hidden"": true}, {""input"": ""6\nPAY\nSHIP\nCANCEL\nDELIVER\nDELIVER\nSTATUS"", ""output"": ""PAID\nSHIPPED\nINVALID: cannot cancel when SHIPPED\nDELIVERED\nINVALID: cannot deliver when DELIVERED\nDELIVERED"", ""is_hidden"": true}]"
+PY-M14-13,Context Manager Dunders,Module 14: Advanced OOP,Hard,Implement __enter__ and __exit__ for resource acquisition and error suppression.,command-driver,O(1) per command,O(1),"Task: A with statement calls __enter__ when the block starts and __exit__ when it ends, even if the block raises an error. If __exit__ returns True, the error is suppressed (swallowed); otherwise it continues outward.
+
+Write a class Resource:
+• Class attribute open_count = 0 (how many resources are open right now)
+• __init__(self, name) stores the name
+• __enter__(self): add 1 to Resource.open_count, print acquire <name>, return self
+• __exit__(self, exc_type, exc, tb): subtract 1 from Resource.open_count and print release <name>. If exc_type is ValueError, print suppressed ValueError: <message> and return True. For any other error (or none), return False
+
+Commands:
+• USE name OK → with Resource(name): print working <name>
+• USE name VALUE → with Resource(name): raise ValueError('bad value')
+• USE name KEY → with Resource(name): raise KeyError('missing')
+• An error that is not suppressed reaches the driver: catch it there and print unhandled <ExceptionName>
+• OPEN → print Resource.open_count
+
+Example: USE db VALUE prints acquire db, release db, suppressed ValueError: bad value.","Line 1: the number of commands Q.
+Next Q lines: USE <name> <OK|VALUE|KEY> or OPEN.","The lines printed by the resource and the driver, in order.","1 <= Q <= 1000
+Names are words without spaces","1
+USE db VALUE","acquire db
+release db
+suppressed ValueError: bad value","2
+USE file OK
+OPEN","acquire file
+working file
+release file
+0","issubclass(exc_type, ValueError) is safe only when exc_type is not None; exc_type is None when the block ended normally.",Returning True from __exit__ tells Python the error was handled.,Wrap the with statement in try / except Exception as e in the driver to catch what __exit__ let through.,"class Resource:
+    open_count = 0
+
+    def __init__(self, name):
+        self.name = name
+
+    def __enter__(self):
+        Resource.open_count += 1
+        print(f""acquire {self.name}"")
+        return self
+
+    def __exit__(self, exc_type, exc, tb):
+        Resource.open_count -= 1
+        print(f""release {self.name}"")
+        if exc_type is not None and issubclass(exc_type, ValueError):
+            print(f""suppressed ValueError: {exc}"")
+            return True             # swallow the error
+        return False                # let anything else continue
+
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    if parts[0] == ""OPEN"":
+        print(Resource.open_count)
+        continue
+    name, action = parts[1], parts[2]
+    try:
+        with Resource(name):
+            if action == ""OK"":
+                print(f""working {name}"")
+            elif action == ""VALUE"":
+                raise ValueError(""bad value"")
+            elif action == ""KEY"":
+                raise KeyError(""missing"")
+    except Exception as e:
+        print(f""unhandled {type(e).__name__}"")","[{""input"": ""1\nUSE db VALUE"", ""output"": ""acquire db\nrelease db\nsuppressed ValueError: bad value"", ""is_hidden"": false}, {""input"": ""2\nUSE file OK\nOPEN"", ""output"": ""acquire file\nworking file\nrelease file\n0"", ""is_hidden"": false}, {""input"": ""2\nUSE net KEY\nOPEN"", ""output"": ""acquire net\nrelease net\nunhandled KeyError\n0"", ""is_hidden"": false}, {""input"": ""3\nUSE a OK\nUSE b VALUE\nUSE c KEY"", ""output"": ""acquire a\nworking a\nrelease a\nacquire b\nrelease b\nsuppressed ValueError: bad value\nacquire c\nrelease c\nunhandled KeyError"", ""is_hidden"": true}, {""input"": ""1\nOPEN"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""4\nUSE x KEY\nUSE x KEY\nUSE x OK\nOPEN"", ""output"": ""acquire x\nrelease x\nunhandled KeyError\nacquire x\nrelease x\nunhandled KeyError\nacquire x\nworking x\nrelease x\n0"", ""is_hidden"": true}, {""input"": ""2\nUSE lock VALUE\nUSE lock VALUE"", ""output"": ""acquire lock\nrelease lock\nsuppressed ValueError: bad value\nacquire lock\nrelease lock\nsuppressed ValueError: bad value"", ""is_hidden"": true}, {""input"": ""3\nUSE gpu OK\nOPEN\nUSE gpu OK"", ""output"": ""acquire gpu\nworking gpu\nrelease gpu\n0\nacquire gpu\nworking gpu\nrelease gpu"", ""is_hidden"": true}]"
+PY-M14-14,In-Memory Command Undo/Redo,Module 14: Advanced OOP,Hard,Implement Command pattern with .execute() and .undo() on text document.,command-driver,O(L) per command,O(total text),"Task: In the Command pattern every change is an object that knows how to do AND undo itself. An editor keeps the done commands on an undo stack, and undone commands on a redo stack.
+
+Write:
+• class Document with self.text = ''
+• class AppendCommand(doc, text): execute adds text to the end; undo removes it again
+• class DeleteCommand(doc, n): execute removes the last n characters (or all of them if there are fewer) and REMEMBERS what it removed; undo puts that text back
+• class Editor:
+- run(command): command.execute(), push it on the undo stack and CLEAR the redo stack
+- undo(): pop from the undo stack, call undo(), push on the redo stack. Returns False when there is nothing to undo
+- redo(): pop from the redo stack, call execute() again, push on the undo stack. Returns False when there is nothing to redo
+
+Commands:
+• APPEND text → the text is everything after 'APPEND ' (it may contain spaces); prints nothing
+• DELETE n → prints nothing
+• UNDO → prints nothing, or NOTHING TO UNDO
+• REDO → prints nothing, or NOTHING TO REDO
+• SHOW → print the text between square brackets, for example [hello world]
+
+Example: APPEND hello, APPEND world, DELETE 3, SHOW, UNDO, SHOW prints [hello wo] and [hello world].","Line 1: the number of commands Q.
+Next Q lines: one command each. For APPEND, the text starts right after the first space.","One line for every SHOW, and NOTHING TO UNDO / NOTHING TO REDO when those commands cannot run.","1 <= Q <= 1000
+0 <= n <= 1000
+1 <= length of appended text <= 100","6
+APPEND hello
+APPEND  world
+DELETE 3
+SHOW
+UNDO
+SHOW","[hello wo]
+[hello world]","3
+UNDO
+REDO
+SHOW","NOTHING TO UNDO
+NOTHING TO REDO
+[]",AppendCommand.undo can cut len(self.text) characters off the end: doc.text = doc.text[:-len(self.text)].,"DeleteCommand.execute: self.removed = doc.text[len(doc.text) - k:] with k = min(n, len(doc.text)).",Use line[7:] (everything after 'APPEND ') so that spaces inside the text are kept.,"class Document:
+    def __init__(self):
+        self.text = """"
+
+
+class AppendCommand:
+    def __init__(self, doc, text):
+        self.doc = doc
+        self.text = text
+
+    def execute(self):
+        self.doc.text += self.text
+
+    def undo(self):
+        self.doc.text = self.doc.text[:len(self.doc.text) - len(self.text)]
+
+
+class DeleteCommand:
+    def __init__(self, doc, n):
+        self.doc = doc
+        self.n = n
+        self.removed = """"
+
+    def execute(self):
+        k = min(self.n, len(self.doc.text))
+        cut = len(self.doc.text) - k
+        self.removed = self.doc.text[cut:]      # remember it for undo
+        self.doc.text = self.doc.text[:cut]
+
+    def undo(self):
+        self.doc.text += self.removed
+
+
+class Editor:
+    def __init__(self, doc):
+        self.doc = doc
+        self.undo_stack = []
+        self.redo_stack = []
+
+    def run(self, command):
+        command.execute()
+        self.undo_stack.append(command)
+        self.redo_stack.clear()             # a new change ends the redo history
+
+    def undo(self):
+        if not self.undo_stack:
+            return False
+        command = self.undo_stack.pop()
+        command.undo()
+        self.redo_stack.append(command)
+        return True
+
+    def redo(self):
+        if not self.redo_stack:
+            return False
+        command = self.redo_stack.pop()
+        command.execute()
+        self.undo_stack.append(command)
+        return True
+
+
+doc = Document()
+editor = Editor(doc)
+
+q = int(input())
+for _ in range(q):
+    line = input()
+    if line.startswith(""APPEND ""):
+        editor.run(AppendCommand(doc, line[7:]))
+    elif line.startswith(""DELETE ""):
+        editor.run(DeleteCommand(doc, int(line[7:])))
+    elif line == ""UNDO"":
+        if not editor.undo():
+            print(""NOTHING TO UNDO"")
+    elif line == ""REDO"":
+        if not editor.redo():
+            print(""NOTHING TO REDO"")
+    elif line == ""SHOW"":
+        print(f""[{doc.text}]"")","[{""input"": ""6\nAPPEND hello\nAPPEND  world\nDELETE 3\nSHOW\nUNDO\nSHOW"", ""output"": ""[hello wo]\n[hello world]"", ""is_hidden"": false}, {""input"": ""3\nUNDO\nREDO\nSHOW"", ""output"": ""NOTHING TO UNDO\nNOTHING TO REDO\n[]"", ""is_hidden"": false}, {""input"": ""6\nAPPEND abc\nUNDO\nSHOW\nREDO\nSHOW\nREDO"", ""output"": ""[]\n[abc]\nNOTHING TO REDO"", ""is_hidden"": false}, {""input"": ""5\nAPPEND ab\nDELETE 10\nSHOW\nUNDO\nSHOW"", ""output"": ""[]\n[ab]"", ""is_hidden"": true}, {""input"": ""7\nAPPEND x\nAPPEND y\nUNDO\nAPPEND z\nREDO\nSHOW\nUNDO"", ""output"": ""NOTHING TO REDO\n[xz]"", ""is_hidden"": true}, {""input"": ""6\nAPPEND one two\nDELETE 0\nSHOW\nUNDO\nUNDO\nSHOW"", ""output"": ""[one two]\n[]"", ""is_hidden"": true}, {""input"": ""8\nAPPEND 123\nAPPEND 456\nUNDO\nUNDO\nUNDO\nREDO\nREDO\nSHOW"", ""output"": ""NOTHING TO UNDO\n[123456]"", ""is_hidden"": true}, {""input"": ""5\nDELETE 5\nSHOW\nUNDO\nREDO\nSHOW"", ""output"": ""[]\n[]"", ""is_hidden"": true}]"
+PY-M14-15,Classmethod Alternative Constructors,Module 14: Advanced OOP,Easy,"Use @classmethod factories and @staticmethod helpers, and see cls work for subclasses.",command-driver,O(1) per command,O(1),"Task: A @classmethod receives the class itself as cls, so it can build objects in other ways than __init__ (""alternative constructors""). Because it calls cls(...), a subclass that uses it gets an object of the SUBCLASS. A @staticmethod receives neither self nor cls; it is a plain helper that belongs to the class.
+
+Write:
+• class Date with __init__(self, year, month, day)
+• @staticmethod is_leap(year): divisible by 4 and not by 100, or divisible by 400
+• @staticmethod is_valid(year, month, day): month 1-12, day from 1 to the length of that month (February has 29 days in a leap year)
+• @classmethod from_string(cls, text): text is YYYY-MM-DD. If it does not have three numeric parts, or is_valid is False, raise ValueError('invalid date'). Otherwise return cls(year, month, day)
+• __str__ returns YYYY-MM-DD (year with 4 digits, month and day with 2 digits)
+• class EuroDate(Date) that only overrides __str__ to return DD/MM/YYYY
+
+Commands:
+• PARSE text → print Date.from_string(text)
+• PARSE_EU text → print EuroDate.from_string(text) and its class name: <date> (EuroDate)
+• LEAP year → print Date.is_leap(year)
+• For a ValueError print INVALID DATE
+
+Example: PARSE 2024-02-29 prints 2024-02-29, and PARSE_EU 2024-03-05 prints 05/03/2024 (EuroDate).","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.","1 <= Q <= 1000
+1 <= year <= 9999 for valid dates","2
+PARSE 2024-02-29
+PARSE_EU 2024-03-05","2024-02-29
+05/03/2024 (EuroDate)","2
+PARSE 2023-02-29
+LEAP 2023","INVALID DATE
+False","Month lengths: [31, 29 if leap else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31].","Inside from_string, text.split('-') must give exactly 3 parts that are all digits.",f'{self.month:02d}' writes the month with a leading zero.,"class Date:
+    def __init__(self, year, month, day):
+        self.year = year
+        self.month = month
+        self.day = day
+
+    @staticmethod
+    def is_leap(year):
+        return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
+
+    @staticmethod
+    def is_valid(year, month, day):
+        if month < 1 or month > 12 or year < 1:
+            return False
+        lengths = [31, 29 if Date.is_leap(year) else 28, 31, 30, 31, 30,
+                   31, 31, 30, 31, 30, 31]
+        return 1 <= day <= lengths[month - 1]
+
+    @classmethod
+    def from_string(cls, text):
+        parts = text.split(""-"")
+        if len(parts) != 3 or not all(p.isdigit() for p in parts):
+            raise ValueError(""invalid date"")
+        year, month, day = (int(p) for p in parts)
+        if not cls.is_valid(year, month, day):
+            raise ValueError(""invalid date"")
+        return cls(year, month, day)        # cls is Date or EuroDate
+
+    def __str__(self):
+        return f""{self.year:04d}-{self.month:02d}-{self.day:02d}""
+
+
+class EuroDate(Date):
+    def __str__(self):
+        return f""{self.day:02d}/{self.month:02d}/{self.year:04d}""
+
+
+q = int(input())
+for _ in range(q):
+    command, value = input().split()
+    try:
+        if command == ""PARSE"":
+            print(Date.from_string(value))
+        elif command == ""PARSE_EU"":
+            d = EuroDate.from_string(value)
+            print(f""{d} ({type(d).__name__})"")
+        elif command == ""LEAP"":
+            print(Date.is_leap(int(value)))
+    except ValueError:
+        print(""INVALID DATE"")","[{""input"": ""2\nPARSE 2024-02-29\nPARSE_EU 2024-03-05"", ""output"": ""2024-02-29\n05/03/2024 (EuroDate)"", ""is_hidden"": false}, {""input"": ""2\nPARSE 2023-02-29\nLEAP 2023"", ""output"": ""INVALID DATE\nFalse"", ""is_hidden"": false}, {""input"": ""3\nLEAP 1900\nLEAP 2000\nLEAP 2024"", ""output"": ""False\nTrue\nTrue"", ""is_hidden"": false}, {""input"": ""3\nPARSE 2024-13-01\nPARSE 2024-04-31\nPARSE 2024-4-3"", ""output"": ""INVALID DATE\nINVALID DATE\n2024-04-03"", ""is_hidden"": true}, {""input"": ""2\nPARSE 24/12/2024\nPARSE_EU 1999-12-31"", ""output"": ""INVALID DATE\n31/12/1999 (EuroDate)"", ""is_hidden"": true}, {""input"": ""2\nPARSE 0001-01-01\nPARSE 9999-12-31"", ""output"": ""0001-01-01\n9999-12-31"", ""is_hidden"": true}, {""input"": ""2\nPARSE_EU 2000-02-29\nPARSE_EU 1900-02-29"", ""output"": ""29/02/2000 (EuroDate)\nINVALID DATE"", ""is_hidden"": true}, {""input"": ""1\nPARSE 2024-01-xx"", ""output"": ""INVALID DATE"", ""is_hidden"": true}]"
+PY-M14-16,Rich Comparisons with total_ordering,Module 14: Advanced OOP,Medium,Define __eq__ and __lt__ and let functools.total_ordering supply the rest.,command-driver,O(N log N) per SORT,O(N),"Task: functools.total_ordering fills in <=, > and >= when a class defines __eq__ and ONE ordering method such as __lt__.
+
+Write a class Version for version strings like 1.2.10:
+• __init__(self, text) stores the text and a tuple of ints. Remove zeros at the END of the tuple, so 1.0 and 1.0.0 are the same version (but keep at least one part)
+• __eq__ compares the tuples (return NotImplemented for non-Version objects)
+• __lt__ compares the tuples (tuples compare item by item, so (1, 10) > (1, 2))
+• __hash__ returns hash of the tuple, so equal versions have equal hashes
+• __repr__ returns the original text
+• Decorate the class with @total_ordering
+
+Commands:
+• CMP a b → print a < b, a == b, a > b, a <= b as four words True/False separated by spaces
+• SORT v1 v2 ... → print the versions sorted from oldest to newest (equal versions keep their input order), separated by spaces
+• MAX v1 v2 ... → print the newest version (the first one if several are equal)
+• UNIQUE v1 v2 ... → print the number of different versions (use a set)
+
+Example: CMP 1.2 1.10 prints True False False True.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description).","One output line for every command, as described.","1 <= Q <= 1000
+Versions have 1 to 10 numeric parts separated by dots
+Each part is between 0 and 10^9","1
+CMP 1.2 1.10",True False False True,"2
+CMP 1.0 1
+UNIQUE 1 1.0 1.0.0 2","False True False True
+2","from functools import total_ordering, then @total_ordering above the class.",while len(parts) > 1 and parts[-1] == 0: parts.pop() removes trailing zeros.,"sorted() is stable, so equal versions stay in their input order.","from functools import total_ordering
+
+
+@total_ordering
+class Version:
+    def __init__(self, text):
+        self.text = text
+        parts = [int(p) for p in text.split(""."")]
+        while len(parts) > 1 and parts[-1] == 0:
+            parts.pop()                 # 1.0.0 is the same as 1
+        self.key = tuple(parts)
+
+    def __eq__(self, other):
+        if not isinstance(other, Version):
+            return NotImplemented
+        return self.key == other.key
+
+    def __lt__(self, other):
+        if not isinstance(other, Version):
+            return NotImplemented
+        return self.key < other.key
+
+    def __hash__(self):
+        return hash(self.key)
+
+    def __repr__(self):
+        return self.text
+
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    versions = [Version(t) for t in parts[1:]]
+    if command == ""CMP"":
+        a, b = versions
+        print(a < b, a == b, a > b, a <= b)
+    elif command == ""SORT"":
+        print("" "".join(repr(v) for v in sorted(versions)))
+    elif command == ""MAX"":
+        print(repr(max(versions)))
+    elif command == ""UNIQUE"":
+        print(len(set(versions)))","[{""input"": ""1\nCMP 1.2 1.10"", ""output"": ""True False False True"", ""is_hidden"": false}, {""input"": ""2\nCMP 1.0 1\nUNIQUE 1 1.0 1.0.0 2"", ""output"": ""False True False True\n2"", ""is_hidden"": false}, {""input"": ""1\nSORT 1.10 1.2 1.9.9 0.1"", ""output"": ""0.1 1.2 1.9.9 1.10"", ""is_hidden"": false}, {""input"": ""2\nMAX 2.0 2 1.99\nMAX 3"", ""output"": ""2.0\n3"", ""is_hidden"": true}, {""input"": ""1\nCMP 10.0 9.99.99"", ""output"": ""False False True False"", ""is_hidden"": true}, {""input"": ""2\nSORT 1.0 1 0.9 1.0.0\nUNIQUE 0 0.0 0.0.1"", ""output"": ""0.9 1.0 1 1.0.0\n2"", ""is_hidden"": true}, {""input"": ""2\nCMP 1.2.3 1.2.3\nCMP 0.0.1 0.1"", ""output"": ""False True False True\nTrue False False True"", ""is_hidden"": true}, {""input"": ""1\nSORT 1000000000 999999999.9 1"", ""output"": ""1 999999999.9 1000000000"", ""is_hidden"": true}]"
+PY-M14-17,Mixin Composition,Module 14: Advanced OOP,Medium,Add reusable behaviour to unrelated classes with mixins and multiple inheritance.,command-driver,O(A) per command,O(N),"Task: A mixin is a small class that adds one ability and is meant to be combined with other classes through multiple inheritance.
+
+Write two mixins:
+• JsonMixin.to_json(self): return json.dumps of the object's attributes (vars(self)) with sort_keys=True
+• EqualityMixin.__eq__(self, other): two objects are equal when they have the SAME class and the same attributes (vars). Return NotImplemented for objects of another class
+
+And two unrelated classes that use them:
+• class User(JsonMixin, EqualityMixin) with __init__(self, name, email)
+• class Product(JsonMixin) with __init__(self, title, price) (price is an int). Product does NOT use EqualityMixin
+
+Commands:
+• USER name email, PRODUCT title price → create the object and keep it in a list (prints nothing)
+• JSON i → print objects[i].to_json()
+• SAME i j → print objects[i] == objects[j]. Products have only the default equality, so two different Product objects are never equal, even with the same data
+• MIXINS i → print the class name, then the mixins it has, as <ClassName>: <mixins> where the mixins are JsonMixin and/or EqualityMixin (in that order, separated by a comma and a space) found with isinstance()
+
+Example: USER asha a@x.io, JSON 0 prints {""email"": ""a@x.io"", ""name"": ""asha""}.","Line 1: the number of commands Q.
+Next Q lines: one command each (see the description). Indexes are always valid.","One output line for every JSON, SAME and MIXINS command.","1 <= Q <= 1000
+Names, emails and titles are words without spaces
+0 <= price <= 10^6","2
+USER asha a@x.io
+JSON 0","{""email"": ""a@x.io"", ""name"": ""asha""}","3
+USER b b@x
+USER b b@x
+SAME 0 1",True,vars(self) returns the dictionary of the object's attributes.,type(self) is type(other) checks for exactly the same class.,"A class can list several parents: class User(JsonMixin, EqualityMixin):. Each mixin adds its methods.","import json
+
+
+class JsonMixin:
+    def to_json(self):
+        return json.dumps(vars(self), sort_keys=True)
+
+
+class EqualityMixin:
+    def __eq__(self, other):
+        if type(self) is not type(other):
+            return NotImplemented
+        return vars(self) == vars(other)
+
+
+class User(JsonMixin, EqualityMixin):
+    def __init__(self, name, email):
+        self.name = name
+        self.email = email
+
+
+class Product(JsonMixin):
+    def __init__(self, title, price):
+        self.title = title
+        self.price = price
+
+
+objects = []
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""USER"":
+        objects.append(User(parts[1], parts[2]))
+    elif command == ""PRODUCT"":
+        objects.append(Product(parts[1], int(parts[2])))
+    elif command == ""JSON"":
+        print(objects[int(parts[1])].to_json())
+    elif command == ""SAME"":
+        print(objects[int(parts[1])] == objects[int(parts[2])])
+    elif command == ""MIXINS"":
+        obj = objects[int(parts[1])]
+        found = [m.__name__ for m in (JsonMixin, EqualityMixin) if isinstance(obj, m)]
+        print(f""{type(obj).__name__}: {', '.join(found)}"")","[{""input"": ""2\nUSER asha a@x.io\nJSON 0"", ""output"": ""{\""email\"": \""a@x.io\"", \""name\"": \""asha\""}"", ""is_hidden"": false}, {""input"": ""3\nUSER b b@x\nUSER b b@x\nSAME 0 1"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""3\nPRODUCT pen 2\nPRODUCT pen 2\nSAME 0 1"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""4\nUSER c c@x\nPRODUCT c 5\nMIXINS 0\nMIXINS 1"", ""output"": ""User: JsonMixin, EqualityMixin\nProduct: JsonMixin"", ""is_hidden"": true}, {""input"": ""3\nPRODUCT tv 500\nJSON 0\nSAME 0 0"", ""output"": ""{\""price\"": 500, \""title\"": \""tv\""}\nTrue"", ""is_hidden"": true}, {""input"": ""3\nUSER d d@x\nUSER d e@x\nSAME 1 0"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""3\nUSER e e@x\nPRODUCT e 0\nSAME 0 1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""2\nPRODUCT cup 7\nMIXINS 0"", ""output"": ""Product: JsonMixin"", ""is_hidden"": true}]"
+PY-M14-18,LRU Cache Container,Module 14: Advanced OOP,Hard,"Build an LRU cache with __getitem__, __setitem__, __delitem__, __contains__ and __len__.",command-driver,"O(1) per command, O(N) per SHOW",O(capacity),"Task: A Least Recently Used (LRU) cache holds at most capacity items. When it is full and a new key arrives, it removes the item that was used longest ago.
+
+Write a class LRUCache that behaves like a dictionary through magic methods. Store the items in a collections.OrderedDict, oldest first:
+• __init__(self, capacity)
+• __setitem__(self, key, value): store the value and mark the key as most recently used (move_to_end). If the cache now has more than capacity items, remove the oldest one (popitem(last=False)) and remember its key in self.last_evicted (otherwise set self.last_evicted = None)
+• __getitem__(self, key): return the value and mark the key as most recently used. A missing key raises KeyError
+• __delitem__(self, key): remove the key (KeyError if missing)
+• __contains__(self, key): True/False, WITHOUT changing the order
+• __len__(self): the number of items
+• __repr__(self): LRUCache([key1, key2, ...]) with the keys from oldest to newest, written as a Python list
+
+The first line gives the capacity. Commands:
+• PUT key value → cache[key] = value, then print OK, or OK (evicted <key>)
+• GET key → print cache[key], or MISS
+• HAS key → print key in cache
+• DEL key → del cache[key] and print OK, or MISS
+• LEN → print len(cache)
+• SHOW → print repr(cache)
+
+Example with capacity 2: PUT a 1, PUT b 2, GET a, PUT c 3 prints OK, OK, 1, OK (evicted b). Reading a made b the oldest.","Line 1: the capacity.
+Line 1: the number of commands Q.
+Next Q lines: one command each (see the description). Keys and values are words without spaces.","One output line for every command, as described.","1 <= capacity <= 1000
+1 <= Q <= 10^5","2
+4
+PUT a 1
+PUT b 2
+GET a
+PUT c 3","OK
+OK
+1
+OK (evicted b)","1
+3
+GET x
+DEL x
+SHOW","MISS
+MISS
+LRUCache([])",from collections import OrderedDict. self.data.move_to_end(key) marks a key as newest.,"Updating an existing key also makes it the newest, and never evicts anything.","Write the driver with cache[key], key in cache, del cache[key] and len(cache): Python calls your magic methods.","from collections import OrderedDict
+
+
+class LRUCache:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.data = OrderedDict()       # oldest first
+        self.last_evicted = None
+
+    def __setitem__(self, key, value):
+        self.data[key] = value
+        self.data.move_to_end(key)
+        self.last_evicted = None
+        if len(self.data) > self.capacity:
+            old_key, _ = self.data.popitem(last=False)
+            self.last_evicted = old_key
+
+    def __getitem__(self, key):
+        value = self.data[key]          # KeyError if missing
+        self.data.move_to_end(key)
+        return value
+
+    def __delitem__(self, key):
+        del self.data[key]
+
+    def __contains__(self, key):
+        return key in self.data         # does not change the order
+
+    def __len__(self):
+        return len(self.data)
+
+    def __repr__(self):
+        return f""LRUCache({list(self.data)})""
+
+
+cache = LRUCache(int(input()))
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""PUT"":
+        cache[parts[1]] = parts[2]
+        if cache.last_evicted is None:
+            print(""OK"")
+        else:
+            print(f""OK (evicted {cache.last_evicted})"")
+    elif command == ""GET"":
+        try:
+            print(cache[parts[1]])
+        except KeyError:
+            print(""MISS"")
+    elif command == ""HAS"":
+        print(parts[1] in cache)
+    elif command == ""DEL"":
+        try:
+            del cache[parts[1]]
+            print(""OK"")
+        except KeyError:
+            print(""MISS"")
+    elif command == ""LEN"":
+        print(len(cache))
+    elif command == ""SHOW"":
+        print(repr(cache))","[{""input"": ""2\n4\nPUT a 1\nPUT b 2\nGET a\nPUT c 3"", ""output"": ""OK\nOK\n1\nOK (evicted b)"", ""is_hidden"": false}, {""input"": ""1\n3\nGET x\nDEL x\nSHOW"", ""output"": ""MISS\nMISS\nLRUCache([])"", ""is_hidden"": false}, {""input"": ""2\n5\nPUT a 1\nPUT b 2\nHAS a\nPUT c 3\nSHOW"", ""output"": ""OK\nOK\nTrue\nOK (evicted a)\nLRUCache(['b', 'c'])"", ""is_hidden"": false}, {""input"": ""2\n5\nPUT a 1\nPUT a 9\nPUT b 2\nGET a\nSHOW"", ""output"": ""OK\nOK\nOK\n9\nLRUCache(['b', 'a'])"", ""is_hidden"": true}, {""input"": ""1\n4\nPUT k v\nPUT j w\nGET k\nLEN"", ""output"": ""OK\nOK (evicted k)\nMISS\n1"", ""is_hidden"": true}, {""input"": ""3\n7\nPUT a 1\nPUT b 2\nPUT c 3\nDEL b\nPUT d 4\nLEN\nSHOW"", ""output"": ""OK\nOK\nOK\nOK\nOK\n3\nLRUCache(['a', 'c', 'd'])"", ""is_hidden"": true}, {""input"": ""2\n4\nPUT x 1\nGET x\nDEL x\nHAS x"", ""output"": ""OK\n1\nOK\nFalse"", ""is_hidden"": true}, {""input"": ""3\n8\nPUT a 1\nPUT b 2\nPUT c 3\nGET a\nGET b\nPUT d 4\nPUT e 5\nSHOW"", ""output"": ""OK\nOK\nOK\n1\n2\nOK (evicted c)\nOK (evicted a)\nLRUCache(['b', 'd', 'e'])"", ""is_hidden"": true}]"

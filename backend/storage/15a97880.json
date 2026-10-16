@@ -1,0 +1,1544 @@
+{
+  "id": "15a97880",
+  "filename": "module_13_object_oriented_programming_i.csv",
+  "imported_at": "2026-10-16T09:42:32.164829Z",
+  "total_questions": 16,
+  "total_test_cases": 128,
+  "visible_test_cases": 48,
+  "hidden_test_cases": 80,
+  "questions": [
+    {
+      "question_id": "PY-M13-01",
+      "title": "Simple Bank Account",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Implement deposit, withdraw, and balance check on account instance.",
+      "problem_statement": "Task: Write a class BankAccount that keeps the money of one person.\n• __init__(self, owner, balance=0) stores the owner's name and the starting balance in instance attributes\n• deposit(self, amount): adds amount to the balance and returns True. If amount <= 0, it changes nothing and returns False\n• withdraw(self, amount): takes amount from the balance and returns True. If amount <= 0 or amount is bigger than the balance, it changes nothing and returns False\n• get_balance(self): returns the current balance\n\nThe program creates one account and runs the commands:\n• DEPOSIT x → print OK if the deposit worked, otherwise FAILED\n• WITHDRAW x → print OK if the withdrawal worked, otherwise FAILED\n• BALANCE → print the balance\n\nExample: an account for Asha with 100, then DEPOSIT 50, WITHDRAW 500, BALANCE prints OK, FAILED, 150.",
+      "input_format": "Line 1: the owner's name and the starting balance (an integer), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One output line for every command, as described.",
+      "constraints": "0 <= starting balance <= 10^9\n1 <= Q <= 1000\n-10^9 <= x <= 10^9",
+      "sample_inputs": [
+        "Asha 100\n3\nDEPOSIT 50\nWITHDRAW 500\nBALANCE",
+        "Ben 0\n2\nWITHDRAW 1\nBALANCE"
+      ],
+      "sample_outputs": [
+        "OK\nFAILED\n150",
+        "FAILED\n0"
+      ],
+      "hints": [
+        "Store the values with self.owner = owner and self.balance = balance inside __init__.",
+        "Check the bad cases first in withdraw: if amount <= 0 or amount > self.balance: return False.",
+        "In the driver, split each command: parts = input().split(), then compare parts[0] with 'DEPOSIT', 'WITHDRAW' and 'BALANCE'."
+      ],
+      "starter_code": null,
+      "reference_solution": "class BankAccount:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n\n    def deposit(self, amount):\n        if amount <= 0:\n            return False\n        self.balance += amount\n        return True\n\n    def withdraw(self, amount):\n        if amount <= 0 or amount > self.balance:\n            return False\n        self.balance -= amount\n        return True\n\n    def get_balance(self):\n        return self.balance\n\n\nowner, start = input().split()\naccount = BankAccount(owner, int(start))\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    command = parts[0]\n    if command == \"DEPOSIT\":\n        print(\"OK\" if account.deposit(int(parts[1])) else \"FAILED\")\n    elif command == \"WITHDRAW\":\n        print(\"OK\" if account.withdraw(int(parts[1])) else \"FAILED\")\n    elif command == \"BALANCE\":\n        print(account.get_balance())",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Asha 100\n3\nDEPOSIT 50\nWITHDRAW 500\nBALANCE",
+          "output": "OK\nFAILED\n150",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Ben 0\n2\nWITHDRAW 1\nBALANCE",
+          "output": "FAILED\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Chen 10\n4\nDEPOSIT 0\nDEPOSIT -5\nWITHDRAW -5\nBALANCE",
+          "output": "FAILED\nFAILED\nFAILED\n10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Dev 50\n3\nWITHDRAW 50\nBALANCE\nWITHDRAW 1",
+          "output": "OK\n0\nFAILED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Eve 0\n4\nDEPOSIT 1000000000\nWITHDRAW 999999999\nBALANCE\nWITHDRAW 2",
+          "output": "OK\nOK\n1\nFAILED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Fay 5\n1\nBALANCE",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Gus 20\n6\nDEPOSIT 30\nWITHDRAW 25\nBALANCE\nWITHDRAW 25\nWITHDRAW 1\nBALANCE",
+          "output": "OK\nOK\n25\nOK\nFAILED\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hal 1000000000\n2\nWITHDRAW 1000000000\nBALANCE",
+          "output": "OK\n0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the owner's name and the starting balance (an integer), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One output line for every command, as described."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-02",
+      "title": "Rectangle Geometry Class",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Compute area/perimeter with __str__ returning dimensions.",
+      "problem_statement": "Task: Write a class Rectangle.\n• __init__(self, width, height) stores the two sides\n• area(self) returns width * height\n• perimeter(self) returns 2 * (width + height)\n• resize(self, width, height) changes both sides\n• __str__(self) returns the text Rectangle(width=W, height=H), so that print(rect) shows the sides\n\nThe program creates one rectangle and runs the commands:\n• AREA → print the area\n• PERIMETER → print the perimeter\n• PRINT → print(rect), which uses __str__\n• RESIZE w h → change the sides (prints nothing)\n\nExample: a 3 x 4 rectangle with AREA, PERIMETER, PRINT prints 12, 14 and Rectangle(width=3, height=4).",
+      "input_format": "Line 1: the width and the height (integers), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One output line for every AREA, PERIMETER and PRINT command. RESIZE prints nothing.",
+      "constraints": "1 <= width, height, w, h <= 10^6\n1 <= Q <= 1000",
+      "sample_inputs": [
+        "3 4\n3\nAREA\nPERIMETER\nPRINT",
+        "1 1\n2\nPRINT\nAREA"
+      ],
+      "sample_outputs": [
+        "12\n14\nRectangle(width=3, height=4)",
+        "Rectangle(width=1, height=1)\n1"
+      ],
+      "hints": [
+        "__str__ must RETURN a string, not print it: return f'Rectangle(width={self.width}, height={self.height})'.",
+        "print(rect) calls rect.__str__() for you.",
+        "resize only needs to assign new values to self.width and self.height."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Rectangle:\n    def __init__(self, width, height):\n        self.width = width\n        self.height = height\n\n    def area(self):\n        return self.width * self.height\n\n    def perimeter(self):\n        return 2 * (self.width + self.height)\n\n    def resize(self, width, height):\n        self.width = width\n        self.height = height\n\n    def __str__(self):\n        return f\"Rectangle(width={self.width}, height={self.height})\"\n\n\nw, h = map(int, input().split())\nrect = Rectangle(w, h)\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"AREA\":\n        print(rect.area())\n    elif parts[0] == \"PERIMETER\":\n        print(rect.perimeter())\n    elif parts[0] == \"PRINT\":\n        print(rect)\n    elif parts[0] == \"RESIZE\":\n        rect.resize(int(parts[1]), int(parts[2]))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 4\n3\nAREA\nPERIMETER\nPRINT",
+          "output": "12\n14\nRectangle(width=3, height=4)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n2\nPRINT\nAREA",
+          "output": "Rectangle(width=1, height=1)\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 5\n4\nRESIZE 2 7\nPRINT\nAREA\nPERIMETER",
+          "output": "Rectangle(width=2, height=7)\n14\n18",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10 2\n1\nPERIMETER",
+          "output": "24",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000 1000000\n2\nAREA\nPERIMETER",
+          "output": "1000000000000\n4000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6 3\n5\nPRINT\nRESIZE 1 1\nPRINT\nRESIZE 9 4\nAREA",
+          "output": "Rectangle(width=6, height=3)\nRectangle(width=1, height=1)\n36",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7 1\n3\nAREA\nAREA\nPRINT",
+          "output": "7\n7\nRectangle(width=7, height=1)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 8\n4\nPERIMETER\nRESIZE 8 2\nPERIMETER\nPRINT",
+          "output": "20\n20\nRectangle(width=8, height=2)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the width and the height (integers), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One output line for every AREA, PERIMETER and PRINT command. RESIZE prints nothing."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-03",
+      "title": "Circle Geometry with Check",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Enforce radius > 0; calculate area and circumference (pi = 3.14159).",
+      "problem_statement": "Task: Write a class Circle that never holds an invalid radius. Use PI = 3.14159 as a class attribute.\n• __init__(self, radius) stores the radius. If radius <= 0, raise ValueError\n• set_radius(self, radius) changes the radius. If radius <= 0, raise ValueError and keep the old radius\n• area(self) returns PI * radius * radius\n• circumference(self) returns 2 * PI * radius\n\nThe program reads the starting radius. If creating the circle raises ValueError, it prints INVALID RADIUS and stops. Otherwise it runs the commands:\n• AREA → print the area with 2 decimal places\n• CIRCUMFERENCE → print the circumference with 2 decimal places\n• SET r → change the radius. If it raises ValueError, print INVALID RADIUS (the circle keeps its old radius); otherwise print nothing\n\nExample: radius 1 with AREA, CIRCUMFERENCE prints 3.14 and 6.28.",
+      "input_format": "Line 1: the starting radius (a number).\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).\nIf the starting radius is invalid, the command lines are still given but not used.",
+      "output_format": "INVALID RADIUS if the starting radius is invalid. Otherwise one line for every AREA and CIRCUMFERENCE command, and INVALID RADIUS for every rejected SET. Numbers are printed with 2 decimal places.",
+      "constraints": "-1000 <= every radius <= 1000\n1 <= Q <= 1000",
+      "sample_inputs": [
+        "1\n2\nAREA\nCIRCUMFERENCE",
+        "0\n1\nAREA"
+      ],
+      "sample_outputs": [
+        "3.14\n6.28",
+        "INVALID RADIUS"
+      ],
+      "hints": [
+        "raise ValueError('radius must be positive') stops __init__ before the object is created.",
+        "Wrap the creation in try / except ValueError in the driver.",
+        "Check the new radius BEFORE assigning it in set_radius, so the old value stays when it is invalid. Print with f'{value:.2f}'."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Circle:\n    PI = 3.14159\n\n    def __init__(self, radius):\n        if radius <= 0:\n            raise ValueError(\"radius must be positive\")\n        self.radius = radius\n\n    def set_radius(self, radius):\n        if radius <= 0:\n            raise ValueError(\"radius must be positive\")\n        self.radius = radius\n\n    def area(self):\n        return Circle.PI * self.radius * self.radius\n\n    def circumference(self):\n        return 2 * Circle.PI * self.radius\n\n\nradius = float(input())\nq = int(input())\n\ntry:\n    circle = Circle(radius)\nexcept ValueError:\n    print(\"INVALID RADIUS\")\nelse:\n    for _ in range(q):\n        parts = input().split()\n        if parts[0] == \"AREA\":\n            print(f\"{circle.area():.2f}\")\n        elif parts[0] == \"CIRCUMFERENCE\":\n            print(f\"{circle.circumference():.2f}\")\n        elif parts[0] == \"SET\":\n            try:\n                circle.set_radius(float(parts[1]))\n            except ValueError:\n                print(\"INVALID RADIUS\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1\n2\nAREA\nCIRCUMFERENCE",
+          "output": "3.14\n6.28",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n1\nAREA",
+          "output": "INVALID RADIUS",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2.5\n4\nAREA\nSET -3\nAREA\nCIRCUMFERENCE",
+          "output": "19.63\nINVALID RADIUS\n19.63\n15.71",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-4\n2\nAREA\nCIRCUMFERENCE",
+          "output": "INVALID RADIUS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n3\nSET 0.5\nAREA\nCIRCUMFERENCE",
+          "output": "0.79\n3.14",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000\n2\nAREA\nCIRCUMFERENCE",
+          "output": "3141590.00\n6283.18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n5\nSET 0\nSET -1\nSET 4\nAREA\nCIRCUMFERENCE",
+          "output": "INVALID RADIUS\nINVALID RADIUS\n50.27\n25.13",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0.1\n2\nAREA\nCIRCUMFERENCE",
+          "output": "0.03\n0.63",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the starting radius (a number).\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).\nIf the starting radius is invalid, the command lines are still given but not used.",
+        "output_format": "INVALID RADIUS if the starting radius is invalid. Otherwise one line for every AREA and CIRCUMFERENCE command, and INVALID RADIUS for every rejected SET. Numbers are printed with 2 decimal places."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-04",
+      "title": "Student Grade Tracker",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Add subject grades to instance list; compute average and letter grade.",
+      "problem_statement": "Task: Write a class Student that collects grades.\n• __init__(self, name) stores the name and starts an EMPTY list of grades for this student\n• add_grade(self, subject, grade) adds (subject, grade) to the list and returns True. If the grade is not between 0 and 100, it adds nothing and returns False\n• average(self) returns the average grade, or None when there are no grades\n• letter(self) returns A (average >= 90), B (>= 80), C (>= 70), D (>= 60) or F, or None when there are no grades\n\nThe program creates one student and runs the commands:\n• ADD subject grade → print OK or INVALID\n• AVERAGE → print the average with 2 decimal places, or NO GRADES\n• LETTER → print the letter, or NO GRADES\n• COUNT → print how many grades were added\n\nExample: ADD math 95, ADD art 80, AVERAGE, LETTER prints OK, OK, 87.50, B.",
+      "input_format": "Line 1: the student's name.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One output line for every command, as described.",
+      "constraints": "1 <= Q <= 1000\nSubjects are words without spaces\n-1000 <= grade <= 1000 (integers)",
+      "sample_inputs": [
+        "Asha\n4\nADD math 95\nADD art 80\nAVERAGE\nLETTER",
+        "Ben\n3\nAVERAGE\nLETTER\nCOUNT"
+      ],
+      "sample_outputs": [
+        "OK\nOK\n87.50\nB",
+        "NO GRADES\nNO GRADES\n0"
+      ],
+      "hints": [
+        "Create the list in __init__ with self.grades = []. A list written at class level would be shared by all students.",
+        "average: sum(g for _, g in self.grades) / len(self.grades).",
+        "Check the letter thresholds from the top: if avg >= 90 ... elif avg >= 80 ..."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Student:\n    def __init__(self, name):\n        self.name = name\n        self.grades = []          # one list per student\n\n    def add_grade(self, subject, grade):\n        if grade < 0 or grade > 100:\n            return False\n        self.grades.append((subject, grade))\n        return True\n\n    def average(self):\n        if not self.grades:\n            return None\n        return sum(g for _, g in self.grades) / len(self.grades)\n\n    def letter(self):\n        avg = self.average()\n        if avg is None:\n            return None\n        if avg >= 90:\n            return \"A\"\n        if avg >= 80:\n            return \"B\"\n        if avg >= 70:\n            return \"C\"\n        if avg >= 60:\n            return \"D\"\n        return \"F\"\n\n\nstudent = Student(input())\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"ADD\":\n        print(\"OK\" if student.add_grade(parts[1], int(parts[2])) else \"INVALID\")\n    elif parts[0] == \"AVERAGE\":\n        avg = student.average()\n        print(\"NO GRADES\" if avg is None else f\"{avg:.2f}\")\n    elif parts[0] == \"LETTER\":\n        grade = student.letter()\n        print(\"NO GRADES\" if grade is None else grade)\n    elif parts[0] == \"COUNT\":\n        print(len(student.grades))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Asha\n4\nADD math 95\nADD art 80\nAVERAGE\nLETTER",
+          "output": "OK\nOK\n87.50\nB",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Ben\n3\nAVERAGE\nLETTER\nCOUNT",
+          "output": "NO GRADES\nNO GRADES\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Chen\n4\nADD math 101\nADD art -1\nADD pe 100\nCOUNT",
+          "output": "INVALID\nINVALID\nOK\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Dev\n3\nADD a 90\nADD b 89\nLETTER",
+          "output": "OK\nOK\nB",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Eve\n5\nADD a 60\nLETTER\nADD b 59\nLETTER\nAVERAGE",
+          "output": "OK\nD\nOK\nF\n59.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Fay\n4\nADD x 0\nAVERAGE\nLETTER\nCOUNT",
+          "output": "OK\n0.00\nF\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Gus\n6\nADD a 70\nADD b 71\nADD c 72\nAVERAGE\nLETTER\nCOUNT",
+          "output": "OK\nOK\nOK\n71.00\nC\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hal\n3\nADD a 100\nAVERAGE\nLETTER",
+          "output": "OK\n100.00\nA",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(N) per AVERAGE",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the student's name.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One output line for every command, as described."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-05",
+      "title": "__str__ vs __repr__ Dunder",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Implement __str__ for display and __repr__ for unambiguous representation.",
+      "problem_statement": "Task: __str__ gives a friendly text for users, and __repr__ gives an exact text for programmers, ideally one that looks like the code that creates the object.\n\nWrite a class Book with title, author and year.\n• __str__(self) returns: <title> by <author> (<year>), for example Dune by Frank Herbert (1965)\n• __repr__(self) returns: Book(<title repr>, <author repr>, <year>), for example Book('Dune', 'Frank Herbert', 1965). Use !r in the f-string so the strings get quotes\n• set_year(self, year) changes the year\n\nThe program creates one book and runs the commands:\n• STR → print(book), which uses __str__\n• REPR → print(repr(book))\n• LIST → print([book]). A list shows its items with __repr__, not __str__\n• YEAR y → change the year (prints nothing)\n\nExample: for Dune, Frank Herbert, 1965 the commands STR, REPR print Dune by Frank Herbert (1965) and Book('Dune', 'Frank Herbert', 1965).",
+      "input_format": "Line 1: the title.\nLine 2: the author.\nLine 3: the year (integer).\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One output line for every STR, REPR and LIST command. YEAR prints nothing.",
+      "constraints": "1 <= length of title, author <= 100\n0 <= year <= 3000\n1 <= Q <= 100",
+      "sample_inputs": [
+        "Dune\nFrank Herbert\n1965\n2\nSTR\nREPR",
+        "It\nStephen King\n1986\n1\nLIST"
+      ],
+      "sample_outputs": [
+        "Dune by Frank Herbert (1965)\nBook('Dune', 'Frank Herbert', 1965)",
+        "[Book('It', 'Stephen King', 1986)]"
+      ],
+      "hints": [
+        "Both methods must return strings, not print them.",
+        "f'{self.title!r}' gives 'Dune' with quotes; the year needs no !r because it is a number.",
+        "print([book]) calls repr() on every item inside the list."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Book:\n    def __init__(self, title, author, year):\n        self.title = title\n        self.author = author\n        self.year = year\n\n    def set_year(self, year):\n        self.year = year\n\n    def __str__(self):\n        return f\"{self.title} by {self.author} ({self.year})\"\n\n    def __repr__(self):\n        return f\"Book({self.title!r}, {self.author!r}, {self.year})\"\n\n\ntitle = input()\nauthor = input()\nyear = int(input())\nbook = Book(title, author, year)\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"STR\":\n        print(book)\n    elif parts[0] == \"REPR\":\n        print(repr(book))\n    elif parts[0] == \"LIST\":\n        print([book])\n    elif parts[0] == \"YEAR\":\n        book.set_year(int(parts[1]))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Dune\nFrank Herbert\n1965\n2\nSTR\nREPR",
+          "output": "Dune by Frank Herbert (1965)\nBook('Dune', 'Frank Herbert', 1965)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "It\nStephen King\n1986\n1\nLIST",
+          "output": "[Book('It', 'Stephen King', 1986)]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Emma\nJane Austen\n1815\n4\nYEAR 1816\nSTR\nREPR\nLIST",
+          "output": "Emma by Jane Austen (1816)\nBook('Emma', 'Jane Austen', 1816)\n[Book('Emma', 'Jane Austen', 1816)]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1984\nGeorge Orwell\n1949\n2\nREPR\nSTR",
+          "output": "Book('1984', 'George Orwell', 1949)\n1984 by George Orwell (1949)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Don't Panic\nNeil Gaiman\n1988\n2\nREPR\nSTR",
+          "output": "Book(\"Don't Panic\", 'Neil Gaiman', 1988)\nDon't Panic by Neil Gaiman (1988)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Odyssey\nHomer\n0\n3\nSTR\nYEAR 3000\nLIST",
+          "output": "Odyssey by Homer (0)\n[Book('Odyssey', 'Homer', 3000)]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Les Miserables\nVictor Hugo\n1862\n3\nLIST\nLIST\nSTR",
+          "output": "[Book('Les Miserables', 'Victor Hugo', 1862)]\n[Book('Les Miserables', 'Victor Hugo', 1862)]\nLes Miserables by Victor Hugo (1862)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "A\nB\n2000\n1\nREPR",
+          "output": "Book('A', 'B', 2000)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the title.\nLine 2: the author.\nLine 3: the year (integer).\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One output line for every STR, REPR and LIST command. YEAR prints nothing."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-06",
+      "title": "Class vs Instance Attributes",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Easy",
+      "objective": "Demonstrate distinction between class-level counter and instance IDs.",
+      "problem_statement": "Task: A class attribute belongs to the class and is shared by all objects. An instance attribute belongs to one object.\n\nWrite a class Ticket.\n• Class attribute: count = 0, the number of tickets created so far\n• __init__(self, name): add 1 to Ticket.count (the class attribute, not self.count), then store the instance attributes self.id = Ticket.count and self.name = name\n• __str__(self) returns Ticket <id>: <name>\n\nThe program keeps all tickets in a dictionary by id and runs the commands:\n• NEW name → create a ticket and print Created ticket <id> for <name>\n• COUNT → print Ticket.count\n• SHOW id → print the ticket (using __str__), or NOT FOUND\n\nExample: NEW Asha, NEW Ben, COUNT, SHOW 1 prints Created ticket 1 for Asha, Created ticket 2 for Ben, 2, Ticket 1: Asha.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One output line for every command, as described.",
+      "constraints": "1 <= Q <= 1000\nNames are words without spaces\n-10^6 <= id in SHOW <= 10^6",
+      "sample_inputs": [
+        "4\nNEW Asha\nNEW Ben\nCOUNT\nSHOW 1",
+        "2\nCOUNT\nSHOW 1"
+      ],
+      "sample_outputs": [
+        "Created ticket 1 for Asha\nCreated ticket 2 for Ben\n2\nTicket 1: Asha",
+        "0\nNOT FOUND"
+      ],
+      "hints": [
+        "Write Ticket.count += 1, not self.count += 1. The second one would create a new instance attribute and leave the class counter at 0.",
+        "Read the new value with Ticket.count right after increasing it.",
+        "tickets[ticket.id] = ticket stores each ticket; use tickets.get(id) or the in operator for SHOW."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Ticket:\n    count = 0                       # class attribute: shared by all tickets\n\n    def __init__(self, name):\n        Ticket.count += 1\n        self.id = Ticket.count      # instance attributes: one per ticket\n        self.name = name\n\n    def __str__(self):\n        return f\"Ticket {self.id}: {self.name}\"\n\n\ntickets = {}\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"NEW\":\n        ticket = Ticket(parts[1])\n        tickets[ticket.id] = ticket\n        print(f\"Created ticket {ticket.id} for {ticket.name}\")\n    elif parts[0] == \"COUNT\":\n        print(Ticket.count)\n    elif parts[0] == \"SHOW\":\n        ticket_id = int(parts[1])\n        if ticket_id in tickets:\n            print(tickets[ticket_id])\n        else:\n            print(\"NOT FOUND\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nNEW Asha\nNEW Ben\nCOUNT\nSHOW 1",
+          "output": "Created ticket 1 for Asha\nCreated ticket 2 for Ben\n2\nTicket 1: Asha",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\nCOUNT\nSHOW 1",
+          "output": "0\nNOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\nNEW A\nSHOW 2\nNEW B\nSHOW 2\nCOUNT",
+          "output": "Created ticket 1 for A\nNOT FOUND\nCreated ticket 2 for B\nTicket 2: B\n2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nNEW Solo\nSHOW 0\nSHOW -1",
+          "output": "Created ticket 1 for Solo\nNOT FOUND\nNOT FOUND",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\nNEW X\nNEW X\nSHOW 1\nSHOW 2",
+          "output": "Created ticket 1 for X\nCreated ticket 2 for X\nTicket 1: X\nTicket 2: X",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\nNEW a\nNEW b\nNEW c\nCOUNT\nSHOW 3\nSHOW 4",
+          "output": "Created ticket 1 for a\nCreated ticket 2 for b\nCreated ticket 3 for c\n3\nTicket 3: c\nNOT FOUND",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\nNEW Only",
+          "output": "Created ticket 1 for Only",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\nCOUNT\nNEW P\nCOUNT\nNEW Q\nCOUNT",
+          "output": "0\nCreated ticket 1 for P\n1\nCreated ticket 2 for Q\n2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One output line for every command, as described."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-07",
+      "title": "Mutable Class Attribute Trap",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Contrast shared mutable class attribute against per-instance attributes.",
+      "problem_statement": "Task: A list written at class level is created ONCE and shared by every object of the class. Appending to it through one object changes it for all of them. A list created in __init__ belongs to one object only.\n\nWrite two classes:\n• BadTeam: members = [] at class level (the trap). __init__(self, name) only stores the name. add(self, person) appends to self.members\n• GoodTeam: __init__(self, name) stores the name and creates self.members = []. add(self, person) appends to self.members\n\nThe program runs the commands:\n• CREATE name → create a BadTeam and a GoodTeam with this name\n• ADD name person → add the person to both versions of that team\n• SHOW name → print two lines: bad: <members of the BadTeam> and good: <members of the GoodTeam>, each as a Python list\n\nExample: CREATE red, CREATE blue, ADD red Asha, SHOW blue prints bad: ['Asha'] and good: [], because all BadTeams share one list.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). Every ADD and SHOW uses a team created earlier.",
+      "output_format": "Two lines for every SHOW command, as described. CREATE and ADD print nothing.",
+      "constraints": "1 <= Q <= 1000\nTeam names and person names are words without spaces\nTeam names are different",
+      "sample_inputs": [
+        "4\nCREATE red\nCREATE blue\nADD red Asha\nSHOW blue",
+        "3\nCREATE solo\nADD solo Ben\nSHOW solo"
+      ],
+      "sample_outputs": [
+        "bad: ['Asha']\ngood: []",
+        "bad: ['Ben']\ngood: ['Ben']"
+      ],
+      "hints": [
+        "Keep the teams in two dictionaries: bad_teams[name] and good_teams[name].",
+        "self.members.append(...) inside BadTeam finds the class attribute, because the object has no members of its own.",
+        "print('bad:', team.members) prints the list in Python format."
+      ],
+      "starter_code": null,
+      "reference_solution": "class BadTeam:\n    members = []                    # TRAP: one list shared by every BadTeam\n\n    def __init__(self, name):\n        self.name = name\n\n    def add(self, person):\n        self.members.append(person)\n\n\nclass GoodTeam:\n    def __init__(self, name):\n        self.name = name\n        self.members = []           # a new list for every GoodTeam\n\n    def add(self, person):\n        self.members.append(person)\n\n\nbad_teams = {}\ngood_teams = {}\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"CREATE\":\n        bad_teams[parts[1]] = BadTeam(parts[1])\n        good_teams[parts[1]] = GoodTeam(parts[1])\n    elif parts[0] == \"ADD\":\n        bad_teams[parts[1]].add(parts[2])\n        good_teams[parts[1]].add(parts[2])\n    elif parts[0] == \"SHOW\":\n        print(\"bad:\", bad_teams[parts[1]].members)\n        print(\"good:\", good_teams[parts[1]].members)",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nCREATE red\nCREATE blue\nADD red Asha\nSHOW blue",
+          "output": "bad: ['Asha']\ngood: []",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nCREATE solo\nADD solo Ben\nSHOW solo",
+          "output": "bad: ['Ben']\ngood: ['Ben']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "6\nCREATE a\nCREATE b\nADD a X\nADD b Y\nSHOW a\nSHOW b",
+          "output": "bad: ['X', 'Y']\ngood: ['X']\nbad: ['X', 'Y']\ngood: ['Y']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nCREATE empty\nSHOW empty",
+          "output": "bad: []\ngood: []",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\nCREATE t1\nADD t1 P\nCREATE t2\nADD t2 Q\nSHOW t2",
+          "output": "bad: ['P', 'Q']\ngood: ['Q']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nCREATE x\nADD x M\nADD x M\nSHOW x",
+          "output": "bad: ['M', 'M']\ngood: ['M', 'M']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\nCREATE a\nCREATE b\nCREATE c\nADD c Z\nSHOW a\nSHOW b\nSHOW c",
+          "output": "bad: ['Z']\ngood: []\nbad: ['Z']\ngood: []\nbad: ['Z']\ngood: ['Z']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\nCREATE one\nADD one A\nADD one B\nCREATE two\nSHOW two",
+          "output": "bad: ['A', 'B']\ngood: []",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(M) per SHOW",
+        "space_complexity": "O(total members)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). Every ADD and SHOW uses a team created earlier.",
+        "output_format": "Two lines for every SHOW command, as described. CREATE and ADD print nothing."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-08",
+      "title": "Digital Wallet Balance",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Manage wallet balance with credit, debit, fee checks, and transaction logs.",
+      "problem_statement": "Task: Write a class Wallet with a balance (starting at 0) and a transaction log.\n• Keep the balance in a \"private\" attribute self._balance and read it through a method balance(self). The leading underscore tells other code not to change it directly\n• credit(self, amount): if amount <= 0 return 'INVALID'. Otherwise add it, log CREDIT <amount> and return 'OK'\n• debit(self, amount): if amount <= 0 return 'INVALID'. Every debit costs a fee: fee = max(1, amount // 50) (2%, at least 1). If amount + fee is more than the balance, log DECLINED <amount> and return 'DECLINED'. Otherwise take amount + fee from the balance, log DEBIT <amount> FEE <fee> and return 'OK'\n• history(self) returns the list of log lines (INVALID commands are not logged)\n\nThe program creates a wallet and runs the commands:\n• CREDIT x → print the result of credit\n• DEBIT x → print the result of debit\n• BALANCE → print the balance\n• HISTORY → print every log line in order, or NO TRANSACTIONS if the log is empty\n\nExample: CREDIT 100, DEBIT 50, BALANCE prints OK, OK, 49 (50 + fee 1 were taken).",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One line for every CREDIT, DEBIT and BALANCE command. HISTORY prints one line per log entry, or NO TRANSACTIONS.",
+      "constraints": "1 <= Q <= 1000\n-10^9 <= x <= 10^9 (integers)",
+      "sample_inputs": [
+        "3\nCREDIT 100\nDEBIT 50\nBALANCE",
+        "2\nHISTORY\nBALANCE"
+      ],
+      "sample_outputs": [
+        "OK\nOK\n49",
+        "NO TRANSACTIONS\n0"
+      ],
+      "hints": [
+        "Compute the fee first: fee = max(1, amount // 50). 100 // 50 is 2, and 30 // 50 is 0, so max gives 1.",
+        "Compare amount + fee with the balance, not just amount.",
+        "Append strings like f'DEBIT {amount} FEE {fee}' to self._log."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Wallet:\n    def __init__(self):\n        self._balance = 0\n        self._log = []\n\n    def balance(self):\n        return self._balance\n\n    def credit(self, amount):\n        if amount <= 0:\n            return \"INVALID\"\n        self._balance += amount\n        self._log.append(f\"CREDIT {amount}\")\n        return \"OK\"\n\n    def debit(self, amount):\n        if amount <= 0:\n            return \"INVALID\"\n        fee = max(1, amount // 50)\n        if amount + fee > self._balance:\n            self._log.append(f\"DECLINED {amount}\")\n            return \"DECLINED\"\n        self._balance -= amount + fee\n        self._log.append(f\"DEBIT {amount} FEE {fee}\")\n        return \"OK\"\n\n    def history(self):\n        return self._log\n\n\nwallet = Wallet()\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"CREDIT\":\n        print(wallet.credit(int(parts[1])))\n    elif parts[0] == \"DEBIT\":\n        print(wallet.debit(int(parts[1])))\n    elif parts[0] == \"BALANCE\":\n        print(wallet.balance())\n    elif parts[0] == \"HISTORY\":\n        log = wallet.history()\n        if log:\n            for line in log:\n                print(line)\n        else:\n            print(\"NO TRANSACTIONS\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nCREDIT 100\nDEBIT 50\nBALANCE",
+          "output": "OK\nOK\n49",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\nHISTORY\nBALANCE",
+          "output": "NO TRANSACTIONS\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\nCREDIT 100\nDEBIT 99\nDEBIT 98\nBALANCE\nHISTORY",
+          "output": "OK\nOK\nDECLINED\n0\nCREDIT 100\nDEBIT 99 FEE 1\nDECLINED 98",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\nCREDIT 0\nDEBIT -5\nCREDIT -1\nHISTORY",
+          "output": "INVALID\nINVALID\nINVALID\nNO TRANSACTIONS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\nCREDIT 51\nDEBIT 50\nBALANCE\nHISTORY",
+          "output": "OK\nOK\n0\nCREDIT 51\nDEBIT 50 FEE 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\nCREDIT 1000\nDEBIT 500\nDEBIT 400\nDEBIT 80\nBALANCE\nHISTORY",
+          "output": "OK\nOK\nOK\nOK\n1\nCREDIT 1000\nDEBIT 500 FEE 10\nDEBIT 400 FEE 8\nDEBIT 80 FEE 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\nDEBIT 10\nCREDIT 11\nDEBIT 10",
+          "output": "DECLINED\nOK\nOK",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\nCREDIT 1000000000\nDEBIT 980392156\nBALANCE\nDEBIT 1\nBALANCE",
+          "output": "OK\nOK\n1\nDECLINED\n1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command, O(T) per HISTORY",
+        "space_complexity": "O(T)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One line for every CREDIT, DEBIT and BALANCE command. HISTORY prints one line per log entry, or NO TRANSACTIONS."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-09",
+      "title": "Shopping Cart Aggregator",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Add, remove, and calculate total cost of item objects with quantities.",
+      "problem_statement": "Task: Write two classes.\n\nItem:\n• __init__(self, name, price, qty) stores the three values\n• subtotal(self) returns price * qty\n\nCart:\n• __init__(self) creates an empty dictionary of items by name (it keeps the order items were first added)\n• add(self, name, price, qty): if the item is already in the cart, add qty to it and keep its old price. Otherwise create a new Item\n• remove(self, name, qty): if the item is not in the cart, return False. Otherwise take qty away; if nothing is left (qty >= current quantity), delete the item. Return True\n• total(self) returns the sum of all subtotals\n\nThe program runs the commands:\n• ADD name price qty → add (prints nothing)\n• REMOVE name qty → print OK, or NOT FOUND\n• TOTAL → print the total with 2 decimal places\n• LIST → print one line per item: <name> x<qty> @ <price with 2 decimals>, or EMPTY\n\nExample: ADD apple 0.50 4, ADD milk 2.25 1, TOTAL prints 4.25.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each. Prices are decimal numbers and quantities are positive integers.",
+      "output_format": "One line for every REMOVE and TOTAL command, and the item lines (or EMPTY) for every LIST command.",
+      "constraints": "1 <= Q <= 1000\n0 <= price <= 10^4\n1 <= qty <= 10^4\nItem names are words without spaces",
+      "sample_inputs": [
+        "3\nADD apple 0.50 4\nADD milk 2.25 1\nTOTAL",
+        "2\nTOTAL\nLIST"
+      ],
+      "sample_outputs": [
+        "4.25",
+        "0.00\nEMPTY"
+      ],
+      "hints": [
+        "Store Item objects in a dict: self.items[name] = Item(name, price, qty).",
+        "total can be sum(item.subtotal() for item in self.items.values()).",
+        "del self.items[name] removes an item when its quantity reaches 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Item:\n    def __init__(self, name, price, qty):\n        self.name = name\n        self.price = price\n        self.qty = qty\n\n    def subtotal(self):\n        return self.price * self.qty\n\n\nclass Cart:\n    def __init__(self):\n        self.items = {}\n\n    def add(self, name, price, qty):\n        if name in self.items:\n            self.items[name].qty += qty      # keep the old price\n        else:\n            self.items[name] = Item(name, price, qty)\n\n    def remove(self, name, qty):\n        if name not in self.items:\n            return False\n        item = self.items[name]\n        if qty >= item.qty:\n            del self.items[name]\n        else:\n            item.qty -= qty\n        return True\n\n    def total(self):\n        return sum(item.subtotal() for item in self.items.values())\n\n\ncart = Cart()\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"ADD\":\n        cart.add(parts[1], float(parts[2]), int(parts[3]))\n    elif parts[0] == \"REMOVE\":\n        print(\"OK\" if cart.remove(parts[1], int(parts[2])) else \"NOT FOUND\")\n    elif parts[0] == \"TOTAL\":\n        print(f\"{cart.total():.2f}\")\n    elif parts[0] == \"LIST\":\n        if cart.items:\n            for item in cart.items.values():\n                print(f\"{item.name} x{item.qty} @ {item.price:.2f}\")\n        else:\n            print(\"EMPTY\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nADD apple 0.50 4\nADD milk 2.25 1\nTOTAL",
+          "output": "4.25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\nTOTAL\nLIST",
+          "output": "0.00\nEMPTY",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\nADD pen 1.20 3\nADD pen 9.99 2\nLIST\nREMOVE pen 1\nLIST",
+          "output": "pen x5 @ 1.20\nOK\npen x4 @ 1.20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nREMOVE ghost 1\nADD egg 0.25 12\nREMOVE egg 12",
+          "output": "NOT FOUND\nOK",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\nADD a 1 1\nADD b 2 2\nADD c 3 3\nREMOVE b 5\nLIST\nTOTAL",
+          "output": "OK\na x1 @ 1.00\nc x3 @ 3.00\n10.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nADD tv 9999.99 2\nTOTAL\nREMOVE tv 1\nTOTAL",
+          "output": "19999.98\nOK\n9999.99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\nADD free 0 5\nTOTAL\nLIST\nREMOVE free 10",
+          "output": "0.00\nfree x5 @ 0.00\nOK",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\nADD x 0.10 3\nADD y 0.20 3\nTOTAL\nREMOVE x 3\nREMOVE x 1\nLIST\nTOTAL",
+          "output": "0.90\nOK\nNOT FOUND\ny x3 @ 0.20\n0.60",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per ADD/REMOVE, O(N) per TOTAL",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each. Prices are decimal numbers and quantities are positive integers.",
+        "output_format": "One line for every REMOVE and TOTAL command, and the item lines (or EMPTY) for every LIST command."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-10",
+      "title": "Temperature Unit Container",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Store temp value and support .to_celsius(), .to_fahrenheit(), .to_kelvin().",
+      "problem_statement": "Task: Write a class Temperature that stores one value together with its unit, C (Celsius), F (Fahrenheit) or K (Kelvin).\n• __init__(self, value, unit) stores both\n• to_celsius(self), to_fahrenheit(self) and to_kelvin(self) return the temperature in that unit\n• set(self, value, unit) replaces the stored temperature\n\nFormulas:\n• C = (F - 32) * 5 / 9 and F = C * 9 / 5 + 32\n• K = C + 273.15 and C = K - 273.15\nTip: convert the stored value to Celsius first inside every method, then from Celsius to the target unit.\n\nThe program creates one temperature and runs the commands:\n• C, F or K → print the temperature in that unit with 2 decimal places\n• SET value unit → replace the temperature (prints nothing)\n\nExample: for 100 C the commands F, K print 212.00 and 373.15.",
+      "input_format": "Line 1: a value (a number) and a unit (C, F or K), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One line for every C, F and K command, with 2 decimal places. SET prints nothing.",
+      "constraints": "1 <= Q <= 1000\n-1000 <= value <= 10000",
+      "sample_inputs": [
+        "100 C\n2\nF\nK",
+        "32 F\n3\nC\nF\nK"
+      ],
+      "sample_outputs": [
+        "212.00\n373.15",
+        "0.00\n32.00\n273.15"
+      ],
+      "hints": [
+        "to_celsius handles three cases with if / elif / else on self.unit.",
+        "to_fahrenheit can be self.to_celsius() * 9 / 5 + 32, and to_kelvin can be self.to_celsius() + 273.15.",
+        "Print with f'{value:.2f}'. Values very close to 0 may print as -0.00 for a tiny negative number, so the tests avoid those cases."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Temperature:\n    def __init__(self, value, unit):\n        self.value = value\n        self.unit = unit\n\n    def set(self, value, unit):\n        self.value = value\n        self.unit = unit\n\n    def to_celsius(self):\n        if self.unit == \"C\":\n            return self.value\n        if self.unit == \"F\":\n            return (self.value - 32) * 5 / 9\n        return self.value - 273.15          # unit K\n\n    def to_fahrenheit(self):\n        return self.to_celsius() * 9 / 5 + 32\n\n    def to_kelvin(self):\n        return self.to_celsius() + 273.15\n\n\nvalue, unit = input().split()\ntemp = Temperature(float(value), unit)\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    if parts[0] == \"C\":\n        print(f\"{temp.to_celsius():.2f}\")\n    elif parts[0] == \"F\":\n        print(f\"{temp.to_fahrenheit():.2f}\")\n    elif parts[0] == \"K\":\n        print(f\"{temp.to_kelvin():.2f}\")\n    elif parts[0] == \"SET\":\n        temp.set(float(parts[1]), parts[2])",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100 C\n2\nF\nK",
+          "output": "212.00\n373.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "32 F\n3\nC\nF\nK",
+          "output": "0.00\n32.00\n273.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0 K\n2\nC\nF",
+          "output": "-273.15\n-459.67",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-40 C\n1\nF",
+          "output": "-40.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "98.6 F\n2\nC\nK",
+          "output": "37.00\n310.15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "25 C\n4\nK\nSET 300 K\nC\nF",
+          "output": "298.15\n26.85\n80.33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "451 F\n3\nC\nK\nF",
+          "output": "232.78\n505.93\n451.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10000 K\n3\nC\nF\nK",
+          "output": "9726.85\n17540.33\n10000.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: a value (a number) and a unit (C, F or K), separated by a space.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One line for every C, F and K command, with 2 decimal places. SET prints nothing."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-11",
+      "title": "Circular Playlist Navigator",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Add songs, track active index, and wrap .next_track() to beginning.",
+      "problem_statement": "Task: Write a class Playlist.\n• __init__(self) creates an empty list of songs and sets the active index to 0\n• add(self, song) appends a song. The first song added becomes the current song\n• current(self) returns the current song, or None if the playlist is empty\n• next_track(self) moves to the next song and returns it. After the last song it wraps around to the first one. Returns None if the playlist is empty\n• prev_track(self) moves to the previous song and returns it. Before the first song it wraps around to the last one. Returns None if the playlist is empty\n\nThe program runs the commands:\n• ADD song → add the song (the song name is the rest of the line and may contain spaces; prints nothing)\n• CURRENT, NEXT, PREV → print the song, or EMPTY\n\nExample: ADD A, ADD B, NEXT, NEXT prints B and then A (it wrapped around).",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+      "output_format": "One line for every CURRENT, NEXT and PREV command.",
+      "constraints": "1 <= Q <= 1000\n1 <= length of a song name <= 100",
+      "sample_inputs": [
+        "4\nADD A\nADD B\nNEXT\nNEXT",
+        "3\nCURRENT\nNEXT\nPREV"
+      ],
+      "sample_outputs": [
+        "B\nA",
+        "EMPTY\nEMPTY\nEMPTY"
+      ],
+      "hints": [
+        "The % operator wraps the index: self.index = (self.index + 1) % len(self.songs).",
+        "Python's % also handles going backwards: (0 - 1) % 3 is 2.",
+        "Split a command only once to keep spaces in song names: command, _, rest = line.partition(' ')."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Playlist:\n    def __init__(self):\n        self.songs = []\n        self.index = 0\n\n    def add(self, song):\n        self.songs.append(song)\n\n    def current(self):\n        if not self.songs:\n            return None\n        return self.songs[self.index]\n\n    def next_track(self):\n        if not self.songs:\n            return None\n        self.index = (self.index + 1) % len(self.songs)\n        return self.songs[self.index]\n\n    def prev_track(self):\n        if not self.songs:\n            return None\n        self.index = (self.index - 1) % len(self.songs)\n        return self.songs[self.index]\n\n\nplaylist = Playlist()\n\nq = int(input())\nfor _ in range(q):\n    command, _, rest = input().partition(\" \")\n    if command == \"ADD\":\n        playlist.add(rest)\n    else:\n        if command == \"CURRENT\":\n            song = playlist.current()\n        elif command == \"NEXT\":\n            song = playlist.next_track()\n        else:\n            song = playlist.prev_track()\n        print(\"EMPTY\" if song is None else song)",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nADD A\nADD B\nNEXT\nNEXT",
+          "output": "B\nA",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nCURRENT\nNEXT\nPREV",
+          "output": "EMPTY\nEMPTY\nEMPTY",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4\nADD Only Song\nNEXT\nPREV\nCURRENT",
+          "output": "Only Song\nOnly Song\nOnly Song",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\nADD x\nADD y\nADD z\nPREV\nPREV",
+          "output": "z\ny",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\nADD Bohemian Rhapsody\nADD Imagine\nCURRENT\nNEXT\nADD Hey Jude\nNEXT",
+          "output": "Bohemian Rhapsody\nImagine\nHey Jude",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7\nADD 1\nADD 2\nADD 3\nNEXT\nNEXT\nNEXT\nCURRENT",
+          "output": "2\n3\n1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\nADD a\nADD b\nPREV\nNEXT\nNEXT",
+          "output": "b\na\nb",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nNEXT\nADD late\nCURRENT",
+          "output": "EMPTY\nlate",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description).",
+        "output_format": "One line for every CURRENT, NEXT and PREV command."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-12",
+      "title": "Library Book Ledger",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Track availability, borrower names, and return status across titles.",
+      "problem_statement": "Task: Write a class Library that tracks which titles are on the shelf and who has borrowed the others.\n• __init__(self) creates an empty dictionary: title → borrower name, or None when the book is available\n• add_book(self, title) returns 'ADDED', or 'EXISTS' if the title is already there\n• borrow(self, name, title) returns 'NOT FOUND' for an unknown title, 'UNAVAILABLE' if it is already borrowed, otherwise records the borrower and returns 'OK'\n• return_book(self, title) returns 'NOT FOUND' for an unknown title, 'NOT BORROWED' if it is on the shelf, otherwise marks it available and returns 'OK'\n• status(self, title) returns 'available', 'borrowed by <name>' or 'NOT FOUND'\n\nThe program runs the commands (titles are the rest of the line and may contain spaces):\n• ADD title, BORROW name title, RETURN title, STATUS title → print the method's result\n• REPORT → print one line per title in the order they were added: <title>: <status>, or EMPTY\n\nExample: ADD Dune, BORROW Asha Dune, STATUS Dune prints ADDED, OK, borrowed by Asha.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each. In BORROW the first word after the command is the borrower's name and the rest is the title.",
+      "output_format": "One line for every ADD, BORROW, RETURN and STATUS command; the report lines (or EMPTY) for every REPORT.",
+      "constraints": "1 <= Q <= 1000\nBorrower names are words without spaces\n1 <= length of a title <= 100",
+      "sample_inputs": [
+        "3\nADD Dune\nBORROW Asha Dune\nSTATUS Dune",
+        "3\nREPORT\nSTATUS Ghost\nRETURN Ghost"
+      ],
+      "sample_outputs": [
+        "ADDED\nOK\nborrowed by Asha",
+        "EMPTY\nNOT FOUND\nNOT FOUND"
+      ],
+      "hints": [
+        "None works well as the value for an available book: if self.books[title] is None: ...",
+        "Check 'title not in self.books' first in every method.",
+        "In the driver, line.split(' ', 2) splits BORROW name title into exactly three parts."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Library:\n    def __init__(self):\n        self.books = {}             # title -> borrower name, or None\n\n    def add_book(self, title):\n        if title in self.books:\n            return \"EXISTS\"\n        self.books[title] = None\n        return \"ADDED\"\n\n    def borrow(self, name, title):\n        if title not in self.books:\n            return \"NOT FOUND\"\n        if self.books[title] is not None:\n            return \"UNAVAILABLE\"\n        self.books[title] = name\n        return \"OK\"\n\n    def return_book(self, title):\n        if title not in self.books:\n            return \"NOT FOUND\"\n        if self.books[title] is None:\n            return \"NOT BORROWED\"\n        self.books[title] = None\n        return \"OK\"\n\n    def status(self, title):\n        if title not in self.books:\n            return \"NOT FOUND\"\n        if self.books[title] is None:\n            return \"available\"\n        return f\"borrowed by {self.books[title]}\"\n\n\nlibrary = Library()\n\nq = int(input())\nfor _ in range(q):\n    line = input()\n    command = line.split(\" \", 1)[0]\n    if command == \"ADD\":\n        print(library.add_book(line.split(\" \", 1)[1]))\n    elif command == \"BORROW\":\n        _, name, title = line.split(\" \", 2)\n        print(library.borrow(name, title))\n    elif command == \"RETURN\":\n        print(library.return_book(line.split(\" \", 1)[1]))\n    elif command == \"STATUS\":\n        print(library.status(line.split(\" \", 1)[1]))\n    elif command == \"REPORT\":\n        if library.books:\n            for title in library.books:\n                print(f\"{title}: {library.status(title)}\")\n        else:\n            print(\"EMPTY\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nADD Dune\nBORROW Asha Dune\nSTATUS Dune",
+          "output": "ADDED\nOK\nborrowed by Asha",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nREPORT\nSTATUS Ghost\nRETURN Ghost",
+          "output": "EMPTY\nNOT FOUND\nNOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "6\nADD War and Peace\nADD War and Peace\nBORROW Ben War and Peace\nBORROW Cal War and Peace\nRETURN War and Peace\nRETURN War and Peace",
+          "output": "ADDED\nEXISTS\nOK\nUNAVAILABLE\nOK\nNOT BORROWED",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\nBORROW Dee Missing Book\nADD Emma\nSTATUS Emma\nREPORT",
+          "output": "NOT FOUND\nADDED\navailable\nEmma: available",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\nADD A\nADD B\nADD C\nBORROW X B\nBORROW Y C\nRETURN C\nREPORT",
+          "output": "ADDED\nADDED\nADDED\nOK\nOK\nOK\nA: available\nB: borrowed by X\nC: available",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\nADD It\nBORROW Sam It\nRETURN It\nBORROW Tom It\nSTATUS It",
+          "output": "ADDED\nOK\nOK\nOK\nborrowed by Tom",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nADD The Hobbit\nREPORT",
+          "output": "ADDED\nThe Hobbit: available",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\nADD One\nBORROW Amy One\nADD Two\nBORROW Amy Two\nREPORT\nSTATUS Two",
+          "output": "ADDED\nOK\nADDED\nOK\nOne: borrowed by Amy\nTwo: borrowed by Amy\nborrowed by Amy",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command, O(N) per REPORT",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each. In BORROW the first word after the command is the borrower's name and the rest is the title.",
+        "output_format": "One line for every ADD, BORROW, RETURN and STATUS command; the report lines (or EMPTY) for every REPORT."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-13",
+      "title": "Vector2D Arithmetic",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Medium",
+      "objective": "Implement 2D vector class with .add(), .dot(), and .magnitude() methods.",
+      "problem_statement": "Task: Write a class Vector2D for 2D vectors with integer coordinates.\n• __init__(self, x, y) stores the coordinates\n• add(self, other) returns a NEW Vector2D: (x1 + x2, y1 + y2). It does not change self or other\n• dot(self, other) returns the dot product x1 * x2 + y1 * y2\n• magnitude(self) returns the length sqrt(x^2 + y^2) (use math.sqrt or ** 0.5)\n• __repr__(self) returns Vector2D(x, y)\n\nThe program runs the commands:\n• ADD x1 y1 x2 y2 → print the sum vector (using __repr__)\n• DOT x1 y1 x2 y2 → print the dot product\n• MAG x y → print the magnitude with 3 decimal places\n\nExample: ADD 1 2 3 4 prints Vector2D(4, 6), DOT 1 2 3 4 prints 11, and MAG 3 4 prints 5.000.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each, with integer coordinates.",
+      "output_format": "One output line for every command, as described.",
+      "constraints": "1 <= Q <= 1000\n-10^4 <= every coordinate <= 10^4",
+      "sample_inputs": [
+        "3\nADD 1 2 3 4\nDOT 1 2 3 4\nMAG 3 4",
+        "1\nMAG 0 0"
+      ],
+      "sample_outputs": [
+        "Vector2D(4, 6)\n11\n5.000",
+        "0.000"
+      ],
+      "hints": [
+        "add creates and returns a new object: return Vector2D(self.x + other.x, self.y + other.y).",
+        "other is another Vector2D, so you can read other.x and other.y.",
+        "print(vector) uses __repr__ when the class has no __str__."
+      ],
+      "starter_code": null,
+      "reference_solution": "import math\n\n\nclass Vector2D:\n    def __init__(self, x, y):\n        self.x = x\n        self.y = y\n\n    def add(self, other):\n        return Vector2D(self.x + other.x, self.y + other.y)\n\n    def dot(self, other):\n        return self.x * other.x + self.y * other.y\n\n    def magnitude(self):\n        return math.sqrt(self.x ** 2 + self.y ** 2)\n\n    def __repr__(self):\n        return f\"Vector2D({self.x}, {self.y})\"\n\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    nums = [int(p) for p in parts[1:]]\n    if parts[0] == \"ADD\":\n        print(Vector2D(nums[0], nums[1]).add(Vector2D(nums[2], nums[3])))\n    elif parts[0] == \"DOT\":\n        print(Vector2D(nums[0], nums[1]).dot(Vector2D(nums[2], nums[3])))\n    elif parts[0] == \"MAG\":\n        print(f\"{Vector2D(nums[0], nums[1]).magnitude():.3f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nADD 1 2 3 4\nDOT 1 2 3 4\nMAG 3 4",
+          "output": "Vector2D(4, 6)\n11\n5.000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nMAG 0 0",
+          "output": "0.000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nADD -1 -1 1 1\nDOT 1 0 0 1",
+          "output": "Vector2D(0, 0)\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nMAG 1 1\nMAG -5 12",
+          "output": "1.414\n13.000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\nDOT -2 3 4 -5\nADD 0 0 0 0\nMAG 10000 10000",
+          "output": "-23\nVector2D(0, 0)\n14142.136",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nADD 10000 -10000 -10000 10000\nDOT 10000 10000 10000 10000",
+          "output": "Vector2D(0, 0)\n200000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\nMAG 1 2\nADD 5 6 -2 -3\nDOT 7 0 0 7\nDOT 3 3 3 3",
+          "output": "2.236\nVector2D(3, 3)\n0\n18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\nMAG -7 -24",
+          "output": "25.000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each, with integer coordinates.",
+        "output_format": "One output line for every command, as described."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-14",
+      "title": "Rate Limiter Counter",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Hard",
+      "objective": "Enforce max K actions per window using simulated input tick timestamps.",
+      "problem_statement": "Task: A rate limiter stops a user from doing too many actions in a short time. Write a class RateLimiter.\n• __init__(self, k, window): at most k actions per user are allowed in any time window of length window\n• allow(self, user, t): a user tries an action at time t. Look at the user's ALLOWED actions with a time in the range (t - window, t], that is, later than t - window and up to t. If there are fewer than k of them, record this action at time t and return True. Otherwise return False (blocked actions are not recorded)\n• usage(self, user, t) returns how many allowed actions of the user are in (t - window, t]\n• Each user has their own limit. Keep a collections.deque of allowed times for each user, and remove times from the left when they are too old (<= t - window)\n\nTimes in the input never go down. The program reads k and window, then runs the commands:\n• REQ user t → print ALLOWED or BLOCKED\n• USAGE user t → print the number of allowed actions in the window ending at t\n\nExample with k = 2 and window = 10: REQ a 1, REQ a 5, REQ a 9, REQ a 11 prints ALLOWED, ALLOWED, BLOCKED, ALLOWED (at t = 11 the action at time 1 is out of the window (1, 11]).",
+      "input_format": "Line 1: two integers k and window.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description). Times never decrease from one command to the next.",
+      "output_format": "One output line for every command, as described.",
+      "constraints": "1 <= k <= 1000\n1 <= window <= 10^9\n1 <= Q <= 10^5\n0 <= t <= 10^9\nUser names are words without spaces",
+      "sample_inputs": [
+        "2 10\n4\nREQ a 1\nREQ a 5\nREQ a 9\nREQ a 11",
+        "1 5\n4\nREQ x 0\nREQ x 4\nREQ x 5\nUSAGE x 5"
+      ],
+      "sample_outputs": [
+        "ALLOWED\nALLOWED\nBLOCKED\nALLOWED",
+        "ALLOWED\nBLOCKED\nALLOWED\n1"
+      ],
+      "hints": [
+        "from collections import deque; self.times = {} maps each user to a deque of allowed times.",
+        "Write a small helper _clean(user, t) that pops from the left while times[0] <= t - window. Both allow and usage call it.",
+        "An action exactly at time t - window is outside the window, because the window starts after t - window."
+      ],
+      "starter_code": null,
+      "reference_solution": "from collections import deque\n\n\nclass RateLimiter:\n    def __init__(self, k, window):\n        self.k = k\n        self.window = window\n        self.times = {}             # user -> deque of allowed action times\n\n    def _clean(self, user, t):\n        q = self.times.setdefault(user, deque())\n        while q and q[0] <= t - self.window:     # too old: outside (t - window, t]\n            q.popleft()\n        return q\n\n    def allow(self, user, t):\n        q = self._clean(user, t)\n        if len(q) < self.k:\n            q.append(t)\n            return True\n        return False\n\n    def usage(self, user, t):\n        return len(self._clean(user, t))\n\n\nk, window = map(int, input().split())\nlimiter = RateLimiter(k, window)\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    user, t = parts[1], int(parts[2])\n    if parts[0] == \"REQ\":\n        print(\"ALLOWED\" if limiter.allow(user, t) else \"BLOCKED\")\n    elif parts[0] == \"USAGE\":\n        print(limiter.usage(user, t))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 10\n4\nREQ a 1\nREQ a 5\nREQ a 9\nREQ a 11",
+          "output": "ALLOWED\nALLOWED\nBLOCKED\nALLOWED",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 5\n4\nREQ x 0\nREQ x 4\nREQ x 5\nUSAGE x 5",
+          "output": "ALLOWED\nBLOCKED\nALLOWED\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 100\n5\nREQ a 1\nREQ b 1\nREQ a 2\nUSAGE a 2\nUSAGE b 50",
+          "output": "ALLOWED\nALLOWED\nALLOWED\n2\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 1\n4\nREQ u 7\nREQ u 7\nREQ u 8\nREQ u 8",
+          "output": "ALLOWED\nBLOCKED\nALLOWED\nBLOCKED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 3\n6\nREQ p 0\nREQ p 1\nREQ p 2\nUSAGE p 2\nUSAGE p 3\nREQ p 3",
+          "output": "ALLOWED\nALLOWED\nBLOCKED\n2\n1\nALLOWED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 1000000000\n3\nREQ a 0\nREQ a 999999999\nREQ a 1000000000",
+          "output": "ALLOWED\nBLOCKED\nALLOWED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 5\n3\nUSAGE ghost 10\nREQ ghost 10\nUSAGE ghost 14",
+          "output": "0\nALLOWED\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 4\n8\nREQ a 1\nREQ b 1\nREQ a 2\nREQ b 2\nREQ a 3\nREQ b 5\nUSAGE a 5\nUSAGE b 5",
+          "output": "ALLOWED\nALLOWED\nALLOWED\nALLOWED\nBLOCKED\nALLOWED\n1\n2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) amortized per request",
+        "space_complexity": "O(users x K)",
+        "input_format": "Line 1: two integers k and window.\nNext line: the number of commands Q.\nNext Q lines: one command each (see the description). Times never decrease from one command to the next.",
+        "output_format": "One output line for every command, as described."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-15",
+      "title": "Course Prerequisite Checker",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Hard",
+      "objective": "Model courses preventing enrollment until prerequisites are finished.",
+      "problem_statement": "Task: Write two classes.\n\nCourse:\n• __init__(self, code, prereqs) stores the course code and the list of prerequisite codes\n\nStudent:\n• __init__(self, name) creates an empty set of completed courses and an empty set of enrolled courses\n• enroll(self, course) returns:\n- 'ALREADY COMPLETED' if the student completed it\n- 'ALREADY ENROLLED' if the student is enrolled in it now\n- 'MISSING <codes>' if some prerequisites are not completed, listing the missing codes in the order the course lists them, separated by spaces\n- otherwise it enrolls the student and returns 'ENROLLED'\n• complete(self, code) moves the course from enrolled to completed and returns 'COMPLETED', or returns 'NOT ENROLLED'\n\nThe program keeps courses and students in dictionaries. A student is created the first time their name appears. Commands:\n• COURSE code p1 p2 ... → define a course with zero or more prerequisites (prints nothing)\n• ENROLL name code → print UNKNOWN COURSE if the course was never defined, otherwise the result of enroll\n• COMPLETE name code → print the result of complete\n• STATUS name → print completed: <codes> | enrolled: <codes>, each list sorted alphabetically and separated by spaces, or none if empty\n\nExample: COURSE CS101, COURSE CS201 CS101, ENROLL amy CS201 prints MISSING CS101.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). Codes and names are words without spaces.",
+      "output_format": "One output line for every ENROLL, COMPLETE and STATUS command. COURSE prints nothing.",
+      "constraints": "1 <= Q <= 1000\n0 <= prerequisites per course <= 10\nA course is defined at most once",
+      "sample_inputs": [
+        "3\nCOURSE CS101\nCOURSE CS201 CS101\nENROLL amy CS201",
+        "6\nCOURSE A\nCOURSE B A\nENROLL bo A\nCOMPLETE bo A\nENROLL bo B\nSTATUS bo"
+      ],
+      "sample_outputs": [
+        "MISSING CS101",
+        "ENROLLED\nCOMPLETED\nENROLLED\ncompleted: A | enrolled: B"
+      ],
+      "hints": [
+        "[p for p in course.prereqs if p not in self.completed] gives the missing prerequisites in order.",
+        "Use sets for completed and enrolled: self.enrolled.remove(code) and self.completed.add(code) in complete().",
+        "students.setdefault(name, Student(name)) works, but creates a throw-away object each time; if name not in students: students[name] = Student(name) is clearer."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Course:\n    def __init__(self, code, prereqs):\n        self.code = code\n        self.prereqs = prereqs\n\n\nclass Student:\n    def __init__(self, name):\n        self.name = name\n        self.completed = set()\n        self.enrolled = set()\n\n    def enroll(self, course):\n        if course.code in self.completed:\n            return \"ALREADY COMPLETED\"\n        if course.code in self.enrolled:\n            return \"ALREADY ENROLLED\"\n        missing = [p for p in course.prereqs if p not in self.completed]\n        if missing:\n            return \"MISSING \" + \" \".join(missing)\n        self.enrolled.add(course.code)\n        return \"ENROLLED\"\n\n    def complete(self, code):\n        if code not in self.enrolled:\n            return \"NOT ENROLLED\"\n        self.enrolled.remove(code)\n        self.completed.add(code)\n        return \"COMPLETED\"\n\n\ncourses = {}\nstudents = {}\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    command = parts[0]\n    if command == \"COURSE\":\n        courses[parts[1]] = Course(parts[1], parts[2:])\n        continue\n\n    name = parts[1]\n    if name not in students:\n        students[name] = Student(name)\n    student = students[name]\n\n    if command == \"ENROLL\":\n        code = parts[2]\n        if code not in courses:\n            print(\"UNKNOWN COURSE\")\n        else:\n            print(student.enroll(courses[code]))\n    elif command == \"COMPLETE\":\n        print(student.complete(parts[2]))\n    elif command == \"STATUS\":\n        done = \" \".join(sorted(student.completed)) or \"none\"\n        now = \" \".join(sorted(student.enrolled)) or \"none\"\n        print(f\"completed: {done} | enrolled: {now}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nCOURSE CS101\nCOURSE CS201 CS101\nENROLL amy CS201",
+          "output": "MISSING CS101",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "6\nCOURSE A\nCOURSE B A\nENROLL bo A\nCOMPLETE bo A\nENROLL bo B\nSTATUS bo",
+          "output": "ENROLLED\nCOMPLETED\nENROLLED\ncompleted: A | enrolled: B",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4\nENROLL cy X\nCOMPLETE cy X\nSTATUS cy\nCOURSE X",
+          "output": "UNKNOWN COURSE\nNOT ENROLLED\ncompleted: none | enrolled: none",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\nCOURSE M1\nENROLL d M1\nENROLL d M1\nCOMPLETE d M1\nENROLL d M1",
+          "output": "ENROLLED\nALREADY ENROLLED\nCOMPLETED\nALREADY COMPLETED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\nCOURSE P\nCOURSE Q\nCOURSE R P Q\nENROLL e R\nENROLL e Q\nCOMPLETE e Q\nENROLL e R",
+          "output": "MISSING P Q\nENROLLED\nCOMPLETED\nMISSING P",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "8\nCOURSE base\nCOURSE mid base\nCOURSE top mid base\nENROLL f base\nCOMPLETE f base\nENROLL f top\nENROLL f mid\nSTATUS f",
+          "output": "ENROLLED\nCOMPLETED\nMISSING mid\nENROLLED\ncompleted: base | enrolled: mid",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\nCOURSE Z\nCOURSE Y\nENROLL g Z\nENROLL g Y\nENROLL h Z\nSTATUS g",
+          "output": "ENROLLED\nENROLLED\nENROLLED\ncompleted: none | enrolled: Y Z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\nCOURSE C3 C1 C2\nCOURSE C1\nENROLL i C3\nENROLL i C1\nSTATUS i",
+          "output": "MISSING C1 C2\nENROLLED\ncompleted: none | enrolled: C1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(P) per ENROLL",
+        "space_complexity": "O(courses + students)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). Codes and names are words without spaces.",
+        "output_format": "One output line for every ENROLL, COMPLETE and STATUS command. COURSE prints nothing."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M13-16",
+      "title": "Stock Alert Inventory",
+      "module": "Module 13: Object-Oriented Programming I",
+      "difficulty": "Hard",
+      "objective": "Track SKU counts and trigger alerts when stock drops below threshold.",
+      "problem_statement": "Task: Write a class Inventory that tracks the stock of each SKU (product code) and warns when it gets low.\n• add_sku(self, sku, qty, threshold) adds a new SKU and returns 'OK', or 'EXISTS' if it is already there\n• restock(self, sku, qty) adds qty and returns 'OK', or 'NOT FOUND'\n• sell(self, sku, qty) returns 'NOT FOUND' for an unknown SKU, 'INSUFFICIENT' if qty is more than the stock (nothing changes), otherwise removes qty and returns 'OK'\n• Alert rule: a SKU is LOW when its stock is below its threshold. When a sale moves a SKU from not-low to LOW, the sale also produces the alert line ALERT <sku> <stock>. A SKU that is already LOW gives no new alert on later sales. A restock that brings it back to stock >= threshold makes it not-low again, so a later drop alerts again\n• A SKU added with a quantity already below its threshold starts as LOW, without an alert\n\nThe program runs the commands:\n• ADD sku qty threshold, RESTOCK sku qty → print the result\n• SELL sku qty → print the result, and on the next line the ALERT line if there is one\n• REPORT → print one line per SKU in the order they were added: <sku> <stock>, with the word LOW added at the end if the SKU is low; or EMPTY\n\nExample: ADD pen 10 5, SELL pen 6 prints OK, then OK and ALERT pen 4.",
+      "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). SKUs are words without spaces; quantities and thresholds are non-negative integers.",
+      "output_format": "One line for every ADD and RESTOCK, one or two lines for every SELL, and the report lines (or EMPTY) for every REPORT.",
+      "constraints": "1 <= Q <= 1000\n0 <= qty, threshold <= 10^6",
+      "sample_inputs": [
+        "2\nADD pen 10 5\nSELL pen 6",
+        "3\nREPORT\nSELL ghost 1\nRESTOCK ghost 5"
+      ],
+      "sample_outputs": [
+        "OK\nOK\nALERT pen 4",
+        "EMPTY\nNOT FOUND\nNOT FOUND"
+      ],
+      "hints": [
+        "Store per SKU a small dict or object: stock, threshold and a flag low.",
+        "In sell, compute was_low before changing the stock and is_low after. Alert only when not was_low and is_low.",
+        "Let sell return two values, such as ('OK', 'ALERT pen 4') or ('OK', None), and let the driver print the second one when it is not None."
+      ],
+      "starter_code": null,
+      "reference_solution": "class Inventory:\n    def __init__(self):\n        self.items = {}     # sku -> {\"stock\": int, \"threshold\": int}\n\n    def is_low(self, sku):\n        item = self.items[sku]\n        return item[\"stock\"] < item[\"threshold\"]\n\n    def add_sku(self, sku, qty, threshold):\n        if sku in self.items:\n            return \"EXISTS\"\n        self.items[sku] = {\"stock\": qty, \"threshold\": threshold}\n        return \"OK\"\n\n    def restock(self, sku, qty):\n        if sku not in self.items:\n            return \"NOT FOUND\"\n        self.items[sku][\"stock\"] += qty\n        return \"OK\"\n\n    def sell(self, sku, qty):\n        if sku not in self.items:\n            return \"NOT FOUND\", None\n        item = self.items[sku]\n        if qty > item[\"stock\"]:\n            return \"INSUFFICIENT\", None\n        was_low = self.is_low(sku)\n        item[\"stock\"] -= qty\n        if not was_low and self.is_low(sku):\n            return \"OK\", f\"ALERT {sku} {item['stock']}\"\n        return \"OK\", None\n\n\ninventory = Inventory()\n\nq = int(input())\nfor _ in range(q):\n    parts = input().split()\n    command = parts[0]\n    if command == \"ADD\":\n        print(inventory.add_sku(parts[1], int(parts[2]), int(parts[3])))\n    elif command == \"RESTOCK\":\n        print(inventory.restock(parts[1], int(parts[2])))\n    elif command == \"SELL\":\n        result, alert = inventory.sell(parts[1], int(parts[2]))\n        print(result)\n        if alert is not None:\n            print(alert)\n    elif command == \"REPORT\":\n        if inventory.items:\n            for sku, item in inventory.items.items():\n                suffix = \" LOW\" if inventory.is_low(sku) else \"\"\n                print(f\"{sku} {item['stock']}{suffix}\")\n        else:\n            print(\"EMPTY\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": "__init__",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\nADD pen 10 5\nSELL pen 6",
+          "output": "OK\nOK\nALERT pen 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nREPORT\nSELL ghost 1\nRESTOCK ghost 5",
+          "output": "EMPTY\nNOT FOUND\nNOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "6\nADD cup 5 3\nSELL cup 2\nSELL cup 1\nSELL cup 1\nSELL cup 9\nREPORT",
+          "output": "OK\nOK\nOK\nALERT cup 2\nOK\nINSUFFICIENT\ncup 1 LOW",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\nADD a 1 5\nREPORT\nSELL a 1\nADD a 9 9\nREPORT",
+          "output": "OK\na 1 LOW\nOK\nEXISTS\na 0 LOW",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\nADD x 10 5\nSELL x 6\nRESTOCK x 3\nSELL x 1\nRESTOCK x 10\nSELL x 12\nREPORT",
+          "output": "OK\nOK\nALERT x 4\nOK\nOK\nOK\nOK\nALERT x 4\nx 4 LOW",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nADD zero 0 0\nSELL zero 0\nSELL zero 1\nREPORT",
+          "output": "OK\nOK\nINSUFFICIENT\nzero 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\nADD p 100 10\nADD q 5 1\nSELL q 5\nSELL p 50\nSELL p 41\nREPORT",
+          "output": "OK\nOK\nOK\nALERT q 0\nOK\nOK\nALERT p 9\np 9 LOW\nq 0 LOW",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\nADD m 8 8\nSELL m 0\nSELL m 1\nRESTOCK m 1\nREPORT",
+          "output": "OK\nOK\nOK\nALERT m 7\nOK\nm 8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 13: Object-Oriented Programming I",
+        "time_complexity": "O(1) per command, O(N) per REPORT",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of commands Q.\nNext Q lines: one command each (see the description). SKUs are words without spaces; quantities and thresholds are non-negative integers.",
+        "output_format": "One line for every ADD and RESTOCK, one or two lines for every SELL, and the report lines (or EMPTY) for every REPORT."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_13_object_oriented_programming_i.csv",
+    "total_rows": 16,
+    "total_questions": 16,
+    "valid_questions": 16,
+    "total_test_cases": 128,
+    "visible_test_cases": 48,
+    "hidden_test_cases": 80,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

@@ -1,0 +1,431 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+M01-01,Welcome Banner,Module 01: Introduction to Python,Easy,Print fixed-width border lines using string multiplication and centered text.,stdin/stdout,O(1),O(1),"Task: An automated onboarding terminal displays a personalized greeting banner for incoming engineering students.
+
+The banner is enclosed by top and bottom borders made of exactly 40 equal signs (`=`). The center line begins and ends with a vertical bar (`|`), with the inner greeting message centered within the remaining 38 characters (`msg.center(38)`):
+Line 1: 40 '=' characters
+Line 2: | + centered 'Welcome, <name>!' across 38 spaces + |
+Line 3: 40 '=' characters
+
+Given the student's name from standard input, print the 3-line welcome banner.",A single line containing the student's name (string).,Three lines forming the fixed 40-character wide banner.,1 <= len(name) <= 24,Rahul,"========================================
+|           Welcome, Rahul!            |
+========================================",Dev_99,"========================================
+|           Welcome, Dev_99!           |
+========================================",Construct the border line using '=' * 40.,"Create the inner text msg = f'Welcome, {name}!' and center it using msg.center(38).",Wrap the centered content in vertical bars: f'|{msg.center(38)}|'.,"name = input().strip()
+msg = f""Welcome, {name}!""
+border = ""="" * 40
+print(border)
+print(f""|{msg.center(38)}|"")
+print(border)","[{""input"": ""Rahul"", ""output"": ""========================================\n|           Welcome, Rahul!            |\n========================================"", ""is_hidden"": false}, {""input"": ""Dev_99"", ""output"": ""========================================\n|           Welcome, Dev_99!           |\n========================================"", ""is_hidden"": false}, {""input"": ""Sam"", ""output"": ""========================================\n|            Welcome, Sam!             |\n========================================"", ""is_hidden"": false}, {""input"": ""Alexander"", ""output"": ""========================================\n|         Welcome, Alexander!          |\n========================================"", ""is_hidden"": true}, {""input"": ""A"", ""output"": ""========================================\n|             Welcome, A!              |\n========================================"", ""is_hidden"": true}, {""input"": ""SuperUserLongName24Chars"", ""output"": ""========================================\n|  Welcome, SuperUserLongName24Chars!  |\n========================================"", ""is_hidden"": true}, {""input"": ""Priya"", ""output"": ""========================================\n|           Welcome, Priya!            |\n========================================"", ""is_hidden"": true}, {""input"": ""Zoya"", ""output"": ""========================================\n|            Welcome, Zoya!            |\n========================================"", ""is_hidden"": true}]"
+M01-02,ASCII Hackathon Badge,Module 01: Introduction to Python,Easy,"Read 3 lines and format a bordered participant card using +, -, |.",stdin/stdout,O(1),O(1),"Task: At an inter-college hackathon, registration staff print rectangular identification badges. The badge has a fixed width of exactly 32 characters.
+
+The layout consists of:
+Top & Bottom Borders: '+' followed by 30 '-' characters and ending with '+' (width 32)
+Inner Lines (each width 32):
+- '| Name: ' followed by name left-aligned to 21 characters and ' |'
+- '| Team: ' followed by team left-aligned to 21 characters and ' |'
+- '| Track: ' followed by track left-aligned to 21 characters and ' |'
+
+Given three separate lines containing name, team, and track respectively, print the 5-line badge.","Three separate lines:
+Line 1: Name
+Line 2: Team Name
+Line 3: Track Name",Five lines displaying the 32-character wide badge.,"1 <= len(name), len(team), len(track) <= 21","Arjun
+ByteBandits
+AI","+------------------------------+
+| Name:  Arjun                 |
+| Team:  ByteBandits           |
+| Track: AI                    |
++------------------------------+","Maya
+Cyber Knights
+Web3","+------------------------------+
+| Name:  Maya                  |
+| Team:  Cyber Knights         |
+| Track: Web3                  |
++------------------------------+",Read input line by line using input().strip().,Use f-string formatting with width specifiers: {name:<21}.,"Verify that every line, including borders, is exactly 32 characters long.","name = input().strip()
+team = input().strip()
+track = input().strip()
+border = ""+"" + ""-"" * 30 + ""+""
+print(border)
+print(f""| Name:  {name:<21} |"")
+print(f""| Team:  {team:<21} |"")
+print(f""| Track: {track:<21} |"")
+print(border)","[{""input"": ""Arjun\nByteBandits\nAI"", ""output"": ""+------------------------------+\n| Name:  Arjun                 |\n| Team:  ByteBandits           |\n| Track: AI                    |\n+------------------------------+"", ""is_hidden"": false}, {""input"": ""Maya\nCyber Knights\nWeb3"", ""output"": ""+------------------------------+\n| Name:  Maya                  |\n| Team:  Cyber Knights         |\n| Track: Web3                  |\n+------------------------------+"", ""is_hidden"": false}, {""input"": ""Leo\nCodeCrafters\nCloud"", ""output"": ""+------------------------------+\n| Name:  Leo                   |\n| Team:  CodeCrafters          |\n| Track: Cloud                 |\n+------------------------------+"", ""is_hidden"": false}, {""input"": ""Sarah\nKernelPanic\nDevSecOps"", ""output"": ""+------------------------------+\n| Name:  Sarah                 |\n| Team:  KernelPanic           |\n| Track: DevSecOps             |\n+------------------------------+"", ""is_hidden"": true}, {""input"": ""A\nB\nC"", ""output"": ""+------------------------------+\n| Name:  A                     |\n| Team:  B                     |\n| Track: C                     |\n+------------------------------+"", ""is_hidden"": true}, {""input"": ""ParticipantName21Char\nTeamName21CharactersO\nTrackName21Characters"", ""output"": ""+------------------------------+\n| Name:  ParticipantName21Char |\n| Team:  TeamName21CharactersO |\n| Track: TrackName21Characters |\n+------------------------------+"", ""is_hidden"": true}, {""input"": ""Vikram\nBinaryBeasts\nIoT"", ""output"": ""+------------------------------+\n| Name:  Vikram                |\n| Team:  BinaryBeasts          |\n| Track: IoT                   |\n+------------------------------+"", ""is_hidden"": true}, {""input"": ""Zara\nAlgoRiders\nMobile"", ""output"": ""+------------------------------+\n| Name:  Zara                  |\n| Team:  AlgoRiders            |\n| Track: Mobile                |\n+------------------------------+"", ""is_hidden"": true}]"
+M01-03,Cinema Seat Grid,Module 01: Introduction to Python,Easy,"Print a fixed 3x5 seat matrix (rows A-C, cols 1-5) using print statements.",stdin/stdout,O(1),O(1),"Task: A micro-cinema ticketing system displays the fixed physical layout of its 3-row by 5-column seating section.
+
+The layout consists of rows A, B, and C, with seats numbered 1 through 5 in each row:
+Line 1: A1 A2 A3 A4 A5
+Line 2: B1 B2 B3 B4 B5
+Line 3: C1 C2 C3 C4 C5
+
+Print the fixed 3x5 seat layout. (No input is required).",No input is required.,"Three lines displaying rows A, B, and C.",Fixed output layout.,,"A1 A2 A3 A4 A5
+B1 B2 B3 B4 B5
+C1 C2 C3 C4 C5",,"A1 A2 A3 A4 A5
+B1 B2 B3 B4 B5
+C1 C2 C3 C4 C5",You can print the three fixed strings directly with print().,Ensure each seat code is separated by a single space.,Do not add leading or trailing spaces.,"print(""A1 A2 A3 A4 A5"")
+print(""B1 B2 B3 B4 B5"")
+print(""C1 C2 C3 C4 C5"")","[{""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": false}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": false}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": false}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": true}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": true}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": true}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": true}, {""input"": """", ""output"": ""A1 A2 A3 A4 A5\nB1 B2 B3 B4 B5\nC1 C2 C3 C4 C5"", ""is_hidden"": true}]"
+M01-04,Bill Split Calculation,Module 01: Introduction to Python,Easy,"Read total bill, tip percentage, and head count; output per-person share to 2 decimal places.",stdin/stdout,O(1),O(1),"Task: Friends dining at a restaurant split their total bill evenly. They calculate the tip based on the base bill, add it to the total, and then divide the final sum among the number of people.
+
+Formulas:
+- `total_with_tip = bill * (1.0 + tip_pct / 100.0)`
+- `share = total_with_tip / people`
+
+Given bill, tip_pct, and people as space-separated numbers on a single line, calculate and print each person's payable share in the format: `Per Person: Rs. <share:.2f>`.","A single line containing bill (float), tip_pct (float), and people (int) separated by spaces.",A single line: Per Person: Rs. <share:.2f>,"1.0 <= bill <= 100000.0
+0.0 <= tip_pct <= 100.0
+1 <= people <= 100",840.0 5.0 2,Per Person: Rs. 441.00,1200.0 10.0 3,Per Person: Rs. 440.00,"Convert inputs using bill = float(parts[0]), tip = float(parts[1]), people = int(parts[2]).","Calculate total = bill * (1 + tip / 100), then share = total / people.",Format the output with two decimal places using {share:.2f}.,"bill_str, tip_str, people_str = input().split()
+bill = float(bill_str)
+tip_pct = float(tip_str)
+people = int(people_str)
+total = bill * (1.0 + tip_pct / 100.0)
+share = total / people
+print(f""Per Person: Rs. {share:.2f}"")","[{""input"": ""840.0 5.0 2"", ""output"": ""Per Person: Rs. 441.00"", ""is_hidden"": false}, {""input"": ""1200.0 10.0 3"", ""output"": ""Per Person: Rs. 440.00"", ""is_hidden"": false}, {""input"": ""500.0 0.0 4"", ""output"": ""Per Person: Rs. 125.00"", ""is_hidden"": false}, {""input"": ""2500.50 15.0 5"", ""output"": ""Per Person: Rs. 575.12"", ""is_hidden"": true}, {""input"": ""100.0 10.0 1"", ""output"": ""Per Person: Rs. 110.00"", ""is_hidden"": true}, {""input"": ""999.99 5.0 3"", ""output"": ""Per Person: Rs. 350.00"", ""is_hidden"": true}, {""input"": ""150.0 0.0 1"", ""output"": ""Per Person: Rs. 150.00"", ""is_hidden"": true}, {""input"": ""100000.0 20.0 100"", ""output"": ""Per Person: Rs. 1200.00"", ""is_hidden"": true}]"
+M01-05,Personal Profile Card,Module 01: Introduction to Python,Easy,"Read 4 separate scalar lines (name, age, city, profession) and print a single-line pipe-delimited summary.",stdin/stdout,O(1),O(1),"Task: A student profile directory reads four separate biographical details of a registered learner and prints a standardized, single-line pipe-delimited profile card.
+
+Input lines:
+Line 1: Full Name
+Line 2: Age
+Line 3: City
+Line 4: Profession
+
+Output format:
+`<Full Name> | <Age> | <City> | <Profession>`
+
+Each field must be preserved as entered (supporting multi-word strings).","Four separate lines containing Full Name, Age, City, and Profession respectively.",A single line: <Full Name> | <Age> | <City> | <Profession>,"1 <= len(field) <= 50
+Fields do not contain the pipe character '|' or newline characters.","Aarav Sharma
+21
+Bengaluru
+Software Engineer",Aarav Sharma | 21 | Bengaluru | Software Engineer,"Priya Nair
+22
+Kochi
+Data Scientist",Priya Nair | 22 | Kochi | Data Scientist,Read each line using input().strip().,Preserve all internal spaces in multi-word fields.,Join them with ' | ' as separator: print(f'{name} | {age} | {city} | {prof}').,"name = input().strip()
+age = input().strip()
+city = input().strip()
+prof = input().strip()
+print(f""{name} | {age} | {city} | {prof}"")","[{""input"": ""Aarav Sharma\n21\nBengaluru\nSoftware Engineer"", ""output"": ""Aarav Sharma | 21 | Bengaluru | Software Engineer"", ""is_hidden"": false}, {""input"": ""Priya Nair\n22\nKochi\nData Scientist"", ""output"": ""Priya Nair | 22 | Kochi | Data Scientist"", ""is_hidden"": false}, {""input"": ""John Doe\n25\nSan Francisco\nCloud Architect"", ""output"": ""John Doe | 25 | San Francisco | Cloud Architect"", ""is_hidden"": false}, {""input"": ""Ananya Sen\n19\nKolkata\nStudent"", ""output"": ""Ananya Sen | 19 | Kolkata | Student"", ""is_hidden"": true}, {""input"": ""Rohan Gupta\n28\nNew Delhi\nProduct Manager"", ""output"": ""Rohan Gupta | 28 | New Delhi | Product Manager"", ""is_hidden"": true}, {""input"": ""Sara Ali\n23\nHyderabad\nAI Researcher"", ""output"": ""Sara Ali | 23 | Hyderabad | AI Researcher"", ""is_hidden"": true}, {""input"": ""Liam Smith\n30\nLondon\nDevOps Specialist"", ""output"": ""Liam Smith | 30 | London | DevOps Specialist"", ""is_hidden"": true}, {""input"": ""Maya Patel\n20\nAhmedabad\nUX Designer"", ""output"": ""Maya Patel | 20 | Ahmedabad | UX Designer"", ""is_hidden"": true}]"
+M01-06,Dialogue Subtitle Formatter,Module 01: Introduction to Python,Easy,Read 2 lines of dialogue; print line 1 unchanged and line 2 with exactly 4 leading spaces.,stdin/stdout,O(N) where N is total line length,O(N),"Task: A video subtitle generator formats a rapid dialogue exchange between two characters for on-screen captioning.
+
+The exchange consists of exactly two lines:
+- Line 1: Dialogue spoken by Speaker 1
+- Line 2: Response spoken by Speaker 2
+
+The output displays Line 1 unchanged, while Line 2 must be prefixed with exactly four leading spaces (` `). Preserve all other characters in both lines exactly, including any leading or trailing spaces.",Two separate lines of dialogue.,"Two lines:
+Line 1: <Line 1 unchanged>
+Line 2:     <Line 2>","1 <= len(line1), len(line2) <= 100","Hello, is anyone there?
+Yes, I am listening.","Hello, is anyone there?
+    Yes, I am listening.","Where are the system logs?
+In the root /var/log directory.","Where are the system logs?
+    In the root /var/log directory.",Read line 1 with input().rstrip('\r\n') and line 2 similarly.,Print line 1 directly.,Print line 2 with 4 spaces: print('    ' + line2).,"line1 = input().rstrip(""\r\n"")
+line2 = input().rstrip(""\r\n"")
+print(line1)
+print(""    "" + line2)","[{""input"": ""Hello, is anyone there?\nYes, I am listening."", ""output"": ""Hello, is anyone there?\n    Yes, I am listening."", ""is_hidden"": false}, {""input"": ""Where are the system logs?\nIn the root /var/log directory."", ""output"": ""Where are the system logs?\n    In the root /var/log directory."", ""is_hidden"": false}, {""input"": ""Initiate diagnostic scan.\nScan complete: 0 vulnerabilities found."", ""output"": ""Initiate diagnostic scan.\n    Scan complete: 0 vulnerabilities found."", ""is_hidden"": false}, {""input"": ""Ready to launch?\nAll systems go."", ""output"": ""Ready to launch?\n    All systems go."", ""is_hidden"": true}, {""input"": ""What is the mission status?\nOrbit achieved successfully."", ""output"": ""What is the mission status?\n    Orbit achieved successfully."", ""is_hidden"": true}, {""input"": ""Ping.\nPong."", ""output"": ""Ping.\n    Pong."", ""is_hidden"": true}, {""input"": ""Why did the loop terminate?\nIndex reached N."", ""output"": ""Why did the loop terminate?\n    Index reached N."", ""is_hidden"": true}, {""input"": ""Database connected.\nListening on port 5432."", ""output"": ""Database connected.\n    Listening on port 5432."", ""is_hidden"": true}, {""input"": ""  indented line\ntrailing spaces   "", ""output"": ""  indented line\n    trailing spaces   "", ""is_hidden"": true}, {""input"": ""Hello   world\n   Reply"", ""output"": ""Hello   world\n       Reply"", ""is_hidden"": true}]"
+M01-07,Video Duration in Seconds,Module 01: Introduction to Python,Easy,Convert minutes and seconds to total integer seconds.,stdin/stdout,O(1),O(1),"Task: A video analytics platform processes video clips and requires their total length expressed strictly in integer seconds.
+
+Given two space-separated non-negative integers representing minutes and seconds on a single line, calculate and print the total duration in seconds:
+`total_seconds = minutes * 60 + seconds`",A single line containing minutes and seconds (integers) separated by a space.,A single integer representing the total seconds.,"0 <= minutes <= 10000
+0 <= seconds <= 59",3 45,225,10 0,600,"Read both values using m, s = map(int, input().split()).",Multiply minutes by 60 and add seconds.,Output only the integer result without extra text.,"m, s = map(int, input().split())
+print(m * 60 + s)","[{""input"": ""3 45"", ""output"": ""225"", ""is_hidden"": false}, {""input"": ""10 0"", ""output"": ""600"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""0 45"", ""output"": ""45"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""61"", ""is_hidden"": true}, {""input"": ""120 30"", ""output"": ""7230"", ""is_hidden"": true}, {""input"": ""59 59"", ""output"": ""3599"", ""is_hidden"": true}, {""input"": ""1000 50"", ""output"": ""60050"", ""is_hidden"": true}]"
+M01-08,Desk Perimeter & LED Rolls,Module 01: Introduction to Python,Easy,"Calculate rectangular desk perimeter and rolls of LED strip needed (50 cm per roll, ceiling division).",stdin/stdout,O(1),O(1),"Task: An interior decorator installs LED accent lighting strips along the outer perimeter of a rectangular workstation desk.
+
+Formulas:
+- Perimeter: `perimeter = 2 * (length + width)`
+- LED rolls needed: Each roll is exactly 50 cm long. Any fractional roll requires purchasing another full roll. Using integer ceiling division: `rolls = (perimeter + 49) // 50`.
+
+Given desk length and width in cm as space-separated integers on a single line, compute perimeter and rolls needed.",A single line containing length and width (integers in cm) separated by a space.,A single line: Perimeter: <perimeter> cm | Rolls Needed: <rolls>,"1 <= length, width <= 10000",120 60,Perimeter: 360 cm | Rolls Needed: 8,100 50,Perimeter: 300 cm | Rolls Needed: 6,Calculate perimeter as 2 * (length + width).,Use integer ceiling division: (perimeter + 49) // 50.,Format the output string exactly with units.,"l, w = map(int, input().split())
+p = 2 * (l + w)
+rolls = (p + 49) // 50
+print(f""Perimeter: {p} cm | Rolls Needed: {rolls}"")","[{""input"": ""120 60"", ""output"": ""Perimeter: 360 cm | Rolls Needed: 8"", ""is_hidden"": false}, {""input"": ""100 50"", ""output"": ""Perimeter: 300 cm | Rolls Needed: 6"", ""is_hidden"": false}, {""input"": ""15 10"", ""output"": ""Perimeter: 50 cm | Rolls Needed: 1"", ""is_hidden"": false}, {""input"": ""13 13"", ""output"": ""Perimeter: 52 cm | Rolls Needed: 2"", ""is_hidden"": true}, {""input"": ""50 25"", ""output"": ""Perimeter: 150 cm | Rolls Needed: 3"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""Perimeter: 4 cm | Rolls Needed: 1"", ""is_hidden"": true}, {""input"": ""200 100"", ""output"": ""Perimeter: 600 cm | Rolls Needed: 12"", ""is_hidden"": true}, {""input"": ""75 49"", ""output"": ""Perimeter: 248 cm | Rolls Needed: 5"", ""is_hidden"": true}]"
+M01-09,Pizza Crust vs Cheese Area,Module 01: Introduction to Python,Easy,Calculate inner cheese area and outer crust ring area using pi = 3.14159 to 2 decimal places.,stdin/stdout,O(1),O(1),"Task: A pizzeria menu application displays the breakdown between the inner cheese surface area and the outer crust ring area.
+
+Formulas (using pi = 3.14159):
+- Outer radius: `R = diameter / 2.0`
+- Inner radius: `r = R - crust_width`
+- Cheese area: `pi * (r ** 2)`
+- Crust ring area: `pi * (R ** 2 - r ** 2)`
+
+Given diameter and crust_width as space-separated floats on a single line, calculate and display both areas to 2 decimal places.",A single line containing diameter and crust_width (floats in cm) separated by a space.,A single line: Cheese Area: <cheese:.2f> sq cm | Crust Area: <crust:.2f> sq cm,"2.0 <= diameter <= 100.0
+0.1 <= crust_width < diameter / 2.0",30.0 2.5,Cheese Area: 490.87 sq cm | Crust Area: 215.98 sq cm,20.0 2.0,Cheese Area: 201.06 sq cm | Crust Area: 113.10 sq cm,Use the exact approved value PI = 3.14159.,Compute outer radius R = diameter / 2.0 and inner radius r = R - crust_width.,Format both results to 2 decimal places: {:.2f}.,"PI = 3.14159
+d_s, c_s = input().split()
+diameter = float(d_s)
+crust = float(c_s)
+R = diameter / 2.0
+r = R - crust
+cheese_area = PI * (r ** 2)
+crust_area = PI * (R ** 2 - r ** 2)
+print(f""Cheese Area: {cheese_area:.2f} sq cm | Crust Area: {crust_area:.2f} sq cm"")","[{""input"": ""30.0 2.5"", ""output"": ""Cheese Area: 490.87 sq cm | Crust Area: 215.98 sq cm"", ""is_hidden"": false}, {""input"": ""20.0 2.0"", ""output"": ""Cheese Area: 201.06 sq cm | Crust Area: 113.10 sq cm"", ""is_hidden"": false}, {""input"": ""10.0 1.0"", ""output"": ""Cheese Area: 50.27 sq cm | Crust Area: 28.27 sq cm"", ""is_hidden"": false}, {""input"": ""40.0 3.0"", ""output"": ""Cheese Area: 907.92 sq cm | Crust Area: 348.72 sq cm"", ""is_hidden"": true}, {""input"": ""12.0 0.5"", ""output"": ""Cheese Area: 95.03 sq cm | Crust Area: 18.06 sq cm"", ""is_hidden"": true}, {""input"": ""25.0 2.0"", ""output"": ""Cheese Area: 346.36 sq cm | Crust Area: 144.51 sq cm"", ""is_hidden"": true}, {""input"": ""15.0 1.5"", ""output"": ""Cheese Area: 113.10 sq cm | Crust Area: 63.62 sq cm"", ""is_hidden"": true}, {""input"": ""50.0 5.0"", ""output"": ""Cheese Area: 1256.64 sq cm | Crust Area: 706.86 sq cm"", ""is_hidden"": true}, {""input"": ""100.0 3.0"", ""output"": ""Cheese Area: 6939.77 sq cm | Crust Area: 914.20 sq cm"", ""is_hidden"": true}, {""input"": ""99.0 7.0"", ""output"": ""Cheese Area: 5674.50 sq cm | Crust Area: 2023.18 sq cm"", ""is_hidden"": true}]"
+M01-10,Quick-Commerce Receipt,Module 01: Introduction to Python,Easy,"Read 3 item lines (name, qty, unit price), sum totals, add delivery fee, and print aligned receipt.",stdin/stdout,O(1),O(1),"Task: An on-demand grocery delivery service generates an aligned ASCII receipt for an order of 3 distinct items with a fixed delivery fee of Rs. 30.00.
+
+Input consists of 3 lines, each containing:
+`<ItemName> <Quantity> <UnitPrice>`
+
+Receipt Layout (width exactly 34 characters):
+`+--------------------------------+`
+`| Item Qty Total |`
+`|--------------------------------|`
+For each item:
+`| {name:<14} {qty:>4} {subtotal:>10.2f} |`
+`|--------------------------------|`
+`| Delivery Fee: 30.00 |`
+`| Total: {grand_total:>11.2f} |`
+`+--------------------------------+`
+
+Note: The 'Total' column displays the subtotal for that item (Quantity * UnitPrice).","Three lines, each containing ItemName (string <= 14 chars), Quantity (int), and UnitPrice (float) separated by spaces.",10 lines displaying the aligned receipt.,"1 <= len(ItemName) <= 14
+1 <= Quantity <= 100
+1.0 <= UnitPrice <= 1000.0","Milk 2 30.00
+Bread 1 45.00
+Eggs 6 7.50","+--------------------------------+
+| Item             Qty     Total |
+|--------------------------------|
+| Milk              2      60.00 |
+| Bread             1      45.00 |
+| Eggs              6      45.00 |
+|--------------------------------|
+| Delivery Fee:            30.00 |
+| Total:                  180.00 |
++--------------------------------+","Apples 3 40.00
+Butter 1 120.00
+Cookies 2 25.00","+--------------------------------+
+| Item             Qty     Total |
+|--------------------------------|
+| Apples            3     120.00 |
+| Butter            1     120.00 |
+| Cookies           2      50.00 |
+|--------------------------------|
+| Delivery Fee:            30.00 |
+| Total:                  320.00 |
++--------------------------------+",Read all 3 items and calculate subtotal = qty * unit_price.,Sum all 3 subtotals and add 30.00 for grand_total.,Format each item with f'| {name:<14} {qty:>4} {subtotal:>10.2f} |'.,"items = []
+sub_total = 0.0
+for _ in range(3):
+    name, q_s, p_s = input().split()
+    qty = int(q_s)
+    price = float(p_s)
+    sub = qty * price
+    sub_total += sub
+    items.append((name, qty, sub))
+
+grand_total = sub_total + 30.00
+border = ""+--------------------------------+""
+div = ""|--------------------------------|""
+
+print(border)
+print(""| Item             Qty     Total |"")
+print(div)
+for name, qty, sub in items:
+    print(f""| {name:<14} {qty:>4} {sub:>10.2f} |"")
+print(div)
+print(f""| Delivery Fee:            30.00 |"")
+print(f""| Total:             {grand_total:>11.2f} |"")
+print(border)","[{""input"": ""Milk 2 30.00\nBread 1 45.00\nEggs 6 7.50"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Milk              2      60.00 |\n| Bread             1      45.00 |\n| Eggs              6      45.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  180.00 |\n+--------------------------------+"", ""is_hidden"": false}, {""input"": ""Apples 3 40.00\nButter 1 120.00\nCookies 2 25.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Apples            3     120.00 |\n| Butter            1     120.00 |\n| Cookies           2      50.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  320.00 |\n+--------------------------------+"", ""is_hidden"": false}, {""input"": ""Tea 1 150.00\nSugar 2 50.00\nBiscuits 4 20.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Tea               1     150.00 |\n| Sugar             2     100.00 |\n| Biscuits          4      80.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  360.00 |\n+--------------------------------+"", ""is_hidden"": false}, {""input"": ""Water 10 20.00\nJuice 5 40.00\nSoda 2 35.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Water            10     200.00 |\n| Juice             5     200.00 |\n| Soda              2      70.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  500.00 |\n+--------------------------------+"", ""is_hidden"": true}, {""input"": ""Chips 1 10.00\nCandy 1 5.00\nGum 1 2.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Chips             1      10.00 |\n| Candy             1       5.00 |\n| Gum               1       2.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                   47.00 |\n+--------------------------------+"", ""is_hidden"": true}, {""input"": ""Notebook 5 60.00\nPen 10 10.00\nPencil 5 5.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Notebook          5     300.00 |\n| Pen              10     100.00 |\n| Pencil            5      25.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  455.00 |\n+--------------------------------+"", ""is_hidden"": true}, {""input"": ""Rice 1 250.00\nFlour 2 90.00\nOil 1 180.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Rice              1     250.00 |\n| Flour             2     180.00 |\n| Oil               1     180.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  640.00 |\n+--------------------------------+"", ""is_hidden"": true}, {""input"": ""Soap 4 35.00\nShampoo 1 180.00\nBrush 2 25.00"", ""output"": ""+--------------------------------+\n| Item             Qty     Total |\n|--------------------------------|\n| Soap              4     140.00 |\n| Shampoo           1     180.00 |\n| Brush             2      50.00 |\n|--------------------------------|\n| Delivery Fee:            30.00 |\n| Total:                  400.00 |\n+--------------------------------+"", ""is_hidden"": true}]"
+M01-11,Semester Marks Aggregator,Module 01: Introduction to Python,Easy,"Read 5 marks, calculate total, average, and percentage (out of 500) to 2 decimal places.",stdin/stdout,O(1),O(1),"Task: An academic records office computes semester grading metrics from 5 subject scores (each marked out of 100):
+- Total: sum of all 5 marks
+- Average: `total / 5.0`
+- Percentage: `(total / 500.0) * 100.0`
+
+Given 5 space-separated integer marks on a single line, display total, average, and percentage.",A single line containing 5 space-separated integers (marks from 0 to 100).,A single line: Total: <total> | Average: <avg:.2f> | Percentage: <pct:.2f>%,0 <= mark_i <= 100 for each mark,85 90 78 92 88,Total: 433 | Average: 86.60 | Percentage: 86.60%,70 65 80 75 70,Total: 360 | Average: 72.00 | Percentage: 72.00%,"Read marks using marks = list(map(int, input().split())).","Compute total = sum(marks), avg = total / 5.0, and pct = (total / 500.0) * 100.",Format floating-point results with :.2f.,"marks = list(map(int, input().split()))
+tot = sum(marks)
+avg = tot / 5.0
+pct = (tot / 500.0) * 100.0
+print(f""Total: {tot} | Average: {avg:.2f} | Percentage: {pct:.2f}%"")","[{""input"": ""85 90 78 92 88"", ""output"": ""Total: 433 | Average: 86.60 | Percentage: 86.60%"", ""is_hidden"": false}, {""input"": ""70 65 80 75 70"", ""output"": ""Total: 360 | Average: 72.00 | Percentage: 72.00%"", ""is_hidden"": false}, {""input"": ""100 100 100 100 100"", ""output"": ""Total: 500 | Average: 100.00 | Percentage: 100.00%"", ""is_hidden"": false}, {""input"": ""0 0 0 0 0"", ""output"": ""Total: 0 | Average: 0.00 | Percentage: 0.00%"", ""is_hidden"": true}, {""input"": ""55 65 75 85 95"", ""output"": ""Total: 375 | Average: 75.00 | Percentage: 75.00%"", ""is_hidden"": true}, {""input"": ""40 40 40 40 40"", ""output"": ""Total: 200 | Average: 40.00 | Percentage: 40.00%"", ""is_hidden"": true}, {""input"": ""91 82 73 64 55"", ""output"": ""Total: 365 | Average: 73.00 | Percentage: 73.00%"", ""is_hidden"": true}, {""input"": ""70 75 80 85 91"", ""output"": ""Total: 401 | Average: 80.20 | Percentage: 80.20%"", ""is_hidden"": true}]"
+M01-12,Product Discount Summary,Module 01: Introduction to Python,Easy,"Calculate integer discount percentage from MRP and sale price, and print a formatted summary card.",stdin/stdout,O(1),O(1),"Task: An e-commerce product pricing card calculates the integer discount percentage from Maximum Retail Price (MRP) and Sale Price.
+
+Formulas:
+- Discount amount: `discount_amount = mrp - sale_price`
+- Discount percentage (round half up): `discount_pct = int(((discount_amount / mrp) * 100) + 0.5)`. Do not use Python's round(), because it rounds exact .5 values to the nearest even number.
+
+Layout (width 28 characters):
+`****************************`
+`* MRP: Rs. {mrp:>8.2f} *`
+`* Sale Price: Rs. {sale:>8.2f} *`
+`* Discount: {discount_pct:>3}% *`
+`****************************`
+
+Given MRP and sale_price on a single line, print the 5-line summary card.",A single line containing MRP and sale_price (floats) separated by a space.,Five lines displaying the 28-character wide discount card.,1.0 <= sale_price <= mrp <= 100000.0,1000.0 750.0,"****************************
+* MRP:        Rs.  1000.00 *
+* Sale Price: Rs.   750.00 *
+* Discount:            25% *
+****************************",2499.0 1999.0,"****************************
+* MRP:        Rs.  2499.00 *
+* Sale Price: Rs.  1999.00 *
+* Discount:            20% *
+****************************",Compute discount_pct = int(((mrp - sale) / mrp) * 100 + 0.5).,Use border = '*' * 28.,Format prices with {x:>8.2f} and the discount with {discount_pct:>3} followed by a literal % sign (do not use the % format specifier).,"mrp_s, sale_s = input().split()
+mrp = float(mrp_s)
+sale = float(sale_s)
+discount_pct = int(((mrp - sale) / mrp) * 100 + 0.5)
+border = ""*"" * 28
+
+print(border)
+print(f""* MRP:        Rs. {mrp:>8.2f} *"")
+print(f""* Sale Price: Rs. {sale:>8.2f} *"")
+print(f""* Discount:           {discount_pct:>3}% *"")
+print(border)","[{""input"": ""1000.0 750.0"", ""output"": ""****************************\n* MRP:        Rs.  1000.00 *\n* Sale Price: Rs.   750.00 *\n* Discount:            25% *\n****************************"", ""is_hidden"": false}, {""input"": ""2499.0 1999.0"", ""output"": ""****************************\n* MRP:        Rs.  2499.00 *\n* Sale Price: Rs.  1999.00 *\n* Discount:            20% *\n****************************"", ""is_hidden"": false}, {""input"": ""500.0 500.0"", ""output"": ""****************************\n* MRP:        Rs.   500.00 *\n* Sale Price: Rs.   500.00 *\n* Discount:             0% *\n****************************"", ""is_hidden"": false}, {""input"": ""200.0 100.0"", ""output"": ""****************************\n* MRP:        Rs.   200.00 *\n* Sale Price: Rs.   100.00 *\n* Discount:            50% *\n****************************"", ""is_hidden"": true}, {""input"": ""1500.0 1200.0"", ""output"": ""****************************\n* MRP:        Rs.  1500.00 *\n* Sale Price: Rs.  1200.00 *\n* Discount:            20% *\n****************************"", ""is_hidden"": true}, {""input"": ""99.0 49.50"", ""output"": ""****************************\n* MRP:        Rs.    99.00 *\n* Sale Price: Rs.    49.50 *\n* Discount:            50% *\n****************************"", ""is_hidden"": true}, {""input"": ""800.0 600.0"", ""output"": ""****************************\n* MRP:        Rs.   800.00 *\n* Sale Price: Rs.   600.00 *\n* Discount:            25% *\n****************************"", ""is_hidden"": true}, {""input"": ""10000.0 8500.0"", ""output"": ""****************************\n* MRP:        Rs. 10000.00 *\n* Sale Price: Rs.  8500.00 *\n* Discount:            15% *\n****************************"", ""is_hidden"": true}, {""input"": ""200.0 175.0"", ""output"": ""****************************\n* MRP:        Rs.   200.00 *\n* Sale Price: Rs.   175.00 *\n* Discount:            13% *\n****************************"", ""is_hidden"": true}, {""input"": ""1000.0 875.0"", ""output"": ""****************************\n* MRP:        Rs.  1000.00 *\n* Sale Price: Rs.   875.00 *\n* Discount:            13% *\n****************************"", ""is_hidden"": true}, {""input"": ""80.0 70.0"", ""output"": ""****************************\n* MRP:        Rs.    80.00 *\n* Sale Price: Rs.    70.00 *\n* Discount:            13% *\n****************************"", ""is_hidden"": true}]"
+M01-13,Numeric Countdown Block,Module 01: Introduction to Python,Easy,Print a fixed 5-row descending numerical countdown block (5 to 1 down to 1).,stdin/stdout,O(1),O(1),"Task: A terminal countdown sequence initializes a launch simulation by printing a fixed 5-line descending numerical pyramid block.
+
+Output layout:
+Line 1: 5 4 3 2 1
+Line 2: 4 3 2 1
+Line 3: 3 2 1
+Line 4: 2 1
+Line 5: 1
+
+Print the fixed 5-line countdown block. (No input is required).",No input is required.,Five lines displaying the countdown block.,Fixed output layout.,,"5 4 3 2 1
+4 3 2 1
+3 2 1
+2 1
+1",,"5 4 3 2 1
+4 3 2 1
+3 2 1
+2 1
+1",Print each line using print().,Numbers are separated by a single space.,Do not add trailing spaces.,"print(""5 4 3 2 1"")
+print(""4 3 2 1"")
+print(""3 2 1"")
+print(""2 1"")
+print(""1"")","[{""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": false}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": false}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": false}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": true}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": true}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": true}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": true}, {""input"": """", ""output"": ""5 4 3 2 1\n4 3 2 1\n3 2 1\n2 1\n1"", ""is_hidden"": true}]"
+M01-14,Tiered Cloud Server Bill,Module 01: Introduction to Python,Medium,"Calculate bill with compute hours, storage GB, and excess bandwidth above 50 GB.",stdin/stdout,O(1),O(1),"Task: A cloud hosting billing engine computes monthly invoices based on three dimensions:
+- Compute: Rs. 1.50 per hour (`hours * 1.50`)
+- Storage: Rs. 0.50 per GB (`storage_gb * 0.50`)
+- Bandwidth: First 50.0 GB is free; excess bandwidth is billed at Rs. 2.00 per GB (`max(0.0, bandwidth - 50.0) * 2.00`)
+
+Given compute hours, storage GB, and bandwidth GB as space-separated floats on a single line, calculate and display costs formatted to 2 decimal places.","A single line containing compute_hours, storage_gb, and bandwidth_gb (floats) separated by spaces.","Four lines:
+Compute: Rs. <c_cost:.2f>
+Storage: Rs. <s_cost:.2f>
+Bandwidth: Rs. <b_cost:.2f>
+Total: Rs. <total:.2f>","0.0 <= compute_hours <= 10000.0
+0.0 <= storage_gb <= 10000.0
+0.0 <= bandwidth_gb <= 10000.0",100.0 50.0 70.0,"Compute: Rs. 150.00
+Storage: Rs. 25.00
+Bandwidth: Rs. 40.00
+Total: Rs. 215.00",200.0 100.0 40.0,"Compute: Rs. 300.00
+Storage: Rs. 50.00
+Bandwidth: Rs. 0.00
+Total: Rs. 350.00","Compute excess bandwidth using max(0.0, bandwidth - 50.0).","Multiply excess by 2.00, hours by 1.50, and storage by 0.50.",Format each line with Rs. and :.2f.,"h, s, b = map(float, input().split())
+c_cost = h * 1.50
+s_cost = s * 0.50
+b_cost = max(0.0, b - 50.0) * 2.00
+tot = c_cost + s_cost + b_cost
+print(f""Compute: Rs. {c_cost:.2f}"")
+print(f""Storage: Rs. {s_cost:.2f}"")
+print(f""Bandwidth: Rs. {b_cost:.2f}"")
+print(f""Total: Rs. {tot:.2f}"")","[{""input"": ""100.0 50.0 70.0"", ""output"": ""Compute: Rs. 150.00\nStorage: Rs. 25.00\nBandwidth: Rs. 40.00\nTotal: Rs. 215.00"", ""is_hidden"": false}, {""input"": ""200.0 100.0 40.0"", ""output"": ""Compute: Rs. 300.00\nStorage: Rs. 50.00\nBandwidth: Rs. 0.00\nTotal: Rs. 350.00"", ""is_hidden"": false}, {""input"": ""0.0 0.0 0.0"", ""output"": ""Compute: Rs. 0.00\nStorage: Rs. 0.00\nBandwidth: Rs. 0.00\nTotal: Rs. 0.00"", ""is_hidden"": false}, {""input"": ""50.0 20.0 50.0"", ""output"": ""Compute: Rs. 75.00\nStorage: Rs. 10.00\nBandwidth: Rs. 0.00\nTotal: Rs. 85.00"", ""is_hidden"": true}, {""input"": ""10.0 10.0 51.0"", ""output"": ""Compute: Rs. 15.00\nStorage: Rs. 5.00\nBandwidth: Rs. 2.00\nTotal: Rs. 22.00"", ""is_hidden"": true}, {""input"": ""500.0 250.0 100.0"", ""output"": ""Compute: Rs. 750.00\nStorage: Rs. 125.00\nBandwidth: Rs. 100.00\nTotal: Rs. 975.00"", ""is_hidden"": true}, {""input"": ""24.0 10.0 30.0"", ""output"": ""Compute: Rs. 36.00\nStorage: Rs. 5.00\nBandwidth: Rs. 0.00\nTotal: Rs. 41.00"", ""is_hidden"": true}, {""input"": ""720.0 500.0 200.0"", ""output"": ""Compute: Rs. 1080.00\nStorage: Rs. 250.00\nBandwidth: Rs. 300.00\nTotal: Rs. 1630.00"", ""is_hidden"": true}]"
+M01-15,Chat Speech Bubble,Module 01: Introduction to Python,Medium,Compute string length and wrap an arbitrary input string in a dynamic ASCII speech box.,stdin/stdout,O(L) where L is message length,O(L),"Task: A terminal comic strip engine encloses user speech in a dynamic ASCII speech bubble tailored to the message length L:
+Line 1: '+' followed by (L + 2) '-' characters and ending with '+'
+Line 2: '| ' followed by the message and ' |'
+Line 3: '+' followed by (L + 2) '-' characters and ending with '+'
+Line 4: a single space followed by one backslash character (\)
+
+Given the input message from standard input (preserving any leading, trailing and internal spaces in the message, stripping only the newline), print the 4-line speech bubble.",A single line containing the speech message.,Four lines displaying the dynamic speech bubble.,1 <= len(msg) <= 60,Hello world!,"+--------------+
+| Hello world! |
++--------------+
+ \",Python is awesome,"+-------------------+
+| Python is awesome |
++-------------------+
+ \",Read message using input().rstrip('\r\n').,Compute border as '+' + '-' * (len(msg) + 2) + '+'.,Print the tail as ' \\'.,"msg = input().rstrip(""\r\n"")
+L = len(msg)
+border = ""+"" + ""-"" * (L + 2) + ""+""
+print(border)
+print(f""| {msg} |"")
+print(border)
+print("" \\"")","[{""input"": ""Hello world!"", ""output"": ""+--------------+\n| Hello world! |\n+--------------+\n \\"", ""is_hidden"": false}, {""input"": ""Python is awesome"", ""output"": ""+-------------------+\n| Python is awesome |\n+-------------------+\n \\"", ""is_hidden"": false}, {""input"": ""Hi"", ""output"": ""+----+\n| Hi |\n+----+\n \\"", ""is_hidden"": false}, {""input"": ""A"", ""output"": ""+---+\n| A |\n+---+\n \\"", ""is_hidden"": true}, {""input"": ""CodeMentor Assessment Engine"", ""output"": ""+------------------------------+\n| CodeMentor Assessment Engine |\n+------------------------------+\n \\"", ""is_hidden"": true}, {""input"": ""42"", ""output"": ""+----+\n| 42 |\n+----+\n \\"", ""is_hidden"": true}, {""input"": ""Spaces   inside"", ""output"": ""+-----------------+\n| Spaces   inside |\n+-----------------+\n \\"", ""is_hidden"": true}, {""input"": ""Super long dynamic speech bubble message testing width limit"", ""output"": ""+--------------------------------------------------------------+\n| Super long dynamic speech bubble message testing width limit |\n+--------------------------------------------------------------+\n \\"", ""is_hidden"": true}, {""input"": ""  hi  "", ""output"": ""+--------+\n|   hi   |\n+--------+\n \\"", ""is_hidden"": true}, {""input"": ""   leading"", ""output"": ""+------------+\n|    leading |\n+------------+\n \\"", ""is_hidden"": true}, {""input"": ""trailing   "", ""output"": ""+-------------+\n| trailing    |\n+-------------+\n \\"", ""is_hidden"": true}]"
+M01-16,Bitcoin to Satoshi Converter,Module 01: Introduction to Python,Medium,Convert a decimal BTC amount to integer Satoshis (10^8) using exact decimal arithmetic with comma separators.,stdin/stdout,O(1),O(1),"Task: Cryptocurrency wallet engines convert high-level Bitcoin (BTC) balances into integer Satoshis without binary floating-point roundoff error:
+`1 BTC = 100,000,000 Satoshis`
+
+To avoid IEEE 754 precision issues (e.g. `0.00523 * 100000000` producing inaccurate binary fractions), parse the input using `decimal.Decimal`.
+
+Output format:
+`<sats:,> satoshis` (or `<sats:,> satoshi` if exactly 1 satoshi).
+
+Given the BTC amount as a string, print the formatted satoshi count.",A single line containing the BTC amount as a decimal string.,"A single line: <sats:,> satoshis (or 1 satoshi if exactly 1).","0.00000001 <= BTC <= 21000000.0
+At most 8 decimal places.",1.0,"100,000,000 satoshis",0.00523000,"523,000 satoshis",Use from decimal import Decimal to avoid float precision issues.,Convert to satoshis: sats = int(Decimal(input().strip()) * 100_000_000).,Handle singular vs plural: unit = 'satoshi' if sats == 1 else 'satoshis'.,"from decimal import Decimal
+btc_str = input().strip()
+sats = int(Decimal(btc_str) * 100000000)
+unit = ""satoshi"" if sats == 1 else ""satoshis""
+print(f""{sats:,} {unit}"")","[{""input"": ""1.0"", ""output"": ""100,000,000 satoshis"", ""is_hidden"": false}, {""input"": ""0.00523000"", ""output"": ""523,000 satoshis"", ""is_hidden"": false}, {""input"": ""0.00000001"", ""output"": ""1 satoshi"", ""is_hidden"": false}, {""input"": ""0.5"", ""output"": ""50,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""0.00000002"", ""output"": ""2 satoshis"", ""is_hidden"": true}, {""input"": ""21.00000000"", ""output"": ""2,100,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""0.12345678"", ""output"": ""12,345,678 satoshis"", ""is_hidden"": true}, {""input"": ""10.50"", ""output"": ""1,050,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""0.29"", ""output"": ""29,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""0.57"", ""output"": ""57,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""1.13"", ""output"": ""113,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""4.35"", ""output"": ""435,000,000 satoshis"", ""is_hidden"": true}, {""input"": ""8.2"", ""output"": ""820,000,000 satoshis"", ""is_hidden"": true}]"
+M01-17,Aligned Timetable Grid,Module 01: Introduction to Python,Medium,Print a 5-day by 4-period timetable with fixed-width column padding and row separators (13 lines total).,stdin/stdout,O(1),O(1),"Task: An academic department formats a student's weekly schedule across Monday to Friday with four periods per day into a 13-line ASCII grid.
+
+Input consists of 5 lines (Monday through Friday in order). Each line contains 4 space-separated subject names (each up to 8 characters).
+
+Layout (width exactly 53 characters):
+Separator: `+-------+----------+----------+----------+----------+`
+Header: `| Day | Period 1 | Period 2 | Period 3 | Period 4 |`
+Separator: `+-------+----------+----------+----------+----------+`
+For each day (Mon, Tue, Wed, Thu, Fri):
+Data row: `| {day:<5} | {p1:<8} | {p2:<8} | {p3:<8} | {p4:<8} |`
+Separator: `+-------+----------+----------+----------+----------+`
+
+Total lines: exactly 13 lines.","Five lines, each containing 4 space-separated subject names for that day.",Thirteen lines displaying the timetable grid.,1 <= len(subject) <= 8,"Math Phy Chem Eng
+Phy Math CS Lab
+Chem Eng Math Phy
+CS Lab Phy Chem
+Eng Math CS Sports","+-------+----------+----------+----------+----------+
+| Day   | Period 1 | Period 2 | Period 3 | Period 4 |
++-------+----------+----------+----------+----------+
+| Mon   | Math     | Phy      | Chem     | Eng      |
++-------+----------+----------+----------+----------+
+| Tue   | Phy      | Math     | CS       | Lab      |
++-------+----------+----------+----------+----------+
+| Wed   | Chem     | Eng      | Math     | Phy      |
++-------+----------+----------+----------+----------+
+| Thu   | CS       | Lab      | Phy      | Chem     |
++-------+----------+----------+----------+----------+
+| Fri   | Eng      | Math     | CS       | Sports   |
++-------+----------+----------+----------+----------+","AI ML DSA DBMS
+DSA DBMS CN OS
+CN OS AI ML
+DBMS CN DSA OS
+ML AI OS CN","+-------+----------+----------+----------+----------+
+| Day   | Period 1 | Period 2 | Period 3 | Period 4 |
++-------+----------+----------+----------+----------+
+| Mon   | AI       | ML       | DSA      | DBMS     |
++-------+----------+----------+----------+----------+
+| Tue   | DSA      | DBMS     | CN       | OS       |
++-------+----------+----------+----------+----------+
+| Wed   | CN       | OS       | AI       | ML       |
++-------+----------+----------+----------+----------+
+| Thu   | DBMS     | CN       | DSA      | OS       |
++-------+----------+----------+----------+----------+
+| Fri   | ML       | AI       | OS       | CN       |
++-------+----------+----------+----------+----------+",Define separator as '+-------+----------+----------+----------+----------+'.,"Iterate through ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] and read 4 subject tokens.",Print the separator after the header and after each day's row for 13 lines total.,"sep = ""+-------+----------+----------+----------+----------+""
+header = ""| Day   | Period 1 | Period 2 | Period 3 | Period 4 |""
+days = [""Mon"", ""Tue"", ""Wed"", ""Thu"", ""Fri""]
+
+print(sep)
+print(header)
+print(sep)
+for day in days:
+    p1, p2, p3, p4 = input().split()
+    print(f""| {day:<5} | {p1:<8} | {p2:<8} | {p3:<8} | {p4:<8} |"")
+    print(sep)","[{""input"": ""Math Phy Chem Eng\nPhy Math CS Lab\nChem Eng Math Phy\nCS Lab Phy Chem\nEng Math CS Sports"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | Math     | Phy      | Chem     | Eng      |\n+-------+----------+----------+----------+----------+\n| Tue   | Phy      | Math     | CS       | Lab      |\n+-------+----------+----------+----------+----------+\n| Wed   | Chem     | Eng      | Math     | Phy      |\n+-------+----------+----------+----------+----------+\n| Thu   | CS       | Lab      | Phy      | Chem     |\n+-------+----------+----------+----------+----------+\n| Fri   | Eng      | Math     | CS       | Sports   |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": false}, {""input"": ""AI ML DSA DBMS\nDSA DBMS CN OS\nCN OS AI ML\nDBMS CN DSA OS\nML AI OS CN"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | AI       | ML       | DSA      | DBMS     |\n+-------+----------+----------+----------+----------+\n| Tue   | DSA      | DBMS     | CN       | OS       |\n+-------+----------+----------+----------+----------+\n| Wed   | CN       | OS       | AI       | ML       |\n+-------+----------+----------+----------+----------+\n| Thu   | DBMS     | CN       | DSA      | OS       |\n+-------+----------+----------+----------+----------+\n| Fri   | ML       | AI       | OS       | CN       |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": false}, {""input"": ""Bio Chem Phy Math\nMath Bio Chem Phy\nPhy Math Bio Chem\nChem Phy Math Bio\nLab Sem Lib Sports"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | Bio      | Chem     | Phy      | Math     |\n+-------+----------+----------+----------+----------+\n| Tue   | Math     | Bio      | Chem     | Phy      |\n+-------+----------+----------+----------+----------+\n| Wed   | Phy      | Math     | Bio      | Chem     |\n+-------+----------+----------+----------+----------+\n| Thu   | Chem     | Phy      | Math     | Bio      |\n+-------+----------+----------+----------+----------+\n| Fri   | Lab      | Sem      | Lib      | Sports   |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": false}, {""input"": ""A B C D\nE F G H\nI J K L\nM N O P\nQ R S T"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | A        | B        | C        | D        |\n+-------+----------+----------+----------+----------+\n| Tue   | E        | F        | G        | H        |\n+-------+----------+----------+----------+----------+\n| Wed   | I        | J        | K        | L        |\n+-------+----------+----------+----------+----------+\n| Thu   | M        | N        | O        | P        |\n+-------+----------+----------+----------+----------+\n| Fri   | Q        | R        | S        | T        |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": true}, {""input"": ""Sub1 Sub2 Sub3 Sub4\nSub5 Sub6 Sub7 Sub8\nSub1 Sub3 Sub5 Sub7\nSub2 Sub4 Sub6 Sub8\nFree Free Free Free"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | Sub1     | Sub2     | Sub3     | Sub4     |\n+-------+----------+----------+----------+----------+\n| Tue   | Sub5     | Sub6     | Sub7     | Sub8     |\n+-------+----------+----------+----------+----------+\n| Wed   | Sub1     | Sub3     | Sub5     | Sub7     |\n+-------+----------+----------+----------+----------+\n| Thu   | Sub2     | Sub4     | Sub6     | Sub8     |\n+-------+----------+----------+----------+----------+\n| Fri   | Free     | Free     | Free     | Free     |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": true}, {""input"": ""English French German Spanish\nGerman Spanish English French\nFrench English Spanish German\nSpanish German French English\nLatin Greek Hebrew Arabic"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | English  | French   | German   | Spanish  |\n+-------+----------+----------+----------+----------+\n| Tue   | German   | Spanish  | English  | French   |\n+-------+----------+----------+----------+----------+\n| Wed   | French   | English  | Spanish  | German   |\n+-------+----------+----------+----------+----------+\n| Thu   | Spanish  | German   | French   | English  |\n+-------+----------+----------+----------+----------+\n| Fri   | Latin    | Greek    | Hebrew   | Arabic   |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": true}, {""input"": ""Hist Geo Pol Econ\nPol Econ Hist Geo\nGeo Hist Econ Pol\nEcon Pol Geo Hist\nProj Viva Sem Conf"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | Hist     | Geo      | Pol      | Econ     |\n+-------+----------+----------+----------+----------+\n| Tue   | Pol      | Econ     | Hist     | Geo      |\n+-------+----------+----------+----------+----------+\n| Wed   | Geo      | Hist     | Econ     | Pol      |\n+-------+----------+----------+----------+----------+\n| Thu   | Econ     | Pol      | Geo      | Hist     |\n+-------+----------+----------+----------+----------+\n| Fri   | Proj     | Viva     | Sem      | Conf     |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": true}, {""input"": ""Cloud DevSec Data Arch\nDevSec Cloud Arch Data\nArch Data Cloud DevSec\nData Arch DevSec Cloud\nReview Mentor Hack Demo"", ""output"": ""+-------+----------+----------+----------+----------+\n| Day   | Period 1 | Period 2 | Period 3 | Period 4 |\n+-------+----------+----------+----------+----------+\n| Mon   | Cloud    | DevSec   | Data     | Arch     |\n+-------+----------+----------+----------+----------+\n| Tue   | DevSec   | Cloud    | Arch     | Data     |\n+-------+----------+----------+----------+----------+\n| Wed   | Arch     | Data     | Cloud    | DevSec   |\n+-------+----------+----------+----------+----------+\n| Thu   | Data     | Arch     | DevSec   | Cloud    |\n+-------+----------+----------+----------+----------+\n| Fri   | Review   | Mentor   | Hack     | Demo     |\n+-------+----------+----------+----------+----------+"", ""is_hidden"": true}]"
+M01-18,Daily Freelancer Earnings,Module 01: Introduction to Python,Medium,Calculate total pay and 10% TDS deduction across 3 project lines with 2-decimal alignment.,stdin/stdout,O(1),O(1),"Task: A freelance invoicing aggregator computes gross pay, statutory tax deduction at source (10% TDS), and net payout across 3 daily project milestones.
+
+Input consists of 3 lines, each containing:
+`<ProjectName> <Hours> <HourlyRate>`
+(Note: Project names may contain spaces; Hours and HourlyRate are the last two space-separated numeric tokens).
+
+Formulas:
+- For each project: `pay = hours * hourly_rate`
+- `gross = sum(pay)`
+- `tds = gross * 0.10`
+- `net = gross - tds`
+
+Output format:
+`Gross Earnings: Rs. <gross:.2f>`
+`TDS Deduction (10%): Rs. <tds:.2f>`
+`Net Payable: Rs. <net:.2f>`","Three lines, each containing ProjectName (string), Hours (float), and HourlyRate (float).","Three lines displaying Gross Earnings, TDS Deduction (10%), and Net Payable.","1 <= len(ProjectName) <= 40
+0.0 <= Hours <= 24.0
+0.0 <= HourlyRate <= 100000.0","BackendAPI 4.0 1200.00
+DatabaseOptimization 2.5 1500.00
+CodeReview 1.5 800.00","Gross Earnings: Rs. 9750.00
+TDS Deduction (10%): Rs. 975.00
+Net Payable: Rs. 8775.00","UI Redesign 5.0 900.00
+BugFixes 3.0 750.00
+Documentation 2.0 500.00","Gross Earnings: Rs. 7750.00
+TDS Deduction (10%): Rs. 775.00
+Net Payable: Rs. 6975.00",Parse each line using line.rsplit(maxsplit=2) to support multi-word project names.,Multiply hours * rate for each project and accumulate gross earnings.,"Compute tds = gross * 0.10 and net = gross - tds, formatting each with :.2f.","gross = 0.0
+for _ in range(3):
+    parts = input().strip().rsplit(maxsplit=2)
+    h = float(parts[1])
+    r = float(parts[2])
+    gross += h * r
+
+tds = gross * 0.10
+net = gross - tds
+print(f""Gross Earnings: Rs. {gross:.2f}"")
+print(f""TDS Deduction (10%): Rs. {tds:.2f}"")
+print(f""Net Payable: Rs. {net:.2f}"")","[{""input"": ""BackendAPI 4.0 1200.00\nDatabaseOptimization 2.5 1500.00\nCodeReview 1.5 800.00"", ""output"": ""Gross Earnings: Rs. 9750.00\nTDS Deduction (10%): Rs. 975.00\nNet Payable: Rs. 8775.00"", ""is_hidden"": false}, {""input"": ""UI Redesign 5.0 900.00\nBugFixes 3.0 750.00\nDocumentation 2.0 500.00"", ""output"": ""Gross Earnings: Rs. 7750.00\nTDS Deduction (10%): Rs. 775.00\nNet Payable: Rs. 6975.00"", ""is_hidden"": false}, {""input"": ""P1 0.0 1000.00\nP2 0.0 500.00\nP3 0.0 750.00"", ""output"": ""Gross Earnings: Rs. 0.00\nTDS Deduction (10%): Rs. 0.00\nNet Payable: Rs. 0.00"", ""is_hidden"": false}, {""input"": ""MobileApp 8.0 2500.00\nCloudDeploy 4.0 3000.00\nQA 3.0 1500.00"", ""output"": ""Gross Earnings: Rs. 36500.00\nTDS Deduction (10%): Rs. 3650.00\nNet Payable: Rs. 32850.00"", ""is_hidden"": true}, {""input"": ""Full Stack App 6.5 1800.00\nAPI Gateway 2.0 2200.00\nClient Call 1.0 1000.00"", ""output"": ""Gross Earnings: Rs. 17100.00\nTDS Deduction (10%): Rs. 1710.00\nNet Payable: Rs. 15390.00"", ""is_hidden"": true}, {""input"": ""TaskA 1.0 100.00\nTaskB 1.0 100.00\nTaskC 1.0 100.00"", ""output"": ""Gross Earnings: Rs. 300.00\nTDS Deduction (10%): Rs. 30.00\nNet Payable: Rs. 270.00"", ""is_hidden"": true}, {""input"": ""Consulting 10.0 5000.00\nAudit 5.0 6000.00\nReport 2.5 4000.00"", ""output"": ""Gross Earnings: Rs. 90000.00\nTDS Deduction (10%): Rs. 9000.00\nNet Payable: Rs. 81000.00"", ""is_hidden"": true}, {""input"": ""Bug Patch 0.5 1200.00\nServer Config 1.5 1600.00\nDoc Update 0.5 800.00"", ""output"": ""Gross Earnings: Rs. 3400.00\nTDS Deduction (10%): Rs. 340.00\nNet Payable: Rs. 3060.00"", ""is_hidden"": true}]"

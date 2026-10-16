@@ -1,0 +1,1985 @@
+{
+  "id": "fca9a286",
+  "filename": "module_07_strings.csv",
+  "imported_at": "2026-10-16T07:40:15.288756Z",
+  "total_questions": 18,
+  "total_test_cases": 180,
+  "visible_test_cases": 54,
+  "hidden_test_cases": 126,
+  "questions": [
+    {
+      "question_id": "M07-01",
+      "title": "Unicode Mapping Table",
+      "module": "Module 07: Strings",
+      "difficulty": "Easy",
+      "objective": "Print characters and ord() values for all characters in a given string.",
+      "problem_statement": "Task: In Python, every character has a numeric code called its Unicode (ASCII) value. The built-in function ord() gives this code for a character.\n• Go through the given string one character at a time\n• For every character, print one line: the character inside single quotes, then a colon, a space, and its ord() value\n• Spaces and punctuation marks are characters too, so they also get a line\n\nExample: for the string Hi, the output is two lines: 'H': 72 and 'i': 105.\n\nGiven a string, print its character table.",
+      "input_format": "A single line containing the string (it may contain spaces).",
+      "output_format": "One line for every character of the string, in order: '<character>': <ord value>",
+      "constraints": "1 <= length of the string <= 100\nThe string has printable ASCII characters only (codes 32 to 126)",
+      "sample_inputs": [
+        "Hello",
+        "Hi 5!"
+      ],
+      "sample_outputs": [
+        "'H': 72\n'e': 101\n'l': 108\n'l': 108\n'o': 111",
+        "'H': 72\n'i': 105\n' ': 32\n'5': 53\n'!': 33"
+      ],
+      "hints": [
+        "A for loop over a string gives one character at a time: for ch in s.",
+        "ord(ch) returns the numeric code of the character ch.",
+        "Print each line with an f-string: print(f\"'{ch}': {ord(ch)}\")."
+      ],
+      "starter_code": null,
+      "reference_solution": "text = input()\n\nfor ch in text:\n    print(f\"'{ch}': {ord(ch)}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Hello",
+          "output": "'H': 72\n'e': 101\n'l': 108\n'l': 108\n'o': 111",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Hi 5!",
+          "output": "'H': 72\n'i': 105\n' ': 32\n'5': 53\n'!': 33",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "A",
+          "output": "'A': 65",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc XYZ",
+          "output": "'a': 97\n'b': 98\n'c': 99\n' ': 32\n'X': 88\n'Y': 89\n'Z': 90",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Python3",
+          "output": "'P': 80\n'y': 121\n't': 116\n'h': 104\n'o': 111\n'n': 110\n'3': 51",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "~ ` ' \"",
+          "output": "'~': 126\n' ': 32\n'`': 96\n' ': 32\n''': 39\n' ': 32\n'\"': 34",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123",
+          "output": "'1': 49\n'2': 50\n'3': 51",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hello, World!",
+          "output": "'H': 72\n'e': 101\n'l': 108\n'l': 108\n'o': 111\n',': 44\n' ': 32\n'W': 87\n'o': 111\n'r': 114\n'l': 108\n'd': 100\n'!': 33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "!@#$%^&*()",
+          "output": "'!': 33\n'@': 64\n'#': 35\n'$': 36\n'%': 37\n'^': 94\n'&': 38\n'*': 42\n'(': 40\n')': 41",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "z",
+          "output": "'z': 122",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the string (it may contain spaces).",
+        "output_format": "One line for every character of the string, in order: '<character>': <ord value>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-02",
+      "title": "Vowel & Consonant Counter",
+      "module": "Module 07: Strings",
+      "difficulty": "Easy",
+      "objective": "Count English vowels and consonants ignoring digits and punctuation.",
+      "problem_statement": "Task: Read one line of text and count its vowels and consonants.\n• Vowels are a, e, i, o, u (in upper or lower case)\n• Consonants are all the other English letters (A to Z and a to z). The letter y counts as a consonant\n• Ignore digits, spaces and punctuation: they are neither vowels nor consonants\n• Print the two counts on one line: first the vowels, then the consonants\n\nExample: for the text Hello, World! the output is 3 7.\n\nGiven a line of text, print the number of vowels and consonants.",
+      "input_format": "A single line of text (it may contain spaces, digits and punctuation).",
+      "output_format": "One line: the number of vowels and the number of consonants, separated by a single space.",
+      "constraints": "1 <= length of the text <= 1000\nThe text has printable ASCII characters only",
+      "sample_inputs": [
+        "Hello, World!",
+        "Python 3.12"
+      ],
+      "sample_outputs": [
+        "3 7",
+        "1 5"
+      ],
+      "hints": [
+        "Convert each character to lower case so that 'A' and 'a' are treated the same.",
+        "A character is an English letter when 'a' <= ch <= 'z' (after lower-casing).",
+        "If a letter is in 'aeiou' add 1 to vowels, otherwise add 1 to consonants. print(vowels, consonants) puts one space between them."
+      ],
+      "starter_code": null,
+      "reference_solution": "text = input()\n\nvowel_count = 0\nconsonant_count = 0\n\nfor ch in text:\n    letter = ch.lower()\n    if 'a' <= letter <= 'z':\n        if letter in \"aeiou\":\n            vowel_count += 1\n        else:\n            consonant_count += 1\n\nprint(vowel_count, consonant_count)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Hello, World!",
+          "output": "3 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Python 3.12",
+          "output": "1 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Programming is fun",
+          "output": "5 11",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "AEIOU",
+          "output": "5 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "bcd",
+          "output": "0 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12345!!",
+          "output": "0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "The Quick Brown Fox!",
+          "output": "5 11",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "rhythm",
+          "output": "0 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "Yes, I can.",
+          "output": "3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "aeiouAEIOU xyz",
+          "output": "10 3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line of text (it may contain spaces, digits and punctuation).",
+        "output_format": "One line: the number of vowels and the number of consonants, separated by a single space."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-03",
+      "title": "Email Domain Extractor",
+      "module": "Module 07: Strings",
+      "difficulty": "Easy",
+      "objective": "Extract and print lowercase domain substring from email address string.",
+      "problem_statement": "Task: The domain of an email address is the part after the @ sign. Read an email address and print its domain in lower case.\n• The domain is everything after the @ sign\n• Print the domain in lower case letters\n• Ignore any spaces before or after the email address\n• The email address always contains exactly one @\n\nExamples: for John.Doe@GMAIL.COM the output is gmail.com, and for a@Mail.Co.IN the output is mail.co.in.\n\nGiven an email address, print its domain.",
+      "input_format": "A single line containing the email address.",
+      "output_format": "One line: the domain in lower case.",
+      "constraints": "3 <= length of the email <= 100\nThe email contains exactly one @, with at least one character after it",
+      "sample_inputs": [
+        "user@Example.com",
+        "John.Doe@GMAIL.COM"
+      ],
+      "sample_outputs": [
+        "example.com",
+        "gmail.com"
+      ],
+      "hints": [
+        "Remove spaces around the text with input().strip().",
+        "email.split('@') gives a list: the part before @ and the part after @.",
+        "Take the second part, convert it with .lower() and print it."
+      ],
+      "starter_code": null,
+      "reference_solution": "email = input().strip()\n\ndomain = email.split('@')[1]\n\nprint(domain.lower())",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "user@Example.com",
+          "output": "example.com",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "John.Doe@GMAIL.COM",
+          "output": "gmail.com",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a@b.co",
+          "output": "b.co",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "first.last+tag@Sub.Domain.ORG",
+          "output": "sub.domain.org",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "x@y",
+          "output": "y",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Admin@Mail.Company.Co.IN",
+          "output": "mail.company.co.in",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "name_1@123.com",
+          "output": "123.com",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "  spaced@Site.NET  ",
+          "output": "site.net",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "UPPER@UPPER.COM",
+          "output": "upper.com",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "me@localhost",
+          "output": "localhost",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the email address.",
+        "output_format": "One line: the domain in lower case."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-04",
+      "title": "URL Query Param Parser",
+      "module": "Module 07: Strings",
+      "difficulty": "Easy",
+      "objective": "Extract value associated with specified key from URL query string.",
+      "problem_statement": "Task: A URL query string stores data as key=value pairs joined by &, for example name=Asha&age=21. Read a query string and a key, and print the value of that key.\n• The query may start with a ? sign. Ignore it if it is there\n• Split the query on & to get the pairs, then split each pair on the FIRST = sign\n• Use the first pair whose name is exactly the key\n• If the key is not found, print NOT FOUND\n• If the key is found but its value is empty (for example empty= or a pair without = such as flag), print EMPTY\n• Do not decode anything: print the value exactly as written\n\nExamples: for the query name=Asha&age=21 and the key age, the output is 21. For the query a=1 and the key b, the output is NOT FOUND.\n\nGiven a query string and a key, print the value.",
+      "input_format": "Line 1: the query string.\nLine 2: the key to look for.",
+      "output_format": "One line: the value of the key, or NOT FOUND if the key is missing, or EMPTY if its value is empty.",
+      "constraints": "1 <= length of the query <= 200\n1 <= length of the key <= 20\nThe key contains no spaces, & or = signs",
+      "sample_inputs": [
+        "name=Asha&age=21\nage",
+        "a=1&b=2&c=3\nb"
+      ],
+      "sample_outputs": [
+        "21",
+        "2"
+      ],
+      "hints": [
+        "If query starts with '?', remove that first character with query[1:].",
+        "pair.partition('=') splits at the first = and gives (name, '=', value). If there is no =, the value is ''.",
+        "Use a found flag and break at the first match. After the loop, print NOT FOUND, EMPTY or the value."
+      ],
+      "starter_code": null,
+      "reference_solution": "query = input()\nkey = input()\n\nif query.startswith(\"?\"):\n    query = query[1:]\n\nfound = False\nvalue = \"\"\n\nfor pair in query.split(\"&\"):\n    # partition splits at the first \"=\"; the value is \"\" if there is no \"=\"\n    name, separator, pair_value = pair.partition(\"=\")\n    if name == key:\n        found = True\n        value = pair_value\n        break\n\nif not found:\n    print(\"NOT FOUND\")\nelif value == \"\":\n    print(\"EMPTY\")\nelse:\n    print(value)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "name=Asha&age=21\nage",
+          "output": "21",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a=1&b=2&c=3\nb",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "x=1\ny",
+          "output": "NOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "?q=python&page=2\npage",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "k=1&k=2\nk",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "empty=&z=9\nempty",
+          "output": "EMPTY",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "flag&x=5\nflag",
+          "output": "EMPTY",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a=b=c\na",
+          "output": "b=c",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "user=john doe&id=7\nuser",
+          "output": "john doe",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "?lang=en&lang=fr\nlang",
+          "output": "en",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the query string.\nLine 2: the key to look for.",
+        "output_format": "One line: the value of the key, or NOT FOUND if the key is missing, or EMPTY if its value is empty."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-05",
+      "title": "Clean Slug Generator",
+      "module": "Module 07: Strings",
+      "difficulty": "Easy",
+      "objective": "Convert headline into lowercase hyphen-separated URL slug.",
+      "problem_statement": "Task: A slug is the readable last part of a web address, for example python-101-for-beginners. Read a headline and print it as a slug.\n• Convert all letters to lower case\n• Keep only letters (a to z) and digits (0 to 9)\n• Every group of other characters (spaces, punctuation, symbols) becomes one single hyphen -\n• The slug never starts or ends with a hyphen\n\nExamples: for Hello World the output is hello-world, and for C++ & Java! the output is c-java.\n\nGiven a headline, print its slug.",
+      "input_format": "A single line containing the headline.",
+      "output_format": "One line: the slug.",
+      "constraints": "1 <= length of the headline <= 200\nThe headline has ASCII characters only and contains at least one letter or digit",
+      "sample_inputs": [
+        "Hello World",
+        "Python 101: A Beginner's Guide!"
+      ],
+      "sample_outputs": [
+        "hello-world",
+        "python-101-a-beginner-s-guide"
+      ],
+      "hints": [
+        "Lower-case the whole headline first.",
+        "Walk through the characters. When you see a letter or digit, add it. When you see anything else, remember that a hyphen is needed.",
+        "Add the pending hyphen only right before the next letter or digit, and only if the slug is not empty yet. This avoids double, leading and trailing hyphens."
+      ],
+      "starter_code": null,
+      "reference_solution": "title = input()\n\nslug_chars = []\nneed_hyphen = False\n\nfor ch in title.lower():\n    if 'a' <= ch <= 'z' or '0' <= ch <= '9':\n        # Add the hyphen only now, and only if the slug already has text.\n        # This gives one hyphen per group and none at the start or end.\n        if need_hyphen and slug_chars:\n            slug_chars.append(\"-\")\n        slug_chars.append(ch)\n        need_hyphen = False\n    else:\n        need_hyphen = True\n\nprint(\"\".join(slug_chars))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Hello World",
+          "output": "hello-world",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Python 101: A Beginner's Guide!",
+          "output": "python-101-a-beginner-s-guide",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "C++ & Java",
+          "output": "c-java",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "already-a-slug",
+          "output": "already-a-slug",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "---Top---10---",
+          "output": "top-10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Rock'n'Roll",
+          "output": "rock-n-roll",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "MiXeD CaSe 2024",
+          "output": "mixed-case-2024",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hello,    World",
+          "output": "hello-world",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "!!!Wow!!!",
+          "output": "wow",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "a",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the headline.",
+        "output_format": "One line: the slug."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-06",
+      "title": "Overlapping Substring Counter",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Count occurrences of substring sub in string s allowing overlapping matches.",
+      "problem_statement": "Task: Read a text s and a substring sub, and count how many times sub appears in s, including overlapping matches.\n• The built-in s.count(sub) does NOT count overlaps ('aaaa'.count('aa') gives 2), so do not use it\n• Check every possible start position i in s and test whether sub begins there. For example, use s[i:i + len(sub)] == sub or s.startswith(sub, i)\n• Matches may share characters: in aaaa the substring aa starts at positions 0, 1 and 2\n\nExamples: for s = aaaa and sub = aa the output is 3. For s = ababab and sub = aba the output is 2.\n\nGiven s and sub, print the number of matches.",
+      "input_format": "Line 1: the text s.\nLine 2: the substring sub.",
+      "output_format": "One integer: the number of (possibly overlapping) occurrences of sub in s.",
+      "constraints": "1 <= length of s <= 1000\n1 <= length of sub <= 100",
+      "sample_inputs": [
+        "aaaa\naa",
+        "ababab\naba"
+      ],
+      "sample_outputs": [
+        "3",
+        "2"
+      ],
+      "hints": [
+        "Loop i over range(len(s)). Start positions near the end can never match, but the check simply fails there.",
+        "Compare the slice s[i:i + len(sub)] with sub.",
+        "Add 1 to a counter for every match and keep going with the next i (do not skip ahead)."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\nsub = input()\n\ncount = 0\n\nfor start in range(len(s)):\n    piece = s[start:start + len(sub)]\n    if piece == sub:\n        count += 1\n\nprint(count)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "aaaa\naa",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "ababab\naba",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "hello\nl",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc\nd",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "aaa\naaaa",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abcabc\nabc",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "aaaaa\na",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "mississippi\nissi",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "banana\nana",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "xyzxyz\nz",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(n x m)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the text s.\nLine 2: the substring sub.",
+        "output_format": "One integer: the number of (possibly overlapping) occurrences of sub in s."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-07",
+      "title": "Caesar Cipher Engine",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Shift ASCII alphabetical characters by K (supporting positive and negative shifts).",
+      "problem_statement": "Task: A Caesar cipher hides a message by moving every letter k places along the alphabet. Read a text and a shift k, and print the shifted text.\n• Shift only letters (A to Z and a to z). All other characters (spaces, digits, punctuation) stay unchanged\n• Upper case stays upper case and lower case stays lower case\n• The alphabet wraps around: shifting z by 1 gives a, and shifting a by -1 gives z\n• k can be positive, negative or larger than 26 (a shift of 26 changes nothing)\n• Use ord() and chr() with the % operator to do the wrap-around\n\nExamples: for Hello, World! with k = 3 the output is Khoor, Zruog!. For abc with k = -1 the output is zab.\n\nGiven a text and k, print the shifted text.",
+      "input_format": "Line 1: the text to shift.\nLine 2: the shift k (an integer, can be negative).",
+      "output_format": "One line: the shifted text.",
+      "constraints": "1 <= length of the text <= 1000\n-10^6 <= k <= 10^6",
+      "sample_inputs": [
+        "Hello, World!\n3",
+        "abc\n-1"
+      ],
+      "sample_outputs": [
+        "Khoor, Zruog!",
+        "zab"
+      ],
+      "hints": [
+        "For a lower-case letter, its position in the alphabet is ord(ch) - ord('a') (0 to 25).",
+        "New position = (position + k) % 26. In Python, % gives a non-negative result even when k is negative.",
+        "Convert back with chr(new_position + ord('a')). Use ord('A') for upper-case letters."
+      ],
+      "starter_code": null,
+      "reference_solution": "text = input()\nk = int(input())\n\nresult = []\n\nfor ch in text:\n    if 'a' <= ch <= 'z':\n        position = ord(ch) - ord('a')\n        new_position = (position + k) % 26    # % 26 wraps z back to a\n        result.append(chr(new_position + ord('a')))\n    elif 'A' <= ch <= 'Z':\n        position = ord(ch) - ord('A')\n        new_position = (position + k) % 26\n        result.append(chr(new_position + ord('A')))\n    else:\n        result.append(ch)\n\nprint(\"\".join(result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Hello, World!\n3",
+          "output": "Khoor, Zruog!",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "abc\n-1",
+          "output": "zab",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "xyz\n3",
+          "output": "abc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Khoor\n-3",
+          "output": "Hello",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Python 3.12\n13",
+          "output": "Clguba 3.12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "ABC\n26",
+          "output": "ABC",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Zebra\n-27",
+          "output": "Ydaqz",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Zz Aa\n1",
+          "output": "Aa Bb",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "Hello\n1000",
+          "output": "Tqxxa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "a-z A-Z\n1",
+          "output": "b-a B-A",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the text to shift.\nLine 2: the shift k (an integer, can be negative).",
+        "output_format": "One line: the shifted text."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-08",
+      "title": "RLE String Compression",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Compress repeating characters into <char><count> format (e.g. aaabb -> a3b2).",
+      "problem_statement": "Task: Run-length encoding (RLE) makes a string shorter by replacing every run of the same character with that character and the length of the run. A run is a group of equal characters that stand next to each other. Read a string and print its RLE form.\n• Write the character first, then the number of times it repeats in the run\n• Write the count even when the run length is 1 (abc becomes a1b1c1)\n• Letters are case-sensitive: A and a are different characters\n• Counts can have more than one digit (twelve a's become a12)\n\nExamples: aaabb → a3b2, abc → a1b1c1, aabbaa → a2b2a2.\n\nGiven a string, print the compressed string.",
+      "input_format": "A single line containing the string (English letters only).",
+      "output_format": "One line: the compressed string.",
+      "constraints": "1 <= length of the string <= 1000\nThe string contains only letters (A to Z, a to z)",
+      "sample_inputs": [
+        "aaabb",
+        "abc"
+      ],
+      "sample_outputs": [
+        "a3b2",
+        "a1b1c1"
+      ],
+      "hints": [
+        "Go through the string while remembering the current character and how many times it has repeated.",
+        "When the next character is different, save the current character and its count, then start a new run.",
+        "Do not forget to save the last run after the loop ends."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\nparts = []\ncurrent_char = s[0]\nrun_length = 1\n\nfor ch in s[1:]:\n    if ch == current_char:\n        run_length += 1\n    else:\n        parts.append(current_char + str(run_length))\n        current_char = ch\n        run_length = 1\n\n# The last run is not saved inside the loop\nparts.append(current_char + str(run_length))\n\nprint(\"\".join(parts))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "aaabb",
+          "output": "a3b2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "abc",
+          "output": "a1b1c1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "aaaaaaaaaaaa",
+          "output": "a12",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "QQQqqq",
+          "output": "Q3q3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "aabbaa",
+          "output": "a2b2a2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "AAaa",
+          "output": "A2a2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "z",
+          "output": "z1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abbbbbbbbbbc",
+          "output": "a1b10c1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "xxxyyyzzz",
+          "output": "x3y3z3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "aAaA",
+          "output": "a1A1a1A1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the string (English letters only).",
+        "output_format": "One line: the compressed string."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-09",
+      "title": "RLE String Decompression",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Reconstruct original uncompressed string from valid <char><count> string.",
+      "problem_statement": "Task: This is the reverse of run-length encoding. The input is a compressed string made of pairs: one letter followed by a count. Read the compressed string and print the original string.\n• Each letter is repeated as many times as the number after it\n• The count can have more than one digit: a12 means the letter a repeated 12 times\n• The input is always valid: every letter is followed by at least one digit, and every count is at least 1\n\nExamples: a3b2 → aaabb, a1b1c1 → abc, a10 → aaaaaaaaaa.\n\nGiven a compressed string, print the original string.",
+      "input_format": "A single line containing the compressed string of letter-count pairs.",
+      "output_format": "One line: the original (decompressed) string.",
+      "constraints": "2 <= length of the compressed string <= 1000\nEvery count is between 1 and 999",
+      "sample_inputs": [
+        "a3b2",
+        "a1b1c1"
+      ],
+      "sample_outputs": [
+        "aaabb",
+        "abc"
+      ],
+      "hints": [
+        "A letter starts a new pair. The digits that follow it belong to its count.",
+        "Collect the digits in a string such as '12', then convert it with int().",
+        "Add letter * count to the result when the pair ends (when the next letter appears or the string ends)."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\nparts = []\nletter = \"\"\ndigits = \"\"    # the count may have many digits, like \"x12\"\n\nfor ch in s:\n    if ch.isdigit():\n        digits += ch\n    else:\n        if letter:\n            parts.append(letter * int(digits))\n        letter = ch\n        digits = \"\"\n\n# The last letter is not written inside the loop\nparts.append(letter * int(digits))\n\nprint(\"\".join(parts))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "a3b2",
+          "output": "aaabb",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a1b1c1",
+          "output": "abc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a12",
+          "output": "aaaaaaaaaaaa",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Q3q3",
+          "output": "QQQqqq",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "a2b2a2",
+          "output": "aabbaa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "A2a2",
+          "output": "AAaa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "z1",
+          "output": "z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a1b10c1",
+          "output": "abbbbbbbbbbc",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "x3y3z3",
+          "output": "xxxyyyzzz",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "a1A1a1A1",
+          "output": "aAaA",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the compressed string of letter-count pairs.",
+        "output_format": "One line: the original (decompressed) string."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-10",
+      "title": "Title Case with Minor Words",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Capitalize words except designated minor words unless at index 0.",
+      "problem_statement": "Task: Read a book or movie title and print it in proper title case.\n• Words are separated by spaces. Extra spaces are removed, so the result has exactly one space between words\n• Make the first letter of a word capital and the other letters small (hELLO becomes Hello)\n• These minor words stay completely in lower case: a, an, the, and, but, or, for, nor, on, at, to, by, of, in\n• Exception: the first word is always capitalized, even if it is a minor word\n\nExamples: the lord of the rings → The Lord of the Rings, WAR AND PEACE → War and Peace.\n\nGiven a title, print it in title case.",
+      "input_format": "A single line containing the title.",
+      "output_format": "One line: the title in title case.",
+      "constraints": "1 <= length of the title <= 200\nThe title contains at least one word",
+      "sample_inputs": [
+        "the lord of the rings",
+        "a tale of two cities"
+      ],
+      "sample_outputs": [
+        "The Lord of the Rings",
+        "A Tale of Two Cities"
+      ],
+      "hints": [
+        "title.split() splits on spaces and also removes extra spaces.",
+        "Lower-case each word first. If it is a minor word and its index is not 0, keep it in lower case.",
+        "Otherwise capitalize it with word[0].upper() + word[1:]. Finish with ' '.join(...)."
+      ],
+      "starter_code": null,
+      "reference_solution": "MINOR_WORDS = {\"a\", \"an\", \"the\", \"and\", \"but\", \"or\", \"for\", \"nor\",\n               \"on\", \"at\", \"to\", \"by\", \"of\", \"in\"}\n\ntitle = input()\nresult_words = []\n\nfor index, word in enumerate(title.split()):\n    word = word.lower()\n\n    if index > 0 and word in MINOR_WORDS:\n        result_words.append(word)\n    else:\n        result_words.append(word[0].upper() + word[1:])\n\nprint(\" \".join(result_words))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "the lord of the rings",
+          "output": "The Lord of the Rings",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a tale of two cities",
+          "output": "A Tale of Two Cities",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "WAR AND PEACE",
+          "output": "War and Peace",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "to be or not to be",
+          "output": "To Be or Not to Be",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "harry potter and the chamber of secrets",
+          "output": "Harry Potter and the Chamber of Secrets",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "in the heat of the night",
+          "output": "In the Heat of the Night",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "hello",
+          "output": "Hello",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "  extra   spaces  here ",
+          "output": "Extra Spaces Here",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "the end",
+          "output": "The End",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "one flew over the cuckoo's nest",
+          "output": "One Flew Over the Cuckoo's Nest",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the title.",
+        "output_format": "One line: the title in title case."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-11",
+      "title": "Anagram Predicate",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Determine if two strings are anagrams of each other ignoring case/spaces.",
+      "problem_statement": "Task: Two strings are anagrams if one can be made by rearranging the characters of the other, using every character exactly once. Read two strings and check whether they are anagrams.\n• Ignore upper and lower case (Listen and Silent are anagrams)\n• Ignore spaces (Dormitory and Dirty room are anagrams)\n• All other characters, such as digits and punctuation, count normally\n• Print True if they are anagrams, otherwise print False\n\nExamples: Listen and Silent → True, hello and world → False, abc and abcd → False.\n\nGiven two strings, print True or False.",
+      "input_format": "Line 1: the first string.\nLine 2: the second string.",
+      "output_format": "One line: True if the strings are anagrams, otherwise False.",
+      "constraints": "1 <= length of each string <= 1000",
+      "sample_inputs": [
+        "Listen\nSilent",
+        "Dormitory\nDirty room"
+      ],
+      "sample_outputs": [
+        "True"
+      ],
+      "hints": [
+        "Clean each string first: remove the spaces with replace(' ', '') and convert to lower case.",
+        "If two cleaned strings are anagrams, their sorted characters are equal.",
+        "print(sorted(a) == sorted(b)) prints True or False directly."
+      ],
+      "starter_code": null,
+      "reference_solution": "s1 = input()\ns2 = input()\n\nclean_1 = s1.replace(\" \", \"\").lower()\nclean_2 = s2.replace(\" \", \"\").lower()\n\nprint(sorted(clean_1) == sorted(clean_2))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Listen\nSilent",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Dormitory\nDirty room",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "hello\nworld",
+          "output": "False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Astronomer\nMoon starer",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "a\nA",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abc\nabcd",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "The eyes\nThey see",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Debit card\nBad credit",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "aab\nabb",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "Conversation\nVoices rant on",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L log L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the first string.\nLine 2: the second string.",
+        "output_format": "One line: True if the strings are anagrams, otherwise False."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-12",
+      "title": "Sensitive Data Masker",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Mask email addresses and credit card numbers according to explicit masking rules.",
+      "problem_statement": "Task: Read a piece of private data and its kind, and print a masked version that hides most of it. The kind is either email or card.\n\nRules for kind email:\n• The text must contain exactly one @, with something before it and something after it. Otherwise print INVALID\n• Keep the first character of the part before @ and replace all its other characters with *\n• If the part before @ has only 1 character, replace it with a single *\n• Keep the @ sign and the domain after it unchanged\n\nRules for kind card:\n• The text holds a card number with digits and may have spaces or hyphens between groups\n• The number must have 13 to 19 digits. Otherwise print INVALID\n• Keep the last 4 digits and replace every other digit with *\n• Keep spaces and hyphens exactly where they are\n\nIf the kind is anything else, print INVALID.\n\nExamples: john.doe@gmail.com with kind email → j*******@gmail.com. 4111 1111 1111 1111 with kind card → **** **** **** 1111.\n\nGiven the text and the kind, print the masked text.",
+      "input_format": "Line 1: the text to mask.\nLine 2: the kind (email or card, or something else).",
+      "output_format": "One line: the masked text, or INVALID if the input breaks the rules.",
+      "constraints": "1 <= length of the text <= 100\nA card number contains only digits, spaces and hyphens",
+      "sample_inputs": [
+        "john.doe@gmail.com\nemail",
+        "ab@x.org\nemail"
+      ],
+      "sample_outputs": [
+        "j*******@gmail.com",
+        "a*@x.org"
+      ],
+      "hints": [
+        "Use if / elif / else on the kind, and print INVALID in the else branch.",
+        "For an email: text.split('@') gives the local part and the domain. Build the mask with local[0] + '*' * (len(local) - 1).",
+        "For a card: count the digits first. Then walk through the text and mask a digit when it is not one of the last 4 digits."
+      ],
+      "starter_code": null,
+      "reference_solution": "text = input()\nkind = input()\n\nif kind == \"email\":\n    parts = text.split(\"@\")\n    if len(parts) != 2 or parts[0] == \"\" or parts[1] == \"\":\n        print(\"INVALID\")\n    else:\n        local = parts[0]\n        domain = parts[1]\n        if len(local) == 1:\n            masked_local = \"*\"\n        else:\n            masked_local = local[0] + \"*\" * (len(local) - 1)\n        print(masked_local + \"@\" + domain)\n\nelif kind == \"card\":\n    total_digits = 0\n    for ch in text:\n        if ch.isdigit():\n            total_digits += 1\n\n    if total_digits < 13 or total_digits > 19:\n        print(\"INVALID\")\n    else:\n        digits_seen = 0\n        masked_chars = []\n        for ch in text:\n            if ch.isdigit():\n                digits_seen += 1\n                # hide every digit except the last 4\n                if digits_seen <= total_digits - 4:\n                    masked_chars.append(\"*\")\n                else:\n                    masked_chars.append(ch)\n            else:\n                masked_chars.append(ch)    # keep spaces and hyphens\n        print(\"\".join(masked_chars))\n\nelse:\n    print(\"INVALID\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "john.doe@gmail.com\nemail",
+          "output": "j*******@gmail.com",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "ab@x.org\nemail",
+          "output": "a*@x.org",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4111 1111 1111 1111\ncard",
+          "output": "**** **** **** 1111",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a@x.org\nemail",
+          "output": "*@x.org",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5500-0000-0000-0004\ncard",
+          "output": "****-****-****-0004",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "378282246310005\ncard",
+          "output": "***********0005",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1234\ncard",
+          "output": "INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "nobody.example.com\nemail",
+          "output": "INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "x\nphone",
+          "output": "INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "Test.User@Mail.com\nemail",
+          "output": "T********@Mail.com",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the text to mask.\nLine 2: the kind (email or card, or something else).",
+        "output_format": "One line: the masked text, or INVALID if the input breaks the rules."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-13",
+      "title": "Roman Numeral to Integer",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Parse standard Roman numeral string into integer value.",
+      "problem_statement": "Task: Roman numerals use these letters: I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, M = 1000. Read a Roman numeral and print its integer value.\n• Normally the letters go from big to small and their values are added (VIII = 5 + 1 + 1 + 1 = 8)\n• If a smaller letter comes before a bigger one, the smaller value is subtracted: IV = 4, IX = 9, XL = 40, XC = 90, CD = 400, CM = 900\n• The input is always a valid upper-case Roman numeral from 1 to 3999\n\nExample: MCMXCIV = 1000 + (1000 - 100) + (100 - 10) + (5 - 1) = 1994.\n\nGiven a Roman numeral, print its value.",
+      "input_format": "A single line containing a valid Roman numeral in upper case.",
+      "output_format": "One integer: the value of the numeral.",
+      "constraints": "1 <= value <= 3999",
+      "sample_inputs": [
+        "III",
+        "IV"
+      ],
+      "sample_outputs": [
+        "3",
+        "4"
+      ],
+      "hints": [
+        "Store the letter values in a dictionary: {'I': 1, 'V': 5, ...}.",
+        "Look at each letter and the letter after it. If the value of the current letter is smaller than the next one, subtract it.",
+        "Otherwise add it to the total."
+      ],
+      "starter_code": null,
+      "reference_solution": "roman = input()\n\nvalues = {\"I\": 1, \"V\": 5, \"X\": 10, \"L\": 50, \"C\": 100, \"D\": 500, \"M\": 1000}\ntotal = 0\n\nfor i, ch in enumerate(roman):\n    has_next = i + 1 < len(roman)\n\n    # A smaller symbol before a bigger one is subtracted (IV = 5 - 1)\n    if has_next and values[ch] < values[roman[i + 1]]:\n        total -= values[ch]\n    else:\n        total += values[ch]\n\nprint(total)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "III",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "IV",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "LVIII",
+          "output": "58",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "IX",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "MCMXCIV",
+          "output": "1994",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "MMMCMXCIX",
+          "output": "3999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "XL",
+          "output": "40",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "CDXLIV",
+          "output": "444",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "MMXXIV",
+          "output": "2024",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "I",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a valid Roman numeral in upper case.",
+        "output_format": "One integer: the value of the numeral."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-14",
+      "title": "Integer to Roman Numeral",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Convert integer 1 <= n <= 3999 to standard Roman numeral string.",
+      "problem_statement": "Task: Read an integer from 1 to 3999 and print it as a Roman numeral.\n• Use these values from the biggest to the smallest: M 1000, CM 900, D 500, CD 400, C 100, XC 90, L 50, XL 40, X 10, IX 9, V 5, IV 4, I 1\n• For each value, write its symbol as many times as it fits into the remaining number, and subtract it each time\n• Subtractive forms (CM, CD, XC, XL, IX, IV) are part of the list, so 4 is IV (not IIII) and 9 is IX (not VIIII)\n\nExamples: 4 → IV, 58 → LVIII, 1994 → MCMXCIV.\n\nGiven an integer, print its Roman numeral.",
+      "input_format": "A single line containing the integer n.",
+      "output_format": "One line: the Roman numeral in upper case.",
+      "constraints": "1 <= n <= 3999",
+      "sample_inputs": [
+        "3",
+        "4"
+      ],
+      "sample_outputs": [
+        "III",
+        "IV"
+      ],
+      "hints": [
+        "Keep a list of (value, symbol) pairs ordered from 1000 down to 1, including the pairs 900, 400, 90, 40, 9 and 4.",
+        "For each pair, use a while loop: while n >= value, add the symbol and subtract the value.",
+        "When n reaches 0, print the collected symbols as one string."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\ntable = [(1000, \"M\"), (900, \"CM\"), (500, \"D\"), (400, \"CD\"),\n         (100, \"C\"), (90, \"XC\"), (50, \"L\"), (40, \"XL\"),\n         (10, \"X\"), (9, \"IX\"), (5, \"V\"), (4, \"IV\"), (1, \"I\")]\n\nresult = []\nfor value, symbol in table:\n    while n >= value:\n        result.append(symbol)\n        n -= value\n\nprint(\"\".join(result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3",
+          "output": "III",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4",
+          "output": "IV",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "58",
+          "output": "LVIII",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9",
+          "output": "IX",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1994",
+          "output": "MCMXCIV",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3999",
+          "output": "MMMCMXCIX",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "40",
+          "output": "XL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "444",
+          "output": "CDXLIV",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2024",
+          "output": "MMXXIV",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1",
+          "output": "I",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integer n.",
+        "output_format": "One line: the Roman numeral in upper case."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-15",
+      "title": "Clean Alphanumeric Palindrome",
+      "module": "Module 07: Strings",
+      "difficulty": "Medium",
+      "objective": "Check if string is palindrome considering only alphanumeric chars case-insensitively.",
+      "problem_statement": "Task: A palindrome reads the same forwards and backwards. Read a sentence and check whether it is a palindrome when you ignore everything except letters and digits.\n• Keep only letters and digits (alphanumeric characters). Remove spaces, punctuation and underscores\n• Ignore upper and lower case (A and a are the same)\n• A line with no letters or digits left counts as a palindrome\n• Print True or False\n\nExamples: A man, a plan, a canal: Panama → True, race a car → False.\n\nGiven a sentence, print True if it is a clean palindrome, otherwise False.",
+      "input_format": "A single line containing the sentence.",
+      "output_format": "One line: True if the cleaned text is a palindrome, otherwise False.",
+      "constraints": "1 <= length of the sentence <= 1000\nThe sentence has ASCII characters only",
+      "sample_inputs": [
+        "A man, a plan, a canal: Panama",
+        "race a car"
+      ],
+      "sample_outputs": [
+        "True",
+        "False"
+      ],
+      "hints": [
+        "Build a new list with only the characters where ch.isalnum() is True, converted to lower case.",
+        "Remember that an underscore is not alphanumeric, so isalnum() removes it for you.",
+        "Compare the cleaned list with its reverse: cleaned == cleaned[::-1]."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\ncleaned = [ch.lower() for ch in s if ch.isalnum()]\n\nprint(cleaned == cleaned[::-1])",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "A man, a plan, a canal: Panama",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "race a car",
+          "output": "False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "!!!",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0P",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "No lemon, no melon",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12321",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "ab_a",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Madam, I'm Adam",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "Hello",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "Was it a car or a cat I saw?",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing the sentence.",
+        "output_format": "One line: True if the cleaned text is a palindrome, otherwise False."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-16",
+      "title": "Longest Palindromic Substring",
+      "module": "Module 07: Strings",
+      "difficulty": "Hard",
+      "objective": "Find longest contiguous palindromic substring with tie-breaker rule.",
+      "problem_statement": "Task: A substring is a continuous part of a string. A palindromic substring reads the same forwards and backwards. Read a string and print its longest palindromic substring.\n\nRules:\n• Comparison is case-sensitive (A and a are different characters)\n• A single character is a palindrome, so the answer has at least 1 character\n• Tie-breaker: if several palindromic substrings have the same longest length, print the one that starts first (the leftmost one)\n\nA good method is \"expand around the centre\": every palindrome has a centre, which is either one character (odd length) or the gap between two characters (even length). For each centre, move left and right while the two characters are equal, and remember the longest result. Process the centres from left to right and replace the answer only when you find a strictly longer palindrome. This keeps the leftmost one in case of a tie.\n\nExamples:\n• babad → bab (aba has the same length but starts later)\n• cbbd → bb\n• forgeeksskeegfor → geeksskeeg\n\nGiven a string, print the longest palindromic substring.",
+      "input_format": "A single line containing the string.",
+      "output_format": "One line: the longest palindromic substring (the leftmost one if there is a tie).",
+      "constraints": "1 <= length of the string <= 1000\nThe string has no spaces",
+      "sample_inputs": [
+        "babad",
+        "cbbd"
+      ],
+      "sample_outputs": [
+        "bab",
+        "bb"
+      ],
+      "hints": [
+        "For one centre, start with two positions left and right, and move them outward while s[left] == s[right].",
+        "For every index c, try the odd centre (c, c) and the even centre (c, c + 1).",
+        "Keep the best start and length. Update them only when the new length is strictly greater than the best length."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\nn = len(s)\nbest_start = 0\nbest_length = 0\n\n# Every palindrome has a centre: one character (odd length)\n# or the gap between two characters (even length). Expand outward from each.\nfor centre in range(n):\n    for left, right in ((centre, centre), (centre, centre + 1)):\n        while left >= 0 and right < n and s[left] == s[right]:\n            left -= 1\n            right += 1\n\n        length = right - left - 1    # the loop went one step too far\n        if length > best_length:\n            best_length = length\n            best_start = left + 1\n\nprint(s[best_start:best_start + best_length])",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "babad",
+          "output": "bab",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "cbbd",
+          "output": "bb",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "ac",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "forgeeksskeegfor",
+          "output": "geeksskeeg",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abacdfgdcaba",
+          "output": "aba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "racecar",
+          "output": "racecar",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "noonracecar",
+          "output": "racecar",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "aaaabaaa",
+          "output": "aaabaaa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "abcd",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(n^2)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the string.",
+        "output_format": "One line: the longest palindromic substring (the leftmost one if there is a tie)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-17",
+      "title": "Text Justification Engine",
+      "module": "Module 07: Strings",
+      "difficulty": "Hard",
+      "objective": "Format space-delimited words into lines of length L with balanced spacing.",
+      "problem_statement": "Task: Read a list of words and a width, and arrange the words into lines that are all exactly width characters long, like the text in a newspaper column.\n\nStep 1: Pack words greedily. Put as many words as possible on a line. Words on a line are separated by at least one space, and the line must not be longer than width.\nStep 2: Spread the spaces on every line except the last:\n• The line needs width - (total letters of its words) spaces in total\n• Divide these spaces among the gaps between the words as evenly as possible\n• If the spaces do not divide evenly, the gaps on the LEFT get one extra space each\n• If the line has only one word, there are no gaps: put the word on the left and fill the rest with spaces\nStep 3: The last line is left-justified: its words are separated by single spaces, and spaces are added at the end to reach width.\n\nPrinting: print every line between two | characters, so that the spaces at the end of a line can be seen. For example the line 'a ' is printed as |a |.\n\nExample: for the words This is an example of text justification. and width 16 the output is:\n|This is an|\n|example of text|\n|justification. |\n\nGiven the words and the width, print the justified lines.",
+      "input_format": "Line 1: the words, separated by single spaces.\nLine 2: the line width (a positive integer).",
+      "output_format": "One output line for each justified line, written as |<line>| where <line> has exactly width characters.",
+      "constraints": "1 <= number of words <= 300\n1 <= length of each word <= width\n1 <= width <= 100",
+      "sample_inputs": [
+        "This is an example of text justification.\n16",
+        "What must be acknowledgment shall be\n16"
+      ],
+      "sample_outputs": [
+        "|This    is    an|\n|example  of text|\n|justification.  |",
+        "|What   must   be|\n|acknowledgment  |\n|shall be        |"
+      ],
+      "hints": [
+        "Build one line at a time: add the next word while (current letters + gaps + next word) still fits in width.",
+        "For a full line: spaces = width - letters, gaps = words - 1, then use divmod(spaces, gaps) to get the base spaces and the extra ones for the left gaps.",
+        "Treat the last line and single-word lines separately: join with single spaces (or just the word), then pad on the right with ljust(width). Print each line as '|' + line + '|'."
+      ],
+      "starter_code": null,
+      "reference_solution": "words = input().split()\nwidth = int(input())\n\nn = len(words)\nstart = 0\n\nwhile start < n:\n    # Pack as many words as fit on this line\n    end = start\n    line_length = len(words[start])\n    while end + 1 < n and line_length + 1 + len(words[end + 1]) <= width:\n        end += 1\n        line_length += 1 + len(words[end])\n\n    line_words = words[start:end + 1]\n\n    if end == n - 1:\n        # last line: single spaces, padded on the right\n        line = \" \".join(line_words).ljust(width)\n    elif len(line_words) == 1:\n        line = line_words[0].ljust(width)\n    else:\n        total_letters = sum(len(w) for w in line_words)\n        gaps = len(line_words) - 1\n        spaces_each, extra = divmod(width - total_letters, gaps)\n\n        line = \"\"\n        for g in range(gaps):\n            # the first `extra` gaps get one more space\n            spaces = spaces_each + (1 if g < extra else 0)\n            line += line_words[g] + \" \" * spaces\n        line += line_words[-1]\n\n    print(\"|\" + line + \"|\")\n    start = end + 1",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "This is an example of text justification.\n16",
+          "output": "|This    is    an|\n|example  of text|\n|justification.  |",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "What must be acknowledgment shall be\n16",
+          "output": "|What   must   be|\n|acknowledgment  |\n|shall be        |",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "hello world\n11",
+          "output": "|hello world|",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a\n5",
+          "output": "|a    |",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Science is what we understand well enough to explain to a computer. Art is everything else we do\n20",
+          "output": "|Science  is  what we|\n|understand      well|\n|enough to explain to|\n|a  computer.  Art is|\n|everything  else  we|\n|do                  |",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hi\n2",
+          "output": "|Hi|",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "one two three four\n7",
+          "output": "|one two|\n|three  |\n|four   |",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a b c d e\n3",
+          "output": "|a b|\n|c d|\n|e  |",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "Listen to many, speak to a few.\n12",
+          "output": "|Listen    to|\n|many,  speak|\n|to a few.   |",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "abc def ghi\n3",
+          "output": "|abc|\n|def|\n|ghi|",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(total characters)",
+        "space_complexity": "O(total characters)",
+        "input_format": "Line 1: the words, separated by single spaces.\nLine 2: the line width (a positive integer).",
+        "output_format": "One output line for each justified line, written as |<line>| where <line> has exactly width characters."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M07-18",
+      "title": "Version String Comparator",
+      "module": "Module 07: Strings",
+      "difficulty": "Hard",
+      "objective": "Compare two version strings (e.g. 1.2.0 vs 1.10) printing -1, 0, or 1.",
+      "problem_statement": "Task: Software versions are written as numbers separated by dots, such as 1.2.0 or 1.10. Read two versions v1 and v2 and print which one is newer.\n\nRules:\n• Split each version on the dot. Each part is a whole number\n• Compare the parts as NUMBERS, not as text. So 10 is bigger than 2, and 1.10 is newer than 1.2\n• Compare from left to right. The first part that is different decides the result\n• Leading zeros do not matter: 01 is the same as 1\n• If one version has fewer parts, treat the missing parts as 0. So 1.0 and 1.0.0 are equal, and 1 equals 1.0.0.0\n• Print -1 if v1 is older than v2, print 1 if v1 is newer than v2, and print 0 if they are equal\n\nExamples:\n• 1.2.0 and 1.10 → -1 (the parts 2 and 10 decide: 2 < 10)\n• 2.0 and 1.9.9 → 1\n• 1.0 and 1 → 0\n• 3.4.5 and 3.4.5.1 → -1 (the missing 4th part of v1 counts as 0, and 0 < 1)\n\nGiven two versions, print -1, 0 or 1.",
+      "input_format": "Line 1: the first version v1.\nLine 2: the second version v2.",
+      "output_format": "One integer: -1, 0 or 1.",
+      "constraints": "Each version has 1 to 10 parts separated by single dots\nEach part is a whole number from 0 to 10^9 (leading zeros are possible)",
+      "sample_inputs": [
+        "1.2.0\n1.10",
+        "1.0\n1"
+      ],
+      "sample_outputs": [
+        "-1",
+        "0"
+      ],
+      "hints": [
+        "Convert every part to an int after splitting, so that '01' becomes 1 and '10' is bigger than '2'.",
+        "Pad the shorter list of numbers with zeros until both lists have the same length.",
+        "Compare the numbers pair by pair. Set the result to -1 or 1 at the first difference and break; if there is no difference the result stays 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "v1 = input()\nv2 = input()\n\nparts_1 = [int(x) for x in v1.split(\".\")]\nparts_2 = [int(x) for x in v2.split(\".\")]\n\n# Pad with zeros so \"1.0\" and \"1.0.0\" have the same length\nsize = max(len(parts_1), len(parts_2))\nparts_1 += [0] * (size - len(parts_1))\nparts_2 += [0] * (size - len(parts_2))\n\nresult = 0\nfor a, b in zip(parts_1, parts_2):\n    if a < b:\n        result = -1\n        break\n    if a > b:\n        result = 1\n        break\n\nprint(result)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1.2.0\n1.10",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1.0\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2.0\n1.9.9",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1.01\n1.001",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0.1\n1.1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1.0.0.0\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3.4.5\n3.4.5.1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10.0\n9.99.99",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1.2.3\n1.2.3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "7.5.2.4\n7.5.3",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Strings",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the first version v1.\nLine 2: the second version v2.",
+        "output_format": "One integer: -1, 0 or 1."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_07_strings.csv",
+    "total_rows": 18,
+    "total_questions": 18,
+    "valid_questions": 18,
+    "total_test_cases": 180,
+    "visible_test_cases": 54,
+    "hidden_test_cases": 126,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

@@ -1,0 +1,1767 @@
+{
+  "id": "d59049ae",
+  "filename": "module_09_tuples_sets_dictionaries.csv",
+  "imported_at": "2026-10-16T08:06:58.221023Z",
+  "total_questions": 16,
+  "total_test_cases": 160,
+  "visible_test_cases": 48,
+  "hidden_test_cases": 112,
+  "questions": [
+    {
+      "question_id": "PY-M9-01",
+      "title": "Tuple Unpack and Swap",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Easy",
+      "objective": "Unpack coordinates and swap endpoints using tuple assignment.",
+      "problem_statement": "Task: A line segment has two endpoints, start and end. Each endpoint is a point (x, y), stored as a tuple.\n\nRead the two endpoints, build the segment as a tuple of two tuples, swap the endpoints, and print the results.\n• Build start = (x1, y1) and end = (x2, y2), then segment = (start, end)\n• Unpack the segment into two variables with one tuple assignment: start, end = segment\n• Swap them with one tuple assignment: start, end = end, start (no temporary variable)\n• Print the swapped segment (end first, then start) as a tuple\n• On a second line, print the x value of the new start point and the y value of the new end point, separated by a space. Get them by unpacking: x, y = start\n\nExample: for the endpoints 1 2 and 5 7 the output is\n((5, 7), (1, 2))\n5 2\n\nGiven the two endpoints, print the swapped segment.",
+      "input_format": "Line 1: two integers x1 and y1 (the start point).\nLine 2: two integers x2 and y2 (the end point).",
+      "output_format": "Line 1: the swapped segment printed as a Python tuple: ((x2, y2), (x1, y1)).\nLine 2: the x of the new start point and the y of the new end point, separated by a space.",
+      "constraints": "-10^6 <= x1, y1, x2, y2 <= 10^6",
+      "sample_inputs": [
+        "1 2\n5 7",
+        "0 0\n3 4"
+      ],
+      "sample_outputs": [
+        "((5, 7), (1, 2))\n5 2",
+        "((3, 4), (0, 0))\n3 0"
+      ],
+      "hints": [
+        "x1, y1 = map(int, input().split()) reads two numbers in one line.",
+        "a, b = b, a swaps two variables in Python without a temporary variable.",
+        "Printing a tuple directly gives the Python format: print((start, end))."
+      ],
+      "starter_code": null,
+      "reference_solution": "x1, y1 = map(int, input().split())\nx2, y2 = map(int, input().split())\n\nsegment = ((x1, y1), (x2, y2))\n\nstart, end = segment          # tuple unpacking\nstart, end = end, start       # swap with one tuple assignment\n\nprint((start, end))\n\nstart_x, start_y = start\nend_x, end_y = end\nprint(start_x, end_y)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2\n5 7",
+          "output": "((5, 7), (1, 2))\n5 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0 0\n3 4",
+          "output": "((3, 4), (0, 0))\n3 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1 -2\n-3 -4",
+          "output": "((-3, -4), (-1, -2))\n-3 -2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5\n5 5",
+          "output": "((5, 5), (5, 5))\n5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10 0\n0 10",
+          "output": "((0, 10), (10, 0))\n0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1000000 1000000\n1000000 -1000000",
+          "output": "((1000000, -1000000), (-1000000, 1000000))\n1000000 1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7 -3\n2 9",
+          "output": "((2, 9), (7, -3))\n2 -3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 1\n1 0",
+          "output": "((1, 0), (0, 1))\n1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "100 200\n300 400",
+          "output": "((300, 400), (100, 200))\n300 200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "-5 8\n6 -9",
+          "output": "((6, -9), (-5, 8))\n6 8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: two integers x1 and y1 (the start point).\nLine 2: two integers x2 and y2 (the end point).",
+        "output_format": "Line 1: the swapped segment printed as a Python tuple: ((x2, y2), (x1, y1)).\nLine 2: the x of the new start point and the y of the new end point, separated by a space."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-02",
+      "title": "Set Membership Deduplicator",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Easy",
+      "objective": "Print unique values from space-separated input stream using sets.",
+      "problem_statement": "Task: A set stores each value only once, and checking whether a value is in a set (x in seen) is very fast.\n\nRead a line of integers and print every value once, in the order of its first appearance. Then print how many different values there are.\n• Keep a set called seen with the values you have already printed\n• Go through the numbers. If a number is not in seen, add it to the result and to seen\n• A set has no order, so do not print the set itself: print the result list\n• On the second line, print the number of different values. len(set(nums)) gives it directly\n\nExample: for 4 2 4 9 2 4 the output is\n4 2 9\n3\n\nGiven a line of integers, print the unique values and their count.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "Line 1: the unique values in first-appearance order, separated by single spaces.\nLine 2: the number of unique values.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "4 2 4 9 2 4",
+        "1 2 3"
+      ],
+      "sample_outputs": [
+        "4 2 9\n3",
+        "1 2 3\n3"
+      ],
+      "hints": [
+        "seen = set() creates an empty set. Note that {} creates an empty dict, not a set.",
+        "Use if x not in seen: then seen.add(x) and result.append(x).",
+        "len(seen) at the end is the number of unique values."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nseen = set()\nresult = []\n\nfor x in nums:\n    if x not in seen:\n        seen.add(x)\n        result.append(x)\n\nprint(\" \".join(str(x) for x in result))\nprint(len(seen))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 2 4 9 2 4",
+          "output": "4 2 9\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3",
+          "output": "1 2 3\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7 7 7",
+          "output": "7\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "5\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-1 1 -1 1",
+          "output": "-1 1\n2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 0 0 1",
+          "output": "0 1\n2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 1 4 1 5 9 2 6 5 3 5",
+          "output": "3 1 4 5 9 2 6\n7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 20 10 30 20 40",
+          "output": "10 20 30 40\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-5 -5 -4 -4 -3",
+          "output": "-5 -4 -3\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1000000000 -1000000000 1000000000",
+          "output": "1000000000 -1000000000\n2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "Line 1: the unique values in first-appearance order, separated by single spaces.\nLine 2: the number of unique values."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-03",
+      "title": "Set Algebraic Operations",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Easy",
+      "objective": "Print intersection, union, and symmetric difference counts.",
+      "problem_statement": "Task: Python sets support set algebra with operators:\n• a & b is the intersection: values in both sets\n• a | b is the union: values in at least one set\n• a ^ b is the symmetric difference: values in exactly one of the sets\n\nRead two lines of integers, turn each line into a set, and print the sizes of the intersection, the union and the symmetric difference. Repeated numbers inside one line count once, because they go into a set.\n\nExample: for 1 2 3 4 and 3 4 5 the intersection is {3, 4}, the union is {1, 2, 3, 4, 5} and the symmetric difference is {1, 2, 5}, so the output is 2 5 3.\n\nGiven the two lines, print the three counts.",
+      "input_format": "Line 1: the integers of the first group, separated by single spaces.\nLine 2: the integers of the second group, separated by single spaces.",
+      "output_format": "One line: the size of the intersection, the union and the symmetric difference, separated by single spaces.",
+      "constraints": "1 <= number of integers on each line <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "1 2 3 4\n3 4 5",
+        "1 2 3\n4 5 6"
+      ],
+      "sample_outputs": [
+        "2 5 3",
+        "0 6 6"
+      ],
+      "hints": [
+        "set(int(x) for x in input().split()) builds a set from one line.",
+        "Use the operators &, | and ^ (or the methods intersection, union, symmetric_difference).",
+        "len() gives the size of a set. print(a, b, c) puts single spaces between the three values."
+      ],
+      "starter_code": null,
+      "reference_solution": "s1 = set(int(x) for x in input().split())\ns2 = set(int(x) for x in input().split())\n\ncommon = s1 & s2        # intersection\ncombined = s1 | s2      # union\nonly_one = s1 ^ s2      # symmetric difference\n\nprint(len(common), len(combined), len(only_one))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3 4\n3 4 5",
+          "output": "2 5 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3\n4 5 6",
+          "output": "0 6 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3\n1 2 3",
+          "output": "3 3 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 1 1\n1",
+          "output": "1 1 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n6",
+          "output": "0 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 2 3 3 3\n3 3 4 4",
+          "output": "1 4 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1 0 1\n0",
+          "output": "1 3 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 20 30 40 50\n30 40 50 60 70",
+          "output": "3 7 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "7 8 9\n9 8 7 6",
+          "output": "3 4 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1 3 5 7 9\n2 4 6 8 10",
+          "output": "0 10 10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N + M)",
+        "space_complexity": "O(N + M)",
+        "input_format": "Line 1: the integers of the first group, separated by single spaces.\nLine 2: the integers of the second group, separated by single spaces.",
+        "output_format": "One line: the size of the intersection, the union and the symmetric difference, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-04",
+      "title": "Tuple as Dict Coordinate Key",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Easy",
+      "objective": "Store and retrieve elevations in dictionary using (x, y) tuples as keys.",
+      "problem_statement": "Task: Dictionary keys must be immutable. Lists cannot be keys, but tuples can, so a point (row, col) is a perfect key.\n\nRead a map of elevations and store it in a dictionary whose keys are (row, col) tuples. Then answer queries about single points.\n• The map has R rows and C columns. Rows and columns are numbered from 0\n• Store each elevation as elevation[(row, col)] = value\n• For each query point (row, col), print its elevation\n• If the point is outside the map, print NOT FOUND. Use elevation.get(...) or the in operator instead of crashing with a KeyError\n\nExample: for the 2 x 3 map\n5 8 2\n7 1 9\nthe query 1 2 prints 9, and the query 2 0 prints NOT FOUND.\n\nGiven the map and the queries, print one answer per query.",
+      "input_format": "Line 1: two integers R and C.\nNext R lines: the C elevations of one row, separated by single spaces.\nNext line: the number of queries Q.\nNext Q lines: two integers row and col.",
+      "output_format": "Q lines: the elevation at the query point, or NOT FOUND if the point is not on the map.",
+      "constraints": "1 <= R, C <= 100\n1 <= Q <= 1000\n-10^4 <= each elevation <= 10^4\n-1000 <= row, col <= 1000",
+      "sample_inputs": [
+        "2 3\n5 8 2\n7 1 9\n3\n1 2\n0 0\n2 0",
+        "1 1\n42\n2\n0 0\n0 1"
+      ],
+      "sample_outputs": [
+        "9\n5\nNOT FOUND",
+        "42\nNOT FOUND"
+      ],
+      "hints": [
+        "Loop over the rows with enumerate to know the row number, and over the values with enumerate to know the column number.",
+        "Write elevation[(r, c)] = value. A tuple is hashable, so it can be a key.",
+        "elevation.get((row, col), 'NOT FOUND') returns the default when the key is missing."
+      ],
+      "starter_code": null,
+      "reference_solution": "rows, cols = map(int, input().split())\n\nelevation = {}\nfor r in range(rows):\n    values = [int(x) for x in input().split()]\n    for c, value in enumerate(values):\n        elevation[(r, c)] = value     # a tuple is a valid dict key\n\nqueries = int(input())\nfor _ in range(queries):\n    row, col = map(int, input().split())\n    print(elevation.get((row, col), \"NOT FOUND\"))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 3\n5 8 2\n7 1 9\n3\n1 2\n0 0\n2 0",
+          "output": "9\n5\nNOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n42\n2\n0 0\n0 1",
+          "output": "42\nNOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2 2\n1 2\n3 4\n4\n0 0\n0 1\n1 0\n1 1",
+          "output": "1\n2\n3\n4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n2\n-1 0\n1 1",
+          "output": "NOT FOUND\n5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 4\n-5 0 5 10\n2\n0 3\n3 0",
+          "output": "10\nNOT FOUND",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2\n0 0\n0 0\n1\n1 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 2\n10 20\n30 40\n50 60\n3\n2 1\n1 2\n2 0",
+          "output": "60\nNOT FOUND\n50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 1\n-10000\n1\n0 0",
+          "output": "-10000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2 3\n9 9 9\n9 9 9\n2\n5 5\n0 2",
+          "output": "NOT FOUND\n9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4 1\n1\n2\n3\n4\n4\n3 0\n0 0\n4 0\n2 0",
+          "output": "4\n1\nNOT FOUND\n3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(R x C + Q)",
+        "space_complexity": "O(R x C)",
+        "input_format": "Line 1: two integers R and C.\nNext R lines: the C elevations of one row, separated by single spaces.\nNext line: the number of queries Q.\nNext Q lines: two integers row and col.",
+        "output_format": "Q lines: the elevation at the query point, or NOT FOUND if the point is not on the map."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-05",
+      "title": "Word Count Frequency",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Easy",
+      "objective": "Compute word frequency counts from tokens, building a dictionary.",
+      "problem_statement": "Task: Read a line of words and count how many times each word appears, using a dictionary.\n• Words are separated by spaces\n• Counting is not case-sensitive: The and the are the same word, so convert every word to lower case first\n• The dictionary maps each word to its count: counts[word] = counts.get(word, 0) + 1\n• Do not import collections.Counter\n• Print one line per different word, in the order each word first appears: word: count\n\nExample: for the line The cat and the hat the output is\nthe: 2\ncat: 1\nand: 1\nhat: 1\n\nGiven a line of words, print the word counts.",
+      "input_format": "A single line containing words separated by spaces.",
+      "output_format": "One line for every different word, in first-appearance order: <word>: <count>",
+      "constraints": "1 <= number of words <= 10^4\nWords contain only English letters",
+      "sample_inputs": [
+        "The cat and the hat",
+        "a b a b a"
+      ],
+      "sample_outputs": [
+        "the: 2\ncat: 1\nand: 1\nhat: 1",
+        "a: 3\nb: 2"
+      ],
+      "hints": [
+        "input().split() gives the list of words. Use word.lower() for each one.",
+        "counts.get(word, 0) gives 0 when the word is not in the dictionary yet.",
+        "A dict remembers the order in which keys were added, so for word, count in counts.items() gives first-appearance order."
+      ],
+      "starter_code": null,
+      "reference_solution": "words = input().split()\n\ncounts = {}\nfor word in words:\n    word = word.lower()\n    counts[word] = counts.get(word, 0) + 1\n\nfor word, count in counts.items():\n    print(f\"{word}: {count}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "The cat and the hat",
+          "output": "the: 2\ncat: 1\nand: 1\nhat: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a b a b a",
+          "output": "a: 3\nb: 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "hello",
+          "output": "hello: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Go go GO",
+          "output": "go: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "one two three",
+          "output": "one: 1\ntwo: 1\nthree: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "To be or not to be",
+          "output": "to: 2\nbe: 2\nor: 1\nnot: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "x y z x y x",
+          "output": "x: 3\ny: 2\nz: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Apple banana apple Banana cherry",
+          "output": "apple: 2\nbanana: 2\ncherry: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "it is what it is",
+          "output": "it: 2\nis: 2\nwhat: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "a A a A b",
+          "output": "a: 4\nb: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing words separated by spaces.",
+        "output_format": "One line for every different word, in first-appearance order: <word>: <count>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-06",
+      "title": "Sort Tuples by Secondary Key",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Sort tuples primarily by score descending, secondarily by age ascending.",
+      "problem_statement": "Task: Each student record is a tuple (name, score, age). Read the records and print them sorted:\n• Higher score first (score descending)\n• If two students have the same score, the younger one comes first (age ascending)\n• If score and age are both equal, keep the input order (Python's sort is stable)\n\nUse sorted() with a key function that returns a tuple. Tuples are compared item by item, so key=lambda rec: (-rec[1], rec[2]) sorts by score descending and then by age ascending.\n\nExample: for the records\nAsha 90 20\nBen 85 19\nChen 90 18\nthe output is\nChen 90 18\nAsha 90 20\nBen 85 19\n\nGiven the records, print them in sorted order.",
+      "input_format": "Line 1: the number of records N.\nNext N lines: name score age, separated by single spaces.",
+      "output_format": "N lines: the records in sorted order, each as name score age.",
+      "constraints": "1 <= N <= 10^4\nNames have no spaces\n0 <= score <= 100\n1 <= age <= 120",
+      "sample_inputs": [
+        "3\nAsha 90 20\nBen 85 19\nChen 90 18",
+        "2\nA 50 30\nB 60 30"
+      ],
+      "sample_outputs": [
+        "Chen 90 18\nAsha 90 20\nBen 85 19",
+        "B 60 30\nA 50 30"
+      ],
+      "hints": [
+        "Store each record as a tuple: (name, int(score), int(age)).",
+        "A minus sign in front of the score turns descending into ascending: key=lambda rec: (-rec[1], rec[2]).",
+        "Unpack each sorted record in the print loop: for name, score, age in ordered:."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nrecords = []\nfor _ in range(n):\n    name, score, age = input().split()\n    records.append((name, int(score), int(age)))\n\n# score descending (minus sign), then age ascending\nordered = sorted(records, key=lambda rec: (-rec[1], rec[2]))\n\nfor name, score, age in ordered:\n    print(name, score, age)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nAsha 90 20\nBen 85 19\nChen 90 18",
+          "output": "Chen 90 18\nAsha 90 20\nBen 85 19",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\nA 50 30\nB 60 30",
+          "output": "B 60 30\nA 50 30",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nSolo 77 25",
+          "output": "Solo 77 25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nX 70 20\nY 70 20\nZ 70 20",
+          "output": "X 70 20\nY 70 20\nZ 70 20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\nA 100 40\nB 100 30\nC 100 50\nD 99 10",
+          "output": "B 100 30\nA 100 40\nC 100 50\nD 99 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\nP 0 5\nQ 0 4\nR 1 99",
+          "output": "R 1 99\nQ 0 4\nP 0 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\nE 10 1\nD 20 2\nC 30 3\nB 40 4\nA 50 5",
+          "output": "A 50 5\nB 40 4\nC 30 3\nD 20 2\nE 10 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\nAnn 88 22\nBob 88 21\nCat 92 22\nDan 88 21",
+          "output": "Cat 92 22\nBob 88 21\nDan 88 21\nAnn 88 22",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2\nLow 0 120\nHigh 100 1",
+          "output": "High 100 1\nLow 0 120",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3\nM 60 18\nN 60 17\nO 61 30",
+          "output": "O 61 30\nN 60 17\nM 60 18",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of records N.\nNext N lines: name score age, separated by single spaces.",
+        "output_format": "N lines: the records in sorted order, each as name score age."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-07",
+      "title": "Invert Dictionary with Collisions",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Invert dictionary {k: v} into {v: sorted_list_of_keys}.",
+      "problem_statement": "Task: Inverting a dictionary swaps keys and values: {k: v} becomes {v: k}. When several keys share the same value, they collide, so the inverted dictionary stores a LIST of keys for each value.\n\nRead N key-value pairs into a dictionary d, then build the inverted dictionary {value: sorted list of keys}.\n• All keys are different. Values may repeat\n• The list of keys for each value must be sorted alphabetically\n• Print one line per value, with the values in alphabetical order: value: key1 key2 ...\n\nExample: for the pairs apple red, cherry red, banana yellow the dictionary is {'apple': 'red', 'cherry': 'red', 'banana': 'yellow'} and the output is\nred: apple cherry\nyellow: banana\n\nGiven the pairs, print the inverted dictionary.",
+      "input_format": "Line 1: the number of pairs N.\nNext N lines: a key and a value separated by a single space.",
+      "output_format": "One line for every different value, in alphabetical order of the values: <value>: <keys in alphabetical order, separated by single spaces>",
+      "constraints": "1 <= N <= 10^4\nKeys and values are words without spaces\nAll keys are different",
+      "sample_inputs": [
+        "3\napple red\ncherry red\nbanana yellow",
+        "2\na 1\nb 2"
+      ],
+      "sample_outputs": [
+        "red: apple cherry\nyellow: banana",
+        "1: a\n2: b"
+      ],
+      "hints": [
+        "First read the pairs into d with d[key] = value.",
+        "For each key, value in d.items(): if value is not in inverted yet, start it with an empty list, then append the key. setdefault(value, []) does both steps.",
+        "Sort each list of keys, and loop over sorted(inverted) to print the values in order."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nd = {}\nfor _ in range(n):\n    key, value = input().split()\n    d[key] = value\n\ninverted = {}\nfor key, value in d.items():\n    if value not in inverted:\n        inverted[value] = []\n    inverted[value].append(key)       # several keys can share one value\n\nfor value in sorted(inverted):\n    keys = sorted(inverted[value])\n    print(f\"{value}: {' '.join(keys)}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\napple red\ncherry red\nbanana yellow",
+          "output": "red: apple cherry\nyellow: banana",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\na 1\nb 2",
+          "output": "1: a\n2: b",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nonly one",
+          "output": "one: only",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nz x\ny x\nx x",
+          "output": "x: x y z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\ncat pet\ndog pet\nlion wild\ntiger wild",
+          "output": "pet: cat dog\nwild: lion tiger",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\ne v\nd v\nc w\nb v\na w",
+          "output": "v: b d e\nw: a c",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nup down\ndown up",
+          "output": "down: up\nup: down",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\nk1 same\nk3 same\nk2 same\nk0 other",
+          "output": "other: k0\nsame: k1 k2 k3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "3\nAmy B\namy A\nAMY B",
+          "output": "A: amy\nB: AMY Amy",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "6\nmon work\ntue work\nwed work\nthu work\nfri work\nsat rest",
+          "output": "rest: sat\nwork: fri mon thu tue wed",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of pairs N.\nNext N lines: a key and a value separated by a single space.",
+        "output_format": "One line for every different value, in alphabetical order of the values: <value>: <keys in alphabetical order, separated by single spaces>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-08",
+      "title": "Category Aggregator",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Group items from (category, amount) tuples and compute category totals.",
+      "problem_statement": "Task: Read N spending records. Each record is a (category, amount) tuple. Group the records by category with a dictionary and add up the amounts.\n• totals[category] holds the sum of all amounts in that category\n• Print one line per category, in the order each category first appears: category total\n• After the categories, print one more line: TOTAL followed by the sum of all amounts\n\nExample: for the records food 120, travel 300, food 80 the output is\nfood 200\ntravel 300\nTOTAL 500\n\nGiven the records, print the totals.",
+      "input_format": "Line 1: the number of records N.\nNext N lines: a category and an integer amount separated by a single space.",
+      "output_format": "One line per category in first-appearance order: <category> <total>, then a last line: TOTAL <sum of all amounts>.",
+      "constraints": "1 <= N <= 10^5\nCategories are words without spaces\n0 <= amount <= 10^6",
+      "sample_inputs": [
+        "3\nfood 120\ntravel 300\nfood 80",
+        "1\nrent 1000"
+      ],
+      "sample_outputs": [
+        "food 200\ntravel 300\nTOTAL 500",
+        "rent 1000\nTOTAL 1000"
+      ],
+      "hints": [
+        "Store each record as a tuple (category, amount) in a list first.",
+        "Unpack in the loop: for category, amount in records:, then totals[category] = totals.get(category, 0) + amount.",
+        "sum(totals.values()) gives the grand total."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nrecords = []\nfor _ in range(n):\n    category, amount = input().split()\n    records.append((category, int(amount)))\n\ntotals = {}\nfor category, amount in records:\n    totals[category] = totals.get(category, 0) + amount\n\nfor category, total in totals.items():\n    print(category, total)\n\nprint(\"TOTAL\", sum(totals.values()))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nfood 120\ntravel 300\nfood 80",
+          "output": "food 200\ntravel 300\nTOTAL 500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nrent 1000",
+          "output": "rent 1000\nTOTAL 1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4\na 1\nb 2\na 3\nb 4",
+          "output": "a 4\nb 6\nTOTAL 10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nx 0\nx 0\nx 0",
+          "output": "x 0\nTOTAL 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\nfood 10\nbooks 20\nfood 30\nfun 40\nbooks 50",
+          "output": "food 40\nbooks 70\nfun 40\nTOTAL 150",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nFood 5\nfood 6",
+          "output": "Food 5\nfood 6\nTOTAL 11",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\nz 1000000\ny 1000000\nz 1000000",
+          "output": "z 2000000\ny 1000000\nTOTAL 3000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\nc 1\nb 2\na 3\nc 4\nb 5\na 6",
+          "output": "c 5\nb 7\na 9\nTOTAL 21",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2\nsolo 7\nsolo 8",
+          "output": "solo 15\nTOTAL 15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4\ngym 30\nbus 2\nbus 2\ngym 30",
+          "output": "gym 60\nbus 4\nTOTAL 64",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of records N.\nNext N lines: a category and an integer amount separated by a single space.",
+        "output_format": "One line per category in first-appearance order: <category> <total>, then a last line: TOTAL <sum of all amounts>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-09",
+      "title": "Dense Rank Calculator",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Assign dense ranks to integer scores using set sorting and dict lookup.",
+      "problem_statement": "Task: In dense ranking, the highest score gets rank 1, the next different score gets rank 2, and so on. Equal scores share the same rank, and there are no gaps between ranks.\n\nRead a list of scores and print the dense rank of each score, in the input order.\n• Put the scores in a set to remove repeats, then sort the set from highest to lowest\n• Build a dictionary rank_of that maps each different score to its rank (1, 2, 3, ...)\n• Look up the rank of every score in the dictionary\n\nExample: for 100 90 90 80 100 the different scores in order are 100, 90, 80, so the output is 1 2 2 3 1.\n\nGiven the scores, print their dense ranks.",
+      "input_format": "A single line containing the scores, separated by single spaces.",
+      "output_format": "One line: the dense rank of each score in input order, separated by single spaces.",
+      "constraints": "1 <= number of scores <= 10^5\n-10^9 <= each score <= 10^9",
+      "sample_inputs": [
+        "100 90 90 80 100",
+        "5 4 3 2 1"
+      ],
+      "sample_outputs": [
+        "1 2 2 3 1",
+        "1 2 3 4 5"
+      ],
+      "hints": [
+        "sorted(set(scores), reverse=True) gives the different scores from highest to lowest.",
+        "Use enumerate(..., start=1) to give the ranks: rank_of[score] = rank.",
+        "A dict lookup takes O(1) time, so [rank_of[s] for s in scores] is fast."
+      ],
+      "starter_code": null,
+      "reference_solution": "scores = [int(x) for x in input().split()]\n\nunique_desc = sorted(set(scores), reverse=True)\n\nrank_of = {}\nfor rank, score in enumerate(unique_desc, start=1):\n    rank_of[score] = rank\n\nranks = [rank_of[s] for s in scores]\nprint(\" \".join(str(r) for r in ranks))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100 90 90 80 100",
+          "output": "1 2 2 3 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5 4 3 2 1",
+          "output": "1 2 3 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7 7 7",
+          "output": "1 1 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "42",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3",
+          "output": "3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 -5 -1 0",
+          "output": "2 3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50 70 50 70 60",
+          "output": "3 1 3 1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 20 10 30 20 40",
+          "output": "4 3 4 2 3 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0 0 1 1 2 2",
+          "output": "3 3 2 2 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1000000000 -1000000000 0",
+          "output": "1 3 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the scores, separated by single spaces.",
+        "output_format": "One line: the dense rank of each score in input order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-10",
+      "title": "Two-Sum Hash Map Lookup",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Find pair of indices summing to target in O(N) using a dictionary.",
+      "problem_statement": "Task: Read a list of integers and a target. Find two different positions i < j such that nums[i] + nums[j] == target, in one pass with a dictionary.\n• Go through the list from left to right with index j\n• For each nums[j], the partner it needs is target - nums[j]. If that partner was seen before, its index i is in the dictionary: print i j and stop\n• Otherwise store nums[j] in the dictionary as value -> index. Store only the FIRST index of each value (do not overwrite it)\n• This finds the pair with the smallest possible j, and for that j the smallest i\n• If there is no such pair, print NOT FOUND\n• Positions start at 0\n\nExample: for the list 2 7 11 15 and target 9 the output is 0 1.\n\nGiven the list and the target, print the pair of indices.",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the target integer.",
+      "output_format": "One line: the indices i and j separated by a single space, or NOT FOUND.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer, target <= 10^9",
+      "sample_inputs": [
+        "2 7 11 15\n9",
+        "3 2 4\n6"
+      ],
+      "sample_outputs": [
+        "0 1",
+        "1 2"
+      ],
+      "hints": [
+        "first_index = {} maps a value to the first position where it appeared.",
+        "Check need = target - nums[j] with if need in first_index BEFORE storing nums[j]. This stops a number from pairing with itself.",
+        "Use a found flag and break, then print NOT FOUND after the loop if nothing was found."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\ntarget = int(input())\n\nfirst_index = {}\nfound = False\n\nfor j, value in enumerate(nums):\n    need = target - value\n    if need in first_index:\n        print(first_index[need], j)\n        found = True\n        break\n    if value not in first_index:      # keep only the first index\n        first_index[value] = j\n\nif not found:\n    print(\"NOT FOUND\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 7 11 15\n9",
+          "output": "0 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3 2 4\n6",
+          "output": "1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 3\n6",
+          "output": "0 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3\n100",
+          "output": "NOT FOUND",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n10",
+          "output": "NOT FOUND",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 5 1 5\n6",
+          "output": "0 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-3 4 3 90\n0",
+          "output": "0 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 4 3 0\n0",
+          "output": "0 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2 2 2 2\n4",
+          "output": "0 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "10 -10 20 -20 30\n10",
+          "output": "1 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the target integer.",
+        "output_format": "One line: the indices i and j separated by a single space, or NOT FOUND."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-11",
+      "title": "First Unique Character",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Identify first non-repeating character in string in O(N).",
+      "problem_statement": "Task: Read a string and print its first character that appears exactly once.\n• Characters are case-sensitive: a and A are different characters\n• First count every character with a dictionary in one pass over the string\n• A dict keeps the order in which keys were first added, so the first key with count 1 is the answer. You do not need a second pass over the whole string\n• If every character repeats, print NONE\n\nExamples: for leetcode the output is l. For loveleetcode the output is v. For aabb the output is NONE.\n\nGiven a string, print its first unique character.",
+      "input_format": "A single line containing the string (no spaces).",
+      "output_format": "One line: the first non-repeating character, or NONE if there is none.",
+      "constraints": "1 <= length of the string <= 10^5\nThe string has no spaces",
+      "sample_inputs": [
+        "leetcode",
+        "loveleetcode"
+      ],
+      "sample_outputs": [
+        "l",
+        "v"
+      ],
+      "hints": [
+        "counts[ch] = counts.get(ch, 0) + 1 for every character ch.",
+        "for ch, count in counts.items(): goes through the characters in first-appearance order.",
+        "Print the first ch with count == 1 and break. Use a flag (or for ... else) to print NONE when there is none."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\ncounts = {}\nfor ch in s:\n    counts[ch] = counts.get(ch, 0) + 1\n\nanswer = \"NONE\"\nfor ch, count in counts.items():      # first-appearance order\n    if count == 1:\n        answer = ch\n        break\n\nprint(answer)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "leetcode",
+          "output": "l",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "loveleetcode",
+          "output": "v",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "aabb",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "z",
+          "output": "z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abcabcd",
+          "output": "d",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aAbBa",
+          "output": "A",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "xxyyzzw",
+          "output": "w",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "112233",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "swiss",
+          "output": "w",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "programming",
+          "output": "p",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(K)",
+        "input_format": "A single line containing the string (no spaces).",
+        "output_format": "One line: the first non-repeating character, or NONE if there is none."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-12",
+      "title": "Subarray Sum Equals K (O(N))",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Count subarrays summing to K using prefix sum frequencies in dict.",
+      "problem_statement": "Task: A subarray is a continuous part of a list. Read a list of integers and a number k, and count how many subarrays have a sum equal to k.\n\nThe O(N) method uses prefix sums. The prefix sum at position j is the sum of nums[0] to nums[j]. The subarray from i + 1 to j has sum prefix[j] - prefix[i]. So a subarray ending at j has sum k exactly when an earlier prefix sum equals prefix[j] - k.\n• Keep a dictionary seen that maps each prefix sum to how many times it has appeared. Start with seen = {0: 1} for the empty prefix\n• Walk through the list, update the running sum, add seen.get(running - k, 0) to the answer, then record the running sum in seen\n• Numbers can be negative, so the sliding-window trick does not work here\n\nExample: for the list 1 1 1 and k = 2 the output is 2 (the subarrays [1, 1] at positions 0-1 and 1-2).\n\nGiven the list and k, print the number of subarrays.",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the integer k.",
+      "output_format": "One integer: the number of subarrays whose sum is k.",
+      "constraints": "1 <= number of integers <= 10^5\n-1000 <= each integer <= 1000\n-10^7 <= k <= 10^7",
+      "sample_inputs": [
+        "1 1 1\n2",
+        "1 2 3\n3"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "Start with running = 0, count = 0 and seen = {0: 1}.",
+        "For each x: running += x, then count += seen.get(running - k, 0).",
+        "Only after that, do seen[running] = seen.get(running, 0) + 1. The order matters."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nk = int(input())\n\nseen = {0: 1}      # prefix sum -> how many times it appeared\nrunning = 0\ncount = 0\n\nfor x in nums:\n    running += x\n    # an earlier prefix equal to running - k gives a subarray with sum k\n    count += seen.get(running - k, 0)\n    seen[running] = seen.get(running, 0) + 1\n\nprint(count)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 1 1\n2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3\n3",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 -1 0\n0",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0 0 0\n0",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3 4 7 2 -3 1 4 2\n7",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 2 3\n7",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1 -1 1\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "10 2 -2 -20 10\n-10",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1 2 1 2 1\n3",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the integer k.",
+        "output_format": "One integer: the number of subarrays whose sum is k."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-13",
+      "title": "Find Disappeared Numbers",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Medium",
+      "objective": "Find all integers missing from [1, N] using set difference.",
+      "problem_statement": "Task: Read a list of N integers. Every number is between 1 and N, but some numbers may appear more than once, so some numbers from 1 to N are missing. Print the missing numbers.\n• Build the set of all numbers from 1 to N: set(range(1, n + 1))\n• Build the set of numbers that appear in the list\n• The missing numbers are the set difference: full - present\n• Print them in increasing order\n• If no number is missing, print NONE\n\nExample: for 4 3 2 7 8 2 3 1 (N = 8) the output is 5 6.\n\nGiven the list, print the missing numbers.",
+      "input_format": "A single line containing the N integers, separated by single spaces.",
+      "output_format": "One line: the missing numbers in increasing order separated by single spaces, or NONE.",
+      "constraints": "1 <= N <= 10^5\n1 <= each integer <= N",
+      "sample_inputs": [
+        "4 3 2 7 8 2 3 1",
+        "1 1"
+      ],
+      "sample_outputs": [
+        "5 6",
+        "2"
+      ],
+      "hints": [
+        "N is the number of integers: n = len(nums).",
+        "The - operator on two sets gives the values in the first set but not in the second.",
+        "A set has no order, so print sorted(missing)."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nfull = set(range(1, n + 1))\npresent = set(nums)\nmissing = sorted(full - present)     # set difference\n\nif missing:\n    print(\" \".join(str(x) for x in missing))\nelse:\n    print(\"NONE\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 3 2 7 8 2 3 1",
+          "output": "5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3 3 3",
+          "output": "1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 4 3 2 1",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 1 1 1 1",
+          "output": "2 3 4 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2 3 4 5 5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "6 6 1 1 3 3",
+          "output": "2 4 5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the N integers, separated by single spaces.",
+        "output_format": "One line: the missing numbers in increasing order separated by single spaces, or NONE."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-14",
+      "title": "Deep Merge Dictionaries",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Hard",
+      "objective": "Merge two nested dictionaries at every level with dict2 overrides.",
+      "problem_statement": "Task: Read two dictionaries d1 and d2, written as Python dictionary literals, and print their deep merge.\n\nA normal d1.update(d2) replaces a nested dictionary completely. A deep merge goes inside nested dictionaries:\n• For every key in d2: if the key is in d1 AND both values are dictionaries, merge those two dictionaries in the same way (at every depth)\n• Otherwise the value from d2 replaces (or adds) the value in d1. Lists and other values are replaced, not merged\n• Keys keep the order of d1, and new keys from d2 are added at the end, in d2's order (this is what assigning to a dict does)\n\nInstead of a recursive function, use a stack: a list of (target, source) dictionary pairs that still need merging. Start with [(d1, d2)]. Pop a pair, copy the keys of source into target, and push any nested dictionary pairs you meet.\n\nExample: for d1 = {'a': 1, 'cfg': {'x': 1, 'y': 2}} and d2 = {'cfg': {'y': 20, 'z': 30}, 'b': 2} the output is\n{'a': 1, 'cfg': {'x': 1, 'y': 20, 'z': 30}, 'b': 2}\n\nGiven d1 and d2, print the merged dictionary.",
+      "input_format": "Line 1: the dictionary d1 as a Python literal.\nLine 2: the dictionary d2 as a Python literal.\nRead each line with ast.literal_eval(input()). Keys are strings. Values are integers, strings, lists or dictionaries.",
+      "output_format": "One line: the merged dictionary, printed as a Python dict.",
+      "constraints": "Each dictionary has at most 1000 keys in total, over all levels\nNesting depth <= 20",
+      "sample_inputs": [
+        "{'a': 1, 'cfg': {'x': 1, 'y': 2}}\n{'cfg': {'y': 20, 'z': 30}, 'b': 2}",
+        "{'a': 1}\n{'b': 2}"
+      ],
+      "sample_outputs": [
+        "{'a': 1, 'cfg': {'x': 1, 'y': 20, 'z': 30}, 'b': 2}",
+        "{'a': 1, 'b': 2}"
+      ],
+      "hints": [
+        "import ast, then ast.literal_eval(input()) safely turns the text {'a': 1} into a real dict.",
+        "isinstance(value, dict) checks whether a value is a dictionary.",
+        "Use stack = [(d1, d2)] and while stack: target, source = stack.pop(). When both target[key] and source[key] are dicts, push (target[key], source[key]); otherwise do target[key] = source[key]."
+      ],
+      "starter_code": null,
+      "reference_solution": "import ast\n\nd1 = ast.literal_eval(input())\nd2 = ast.literal_eval(input())\n\n# Each stack item is a pair (target, source): copy source into target\nstack = [(d1, d2)]\n\nwhile stack:\n    target, source = stack.pop()\n    for key, value in source.items():\n        if key in target and isinstance(target[key], dict) and isinstance(value, dict):\n            stack.append((target[key], value))    # merge one level deeper\n        else:\n            target[key] = value                   # d2 overrides or adds\n\nprint(d1)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "{'a': 1, 'cfg': {'x': 1, 'y': 2}}\n{'cfg': {'y': 20, 'z': 30}, 'b': 2}",
+          "output": "{'a': 1, 'cfg': {'x': 1, 'y': 20, 'z': 30}, 'b': 2}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "{'a': 1}\n{'b': 2}",
+          "output": "{'a': 1, 'b': 2}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "{'a': 1}\n{'a': 99}",
+          "output": "{'a': 99}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "{'a': {'b': {'c': 1, 'd': 2}}}\n{'a': {'b': {'c': 100}}}",
+          "output": "{'a': {'b': {'c': 100, 'd': 2}}}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "{'a': {'x': 1}}\n{'a': 5}",
+          "output": "{'a': 5}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "{'a': 5}\n{'a': {'x': 1}}",
+          "output": "{'a': {'x': 1}}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "{'tags': [1, 2]}\n{'tags': [3]}",
+          "output": "{'tags': [3]}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "{}\n{'k': {'n': 1}}",
+          "output": "{'k': {'n': 1}}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "{'k': {'n': 1}}\n{}",
+          "output": "{'k': {'n': 1}}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "{'db': {'host': 'local', 'port': 5432, 'opts': {'ssl': 0}}, 'debug': 1}\n{'db': {'port': 6543, 'opts': {'ssl': 1, 'timeout': 30}}, 'name': 'app'}",
+          "output": "{'db': {'host': 'local', 'port': 6543, 'opts': {'ssl': 1, 'timeout': 30}}, 'debug': 1, 'name': 'app'}",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(total keys)",
+        "space_complexity": "O(total keys)",
+        "input_format": "Line 1: the dictionary d1 as a Python literal.\nLine 2: the dictionary d2 as a Python literal.\nRead each line with ast.literal_eval(input()). Keys are strings. Values are integers, strings, lists or dictionaries.",
+        "output_format": "One line: the merged dictionary, printed as a Python dict."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-15",
+      "title": "Group Anagrams via Tuples",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Hard",
+      "objective": "Group strings into anagrams using sorted character tuples as dict keys.",
+      "problem_statement": "Task: Two words are anagrams if they use exactly the same letters the same number of times, like eat and tea. If you sort the letters of anagrams, you get the same result.\n\nRead a list of words and group the anagrams together.\n• For each word, build the key tuple(sorted(word)). A tuple can be a dict key, but a list cannot\n• Use a dictionary that maps each key to the list of words with that key\n• Print one group per line, words separated by spaces\n• Print the groups in the order their first word appears in the input, and keep the input order inside each group\n• Comparison is case-sensitive, and repeated words stay in the group as many times as they appear\n\nExample: for eat tea tan ate nat bat the output is\neat tea ate\ntan nat\nbat\n\nGiven the words, print the anagram groups.",
+      "input_format": "A single line containing the words, separated by single spaces.",
+      "output_format": "One line per anagram group: the words of the group separated by single spaces.",
+      "constraints": "1 <= number of words <= 10^4\n1 <= length of each word <= 100\nWords contain only English letters",
+      "sample_inputs": [
+        "eat tea tan ate nat bat",
+        "abc"
+      ],
+      "sample_outputs": [
+        "eat tea ate\ntan nat\nbat",
+        "abc"
+      ],
+      "hints": [
+        "sorted('tea') gives ['a', 'e', 't']. Wrap it with tuple() so it can be a dict key.",
+        "groups.setdefault(key, []).append(word) creates the list the first time and appends every time.",
+        "groups.values() gives the lists in the order their keys were first added."
+      ],
+      "starter_code": null,
+      "reference_solution": "words = input().split()\n\ngroups = {}\nfor word in words:\n    key = tuple(sorted(word))     # anagrams share the same key\n    if key not in groups:\n        groups[key] = []\n    groups[key].append(word)\n\nfor group in groups.values():\n    print(\" \".join(group))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "eat tea tan ate nat bat",
+          "output": "eat tea ate\ntan nat\nbat",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "abc",
+          "output": "abc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "ab ba ab",
+          "output": "ab ba ab",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a b c",
+          "output": "a\nb\nc",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "listen silent enlist google gogole",
+          "output": "listen silent enlist\ngoogle gogole",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Tea eat",
+          "output": "Tea\neat",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "loop pool polo lopo",
+          "output": "loop pool polo lopo",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "rat tar art star tars",
+          "output": "rat tar art\nstar tars",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "x x x",
+          "output": "x x x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "dusty study night thing inch chin",
+          "output": "dusty study\nnight thing\ninch chin",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N x L log L)",
+        "space_complexity": "O(N x L)",
+        "input_format": "A single line containing the words, separated by single spaces.",
+        "output_format": "One line per anagram group: the words of the group separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M9-16",
+      "title": "Top K Frequent Elements",
+      "module": "Module 09: Tuples, Sets, and Dictionaries",
+      "difficulty": "Hard",
+      "objective": "Find K most frequent elements in O(N log N) using hash map and sort.",
+      "problem_statement": "Task: Read a list of integers and a number k, and print the k values that appear most often.\n• Count every value with a dictionary\n• Sort the different values by count, highest first. If two values have the same count, the smaller value comes first\n• Print the first k values of that order\n• k is never bigger than the number of different values\n\nUse sorted() with a tuple key: key=lambda v: (-counts[v], v).\n\nExample: for the list 1 1 1 2 2 3 and k = 2 the output is 1 2.\n\nGiven the list and k, print the k most frequent values.",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the integer k.",
+      "output_format": "One line: the k most frequent values (highest count first, smaller value first on ties), separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^4 <= each integer <= 10^4\n1 <= k <= number of different values",
+      "sample_inputs": [
+        "1 1 1 2 2 3\n2",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "1 2",
+        "1"
+      ],
+      "hints": [
+        "counts[x] = counts.get(x, 0) + 1 for every x.",
+        "sorted(counts, key=lambda v: (-counts[v], v)) sorts the different values: count descending, then value ascending.",
+        "Slice the sorted list with [:k] and print it joined with spaces."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nk = int(input())\n\ncounts = {}\nfor x in nums:\n    counts[x] = counts.get(x, 0) + 1\n\n# highest count first; on a tie, the smaller value first\nordered = sorted(counts, key=lambda v: (-counts[v], v))\n\nprint(\" \".join(str(v) for v in ordered[:k]))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 1 1 2 2 3\n2",
+          "output": "1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4 4 5 5 6\n2",
+          "output": "4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 2 1\n3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-1 -1 2 2 2 0\n1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7 7 8 8 9 9\n2",
+          "output": "7 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 3 5 3 5 1 1 1 1\n3",
+          "output": "1 5 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 20 20 30 30 30 40 40 40 40\n2",
+          "output": "40 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0 0 0 -5 -5 7\n3",
+          "output": "0 -5 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "2 2 1 1\n1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Tuples, Sets, and Dictionaries",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the integer k.",
+        "output_format": "One line: the k most frequent values (highest count first, smaller value first on ties), separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_09_tuples_sets_dictionaries.csv",
+    "total_rows": 16,
+    "total_questions": 16,
+    "valid_questions": 16,
+    "total_test_cases": 160,
+    "visible_test_cases": 48,
+    "hidden_test_cases": 112,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

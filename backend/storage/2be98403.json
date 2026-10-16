@@ -1,0 +1,1990 @@
+{
+  "id": "2be98403",
+  "filename": "module_02_data_types_and_input_output.csv",
+  "imported_at": "2026-10-14T12:24:42.381044Z",
+  "total_questions": 19,
+  "total_test_cases": 175,
+  "visible_test_cases": 57,
+  "hidden_test_cases": 118,
+  "questions": [
+    {
+      "question_id": "M02-01",
+      "title": "Division vs Truncation",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Demonstrate the differences between float division (/), floor division (//), and truncation toward zero int(a / b) on positive and negative inputs.",
+      "problem_statement": "Task: In computer arithmetic, dividing integers can produce different outcomes depending on the division model applied:\n1. Float Division (`/`): Performs standard floating-point division.\n2. Floor Division (`//`): Rounds down to the nearest mathematical integer towards negative infinity (standard Python behavior).\n3. Truncation toward Zero (`int(a / b)`): Discards the fractional part, rounding towards zero.\n\nGiven two space-separated integers A and B (where B != 0), compute and print the three values in the exact format shown below. Float division must be formatted to exactly 4 decimal places.",
+      "input_format": "A single line containing two space-separated integers A and B.",
+      "output_format": "Three lines:\nLine 1: Float: <float_result:.4f>\nLine 2: Floor: <floor_result>\nLine 3: Trunc: <trunc_result>",
+      "constraints": "-1000000 <= A <= 1000000\n-1000000 <= B <= 1000000\nB != 0",
+      "sample_inputs": [
+        "7 2",
+        "-7 2"
+      ],
+      "sample_outputs": [
+        "Float: 3.5000\nFloor: 3\nTrunc: 3",
+        "Float: -3.5000\nFloor: -4\nTrunc: -3"
+      ],
+      "hints": [
+        "Standard float division in Python uses the single slash / operator.",
+        "Floor division in Python (//) rounds down towards negative infinity, so -3.5 becomes -4.",
+        "To truncate toward zero for negative numbers, cast the float division result to an integer using int()."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = map(int, input().split())\nf_div = a / b\nfl_div = a // b\ntr_div = int(a / b)\nprint(f\"Float: {f_div:.4f}\")\nprint(f\"Floor: {fl_div}\")\nprint(f\"Trunc: {tr_div}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7 2",
+          "output": "Float: 3.5000\nFloor: 3\nTrunc: 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-7 2",
+          "output": "Float: -3.5000\nFloor: -4\nTrunc: -3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7 -2",
+          "output": "Float: -3.5000\nFloor: -4\nTrunc: -3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-7 -2",
+          "output": "Float: 3.5000\nFloor: 3\nTrunc: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10 3",
+          "output": "Float: 3.3333\nFloor: 3\nTrunc: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-10 3",
+          "output": "Float: -3.3333\nFloor: -4\nTrunc: -3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100 25",
+          "output": "Float: 4.0000\nFloor: 4\nTrunc: 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1 10",
+          "output": "Float: -0.1000\nFloor: -1\nTrunc: 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated integers A and B.",
+        "output_format": "Three lines:\nLine 1: Float: <float_result:.4f>\nLine 2: Floor: <floor_result>\nLine 3: Trunc: <trunc_result>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-02",
+      "title": "Thermostat Temperature Conversion",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Apply floating-point conversion formulas and format outputs to exactly two decimal places.",
+      "problem_statement": "Task: An intelligent thermostat reads temperature in Celsius. Convert the reading to both Fahrenheit and Kelvin using the exact standard formulas:\n- Fahrenheit: F = C * (9 / 5) + 32\n- Kelvin: K = C + 273.15\n\nOutput both converted values rounded and formatted to exactly two decimal places.",
+      "input_format": "A single line containing a float representing Celsius temperature.",
+      "output_format": "Two lines:\nLine 1: Fahrenheit: <F:.2f>\nLine 2: Kelvin: <K:.2f>",
+      "constraints": "-273.15 <= C <= 1000.0",
+      "sample_inputs": [
+        "24.0",
+        "0.0"
+      ],
+      "sample_outputs": [
+        "Fahrenheit: 75.20\nKelvin: 297.15",
+        "Fahrenheit: 32.00\nKelvin: 273.15"
+      ],
+      "hints": [
+        "Multiply Celsius by 9.0 / 5.0 before adding 32.0 for Fahrenheit.",
+        "Add 273.15 directly to Celsius for Kelvin.",
+        "Format with :.2f in an f-string to guarantee exactly two digits after the decimal point."
+      ],
+      "starter_code": null,
+      "reference_solution": "c = float(input())\nf = c * 9.0 / 5.0 + 32.0\nk = c + 273.15\nprint(f\"Fahrenheit: {f:.2f}\")\nprint(f\"Kelvin: {k:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "24.0",
+          "output": "Fahrenheit: 75.20\nKelvin: 297.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0.0",
+          "output": "Fahrenheit: 32.00\nKelvin: 273.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100.0",
+          "output": "Fahrenheit: 212.00\nKelvin: 373.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-40.0",
+          "output": "Fahrenheit: -40.00\nKelvin: 233.15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "37.5",
+          "output": "Fahrenheit: 99.50\nKelvin: 310.65",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-273.15",
+          "output": "Fahrenheit: -459.67\nKelvin: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "18.5",
+          "output": "Fahrenheit: 65.30\nKelvin: 291.65",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "500.0",
+          "output": "Fahrenheit: 932.00\nKelvin: 773.15",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a float representing Celsius temperature.",
+        "output_format": "Two lines:\nLine 1: Fahrenheit: <F:.2f>\nLine 2: Kelvin: <K:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-03",
+      "title": "Fixed Deposit Maturity",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Calculate simple interest and maturity sum using float arithmetic and format monetary outputs.",
+      "problem_statement": "Task: Calculate the simple interest and final maturity amount for a bank Fixed Deposit (FD).\nGiven:\n- Principal amount P (float)\n- Annual interest rate R in percentage (float)\n- Tenure T in years (float)\n\nFormulas:\n- Interest = (P * R * T) / 100\n- Maturity = P + Interest\n\nOutput both amounts formatted to exactly two decimal places.",
+      "input_format": "A single line containing three space-separated numbers: P R T.",
+      "output_format": "Two lines:\nLine 1: Interest: <interest:.2f>\nLine 2: Maturity: <maturity:.2f>",
+      "constraints": "100.0 <= P <= 10000000.0\n0.0 <= R <= 25.0\n0.5 <= T <= 30.0",
+      "sample_inputs": [
+        "10000 6.5 3",
+        "50000 7.0 5"
+      ],
+      "sample_outputs": [
+        "Interest: 1950.00\nMaturity: 11950.00",
+        "Interest: 17500.00\nMaturity: 67500.00"
+      ],
+      "hints": [
+        "Parse all three inputs as floats using map(float, input().split()).",
+        "Maturity is simply the initial Principal plus the earned Interest.",
+        "Use :.2f formatting for both lines."
+      ],
+      "starter_code": null,
+      "reference_solution": "p, r, t = map(float, input().split())\ninterest = (p * r * t) / 100.0\nmaturity = p + interest\nprint(f\"Interest: {interest:.2f}\")\nprint(f\"Maturity: {maturity:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10000 6.5 3",
+          "output": "Interest: 1950.00\nMaturity: 11950.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "50000 7.0 5",
+          "output": "Interest: 17500.00\nMaturity: 67500.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "25000 5.25 2",
+          "output": "Interest: 2625.00\nMaturity: 27625.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000 8.0 1",
+          "output": "Interest: 80.00\nMaturity: 1080.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100000 6.0 10",
+          "output": "Interest: 60000.00\nMaturity: 160000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "75000 7.2 4",
+          "output": "Interest: 21600.00\nMaturity: 96600.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "500 0.0 5",
+          "output": "Interest: 0.00\nMaturity: 500.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15000 9.5 2.5",
+          "output": "Interest: 3562.50\nMaturity: 18562.50",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated numbers: P R T.",
+        "output_format": "Two lines:\nLine 1: Interest: <interest:.2f>\nLine 2: Maturity: <maturity:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-04",
+      "title": "Batsman Position Swap",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Swap two string variables using Python tuple assignment syntax without a temporary variable.",
+      "problem_statement": "Task: In a cricket match, the opening batting pair decides to switch batting positions right before walking onto the pitch.\nGiven the names of the two batsmen (striker and non-striker), swap their positions using Python's idiomatic tuple unpacking swap (`a, b = b, a`) and print the new batting order.",
+      "input_format": "A single line containing two space-separated player names.",
+      "output_format": "Order: <new_striker> <new_non_striker>",
+      "constraints": "1 <= len(name) <= 25 (names contain no spaces)",
+      "sample_inputs": [
+        "Rohit Kohli",
+        "Rahul Gill"
+      ],
+      "sample_outputs": [
+        "Order: Kohli Rohit",
+        "Order: Gill Rahul"
+      ],
+      "hints": [
+        "Python allows swapping two variables in a single line using a, b = b, a.",
+        "No third temporary variable is needed in Python.",
+        "Make sure to output the prefix 'Order: ' followed by the swapped names."
+      ],
+      "starter_code": null,
+      "reference_solution": "b1, b2 = input().split()\nb1, b2 = b2, b1\nprint(f\"Order: {b1} {b2}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Rohit Kohli",
+          "output": "Order: Kohli Rohit",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Rahul Gill",
+          "output": "Order: Gill Rahul",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Warner Smith",
+          "output": "Order: Smith Warner",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Babar Rizwan",
+          "output": "Order: Rizwan Babar",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Head Marsh",
+          "output": "Order: Marsh Head",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "A B",
+          "output": "Order: B A",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "PlayerOne PlayerTwo",
+          "output": "Order: PlayerTwo PlayerOne",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Dhoni Jadeja",
+          "output": "Order: Jadeja Dhoni",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated player names.",
+        "output_format": "Order: <new_striker> <new_non_striker>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-05",
+      "title": "Metric to Imperial Distance",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Perform floating-point unit conversions using explicit constants with multi-line formatted output.",
+      "problem_statement": "Task: Convert a distance given in kilometers into Meters, Miles, and Feet using these exact conversion constants:\n- 1 km = 1000 meters\n- 1 km = 0.621371 miles\n- 1 km = 3280.84 feet\n\nOutput Meters and Feet formatted to 2 decimal places, and Miles formatted to 4 decimal places.",
+      "input_format": "A single line containing a float representing kilometers.",
+      "output_format": "Three lines:\nLine 1: Meters: <meters:.2f>\nLine 2: Miles: <miles:.4f>\nLine 3: Feet: <feet:.2f>",
+      "constraints": "0.0 <= km <= 100000.0",
+      "sample_inputs": [
+        "5.0",
+        "1.0"
+      ],
+      "sample_outputs": [
+        "Meters: 5000.00\nMiles: 3.1069\nFeet: 16404.20",
+        "Meters: 1000.00\nMiles: 0.6214\nFeet: 3280.84"
+      ],
+      "hints": [
+        "Define the conversion factors as floats at the top of your program.",
+        "Notice that Miles requires 4 decimal places (:.4f), while Meters and Feet require 2 decimal places (:.2f).",
+        "Preserve exact spelling of 'Meters:', 'Miles:', and 'Feet:'."
+      ],
+      "starter_code": null,
+      "reference_solution": "km = float(input())\nmeters = km * 1000.0\nmiles = km * 0.621371\nfeet = km * 3280.84\nprint(f\"Meters: {meters:.2f}\")\nprint(f\"Miles: {miles:.4f}\")\nprint(f\"Feet: {feet:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5.0",
+          "output": "Meters: 5000.00\nMiles: 3.1069\nFeet: 16404.20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1.0",
+          "output": "Meters: 1000.00\nMiles: 0.6214\nFeet: 3280.84",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10.5",
+          "output": "Meters: 10500.00\nMiles: 6.5244\nFeet: 34448.82",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "42.195",
+          "output": "Meters: 42195.00\nMiles: 26.2187\nFeet: 138435.04",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0.5",
+          "output": "Meters: 500.00\nMiles: 0.3107\nFeet: 1640.42",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100.0",
+          "output": "Meters: 100000.00\nMiles: 62.1371\nFeet: 328084.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0.0",
+          "output": "Meters: 0.00\nMiles: 0.0000\nFeet: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "16.0934",
+          "output": "Meters: 16093.40\nMiles: 10.0000\nFeet: 52799.87",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a float representing kilometers.",
+        "output_format": "Three lines:\nLine 1: Meters: <meters:.2f>\nLine 2: Miles: <miles:.4f>\nLine 3: Feet: <feet:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-06",
+      "title": "Product Review Star Average",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Read multiple float values on one line, compute their mean, and format to one decimal place.",
+      "problem_statement": "Task: An e-commerce app collects five customer ratings for a product. Given five space-separated float star ratings (each between 1.0 and 5.0), calculate the arithmetic average and output it rounded to exactly one decimal place.\n\nNote: format with `:.1f`. Exact binary ties (e.g. 4.25) round half to even, so 4.25 prints 4.2 and 3.75 prints 3.8.",
+      "input_format": "A single line containing five space-separated float numbers.",
+      "output_format": "Average: <avg:.1f>",
+      "constraints": "1.0 <= each rating <= 5.0",
+      "sample_inputs": [
+        "4.5 4.0 5.0 3.5 4.0",
+        "5.0 5.0 5.0 5.0 5.0"
+      ],
+      "sample_outputs": [
+        "Average: 4.2",
+        "Average: 5.0"
+      ],
+      "hints": [
+        "Use list(map(float, input().split())) to read and convert all five values into floats.",
+        "Sum the ratings and divide by 5.0 to compute the average.",
+        "Format the output with :.1f."
+      ],
+      "starter_code": null,
+      "reference_solution": "ratings = list(map(float, input().split()))\navg = sum(ratings) / 5.0\nprint(f\"Average: {avg:.1f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4.5 4.0 5.0 3.5 4.0",
+          "output": "Average: 4.2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5.0 5.0 5.0 5.0 5.0",
+          "output": "Average: 5.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1.0 2.0 3.0 4.0 5.0",
+          "output": "Average: 3.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4.2 4.3 4.1 4.5 4.4",
+          "output": "Average: 4.3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1.5 2.5 3.5 4.5 5.0",
+          "output": "Average: 3.4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3.0 3.0 3.0 3.0 3.0",
+          "output": "Average: 3.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4.8 4.9 5.0 4.7 4.9",
+          "output": "Average: 4.9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2.1 3.2 4.3 1.4 5.0",
+          "output": "Average: 3.2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "4.0 4.5 4.5 4.0 4.25",
+          "output": "Average: 4.2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3.5 3.5 4.0 4.0 3.75",
+          "output": "Average: 3.8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing five space-separated float numbers.",
+        "output_format": "Average: <avg:.1f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-07",
+      "title": "Wall Paint Area with Cutout",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Calculate net geometric area by subtracting rectangular cutout from total area using float operations.",
+      "problem_statement": "Task: A painter needs to calculate the exact paintable area of a room wall. The wall is rectangular, but contains a rectangular window cutout that does not need paint.\nGiven:\n- Wall width and wall height in meters\n- Window width and window height in meters\n\nCalculate the net paintable area: (wall_width * wall_height) - (window_width * window_height).\nOutput the result formatted to two decimal places.",
+      "input_format": "Four space-separated floats: wall_width wall_height window_width window_height.",
+      "output_format": "Paintable Area: <area:.2f> sq m",
+      "constraints": "1.0 <= wall_width, wall_height <= 50.0\n0.1 <= window_width < wall_width\n0.1 <= window_height < wall_height",
+      "sample_inputs": [
+        "6.0 3.0 1.5 1.0",
+        "10.0 4.0 2.0 2.0"
+      ],
+      "sample_outputs": [
+        "Paintable Area: 16.50 sq m",
+        "Paintable Area: 36.00 sq m"
+      ],
+      "hints": [
+        "Calculate the gross wall area and window cutout area separately.",
+        "Subtract the window cutout area from the gross wall area.",
+        "Format the final output with :.2f and include 'sq m'."
+      ],
+      "starter_code": null,
+      "reference_solution": "ww, wh, win_w, win_h = map(float, input().split())\nwall_area = ww * wh\nwin_area = win_w * win_h\nnet_area = wall_area - win_area\nprint(f\"Paintable Area: {net_area:.2f} sq m\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6.0 3.0 1.5 1.0",
+          "output": "Paintable Area: 16.50 sq m",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10.0 4.0 2.0 2.0",
+          "output": "Paintable Area: 36.00 sq m",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4.5 2.5 1.0 1.0",
+          "output": "Paintable Area: 10.25 sq m",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "8.0 3.5 1.2 1.5",
+          "output": "Paintable Area: 26.20 sq m",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12.0 5.0 3.0 2.0",
+          "output": "Paintable Area: 54.00 sq m",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5.0 3.0 0.5 0.5",
+          "output": "Paintable Area: 14.75 sq m",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7.5 4.2 2.0 1.5",
+          "output": "Paintable Area: 28.50 sq m",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15.0 6.0 4.0 2.5",
+          "output": "Paintable Area: 80.00 sq m",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Four space-separated floats: wall_width wall_height window_width window_height.",
+        "output_format": "Paintable Area: <area:.2f> sq m"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-08",
+      "title": "Body Mass Index Metric",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Easy",
+      "objective": "Implement the medical BMI formula with explicit float meter inputs and two-decimal formatting.",
+      "problem_statement": "Task: Calculate Body Mass Index (BMI) for a health analytics application.\nGiven:\n- Weight in kilograms (float)\n- Height in meters (float)\n\nFormula:\nBMI = weight / (height^2)\n\nOutput the calculated BMI rounded to exactly two decimal places.",
+      "input_format": "A single line containing two space-separated floats: weight_kg height_m.",
+      "output_format": "BMI: <bmi:.2f>",
+      "constraints": "10.0 <= weight_kg <= 300.0\n0.5 <= height_m <= 2.5",
+      "sample_inputs": [
+        "70.0 1.75",
+        "85.5 1.80"
+      ],
+      "sample_outputs": [
+        "BMI: 22.86",
+        "BMI: 26.39"
+      ],
+      "hints": [
+        "Make sure height is squared in the denominator: height ** 2.",
+        "Height is already provided in meters, so no conversion from cm is needed.",
+        "Format the output using :.2f."
+      ],
+      "starter_code": null,
+      "reference_solution": "w, h = map(float, input().split())\nbmi = w / (h ** 2)\nprint(f\"BMI: {bmi:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "70.0 1.75",
+          "output": "BMI: 22.86",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "85.5 1.80",
+          "output": "BMI: 26.39",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "55.0 1.60",
+          "output": "BMI: 21.48",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "95.0 1.90",
+          "output": "BMI: 26.32",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "45.0 1.50",
+          "output": "BMI: 20.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "62.5 1.68",
+          "output": "BMI: 22.14",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "110.0 1.72",
+          "output": "BMI: 37.18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "78.0 1.82",
+          "output": "BMI: 23.55",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated floats: weight_kg height_m.",
+        "output_format": "BMI: <bmi:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-09",
+      "title": "Type Inspection & Validation",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Classify incoming string tokens as INTEGER, FLOAT, or STRING representations without relying on exception handling.",
+      "problem_statement": "Task: Write a classifier that inspects a single string token and determines what fundamental numeric or textual type it represents:\n- Print \"INTEGER\" if the token represents a valid integer (optional leading '+' or '-' followed strictly by one or more digits).\n- Print \"FLOAT\" if the token represents a valid float containing exactly one decimal point (with an optional leading sign, and at least one digit in the string).\n- Print \"STRING\" for all other tokens (alphanumeric text, words, symbols, or multiple decimal points).",
+      "input_format": "A single line containing a single token without surrounding whitespace.",
+      "output_format": "Print exactly one of: INTEGER, FLOAT, or STRING.",
+      "constraints": "1 <= len(token) <= 50; the token contains only printable ASCII characters and no spaces.",
+      "sample_inputs": [
+        "42",
+        "3.1415"
+      ],
+      "sample_outputs": [
+        "INTEGER",
+        "FLOAT"
+      ],
+      "hints": [
+        "Check if stripping an optional leading '+' or '-' leaves only digits using .isdigit().",
+        "If the token contains exactly one '.', split around it; the token is a FLOAT when each side is empty or all digits (after an optional sign on the left), and at least one digit exists overall.",
+        "If it fits neither numeric definition, classify it as STRING."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input().strip()\nsign_len = 1 if s.startswith(('-', '+')) else 0\nbody = s[sign_len:]\nif body and body.isdigit():\n    print(\"INTEGER\")\nelif '.' in s and len(s.split('.')) == 2:\n    parts = s.split('.')\n    left, right = parts\n    left_valid = (left[1:].isdigit() if left.startswith(('-', '+')) else left.isdigit()) or (left in ('', '-', '+'))\n    right_valid = right.isdigit() or right == ''\n    total_digits = sum(c.isdigit() for c in s)\n    if left_valid and right_valid and total_digits > 0:\n        print(\"FLOAT\")\n    else:\n        print(\"STRING\")\nelse:\n    print(\"STRING\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "42",
+          "output": "INTEGER",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-15",
+          "output": "INTEGER",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3.1415",
+          "output": "FLOAT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-.75",
+          "output": "FLOAT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "CodeMentor",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "123a",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0.0",
+          "output": "FLOAT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "+999",
+          "output": "INTEGER",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1e5",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "inf",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 11,
+          "input": "1_000",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 12,
+          "input": "1.2.3",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 13,
+          "input": ".",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 14,
+          "input": "-",
+          "output": "STRING",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 15,
+          "input": "5.",
+          "output": "FLOAT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 16,
+          "input": "+.5",
+          "output": "FLOAT",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(N) where N is token length",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing a single token without surrounding whitespace.",
+        "output_format": "Print exactly one of: INTEGER, FLOAT, or STRING."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-10",
+      "title": "Seconds to HH:MM:SS",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Decompose an integer second count into hours, minutes, and seconds using integer division and modulo, formatted with zero padding.",
+      "problem_statement": "Task: Convert a duration given as total integer seconds into zero-padded HH:MM:SS time format.\nFormulas:\n- Hours: total_seconds // 3600\n- Minutes: (total_seconds % 3600) // 60\n- Seconds: total_seconds % 60\n\nEnsure each unit is padded with leading zeroes to occupy at least 2 digits.",
+      "input_format": "A single line containing an integer total_seconds.",
+      "output_format": "Print HH:MM:SS with 2-digit zero padding.",
+      "constraints": "0 <= total_seconds <= 359999",
+      "sample_inputs": [
+        "3665",
+        "60"
+      ],
+      "sample_outputs": [
+        "01:01:05",
+        "00:01:00"
+      ],
+      "hints": [
+        "One hour has 3600 seconds, and one minute has 60 seconds.",
+        "Use floor division // to extract the whole hours and minutes, and modulo % for the remainders.",
+        "In f-strings, format specifier :02d forces two digits with a leading zero if necessary."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = int(input())\nh = s // 3600\nrem = s % 3600\nm = rem // 60\nsec = rem % 60\nprint(f\"{h:02d}:{m:02d}:{sec:02d}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3665",
+          "output": "01:01:05",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "60",
+          "output": "00:01:00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "00:00:00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "86399",
+          "output": "23:59:59",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3600",
+          "output": "01:00:00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7322",
+          "output": "02:02:02",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "125",
+          "output": "00:02:05",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "90000",
+          "output": "25:00:00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer total_seconds.",
+        "output_format": "Print HH:MM:SS with 2-digit zero padding."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-11",
+      "title": "Rounding vs Truncation",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Contrast round(v, 2), f-string :.2f rounding, and arithmetic truncation int(v * 100) / 100, and observe float-representation effects.",
+      "problem_statement": "Task: Different precision policies can give different results on boundary values:\n1. Built-in rounding (`round(v, 2)`): rounds the stored binary float value to 2 decimals. Output formatted to 4 decimals.\n2. Formatted String (`f\"{v:.2f}\"`): rounds the same stored value to 2 decimals for display. It normally agrees with `round()`; it only differs in type (str vs float).\n3. Truncation toward Zero (`int(v * 100) / 100`): discards digits beyond 2 decimals without rounding. Because v * 100 is computed in binary floating point, some values (e.g. 1.15 or 0.29) truncate one cent lower than expected. Output formatted to 2 decimals.\n\nGiven a float V, compute and print the three values in the exact format shown below.",
+      "input_format": "A single line containing a float V.",
+      "output_format": "Three lines:\nLine 1: Round: <round_val:.4f>\nLine 2: Format: <format_val>\nLine 3: Trunc: <trunc_val:.2f>",
+      "constraints": "-10000.0 <= V <= 10000.0",
+      "sample_inputs": [
+        "2.575",
+        "2.585"
+      ],
+      "sample_outputs": [
+        "Round: 2.5800\nFormat: 2.58\nTrunc: 2.57",
+        "Round: 2.5800\nFormat: 2.58\nTrunc: 2.58"
+      ],
+      "hints": [
+        "Pass 2 as the second argument to round(v, 2), then print with :.4f.",
+        "Use f'{v:.2f}' directly for the second line.",
+        "Multiply by 100, convert to int, and divide back by 100.0 for truncation toward zero."
+      ],
+      "starter_code": null,
+      "reference_solution": "v = float(input())\nr_val = round(v, 2)\nfmt_val = f\"{v:.2f}\"\ntrunc_val = int(v * 100.0) / 100.0\nprint(f\"Round: {r_val:.4f}\")\nprint(f\"Format: {fmt_val}\")\nprint(f\"Trunc: {trunc_val:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2.575",
+          "output": "Round: 2.5800\nFormat: 2.58\nTrunc: 2.57",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2.585",
+          "output": "Round: 2.5800\nFormat: 2.58\nTrunc: 2.58",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-2.585",
+          "output": "Round: -2.5800\nFormat: -2.58\nTrunc: -2.58",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10.12345",
+          "output": "Round: 10.1200\nFormat: 10.12\nTrunc: 10.12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10.999",
+          "output": "Round: 11.0000\nFormat: 11.00\nTrunc: 10.99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-5.555",
+          "output": "Round: -5.5500\nFormat: -5.55\nTrunc: -5.55",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0.005",
+          "output": "Round: 0.0100\nFormat: 0.01\nTrunc: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12.500",
+          "output": "Round: 12.5000\nFormat: 12.50\nTrunc: 12.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1.15",
+          "output": "Round: 1.1500\nFormat: 1.15\nTrunc: 1.14",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "0.29",
+          "output": "Round: 0.2900\nFormat: 0.29\nTrunc: 0.28",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 11,
+          "input": "0.125",
+          "output": "Round: 0.1200\nFormat: 0.12\nTrunc: 0.12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 12,
+          "input": "-1.15",
+          "output": "Round: -1.1500\nFormat: -1.15\nTrunc: -1.14",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a float V.",
+        "output_format": "Three lines:\nLine 1: Round: <round_val:.4f>\nLine 2: Format: <format_val>\nLine 3: Trunc: <trunc_val:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-12",
+      "title": "Freelancer Invoice with Taxes",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Execute a multi-stage tax accounting breakdown maintaining exact operation order and two-decimal formatting.",
+      "problem_statement": "Task: Generate an itemized tax invoice for a freelance software project.\nGiven:\n- Hours worked (float)\n- Hourly billing rate (float)\n\nCalculation Rules:\n1. Base Earnings = hours * rate\n2. GST (18%) = Base Earnings * 0.18 (added to invoice)\n3. TDS (10%) = Base Earnings * 0.10 (withheld from payout)\n4. Net Payable = Base Earnings + GST - TDS\n\nOutput each line item formatted to exactly two decimal places.",
+      "input_format": "A single line containing two space-separated floats: hours and rate.",
+      "output_format": "Four lines:\nLine 1: Base: <base:.2f>\nLine 2: GST (18%): <gst:.2f>\nLine 3: TDS (10%): <tds:.2f>\nLine 4: Net Payable: <net:.2f>",
+      "constraints": "0.5 <= hours <= 500.0\n100.0 <= rate <= 10000.0",
+      "sample_inputs": [
+        "40.0 1500.0",
+        "25.5 1200.0"
+      ],
+      "sample_outputs": [
+        "Base: 60000.00\nGST (18%): 10800.00\nTDS (10%): 6000.00\nNet Payable: 64800.00",
+        "Base: 30600.00\nGST (18%): 5508.00\nTDS (10%): 3060.00\nNet Payable: 33048.00"
+      ],
+      "hints": [
+        "First compute base = hours * rate.",
+        "Both GST (18%) and TDS (10%) are calculated directly on the Base Earnings.",
+        "Net Payable is base + gst - tds."
+      ],
+      "starter_code": null,
+      "reference_solution": "h, r = map(float, input().split())\nbase = h * r\ngst = base * 0.18\ntds = base * 0.10\nnet = base + gst - tds\nprint(f\"Base: {base:.2f}\")\nprint(f\"GST (18%): {gst:.2f}\")\nprint(f\"TDS (10%): {tds:.2f}\")\nprint(f\"Net Payable: {net:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "40.0 1500.0",
+          "output": "Base: 60000.00\nGST (18%): 10800.00\nTDS (10%): 6000.00\nNet Payable: 64800.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "25.5 1200.0",
+          "output": "Base: 30600.00\nGST (18%): 5508.00\nTDS (10%): 3060.00\nNet Payable: 33048.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10.0 800.0",
+          "output": "Base: 8000.00\nGST (18%): 1440.00\nTDS (10%): 800.00\nNet Payable: 8640.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "50.0 2000.0",
+          "output": "Base: 100000.00\nGST (18%): 18000.00\nTDS (10%): 10000.00\nNet Payable: 108000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "8.25 1600.0",
+          "output": "Base: 13200.00\nGST (18%): 2376.00\nTDS (10%): 1320.00\nNet Payable: 14256.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1.0 500.0",
+          "output": "Base: 500.00\nGST (18%): 90.00\nTDS (10%): 50.00\nNet Payable: 540.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100.0 2500.0",
+          "output": "Base: 250000.00\nGST (18%): 45000.00\nTDS (10%): 25000.00\nNet Payable: 270000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "33.3 999.0",
+          "output": "Base: 33266.70\nGST (18%): 5988.01\nTDS (10%): 3326.67\nNet Payable: 35928.04",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated floats: hours and rate.",
+        "output_format": "Four lines:\nLine 1: Base: <base:.2f>\nLine 2: GST (18%): <gst:.2f>\nLine 3: TDS (10%): <tds:.2f>\nLine 4: Net Payable: <net:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-13",
+      "title": "Truthiness and Casting Traps",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Contrast bool() of a raw string, a float, and an int() cast, exposing the bool(\"0\") trap and int() truncation.",
+      "problem_statement": "Task: Beginners often assume bool(\"0\") is False. In Python every non-empty string is truthy, and int() truncates toward zero. Given one numeric token, print three truth values:\n1. `bool(s)` where s is the raw string exactly as read.\n2. `bool(float(s))`.\n3. `bool(int(float(s)))`.",
+      "input_format": "A single line containing one plain decimal number (for example 0, 0.5, -7, 3.99) with no spaces and no exponent.",
+      "output_format": "Three lines:\nLine 1: Raw string: <True/False>\nLine 2: As float: <True/False>\nLine 3: Int of float: <True/False>",
+      "constraints": "-1000 <= value <= 1000; token has at most 3 decimal places.",
+      "sample_inputs": [
+        "0.5",
+        "0"
+      ],
+      "sample_outputs": [
+        "Raw string: True\nAs float: True\nInt of float: False",
+        "Raw string: True\nAs float: False\nInt of float: False"
+      ],
+      "hints": [
+        "Any non-empty string is truthy, even \"0\" and \"0.0\".",
+        "float(s) converts the text to a number; bool(0.0) is False and any other float is True.",
+        "int() on a float drops the fractional part toward zero, so int(0.5) and int(-0.9) are both 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\nv = float(s)\nprint(f\"Raw string: {bool(s)}\")\nprint(f\"As float: {bool(v)}\")\nprint(f\"Int of float: {bool(int(v))}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0.5",
+          "output": "Raw string: True\nAs float: True\nInt of float: False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Raw string: True\nAs float: False\nInt of float: False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-0.9",
+          "output": "Raw string: True\nAs float: True\nInt of float: False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "Raw string: True\nAs float: True\nInt of float: True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0.0",
+          "output": "Raw string: True\nAs float: False\nInt of float: False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3.99",
+          "output": "Raw string: True\nAs float: True\nInt of float: True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-7",
+          "output": "Raw string: True\nAs float: True\nInt of float: True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0.001",
+          "output": "Raw string: True\nAs float: True\nInt of float: False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-0.5",
+          "output": "Raw string: True\nAs float: True\nInt of float: False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "100",
+          "output": "Raw string: True\nAs float: True\nInt of float: True",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one plain decimal number (for example 0, 0.5, -7, 3.99) with no spaces and no exponent.",
+        "output_format": "Three lines:\nLine 1: Raw string: <True/False>\nLine 2: As float: <True/False>\nLine 3: Int of float: <True/False>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-14",
+      "title": "Type Report of Expressions",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Use type() to report the value and result type of +, /, //, comparison and str() concatenation on two ints.",
+      "problem_statement": "Task: Python decides the result type from the operator, not just the operands. Given two integers A and B, evaluate five expressions and print each value together with its type name using `type(x).__name__`:\n1. A + B\n2. A / B\n3. A // B\n4. A > B\n5. str(A) + str(B)\nPrint values with Python's default str() conversion (no extra formatting).",
+      "input_format": "A single line containing two space-separated integers A and B.",
+      "output_format": "Five lines:\nA + B: <value> (<type>)\nA / B: <value> (<type>)\nA // B: <value> (<type>)\nA > B: <value> (<type>)\nstr(A) + str(B): <value> (<type>)",
+      "constraints": "-1000 <= A, B <= 1000\nB != 0\nTests use pairs where A / B has a short exact decimal form.",
+      "sample_inputs": [
+        "7 2",
+        "-8 4"
+      ],
+      "sample_outputs": [
+        "A + B: 9 (int)\nA / B: 3.5 (float)\nA // B: 3 (int)\nA > B: True (bool)\nstr(A) + str(B): 72 (str)",
+        "A + B: -4 (int)\nA / B: -2.0 (float)\nA // B: -2 (int)\nA > B: False (bool)\nstr(A) + str(B): -84 (str)"
+      ],
+      "hints": [
+        "type(x).__name__ gives the plain names int, float, str and bool.",
+        "/ always returns a float, even when the division is exact; // on two ints returns an int.",
+        "Comparing two numbers returns a bool, and str(A) + str(B) joins text instead of adding numbers."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = map(int, input().split())\nr1 = a + b\nr2 = a / b\nr3 = a // b\nr4 = a > b\nr5 = str(a) + str(b)\nprint(f\"A + B: {r1} ({type(r1).__name__})\")\nprint(f\"A / B: {r2} ({type(r2).__name__})\")\nprint(f\"A // B: {r3} ({type(r3).__name__})\")\nprint(f\"A > B: {r4} ({type(r4).__name__})\")\nprint(f\"str(A) + str(B): {r5} ({type(r5).__name__})\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7 2",
+          "output": "A + B: 9 (int)\nA / B: 3.5 (float)\nA // B: 3 (int)\nA > B: True (bool)\nstr(A) + str(B): 72 (str)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-8 4",
+          "output": "A + B: -4 (int)\nA / B: -2.0 (float)\nA // B: -2 (int)\nA > B: False (bool)\nstr(A) + str(B): -84 (str)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 5",
+          "output": "A + B: 10 (int)\nA / B: 1.0 (float)\nA // B: 1 (int)\nA > B: False (bool)\nstr(A) + str(B): 55 (str)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 3",
+          "output": "A + B: 3 (int)\nA / B: 0.0 (float)\nA // B: 0 (int)\nA > B: False (bool)\nstr(A) + str(B): 03 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-9 -3",
+          "output": "A + B: -12 (int)\nA / B: 3.0 (float)\nA // B: 3 (int)\nA > B: False (bool)\nstr(A) + str(B): -9-3 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100 8",
+          "output": "A + B: 108 (int)\nA / B: 12.5 (float)\nA // B: 12 (int)\nA > B: True (bool)\nstr(A) + str(B): 1008 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 4",
+          "output": "A + B: 7 (int)\nA / B: 0.75 (float)\nA // B: 0 (int)\nA > B: False (bool)\nstr(A) + str(B): 34 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12 -5",
+          "output": "A + B: 7 (int)\nA / B: -2.4 (float)\nA // B: -3 (int)\nA > B: True (bool)\nstr(A) + str(B): 12-5 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-1 2",
+          "output": "A + B: 1 (int)\nA / B: -0.5 (float)\nA // B: -1 (int)\nA > B: False (bool)\nstr(A) + str(B): -12 (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "10 1",
+          "output": "A + B: 11 (int)\nA / B: 10.0 (float)\nA // B: 10 (int)\nA > B: True (bool)\nstr(A) + str(B): 101 (str)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated integers A and B.",
+        "output_format": "Five lines:\nA + B: <value> (<type>)\nA / B: <value> (<type>)\nA // B: <value> (<type>)\nA > B: <value> (<type>)\nstr(A) + str(B): <value> (<type>)"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-15",
+      "title": "Systematic SIP Value",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Compute future value of recurring monthly SIP investments using annuity compounding formula.",
+      "problem_statement": "Task: Compute the maturity value of a monthly Systematic Investment Plan (SIP).\nGiven:\n- Monthly investment P (float)\n- Expected annual return rate R in percentage (float)\n- Investment tenure Y in whole years (integer value, e.g. 5 or 5.0)\n\nFormulas:\n- Total months: n = int(Y * 12)\n- Monthly periodic rate: i = (R / 100) / 12\n- If R == 0: Maturity = P * n\n- If R > 0: Maturity = P * [((1 + i)^n - 1) / i] * (1 + i)\n- Total Invested = P * n\n- Wealth Gained = Maturity - Total Invested\n\nOutput all three values formatted to two decimal places.",
+      "input_format": "A single line containing three space-separated numbers: P R Y.",
+      "output_format": "Three lines:\nLine 1: Invested: <inv:.2f>\nLine 2: Maturity: <mat:.2f>\nLine 3: Wealth Gained: <gain:.2f>",
+      "constraints": "100.0 <= P <= 500000.0\n0.0 <= R <= 30.0\n1 <= Y <= 30 (whole number of years)",
+      "sample_inputs": [
+        "5000 12.0 5",
+        "10000 10.0 10"
+      ],
+      "sample_outputs": [
+        "Invested: 300000.00\nMaturity: 412431.83\nWealth Gained: 112431.83",
+        "Invested: 1200000.00\nMaturity: 2065520.20\nWealth Gained: 865520.20"
+      ],
+      "hints": [
+        "Total months n = int(Y * 12). Total invested is P * n.",
+        "The monthly rate is i = (R / 100) / 12.",
+        "Use the annuity-due formula: multiply P * ((1 + i)**n - 1) / i by (1 + i) at the end. If R == 0 there is no growth, so maturity equals total invested."
+      ],
+      "starter_code": null,
+      "reference_solution": "p, r, y = map(float, input().split())\nn = int(y * 12)\ninvested = p * n\nif r == 0:\n    fv = invested\nelse:\n    i = (r / 100.0) / 12.0\n    fv = p * (((1.0 + i)**n - 1.0) / i) * (1.0 + i)\ngain = fv - invested\nprint(f\"Invested: {invested:.2f}\")\nprint(f\"Maturity: {fv:.2f}\")\nprint(f\"Wealth Gained: {gain:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5000 12.0 5",
+          "output": "Invested: 300000.00\nMaturity: 412431.83\nWealth Gained: 112431.83",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10000 10.0 10",
+          "output": "Invested: 1200000.00\nMaturity: 2065520.20\nWealth Gained: 865520.20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2000 15.0 3",
+          "output": "Invested: 72000.00\nMaturity: 91358.90\nWealth Gained: 19358.90",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5000 0.0 5",
+          "output": "Invested: 300000.00\nMaturity: 300000.00\nWealth Gained: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000 8.5 2",
+          "output": "Invested: 24000.00\nMaturity: 26245.03\nWealth Gained: 2245.03",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "25000 11.0 15",
+          "output": "Invested: 4500000.00\nMaturity: 11471439.07\nWealth Gained: 6971439.07",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "500 6.0 1",
+          "output": "Invested: 6000.00\nMaturity: 6198.62\nWealth Gained: 198.62",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15000 13.5 7",
+          "output": "Invested: 1260000.00\nMaturity: 2102422.09\nWealth Gained: 842422.09",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated numbers: P R Y.",
+        "output_format": "Three lines:\nLine 1: Invested: <inv:.2f>\nLine 2: Maturity: <mat:.2f>\nLine 3: Wealth Gained: <gain:.2f>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-16",
+      "title": "Multiline Raw Reader",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Read multiple lines preserving exact leading, trailing, and internal whitespace using standard input functions.",
+      "problem_statement": "Task: Write a program that reads exactly three consecutive lines of raw input, strictly preserving all leading, trailing, and internal whitespace on each line.\nRequirements:\n1. Print the character count of each line individually.\n2. Print the sum of character counts across all three lines.\n3. Print a single combined line where the three original lines are joined with ' | ' (space, pipe, space).\n\nDo NOT use .strip() on the lines as whitespace is significant.",
+      "input_format": "Exactly three lines of text.",
+      "output_format": "Five lines:\nLine 1: Line 1: <len1>\nLine 2: Line 2: <len2>\nLine 3: Line 3: <len3>\nLine 4: Total: <tot>\nLine 5: Combined: <l1> | <l2> | <l3>",
+      "constraints": "Each line contains between 0 and 100 characters.",
+      "sample_inputs": [
+        "  Hello  \nWorld\n   Python   ",
+        "Alpha\nBeta\nGamma"
+      ],
+      "sample_outputs": [
+        "Line 1: 9\nLine 2: 5\nLine 3: 12\nTotal: 26\nCombined:   Hello   | World |    Python   ",
+        "Line 1: 5\nLine 2: 4\nLine 3: 5\nTotal: 14\nCombined: Alpha | Beta | Gamma"
+      ],
+      "hints": [
+        "Call input() three times without using .strip().",
+        "Use len(line) to obtain the exact character count of each raw line.",
+        "Join the three lines with ' | ' when constructing the Combined output."
+      ],
+      "starter_code": null,
+      "reference_solution": "l1 = input()\nl2 = input()\nl3 = input()\ntot = len(l1) + len(l2) + len(l3)\nprint(f\"Line 1: {len(l1)}\")\nprint(f\"Line 2: {len(l2)}\")\nprint(f\"Line 3: {len(l3)}\")\nprint(f\"Total: {tot}\")\nprint(f\"Combined: {l1} | {l2} | {l3}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "  Hello  \nWorld\n   Python   ",
+          "output": "Line 1: 9\nLine 2: 5\nLine 3: 12\nTotal: 26\nCombined:   Hello   | World |    Python   ",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Alpha\nBeta\nGamma",
+          "output": "Line 1: 5\nLine 2: 4\nLine 3: 5\nTotal: 14\nCombined: Alpha | Beta | Gamma",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "   \n\tTest\nDone",
+          "output": "Line 1: 3\nLine 2: 5\nLine 3: 4\nTotal: 12\nCombined:     | \tTest | Done",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "A\nB\nC",
+          "output": "Line 1: 1\nLine 2: 1\nLine 3: 1\nTotal: 3\nCombined: A | B | C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12345\n67890\nABCDE",
+          "output": "Line 1: 5\nLine 2: 5\nLine 3: 5\nTotal: 15\nCombined: 12345 | 67890 | ABCDE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "  Leading\nTrailing  \n  Both  ",
+          "output": "Line 1: 9\nLine 2: 10\nLine 3: 8\nTotal: 27\nCombined:   Leading | Trailing   |   Both  ",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "NoSpaces\nWith Space\nEnd",
+          "output": "Line 1: 8\nLine 2: 10\nLine 3: 3\nTotal: 21\nCombined: NoSpaces | With Space | End",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "   \n   \n   ",
+          "output": "Line 1: 3\nLine 2: 3\nLine 3: 3\nTotal: 9\nCombined:     |     |    ",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "A\n\nB",
+          "output": "Line 1: 1\nLine 2: 0\nLine 3: 1\nTotal: 2\nCombined: A |  | B",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": " \n\nZ",
+          "output": "Line 1: 1\nLine 2: 0\nLine 3: 1\nTotal: 2\nCombined:   |  | Z",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(N) where N is total character count",
+        "space_complexity": "O(N)",
+        "input_format": "Exactly three lines of text.",
+        "output_format": "Five lines:\nLine 1: Line 1: <len1>\nLine 2: Line 2: <len2>\nLine 3: Line 3: <len3>\nLine 4: Total: <tot>\nLine 5: Combined: <l1> | <l2> | <l3>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-17",
+      "title": "Date String Parsing & Reassembly",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Parse fixed DD-MM-YYYY string slices and reassemble into YYYY/MM/DD and DD.MM.YY.",
+      "problem_statement": "Task: Parse a date string in fixed-width DD-MM-YYYY format using string slicing (not split, not the datetime module) and reassemble it into two formats:\n1. ISO Slash Format: YYYY/MM/DD\n2. Dot Short-Year Format: DD.MM.YY (YY is the last two digits of the year)\n\nAll inputs are valid calendar dates. Keep leading zeros exactly as given.",
+      "input_format": "A single line containing a date string in DD-MM-YYYY format.",
+      "output_format": "Two lines:\nLine 1: Format 1: <YYYY/MM/DD>\nLine 2: Format 2: <DD.MM.YY>",
+      "constraints": "Strict format DD-MM-YYYY (exactly 10 characters), a valid calendar date, year 1000-9999.",
+      "sample_inputs": [
+        "15-08-2026",
+        "01-01-2000"
+      ],
+      "sample_outputs": [
+        "Format 1: 2026/08/15\nFormat 2: 15.08.26",
+        "Format 1: 2000/01/01\nFormat 2: 01.01.00"
+      ],
+      "hints": [
+        "Positions are fixed: day is s[0:2], month is s[3:5], year is s[6:10].",
+        "Build each output with an f-string from the three slices; no int conversion is needed.",
+        "The two-digit year is the slice s[8:10], or y[2:] once you have the year."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input().strip()\nd = s[0:2]\nm = s[3:5]\ny = s[6:10]\nprint(f\"Format 1: {y}/{m}/{d}\")\nprint(f\"Format 2: {d}.{m}.{y[2:]}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "15-08-2026",
+          "output": "Format 1: 2026/08/15\nFormat 2: 15.08.26",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "01-01-2000",
+          "output": "Format 1: 2000/01/01\nFormat 2: 01.01.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "31-12-1999",
+          "output": "Format 1: 1999/12/31\nFormat 2: 31.12.99",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "29-02-2024",
+          "output": "Format 1: 2024/02/29\nFormat 2: 29.02.24",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10-10-2010",
+          "output": "Format 1: 2010/10/10\nFormat 2: 10.10.10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "05-07-2035",
+          "output": "Format 1: 2035/07/05\nFormat 2: 05.07.35",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "25-12-2025",
+          "output": "Format 1: 2025/12/25\nFormat 2: 25.12.25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "18-09-1985",
+          "output": "Format 1: 1985/09/18\nFormat 2: 18.09.85",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "09-03-1000",
+          "output": "Format 1: 1000/03/09\nFormat 2: 09.03.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "30-04-9999",
+          "output": "Format 1: 9999/04/30\nFormat 2: 30.04.99",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a date string in DD-MM-YYYY format.",
+        "output_format": "Two lines:\nLine 1: Format 1: <YYYY/MM/DD>\nLine 2: Format 2: <DD.MM.YY>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-18",
+      "title": "Fixed-Width Grade Summary",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Format student roll and marks into fixed 40-character summary line with space padding.",
+      "problem_statement": "Task: Format a student result as one fixed-width line of exactly 40 characters.\nGiven a roll number (integer), a subject code (string) and marks (float), print:\n`Roll:{roll:>6}|Sub:{sub:<10}|Marks:{marks:>7.2f}`\n- Roll number: right-aligned in 6 characters\n- Subject code: left-aligned in 10 characters (padded with trailing spaces)\n- Marks: right-aligned in 7 characters with 2 decimal places\nThe field widths are chosen so the line is always exactly 40 characters.",
+      "input_format": "A single line containing roll_number subject_code marks (separated by spaces).",
+      "output_format": "One line of exactly 40 characters:\nRoll:<6 wide>|Sub:<10 wide>|Marks:<7 wide>",
+      "constraints": "1 <= roll_number <= 999999\n1 <= len(subject_code) <= 10 (no spaces)\n0.0 <= marks <= 100.0",
+      "sample_inputs": [
+        "101 CS101 92.50",
+        "2048 MATH201 88.00"
+      ],
+      "sample_outputs": [
+        "Roll:   101|Sub:CS101     |Marks:  92.50",
+        "Roll:  2048|Sub:MATH201   |Marks:  88.00"
+      ],
+      "hints": [
+        "Use format specs inside an f-string: :>6 for right-align, :<10 for left-align.",
+        "Convert roll to int and marks to float before formatting; the marks spec is :>7.2f.",
+        "Count: 5 + 6 + 1 + 4 + 10 + 1 + 6 + 7 = 40 characters for every valid input."
+      ],
+      "starter_code": null,
+      "reference_solution": "roll, sub, marks = input().split()\nprint(f\"Roll:{int(roll):>6}|Sub:{sub:<10}|Marks:{float(marks):>7.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "101 CS101 92.50",
+          "output": "Roll:   101|Sub:CS101     |Marks:  92.50",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2048 MATH201 88.00",
+          "output": "Roll:  2048|Sub:MATH201   |Marks:  88.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7 PHY102 74.25",
+          "output": "Roll:     7|Sub:PHY102    |Marks:  74.25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "999999 ENG105 100.00",
+          "output": "Roll:999999|Sub:ENG105    |Marks: 100.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12 CHEM101 56.50",
+          "output": "Roll:    12|Sub:CHEM101   |Marks:  56.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "500 BIO101 68.75",
+          "output": "Roll:   500|Sub:BIO101    |Marks:  68.75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "301 CS202 81.00",
+          "output": "Roll:   301|Sub:CS202     |Marks:  81.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 IT101 45.00",
+          "output": "Roll:     1|Sub:IT101     |Marks:  45.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "999999 ABCDEFGHIJ 100.0",
+          "output": "Roll:999999|Sub:ABCDEFGHIJ|Marks: 100.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing roll_number subject_code marks (separated by spaces).",
+        "output_format": "One line of exactly 40 characters:\nRoll:<6 wide>|Sub:<10 wide>|Marks:<7 wide>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M02-19",
+      "title": "Coordinated Time Offset",
+      "module": "Module 02: Data Types and Input/Output",
+      "difficulty": "Medium",
+      "objective": "Apply modular arithmetic on 24-hour clock time to handle forward and backward minute offsets across midnight boundaries.",
+      "problem_statement": "Task: Given a 24-hour time in HH:MM format and an integer offset in minutes (which may be positive, negative, or zero), calculate the resulting time.\nRules:\n- The clock operates on a 24-hour cycle from 00:00 to 23:59 (1440 minutes per day).\n- Forward offsets roll past midnight (e.g., 23:45 + 30 mins -> 00:15).\n- Negative offsets roll back into the previous day (e.g., 00:15 - 30 mins -> 23:45).\n- Output the resulting time formatted with two-digit zero padding: HH:MM.",
+      "input_format": "A single line containing HH:MM time and an integer offset (separated by space).",
+      "output_format": "New Time: HH:MM",
+      "constraints": "00 <= HH <= 23\n00 <= MM <= 59\n-100000 <= offset <= 100000",
+      "sample_inputs": [
+        "14:30 45",
+        "23:45 30"
+      ],
+      "sample_outputs": [
+        "New Time: 15:15",
+        "New Time: 00:15"
+      ],
+      "hints": [
+        "Convert the starting time entirely into total minutes from midnight: H * 60 + M.",
+        "Add the offset minutes and use Python's modulo operator % 1440 to wrap cleanly across midnight (Python handles negative modulo automatically).",
+        "Divide back by 60 for new hours (// 60) and modulo by 60 for new minutes (% 60). Format with :02d."
+      ],
+      "starter_code": null,
+      "reference_solution": "time_str, offset_str = input().split()\nh, m = map(int, time_str.split(\":\"))\noffset = int(offset_str)\ntotal_mins = (h * 60 + m + offset) % 1440\nnew_h = total_mins // 60\nnew_m = total_mins % 60\nprint(f\"New Time: {new_h:02d}:{new_m:02d}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "14:30 45",
+          "output": "New Time: 15:15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "23:45 30",
+          "output": "New Time: 00:15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "00:15 -30",
+          "output": "New Time: 23:45",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "12:00 720",
+          "output": "New Time: 00:00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "01:00 -120",
+          "output": "New Time: 23:00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "23:59 1",
+          "output": "New Time: 00:00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "00:00 -1",
+          "output": "New Time: 23:59",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "18:20 1500",
+          "output": "New Time: 19:20",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Data Types and Input/Output",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing HH:MM time and an integer offset (separated by space).",
+        "output_format": "New Time: HH:MM"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_02_data_types_and_input_output.csv",
+    "total_rows": 19,
+    "total_questions": 19,
+    "valid_questions": 19,
+    "total_test_cases": 175,
+    "visible_test_cases": 57,
+    "hidden_test_cases": 118,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

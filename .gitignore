@@ -1,0 +1,44 @@
+# Dependencies & environments
+node_modules/
+frontend/node_modules/
+.env
+.env.local
+.env.*.local
+venv/
+.venv/
+env/
+
+# Build artifacts
+dist/
+frontend/dist/
+frontend/dist-ssr/
+build/
+*.egg-info/
+.eggs/
+
+# Python cache & test artifacts
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & logs
+*.db
+*.sqlite
+backend/storage/*.db
+*.log
+
+# System & IDE files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.idea/
+.vscode/
+*.swp
+*.swo

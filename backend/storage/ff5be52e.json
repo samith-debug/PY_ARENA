@@ -1,0 +1,2313 @@
+{
+  "id": "ff5be52e",
+  "filename": "module_05_loops.csv",
+  "imported_at": "2026-10-16T05:58:38.231985Z",
+  "total_questions": 21,
+  "total_test_cases": 210,
+  "visible_test_cases": 63,
+  "hidden_test_cases": 147,
+  "questions": [
+    {
+      "question_id": "M05-01",
+      "title": "Sequential Ticket Generator",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Print N zero-padded ticket numbers TICK-001 to TICK-N using range().",
+      "problem_statement": "Task: A ticket system must print N ticket numbers in order. Every ticket starts with TICK- followed by the ticket number padded with zeros to 3 digits.\n• Ticket 1 → TICK-001\n• Ticket 12 → TICK-012\n• Ticket 100 → TICK-100\n\nGiven N, print the tickets from TICK-001 up to TICK-N, one per line. Use a for loop with range().",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "N lines. Line i contains: TICK-<i padded with zeros to 3 digits>",
+      "constraints": "1 <= N <= 999",
+      "sample_inputs": [
+        "3",
+        "12"
+      ],
+      "sample_outputs": [
+        "TICK-001\nTICK-002\nTICK-003",
+        "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012"
+      ],
+      "hints": [
+        "range(1, N + 1) gives the numbers 1 to N.",
+        "Zero-padding to 3 digits can be done with the format specifier :03d.",
+        "Inside the loop print f\"TICK-{i:03d}\"."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nfor i in range(1, n + 1):\n    print(f\"TICK-{i:03d}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3",
+          "output": "TICK-001\nTICK-002\nTICK-003",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "12",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "TICK-001",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012\nTICK-013\nTICK-014\nTICK-015\nTICK-016\nTICK-017\nTICK-018\nTICK-019\nTICK-020\nTICK-021\nTICK-022\nTICK-023\nTICK-024\nTICK-025\nTICK-026\nTICK-027\nTICK-028\nTICK-029\nTICK-030\nTICK-031\nTICK-032\nTICK-033\nTICK-034\nTICK-035\nTICK-036\nTICK-037\nTICK-038\nTICK-039\nTICK-040\nTICK-041\nTICK-042\nTICK-043\nTICK-044\nTICK-045\nTICK-046\nTICK-047\nTICK-048\nTICK-049\nTICK-050\nTICK-051\nTICK-052\nTICK-053\nTICK-054\nTICK-055\nTICK-056\nTICK-057\nTICK-058\nTICK-059\nTICK-060\nTICK-061\nTICK-062\nTICK-063\nTICK-064\nTICK-065\nTICK-066\nTICK-067\nTICK-068\nTICK-069\nTICK-070\nTICK-071\nTICK-072\nTICK-073\nTICK-074\nTICK-075\nTICK-076\nTICK-077\nTICK-078\nTICK-079\nTICK-080\nTICK-081\nTICK-082\nTICK-083\nTICK-084\nTICK-085\nTICK-086\nTICK-087\nTICK-088\nTICK-089\nTICK-090\nTICK-091\nTICK-092\nTICK-093\nTICK-094\nTICK-095\nTICK-096\nTICK-097\nTICK-098\nTICK-099\nTICK-100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012\nTICK-013\nTICK-014\nTICK-015\nTICK-016\nTICK-017\nTICK-018\nTICK-019\nTICK-020\nTICK-021\nTICK-022\nTICK-023\nTICK-024\nTICK-025\nTICK-026\nTICK-027\nTICK-028\nTICK-029\nTICK-030\nTICK-031\nTICK-032\nTICK-033\nTICK-034\nTICK-035\nTICK-036\nTICK-037\nTICK-038\nTICK-039\nTICK-040\nTICK-041\nTICK-042\nTICK-043\nTICK-044\nTICK-045\nTICK-046\nTICK-047\nTICK-048\nTICK-049\nTICK-050\nTICK-051\nTICK-052\nTICK-053\nTICK-054\nTICK-055\nTICK-056\nTICK-057\nTICK-058\nTICK-059\nTICK-060\nTICK-061\nTICK-062\nTICK-063\nTICK-064\nTICK-065\nTICK-066\nTICK-067\nTICK-068\nTICK-069\nTICK-070\nTICK-071\nTICK-072\nTICK-073\nTICK-074\nTICK-075\nTICK-076\nTICK-077\nTICK-078\nTICK-079\nTICK-080\nTICK-081\nTICK-082\nTICK-083\nTICK-084\nTICK-085\nTICK-086\nTICK-087\nTICK-088\nTICK-089\nTICK-090\nTICK-091\nTICK-092\nTICK-093\nTICK-094\nTICK-095\nTICK-096\nTICK-097\nTICK-098\nTICK-099\nTICK-100\nTICK-101\nTICK-102\nTICK-103\nTICK-104\nTICK-105\nTICK-106\nTICK-107\nTICK-108\nTICK-109\nTICK-110\nTICK-111\nTICK-112\nTICK-113\nTICK-114\nTICK-115\nTICK-116\nTICK-117\nTICK-118\nTICK-119\nTICK-120\nTICK-121\nTICK-122\nTICK-123\nTICK-124\nTICK-125\nTICK-126\nTICK-127\nTICK-128\nTICK-129\nTICK-130\nTICK-131\nTICK-132\nTICK-133\nTICK-134\nTICK-135\nTICK-136\nTICK-137\nTICK-138\nTICK-139\nTICK-140\nTICK-141\nTICK-142\nTICK-143\nTICK-144\nTICK-145\nTICK-146\nTICK-147\nTICK-148\nTICK-149\nTICK-150\nTICK-151\nTICK-152\nTICK-153\nTICK-154\nTICK-155\nTICK-156\nTICK-157\nTICK-158\nTICK-159\nTICK-160\nTICK-161\nTICK-162\nTICK-163\nTICK-164\nTICK-165\nTICK-166\nTICK-167\nTICK-168\nTICK-169\nTICK-170\nTICK-171\nTICK-172\nTICK-173\nTICK-174\nTICK-175\nTICK-176\nTICK-177\nTICK-178\nTICK-179\nTICK-180\nTICK-181\nTICK-182\nTICK-183\nTICK-184\nTICK-185\nTICK-186\nTICK-187\nTICK-188\nTICK-189\nTICK-190\nTICK-191\nTICK-192\nTICK-193\nTICK-194\nTICK-195\nTICK-196\nTICK-197\nTICK-198\nTICK-199\nTICK-200\nTICK-201\nTICK-202\nTICK-203\nTICK-204\nTICK-205\nTICK-206\nTICK-207\nTICK-208\nTICK-209\nTICK-210\nTICK-211\nTICK-212\nTICK-213\nTICK-214\nTICK-215\nTICK-216\nTICK-217\nTICK-218\nTICK-219\nTICK-220\nTICK-221\nTICK-222\nTICK-223\nTICK-224\nTICK-225\nTICK-226\nTICK-227\nTICK-228\nTICK-229\nTICK-230\nTICK-231\nTICK-232\nTICK-233\nTICK-234\nTICK-235\nTICK-236\nTICK-237\nTICK-238\nTICK-239\nTICK-240\nTICK-241\nTICK-242\nTICK-243\nTICK-244\nTICK-245\nTICK-246\nTICK-247\nTICK-248\nTICK-249\nTICK-250\nTICK-251\nTICK-252\nTICK-253\nTICK-254\nTICK-255\nTICK-256\nTICK-257\nTICK-258\nTICK-259\nTICK-260\nTICK-261\nTICK-262\nTICK-263\nTICK-264\nTICK-265\nTICK-266\nTICK-267\nTICK-268\nTICK-269\nTICK-270\nTICK-271\nTICK-272\nTICK-273\nTICK-274\nTICK-275\nTICK-276\nTICK-277\nTICK-278\nTICK-279\nTICK-280\nTICK-281\nTICK-282\nTICK-283\nTICK-284\nTICK-285\nTICK-286\nTICK-287\nTICK-288\nTICK-289\nTICK-290\nTICK-291\nTICK-292\nTICK-293\nTICK-294\nTICK-295\nTICK-296\nTICK-297\nTICK-298\nTICK-299\nTICK-300\nTICK-301\nTICK-302\nTICK-303\nTICK-304\nTICK-305\nTICK-306\nTICK-307\nTICK-308\nTICK-309\nTICK-310\nTICK-311\nTICK-312\nTICK-313\nTICK-314\nTICK-315\nTICK-316\nTICK-317\nTICK-318\nTICK-319\nTICK-320\nTICK-321\nTICK-322\nTICK-323\nTICK-324\nTICK-325\nTICK-326\nTICK-327\nTICK-328\nTICK-329\nTICK-330\nTICK-331\nTICK-332\nTICK-333\nTICK-334\nTICK-335\nTICK-336\nTICK-337\nTICK-338\nTICK-339\nTICK-340\nTICK-341\nTICK-342\nTICK-343\nTICK-344\nTICK-345\nTICK-346\nTICK-347\nTICK-348\nTICK-349\nTICK-350\nTICK-351\nTICK-352\nTICK-353\nTICK-354\nTICK-355\nTICK-356\nTICK-357\nTICK-358\nTICK-359\nTICK-360\nTICK-361\nTICK-362\nTICK-363\nTICK-364\nTICK-365\nTICK-366\nTICK-367\nTICK-368\nTICK-369\nTICK-370\nTICK-371\nTICK-372\nTICK-373\nTICK-374\nTICK-375\nTICK-376\nTICK-377\nTICK-378\nTICK-379\nTICK-380\nTICK-381\nTICK-382\nTICK-383\nTICK-384\nTICK-385\nTICK-386\nTICK-387\nTICK-388\nTICK-389\nTICK-390\nTICK-391\nTICK-392\nTICK-393\nTICK-394\nTICK-395\nTICK-396\nTICK-397\nTICK-398\nTICK-399\nTICK-400\nTICK-401\nTICK-402\nTICK-403\nTICK-404\nTICK-405\nTICK-406\nTICK-407\nTICK-408\nTICK-409\nTICK-410\nTICK-411\nTICK-412\nTICK-413\nTICK-414\nTICK-415\nTICK-416\nTICK-417\nTICK-418\nTICK-419\nTICK-420\nTICK-421\nTICK-422\nTICK-423\nTICK-424\nTICK-425\nTICK-426\nTICK-427\nTICK-428\nTICK-429\nTICK-430\nTICK-431\nTICK-432\nTICK-433\nTICK-434\nTICK-435\nTICK-436\nTICK-437\nTICK-438\nTICK-439\nTICK-440\nTICK-441\nTICK-442\nTICK-443\nTICK-444\nTICK-445\nTICK-446\nTICK-447\nTICK-448\nTICK-449\nTICK-450\nTICK-451\nTICK-452\nTICK-453\nTICK-454\nTICK-455\nTICK-456\nTICK-457\nTICK-458\nTICK-459\nTICK-460\nTICK-461\nTICK-462\nTICK-463\nTICK-464\nTICK-465\nTICK-466\nTICK-467\nTICK-468\nTICK-469\nTICK-470\nTICK-471\nTICK-472\nTICK-473\nTICK-474\nTICK-475\nTICK-476\nTICK-477\nTICK-478\nTICK-479\nTICK-480\nTICK-481\nTICK-482\nTICK-483\nTICK-484\nTICK-485\nTICK-486\nTICK-487\nTICK-488\nTICK-489\nTICK-490\nTICK-491\nTICK-492\nTICK-493\nTICK-494\nTICK-495\nTICK-496\nTICK-497\nTICK-498\nTICK-499\nTICK-500\nTICK-501\nTICK-502\nTICK-503\nTICK-504\nTICK-505\nTICK-506\nTICK-507\nTICK-508\nTICK-509\nTICK-510\nTICK-511\nTICK-512\nTICK-513\nTICK-514\nTICK-515\nTICK-516\nTICK-517\nTICK-518\nTICK-519\nTICK-520\nTICK-521\nTICK-522\nTICK-523\nTICK-524\nTICK-525\nTICK-526\nTICK-527\nTICK-528\nTICK-529\nTICK-530\nTICK-531\nTICK-532\nTICK-533\nTICK-534\nTICK-535\nTICK-536\nTICK-537\nTICK-538\nTICK-539\nTICK-540\nTICK-541\nTICK-542\nTICK-543\nTICK-544\nTICK-545\nTICK-546\nTICK-547\nTICK-548\nTICK-549\nTICK-550\nTICK-551\nTICK-552\nTICK-553\nTICK-554\nTICK-555\nTICK-556\nTICK-557\nTICK-558\nTICK-559\nTICK-560\nTICK-561\nTICK-562\nTICK-563\nTICK-564\nTICK-565\nTICK-566\nTICK-567\nTICK-568\nTICK-569\nTICK-570\nTICK-571\nTICK-572\nTICK-573\nTICK-574\nTICK-575\nTICK-576\nTICK-577\nTICK-578\nTICK-579\nTICK-580\nTICK-581\nTICK-582\nTICK-583\nTICK-584\nTICK-585\nTICK-586\nTICK-587\nTICK-588\nTICK-589\nTICK-590\nTICK-591\nTICK-592\nTICK-593\nTICK-594\nTICK-595\nTICK-596\nTICK-597\nTICK-598\nTICK-599\nTICK-600\nTICK-601\nTICK-602\nTICK-603\nTICK-604\nTICK-605\nTICK-606\nTICK-607\nTICK-608\nTICK-609\nTICK-610\nTICK-611\nTICK-612\nTICK-613\nTICK-614\nTICK-615\nTICK-616\nTICK-617\nTICK-618\nTICK-619\nTICK-620\nTICK-621\nTICK-622\nTICK-623\nTICK-624\nTICK-625\nTICK-626\nTICK-627\nTICK-628\nTICK-629\nTICK-630\nTICK-631\nTICK-632\nTICK-633\nTICK-634\nTICK-635\nTICK-636\nTICK-637\nTICK-638\nTICK-639\nTICK-640\nTICK-641\nTICK-642\nTICK-643\nTICK-644\nTICK-645\nTICK-646\nTICK-647\nTICK-648\nTICK-649\nTICK-650\nTICK-651\nTICK-652\nTICK-653\nTICK-654\nTICK-655\nTICK-656\nTICK-657\nTICK-658\nTICK-659\nTICK-660\nTICK-661\nTICK-662\nTICK-663\nTICK-664\nTICK-665\nTICK-666\nTICK-667\nTICK-668\nTICK-669\nTICK-670\nTICK-671\nTICK-672\nTICK-673\nTICK-674\nTICK-675\nTICK-676\nTICK-677\nTICK-678\nTICK-679\nTICK-680\nTICK-681\nTICK-682\nTICK-683\nTICK-684\nTICK-685\nTICK-686\nTICK-687\nTICK-688\nTICK-689\nTICK-690\nTICK-691\nTICK-692\nTICK-693\nTICK-694\nTICK-695\nTICK-696\nTICK-697\nTICK-698\nTICK-699\nTICK-700\nTICK-701\nTICK-702\nTICK-703\nTICK-704\nTICK-705\nTICK-706\nTICK-707\nTICK-708\nTICK-709\nTICK-710\nTICK-711\nTICK-712\nTICK-713\nTICK-714\nTICK-715\nTICK-716\nTICK-717\nTICK-718\nTICK-719\nTICK-720\nTICK-721\nTICK-722\nTICK-723\nTICK-724\nTICK-725\nTICK-726\nTICK-727\nTICK-728\nTICK-729\nTICK-730\nTICK-731\nTICK-732\nTICK-733\nTICK-734\nTICK-735\nTICK-736\nTICK-737\nTICK-738\nTICK-739\nTICK-740\nTICK-741\nTICK-742\nTICK-743\nTICK-744\nTICK-745\nTICK-746\nTICK-747\nTICK-748\nTICK-749\nTICK-750\nTICK-751\nTICK-752\nTICK-753\nTICK-754\nTICK-755\nTICK-756\nTICK-757\nTICK-758\nTICK-759\nTICK-760\nTICK-761\nTICK-762\nTICK-763\nTICK-764\nTICK-765\nTICK-766\nTICK-767\nTICK-768\nTICK-769\nTICK-770\nTICK-771\nTICK-772\nTICK-773\nTICK-774\nTICK-775\nTICK-776\nTICK-777\nTICK-778\nTICK-779\nTICK-780\nTICK-781\nTICK-782\nTICK-783\nTICK-784\nTICK-785\nTICK-786\nTICK-787\nTICK-788\nTICK-789\nTICK-790\nTICK-791\nTICK-792\nTICK-793\nTICK-794\nTICK-795\nTICK-796\nTICK-797\nTICK-798\nTICK-799\nTICK-800\nTICK-801\nTICK-802\nTICK-803\nTICK-804\nTICK-805\nTICK-806\nTICK-807\nTICK-808\nTICK-809\nTICK-810\nTICK-811\nTICK-812\nTICK-813\nTICK-814\nTICK-815\nTICK-816\nTICK-817\nTICK-818\nTICK-819\nTICK-820\nTICK-821\nTICK-822\nTICK-823\nTICK-824\nTICK-825\nTICK-826\nTICK-827\nTICK-828\nTICK-829\nTICK-830\nTICK-831\nTICK-832\nTICK-833\nTICK-834\nTICK-835\nTICK-836\nTICK-837\nTICK-838\nTICK-839\nTICK-840\nTICK-841\nTICK-842\nTICK-843\nTICK-844\nTICK-845\nTICK-846\nTICK-847\nTICK-848\nTICK-849\nTICK-850\nTICK-851\nTICK-852\nTICK-853\nTICK-854\nTICK-855\nTICK-856\nTICK-857\nTICK-858\nTICK-859\nTICK-860\nTICK-861\nTICK-862\nTICK-863\nTICK-864\nTICK-865\nTICK-866\nTICK-867\nTICK-868\nTICK-869\nTICK-870\nTICK-871\nTICK-872\nTICK-873\nTICK-874\nTICK-875\nTICK-876\nTICK-877\nTICK-878\nTICK-879\nTICK-880\nTICK-881\nTICK-882\nTICK-883\nTICK-884\nTICK-885\nTICK-886\nTICK-887\nTICK-888\nTICK-889\nTICK-890\nTICK-891\nTICK-892\nTICK-893\nTICK-894\nTICK-895\nTICK-896\nTICK-897\nTICK-898\nTICK-899\nTICK-900\nTICK-901\nTICK-902\nTICK-903\nTICK-904\nTICK-905\nTICK-906\nTICK-907\nTICK-908\nTICK-909\nTICK-910\nTICK-911\nTICK-912\nTICK-913\nTICK-914\nTICK-915\nTICK-916\nTICK-917\nTICK-918\nTICK-919\nTICK-920\nTICK-921\nTICK-922\nTICK-923\nTICK-924\nTICK-925\nTICK-926\nTICK-927\nTICK-928\nTICK-929\nTICK-930\nTICK-931\nTICK-932\nTICK-933\nTICK-934\nTICK-935\nTICK-936\nTICK-937\nTICK-938\nTICK-939\nTICK-940\nTICK-941\nTICK-942\nTICK-943\nTICK-944\nTICK-945\nTICK-946\nTICK-947\nTICK-948\nTICK-949\nTICK-950\nTICK-951\nTICK-952\nTICK-953\nTICK-954\nTICK-955\nTICK-956\nTICK-957\nTICK-958\nTICK-959\nTICK-960\nTICK-961\nTICK-962\nTICK-963\nTICK-964\nTICK-965\nTICK-966\nTICK-967\nTICK-968\nTICK-969\nTICK-970\nTICK-971\nTICK-972\nTICK-973\nTICK-974\nTICK-975\nTICK-976\nTICK-977\nTICK-978\nTICK-979\nTICK-980\nTICK-981\nTICK-982\nTICK-983\nTICK-984\nTICK-985\nTICK-986\nTICK-987\nTICK-988\nTICK-989\nTICK-990\nTICK-991\nTICK-992\nTICK-993\nTICK-994\nTICK-995\nTICK-996\nTICK-997\nTICK-998\nTICK-999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "20",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012\nTICK-013\nTICK-014\nTICK-015\nTICK-016\nTICK-017\nTICK-018\nTICK-019\nTICK-020",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "50",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007\nTICK-008\nTICK-009\nTICK-010\nTICK-011\nTICK-012\nTICK-013\nTICK-014\nTICK-015\nTICK-016\nTICK-017\nTICK-018\nTICK-019\nTICK-020\nTICK-021\nTICK-022\nTICK-023\nTICK-024\nTICK-025\nTICK-026\nTICK-027\nTICK-028\nTICK-029\nTICK-030\nTICK-031\nTICK-032\nTICK-033\nTICK-034\nTICK-035\nTICK-036\nTICK-037\nTICK-038\nTICK-039\nTICK-040\nTICK-041\nTICK-042\nTICK-043\nTICK-044\nTICK-045\nTICK-046\nTICK-047\nTICK-048\nTICK-049\nTICK-050",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "7",
+          "output": "TICK-001\nTICK-002\nTICK-003\nTICK-004\nTICK-005\nTICK-006\nTICK-007",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "N lines. Line i contains: TICK-<i padded with zeros to 3 digits>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-02",
+      "title": "Cumulative Streak Points",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Compute prefix sum of points earned over N days (Day i earns i points).",
+      "problem_statement": "Task: A game gives a player points every day, and the points equal the day number: Day 1 earns 1 point, Day 2 earns 2 points, and so on.\n• The running total after a day = all points earned from Day 1 up to that day\n• Example: after Day 3 the total is 1 + 2 + 3 = 6\n\nGiven N days, print one line for each day showing the running total after that day.",
+      "input_format": "A single line containing one integer N (number of days).",
+      "output_format": "N lines. Line i: Day i: <total points after day i>",
+      "constraints": "1 <= N <= 1000",
+      "sample_inputs": [
+        "5",
+        "3"
+      ],
+      "sample_outputs": [
+        "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15",
+        "Day 1: 1\nDay 2: 3\nDay 3: 6"
+      ],
+      "hints": [
+        "Keep a variable total that starts at 0.",
+        "In each iteration i of range(1, N + 1), add i to total.",
+        "Print the day number and the total inside the loop."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\ntotal = 0\nfor i in range(1, n + 1):\n    total += i\n    print(f\"Day {i}: {total}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Day 1: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "20",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55\nDay 11: 66\nDay 12: 78\nDay 13: 91\nDay 14: 105\nDay 15: 120\nDay 16: 136\nDay 17: 153\nDay 18: 171\nDay 19: 190\nDay 20: 210",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55\nDay 11: 66\nDay 12: 78\nDay 13: 91\nDay 14: 105\nDay 15: 120\nDay 16: 136\nDay 17: 153\nDay 18: 171\nDay 19: 190\nDay 20: 210\nDay 21: 231\nDay 22: 253\nDay 23: 276\nDay 24: 300\nDay 25: 325\nDay 26: 351\nDay 27: 378\nDay 28: 406\nDay 29: 435\nDay 30: 465\nDay 31: 496\nDay 32: 528\nDay 33: 561\nDay 34: 595\nDay 35: 630\nDay 36: 666\nDay 37: 703\nDay 38: 741\nDay 39: 780\nDay 40: 820\nDay 41: 861\nDay 42: 903\nDay 43: 946\nDay 44: 990\nDay 45: 1035\nDay 46: 1081\nDay 47: 1128\nDay 48: 1176\nDay 49: 1225\nDay 50: 1275\nDay 51: 1326\nDay 52: 1378\nDay 53: 1431\nDay 54: 1485\nDay 55: 1540\nDay 56: 1596\nDay 57: 1653\nDay 58: 1711\nDay 59: 1770\nDay 60: 1830\nDay 61: 1891\nDay 62: 1953\nDay 63: 2016\nDay 64: 2080\nDay 65: 2145\nDay 66: 2211\nDay 67: 2278\nDay 68: 2346\nDay 69: 2415\nDay 70: 2485\nDay 71: 2556\nDay 72: 2628\nDay 73: 2701\nDay 74: 2775\nDay 75: 2850\nDay 76: 2926\nDay 77: 3003\nDay 78: 3081\nDay 79: 3160\nDay 80: 3240\nDay 81: 3321\nDay 82: 3403\nDay 83: 3486\nDay 84: 3570\nDay 85: 3655\nDay 86: 3741\nDay 87: 3828\nDay 88: 3916\nDay 89: 4005\nDay 90: 4095\nDay 91: 4186\nDay 92: 4278\nDay 93: 4371\nDay 94: 4465\nDay 95: 4560\nDay 96: 4656\nDay 97: 4753\nDay 98: 4851\nDay 99: 4950\nDay 100: 5050",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55\nDay 11: 66\nDay 12: 78\nDay 13: 91\nDay 14: 105\nDay 15: 120\nDay 16: 136\nDay 17: 153\nDay 18: 171\nDay 19: 190\nDay 20: 210\nDay 21: 231\nDay 22: 253\nDay 23: 276\nDay 24: 300\nDay 25: 325\nDay 26: 351\nDay 27: 378\nDay 28: 406\nDay 29: 435\nDay 30: 465\nDay 31: 496\nDay 32: 528\nDay 33: 561\nDay 34: 595\nDay 35: 630\nDay 36: 666\nDay 37: 703\nDay 38: 741\nDay 39: 780\nDay 40: 820\nDay 41: 861\nDay 42: 903\nDay 43: 946\nDay 44: 990\nDay 45: 1035\nDay 46: 1081\nDay 47: 1128\nDay 48: 1176\nDay 49: 1225\nDay 50: 1275\nDay 51: 1326\nDay 52: 1378\nDay 53: 1431\nDay 54: 1485\nDay 55: 1540\nDay 56: 1596\nDay 57: 1653\nDay 58: 1711\nDay 59: 1770\nDay 60: 1830\nDay 61: 1891\nDay 62: 1953\nDay 63: 2016\nDay 64: 2080\nDay 65: 2145\nDay 66: 2211\nDay 67: 2278\nDay 68: 2346\nDay 69: 2415\nDay 70: 2485\nDay 71: 2556\nDay 72: 2628\nDay 73: 2701\nDay 74: 2775\nDay 75: 2850\nDay 76: 2926\nDay 77: 3003\nDay 78: 3081\nDay 79: 3160\nDay 80: 3240\nDay 81: 3321\nDay 82: 3403\nDay 83: 3486\nDay 84: 3570\nDay 85: 3655\nDay 86: 3741\nDay 87: 3828\nDay 88: 3916\nDay 89: 4005\nDay 90: 4095\nDay 91: 4186\nDay 92: 4278\nDay 93: 4371\nDay 94: 4465\nDay 95: 4560\nDay 96: 4656\nDay 97: 4753\nDay 98: 4851\nDay 99: 4950\nDay 100: 5050\nDay 101: 5151\nDay 102: 5253\nDay 103: 5356\nDay 104: 5460\nDay 105: 5565\nDay 106: 5671\nDay 107: 5778\nDay 108: 5886\nDay 109: 5995\nDay 110: 6105\nDay 111: 6216\nDay 112: 6328\nDay 113: 6441\nDay 114: 6555\nDay 115: 6670\nDay 116: 6786\nDay 117: 6903\nDay 118: 7021\nDay 119: 7140\nDay 120: 7260\nDay 121: 7381\nDay 122: 7503\nDay 123: 7626\nDay 124: 7750\nDay 125: 7875\nDay 126: 8001\nDay 127: 8128\nDay 128: 8256\nDay 129: 8385\nDay 130: 8515\nDay 131: 8646\nDay 132: 8778\nDay 133: 8911\nDay 134: 9045\nDay 135: 9180\nDay 136: 9316\nDay 137: 9453\nDay 138: 9591\nDay 139: 9730\nDay 140: 9870\nDay 141: 10011\nDay 142: 10153\nDay 143: 10296\nDay 144: 10440\nDay 145: 10585\nDay 146: 10731\nDay 147: 10878\nDay 148: 11026\nDay 149: 11175\nDay 150: 11325\nDay 151: 11476\nDay 152: 11628\nDay 153: 11781\nDay 154: 11935\nDay 155: 12090\nDay 156: 12246\nDay 157: 12403\nDay 158: 12561\nDay 159: 12720\nDay 160: 12880\nDay 161: 13041\nDay 162: 13203\nDay 163: 13366\nDay 164: 13530\nDay 165: 13695\nDay 166: 13861\nDay 167: 14028\nDay 168: 14196\nDay 169: 14365\nDay 170: 14535\nDay 171: 14706\nDay 172: 14878\nDay 173: 15051\nDay 174: 15225\nDay 175: 15400\nDay 176: 15576\nDay 177: 15753\nDay 178: 15931\nDay 179: 16110\nDay 180: 16290\nDay 181: 16471\nDay 182: 16653\nDay 183: 16836\nDay 184: 17020\nDay 185: 17205\nDay 186: 17391\nDay 187: 17578\nDay 188: 17766\nDay 189: 17955\nDay 190: 18145\nDay 191: 18336\nDay 192: 18528\nDay 193: 18721\nDay 194: 18915\nDay 195: 19110\nDay 196: 19306\nDay 197: 19503\nDay 198: 19701\nDay 199: 19900\nDay 200: 20100\nDay 201: 20301\nDay 202: 20503\nDay 203: 20706\nDay 204: 20910\nDay 205: 21115\nDay 206: 21321\nDay 207: 21528\nDay 208: 21736\nDay 209: 21945\nDay 210: 22155\nDay 211: 22366\nDay 212: 22578\nDay 213: 22791\nDay 214: 23005\nDay 215: 23220\nDay 216: 23436\nDay 217: 23653\nDay 218: 23871\nDay 219: 24090\nDay 220: 24310\nDay 221: 24531\nDay 222: 24753\nDay 223: 24976\nDay 224: 25200\nDay 225: 25425\nDay 226: 25651\nDay 227: 25878\nDay 228: 26106\nDay 229: 26335\nDay 230: 26565\nDay 231: 26796\nDay 232: 27028\nDay 233: 27261\nDay 234: 27495\nDay 235: 27730\nDay 236: 27966\nDay 237: 28203\nDay 238: 28441\nDay 239: 28680\nDay 240: 28920\nDay 241: 29161\nDay 242: 29403\nDay 243: 29646\nDay 244: 29890\nDay 245: 30135\nDay 246: 30381\nDay 247: 30628\nDay 248: 30876\nDay 249: 31125\nDay 250: 31375\nDay 251: 31626\nDay 252: 31878\nDay 253: 32131\nDay 254: 32385\nDay 255: 32640\nDay 256: 32896\nDay 257: 33153\nDay 258: 33411\nDay 259: 33670\nDay 260: 33930\nDay 261: 34191\nDay 262: 34453\nDay 263: 34716\nDay 264: 34980\nDay 265: 35245\nDay 266: 35511\nDay 267: 35778\nDay 268: 36046\nDay 269: 36315\nDay 270: 36585\nDay 271: 36856\nDay 272: 37128\nDay 273: 37401\nDay 274: 37675\nDay 275: 37950\nDay 276: 38226\nDay 277: 38503\nDay 278: 38781\nDay 279: 39060\nDay 280: 39340\nDay 281: 39621\nDay 282: 39903\nDay 283: 40186\nDay 284: 40470\nDay 285: 40755\nDay 286: 41041\nDay 287: 41328\nDay 288: 41616\nDay 289: 41905\nDay 290: 42195\nDay 291: 42486\nDay 292: 42778\nDay 293: 43071\nDay 294: 43365\nDay 295: 43660\nDay 296: 43956\nDay 297: 44253\nDay 298: 44551\nDay 299: 44850\nDay 300: 45150\nDay 301: 45451\nDay 302: 45753\nDay 303: 46056\nDay 304: 46360\nDay 305: 46665\nDay 306: 46971\nDay 307: 47278\nDay 308: 47586\nDay 309: 47895\nDay 310: 48205\nDay 311: 48516\nDay 312: 48828\nDay 313: 49141\nDay 314: 49455\nDay 315: 49770\nDay 316: 50086\nDay 317: 50403\nDay 318: 50721\nDay 319: 51040\nDay 320: 51360\nDay 321: 51681\nDay 322: 52003\nDay 323: 52326\nDay 324: 52650\nDay 325: 52975\nDay 326: 53301\nDay 327: 53628\nDay 328: 53956\nDay 329: 54285\nDay 330: 54615\nDay 331: 54946\nDay 332: 55278\nDay 333: 55611\nDay 334: 55945\nDay 335: 56280\nDay 336: 56616\nDay 337: 56953\nDay 338: 57291\nDay 339: 57630\nDay 340: 57970\nDay 341: 58311\nDay 342: 58653\nDay 343: 58996\nDay 344: 59340\nDay 345: 59685\nDay 346: 60031\nDay 347: 60378\nDay 348: 60726\nDay 349: 61075\nDay 350: 61425\nDay 351: 61776\nDay 352: 62128\nDay 353: 62481\nDay 354: 62835\nDay 355: 63190\nDay 356: 63546\nDay 357: 63903\nDay 358: 64261\nDay 359: 64620\nDay 360: 64980\nDay 361: 65341\nDay 362: 65703\nDay 363: 66066\nDay 364: 66430\nDay 365: 66795\nDay 366: 67161\nDay 367: 67528\nDay 368: 67896\nDay 369: 68265\nDay 370: 68635\nDay 371: 69006\nDay 372: 69378\nDay 373: 69751\nDay 374: 70125\nDay 375: 70500\nDay 376: 70876\nDay 377: 71253\nDay 378: 71631\nDay 379: 72010\nDay 380: 72390\nDay 381: 72771\nDay 382: 73153\nDay 383: 73536\nDay 384: 73920\nDay 385: 74305\nDay 386: 74691\nDay 387: 75078\nDay 388: 75466\nDay 389: 75855\nDay 390: 76245\nDay 391: 76636\nDay 392: 77028\nDay 393: 77421\nDay 394: 77815\nDay 395: 78210\nDay 396: 78606\nDay 397: 79003\nDay 398: 79401\nDay 399: 79800\nDay 400: 80200\nDay 401: 80601\nDay 402: 81003\nDay 403: 81406\nDay 404: 81810\nDay 405: 82215\nDay 406: 82621\nDay 407: 83028\nDay 408: 83436\nDay 409: 83845\nDay 410: 84255\nDay 411: 84666\nDay 412: 85078\nDay 413: 85491\nDay 414: 85905\nDay 415: 86320\nDay 416: 86736\nDay 417: 87153\nDay 418: 87571\nDay 419: 87990\nDay 420: 88410\nDay 421: 88831\nDay 422: 89253\nDay 423: 89676\nDay 424: 90100\nDay 425: 90525\nDay 426: 90951\nDay 427: 91378\nDay 428: 91806\nDay 429: 92235\nDay 430: 92665\nDay 431: 93096\nDay 432: 93528\nDay 433: 93961\nDay 434: 94395\nDay 435: 94830\nDay 436: 95266\nDay 437: 95703\nDay 438: 96141\nDay 439: 96580\nDay 440: 97020\nDay 441: 97461\nDay 442: 97903\nDay 443: 98346\nDay 444: 98790\nDay 445: 99235\nDay 446: 99681\nDay 447: 100128\nDay 448: 100576\nDay 449: 101025\nDay 450: 101475\nDay 451: 101926\nDay 452: 102378\nDay 453: 102831\nDay 454: 103285\nDay 455: 103740\nDay 456: 104196\nDay 457: 104653\nDay 458: 105111\nDay 459: 105570\nDay 460: 106030\nDay 461: 106491\nDay 462: 106953\nDay 463: 107416\nDay 464: 107880\nDay 465: 108345\nDay 466: 108811\nDay 467: 109278\nDay 468: 109746\nDay 469: 110215\nDay 470: 110685\nDay 471: 111156\nDay 472: 111628\nDay 473: 112101\nDay 474: 112575\nDay 475: 113050\nDay 476: 113526\nDay 477: 114003\nDay 478: 114481\nDay 479: 114960\nDay 480: 115440\nDay 481: 115921\nDay 482: 116403\nDay 483: 116886\nDay 484: 117370\nDay 485: 117855\nDay 486: 118341\nDay 487: 118828\nDay 488: 119316\nDay 489: 119805\nDay 490: 120295\nDay 491: 120786\nDay 492: 121278\nDay 493: 121771\nDay 494: 122265\nDay 495: 122760\nDay 496: 123256\nDay 497: 123753\nDay 498: 124251\nDay 499: 124750\nDay 500: 125250\nDay 501: 125751\nDay 502: 126253\nDay 503: 126756\nDay 504: 127260\nDay 505: 127765\nDay 506: 128271\nDay 507: 128778\nDay 508: 129286\nDay 509: 129795\nDay 510: 130305\nDay 511: 130816\nDay 512: 131328\nDay 513: 131841\nDay 514: 132355\nDay 515: 132870\nDay 516: 133386\nDay 517: 133903\nDay 518: 134421\nDay 519: 134940\nDay 520: 135460\nDay 521: 135981\nDay 522: 136503\nDay 523: 137026\nDay 524: 137550\nDay 525: 138075\nDay 526: 138601\nDay 527: 139128\nDay 528: 139656\nDay 529: 140185\nDay 530: 140715\nDay 531: 141246\nDay 532: 141778\nDay 533: 142311\nDay 534: 142845\nDay 535: 143380\nDay 536: 143916\nDay 537: 144453\nDay 538: 144991\nDay 539: 145530\nDay 540: 146070\nDay 541: 146611\nDay 542: 147153\nDay 543: 147696\nDay 544: 148240\nDay 545: 148785\nDay 546: 149331\nDay 547: 149878\nDay 548: 150426\nDay 549: 150975\nDay 550: 151525\nDay 551: 152076\nDay 552: 152628\nDay 553: 153181\nDay 554: 153735\nDay 555: 154290\nDay 556: 154846\nDay 557: 155403\nDay 558: 155961\nDay 559: 156520\nDay 560: 157080\nDay 561: 157641\nDay 562: 158203\nDay 563: 158766\nDay 564: 159330\nDay 565: 159895\nDay 566: 160461\nDay 567: 161028\nDay 568: 161596\nDay 569: 162165\nDay 570: 162735\nDay 571: 163306\nDay 572: 163878\nDay 573: 164451\nDay 574: 165025\nDay 575: 165600\nDay 576: 166176\nDay 577: 166753\nDay 578: 167331\nDay 579: 167910\nDay 580: 168490\nDay 581: 169071\nDay 582: 169653\nDay 583: 170236\nDay 584: 170820\nDay 585: 171405\nDay 586: 171991\nDay 587: 172578\nDay 588: 173166\nDay 589: 173755\nDay 590: 174345\nDay 591: 174936\nDay 592: 175528\nDay 593: 176121\nDay 594: 176715\nDay 595: 177310\nDay 596: 177906\nDay 597: 178503\nDay 598: 179101\nDay 599: 179700\nDay 600: 180300\nDay 601: 180901\nDay 602: 181503\nDay 603: 182106\nDay 604: 182710\nDay 605: 183315\nDay 606: 183921\nDay 607: 184528\nDay 608: 185136\nDay 609: 185745\nDay 610: 186355\nDay 611: 186966\nDay 612: 187578\nDay 613: 188191\nDay 614: 188805\nDay 615: 189420\nDay 616: 190036\nDay 617: 190653\nDay 618: 191271\nDay 619: 191890\nDay 620: 192510\nDay 621: 193131\nDay 622: 193753\nDay 623: 194376\nDay 624: 195000\nDay 625: 195625\nDay 626: 196251\nDay 627: 196878\nDay 628: 197506\nDay 629: 198135\nDay 630: 198765\nDay 631: 199396\nDay 632: 200028\nDay 633: 200661\nDay 634: 201295\nDay 635: 201930\nDay 636: 202566\nDay 637: 203203\nDay 638: 203841\nDay 639: 204480\nDay 640: 205120\nDay 641: 205761\nDay 642: 206403\nDay 643: 207046\nDay 644: 207690\nDay 645: 208335\nDay 646: 208981\nDay 647: 209628\nDay 648: 210276\nDay 649: 210925\nDay 650: 211575\nDay 651: 212226\nDay 652: 212878\nDay 653: 213531\nDay 654: 214185\nDay 655: 214840\nDay 656: 215496\nDay 657: 216153\nDay 658: 216811\nDay 659: 217470\nDay 660: 218130\nDay 661: 218791\nDay 662: 219453\nDay 663: 220116\nDay 664: 220780\nDay 665: 221445\nDay 666: 222111\nDay 667: 222778\nDay 668: 223446\nDay 669: 224115\nDay 670: 224785\nDay 671: 225456\nDay 672: 226128\nDay 673: 226801\nDay 674: 227475\nDay 675: 228150\nDay 676: 228826\nDay 677: 229503\nDay 678: 230181\nDay 679: 230860\nDay 680: 231540\nDay 681: 232221\nDay 682: 232903\nDay 683: 233586\nDay 684: 234270\nDay 685: 234955\nDay 686: 235641\nDay 687: 236328\nDay 688: 237016\nDay 689: 237705\nDay 690: 238395\nDay 691: 239086\nDay 692: 239778\nDay 693: 240471\nDay 694: 241165\nDay 695: 241860\nDay 696: 242556\nDay 697: 243253\nDay 698: 243951\nDay 699: 244650\nDay 700: 245350\nDay 701: 246051\nDay 702: 246753\nDay 703: 247456\nDay 704: 248160\nDay 705: 248865\nDay 706: 249571\nDay 707: 250278\nDay 708: 250986\nDay 709: 251695\nDay 710: 252405\nDay 711: 253116\nDay 712: 253828\nDay 713: 254541\nDay 714: 255255\nDay 715: 255970\nDay 716: 256686\nDay 717: 257403\nDay 718: 258121\nDay 719: 258840\nDay 720: 259560\nDay 721: 260281\nDay 722: 261003\nDay 723: 261726\nDay 724: 262450\nDay 725: 263175\nDay 726: 263901\nDay 727: 264628\nDay 728: 265356\nDay 729: 266085\nDay 730: 266815\nDay 731: 267546\nDay 732: 268278\nDay 733: 269011\nDay 734: 269745\nDay 735: 270480\nDay 736: 271216\nDay 737: 271953\nDay 738: 272691\nDay 739: 273430\nDay 740: 274170\nDay 741: 274911\nDay 742: 275653\nDay 743: 276396\nDay 744: 277140\nDay 745: 277885\nDay 746: 278631\nDay 747: 279378\nDay 748: 280126\nDay 749: 280875\nDay 750: 281625\nDay 751: 282376\nDay 752: 283128\nDay 753: 283881\nDay 754: 284635\nDay 755: 285390\nDay 756: 286146\nDay 757: 286903\nDay 758: 287661\nDay 759: 288420\nDay 760: 289180\nDay 761: 289941\nDay 762: 290703\nDay 763: 291466\nDay 764: 292230\nDay 765: 292995\nDay 766: 293761\nDay 767: 294528\nDay 768: 295296\nDay 769: 296065\nDay 770: 296835\nDay 771: 297606\nDay 772: 298378\nDay 773: 299151\nDay 774: 299925\nDay 775: 300700\nDay 776: 301476\nDay 777: 302253\nDay 778: 303031\nDay 779: 303810\nDay 780: 304590\nDay 781: 305371\nDay 782: 306153\nDay 783: 306936\nDay 784: 307720\nDay 785: 308505\nDay 786: 309291\nDay 787: 310078\nDay 788: 310866\nDay 789: 311655\nDay 790: 312445\nDay 791: 313236\nDay 792: 314028\nDay 793: 314821\nDay 794: 315615\nDay 795: 316410\nDay 796: 317206\nDay 797: 318003\nDay 798: 318801\nDay 799: 319600\nDay 800: 320400\nDay 801: 321201\nDay 802: 322003\nDay 803: 322806\nDay 804: 323610\nDay 805: 324415\nDay 806: 325221\nDay 807: 326028\nDay 808: 326836\nDay 809: 327645\nDay 810: 328455\nDay 811: 329266\nDay 812: 330078\nDay 813: 330891\nDay 814: 331705\nDay 815: 332520\nDay 816: 333336\nDay 817: 334153\nDay 818: 334971\nDay 819: 335790\nDay 820: 336610\nDay 821: 337431\nDay 822: 338253\nDay 823: 339076\nDay 824: 339900\nDay 825: 340725\nDay 826: 341551\nDay 827: 342378\nDay 828: 343206\nDay 829: 344035\nDay 830: 344865\nDay 831: 345696\nDay 832: 346528\nDay 833: 347361\nDay 834: 348195\nDay 835: 349030\nDay 836: 349866\nDay 837: 350703\nDay 838: 351541\nDay 839: 352380\nDay 840: 353220\nDay 841: 354061\nDay 842: 354903\nDay 843: 355746\nDay 844: 356590\nDay 845: 357435\nDay 846: 358281\nDay 847: 359128\nDay 848: 359976\nDay 849: 360825\nDay 850: 361675\nDay 851: 362526\nDay 852: 363378\nDay 853: 364231\nDay 854: 365085\nDay 855: 365940\nDay 856: 366796\nDay 857: 367653\nDay 858: 368511\nDay 859: 369370\nDay 860: 370230\nDay 861: 371091\nDay 862: 371953\nDay 863: 372816\nDay 864: 373680\nDay 865: 374545\nDay 866: 375411\nDay 867: 376278\nDay 868: 377146\nDay 869: 378015\nDay 870: 378885\nDay 871: 379756\nDay 872: 380628\nDay 873: 381501\nDay 874: 382375\nDay 875: 383250\nDay 876: 384126\nDay 877: 385003\nDay 878: 385881\nDay 879: 386760\nDay 880: 387640\nDay 881: 388521\nDay 882: 389403\nDay 883: 390286\nDay 884: 391170\nDay 885: 392055\nDay 886: 392941\nDay 887: 393828\nDay 888: 394716\nDay 889: 395605\nDay 890: 396495\nDay 891: 397386\nDay 892: 398278\nDay 893: 399171\nDay 894: 400065\nDay 895: 400960\nDay 896: 401856\nDay 897: 402753\nDay 898: 403651\nDay 899: 404550\nDay 900: 405450\nDay 901: 406351\nDay 902: 407253\nDay 903: 408156\nDay 904: 409060\nDay 905: 409965\nDay 906: 410871\nDay 907: 411778\nDay 908: 412686\nDay 909: 413595\nDay 910: 414505\nDay 911: 415416\nDay 912: 416328\nDay 913: 417241\nDay 914: 418155\nDay 915: 419070\nDay 916: 419986\nDay 917: 420903\nDay 918: 421821\nDay 919: 422740\nDay 920: 423660\nDay 921: 424581\nDay 922: 425503\nDay 923: 426426\nDay 924: 427350\nDay 925: 428275\nDay 926: 429201\nDay 927: 430128\nDay 928: 431056\nDay 929: 431985\nDay 930: 432915\nDay 931: 433846\nDay 932: 434778\nDay 933: 435711\nDay 934: 436645\nDay 935: 437580\nDay 936: 438516\nDay 937: 439453\nDay 938: 440391\nDay 939: 441330\nDay 940: 442270\nDay 941: 443211\nDay 942: 444153\nDay 943: 445096\nDay 944: 446040\nDay 945: 446985\nDay 946: 447931\nDay 947: 448878\nDay 948: 449826\nDay 949: 450775\nDay 950: 451725\nDay 951: 452676\nDay 952: 453628\nDay 953: 454581\nDay 954: 455535\nDay 955: 456490\nDay 956: 457446\nDay 957: 458403\nDay 958: 459361\nDay 959: 460320\nDay 960: 461280\nDay 961: 462241\nDay 962: 463203\nDay 963: 464166\nDay 964: 465130\nDay 965: 466095\nDay 966: 467061\nDay 967: 468028\nDay 968: 468996\nDay 969: 469965\nDay 970: 470935\nDay 971: 471906\nDay 972: 472878\nDay 973: 473851\nDay 974: 474825\nDay 975: 475800\nDay 976: 476776\nDay 977: 477753\nDay 978: 478731\nDay 979: 479710\nDay 980: 480690\nDay 981: 481671\nDay 982: 482653\nDay 983: 483636\nDay 984: 484620\nDay 985: 485605\nDay 986: 486591\nDay 987: 487578\nDay 988: 488566\nDay 989: 489555\nDay 990: 490545\nDay 991: 491536\nDay 992: 492528\nDay 993: 493521\nDay 994: 494515\nDay 995: 495510\nDay 996: 496506\nDay 997: 497503\nDay 998: 498501\nDay 999: 499500\nDay 1000: 500500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "15",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55\nDay 11: 66\nDay 12: 78\nDay 13: 91\nDay 14: 105\nDay 15: 120",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "50",
+          "output": "Day 1: 1\nDay 2: 3\nDay 3: 6\nDay 4: 10\nDay 5: 15\nDay 6: 21\nDay 7: 28\nDay 8: 36\nDay 9: 45\nDay 10: 55\nDay 11: 66\nDay 12: 78\nDay 13: 91\nDay 14: 105\nDay 15: 120\nDay 16: 136\nDay 17: 153\nDay 18: 171\nDay 19: 190\nDay 20: 210\nDay 21: 231\nDay 22: 253\nDay 23: 276\nDay 24: 300\nDay 25: 325\nDay 26: 351\nDay 27: 378\nDay 28: 406\nDay 29: 435\nDay 30: 465\nDay 31: 496\nDay 32: 528\nDay 33: 561\nDay 34: 595\nDay 35: 630\nDay 36: 666\nDay 37: 703\nDay 38: 741\nDay 39: 780\nDay 40: 820\nDay 41: 861\nDay 42: 903\nDay 43: 946\nDay 44: 990\nDay 45: 1035\nDay 46: 1081\nDay 47: 1128\nDay 48: 1176\nDay 49: 1225\nDay 50: 1275",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer N (number of days).",
+        "output_format": "N lines. Line i: Day i: <total points after day i>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-03",
+      "title": "Quantity Price Schedule",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Print 20-row unit price schedule for units 1 to 20 with aligned columns.",
+      "problem_statement": "Task: A shop prints a price table for buying 1 to 20 units of an item. The price for u units is u x price_per_unit.\n• First print a header line: the word Units right-aligned in 5 characters, followed by the word Total right-aligned in 10 characters\n• Then print 20 rows, one for each u from 1 to 20: u right-aligned in 5 characters, followed by the total price right-aligned in 10 characters\n• Do not print anything between the columns or after the last column\n\nExample for price_per_unit = 10 (first lines):\nUnits Total\n1 10\n2 20\n\nGiven the price per unit, print the full table.",
+      "input_format": "A single line containing one integer: price_per_unit.",
+      "output_format": "21 lines. Line 1 is the header (Units right-aligned in width 5, Total right-aligned in width 10). Then 20 rows: u right-aligned in width 5, followed by u * price_per_unit right-aligned in width 10.",
+      "constraints": "1 <= price_per_unit <= 10000",
+      "sample_inputs": [
+        "10",
+        "25"
+      ],
+      "sample_outputs": [
+        "Units     Total\n    1        10\n    2        20\n    3        30\n    4        40\n    5        50\n    6        60\n    7        70\n    8        80\n    9        90\n   10       100\n   11       110\n   12       120\n   13       130\n   14       140\n   15       150\n   16       160\n   17       170\n   18       180\n   19       190\n   20       200",
+        "Units     Total\n    1        25\n    2        50\n    3        75\n    4       100\n    5       125\n    6       150\n    7       175\n    8       200\n    9       225\n   10       250\n   11       275\n   12       300\n   13       325\n   14       350\n   15       375\n   16       400\n   17       425\n   18       450\n   19       475\n   20       500"
+      ],
+      "hints": [
+        "The total price for u units is u * price_per_unit.",
+        "In an f-string, {value:>5} right-aligns the value in a field of 5 characters.",
+        "Print the header with the same widths first, then loop u over range(1, 21)."
+      ],
+      "starter_code": null,
+      "reference_solution": "p = int(input())\nprint(f\"{'Units':>5}{'Total':>10}\")\nfor u in range(1, 21):\n    print(f\"{u:>5}{u * p:>10}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10",
+          "output": "Units     Total\n    1        10\n    2        20\n    3        30\n    4        40\n    5        50\n    6        60\n    7        70\n    8        80\n    9        90\n   10       100\n   11       110\n   12       120\n   13       130\n   14       140\n   15       150\n   16       160\n   17       170\n   18       180\n   19       190\n   20       200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "25",
+          "output": "Units     Total\n    1        25\n    2        50\n    3        75\n    4       100\n    5       125\n    6       150\n    7       175\n    8       200\n    9       225\n   10       250\n   11       275\n   12       300\n   13       325\n   14       350\n   15       375\n   16       400\n   17       425\n   18       450\n   19       475\n   20       500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7",
+          "output": "Units     Total\n    1         7\n    2        14\n    3        21\n    4        28\n    5        35\n    6        42\n    7        49\n    8        56\n    9        63\n   10        70\n   11        77\n   12        84\n   13        91\n   14        98\n   15       105\n   16       112\n   17       119\n   18       126\n   19       133\n   20       140",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "Units     Total\n    1         1\n    2         2\n    3         3\n    4         4\n    5         5\n    6         6\n    7         7\n    8         8\n    9         9\n   10        10\n   11        11\n   12        12\n   13        13\n   14        14\n   15        15\n   16        16\n   17        17\n   18        18\n   19        19\n   20        20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100",
+          "output": "Units     Total\n    1       100\n    2       200\n    3       300\n    4       400\n    5       500\n    6       600\n    7       700\n    8       800\n    9       900\n   10      1000\n   11      1100\n   12      1200\n   13      1300\n   14      1400\n   15      1500\n   16      1600\n   17      1700\n   18      1800\n   19      1900\n   20      2000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "999",
+          "output": "Units     Total\n    1       999\n    2      1998\n    3      2997\n    4      3996\n    5      4995\n    6      5994\n    7      6993\n    8      7992\n    9      8991\n   10      9990\n   11     10989\n   12     11988\n   13     12987\n   14     13986\n   15     14985\n   16     15984\n   17     16983\n   18     17982\n   19     18981\n   20     19980",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000",
+          "output": "Units     Total\n    1     10000\n    2     20000\n    3     30000\n    4     40000\n    5     50000\n    6     60000\n    7     70000\n    8     80000\n    9     90000\n   10    100000\n   11    110000\n   12    120000\n   13    130000\n   14    140000\n   15    150000\n   16    160000\n   17    170000\n   18    180000\n   19    190000\n   20    200000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12",
+          "output": "Units     Total\n    1        12\n    2        24\n    3        36\n    4        48\n    5        60\n    6        72\n    7        84\n    8        96\n    9       108\n   10       120\n   11       132\n   12       144\n   13       156\n   14       168\n   15       180\n   16       192\n   17       204\n   18       216\n   19       228\n   20       240",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "150",
+          "output": "Units     Total\n    1       150\n    2       300\n    3       450\n    4       600\n    5       750\n    6       900\n    7      1050\n    8      1200\n    9      1350\n   10      1500\n   11      1650\n   12      1800\n   13      1950\n   14      2100\n   15      2250\n   16      2400\n   17      2550\n   18      2700\n   19      2850\n   20      3000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "5",
+          "output": "Units     Total\n    1         5\n    2        10\n    3        15\n    4        20\n    5        25\n    6        30\n    7        35\n    8        40\n    9        45\n   10        50\n   11        55\n   12        60\n   13        65\n   14        70\n   15        75\n   16        80\n   17        85\n   18        90\n   19        95\n   20       100",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer: price_per_unit.",
+        "output_format": "21 lines. Line 1 is the header (Units right-aligned in width 5, Total right-aligned in width 10). Then 20 rows: u right-aligned in width 5, followed by u * price_per_unit right-aligned in width 10."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-04",
+      "title": "Integer Digit Counter",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Count number of digits in an integer using division by 10 in a while loop.",
+      "problem_statement": "Task: Count how many digits an integer has by repeatedly dividing it by 10 inside a while loop.\n• Each division by 10 (n // 10) removes the last digit\n• Count the divisions until the number becomes 0\n• The number 0 has 1 digit\n• For a negative number, ignore the minus sign (-908 has 3 digits)\n\nExample: 12345 has 5 digits. Given n, print the number of digits.",
+      "input_format": "A single line containing one integer n.",
+      "output_format": "One line: Digits: <count>",
+      "constraints": "-10^18 <= n <= 10^18",
+      "sample_inputs": [
+        "12345",
+        "0"
+      ],
+      "sample_outputs": [
+        "Digits: 5",
+        "Digits: 1"
+      ],
+      "hints": [
+        "Use abs(n) so that negative numbers work.",
+        "The number 0 still has one digit, so count at least once before checking n == 0.",
+        "Each loop step: n //= 10 and count += 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = abs(int(input()))\ncount = 0\nwhile True:\n    n //= 10\n    count += 1\n    if n == 0:\n        break\nprint(f\"Digits: {count}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12345",
+          "output": "Digits: 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Digits: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-908",
+          "output": "Digits: 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7",
+          "output": "Digits: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000",
+          "output": "Digits: 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "999999999999999999",
+          "output": "Digits: 18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1000000000000000000",
+          "output": "Digits: 19",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10",
+          "output": "Digits: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "100",
+          "output": "Digits: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4096",
+          "output": "Digits: 4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer n.",
+        "output_format": "One line: Digits: <count>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-05",
+      "title": "Sum of Digits Accumulator",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Accumulate sum of digits of non-negative integer using modulo and division.",
+      "problem_statement": "Task: Find the sum of all digits of a non-negative integer using % and //.\n• n % 10 gives the last digit\n• n // 10 removes the last digit\n• Repeat until n becomes 0 and add every digit to a total\n\nExample: 1234 → 1 + 2 + 3 + 4 = 10. For 0 the sum is 0.\n\nGiven n, print the sum of its digits.",
+      "input_format": "A single line containing one non-negative integer n.",
+      "output_format": "One line: Digit sum: <sum>",
+      "constraints": "0 <= n <= 10^18",
+      "sample_inputs": [
+        "1234",
+        "0"
+      ],
+      "sample_outputs": [
+        "Digit sum: 10",
+        "Digit sum: 0"
+      ],
+      "hints": [
+        "Start with total = 0.",
+        "While n > 0: add n % 10 to total, then do n //= 10.",
+        "If n is 0 the loop does not run and the answer stays 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\ntotal = 0\nwhile n > 0:\n    total += n % 10\n    n //= 10\nprint(f\"Digit sum: {total}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1234",
+          "output": "Digit sum: 10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Digit sum: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "9",
+          "output": "Digit sum: 9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "99999",
+          "output": "Digit sum: 45",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000",
+          "output": "Digit sum: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "987654321",
+          "output": "Digit sum: 45",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000000000000",
+          "output": "Digit sum: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "505",
+          "output": "Digit sum: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "111",
+          "output": "Digit sum: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "38",
+          "output": "Digit sum: 11",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one non-negative integer n.",
+        "output_format": "One line: Digit sum: <sum>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-06",
+      "title": "Divisor Enumeration",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Find and print all integer divisors of N in ascending order.",
+      "problem_statement": "Task: A divisor of N is a number that divides N with no remainder.\n• Check every number from 1 to N\n• Keep the numbers i where N % i == 0\n• Print them from smallest to largest in one line, separated by single spaces\n\nExample: the divisors of 12 are 1 2 3 4 6 12. The number 1 has only one divisor, which is 1.\n\nGiven N, print all its divisors.",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "One line: Divisors: <d1> <d2> ... (space-separated, in ascending order)",
+      "constraints": "1 <= N <= 100000",
+      "sample_inputs": [
+        "12",
+        "17"
+      ],
+      "sample_outputs": [
+        "Divisors: 1 2 3 4 6 12",
+        "Divisors: 1 17"
+      ],
+      "hints": [
+        "Loop i from 1 to N using range(1, N + 1).",
+        "i is a divisor when N % i == 0.",
+        "Collect the divisors in a list and print them with ' '.join(...)."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\ndivs = []\nfor i in range(1, n + 1):\n    if n % i == 0:\n        divs.append(str(i))\nprint(\"Divisors: \" + \" \".join(divs))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12",
+          "output": "Divisors: 1 2 3 4 6 12",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "17",
+          "output": "Divisors: 1 17",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Divisors: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "36",
+          "output": "Divisors: 1 2 3 4 6 9 12 18 36",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100",
+          "output": "Divisors: 1 2 4 5 10 20 25 50 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "97",
+          "output": "Divisors: 1 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100000",
+          "output": "Divisors: 1 2 4 5 8 10 16 20 25 32 40 50 80 100 125 160 200 250 400 500 625 800 1000 1250 2000 2500 3125 4000 5000 6250 10000 12500 20000 25000 50000 100000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "60",
+          "output": "Divisors: 1 2 3 4 5 6 10 12 15 20 30 60",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "49",
+          "output": "Divisors: 1 7 49",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "2",
+          "output": "Divisors: 1 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(D)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "One line: Divisors: <d1> <d2> ... (space-separated, in ascending order)"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-07",
+      "title": "Right-Angle Star Triangle",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Print N-row triangle where row i contains i # symbols.",
+      "problem_statement": "Task: Print a right-angle triangle made of # symbols with N rows.\n• Row 1 has 1 #\n• Row 2 has 2 #\n• Row i has i # (no spaces between them)\n• The last row has N #\n\nExample for N = 4:\n#\n##\n###\n####\n\nGiven N, print the triangle.",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "N lines. Line i contains exactly i '#' characters.",
+      "constraints": "1 <= N <= 50",
+      "sample_inputs": [
+        "4",
+        "5"
+      ],
+      "sample_outputs": [
+        "#\n##\n###\n####",
+        "#\n##\n###\n####\n#####"
+      ],
+      "hints": [
+        "Use for i in range(1, N + 1) to go through the rows.",
+        "A row with i hashes is the string '#' * i.",
+        "You can also use an inner loop that prints '#' with end=''."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nfor i in range(1, n + 1):\n    print(\"#\" * i)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "#\n##\n###\n####",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "#\n##\n###\n####\n#####",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "#",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "#\n##",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "#\n##\n###\n####\n#####\n######\n#######\n########\n#########\n##########",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7",
+          "output": "#\n##\n###\n####\n#####\n######\n#######",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "20",
+          "output": "#\n##\n###\n####\n#####\n######\n#######\n########\n#########\n##########\n###########\n############\n#############\n##############\n###############\n################\n#################\n##################\n###################\n####################",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "50",
+          "output": "#\n##\n###\n####\n#####\n######\n#######\n########\n#########\n##########\n###########\n############\n#############\n##############\n###############\n################\n#################\n##################\n###################\n####################\n#####################\n######################\n#######################\n########################\n#########################\n##########################\n###########################\n############################\n#############################\n##############################\n###############################\n################################\n#################################\n##################################\n###################################\n####################################\n#####################################\n######################################\n#######################################\n########################################\n#########################################\n##########################################\n###########################################\n############################################\n#############################################\n##############################################\n###############################################\n################################################\n#################################################\n##################################################",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "12",
+          "output": "#\n##\n###\n####\n#####\n######\n#######\n########\n#########\n##########\n###########\n############",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3",
+          "output": "#\n##\n###",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "N lines. Line i contains exactly i '#' characters."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-08",
+      "title": "Sentinel Input Accumulator",
+      "module": "Module 05: Loops",
+      "difficulty": "Easy",
+      "objective": "Read integers until sentinel -1; output sum and count of valid numbers.",
+      "problem_statement": "Task: A program reads numbers, one per line, until it sees the special value -1. This value is called a sentinel: it means \"stop reading\" and it is not part of the data.\n• Every number before -1 is a valid number\n• Add up the valid numbers and count them\n• If -1 is the very first value, the sum is 0 and the count is 0\n\nExample: input 10, 20, 30, -1 → sum is 60 and count is 3.\n\nUse a while loop to read the numbers, then print the sum and the count.",
+      "input_format": "Several lines, each containing one integer. The last line is -1 (the sentinel).",
+      "output_format": "Two lines:\nLine 1: Sum: <sum of valid numbers>\nLine 2: Count: <how many valid numbers>",
+      "constraints": "Every valid number satisfies 0 <= number <= 10^9\n-1 appears exactly once, as the last line\nAt most 1000 valid numbers",
+      "sample_inputs": [
+        "10\n20\n30\n-1",
+        "5\n-1"
+      ],
+      "sample_outputs": [
+        "Sum: 60\nCount: 3",
+        "Sum: 5\nCount: 1"
+      ],
+      "hints": [
+        "Use while True to read one number each time with int(input()).",
+        "When the number is -1, break out of the loop without adding it.",
+        "Keep two variables, total and count, both starting at 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "total = 0\ncount = 0\nwhile True:\n    x = int(input())\n    if x == -1:\n        break\n    total += x\n    count += 1\nprint(f\"Sum: {total}\")\nprint(f\"Count: {count}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n20\n30\n-1",
+          "output": "Sum: 60\nCount: 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n-1",
+          "output": "Sum: 5\nCount: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1",
+          "output": "Sum: 0\nCount: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n0\n0\n-1",
+          "output": "Sum: 0\nCount: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100\n200\n-1",
+          "output": "Sum: 300\nCount: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000\n1000000000\n-1",
+          "output": "Sum: 2000000000\nCount: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n3\n9\n1\n5\n-1",
+          "output": "Sum: 25\nCount: 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "42\n-1",
+          "output": "Sum: 42\nCount: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n-1",
+          "output": "Sum: 55\nCount: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "0\n-1",
+          "output": "Sum: 0\nCount: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(K)",
+        "space_complexity": "O(1)",
+        "input_format": "Several lines, each containing one integer. The last line is -1 (the sentinel).",
+        "output_format": "Two lines:\nLine 1: Sum: <sum of valid numbers>\nLine 2: Count: <how many valid numbers>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-09",
+      "title": "Integer Reverse via Modulo",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Reverse integer mathematically using while loop without string conversion.",
+      "problem_statement": "Task: Reverse the digits of an integer using only math. Do not use str(), slicing or any string conversion.\n• n % 10 gives the last digit\n• reversed = reversed * 10 + last digit builds the new number\n• n // 10 removes the last digit\n• Zeros at the end of the original number disappear after reversing (1200 → 21)\n• A negative number keeps its minus sign (-908 → -809)\n• 0 reversed is 0\n\nGiven n, print the reversed number.",
+      "input_format": "A single line containing one integer n.",
+      "output_format": "One line: Reversed: <reversed number>",
+      "constraints": "-10^18 <= n <= 10^18",
+      "sample_inputs": [
+        "12345",
+        "1200"
+      ],
+      "sample_outputs": [
+        "Reversed: 54321",
+        "Reversed: 21"
+      ],
+      "hints": [
+        "Remember whether n is negative, then work with abs(n).",
+        "In the loop: rev = rev * 10 + n % 10, then n //= 10.",
+        "Put the minus sign back at the end if the original number was negative."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nneg = n < 0\nn = abs(n)\nrev = 0\nwhile n > 0:\n    rev = rev * 10 + n % 10\n    n //= 10\nprint(f\"Reversed: {-rev if neg else rev}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12345",
+          "output": "Reversed: 54321",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1200",
+          "output": "Reversed: 21",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-908",
+          "output": "Reversed: -809",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "Reversed: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7",
+          "output": "Reversed: 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000",
+          "output": "Reversed: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "987654321",
+          "output": "Reversed: 123456789",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-10",
+          "output": "Reversed: -1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "100",
+          "output": "Reversed: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1000000000000000000",
+          "output": "Reversed: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer n.",
+        "output_format": "One line: Reversed: <reversed number>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-10",
+      "title": "Even & Odd Digit Segregator",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Count even and odd digits in an integer using single loop traversal.",
+      "problem_statement": "Task: Count how many digits of an integer are even and how many are odd. Use one loop that goes through the digits only once.\n• Take each digit with n % 10 and remove it with n // 10\n• A digit is even if digit % 2 == 0, otherwise it is odd\n• 0 is an even digit, and the number 0 has exactly one digit (which is even)\n• For a negative number, ignore the minus sign\n\nExample: 123456 has 3 even digits (2, 4, 6) and 3 odd digits (1, 3, 5).\n\nGiven n, print the count of even digits and the count of odd digits.",
+      "input_format": "A single line containing one integer n.",
+      "output_format": "Two lines:\nLine 1: Even digits: <count>\nLine 2: Odd digits: <count>",
+      "constraints": "-10^18 <= n <= 10^18",
+      "sample_inputs": [
+        "123456",
+        "0"
+      ],
+      "sample_outputs": [
+        "Even digits: 3\nOdd digits: 3",
+        "Even digits: 1\nOdd digits: 0"
+      ],
+      "hints": [
+        "Use abs(n) so negative numbers work.",
+        "Take the last digit with d = n % 10 and test d % 2 == 0.",
+        "Handle n = 0 by checking the digit first and testing n == 0 after removing it (do-while style loop)."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = abs(int(input()))\neven = 0\nodd = 0\nwhile True:\n    d = n % 10\n    if d % 2 == 0:\n        even += 1\n    else:\n        odd += 1\n    n //= 10\n    if n == 0:\n        break\nprint(f\"Even digits: {even}\")\nprint(f\"Odd digits: {odd}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "123456",
+          "output": "Even digits: 3\nOdd digits: 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Even digits: 1\nOdd digits: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-4021",
+          "output": "Even digits: 3\nOdd digits: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "13579",
+          "output": "Even digits: 0\nOdd digits: 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2468",
+          "output": "Even digits: 4\nOdd digits: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000",
+          "output": "Even digits: 6\nOdd digits: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999999999999999999",
+          "output": "Even digits: 0\nOdd digits: 18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "20240101",
+          "output": "Even digits: 6\nOdd digits: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "8",
+          "output": "Even digits: 1\nOdd digits: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "5050",
+          "output": "Even digits: 2\nOdd digits: 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer n.",
+        "output_format": "Two lines:\nLine 1: Even digits: <count>\nLine 2: Odd digits: <count>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-11",
+      "title": "Prime Number Verification",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Check primality of N in O(sqrt(N)) time using trial division with early break.",
+      "problem_statement": "Task: A prime number is greater than 1 and has no divisors other than 1 and itself. To check quickly whether N is prime, use trial division:\n• Numbers less than 2 (including 1) are not prime\n• Try dividing N by i = 2, 3, 4, ... while i * i <= N (you only need to go up to the square root of N)\n• Stop at once with break as soon as some i divides N (early break)\n• If no i divides N, then N is prime\n\nExample: 91 = 7 × 13, so 91 is not prime.\n\nGiven N, print whether it is PRIME or NOT PRIME.",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "One line: Result: <PRIME/NOT PRIME>",
+      "constraints": "1 <= N <= 10^12",
+      "sample_inputs": [
+        "29",
+        "1"
+      ],
+      "sample_outputs": [
+        "Result: PRIME",
+        "Result: NOT PRIME"
+      ],
+      "hints": [
+        "If N < 2, the answer is NOT PRIME right away.",
+        "Loop i from 2 while i * i <= N (a while loop is the simplest).",
+        "If N % i == 0, mark N as not prime and break."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nis_prime = n >= 2\ni = 2\nwhile i * i <= n:\n    if n % i == 0:\n        is_prime = False\n        break\n    i += 1\nprint(\"Result: PRIME\" if is_prime else \"Result: NOT PRIME\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "29",
+          "output": "Result: PRIME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "Result: NOT PRIME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "91",
+          "output": "Result: NOT PRIME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "Result: PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "97",
+          "output": "Result: PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000007",
+          "output": "Result: PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999999999989",
+          "output": "Result: PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100",
+          "output": "Result: NOT PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "561",
+          "output": "Result: NOT PRIME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "49",
+          "output": "Result: NOT PRIME",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(sqrt N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "One line: Result: <PRIME/NOT PRIME>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-12",
+      "title": "Prime Enumeration in Range",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Print all prime numbers between two integers A and B inclusive.",
+      "problem_statement": "Task: Print all prime numbers from A to B, including A and B. A prime number is greater than 1 and is divisible only by 1 and itself.\n• Go through every number from A to B\n• For each number, test primality by trial division up to its square root\n• Print the primes in increasing order on one line, separated by single spaces\n• If there is no prime in the range, print a message saying so\n• Remember that 1 is not a prime number\n\nExample: A = 10, B = 30 → 11 13 17 19 23 29.\n\nGiven A and B, print all primes in the range.",
+      "input_format": "A single line containing two space-separated integers A and B.",
+      "output_format": "If primes exist, one line: Primes: <p1> <p2> ... (space-separated)\nIf there is none, one line: No primes found",
+      "constraints": "1 <= A <= B <= 10000",
+      "sample_inputs": [
+        "10 30",
+        "1 10"
+      ],
+      "sample_outputs": [
+        "Primes: 11 13 17 19 23 29",
+        "Primes: 2 3 5 7"
+      ],
+      "hints": [
+        "Numbers below 2 are never prime.",
+        "Use an outer loop over A..B and an inner loop that tries divisors while i * i <= number.",
+        "Collect the primes in a list; if the list is empty print the message instead."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = map(int, input().split())\nprimes = []\nfor num in range(a, b + 1):\n    if num < 2:\n        continue\n    is_prime = True\n    i = 2\n    while i * i <= num:\n        if num % i == 0:\n            is_prime = False\n            break\n        i += 1\n    if is_prime:\n        primes.append(str(num))\nif primes:\n    print(\"Primes: \" + \" \".join(primes))\nelse:\n    print(\"No primes found\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10 30",
+          "output": "Primes: 11 13 17 19 23 29",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 10",
+          "output": "Primes: 2 3 5 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "14 16",
+          "output": "No primes found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2 2",
+          "output": "Primes: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 1",
+          "output": "No primes found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "90 100",
+          "output": "Primes: 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 100",
+          "output": "Primes: 2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9900 10000",
+          "output": "Primes: 9901 9907 9923 9929 9931 9941 9949 9967 9973",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "24 28",
+          "output": "No primes found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "7 7",
+          "output": "Primes: 7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O((B-A) sqrt B)",
+        "space_complexity": "O(P)",
+        "input_format": "A single line containing two space-separated integers A and B.",
+        "output_format": "If primes exist, one line: Primes: <p1> <p2> ... (space-separated)\nIf there is none, one line: No primes found"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-13",
+      "title": "Fibonacci Sequence Generator",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Generate first N terms of Fibonacci sequence using a, b = b, a + b.",
+      "problem_statement": "Task: The Fibonacci sequence starts with 0 and 1. Every next term is the sum of the previous two terms: 0, 1, 1, 2, 3, 5, 8, 13, ...\n• Keep two variables a and b, starting with a = 0 and b = 1\n• Take a as the next term, then update both together: a, b = b, a + b\n• Repeat this for N terms\n\nExample: N = 6 → 0 1 1 2 3 5.\n\nGiven N, print the first N terms in one line, separated by single spaces.",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "One line: Fibonacci: <t1> <t2> ... <tN> (space-separated)",
+      "constraints": "1 <= N <= 90",
+      "sample_inputs": [
+        "10",
+        "1"
+      ],
+      "sample_outputs": [
+        "Fibonacci: 0 1 1 2 3 5 8 13 21 34",
+        "Fibonacci: 0"
+      ],
+      "hints": [
+        "Start with a, b = 0, 1.",
+        "In each iteration, save a as the next term, then do a, b = b, a + b.",
+        "Collect the terms in a list and join them with spaces."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\na, b = 0, 1\nterms = []\nfor _ in range(n):\n    terms.append(str(a))\n    a, b = b, a + b\nprint(\"Fibonacci: \" + \" \".join(terms))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "Fibonacci: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "Fibonacci: 0 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "Fibonacci: 0 1 1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "20",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "50",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "90",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229 832040 1346269 2178309 3524578 5702887 9227465 14930352 24157817 39088169 63245986 102334155 165580141 267914296 433494437 701408733 1134903170 1836311903 2971215073 4807526976 7778742049 12586269025 20365011074 32951280099 53316291173 86267571272 139583862445 225851433717 365435296162 591286729879 956722026041 1548008755920 2504730781961 4052739537881 6557470319842 10610209857723 17167680177565 27777890035288 44945570212853 72723460248141 117669030460994 190392490709135 308061521170129 498454011879264 806515533049393 1304969544928657 2111485077978050 3416454622906707 5527939700884757 8944394323791464 14472334024676221 23416728348467685 37889062373143906 61305790721611591 99194853094755497 160500643816367088 259695496911122585 420196140727489673 679891637638612258 1100087778366101931 1779979416004714189",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3",
+          "output": "Fibonacci: 0 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "15",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "30",
+          "output": "Fibonacci: 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181 6765 10946 17711 28657 46368 75025 121393 196418 317811 514229",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "One line: Fibonacci: <t1> <t2> ... <tN> (space-separated)"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-14",
+      "title": "Euclidean Greatest Common Divisor",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Compute GCD of two integers using Euclid's subtraction/modulo loop with step logging.",
+      "problem_statement": "Task: The GCD (greatest common divisor) of two numbers is the largest number that divides both of them. Euclid's method finds it with a loop:\n• While b is not 0: find r = a % b, then set a = b and b = r\n• When b becomes 0, the answer is a\n• Print every loop step on its own line, in the format shown in the output format\n• If a is smaller than b at the start, the first step just swaps them (a % b = a)\n\nExample: for 48 and 18 the steps are 48 % 18 = 12, 18 % 12 = 6, 12 % 6 = 0. So the GCD is 6.\n\nGiven a and b, print every step and then the GCD.",
+      "input_format": "A single line containing two space-separated positive integers a and b.",
+      "output_format": "Several lines:\nOne line per step: Step <k>: <a> % <b> = <r>   (k starts at 1)\nLast line: GCD: <value>",
+      "constraints": "1 <= a, b <= 10^12",
+      "sample_inputs": [
+        "48 18",
+        "17 5"
+      ],
+      "sample_outputs": [
+        "Step 1: 48 % 18 = 12\nStep 2: 18 % 12 = 6\nStep 3: 12 % 6 = 0\nGCD: 6",
+        "Step 1: 17 % 5 = 2\nStep 2: 5 % 2 = 1\nStep 3: 2 % 1 = 0\nGCD: 1"
+      ],
+      "hints": [
+        "Use a while loop that runs while b != 0.",
+        "Inside the loop: r = a % b, print the step with a counter, then a, b = b, r.",
+        "After the loop, a holds the GCD."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = map(int, input().split())\nstep = 0\nwhile b != 0:\n    r = a % b\n    step += 1\n    print(f\"Step {step}: {a} % {b} = {r}\")\n    a, b = b, r\nprint(f\"GCD: {a}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "48 18",
+          "output": "Step 1: 48 % 18 = 12\nStep 2: 18 % 12 = 6\nStep 3: 12 % 6 = 0\nGCD: 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "17 5",
+          "output": "Step 1: 17 % 5 = 2\nStep 2: 5 % 2 = 1\nStep 3: 2 % 1 = 0\nGCD: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100 25",
+          "output": "Step 1: 100 % 25 = 0\nGCD: 25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "18 48",
+          "output": "Step 1: 18 % 48 = 18\nStep 2: 48 % 18 = 12\nStep 3: 18 % 12 = 6\nStep 4: 12 % 6 = 0\nGCD: 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 1",
+          "output": "Step 1: 1 % 1 = 0\nGCD: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000007 13",
+          "output": "Step 1: 1000000007 % 13 = 6\nStep 2: 13 % 6 = 1\nStep 3: 6 % 1 = 0\nGCD: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "270 192",
+          "output": "Step 1: 270 % 192 = 78\nStep 2: 192 % 78 = 36\nStep 3: 78 % 36 = 6\nStep 4: 36 % 6 = 0\nGCD: 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7 7",
+          "output": "Step 1: 7 % 7 = 0\nGCD: 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1000000000000 999999999999",
+          "output": "Step 1: 1000000000000 % 999999999999 = 1\nStep 2: 999999999999 % 1 = 0\nGCD: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "81 153",
+          "output": "Step 1: 81 % 153 = 81\nStep 2: 153 % 81 = 72\nStep 3: 81 % 72 = 9\nStep 4: 72 % 9 = 0\nGCD: 9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log min(a, b))",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated positive integers a and b.",
+        "output_format": "Several lines:\nOne line per step: Step <k>: <a> % <b> = <r>   (k starts at 1)\nLast line: GCD: <value>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-15",
+      "title": "Numeric Palindrome Checker",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Determine whether an integer is palindrome purely through numeric reversal.",
+      "problem_statement": "Task: A palindrome number reads the same forwards and backwards (for example 121 or 1221). Check this using math only. Do not convert the number to a string.\n• Build the reversed number with a while loop: reversed = reversed * 10 + n % 10, then n //= 10\n• Compare the reversed number with the original number\n• Negative numbers are never palindromes (-121 is NOT a palindrome)\n• 0 is a palindrome\n\nExample: 121 reversed is 121, so it is a palindrome. 10 reversed is 1, so it is not.\n\nGiven n, print PALINDROME or NOT PALINDROME.",
+      "input_format": "A single line containing one integer n.",
+      "output_format": "One line: Result: <PALINDROME/NOT PALINDROME>",
+      "constraints": "-10^18 <= n <= 10^18",
+      "sample_inputs": [
+        "121",
+        "-121"
+      ],
+      "sample_outputs": [
+        "Result: PALINDROME",
+        "Result: NOT PALINDROME"
+      ],
+      "hints": [
+        "A negative number can be rejected immediately.",
+        "Keep a copy of the original number and reverse the other copy.",
+        "If reversed == original, the number is a palindrome."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nif n < 0:\n    ok = False\nelse:\n    orig = n\n    rev = 0\n    while n > 0:\n        rev = rev * 10 + n % 10\n        n //= 10\n    ok = rev == orig\nprint(\"Result: PALINDROME\" if ok else \"Result: NOT PALINDROME\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "121",
+          "output": "Result: PALINDROME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-121",
+          "output": "Result: NOT PALINDROME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "Result: NOT PALINDROME",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "Result: PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12321",
+          "output": "Result: PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000001",
+          "output": "Result: PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456789",
+          "output": "Result: NOT PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "Result: PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1221",
+          "output": "Result: PALINDROME",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "100",
+          "output": "Result: NOT PALINDROME",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer n.",
+        "output_format": "One line: Result: <PALINDROME/NOT PALINDROME>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-16",
+      "title": "Binary Exponentiation Loop",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Compute base^exp % mod in O(log exp) time using iterative bit-shifting multiplication.",
+      "problem_statement": "Task: Compute (base ^ exp) % mod quickly. Do not use pow() and do not run a loop exp times (exp can be huge). Use binary exponentiation, which needs only about log2(exp) steps:\n• Start with result = 1 % mod and base = base % mod\n• While exp > 0: if the last bit of exp is 1 (exp & 1), set result = result * base % mod\n• Then square the base (base = base * base % mod) and shift exp right by one bit (exp >>= 1)\n• Any number raised to the power 0 is 1, so the answer is 1 % mod in that case\n\nExample: 2 ^ 10 % 1000 = 1024 % 1000 = 24.\n\nGiven base, exp and mod, print the result.",
+      "input_format": "A single line containing three space-separated integers: base, exp and mod.",
+      "output_format": "One line: Result: <(base ^ exp) % mod>",
+      "constraints": "0 <= base <= 10^18\n0 <= exp <= 10^18\n1 <= mod <= 10^9",
+      "sample_inputs": [
+        "2 10 1000",
+        "3 200 13"
+      ],
+      "sample_outputs": [
+        "Result: 24",
+        "Result: 9"
+      ],
+      "hints": [
+        "Starting with result = 1 % mod handles mod = 1 correctly (the answer is 0).",
+        "exp & 1 tells you whether the lowest bit of exp is 1.",
+        "After every step do base = base * base % mod and exp >>= 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "base, exp, mod = map(int, input().split())\nresult = 1 % mod\nbase %= mod\nwhile exp > 0:\n    if exp & 1:\n        result = result * base % mod\n    base = base * base % mod\n    exp >>= 1\nprint(f\"Result: {result}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 10 1000",
+          "output": "Result: 24",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3 200 13",
+          "output": "Result: 9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 0 7",
+          "output": "Result: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7 13 1",
+          "output": "Result: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 1000000000000000000 1000000007",
+          "output": "Result: 719476260",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 5 7",
+          "output": "Result: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456789 987654321 1000000007",
+          "output": "Result: 652541198",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "999999999999999999 999999999999999999 998244353",
+          "output": "Result: 156363124",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "10 18 1000000007",
+          "output": "Result: 49",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4 13 497",
+          "output": "Result: 445",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log exp)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated integers: base, exp and mod.",
+        "output_format": "One line: Result: <(base ^ exp) % mod>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-17",
+      "title": "ASCII Diamond Contour",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Print an ASCII diamond of size N (odd) using centered # characters and spaces.",
+      "problem_statement": "Task: Print a hollow diamond (only its outline) of odd size N using # characters and spaces. The diamond has N rows, and the widest row is the middle row.\n• The first row and the last row have a single #\n• Every other row has two # characters: one on the left edge and one on the right edge of the diamond, with spaces between them\n• Leading spaces keep the diamond centered\n• Do not print trailing spaces at the end of any row\n• N = 1 prints a single #\n\nExample for N = 5:\n#\n# #\n# #\n# #\n#\n\nGiven N, print the diamond.",
+      "input_format": "A single line containing one odd integer N.",
+      "output_format": "N lines forming the hollow diamond. No row has trailing spaces.",
+      "constraints": "1 <= N <= 51\nN is odd",
+      "sample_inputs": [
+        "5",
+        "3"
+      ],
+      "sample_outputs": [
+        "  #\n # #\n#   #\n # #\n  #",
+        " #\n# #\n #"
+      ],
+      "hints": [
+        "Let mid = N // 2. Row i has abs(mid - i) leading spaces.",
+        "Let k = mid - abs(mid - i). If k == 0 the row is a single #.",
+        "Otherwise print # + (2 * k - 1) spaces + #."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nmid = n // 2\nfor i in range(n):\n    lead = abs(mid - i)\n    k = mid - lead\n    if k == 0:\n        print(\" \" * lead + \"#\")\n    else:\n        print(\" \" * lead + \"#\" + \" \" * (2 * k - 1) + \"#\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "  #\n # #\n#   #\n # #\n  #",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3",
+          "output": " #\n# #\n #",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7",
+          "output": "   #\n  # #\n #   #\n#     #\n #   #\n  # #\n   #",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "#",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "9",
+          "output": "    #\n   # #\n  #   #\n #     #\n#       #\n #     #\n  #   #\n   # #\n    #",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "11",
+          "output": "     #\n    # #\n   #   #\n  #     #\n #       #\n#         #\n #       #\n  #     #\n   #   #\n    # #\n     #",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "13",
+          "output": "      #\n     # #\n    #   #\n   #     #\n  #       #\n #         #\n#           #\n #         #\n  #       #\n   #     #\n    #   #\n     # #\n      #",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15",
+          "output": "       #\n      # #\n     #   #\n    #     #\n   #       #\n  #         #\n #           #\n#             #\n #           #\n  #         #\n   #       #\n    #     #\n     #   #\n      # #\n       #",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "25",
+          "output": "            #\n           # #\n          #   #\n         #     #\n        #       #\n       #         #\n      #           #\n     #             #\n    #               #\n   #                 #\n  #                   #\n #                     #\n#                       #\n #                     #\n  #                   #\n   #                 #\n    #               #\n     #             #\n      #           #\n       #         #\n        #       #\n         #     #\n          #   #\n           # #\n            #",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "51",
+          "output": "                         #\n                        # #\n                       #   #\n                      #     #\n                     #       #\n                    #         #\n                   #           #\n                  #             #\n                 #               #\n                #                 #\n               #                   #\n              #                     #\n             #                       #\n            #                         #\n           #                           #\n          #                             #\n         #                               #\n        #                                 #\n       #                                   #\n      #                                     #\n     #                                       #\n    #                                         #\n   #                                           #\n  #                                             #\n #                                               #\n#                                                 #\n #                                               #\n  #                                             #\n   #                                           #\n    #                                         #\n     #                                       #\n      #                                     #\n       #                                   #\n        #                                 #\n         #                               #\n          #                             #\n           #                           #\n            #                         #\n             #                       #\n              #                     #\n               #                   #\n                #                 #\n                 #               #\n                  #             #\n                   #           #\n                    #         #\n                     #       #\n                      #     #\n                       #   #\n                        # #\n                         #",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one odd integer N.",
+        "output_format": "N lines forming the hollow diamond. No row has trailing spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-18",
+      "title": "Collatz Sequence Traversal",
+      "module": "Module 05: Loops",
+      "difficulty": "Medium",
+      "objective": "Generate Collatz sequence for N, tracking total steps and maximum value reached.",
+      "problem_statement": "Task: The Collatz sequence starts from a positive integer N and follows two rules until it reaches 1:\n• If the current number is even, the next number is number // 2\n• If the current number is odd, the next number is 3 * number + 1\n• Each move is one step. The sequence includes N itself and ends with 1.\n\nTrack two values: the total number of steps needed to reach 1, and the maximum value that appears in the sequence (N counts too).\n\nExample: N = 6 gives 6 3 10 5 16 8 4 2 1, which takes 8 steps, and the maximum value is 16. For N = 1 there are 0 steps and the maximum is 1.\n\nGiven N, print the sequence, the number of steps and the maximum value.",
+      "input_format": "A single line containing one positive integer N.",
+      "output_format": "Three lines:\nLine 1: Sequence: <n1> <n2> ... 1 (space-separated)\nLine 2: Steps: <number of steps>\nLine 3: Max value: <largest value in the sequence>",
+      "constraints": "1 <= N <= 10^6",
+      "sample_inputs": [
+        "6",
+        "7"
+      ],
+      "sample_outputs": [
+        "Sequence: 6 3 10 5 16 8 4 2 1\nSteps: 8\nMax value: 16",
+        "Sequence: 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1\nSteps: 16\nMax value: 52"
+      ],
+      "hints": [
+        "Keep three things: the current number, a steps counter, and the maximum so far.",
+        "Loop while n != 1: if n % 2 == 0 then n //= 2, else n = 3 * n + 1.",
+        "After each change, increase steps, append n to the sequence and update the maximum."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nseq = [n]\nsteps = 0\nmx = n\nwhile n != 1:\n    if n % 2 == 0:\n        n //= 2\n    else:\n        n = 3 * n + 1\n    steps += 1\n    seq.append(n)\n    if n > mx:\n        mx = n\nprint(\"Sequence: \" + \" \".join(map(str, seq)))\nprint(f\"Steps: {steps}\")\nprint(f\"Max value: {mx}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6",
+          "output": "Sequence: 6 3 10 5 16 8 4 2 1\nSteps: 8\nMax value: 16",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7",
+          "output": "Sequence: 7 22 11 34 17 52 26 13 40 20 10 5 16 8 4 2 1\nSteps: 16\nMax value: 52",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Sequence: 1\nSteps: 0\nMax value: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "27",
+          "output": "Sequence: 27 82 41 124 62 31 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1\nSteps: 111\nMax value: 9232",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "97",
+          "output": "Sequence: 97 292 146 73 220 110 55 166 83 250 125 376 188 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1\nSteps: 118\nMax value: 9232",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "871",
+          "output": "Sequence: 871 2614 1307 3922 1961 5884 2942 1471 4414 2207 6622 3311 9934 4967 14902 7451 22354 11177 33532 16766 8383 25150 12575 37726 18863 56590 28295 84886 42443 127330 63665 190996 95498 47749 143248 71624 35812 17906 8953 26860 13430 6715 20146 10073 30220 15110 7555 22666 11333 34000 17000 8500 4250 2125 6376 3188 1594 797 2392 1196 598 299 898 449 1348 674 337 1012 506 253 760 380 190 95 286 143 430 215 646 323 970 485 1456 728 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1\nSteps: 178\nMax value: 190996",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "Sequence: 1000000 500000 250000 125000 62500 31250 15625 46876 23438 11719 35158 17579 52738 26369 79108 39554 19777 59332 29666 14833 44500 22250 11125 33376 16688 8344 4172 2086 1043 3130 1565 4696 2348 1174 587 1762 881 2644 1322 661 1984 992 496 248 124 62 31 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1\nSteps: 152\nMax value: 1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2",
+          "output": "Sequence: 2 1\nSteps: 1\nMax value: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "999999",
+          "output": "Sequence: 999999 2999998 1499999 4499998 2249999 6749998 3374999 10124998 5062499 15187498 7593749 22781248 11390624 5695312 2847656 1423828 711914 355957 1067872 533936 266968 133484 66742 33371 100114 50057 150172 75086 37543 112630 56315 168946 84473 253420 126710 63355 190066 95033 285100 142550 71275 213826 106913 320740 160370 80185 240556 120278 60139 180418 90209 270628 135314 67657 202972 101486 50743 152230 76115 228346 114173 342520 171260 85630 42815 128446 64223 192670 96335 289006 144503 433510 216755 650266 325133 975400 487700 243850 121925 365776 182888 91444 45722 22861 68584 34292 17146 8573 25720 12860 6430 3215 9646 4823 14470 7235 21706 10853 32560 16280 8140 4070 2035 6106 3053 9160 4580 2290 1145 3436 1718 859 2578 1289 3868 1934 967 2902 1451 4354 2177 6532 3266 1633 4900 2450 1225 3676 1838 919 2758 1379 4138 2069 6208 3104 1552 776 388 194 97 292 146 73 220 110 55 166 83 250 125 376 188 94 47 142 71 214 107 322 161 484 242 121 364 182 91 274 137 412 206 103 310 155 466 233 700 350 175 526 263 790 395 1186 593 1780 890 445 1336 668 334 167 502 251 754 377 1132 566 283 850 425 1276 638 319 958 479 1438 719 2158 1079 3238 1619 4858 2429 7288 3644 1822 911 2734 1367 4102 2051 6154 3077 9232 4616 2308 1154 577 1732 866 433 1300 650 325 976 488 244 122 61 184 92 46 23 70 35 106 53 160 80 40 20 10 5 16 8 4 2 1\nSteps: 258\nMax value: 22781248",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "12",
+          "output": "Sequence: 12 6 3 10 5 16 8 4 2 1\nSteps: 9\nMax value: 16",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(S)",
+        "space_complexity": "O(S)",
+        "input_format": "A single line containing one positive integer N.",
+        "output_format": "Three lines:\nLine 1: Sequence: <n1> <n2> ... 1 (space-separated)\nLine 2: Steps: <number of steps>\nLine 3: Max value: <largest value in the sequence>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-19",
+      "title": "Prime Factorization Formatter",
+      "module": "Module 05: Loops",
+      "difficulty": "Hard",
+      "objective": "Decompose N into prime factors and print in canonical form p1^k1 x p2^k2.",
+      "problem_statement": "Task: Every integer greater than 1 can be written as a product of prime numbers. Write N in this prime factorization form by following these steps.\n\nStep 1: Find the prime factors by trial division. Start with p = 2 and keep dividing N by p while it divides evenly, counting how many times you divided (this count is the exponent). Then move to the next p. Stop when p * p is greater than the remaining N.\nStep 2: If the remaining N is greater than 1 after the loop, it is itself a prime factor with exponent 1.\nStep 3: Print the factors in canonical form:\n• Primes in increasing order\n• Each factor is written as p^k (the prime, then ^, then the exponent)\n• If the exponent is 1, print only p (no ^1)\n• Factors are joined with \" x \" (a space, the letter x, a space)\n• N = 1 has no prime factors, so print 1\n\nExample 1: 360 = 2 * 2 * 2 * 3 * 3 * 5, so the output is 2^3 x 3^2 x 5.\nExample 2: 97 is a prime number, so the output is 97.\nExample 3: 49 = 7 * 7, so the output is 7^2.\n\nGiven N, print its prime factorization.",
+      "input_format": "A single line containing one integer N.",
+      "output_format": "One line: Factorization: <factors in canonical form>",
+      "constraints": "1 <= N <= 10^12",
+      "sample_inputs": [
+        "360",
+        "97"
+      ],
+      "sample_outputs": [
+        "Factorization: 2^3 x 3^2 x 5",
+        "Factorization: 97"
+      ],
+      "hints": [
+        "Use p = 2 and increase p by 1 while p * p <= n.",
+        "Inside, use an inner while loop: while n % p == 0, divide n by p and count the exponent.",
+        "After the loop, if n > 1 then n is a prime factor with exponent 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nparts = []\np = 2\nwhile p * p <= n:\n    if n % p == 0:\n        k = 0\n        while n % p == 0:\n            n //= p\n            k += 1\n        parts.append(f\"{p}^{k}\" if k > 1 else str(p))\n    p += 1\nif n > 1:\n    parts.append(str(n))\nif not parts:\n    parts.append(\"1\")\nprint(\"Factorization: \" + \" x \".join(parts))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "360",
+          "output": "Factorization: 2^3 x 3^2 x 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "97",
+          "output": "Factorization: 97",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Factorization: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1024",
+          "output": "Factorization: 2^10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "600851475143",
+          "output": "Factorization: 71 x 839 x 1471 x 6857",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000000",
+          "output": "Factorization: 2^12 x 5^12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999999999989",
+          "output": "Factorization: 999999999989",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "123456",
+          "output": "Factorization: 2^6 x 3 x 643",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "49",
+          "output": "Factorization: 7^2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "2",
+          "output": "Factorization: 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(sqrt N)",
+        "space_complexity": "O(log N)",
+        "input_format": "A single line containing one integer N.",
+        "output_format": "One line: Factorization: <factors in canonical form>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-20",
+      "title": "Bisection Number Search",
+      "module": "Module 05: Loops",
+      "difficulty": "Hard",
+      "objective": "Simulate binary search over interval answering HIGHER, LOWER, CORRECT inputs.",
+      "problem_statement": "Task: A guessing helper uses binary search to find a secret number between low and high. After each guess it is told whether the secret number is HIGHER, LOWER or CORRECT. In this problem, these answers are given in the input, one answer per line.\n\nFollow these rules:\n• Start with the interval [low, high]\n• Each guess is the middle of the interval: mid = (low + high) // 2\n• Print each guess as: Guess k: mid (k = 1, 2, 3, ...)\n• After each guess, read one answer\n• Answer CORRECT: stop, the secret number is mid\n• Answer HIGHER: the secret is bigger than mid, so continue with [mid + 1, high]\n• Answer LOWER: the secret is smaller than mid, so continue with [low, mid - 1]\n• If the interval becomes empty (low > high) before CORRECT is read, the answers contradict each other. Print Inconsistent responses and stop.\n\nExample: low = 1, high = 100 and answers HIGHER, HIGHER, CORRECT. The guesses are 50, 75 and 88, so the secret number is 88, found in 3 guesses.\n\nGiven low, high and the answers, print every guess and then the result.",
+      "input_format": "Line 1: two space-separated integers low and high.\nThen one answer per line, each exactly HIGHER, LOWER or CORRECT. There are always enough answer lines to finish the search.",
+      "output_format": "One line for every guess: Guess <k>: <mid>\nThen, if CORRECT was read, two lines:\nFound: <mid>\nGuesses: <total number of guesses>\nIf the answers are inconsistent, one line: Inconsistent responses",
+      "constraints": "-10^9 <= low <= high <= 10^9",
+      "sample_inputs": [
+        "1 100\nHIGHER\nHIGHER\nCORRECT",
+        "1 100\nCORRECT"
+      ],
+      "sample_outputs": [
+        "Guess 1: 50\nGuess 2: 75\nGuess 3: 88\nFound: 88\nGuesses: 3",
+        "Guess 1: 50\nFound: 50\nGuesses: 1"
+      ],
+      "hints": [
+        "Use while low <= high and compute mid = (low + high) // 2 in every round.",
+        "Read one answer per guess with input().strip(), and update low or high accordingly.",
+        "A while-else helps: the else part runs only when the loop ends without break, which is exactly the inconsistent case."
+      ],
+      "starter_code": null,
+      "reference_solution": "low, high = map(int, input().split())\nguesses = 0\nwhile low <= high:\n    mid = (low + high) // 2\n    guesses += 1\n    print(f\"Guess {guesses}: {mid}\")\n    resp = input().strip()\n    if resp == \"CORRECT\":\n        print(f\"Found: {mid}\")\n        print(f\"Guesses: {guesses}\")\n        break\n    elif resp == \"HIGHER\":\n        low = mid + 1\n    else:\n        high = mid - 1\nelse:\n    print(\"Inconsistent responses\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 100\nHIGHER\nHIGHER\nCORRECT",
+          "output": "Guess 1: 50\nGuess 2: 75\nGuess 3: 88\nFound: 88\nGuesses: 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 100\nCORRECT",
+          "output": "Guess 1: 50\nFound: 50\nGuesses: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-50 50\nLOWER\nLOWER\nHIGHER\nLOWER\nLOWER\nHIGHER\nCORRECT",
+          "output": "Guess 1: 0\nGuess 2: -26\nGuess 3: -39\nGuess 4: -33\nGuess 5: -36\nGuess 6: -38\nGuess 7: -37\nFound: -37\nGuesses: 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 1\nCORRECT",
+          "output": "Guess 1: 1\nFound: 1\nGuesses: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 10\nLOWER\nLOWER\nCORRECT",
+          "output": "Guess 1: 5\nGuess 2: 2\nGuess 3: 1\nFound: 1\nGuesses: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 1000000000\nHIGHER\nHIGHER\nLOWER\nLOWER\nLOWER\nHIGHER\nHIGHER\nHIGHER\nLOWER\nLOWER\nLOWER\nHIGHER\nHIGHER\nHIGHER\nLOWER\nLOWER\nLOWER\nHIGHER\nHIGHER\nHIGHER\nLOWER\nLOWER\nLOWER\nHIGHER\nHIGHER\nHIGHER\nLOWER\nCORRECT",
+          "output": "Guess 1: 500000000\nGuess 2: 750000000\nGuess 3: 875000000\nGuess 4: 812500000\nGuess 5: 781250000\nGuess 6: 765625000\nGuess 7: 773437500\nGuess 8: 777343750\nGuess 9: 779296875\nGuess 10: 778320312\nGuess 11: 777832031\nGuess 12: 777587890\nGuess 13: 777709960\nGuess 14: 777770995\nGuess 15: 777801513\nGuess 16: 777786254\nGuess 17: 777778624\nGuess 18: 777774809\nGuess 19: 777776716\nGuess 20: 777777670\nGuess 21: 777778147\nGuess 22: 777777908\nGuess 23: 777777789\nGuess 24: 777777729\nGuess 25: 777777759\nGuess 26: 777777774\nGuess 27: 777777781\nGuess 28: 777777777\nFound: 777777777\nGuesses: 28",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1000000000 1000000000\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nLOWER\nCORRECT",
+          "output": "Guess 1: 0\nGuess 2: -500000001\nGuess 3: -750000001\nGuess 4: -875000001\nGuess 5: -937500001\nGuess 6: -968750001\nGuess 7: -984375001\nGuess 8: -992187501\nGuess 9: -996093751\nGuess 10: -998046876\nGuess 11: -999023439\nGuess 12: -999511720\nGuess 13: -999755861\nGuess 14: -999877931\nGuess 15: -999938966\nGuess 16: -999969484\nGuess 17: -999984743\nGuess 18: -999992372\nGuess 19: -999996187\nGuess 20: -999998094\nGuess 21: -999999048\nGuess 22: -999999525\nGuess 23: -999999763\nGuess 24: -999999882\nGuess 25: -999999942\nGuess 26: -999999972\nGuess 27: -999999987\nGuess 28: -999999994\nGuess 29: -999999998\nGuess 30: -1000000000\nFound: -1000000000\nGuesses: 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 10\nLOWER\nLOWER\nHIGHER\nCORRECT",
+          "output": "Guess 1: 5\nGuess 2: 2\nGuess 3: 1\nInconsistent responses",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "5 5\nLOWER",
+          "output": "Guess 1: 5\nInconsistent responses",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "10 20\nHIGHER\nHIGHER\nHIGHER\nCORRECT",
+          "output": "Guess 1: 15\nGuess 2: 18\nGuess 3: 19\nGuess 4: 20\nFound: 20\nGuesses: 4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O(log(high - low))",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: two space-separated integers low and high.\nThen one answer per line, each exactly HIGHER, LOWER or CORRECT. There are always enough answer lines to finish the search.",
+        "output_format": "One line for every guess: Guess <k>: <mid>\nThen, if CORRECT was read, two lines:\nFound: <mid>\nGuesses: <total number of guesses>\nIf the answers are inconsistent, one line: Inconsistent responses"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M05-21",
+      "title": "Armstrong Numbers in Range",
+      "module": "Module 05: Loops",
+      "difficulty": "Hard",
+      "objective": "Identify all Armstrong numbers in range [A, B] where sum of d-th powers equals N.",
+      "problem_statement": "Task: An Armstrong number (also called a narcissistic number) is a number that is equal to the sum of its digits, where each digit is raised to the power of the number of digits in the number.\n• Let d be the number of digits of the number\n• Raise every digit to the power d and add the results\n• If the sum is equal to the number, it is an Armstrong number\n• Every single-digit number is an Armstrong number\n\nExample 1: 153 has d = 3 digits, and 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153. So 153 is an Armstrong number.\nExample 2: 1634 has d = 4 digits, and 1^4 + 6^4 + 3^4 + 4^4 = 1 + 1296 + 81 + 256 = 1634. So 1634 is an Armstrong number.\nExample 3: 100 has d = 3 digits, and 1^3 + 0^3 + 0^3 = 1, which is not 100. So 100 is not an Armstrong number.\n\nFind all Armstrong numbers from A to B (both included). Use a loop over the range with an inner loop (or a digit-extraction loop) for each number. Print the Armstrong numbers in increasing order on one line, separated by single spaces. If there is none, print a message saying so.",
+      "input_format": "A single line containing two space-separated integers A and B.",
+      "output_format": "If found, one line: Armstrong numbers: <n1> <n2> ... (space-separated, ascending)\nIf none, one line: No Armstrong numbers found",
+      "constraints": "1 <= A <= B <= 100000",
+      "sample_inputs": [
+        "100 500",
+        "1 9"
+      ],
+      "sample_outputs": [
+        "Armstrong numbers: 153 370 371 407",
+        "Armstrong numbers: 1 2 3 4 5 6 7 8 9"
+      ],
+      "hints": [
+        "First find d, the number of digits of the current number (for example with len(str(num)) or a loop).",
+        "Then sum digit ** d for every digit and compare the sum with the number.",
+        "Collect the matching numbers in a list and print them joined by spaces."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = map(int, input().split())\nfound = []\nfor num in range(a, b + 1):\n    d = len(str(num))\n    total = 0\n    t = num\n    while t > 0:\n        total += (t % 10) ** d\n        t //= 10\n    if total == num:\n        found.append(str(num))\nif found:\n    print(\"Armstrong numbers: \" + \" \".join(found))\nelse:\n    print(\"No Armstrong numbers found\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100 500",
+          "output": "Armstrong numbers: 153 370 371 407",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 9",
+          "output": "Armstrong numbers: 1 2 3 4 5 6 7 8 9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10 99",
+          "output": "No Armstrong numbers found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 100000",
+          "output": "Armstrong numbers: 1 2 3 4 5 6 7 8 9 153 370 371 407 1634 8208 9474 54748 92727 93084",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1634 1634",
+          "output": "Armstrong numbers: 1634",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9475 54747",
+          "output": "No Armstrong numbers found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "370 371",
+          "output": "Armstrong numbers: 370 371",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8000 10000",
+          "output": "Armstrong numbers: 8208 9474",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "54748 100000",
+          "output": "Armstrong numbers: 54748 92727 93084",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1 1",
+          "output": "Armstrong numbers: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Loops",
+        "time_complexity": "O((B-A) x d)",
+        "space_complexity": "O(K)",
+        "input_format": "A single line containing two space-separated integers A and B.",
+        "output_format": "If found, one line: Armstrong numbers: <n1> <n2> ... (space-separated, ascending)\nIf none, one line: No Armstrong numbers found"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_05_loops.csv",
+    "total_rows": 21,
+    "total_questions": 21,
+    "valid_questions": 21,
+    "total_test_cases": 210,
+    "visible_test_cases": 63,
+    "hidden_test_cases": 147,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

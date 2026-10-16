@@ -1,0 +1,1269 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+PY-M18-01,Greedy Coin Change,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Easy,"Find minimum coins for amount using canonical denominations (1, 2, 5, 10).",stdin/stdout,O(1),O(1),"Greedy Coin Change
+Problem Description
+You have an unlimited number of coins of the values `10`, `5`, `2` and `1`. You are given an amount `A`. Pay exactly `A` using as **few coins as possible**.
+For these coin values, the **greedy** method always gives the best answer: take as many of the **biggest** coin as fit, then as many of the next biggest as fit into what is left, and so on down to `1`.
+Print two lines:
+
+* Line 1: the number of coins used.
+* Line 2: the coins used, from biggest to smallest, separated by spaces. If the amount is `0`, no coins are needed, so print `NONE`.
+Your task is to output both the minimum number of coins and the exact coin list selected by the greedy procedure. Each coin must be one of 10, 5, 2, or 1, and the selected values must add up exactly to the original amount. Use each denomination as many times as possible before moving to the next smaller denomination. For amount zero, print `0` followed by `NONE`; do not print an empty second line.
+Example 1
+Input
+
+```
+18
+```
+
+Output
+
+```
+4
+10 5 2 1
+```
+
+Explanation
+The amount is `18`.
+
+* `10` fits once → `8` left.
+* `5` fits once → `3` left.
+* `2` fits once → `1` left.
+* `1` fits once → `0` left.
+
+That is `4` coins: `10 5 2 1`.
+Example 2
+Input
+
+```
+0
+```
+
+Output
+
+```
+0
+NONE
+```
+
+Explanation
+The amount is `0`, so no coins are needed. Line 1 is `0` and line 2 is `NONE`.
+Input Format
+
+* Line 1: an integer `A`, the amount.
+
+Output Format
+Line 1: the number of coins. Line 2: the coins from biggest to smallest, separated by spaces, or `NONE`.
+Constraints
+
+* `0 ≤ A ≤ 10^4`
+
+Hint
+Go through the coin values `[10, 5, 2, 1]` in that order. `A // coin` tells you how many of that coin fit, and `A % coin` is what is left.","Line 1: an integer `A`, the amount.","Line 1: the number of coins. Line 2: the coins from biggest to smallest, separated by spaces, or `NONE`.",`0 ≤ A ≤ 10^4`,18,"4
+10 5 2 1",0,"0
+NONE","Go through the coin values `[10, 5, 2, 1]` in that order. `A // coin` tells you how many of that coin fit, and `A % coin` is what is left.",`[coin] * count` builds a list with `count` copies of a coin.,"Greedy is NOT always the best for other coin sets (for example `1, 3, 4`), which is why the DP version is a separate question.","amount = int(input())
+
+used = []
+for coin in [10, 5, 2, 1]:
+    count = amount // coin          # how many of this coin fit
+    used.extend([coin] * count)
+    amount -= coin * count
+
+print(len(used))
+print("" "".join(str(c) for c in used) if used else ""NONE"")","[{""input"": ""18"", ""output"": ""4\n10 5 2 1"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""0\nNONE"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1\n1"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""1\n10"", ""is_hidden"": true}, {""input"": ""27"", ""output"": ""4\n10 10 5 2"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""2\n2 2"", ""is_hidden"": true}, {""input"": ""99"", ""output"": ""12\n10 10 10 10 10 10 10 10 10 5 2 2"", ""is_hidden"": true}, {""input"": ""10000"", ""output"": ""1000\n10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10"", ""is_hidden"": true}]"
+PY-M18-02,Max Units on a Truck,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Easy,Greedily maximize units loaded on truck given box limits.,stdin/stdout,O(N log N),O(N),"Max Units on a Truck
+Problem Description
+A truck can carry at most `C` boxes. There are `N` types of boxes. For each type you know how many boxes are available and how many **units** one box of that type holds. Print the largest number of units the truck can carry.
+**Greedy idea:** every box takes the same space on the truck, so always load the boxes that hold the **most units** first.
+
+* Sort the box types by units per box, from most to fewest.
+* Take as many boxes of each type as possible, until the truck is full (`C` boxes) or no boxes are left.
+Every box occupies exactly one place, regardless of its type, so the only capacity limit is the number of boxes. A type may contribute fewer boxes than are available when the truck has limited space. If all available boxes fit, load them all; if the capacity is reached, do not load any further boxes. The input gives each type as `available_boxes units_per_box`.
+Example 1
+Input
+
+```
+3 4
+1 3
+2 2
+3 1
+```
+
+Output
+
+```
+8
+```
+
+Explanation
+The truck holds `4` boxes. The types are: `1` box with `3` units, `2` boxes with `2` units, and `3` boxes with `1` unit.
+
+* Take the `1` box with `3` units → `3` units, `3` places left.
+* Take both boxes with `2` units → `4` more units, `1` place left.
+* Take `1` box with `1` unit → `1` more unit. The truck is full.
+
+The total is `3 + 4 + 1 = 8`.
+Example 2
+Input
+
+```
+1 10
+5 2
+```
+
+Output
+
+```
+10
+```
+
+Explanation
+The truck holds `10` boxes, but only `5` boxes exist in total (each holding `2` units). All of them fit, so the answer is `5 * 2 = 10`.
+Input Format
+
+* Line 1: two integers `N` and `C`: the number of box types and the truck capacity (in boxes).
+* Next `N` lines: two integers each: the number of boxes of this type and the units per box.
+
+Output Format
+Print one integer: the maximum number of units.
+Constraints
+
+* `1 ≤ N ≤ 1000`
+* `1 ≤ C ≤ 10^6`
+* `1 ≤ boxes, units per box ≤ 1000`
+
+Hint
+Sort with `types.sort(key=lambda t: t[1], reverse=True)` to put the most units first.","Line 1: two integers `N` and `C`: the number of box types and the truck capacity (in boxes).
+Next `N` lines: two integers each: the number of boxes of this type and the units per box.",Print one integer: the maximum number of units.,"`1 ≤ N ≤ 1000`
+`1 ≤ C ≤ 10^6`
+`1 ≤ boxes, units per box ≤ 1000`","3 4
+1 3
+2 2
+3 1",8,"1 10
+5 2",10,"Sort with `types.sort(key=lambda t: t[1], reverse=True)` to put the most units first.","From each type take `min(boxes, places_left)` boxes.",Stop as soon as no places are left.,"n, capacity = map(int, input().split())
+types = [tuple(map(int, input().split())) for _ in range(n)]
+types.sort(key=lambda t: t[1], reverse=True)    # most units per box first
+
+total = 0
+for boxes, units in types:
+    take = min(boxes, capacity)
+    total += take * units
+    capacity -= take
+    if capacity == 0:
+        break
+
+print(total)","[{""input"": ""3 4\n1 3\n2 2\n3 1"", ""output"": ""8"", ""is_hidden"": false}, {""input"": ""1 10\n5 2"", ""output"": ""10"", ""is_hidden"": false}, {""input"": ""4 10\n5 10\n2 5\n4 7\n3 9"", ""output"": ""91"", ""is_hidden"": false}, {""input"": ""1 1\n1000 1000"", ""output"": ""1000"", ""is_hidden"": true}, {""input"": ""2 3\n1 1\n1 1"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""3 6\n2 1\n2 3\n2 2"", ""output"": ""12"", ""is_hidden"": true}, {""input"": ""2 5\n10 4\n10 4"", ""output"": ""20"", ""is_hidden"": true}, {""input"": ""3 1000000\n1000 1000\n1000 1\n1000 500"", ""output"": ""1501000"", ""is_hidden"": true}]"
+PY-M18-03,Jump Game Reachability,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Easy,Determine if last index is reachable from start in integer array.,stdin/stdout,O(N),O(1),"Jump Game Reachability
+Problem Description
+You are given a list of non-negative integers. You start at index `0`. The number at each index is the **maximum** jump length from there: from index `i` you can jump to any index from `i + 1` up to `i + nums[i]`.
+Print `True` if you can reach the **last** index, otherwise print `False`.
+**Greedy method:** walk through the list and keep `farthest`, the farthest index you can reach so far.
+
+* If the current index `i` is beyond `farthest`, you can never get here, so the answer is `False`.
+* Otherwise update `farthest = max(farthest, i + nums[i])`.
+* If `farthest` reaches the last index, the answer is `True`.
+A jump may be shorter than the value at the current index, but it must move forward; you cannot jump backward. You only need to decide whether the final index is reachable, not to print a route. A one-element array is already at its final index and therefore returns `True`. If an index is unreachable, later values cannot help.
+Example 1
+Input
+
+```
+2 3 1 1 4
+```
+
+Output
+
+```
+True
+```
+
+Explanation
+The list is `2 3 1 1 4`. From index `0` you can reach index `2`; from index `1` (value `3`) you can reach index `4`, which is the last index. Therefore, the output is `True`.
+Example 2
+Input
+
+```
+3 2 1 0 4
+```
+
+Output
+
+```
+False
+```
+
+Explanation
+The list is `3 2 1 0 4`. Every path ends at index `3`, whose value is `0`, so you get stuck there and can never reach index `4`. Therefore, the output is `False`.
+Input Format
+
+* Line 1: the integers separated by spaces.
+
+Output Format
+Print `True` if the last index can be reached, otherwise `False`.
+Constraints
+
+* `1 ≤ N ≤ 10^5`
+* `0 ≤ each integer ≤ 10^5`
+
+Hint
+Start with `farthest = 0`.",Line 1: the integers separated by spaces.,"Print `True` if the last index can be reached, otherwise `False`.","`1 ≤ N ≤ 10^5`
+`0 ≤ each integer ≤ 10^5`",2 3 1 1 4,True,3 2 1 0 4,False,Start with `farthest = 0`.,Check `if i > farthest` before using `nums[i]`: an index you cannot reach cannot help you jump further.,"A list with only one number is already at the last index, so the answer is `True`.","nums = [int(x) for x in input().split()]
+
+farthest = 0
+reachable = True
+for i, jump in enumerate(nums):
+    if i > farthest:            # this index can never be reached
+        reachable = False
+        break
+    farthest = max(farthest, i + jump)
+
+print(reachable)","[{""input"": ""2 3 1 1 4"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""3 2 1 0 4"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""0 1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""1 1 1 1"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""2 0 0"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""5 0 0 0 0 0 1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""1 0 1"", ""output"": ""False"", ""is_hidden"": true}]"
+PY-M18-04,House Robber 1D DP,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Easy,Determine maximum loot from adjacent houses using 1D dynamic programming.,stdin/stdout,O(N),O(1),"House Robber 1D DP
+Problem Description
+A row of houses each has some amount of money. A robber wants to take as much money as possible, but he **cannot rob two houses that are next to each other** (the alarm would go off). Print the largest total he can take.
+Use **dynamic programming (DP)**. Let `best[i]` be the most money he can take from the first `i + 1` houses. For house `i` there are two choices:
+
+* **Skip** house `i`: he keeps `best[i - 1]`.
+* **Rob** house `i`: he cannot rob house `i - 1`, so he gets `best[i - 2] + nums[i]`.
+
+So `best[i] = max(best[i - 1], best[i - 2] + nums[i])`. You only need the last two values, so two variables are enough.
+The robber may choose any subset of houses as long as no two chosen houses are adjacent. The robber may skip a house even when it contains money, and the goal is the maximum total, not the maximum number of houses. Amounts are non-negative, so choosing no additional house is always allowed. Print only the maximum obtainable amount.
+Example 1
+Input
+
+```
+2 7 9 3 1
+```
+
+Output
+
+```
+12
+```
+
+Explanation
+The money is `2 7 9 3 1`. The best choice is to rob houses `0`, `2` and `4`: `2 + 9 + 1 = 12`. Robbing `7` and `3` gives only `10`.
+Example 2
+Input
+
+```
+5
+```
+
+Output
+
+```
+5
+```
+
+Explanation
+There is one house with `5`, so the answer is `5`.
+Input Format
+
+* Line 1: the amount of money in each house, separated by spaces.
+
+Output Format
+Print one integer: the maximum money that can be robbed.
+Constraints
+
+* `1 ≤ N ≤ 10^5`
+* `0 ≤ each amount ≤ 10^4`
+
+Hint
+Keep `prev2` (best up to two houses back) and `prev1` (best up to the previous house), both starting at `0`.","Line 1: the amount of money in each house, separated by spaces.",Print one integer: the maximum money that can be robbed.,"`1 ≤ N ≤ 10^5`
+`0 ≤ each amount ≤ 10^4`",2 7 9 3 1,12,5,5,"Keep `prev2` (best up to two houses back) and `prev1` (best up to the previous house), both starting at `0`.","For each amount `x`: `current = max(prev1, prev2 + x)`, then shift: `prev2, prev1 = prev1, current`.","At the end, `prev1` is the answer.","nums = [int(x) for x in input().split()]
+
+prev2, prev1 = 0, 0         # best totals two houses back and one house back
+for x in nums:
+    current = max(prev1, prev2 + x)     # skip this house, or rob it
+    prev2, prev1 = prev1, current
+
+print(prev1)","[{""input"": ""2 7 9 3 1"", ""output"": ""12"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""1 2 3 1"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""2 1 1 2"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""0 0 0"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""10 1 1 10"", ""output"": ""20"", ""is_hidden"": true}, {""input"": ""4 1 2 7 5 3 1"", ""output"": ""14"", ""is_hidden"": true}, {""input"": ""10000 10000"", ""output"": ""10000"", ""is_hidden"": true}]"
+PY-M18-05,Coin Change Minimum Coins (DP),"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Find minimum coins with arbitrary denominations using dynamic programming.,stdin/stdout,O(A x K),O(A),"Coin Change Minimum Coins (DP)
+Problem Description
+You are given some coin values (with an unlimited supply of each) and an amount `A`. Print the **fewest** coins needed to make exactly `A`, or `-1` if it is impossible.
+The greedy method from the previous question does not always work here. For coins `1 3 4` and `A = 6`, greedy takes `4 + 1 + 1` (3 coins), but `3 + 3` needs only 2.
+Use **dynamic programming**: let `dp[x]` be the fewest coins for amount `x`.
+
+* `dp[0] = 0` (no coins are needed for `0`).
+* For every amount `x` from `1` to `A`, try every coin `c <= x`: `dp[x] = min(dp[x], dp[x - c] + 1)`.
+* Amounts that cannot be made stay at infinity.
+Coins may be reused any number of times, and their order does not matter; only the minimum number of coins needed to form the exact amount is required. If the amount is zero, the answer is `0`. If no combination of the supplied denominations sums to the amount, print `-1`. Do not assume that taking the largest coin first gives an optimal result.
+Example 1
+Input
+
+```
+1 2 5
+11
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The coins are `1 2 5` and `A = 11`. The best is `5 + 5 + 1`, which uses `3` coins.
+Example 2
+Input
+
+```
+2
+3
+```
+
+Output
+
+```
+-1
+```
+
+Explanation
+The only coin is `2` and `A = 3`. Every combination of `2`s is even, so `3` cannot be made, and the output is `-1`.
+Input Format
+
+* Line 1: the coin values, separated by spaces.
+* Line 2: an integer `A`, the amount.
+
+Output Format
+Print one integer: the fewest coins, or `-1` if the amount cannot be made.
+Constraints
+
+* `1 ≤ number of coin values ≤ 12`
+* `1 ≤ each coin ≤ 10^4`
+* `0 ≤ A ≤ 10^4`
+
+Hint
+Create `dp = [float('inf')] * (A + 1)` and set `dp[0] = 0`.","Line 1: the coin values, separated by spaces.
+Line 2: an integer `A`, the amount.","Print one integer: the fewest coins, or `-1` if the amount cannot be made.","`1 ≤ number of coin values ≤ 12`
+`1 ≤ each coin ≤ 10^4`
+`0 ≤ A ≤ 10^4`","1 2 5
+11",3,"2
+3",-1,Create `dp = [float('inf')] * (A + 1)` and set `dp[0] = 0`.,"Fill `dp` from small amounts to large ones, so `dp[x - c]` is already known.","If `dp[A]` is still infinity at the end, print `-1`.","coins = [int(x) for x in input().split()]
+amount = int(input())
+
+INF = float(""inf"")
+dp = [INF] * (amount + 1)
+dp[0] = 0
+for x in range(1, amount + 1):
+    for c in coins:
+        if c <= x and dp[x - c] + 1 < dp[x]:
+            dp[x] = dp[x - c] + 1
+
+print(dp[amount] if dp[amount] != INF else -1)","[{""input"": ""1 2 5\n11"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""2\n3"", ""output"": ""-1"", ""is_hidden"": false}, {""input"": ""1\n0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1 3 4\n6"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""2 5 10 1\n27"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""5 7\n1"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""186 419 83 408\n6249"", ""output"": ""20"", ""is_hidden"": true}, {""input"": ""3 7\n10000"", ""output"": ""1432"", ""is_hidden"": true}]"
+PY-M18-06,0/1 Knapsack Problem,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Maximize value of items fitting within weight capacity W using DP.,stdin/stdout,O(N x W),O(W),"0/1 Knapsack Problem
+Problem Description
+You have a bag that can carry a total weight of at most `W`. There are `N` items, each with a weight and a value. Each item can be taken **at most once** (that is the ""0/1"": take it or leave it). Print the largest total value you can carry.
+Use **dynamic programming** over the capacity: let `dp[c]` be the best value with capacity `c`.
+
+* Start with `dp = [0] * (W + 1)`.
+* For each item (weight `w`, value `v`), update the capacities from **high to low**: `dp[c] = max(dp[c], dp[c - w] + v)` for `c` from `W` down to `w`.
+* Going from high to low makes sure each item is used at most once: `dp[c - w]` still holds the value from **before** this item.
+Each item is indivisible: you either include the whole item once or do not include it. The sum of selected weights must be at most `W`, not necessarily exactly `W`. Items that are too heavy for the bag cannot be selected, and selecting no items gives value zero. Print the maximum total value, not the selected item indices.
+Example 1
+Input
+
+```
+4 5
+1 1
+3 4
+4 5
+2 3
+```
+
+Output
+
+```
+7
+```
+
+Explanation
+The capacity is `5`, and the items are (weight `1`, value `1`), (weight `3`, value `4`), (weight `4`, value `5`) and (weight `2`, value `3`).
+The best choice is the items with weights `3` and `2`: total weight `5`, total value `4 + 3 = 7`.
+Example 2
+Input
+
+```
+1 3
+4 10
+```
+
+Output
+
+```
+0
+```
+
+Explanation
+The capacity is `3`, but the only item weighs `4`, so nothing fits. The output is `0`.
+Input Format
+
+* Line 1: two integers `N` and `W`: the number of items and the capacity.
+* Next `N` lines: two integers each: the weight and the value of an item.
+
+Output Format
+Print one integer: the maximum total value.
+Constraints
+
+* `1 ≤ N ≤ 100`
+* `1 ≤ W ≤ 10^4`
+* `1 ≤ weight ≤ 10^4`
+* `0 ≤ value ≤ 10^4`
+
+Hint
+Loop over the items in the outer loop and over the capacities in the inner loop.","Line 1: two integers `N` and `W`: the number of items and the capacity.
+Next `N` lines: two integers each: the weight and the value of an item.",Print one integer: the maximum total value.,"`1 ≤ N ≤ 100`
+`1 ≤ W ≤ 10^4`
+`1 ≤ weight ≤ 10^4`
+`0 ≤ value ≤ 10^4`","4 5
+1 1
+3 4
+4 5
+2 3",7,"1 3
+4 10",0,Loop over the items in the outer loop and over the capacities in the inner loop.,"`for c in range(W, w - 1, -1)` goes from `W` down to `w`.","If you went from low to high, an item could be added more than once (that would be the unbounded knapsack).","n, cap = map(int, input().split())
+
+dp = [0] * (cap + 1)
+for _ in range(n):
+    w, v = map(int, input().split())
+    for c in range(cap, w - 1, -1):     # high to low: each item at most once
+        dp[c] = max(dp[c], dp[c - w] + v)
+
+print(dp[cap])","[{""input"": ""4 5\n1 1\n3 4\n4 5\n2 3"", ""output"": ""7"", ""is_hidden"": false}, {""input"": ""1 3\n4 10"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1 4\n4 10"", ""output"": ""10"", ""is_hidden"": false}, {""input"": ""3 50\n10 60\n20 100\n30 120"", ""output"": ""220"", ""is_hidden"": true}, {""input"": ""2 1\n1 5\n1 6"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""3 10\n5 10\n5 10\n5 10"", ""output"": ""20"", ""is_hidden"": true}, {""input"": ""4 7\n3 4\n4 5\n2 3\n1 1"", ""output"": ""9"", ""is_hidden"": true}, {""input"": ""2 10000\n10000 10000\n1 0"", ""output"": ""10000"", ""is_hidden"": true}]"
+PY-M18-07,Longest Increasing Subsequence,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Find length of longest strictly increasing subsequence in O(N log N).,stdin/stdout,O(N log N),O(N),"Longest Increasing Subsequence
+Problem Description
+A **subsequence** is what you get by deleting some (or no) numbers from a list without changing the order of the rest. It is **strictly increasing** if every number is bigger than the one before it. Print the length of the longest strictly increasing subsequence.
+An O(N^2) DP works, but use the faster O(N log N) **patience method**:
+
+* Keep a list `tails`, where `tails[k]` is the **smallest possible last number** of an increasing subsequence of length `k + 1`. This list is always sorted.
+* For each number `x`, find with binary search the first position in `tails` whose value is `>= x`.
+* If there is none, `x` extends the longest subsequence: append it. Otherwise replace that value with `x` (a smaller ending is better for the future).
+* The answer is `len(tails)`. (`tails` itself is not always a real subsequence, but its length is correct.)
+The subsequence does not need to occupy consecutive positions, but the original left-to-right order must be preserved. It must be strictly increasing, so equal values cannot both extend the same increasing subsequence. Negative values and repeated values are allowed. Print the length only; you do not need to print the subsequence itself.
+Example 1
+Input
+
+```
+10 9 2 5 3 7 101 18
+```
+
+Output
+
+```
+4
+```
+
+Explanation
+The list is `10 9 2 5 3 7 101 18`. One longest increasing subsequence is `2 3 7 101`, which has length `4`.
+Example 2
+Input
+
+```
+7 7 7 7
+```
+
+Output
+
+```
+1
+```
+
+Explanation
+All numbers are `7`. A strictly increasing subsequence cannot contain two equal numbers, so the longest one has length `1`.
+Input Format
+
+* Line 1: the integers separated by spaces.
+
+Output Format
+Print one integer: the length of the longest strictly increasing subsequence.
+Constraints
+
+* `1 ≤ N ≤ 10^5`
+* `-10^9 ≤ each integer ≤ 10^9`
+
+Hint
+`from bisect import bisect_left`; `bisect_left(tails, x)` gives the first position with a value `>= x`.",Line 1: the integers separated by spaces.,Print one integer: the length of the longest strictly increasing subsequence.,"`1 ≤ N ≤ 10^5`
+`-10^9 ≤ each integer ≤ 10^9`",10 9 2 5 3 7 101 18,4,7 7 7 7,1,"`from bisect import bisect_left`; `bisect_left(tails, x)` gives the first position with a value `>= x`.",Using `bisect_left` (not `bisect_right`) is what makes equal numbers NOT extend the subsequence.,"Trace `tails` for `10 9 2 5 3 7 101 18`: `[10]`, `[9]`, `[2]`, `[2, 5]`, `[2, 3]`, `[2, 3, 7]`, `[2, 3, 7, 101]`, `[2, 3, 7, 18]`.","from bisect import bisect_left
+
+nums = [int(x) for x in input().split()]
+
+tails = []
+for x in nums:
+    i = bisect_left(tails, x)
+    if i == len(tails):
+        tails.append(x)         # extends the longest subsequence
+    else:
+        tails[i] = x            # a smaller ending for length i + 1
+
+print(len(tails))","[{""input"": ""10 9 2 5 3 7 101 18"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""7 7 7 7"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""1 2 3 4 5"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""5 4 3 2 1"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""0 1 0 3 2 3"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""3 10 2 1 20"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""-5 -1 -3 0 -2 4"", ""output"": ""4"", ""is_hidden"": true}]"
+PY-M18-08,Longest Common Subsequence,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Find the length of the longest common subsequence between two strings.,stdin/stdout,O(N x M),O(N x M),"Longest Common Subsequence
+Problem Description
+A **subsequence** of a string keeps some of its characters in their original order (they do not need to be next to each other). For example, `ace` is a subsequence of `abcde`. A **common subsequence** of two strings is a subsequence of both. Print the length of the **longest** common subsequence.
+Use a 2D **dynamic programming** table, where `dp[i][j]` is the answer for the first `i` characters of `t1` and the first `j` characters of `t2`:
+
+* `dp[0][j] = dp[i][0] = 0` (an empty string has nothing in common).
+* If `t1[i - 1] == t2[j - 1]`, the last characters match and extend the answer: `dp[i][j] = dp[i - 1][j - 1] + 1`.
+* Otherwise drop the last character of one of the strings: `dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])`.
+
+The answer is `dp[len(t1)][len(t2)]`.
+Characters must appear in the same relative order in both strings, but they do not need to be adjacent. Matching is case-sensitive, so uppercase and lowercase versions of a character are different. The required output is the length of the longest common subsequence, not the subsequence text. If the strings have no common characters, print `0`.
+Example 1
+Input
+
+```
+abcde
+ace
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The strings are `abcde` and `ace`. The longest common subsequence is `ace`, so the output is `3`.
+Example 2
+Input
+
+```
+abc
+def
+```
+
+Output
+
+```
+0
+```
+
+Explanation
+The strings `abc` and `def` share no characters, so the output is `0`.
+Input Format
+
+* Line 1: the first string `t1`.
+* Line 2: the second string `t2`.
+
+Output Format
+Print one integer: the length of the longest common subsequence.
+Constraints
+
+* `1 ≤ length of each string ≤ 1000`
+* Characters are case-sensitive
+
+Hint
+Create the table with `dp = [[0] * (m + 1) for _ in range(n + 1)]` (one extra row and column for the empty prefixes).","Line 1: the first string `t1`.
+Line 2: the second string `t2`.",Print one integer: the length of the longest common subsequence.,"`1 ≤ length of each string ≤ 1000`
+Characters are case-sensitive","abcde
+ace",3,"abc
+def",0,Create the table with `dp = [[0] * (m + 1) for _ in range(n + 1)]` (one extra row and column for the empty prefixes).,"Fill it row by row, from `i = 1` and `j = 1`.","Note the `- 1` when reading characters: `dp[i][j]` is about the first `i` characters, whose last one is `t1[i - 1]`.","t1 = input()
+t2 = input()
+n, m = len(t1), len(t2)
+
+dp = [[0] * (m + 1) for _ in range(n + 1)]
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        if t1[i - 1] == t2[j - 1]:
+            dp[i][j] = dp[i - 1][j - 1] + 1
+        else:
+            dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+print(dp[n][m])","[{""input"": ""abcde\nace"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""abc\ndef"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""abc\nabc"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""a\nA"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""AGGTAB\nGXTXAYB"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""bsbininm\njmjkbkjkv"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""aaaa\naa"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""programming\ngaming"", ""output"": ""6"", ""is_hidden"": true}]"
+PY-M18-09,Unique Paths in Grid,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Compute distinct paths from top-left to bottom-right of M x N grid.,stdin/stdout,O(M x N),O(N),"Unique Paths in Grid
+Problem Description
+A robot stands in the **top-left** cell of a grid with `M` rows and `N` columns. In each move it can go only **one cell right** or **one cell down**. Print the number of different paths to the **bottom-right** cell.
+Use **dynamic programming**: the number of ways to reach a cell is the ways to reach the cell **above** it plus the ways to reach the cell **left** of it.
+
+* Every cell in the first row and the first column can be reached in exactly `1` way (keep going right, or keep going down).
+* For the other cells: `ways[r][c] = ways[r - 1][c] + ways[r][c - 1]`.
+
+The numbers can get very large, which is fine in Python.
+Every move changes the position by exactly one cell: either right or down. Moving left, moving up, or moving diagonally is not allowed. Count different move sequences that reach the bottom-right cell; paths are distinct when their sequences of moves differ. A grid with one row or one column has exactly one valid path.
+Example 1
+Input
+
+```
+3 7
+```
+
+Output
+
+```
+28
+```
+
+Explanation
+The grid has `3` rows and `7` columns. Filling the table row by row gives `28` ways to reach the bottom-right cell.
+Example 2
+Input
+
+```
+3 2
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The grid has `3` rows and `2` columns. The paths are: right-down-down, down-right-down and down-down-right. That is `3` paths.
+Input Format
+
+* Line 1: two integers `M` and `N`: the number of rows and columns.
+
+Output Format
+Print one integer: the number of different paths.
+Constraints
+
+* `1 ≤ M, N ≤ 100`
+
+Hint
+A single row is enough: start with `row = [1] * N`; for each next row, `row[c] += row[c - 1]` for `c` from `1` to `N - 1`.",Line 1: two integers `M` and `N`: the number of rows and columns.,Print one integer: the number of different paths.,"`1 ≤ M, N ≤ 100`",3 7,28,3 2,3,"A single row is enough: start with `row = [1] * N`; for each next row, `row[c] += row[c - 1]` for `c` from `1` to `N - 1`.","After the update, `row[c]` holds (old value = from above) + (new `row[c - 1]` = from the left).",A `1 x 1` grid has exactly one path: stay where you are.,"m, n = map(int, input().split())
+
+row = [1] * n               # the first row: one way to reach each cell
+for _ in range(1, m):
+    for c in range(1, n):
+        row[c] += row[c - 1]    # from above (old row[c]) + from the left
+
+print(row[-1])","[{""input"": ""3 7"", ""output"": ""28"", ""is_hidden"": false}, {""input"": ""3 2"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""1 1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""1 10"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""2 2"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""10 10"", ""output"": ""48620"", ""is_hidden"": true}, {""input"": ""5 1"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""100 100"", ""output"": ""22750883079422934966181954039568885395604168260154104734000"", ""is_hidden"": true}]"
+PY-M18-10,Minimum Path Sum in Grid,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Find path in M x N grid minimizing the sum of numbers along path.,stdin/stdout,O(M x N),O(N),"Minimum Path Sum in Grid
+Problem Description
+You are given a grid of non-negative numbers. Start at the **top-left** cell and walk to the **bottom-right** cell, moving only **right** or **down**. Print the smallest possible sum of all the numbers on your path (including the first and the last cell).
+Use **dynamic programming**: let `best[r][c]` be the smallest sum to reach cell `(r, c)`.
+
+* `best[0][0]` is the number in the first cell.
+* In the first row you can only come from the left; in the first column only from above.
+* Otherwise `best[r][c] = grid[r][c] + min(best[r - 1][c], best[r][c - 1])`.
+A path includes the values of both its starting cell and its destination cell. Only right and down moves are permitted, and every visited cell contributes its value to the sum. You must minimize the total across the whole path, rather than choosing the smallest cell at each step independently. The grid values are non-negative integers.
+Example 1
+Input
+
+```
+3 3
+1 3 1
+1 5 1
+4 2 1
+```
+
+Output
+
+```
+7
+```
+
+Explanation
+The grid is
+
+```
+1 3 1
+1 5 1
+4 2 1
+```
+
+The best path is `1 → 3 → 1 → 1 → 1` (right, right, down, down), with the sum `7`.
+Example 2
+Input
+
+```
+2 3
+1 2 3
+4 5 6
+```
+
+Output
+
+```
+12
+```
+
+Explanation
+The grid is `1 2 3` above `4 5 6`. The best path is `1 → 2 → 3 → 6`, with the sum `12`.
+Input Format
+
+* Line 1: two integers `M` and `N`: the number of rows and columns.
+* Next `M` lines: `N` integers each.
+
+Output Format
+Print one integer: the minimum path sum.
+Constraints
+
+* `1 ≤ M, N ≤ 200`
+* `0 ≤ each number ≤ 100`
+
+Hint
+You can store the answers directly in the grid, cell by cell, row by row.","Line 1: two integers `M` and `N`: the number of rows and columns.
+Next `M` lines: `N` integers each.",Print one integer: the minimum path sum.,"`1 ≤ M, N ≤ 200`
+`0 ≤ each number ≤ 100`","3 3
+1 3 1
+1 5 1
+4 2 1",7,"2 3
+1 2 3
+4 5 6",12,"You can store the answers directly in the grid, cell by cell, row by row.","Handle the first row and the first column separately, because they have only one possible previous cell.",The answer is in the bottom-right cell.,"m, n = map(int, input().split())
+grid = [[int(x) for x in input().split()] for _ in range(m)]
+
+for r in range(m):
+    for c in range(n):
+        if r == 0 and c == 0:
+            continue
+        if r == 0:
+            grid[r][c] += grid[r][c - 1]        # only from the left
+        elif c == 0:
+            grid[r][c] += grid[r - 1][c]        # only from above
+        else:
+            grid[r][c] += min(grid[r - 1][c], grid[r][c - 1])
+
+print(grid[m - 1][n - 1])","[{""input"": ""3 3\n1 3 1\n1 5 1\n4 2 1"", ""output"": ""7"", ""is_hidden"": false}, {""input"": ""2 3\n1 2 3\n4 5 6"", ""output"": ""12"", ""is_hidden"": false}, {""input"": ""1 1\n5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""1 4\n1 2 3 4"", ""output"": ""10"", ""is_hidden"": true}, {""input"": ""3 1\n7\n0\n2"", ""output"": ""9"", ""is_hidden"": true}, {""input"": ""2 2\n0 0\n0 0"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""3 3\n1 99 99\n1 99 99\n1 1 1"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""3 4\n5 1 9 9\n9 1 1 9\n9 9 1 2"", ""output"": ""11"", ""is_hidden"": true}]"
+PY-M18-11,Non-Overlapping Intervals,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Find minimum intervals to remove to make remaining non-overlapping.,stdin/stdout,O(N log N),O(N),"Non-Overlapping Intervals
+Problem Description
+You are given `N` intervals `[start, end)`. Two intervals **overlap** if they share some time; intervals that only **touch**, such as `[1, 2)` and `[2, 3)`, do **not** overlap. Print the **fewest** intervals you must remove so that the remaining intervals do not overlap.
+**Greedy method:** keep as many intervals as possible by always keeping the one that **ends earliest**, because it leaves the most room for the others.
+
+* Sort the intervals by their end.
+* Go through them, remembering the end of the last kept interval. If an interval starts at or after that end, keep it; otherwise it overlaps, so remove it (count it).
+Intervals use the half-open form `[start, end)`: the start is included and the end is excluded. Therefore, an interval ending at time `t` can be followed by one starting at `t` without a conflict. Duplicate or overlapping intervals are treated as separate input intervals. Print the number removed, not the intervals that remain.
+Example 1
+Input
+
+```
+4
+1 2
+2 3
+3 4
+1 3
+```
+
+Output
+
+```
+1
+```
+
+Explanation
+The intervals are `[1, 2)`, `[2, 3)`, `[3, 4)` and `[1, 3)`. Sorted by end: `[1, 2)`, `[2, 3)`, `[1, 3)`, `[3, 4)`. Keep `[1, 2)` and `[2, 3)`; `[1, 3)` starts before `3`, so remove it; keep `[3, 4)`. Only `1` interval is removed.
+Example 2
+Input
+
+```
+3
+1 2
+1 2
+1 2
+```
+
+Output
+
+```
+2
+```
+
+Explanation
+The three intervals are all `[1, 2)`. Only one of them can stay, so `2` must be removed.
+Input Format
+
+* Line 1: an integer `N`, the number of intervals.
+* Next `N` lines: two integers `start end` with `start < end`.
+
+Output Format
+Print one integer: the minimum number of intervals to remove.
+Constraints
+
+* `1 ≤ N ≤ 10^5`
+* `-10^9 ≤ start < end ≤ 10^9`
+
+Hint
+Sort with `intervals.sort(key=lambda iv: iv[1])`.","Line 1: an integer `N`, the number of intervals.
+Next `N` lines: two integers `start end` with `start < end`.",Print one integer: the minimum number of intervals to remove.,"`1 ≤ N ≤ 10^5`
+`-10^9 ≤ start < end ≤ 10^9`","4
+1 2
+2 3
+3 4
+1 3",1,"3
+1 2
+1 2
+1 2",2,Sort with `intervals.sort(key=lambda iv: iv[1])`.,"Start with `last_end = float('-inf')`, so the first interval is always kept.",The comparison is `start >= last_end`: touching intervals are allowed.,"n = int(input())
+intervals = [tuple(map(int, input().split())) for _ in range(n)]
+intervals.sort(key=lambda iv: iv[1])        # earliest end first
+
+removed = 0
+last_end = float(""-inf"")
+for start, end in intervals:
+    if start >= last_end:
+        last_end = end          # keep it
+    else:
+        removed += 1            # it overlaps a kept interval
+
+print(removed)","[{""input"": ""4\n1 2\n2 3\n3 4\n1 3"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""3\n1 2\n1 2\n1 2"", ""output"": ""2"", ""is_hidden"": false}, {""input"": ""2\n1 2\n2 3"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1\n5 9"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""3\n1 100\n11 22\n1 11"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""4\n-5 5\n-1 1\n2 3\n4 6"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""5\n1 3\n2 4\n3 5\n4 6\n5 7"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""3\n0 10\n1 2\n3 4"", ""output"": ""1"", ""is_hidden"": true}]"
+PY-M18-12,Dijkstra's Shortest Path,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Compute shortest paths from source to all nodes using heapq.,stdin/stdout,O((N + M) log N),O(N + M),"Dijkstra's Shortest Path
+Problem Description
+You are given a **directed** graph with `N` nodes (numbered `0` to `N - 1`) and `M` edges. Each edge `u v w` goes from `u` to `v` and has a non-negative **weight** (length) `w`. Print the length of the shortest path from the source node `S` to **every** node.
+Use **Dijkstra's algorithm** with a min-heap (`heapq`):
+
+* Set every distance to infinity, except `dist[S] = 0`. Push `(0, S)` on the heap.
+* Repeatedly pop the node with the smallest distance. If the popped distance is bigger than the stored one, it is an old entry: skip it.
+* For each edge `u → v` with weight `w`: if `dist[u] + w` is smaller than `dist[v]`, update `dist[v]` and push `(dist[v], v)`.
+
+Print the distances in node order on one line. Write `INF` for a node that cannot be reached.
+Edges are directed, so an edge `u v w` allows travel from `u` to `v` only; it does not automatically allow travel back. All edge weights are non-negative, which is required by Dijkstra's algorithm. The source has distance zero. A node with no path from the source must be printed as `INF`, and all distances must appear in increasing node-number order.
+Example 1
+Input
+
+```
+4 4 0
+0 1 4
+0 2 1
+2 1 2
+1 3 1
+```
+
+Output
+
+```
+0 3 1 4
+```
+
+Explanation
+There are `4` nodes and the source is `0`. The edges are `0 → 1` (4), `0 → 2` (1), `2 → 1` (2) and `1 → 3` (1).
+
+* `dist[0] = 0`.
+* `dist[2] = 1` (directly).
+* `dist[1] = 3`: going through `2` (`1 + 2`) is shorter than the direct edge (`4`).
+* `dist[3] = 4` (`3 + 1`).
+
+The output is `0 3 1 4`.
+Example 2
+Input
+
+```
+3 1 1
+0 2 5
+```
+
+Output
+
+```
+INF 0 INF
+```
+
+Explanation
+There are `3` nodes, the source is `1`, and there is one edge `0 → 2`. Node `1` reaches only itself, so the output is `INF 0 INF`.
+Input Format
+
+* Line 1: three integers `N`, `M` and `S`.
+* Next `M` lines: three integers `u v w`, an edge from `u` to `v` with weight `w`.
+
+Output Format
+Print `N` values separated by spaces: the shortest distance to each node, or `INF`.
+Constraints
+
+* `1 ≤ N ≤ 10^4`
+* `0 ≤ M ≤ 10^5`
+* `0 ≤ u, v, S < N`
+* `0 ≤ w ≤ 10^4`
+
+Hint
+Store the graph as an adjacency list of `(v, w)` pairs: `adj[u].append((v, w))`.","Line 1: three integers `N`, `M` and `S`.
+Next `M` lines: three integers `u v w`, an edge from `u` to `v` with weight `w`.","Print `N` values separated by spaces: the shortest distance to each node, or `INF`.","`1 ≤ N ≤ 10^4`
+`0 ≤ M ≤ 10^5`
+`0 ≤ u, v, S < N`
+`0 ≤ w ≤ 10^4`","4 4 0
+0 1 4
+0 2 1
+2 1 2
+1 3 1",0 3 1 4,"3 1 1
+0 2 5",INF 0 INF,"Store the graph as an adjacency list of `(v, w)` pairs: `adj[u].append((v, w))`.","The skip check `if d > dist[u]: continue` keeps the algorithm fast, because the same node can be pushed several times.",Dijkstra needs non-negative weights; that is why the constraints say `w ≥ 0`.,"import heapq
+
+n, m, src = map(int, input().split())
+adj = [[] for _ in range(n)]
+for _ in range(m):
+    u, v, w = map(int, input().split())
+    adj[u].append((v, w))
+
+INF = float(""inf"")
+dist = [INF] * n
+dist[src] = 0
+heap = [(0, src)]
+while heap:
+    d, u = heapq.heappop(heap)
+    if d > dist[u]:
+        continue                # an old, longer entry
+    for v, w in adj[u]:
+        if d + w < dist[v]:
+            dist[v] = d + w
+            heapq.heappush(heap, (dist[v], v))
+
+print("" "".join(""INF"" if x == INF else str(x) for x in dist))","[{""input"": ""4 4 0\n0 1 4\n0 2 1\n2 1 2\n1 3 1"", ""output"": ""0 3 1 4"", ""is_hidden"": false}, {""input"": ""3 1 1\n0 2 5"", ""output"": ""INF 0 INF"", ""is_hidden"": false}, {""input"": ""1 0 0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""2 1 0\n0 1 0"", ""output"": ""0 0"", ""is_hidden"": true}, {""input"": ""3 3 0\n0 1 10\n1 2 10\n0 2 25"", ""output"": ""0 10 20"", ""is_hidden"": true}, {""input"": ""4 3 3\n3 2 1\n2 1 1\n1 0 1"", ""output"": ""3 2 1 0"", ""is_hidden"": true}, {""input"": ""3 2 0\n1 0 1\n2 0 1"", ""output"": ""0 INF INF"", ""is_hidden"": true}, {""input"": ""5 6 0\n0 1 2\n0 2 6\n1 2 3\n1 3 8\n2 3 1\n3 4 10000"", ""output"": ""0 2 5 6 10006"", ""is_hidden"": true}]"
+PY-M18-13,Number of Islands (Grid BFS),"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Medium,Count connected land components (1s) in a 2D binary grid.,stdin/stdout,O(R x C),O(R x C),"Number of Islands (Grid BFS)
+Problem Description
+You are given a map as a grid of `0`s (water) and `1`s (land). An **island** is a group of land cells connected **horizontally or vertically** (not diagonally). Print the number of islands.
+Use **BFS** (or DFS):
+
+* Go through every cell. When you find a land cell that is not visited yet, you found a **new island**: count it.
+* Start a BFS from that cell and visit every land cell connected to it (up, down, left, right), marking them as visited, so they are not counted again.
+Only horizontal and vertical neighbours belong to the same island; diagonal contact alone does not connect land cells. Each land cell must be counted as part of at most one island. Once an island is discovered, mark all cells connected to it so the same island is not counted again. A grid containing only water has zero islands.
+Example 1
+Input
+
+```
+4 5
+11000
+11000
+00100
+00011
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The grid is
+
+```
+11000
+11000
+00100
+00011
+```
+
+There are three separate groups of `1`s: the `2 x 2` block at the top-left, the single `1` in the middle, and the two `1`s at the bottom-right. The output is `3`.
+Example 2
+Input
+
+```
+2 2
+00
+00
+```
+
+Output
+
+```
+0
+```
+
+Explanation
+The grid is all water, so there are no islands. The output is `0`.
+Input Format
+
+* Line 1: two integers `R` and `C`: the number of rows and columns.
+* Next `R` lines: a string of `C` characters, each `0` or `1`.
+
+Output Format
+Print one integer: the number of islands.
+Constraints
+
+* `1 ≤ R, C ≤ 300`
+* Every character is `0` or `1`
+
+Hint
+Turn the rows into lists, `grid = [list(input()) for _ in range(r)]`, so you can mark visited land by changing it to `'0'`.","Line 1: two integers `R` and `C`: the number of rows and columns.
+Next `R` lines: a string of `C` characters, each `0` or `1`.",Print one integer: the number of islands.,"`1 ≤ R, C ≤ 300`
+Every character is `0` or `1`","4 5
+11000
+11000
+00100
+00011",3,"2 2
+00
+00",0,"Turn the rows into lists, `grid = [list(input()) for _ in range(r)]`, so you can mark visited land by changing it to `'0'`.","Use a `deque` for the BFS and the four directions `(1, 0), (-1, 0), (0, 1), (0, -1)`.",Check that a neighbour is inside the grid before reading it.,"from collections import deque
+
+r, c = map(int, input().split())
+grid = [list(input().strip()) for _ in range(r)]
+
+islands = 0
+for i in range(r):
+    for j in range(c):
+        if grid[i][j] != ""1"":
+            continue
+        islands += 1                    # a new island
+        grid[i][j] = ""0""
+        queue = deque([(i, j)])
+        while queue:
+            x, y = queue.popleft()
+            for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < r and 0 <= ny < c and grid[nx][ny] == ""1"":
+                    grid[nx][ny] = ""0""  # mark as visited
+                    queue.append((nx, ny))
+
+print(islands)","[{""input"": ""4 5\n11000\n11000\n00100\n00011"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""2 2\n00\n00"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1 1\n1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""3 3\n101\n010\n101"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""3 3\n111\n101\n111"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""1 5\n10101"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""4 4\n1100\n0110\n0011\n0001"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""2 3\n110\n011"", ""output"": ""1"", ""is_hidden"": true}]"
+PY-M18-14,Edit Distance (Levenshtein),"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Hard,"Compute minimum insertions, deletions, substitutions to convert w1 to w2.",stdin/stdout,O(N x M),O(N x M),"Edit Distance (Levenshtein)
+Problem Description
+You can change a word with three operations, each costing `1`:
+
+* **insert** a character,
+* **delete** a character,
+* **replace** a character with another one.
+
+Print the smallest number of operations needed to turn the word `w1` into the word `w2` (the **edit distance**).
+Use a 2D **dynamic programming** table, where `dp[i][j]` is the edit distance between the first `i` characters of `w1` and the first `j` characters of `w2`:
+
+* `dp[i][0] = i` (delete all `i` characters) and `dp[0][j] = j` (insert all `j` characters).
+* If `w1[i - 1] == w2[j - 1]`, no operation is needed for these characters: `dp[i][j] = dp[i - 1][j - 1]`.
+* Otherwise `dp[i][j] = 1 + min(dp[i - 1][j] (delete), dp[i][j - 1] (insert), dp[i - 1][j - 1] (replace))`.
+Each insertion, deletion, or replacement costs exactly one operation. Characters may be inserted anywhere, removed from anywhere, or replaced individually; the goal is the smallest total number of operations. If the two words are identical, the answer is `0`. Character comparisons are case-sensitive.
+Example 1
+Input
+
+```
+horse
+ros
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The words are `horse` and `ros`. The minimum is `3` operations:
+
+* replace `h` with `r` → `rorse`
+* delete `r` → `rose`
+* delete `e` → `ros`
+Example 2
+Input
+
+```
+intention
+execution
+```
+
+Output
+
+```
+5
+```
+
+Explanation
+The words are `intention` and `execution`. The minimum is `5` operations (for example, delete `t`, replace `i` with `e`, replace `n` with `x`, replace `n` with `c`, insert `u`).
+Input Format
+
+* Line 1: the word `w1`.
+* Line 2: the word `w2`.
+
+Output Format
+Print one integer: the edit distance.
+Constraints
+
+* `1 ≤ length of each word ≤ 500`
+* Characters are case-sensitive
+
+Hint
+Fill the first column with `0, 1, 2, ...` and the first row with `0, 1, 2, ...` before the main loops.","Line 1: the word `w1`.
+Line 2: the word `w2`.",Print one integer: the edit distance.,"`1 ≤ length of each word ≤ 500`
+Characters are case-sensitive","horse
+ros",3,"intention
+execution",5,"Fill the first column with `0, 1, 2, ...` and the first row with `0, 1, 2, ...` before the main loops.","The three neighbours of a cell are above (delete), left (insert) and diagonal (replace).",The answer is in `dp[len(w1)][len(w2)]`.,"w1 = input()
+w2 = input()
+n, m = len(w1), len(w2)
+
+dp = [[0] * (m + 1) for _ in range(n + 1)]
+for i in range(n + 1):
+    dp[i][0] = i
+for j in range(m + 1):
+    dp[0][j] = j
+
+for i in range(1, n + 1):
+    for j in range(1, m + 1):
+        if w1[i - 1] == w2[j - 1]:
+            dp[i][j] = dp[i - 1][j - 1]
+        else:
+            dp[i][j] = 1 + min(dp[i - 1][j],        # delete
+                               dp[i][j - 1],        # insert
+                               dp[i - 1][j - 1])    # replace
+
+print(dp[n][m])","[{""input"": ""horse\nros"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""intention\nexecution"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""abc\nabc"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""a\nb"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""kitten\nsitting"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""abc\nabcdef"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""Python\npython"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""sunday\nsaturday"", ""output"": ""3"", ""is_hidden"": true}]"
+PY-M18-15,Redundant Connection via DSU,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Hard,Find edge forming cycle in undirected graph using Union-Find.,stdin/stdout,O(N α(N)),O(N),"Redundant Connection via DSU
+Problem Description
+A tree with `N` nodes (numbered `1` to `N`) has exactly `N - 1` edges and no cycles. One **extra** edge was added, so now there are `N` edges and exactly one cycle. Find an edge that can be removed so that the graph becomes a tree again. If several edges would work, print the one that appears **last** in the input.
+Use a **Disjoint Set Union (DSU)**, also called **Union-Find**. It keeps track of which nodes are already connected:
+
+* `find(x)` returns the representative (root) of the group that `x` belongs to.
+* `union(a, b)` joins the groups of `a` and `b`.
+
+Go through the edges in input order. For an edge `u v`: if `find(u) == find(v)`, then `u` and `v` are **already connected**, so this edge closes the cycle: it is the answer. Otherwise `union(u, v)`.
+Processing the edges in order finds exactly the last edge of the cycle.
+The graph is guaranteed to be a tree plus one extra edge, so exactly one cycle is introduced. Print the redundant edge in the same endpoint order in which it appeared in the input. When processing edges from first to last, an edge is redundant if its endpoints are already connected by previously processed edges. Do not print every edge in the cycle—print only the last input edge that closes it.
+Example 1
+Input
+
+```
+3
+1 2
+1 3
+2 3
+```
+
+Output
+
+```
+2 3
+```
+
+Explanation
+The edges are `1-2`, `1-3` and `2-3`. After the first two edges, nodes `2` and `3` are already connected through `1`. So the edge `2 3` closes the cycle, and the output is `2 3`.
+Example 2
+Input
+
+```
+5
+1 2
+2 3
+3 4
+1 4
+1 5
+```
+
+Output
+
+```
+1 4
+```
+
+Explanation
+The edges are `1-2`, `2-3`, `3-4`, `1-4` and `1-5`. The cycle is `1-2-3-4-1`. When `1 4` arrives, `1` and `4` are already connected, so the output is `1 4`.
+Input Format
+
+* Line 1: an integer `N`, the number of nodes (and edges).
+* Next `N` lines: two integers `u v`, an edge between `u` and `v`.
+
+Output Format
+Print the redundant edge as two integers `u v`, exactly as it appears in the input.
+Constraints
+
+* `3 ≤ N ≤ 10^4`
+* `1 ≤ u, v ≤ N`, `u != v`
+* The graph is a tree plus one extra edge, and no edge appears twice
+
+Hint
+Use a list `parent = list(range(N + 1))`, so every node starts as its own group.","Line 1: an integer `N`, the number of nodes (and edges).
+Next `N` lines: two integers `u v`, an edge between `u` and `v`.","Print the redundant edge as two integers `u v`, exactly as it appears in the input.","`3 ≤ N ≤ 10^4`
+`1 ≤ u, v ≤ N`, `u != v`
+The graph is a tree plus one extra edge, and no edge appears twice","3
+1 2
+1 3
+2 3",2 3,"5
+1 2
+2 3
+3 4
+1 4
+1 5",1 4,"Use a list `parent = list(range(N + 1))`, so every node starts as its own group.",`find` with path compression: `while parent[x] != x: parent[x] = parent[parent[x]]; x = parent[x]`.,`union` sets `parent[find(a)] = find(b)`.,"n = int(input())
+edges = [tuple(map(int, input().split())) for _ in range(n)]
+
+parent = list(range(n + 1))
+
+answer = None
+for u, v in edges:
+    # find the root of u and of v (with path compression)
+    a = u
+    while parent[a] != a:
+        parent[a] = parent[parent[a]]
+        a = parent[a]
+    b = v
+    while parent[b] != b:
+        parent[b] = parent[parent[b]]
+        b = parent[b]
+
+    if a == b:
+        answer = (u, v)         # already connected: this edge closes the cycle
+        break
+    parent[a] = b               # union
+
+print(answer[0], answer[1])","[{""input"": ""3\n1 2\n1 3\n2 3"", ""output"": ""2 3"", ""is_hidden"": false}, {""input"": ""5\n1 2\n2 3\n3 4\n1 4\n1 5"", ""output"": ""1 4"", ""is_hidden"": false}, {""input"": ""3\n2 3\n1 3\n1 2"", ""output"": ""1 2"", ""is_hidden"": false}, {""input"": ""4\n1 2\n2 3\n3 1\n3 4"", ""output"": ""3 1"", ""is_hidden"": true}, {""input"": ""4\n4 3\n3 2\n2 1\n1 4"", ""output"": ""1 4"", ""is_hidden"": true}, {""input"": ""5\n1 5\n2 5\n3 5\n4 5\n1 2"", ""output"": ""1 2"", ""is_hidden"": true}, {""input"": ""6\n1 2\n1 3\n2 4\n3 5\n4 6\n5 6"", ""output"": ""5 6"", ""is_hidden"": true}, {""input"": ""4\n1 4\n2 4\n3 4\n2 3"", ""output"": ""2 3"", ""is_hidden"": true}]"
+PY-M18-16,Topological Sort / Course Schedule,"Module 18: Advanced Algorithms (Greedy, DP, Graphs)",Hard,Determine if courses can be finished; output lexicographically smallest order.,stdin/stdout,O((N + M) log N),O(N + M),"Topological Sort / Course Schedule
+Problem Description
+There are `N` courses, numbered `0` to `N - 1`. Some courses have **prerequisites**: a pair `a b` means you must finish course `b` **before** taking course `a`.
+If all courses can be finished, print an order in which to take them. If several orders work, print the **smallest** one: at every step, take the lowest-numbered course that is available. If the prerequisites form a cycle (for example, `0` needs `1` and `1` needs `0`), print `IMPOSSIBLE`.
+Use **Kahn's algorithm** with a min-heap:
+
+* For each course, count its unfinished prerequisites (its **in-degree**).
+* Put every course with in-degree `0` into a min-heap.
+* Repeatedly pop the smallest course, add it to the order, and lower the in-degree of every course that depends on it. When a course's in-degree reaches `0`, push it.
+* If the order contains all `N` courses, print it; otherwise there is a cycle.
+A prerequisite pair `a b` means there must be a directed dependency from `b` to `a`. A valid output must include every course exactly once and place each prerequisite before the course that depends on it. When multiple courses are available, always choose the smallest numbered one to ensure the required lexicographically smallest order. If a cycle prevents completing all courses, print exactly `IMPOSSIBLE`.
+Example 1
+Input
+
+```
+4 4
+1 0
+2 0
+3 1
+3 2
+```
+
+Output
+
+```
+0 1 2 3
+```
+
+Explanation
+There are `4` courses with the pairs `1 0`, `2 0`, `3 1` and `3 2`. Course `0` has no prerequisites, so it comes first. After it, courses `1` and `2` are available; take the smaller one, `1`, then `2`. Finally `3` becomes available. The order is `0 1 2 3`.
+Example 2
+Input
+
+```
+2 2
+0 1
+1 0
+```
+
+Output
+
+```
+IMPOSSIBLE
+```
+
+Explanation
+There are `2` courses with the pairs `0 1` and `1 0`. Each one needs the other first, so no course can ever start, and the output is `IMPOSSIBLE`.
+Input Format
+
+* Line 1: two integers `N` and `M`: the number of courses and of prerequisite pairs.
+* Next `M` lines: two integers `a b`, meaning `b` must be taken before `a`.
+
+Output Format
+Print the course order separated by spaces, or `IMPOSSIBLE`.
+Constraints
+
+* `1 ≤ N ≤ 10^4`
+* `0 ≤ M ≤ 10^5`
+* `0 ≤ a, b < N`
+* No pair appears twice
+
+Hint
+Build `adj[b].append(a)` (an edge from the prerequisite to the course) and `indegree[a] += 1` for every pair.","Line 1: two integers `N` and `M`: the number of courses and of prerequisite pairs.
+Next `M` lines: two integers `a b`, meaning `b` must be taken before `a`.","Print the course order separated by spaces, or `IMPOSSIBLE`.","`1 ≤ N ≤ 10^4`
+`0 ≤ M ≤ 10^5`
+`0 ≤ a, b < N`
+No pair appears twice","4 4
+1 0
+2 0
+3 1
+3 2",0 1 2 3,"2 2
+0 1
+1 0",IMPOSSIBLE,Build `adj[b].append(a)` (an edge from the prerequisite to the course) and `indegree[a] += 1` for every pair.,A normal queue would also give a valid order; the min-heap makes it the smallest one.,"If `len(order) < N`, some courses never reached in-degree `0`: they are stuck in a cycle.","import heapq
+
+n, m = map(int, input().split())
+adj = [[] for _ in range(n)]
+indegree = [0] * n
+for _ in range(m):
+    a, b = map(int, input().split())
+    adj[b].append(a)            # b must come before a
+    indegree[a] += 1
+
+heap = [i for i in range(n) if indegree[i] == 0]
+heapq.heapify(heap)
+order = []
+while heap:
+    course = heapq.heappop(heap)        # smallest available course
+    order.append(course)
+    for nxt in adj[course]:
+        indegree[nxt] -= 1
+        if indegree[nxt] == 0:
+            heapq.heappush(heap, nxt)
+
+print("" "".join(str(c) for c in order) if len(order) == n else ""IMPOSSIBLE"")","[{""input"": ""4 4\n1 0\n2 0\n3 1\n3 2"", ""output"": ""0 1 2 3"", ""is_hidden"": false}, {""input"": ""2 2\n0 1\n1 0"", ""output"": ""IMPOSSIBLE"", ""is_hidden"": false}, {""input"": ""1 0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""3 0"", ""output"": ""0 1 2"", ""is_hidden"": true}, {""input"": ""3 2\n0 2\n1 2"", ""output"": ""2 0 1"", ""is_hidden"": true}, {""input"": ""4 3\n0 1\n1 2\n2 3"", ""output"": ""3 2 1 0"", ""is_hidden"": true}, {""input"": ""5 4\n1 4\n2 4\n3 1\n3 2"", ""output"": ""0 4 1 2 3"", ""is_hidden"": true}, {""input"": ""4 4\n1 0\n2 1\n3 2\n1 3"", ""output"": ""IMPOSSIBLE"", ""is_hidden"": true}]"

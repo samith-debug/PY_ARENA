@@ -1,0 +1,1986 @@
+{
+  "id": "1bb32341",
+  "filename": "module_08_lists.csv",
+  "imported_at": "2026-10-16T07:40:15.291719Z",
+  "total_questions": 18,
+  "total_test_cases": 180,
+  "visible_test_cases": 54,
+  "hidden_test_cases": 126,
+  "questions": [
+    {
+      "question_id": "PY-M8-01",
+      "title": "Space-Separated List Parser",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Read space-separated integers, double each element, and print space-separated.",
+      "problem_statement": "Task: Programs often receive a list of numbers on one line, separated by spaces. Python's split() breaks such a line into pieces, and int() turns each piece into a number.\n• Read one line of input that contains integers separated by single spaces\n• Build a list of the integers\n• Make a new list where every number is doubled (multiplied by 2)\n• Print the doubled numbers on one line, separated by single spaces\n\nExample: for the input 1 2 3, the output is 2 4 6.\n\nGiven the line of integers, print the doubled list.",
+      "input_format": "A single line containing integers separated by single spaces.",
+      "output_format": "One line: the doubled integers in the same order, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 100\n-10^6 <= each integer <= 10^6",
+      "sample_inputs": [
+        "1 2 3",
+        "-4 0 7"
+      ],
+      "sample_outputs": [
+        "2 4 6",
+        "-8 0 14"
+      ],
+      "hints": [
+        "input().split() gives a list of strings, one for each number.",
+        "Use a list comprehension: [int(x) * 2 for x in parts].",
+        "Join the results with ' '.join(...), but convert each number to str first."
+      ],
+      "starter_code": null,
+      "reference_solution": "parts = input().split()\n\ndoubled = [int(x) * 2 for x in parts]\n\nprint(\" \".join(str(x) for x in doubled))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3",
+          "output": "2 4 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-4 0 7",
+          "output": "-8 0 14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5",
+          "output": "10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10 20 30 40 50",
+          "output": "20 40 60 80 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-1 -2 -3",
+          "output": "-2 -4 -6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 0 0",
+          "output": "0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000 -1000000",
+          "output": "2000000 -2000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7 3 9 1",
+          "output": "14 6 18 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "123 456 789 0 -123",
+          "output": "246 912 1578 0 -246",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "2 2 2 2 2 2 2 2",
+          "output": "4 4 4 4 4 4 4 4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing integers separated by single spaces.",
+        "output_format": "One line: the doubled integers in the same order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-02",
+      "title": "In-Place List Reversal",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Reverse a list in-place without using [::-1] or list.reverse(), then print it.",
+      "problem_statement": "Task: Read a list of integers, reverse the list in place, and print it.\n• \"In place\" means you change the list itself by swapping its items. Do not build a new list\n• Do not use nums[::-1], nums.reverse() or reversed()\n• Use two positions: one at the start and one at the end. Swap the two items, then move both positions toward the middle\n• Stop when the two positions meet or cross\n• Print the reversed list on one line, separated by spaces\n\nExample: for the input 1 2 3 4 the output is 4 3 2 1.\n\nGiven a list of integers, print it reversed.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the reversed list, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 1000\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "1 2 3 4",
+        "5 6 7"
+      ],
+      "sample_outputs": [
+        "4 3 2 1",
+        "7 6 5"
+      ],
+      "hints": [
+        "Start with left = 0 and right = len(nums) - 1.",
+        "Python can swap two items in one line: nums[left], nums[right] = nums[right], nums[left].",
+        "Loop while left < right, then add 1 to left and subtract 1 from right. Print with ' '.join(str(x) for x in nums)."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nleft = 0\nright = len(nums) - 1\n\nwhile left < right:\n    nums[left], nums[right] = nums[right], nums[left]\n    left += 1\n    right -= 1\n\nprint(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3 4",
+          "output": "4 3 2 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5 6 7",
+          "output": "7 6 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "42",
+          "output": "42",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2",
+          "output": "2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 3 3",
+          "output": "3 3 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 0 1",
+          "output": "1 0 -1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10 20 30 40 50 60",
+          "output": "60 50 40 30 20 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9 8 7 6 5 4 3 2 1",
+          "output": "1 2 3 4 5 6 7 8 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0 -5 100 7 -5",
+          "output": "-5 7 100 -5 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1000000000 -1000000000",
+          "output": "-1000000000 1000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the reversed list, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-03",
+      "title": "Remove Duplicate Elements",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Remove duplicates while strictly maintaining first-appearance order.",
+      "problem_statement": "Task: Read a list of integers and print it with the duplicates removed.\n• Keep only the FIRST time each value appears\n• The order of the kept values must be the same as their order in the input\n• Do not use set(nums) to build the answer directly: a set does not keep the order\n\nExample: for the input 3 1 3 2 1 the output is 3 1 2.\n\nGiven a list of integers, print the list without duplicates.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the values without repeats, in first-appearance order, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^4\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "3 1 3 2 1",
+        "1 1 1 1"
+      ],
+      "sample_outputs": [
+        "3 1 2",
+        "1"
+      ],
+      "hints": [
+        "Build the result list one item at a time while looping over nums.",
+        "Keep a set called seen with the values you have already added.",
+        "Only append x to the result when x is not in seen, then add x to seen."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nseen = set()\nresult = []\n\nfor x in nums:\n    if x not in seen:\n        seen.add(x)\n        result.append(x)\n\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 1 3 2 1",
+          "output": "3 1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1 1 1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3",
+          "output": "1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 1 2 1 2",
+          "output": "2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 -1 0 0 1 1",
+          "output": "-1 0 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7 3 7 9 3 7 10",
+          "output": "7 3 9 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 0 5 0 5 6",
+          "output": "0 5 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "100 99 100 98 99 97",
+          "output": "100 99 98 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4 4 -4 -4 4",
+          "output": "4 -4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the values without repeats, in first-appearance order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-04",
+      "title": "Second Largest Distinct Value",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Identify the second largest distinct integer in a list in single pass O(N).",
+      "problem_statement": "Task: Read a list of integers and print the second largest DISTINCT value.\n• Distinct means equal values count only once. In 5 5 3 the largest is 5 and the second largest is 3\n• Go through the list only once. Do not sort it\n• If there is no second distinct value (for example all values are equal), print None\n\nExamples: for 4 1 7 7 3 the output is 4. For 5 5 5 the output is None.\n\nGiven a list of integers, print the second largest distinct value.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the second largest distinct value, or None if it does not exist.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "4 1 7 7 3",
+        "-3 -1 -2"
+      ],
+      "sample_outputs": [
+        "4",
+        "-2"
+      ],
+      "hints": [
+        "Keep two variables: largest and second, both starting as None.",
+        "When x is bigger than largest, the old largest becomes second and x becomes largest.",
+        "When x is smaller than largest but bigger than second (or second is None), x becomes second. Skip x when it equals largest. print(second) prints None by itself."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nlargest = None\nsecond = None\n\nfor x in nums:\n    if largest is None or x > largest:\n        second = largest\n        largest = x\n    elif x != largest and (second is None or x > second):\n        second = x\n\nprint(second)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 1 7 7 3",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-3 -1 -2",
+          "output": "-2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 5 5",
+          "output": "None",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "None",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10 20",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 2 3 4 5",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9 9 8 8 7",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0 -1000000000 1000000000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3 3 4 4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the second largest distinct value, or None if it does not exist."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-05",
+      "title": "Element Frequency Counter",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Count occurrences of an item in a list without importing collections.Counter.",
+      "problem_statement": "Task: Read a list of integers and a target value t, and print how many times t appears in the list.\n• Do not use nums.count(t)\n• Do not import anything (for example collections.Counter)\n• Go through the list with a loop and count the matches yourself\n\nExamples: for the list 1 2 1 3 1 and t = 1 the output is 3. For the list 4 5 and t = 9 the output is 0.\n\nGiven the list and t, print the count.",
+      "input_format": "Line 1: the integers of the list, separated by single spaces.\nLine 2: the integer t to count.",
+      "output_format": "One integer: the number of times t appears in the list.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer, t <= 10^9",
+      "sample_inputs": [
+        "1 2 1 3 1\n1",
+        "4 5\n9"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Start a counter at 0.",
+        "Loop with for x in nums.",
+        "Add 1 to the counter every time x == t."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nt = int(input())\n\ncount = 0\n\nfor x in nums:\n    if x == t:\n        count += 1\n\nprint(count)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 1 3 1\n1",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4 5\n9",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7 7 7 7\n7",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-1 1 -1\n-1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0 0 1 0\n0",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5\n5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10\n10",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2 4 2 4 2 4\n4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3\n-3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the integers of the list, separated by single spaces.\nLine 2: the integer t to count.",
+        "output_format": "One integer: the number of times t appears in the list."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-06",
+      "title": "Aliasing vs Deep Copy Trap",
+      "module": "Module 08: Lists",
+      "difficulty": "Easy",
+      "objective": "Demonstrate modifying inner list via shallow copy vs deep copy.",
+      "problem_statement": "Task: A shallow copy (data.copy() or data[:]) makes a new outer list, but the inner lists are SHARED with the original. A deep copy (copy.deepcopy(data)) copies the inner lists too.\n\nRead a 2D list called data, then do these steps in order:\n• shallow = a shallow copy of data (use data.copy())\n• deep = a deep copy of data (use copy.deepcopy(data); you may import copy)\n• Append -1 to shallow[0]\n• Append -2 to deep[0]\n• Print data, shallow and deep, each on its own line, with a label\n\nBecause shallow[0] and data[0] are the same inner list, data also gets the -1. The deep copy is fully separate, so only deep gets the -2.\n\nExample: for the rows 1 2 and 3 the output is:\ndata: [[1, 2, -1], [3]]\nshallow: [[1, 2, -1], [3]]\ndeep: [[1, 2, -2], [3]]\n\nGiven the rows of data, print the three lists.",
+      "input_format": "Line 1: the number of rows R.\nNext R lines: the integers of one row, separated by single spaces.",
+      "output_format": "Three lines:\ndata: <data as a Python list>\nshallow: <shallow as a Python list>\ndeep: <deep as a Python list>",
+      "constraints": "1 <= R <= 50\n1 <= number of integers in a row <= 50\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "2\n1 2\n3",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "data: [[1, 2, -1], [3]]\nshallow: [[1, 2, -1], [3]]\ndeep: [[1, 2, -2], [3]]",
+        "data: [[5, -1]]\nshallow: [[5, -1]]\ndeep: [[5, -2]]"
+      ],
+      "hints": [
+        "Build data with a loop: data.append([int(x) for x in input().split()]) for each of the R rows.",
+        "import copy at the top. data.copy() only copies the outer list, but copy.deepcopy(data) copies every level.",
+        "Print a list directly to get the Python format: print('data:', data)."
+      ],
+      "starter_code": null,
+      "reference_solution": "import copy\n\nrows = int(input())\ndata = []\nfor _ in range(rows):\n    data.append([int(x) for x in input().split()])\n\nshallow = data.copy()\ndeep = copy.deepcopy(data)\n\nshallow[0].append(-1)   # also changes data[0]: the inner list is shared\ndeep[0].append(-2)      # changes only the deep copy\n\nprint(\"data:\", data)\nprint(\"shallow:\", shallow)\nprint(\"deep:\", deep)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\n1 2\n3",
+          "output": "data: [[1, 2, -1], [3]]\nshallow: [[1, 2, -1], [3]]\ndeep: [[1, 2, -2], [3]]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "data: [[5, -1]]\nshallow: [[5, -1]]\ndeep: [[5, -2]]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n1\n2\n3",
+          "output": "data: [[1, -1], [2], [3]]\nshallow: [[1, -1], [2], [3]]\ndeep: [[1, -2], [2], [3]]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n0 0\n0 0",
+          "output": "data: [[0, 0, -1], [0, 0]]\nshallow: [[0, 0, -1], [0, 0]]\ndeep: [[0, 0, -2], [0, 0]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n4\n7 8",
+          "output": "data: [[4, -1], [7, 8]]\nshallow: [[4, -1], [7, 8]]\ndeep: [[4, -2], [7, 8]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n9 8 7",
+          "output": "data: [[9, 8, 7, -1]]\nshallow: [[9, 8, 7, -1]]\ndeep: [[9, 8, 7, -2]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n-1\n-2 -3",
+          "output": "data: [[-1, -1], [-2, -3]]\nshallow: [[-1, -1], [-2, -3]]\ndeep: [[-1, -2], [-2, -3]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n1 2 3\n4 5 6\n7 8 9",
+          "output": "data: [[1, 2, 3, -1], [4, 5, 6], [7, 8, 9]]\nshallow: [[1, 2, 3, -1], [4, 5, 6], [7, 8, 9]]\ndeep: [[1, 2, 3, -2], [4, 5, 6], [7, 8, 9]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2\n100\n1",
+          "output": "data: [[100, -1], [1]]\nshallow: [[100, -1], [1]]\ndeep: [[100, -2], [1]]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4\n6 6\n5 5\n4 4\n3 3",
+          "output": "data: [[6, 6, -1], [5, 5], [4, 4], [3, 3]]\nshallow: [[6, 6, -1], [5, 5], [4, 4], [3, 3]]\ndeep: [[6, 6, -2], [5, 5], [4, 4], [3, 3]]",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N x M)",
+        "space_complexity": "O(N x M)",
+        "input_format": "Line 1: the number of rows R.\nNext R lines: the integers of one row, separated by single spaces.",
+        "output_format": "Three lines:\ndata: <data as a Python list>\nshallow: <shallow as a Python list>\ndeep: <deep as a Python list>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-07",
+      "title": "Rotate List by K Steps",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Rotate list right by K steps in O(N) time and O(1) auxiliary space, then print it.",
+      "problem_statement": "Task: Read a list of integers and a number k, rotate the list to the right by k steps in place, and print it.\n• Rotating right by 1 step moves the last item to the front: 1 2 3 4 becomes 4 1 2 3\n• k can be bigger than the length of the list. Rotating a list of length n by n steps gives the same list, so use k % n\n• Change the list itself and use only O(1) extra space: do not build a new list with slicing or concatenation\n\nTrick: reverse the whole list, then reverse the first k items, then reverse the remaining items. Each reversal swaps items from both ends toward the middle.\n\nExample: for the list 1 2 3 4 5 and k = 2 the output is 4 5 1 2 3.\n\nGiven the list and k, print the rotated list.",
+      "input_format": "Line 1: the integers of the list, separated by single spaces.\nLine 2: the number of steps k.",
+      "output_format": "One line: the rotated list, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^5\n0 <= k <= 10^9\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "1 2 3 4 5\n2",
+        "1 2 3\n0"
+      ],
+      "sample_outputs": [
+        "4 5 1 2 3",
+        "1 2 3"
+      ],
+      "hints": [
+        "Set k = k % len(nums) first.",
+        "One reversal of the part from left to right: while left < right, swap nums[left] and nums[right], then move both inward.",
+        "Do three reversals: the whole list (0 to n - 1), then 0 to k - 1, then k to n - 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nk = int(input())\n\nn = len(nums)\nk = k % n\n\n# Reverse the whole list: [1,2,3,4,5] -> [5,4,3,2,1]\nleft, right = 0, n - 1\nwhile left < right:\n    nums[left], nums[right] = nums[right], nums[left]\n    left += 1\n    right -= 1\n\n# Reverse the first k items: -> [4,5,3,2,1]\nleft, right = 0, k - 1\nwhile left < right:\n    nums[left], nums[right] = nums[right], nums[left]\n    left += 1\n    right -= 1\n\n# Reverse the rest: -> [4,5,1,2,3]\nleft, right = k, n - 1\nwhile left < right:\n    nums[left], nums[right] = nums[right], nums[left]\n    left += 1\n    right -= 1\n\nprint(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3 4 5\n2",
+          "output": "4 5 1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3\n0",
+          "output": "1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3\n4",
+          "output": "3 1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3\n3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\n100",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2\n1",
+          "output": "2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1 -100 3 99\n2",
+          "output": "3 99 -1 -100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 2 3 4 5 6 7\n3",
+          "output": "5 6 7 1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "10 20 30 40\n1000000001",
+          "output": "40 10 20 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "5 6 7 8 9\n5",
+          "output": "5 6 7 8 9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the integers of the list, separated by single spaces.\nLine 2: the number of steps k.",
+        "output_format": "One line: the rotated list, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-08",
+      "title": "Stable Evens/Odds Partition",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Reorder list so evens precede odds while preserving relative order.",
+      "problem_statement": "Task: Read a list of integers and print it reordered so that all the even numbers come first and all the odd numbers come after them.\n• Keep the original order inside each group. This is called a stable partition\n• 0 is even. Negative numbers follow the same rule: -4 is even and -3 is odd\n\nExample: for the input 3 8 5 2 7 4 the output is 8 2 4 3 5 7.\n\nGiven a list of integers, print the partitioned list.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the even numbers in their original order, followed by the odd numbers in their original order, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "3 8 5 2 7 4",
+        "1 3 5"
+      ],
+      "sample_outputs": [
+        "8 2 4 3 5 7",
+        "1 3 5"
+      ],
+      "hints": [
+        "A number x is even when x % 2 == 0. In Python this also works for negative numbers.",
+        "Make two lists, evens and odds, and append each number to the right one.",
+        "Print evens + odds joined with spaces."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nevens = []\nodds = []\n\nfor x in nums:\n    if x % 2 == 0:\n        evens.append(x)\n    else:\n        odds.append(x)\n\nresult = evens + odds\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 8 5 2 7 4",
+          "output": "8 2 4 3 5 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 3 5",
+          "output": "1 3 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2 4 6",
+          "output": "2 4 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-3 -4 1 2",
+          "output": "-4 2 -3 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5 6 7 8",
+          "output": "2 4 6 8 1 3 5 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "9 9 2 2",
+          "output": "2 2 9 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "11 0 13 -2 15",
+          "output": "0 -2 11 13 15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "6 5 4 3 2 1",
+          "output": "6 4 2 5 3 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the even numbers in their original order, followed by the odd numbers in their original order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-09",
+      "title": "Matrix Transpose",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Transpose an N x M matrix into an M x N matrix.",
+      "problem_statement": "Task: A matrix is stored in Python as a list of rows, where each row is a list. The transpose of a matrix turns its rows into columns: the item at row i, column j moves to row j, column i.\n\nRead an N x M matrix and print its transpose, which is an M x N matrix.\n• Do not use zip(*matrix) or any library; build the result with loops\n• Print the result row by row: each row on its own line, items separated by spaces\n\nExample: for the 2 x 3 matrix\n1 2 3\n4 5 6\nthe output is\n1 4\n2 5\n3 6\n\nGiven a matrix, print its transpose.",
+      "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+      "output_format": "M lines: the rows of the transposed matrix, each with N integers separated by single spaces.",
+      "constraints": "1 <= N, M <= 100\n-10^9 <= each value <= 10^9",
+      "sample_inputs": [
+        "2 3\n1 2 3\n4 5 6",
+        "2 2\n1 2\n3 4"
+      ],
+      "sample_outputs": [
+        "1 4\n2 5\n3 6",
+        "1 3\n2 4"
+      ],
+      "hints": [
+        "Row j of the result is [matrix[i][j] for i in range(n)].",
+        "Build the result with a loop over j in range(m), with an inner loop over i in range(n).",
+        "Print each result row with ' '.join(str(x) for x in row)."
+      ],
+      "starter_code": null,
+      "reference_solution": "n, m = map(int, input().split())\nmatrix = []\nfor _ in range(n):\n    matrix.append([int(x) for x in input().split()])\n\nresult = []\nfor j in range(m):\n    new_row = []\n    for i in range(n):\n        new_row.append(matrix[i][j])\n    result.append(new_row)\n\nfor row in result:\n    print(\" \".join(str(x) for x in row))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 3\n1 2 3\n4 5 6",
+          "output": "1 4\n2 5\n3 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2 2\n1 2\n3 4",
+          "output": "1 3\n2 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1\n7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 4\n1 2 3 4",
+          "output": "1\n2\n3\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 1\n1\n2\n3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3 2\n0 0\n0 0\n0 0",
+          "output": "0 0 0\n0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 3\n1 2 3\n4 5 6\n7 8 9",
+          "output": "1 4 7\n2 5 8\n3 6 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 2\n-1 5\n2 -6",
+          "output": "-1 2\n5 -6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2 4\n9 8 7 6\n5 4 3 2",
+          "output": "9 5\n8 4\n7 3\n6 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "4 2\n1 2\n3 4\n5 6\n7 8",
+          "output": "1 3 5 7\n2 4 6 8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N x M)",
+        "space_complexity": "O(N x M)",
+        "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+        "output_format": "M lines: the rows of the transposed matrix, each with N integers separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-10",
+      "title": "Flatten 2D Matrix",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Flatten an N x M matrix into a 1D list in row-major order.",
+      "problem_statement": "Task: Read an N x M matrix and print all its items as one flat list.\n• Use row-major order: first all items of row 0 from left to right, then all items of row 1, and so on\n• Store the items in a new 1D list first, then print it\n• Do not use sum(matrix, []), itertools or any library; use loops\n\nExample: for the 3 x 2 matrix\n1 2\n3 4\n5 6\nthe output is 1 2 3 4 5 6.\n\nGiven a matrix, print the flattened list.",
+      "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+      "output_format": "One line: all N x M items in row-major order, separated by single spaces.",
+      "constraints": "1 <= N, M <= 100\n-10^9 <= each value <= 10^9",
+      "sample_inputs": [
+        "3 2\n1 2\n3 4\n5 6",
+        "1 3\n1 2 3"
+      ],
+      "sample_outputs": [
+        "1 2 3 4 5 6",
+        "1 2 3"
+      ],
+      "hints": [
+        "Start with an empty result list.",
+        "Use two nested loops: for row in matrix, then for x in row.",
+        "Append each x to the result (or use result.extend(row) for each row), then print it joined with spaces."
+      ],
+      "starter_code": null,
+      "reference_solution": "n, m = map(int, input().split())\nmatrix = []\nfor _ in range(n):\n    matrix.append([int(x) for x in input().split()])\n\nresult = []\nfor row in matrix:\n    for x in row:\n        result.append(x)\n\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 2\n1 2\n3 4\n5 6",
+          "output": "1 2 3 4 5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 3\n1 2 3",
+          "output": "1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1\n9",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 1\n1\n2\n3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2\n0 0\n0 0",
+          "output": "0 0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2\n-1 -2\n3 4",
+          "output": "-1 -2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 3\n1 2 3\n4 5 6\n7 8 9",
+          "output": "1 2 3 4 5 6 7 8 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 5\n5 4 3 2 1",
+          "output": "5 4 3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "4 2\n10 20\n30 40\n50 60\n70 80",
+          "output": "10 20 30 40 50 60 70 80",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3 2\n3 1\n4 1\n5 9",
+          "output": "3 1 4 1 5 9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N x M)",
+        "space_complexity": "O(N x M)",
+        "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+        "output_format": "One line: all N x M items in row-major order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-11",
+      "title": "Matrix Multiplication",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Compute matrix product of N x K matrix and K x M matrix.",
+      "problem_statement": "Task: Read an N x K matrix a and a K x M matrix b, and print their product c, which is an N x M matrix.\n• Each item c[i][j] is the sum of a[i][t] * b[t][j] for every t from 0 to K - 1. In words: multiply row i of a by column j of b, item by item, and add the products\n• Do not use numpy or any library\n\nExample: for a =\n1 2\n3 4\nand b =\n5 6\n7 8\nthe output is\n19 22\n43 50\nbecause c[0][0] = 1*5 + 2*7 = 19.\n\nGiven a and b, print the product matrix.",
+      "input_format": "Line 1: three integers N, K and M.\nNext N lines: the K integers of one row of a.\nNext K lines: the M integers of one row of b.",
+      "output_format": "N lines: the rows of the product matrix, each with M integers separated by single spaces.",
+      "constraints": "1 <= N, K, M <= 50\n-1000 <= each value <= 1000",
+      "sample_inputs": [
+        "2 2 2\n1 2\n3 4\n5 6\n7 8",
+        "1 1 1\n2\n3"
+      ],
+      "sample_outputs": [
+        "19 22\n43 50",
+        "6"
+      ],
+      "hints": [
+        "Read N rows into a, then K rows into b, with a list comprehension for each row.",
+        "Create the result first as N rows of M zeros: [[0] * m for _ in range(n)]. Do not use [[0] * m] * n, which shares one row.",
+        "Use three nested loops over i, j and t, and add a[i][t] * b[t][j] to c[i][j]."
+      ],
+      "starter_code": null,
+      "reference_solution": "n, k, m = map(int, input().split())\n\na = []\nfor _ in range(n):\n    a.append([int(x) for x in input().split()])\n\nb = []\nfor _ in range(k):\n    b.append([int(x) for x in input().split()])\n\n# Each row must be a separate list, so no [[0] * m] * n here\nc = [[0] * m for _ in range(n)]\n\nfor i in range(n):\n    for j in range(m):\n        total = 0\n        for t in range(k):\n            total += a[i][t] * b[t][j]\n        c[i][j] = total\n\nfor row in c:\n    print(\" \".join(str(x) for x in row))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 2 2\n1 2\n3 4\n5 6\n7 8",
+          "output": "19 22\n43 50",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1 1\n2\n3",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 3 1\n1 2 3\n4\n5\n6",
+          "output": "32",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 1 3\n4\n5\n6\n1 2 3",
+          "output": "4 8 12\n5 10 15\n6 12 18",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2 2\n1 0\n0 1\n9 8\n7 6",
+          "output": "9 8\n7 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2 2\n0 0\n0 0\n1 2\n3 4",
+          "output": "0 0\n0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 3 2\n1 2 3\n4 5 6\n7 8\n9 10\n11 12",
+          "output": "58 64\n139 154",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 2 2\n-1 2\n3 -4\n5 -6\n-7 8",
+          "output": "-19 22\n43 -50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1 3 2\n2 0 1\n1 2\n0 1\n3 0",
+          "output": "5 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "3 2 3\n1 1\n1 1\n1 1\n2 3 4\n5 6 7",
+          "output": "7 9 11\n7 9 11\n7 9 11",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N x K x M)",
+        "space_complexity": "O(N x M)",
+        "input_format": "Line 1: three integers N, K and M.\nNext N lines: the K integers of one row of a.\nNext K lines: the M integers of one row of b.",
+        "output_format": "N lines: the rows of the product matrix, each with M integers separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-12",
+      "title": "Pascal's Triangle Generator",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Generate first N rows of Pascal's triangle returned as list of lists.",
+      "problem_statement": "Task: In Pascal's triangle every row starts and ends with 1, and every other number is the sum of the two numbers just above it.\n\nRow 0: 1\nRow 1: 1 1\nRow 2: 1 2 1\nRow 3: 1 3 3 1\n\nRead n, build the first n rows of Pascal's triangle as a list of lists, and print them.\n• Row r has r + 1 numbers\n• Inside a row, the item at position j (not the first or last) equals prev[j - 1] + prev[j], where prev is the row before\n• Print each row on its own line, numbers separated by spaces\n\nExample: for n = 4 the output is\n1\n1 1\n1 2 1\n1 3 3 1\n\nGiven n, print the first n rows.",
+      "input_format": "A single line containing the integer n.",
+      "output_format": "n lines: row r has r + 1 integers separated by single spaces.",
+      "constraints": "1 <= n <= 30",
+      "sample_inputs": [
+        "4",
+        "1"
+      ],
+      "sample_outputs": [
+        "1\n1 1\n1 2 1\n1 3 3 1",
+        "1"
+      ],
+      "hints": [
+        "Start with triangle = [] and build one row at a time in a loop over r in range(n).",
+        "Each new row begins as [1] * (r + 1).",
+        "For j from 1 to r - 1, set row[j] = triangle[r - 1][j - 1] + triangle[r - 1][j]."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\ntriangle = []\n\nfor r in range(n):\n    row = [1] * (r + 1)\n    for j in range(1, r):\n        row[j] = triangle[r - 1][j - 1] + triangle[r - 1][j]\n    triangle.append(row)\n\nfor row in triangle:\n    print(\" \".join(str(x) for x in row))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "1\n1 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3",
+          "output": "1\n1 1\n1 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1\n1 6 15 20 15 6 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1\n1 6 15 20 15 6 1\n1 7 21 35 35 21 7 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "10",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1\n1 6 15 20 15 6 1\n1 7 21 35 35 21 7 1\n1 8 28 56 70 56 28 8 1\n1 9 36 84 126 126 84 36 9 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "12",
+          "output": "1\n1 1\n1 2 1\n1 3 3 1\n1 4 6 4 1\n1 5 10 10 5 1\n1 6 15 20 15 6 1\n1 7 21 35 35 21 7 1\n1 8 28 56 70 56 28 8 1\n1 9 36 84 126 126 84 36 9 1\n1 10 45 120 210 252 210 120 45 10 1\n1 11 55 165 330 462 462 330 165 55 11 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(N^2)",
+        "input_format": "A single line containing the integer n.",
+        "output_format": "n lines: row r has r + 1 integers separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-13",
+      "title": "Sieve of Eratosthenes Array",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Generate list of all primes up to N using a boolean sieve array.",
+      "problem_statement": "Task: A prime is a whole number greater than 1 whose only divisors are 1 and itself. The Sieve of Eratosthenes finds all primes up to n with a list of True/False values.\n\nRead n and print all primes from 2 to n (including n if it is prime), in increasing order.\n• Make a list is_prime of n + 1 values, all True at first. Then set is_prime[0] and is_prime[1] to False\n• For each number p starting from 2 while p * p <= n: if is_prime[p] is still True, mark every multiple p*p, p*p + p, p*p + 2p, ... up to n as False\n• At the end, every index that is still True is a prime\n\nExample: for n = 20 the output is 2 3 5 7 11 13 17 19.\n\nGiven n, print the primes up to n.",
+      "input_format": "A single line containing the integer n.",
+      "output_format": "One line: all primes <= n in increasing order, separated by single spaces.",
+      "constraints": "2 <= n <= 10^6",
+      "sample_inputs": [
+        "20",
+        "10"
+      ],
+      "sample_outputs": [
+        "2 3 5 7 11 13 17 19",
+        "2 3 5 7"
+      ],
+      "hints": [
+        "Create the list with is_prime = [True] * (n + 1).",
+        "Start crossing out at p * p: smaller multiples were already crossed out by smaller primes.",
+        "range(p * p, n + 1, p) gives exactly the multiples to mark as False."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nis_prime = [True] * (n + 1)\nis_prime[0] = False\nis_prime[1] = False\n\np = 2\nwhile p * p <= n:\n    if is_prime[p]:\n        for multiple in range(p * p, n + 1, p):\n            is_prime[multiple] = False\n    p += 1\n\nprimes = [i for i in range(n + 1) if is_prime[i]]\nprint(\" \".join(str(x) for x in primes))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "20",
+          "output": "2 3 5 7 11 13 17 19",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10",
+          "output": "2 3 5 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3",
+          "output": "2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4",
+          "output": "2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "30",
+          "output": "2 3 5 7 11 13 17 19 23 29",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50",
+          "output": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "97",
+          "output": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "100",
+          "output": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "121",
+          "output": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97 101 103 107 109 113",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N log log N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integer n.",
+        "output_format": "One line: all primes <= n in increasing order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-14",
+      "title": "Longest Common Prefix",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Find the longest common prefix among a list of strings.",
+      "problem_statement": "Task: A prefix is a part at the start of a string. For example fl is a prefix of flower.\n\nRead a list of words and print the longest string that is a prefix of EVERY word.\n• If the words have no common prefix, print NONE\n• If there is only one word, the answer is that word\n• Upper and lower case are different: A and a do not match\n\nExamples: for flower flow flight the output is fl. For dog car the output is NONE.\n\nGiven the words, print their longest common prefix.",
+      "input_format": "A single line containing the words, separated by single spaces.",
+      "output_format": "One line: the longest common prefix, or NONE if it is empty.",
+      "constraints": "1 <= number of words <= 200\n1 <= length of each word <= 200\nWords contain no spaces",
+      "sample_inputs": [
+        "flower flow flight",
+        "dog car"
+      ],
+      "sample_outputs": [
+        "fl",
+        "NONE"
+      ],
+      "hints": [
+        "Split the line into a list with input().split(). The prefix can never be longer than the shortest word.",
+        "Check position i = 0, 1, 2, ... and compare the character words[0][i] with the same position in every other word.",
+        "As soon as one word is too short or has a different character, the prefix is words[0][:i]: stop both loops."
+      ],
+      "starter_code": null,
+      "reference_solution": "words = input().split()\n\nfirst = words[0]\nprefix_length = len(first)\n\nfor i in range(len(first)):\n    ch = first[i]\n    mismatch = False\n    for word in words[1:]:\n        if i >= len(word) or word[i] != ch:\n            mismatch = True\n            break\n    if mismatch:\n        prefix_length = i\n        break\n\nprefix = first[:prefix_length]\n\nif prefix == \"\":\n    print(\"NONE\")\nelse:\n    print(prefix)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "flower flow flight",
+          "output": "fl",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "dog car",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "alone",
+          "output": "alone",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "same same same",
+          "output": "same",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "interview internet interval",
+          "output": "inter",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "ab a",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Apple apple",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "prefix prefixes prefixed",
+          "output": "prefix",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "abc abd abe abf",
+          "output": "ab",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "x xy xyz",
+          "output": "x",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(S)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the words, separated by single spaces.",
+        "output_format": "One line: the longest common prefix, or NONE if it is empty."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-15",
+      "title": "Merge Two Sorted Lists",
+      "module": "Module 08: Lists",
+      "difficulty": "Medium",
+      "objective": "Merge two already-sorted integer lists into single sorted list in O(N+M).",
+      "problem_statement": "Task: Read two lists of integers that are already sorted in increasing order, merge them into one sorted list, and print it.\n• Do not use sorted() or list.sort(): that would be slower than needed\n• Use two positions, one in each list. Each step, take the smaller of the two current items and move that position forward\n• When one list runs out, add all the remaining items of the other list\n• Keep duplicates: if a value appears in both lists, it appears twice in the result\n\nExample: for the lists 1 3 5 and 2 3 6 the output is 1 2 3 3 5 6.\n\nGiven the two sorted lists, print the merged list.",
+      "input_format": "Line 1: the first sorted list, integers separated by single spaces.\nLine 2: the second sorted list, integers separated by single spaces.",
+      "output_format": "One line: all items of both lists in increasing order, separated by single spaces.",
+      "constraints": "1 <= length of each list <= 10^5\n-10^9 <= each value <= 10^9\nBoth lists are sorted in increasing order",
+      "sample_inputs": [
+        "1 3 5\n2 3 6",
+        "4\n1 2"
+      ],
+      "sample_outputs": [
+        "1 2 3 3 5 6",
+        "1 2 4"
+      ],
+      "hints": [
+        "Start with i = 0, j = 0 and an empty result list.",
+        "While i < len(l1) and j < len(l2), append the smaller of l1[i] and l2[j] and move that index forward.",
+        "After the loop, add what is left with result.extend(l1[i:]) and result.extend(l2[j:])."
+      ],
+      "starter_code": null,
+      "reference_solution": "l1 = [int(x) for x in input().split()]\nl2 = [int(x) for x in input().split()]\n\ni = 0\nj = 0\nresult = []\n\nwhile i < len(l1) and j < len(l2):\n    if l1[i] <= l2[j]:\n        result.append(l1[i])\n        i += 1\n    else:\n        result.append(l2[j])\n        j += 1\n\n# One list is finished; copy the rest of the other one\nresult.extend(l1[i:])\nresult.extend(l2[j:])\n\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 3 5\n2 3 6",
+          "output": "1 2 3 3 5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4\n1 2",
+          "output": "1 2 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3\n4 5 6",
+          "output": "1 2 3 4 5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4 5 6\n1 2 3",
+          "output": "1 2 3 4 5 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 1 1\n1 1",
+          "output": "1 1 1 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-5 0 5\n-10 -5 10",
+          "output": "-10 -5 -5 0 5 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n1 3 5 7",
+          "output": "1 2 3 5 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 4 9 16\n2 3 5 7 11 13",
+          "output": "1 2 3 4 5 7 9 11 13 16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0\n0",
+          "output": "0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "-3 -2 -1\n-100",
+          "output": "-100 -3 -2 -1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N + M)",
+        "space_complexity": "O(N + M)",
+        "input_format": "Line 1: the first sorted list, integers separated by single spaces.\nLine 2: the second sorted list, integers separated by single spaces.",
+        "output_format": "One line: all items of both lists in increasing order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-16",
+      "title": "Spiral Matrix Traversal Order",
+      "module": "Module 08: Lists",
+      "difficulty": "Hard",
+      "objective": "Print all elements of N x M matrix in spiral traversal order.",
+      "problem_statement": "Task: Read an N x M matrix and print all its items in spiral order.\n\nSpiral order starts at the top-left corner and goes clockwise around the outside of the matrix, then continues inward:\n• Go right along the top row\n• Go down the right column\n• Go left along the bottom row\n• Go up the left column\n• Repeat on the smaller matrix inside, until every item has been visited exactly once\n\nBe careful with matrices that have a single row or a single column: no item may be visited twice.\n\nExample: for the 3 x 3 matrix\n1 2 3\n4 5 6\n7 8 9\nthe output is 1 2 3 6 9 8 7 4 5.\n\nGiven a matrix, print its items in spiral order.",
+      "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+      "output_format": "One line: all N x M items in spiral order, separated by single spaces.",
+      "constraints": "1 <= N, M <= 100\n-10^9 <= each value <= 10^9",
+      "sample_inputs": [
+        "3 3\n1 2 3\n4 5 6\n7 8 9",
+        "3 4\n1 2 3 4\n5 6 7 8\n9 10 11 12"
+      ],
+      "sample_outputs": [
+        "1 2 3 6 9 8 7 4 5",
+        "1 2 3 4 8 12 11 10 9 5 6 7"
+      ],
+      "hints": [
+        "Keep four borders: top, bottom, left and right. Start with top = 0, bottom = N - 1, left = 0, right = M - 1.",
+        "After walking the top row, do top += 1. After the right column, right -= 1, and so on for the other two sides.",
+        "Before walking the bottom row check top <= bottom, and before walking the left column check left <= right. This stops double visits."
+      ],
+      "starter_code": null,
+      "reference_solution": "n, m = map(int, input().split())\nmatrix = []\nfor _ in range(n):\n    matrix.append([int(x) for x in input().split()])\n\nresult = []\ntop = 0\nbottom = n - 1\nleft = 0\nright = m - 1\n\nwhile top <= bottom and left <= right:\n    for j in range(left, right + 1):          # top row, left to right\n        result.append(matrix[top][j])\n    top += 1\n\n    for i in range(top, bottom + 1):          # right column, downward\n        result.append(matrix[i][right])\n    right -= 1\n\n    if top <= bottom:\n        for j in range(right, left - 1, -1):  # bottom row, right to left\n            result.append(matrix[bottom][j])\n        bottom -= 1\n\n    if left <= right:\n        for i in range(bottom, top - 1, -1):  # left column, upward\n            result.append(matrix[i][left])\n        left += 1\n\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 3\n1 2 3\n4 5 6\n7 8 9",
+          "output": "1 2 3 6 9 8 7 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3 4\n1 2 3 4\n5 6 7 8\n9 10 11 12",
+          "output": "1 2 3 4 8 12 11 10 9 5 6 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1\n7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 4\n1 2 3 4",
+          "output": "1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 1\n1\n2\n3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2\n1 2\n3 4",
+          "output": "1 2 4 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 2\n1 2\n3 4\n5 6",
+          "output": "1 2 4 6 5 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 3\n1 2 3\n4 5 6",
+          "output": "1 2 3 6 5 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "4 4\n1 2 3 4\n5 6 7 8\n9 10 11 12\n13 14 15 16",
+          "output": "1 2 3 4 8 12 16 15 14 13 9 5 6 7 11 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "5 3\n1 2 3\n4 5 6\n7 8 9\n10 11 12\n13 14 15",
+          "output": "1 2 3 6 9 12 15 14 13 10 7 4 5 8 11",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N x M)",
+        "space_complexity": "O(N x M)",
+        "input_format": "Line 1: two integers N and M (the number of rows and columns).\nNext N lines: the M integers of one row, separated by single spaces.",
+        "output_format": "One line: all N x M items in spiral order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-17",
+      "title": "Generate N x N Spiral Matrix",
+      "module": "Module 08: Lists",
+      "difficulty": "Hard",
+      "objective": "Generate N x N matrix populated with 1 to N^2 in spiral order.",
+      "problem_statement": "Task: Read n and build an n x n matrix filled with the numbers 1, 2, 3, ..., n*n in spiral order, then print it.\n\nSpiral order starts at the top-left corner and goes clockwise:\n• Fill the top row from left to right\n• Fill the right column from top to bottom\n• Fill the bottom row from right to left\n• Fill the left column from bottom to top\n• Repeat on the smaller square inside until all n*n places are filled\n\nCreate the matrix as n separate rows (do not use [[0] * n] * n, which makes every row the same list).\n\nExample: for n = 3 the output is\n1 2 3\n8 9 4\n7 6 5\n\nGiven n, print the spiral matrix.",
+      "input_format": "A single line containing the integer n.",
+      "output_format": "n lines: the rows of the matrix, each with n integers separated by single spaces.",
+      "constraints": "1 <= n <= 20",
+      "sample_inputs": [
+        "3",
+        "1"
+      ],
+      "sample_outputs": [
+        "1 2 3\n8 9 4\n7 6 5",
+        "1"
+      ],
+      "hints": [
+        "Start with grid = [[0] * n for _ in range(n)] and a counter num = 1.",
+        "Use four borders top, bottom, left and right, exactly like a spiral traversal, but write num into each place instead of reading it.",
+        "Add 1 to num after every write and move the borders inward after each side."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\ngrid = [[0] * n for _ in range(n)]\nnum = 1\ntop, bottom = 0, n - 1\nleft, right = 0, n - 1\n\nwhile top <= bottom and left <= right:\n    for j in range(left, right + 1):\n        grid[top][j] = num\n        num += 1\n    top += 1\n\n    for i in range(top, bottom + 1):\n        grid[i][right] = num\n        num += 1\n    right -= 1\n\n    if top <= bottom:\n        for j in range(right, left - 1, -1):\n            grid[bottom][j] = num\n            num += 1\n        bottom -= 1\n\n    if left <= right:\n        for i in range(bottom, top - 1, -1):\n            grid[i][left] = num\n            num += 1\n        left += 1\n\nfor row in grid:\n    print(\" \".join(str(x) for x in row))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3",
+          "output": "1 2 3\n8 9 4\n7 6 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "1 2\n4 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4",
+          "output": "1 2 3 4\n12 13 14 5\n11 16 15 6\n10 9 8 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5",
+          "output": "1 2 3 4 5\n16 17 18 19 6\n15 24 25 20 7\n14 23 22 21 8\n13 12 11 10 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6",
+          "output": "1 2 3 4 5 6\n20 21 22 23 24 7\n19 32 33 34 25 8\n18 31 36 35 26 9\n17 30 29 28 27 10\n16 15 14 13 12 11",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7",
+          "output": "1 2 3 4 5 6 7\n24 25 26 27 28 29 8\n23 40 41 42 43 30 9\n22 39 48 49 44 31 10\n21 38 47 46 45 32 11\n20 37 36 35 34 33 12\n19 18 17 16 15 14 13",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8",
+          "output": "1 2 3 4 5 6 7 8\n28 29 30 31 32 33 34 9\n27 48 49 50 51 52 35 10\n26 47 60 61 62 53 36 11\n25 46 59 64 63 54 37 12\n24 45 58 57 56 55 38 13\n23 44 43 42 41 40 39 14\n22 21 20 19 18 17 16 15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "9",
+          "output": "1 2 3 4 5 6 7 8 9\n32 33 34 35 36 37 38 39 10\n31 56 57 58 59 60 61 40 11\n30 55 72 73 74 75 62 41 12\n29 54 71 80 81 76 63 42 13\n28 53 70 79 78 77 64 43 14\n27 52 69 68 67 66 65 44 15\n26 51 50 49 48 47 46 45 16\n25 24 23 22 21 20 19 18 17",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "10",
+          "output": "1 2 3 4 5 6 7 8 9 10\n36 37 38 39 40 41 42 43 44 11\n35 64 65 66 67 68 69 70 45 12\n34 63 84 85 86 87 88 71 46 13\n33 62 83 96 97 98 89 72 47 14\n32 61 82 95 100 99 90 73 48 15\n31 60 81 94 93 92 91 74 49 16\n30 59 80 79 78 77 76 75 50 17\n29 58 57 56 55 54 53 52 51 18\n28 27 26 25 24 23 22 21 20 19",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(N^2)",
+        "input_format": "A single line containing the integer n.",
+        "output_format": "n lines: the rows of the matrix, each with n integers separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M8-18",
+      "title": "Trapping Rain Water Array",
+      "module": "Module 08: Lists",
+      "difficulty": "Hard",
+      "objective": "Compute trapped rainwater given list of elevation heights.",
+      "problem_statement": "Task: Imagine a row of bars, each of width 1. The height of bar i is heights[i]. After it rains, water is trapped in the dips between the bars.\n\nRead the heights and print the total amount of trapped water.\n• The water above bar i reaches the level min(highest bar on its left, highest bar on its right), including bar i itself\n• So the water above bar i is min(max_left, max_right) - heights[i], which is never negative\n• Water can flow off both ends of the row, so the first and last bars never hold water\n• Aim for O(N) time and O(1) extra space\n\nExample: for the heights 0 1 0 2 1 0 1 3 2 1 2 1 the output is 6.\n\nGiven the heights, print the trapped water.",
+      "input_format": "A single line containing the heights, separated by single spaces.",
+      "output_format": "One integer: the total units of trapped water.",
+      "constraints": "1 <= number of bars <= 10^5\n0 <= each height <= 10^5",
+      "sample_inputs": [
+        "0 1 0 2 1 0 1 3 2 1 2 1",
+        "4 2 0 3 2 5"
+      ],
+      "sample_outputs": [
+        "6",
+        "9"
+      ],
+      "hints": [
+        "A simple O(N) solution builds two lists: the highest bar up to each position from the left, and from the right.",
+        "To use O(1) space, use two pointers left and right moving toward each other, plus left_max and right_max.",
+        "Move the side with the smaller current height: its water level is decided by its own max, because the other side is at least as tall."
+      ],
+      "starter_code": null,
+      "reference_solution": "heights = [int(x) for x in input().split()]\n\nleft = 0\nright = len(heights) - 1\nleft_max = 0\nright_max = 0\nwater = 0\n\nwhile left < right:\n    if heights[left] < heights[right]:\n        # The right side is taller, so left_max limits the water here\n        left_max = max(left_max, heights[left])\n        water += left_max - heights[left]\n        left += 1\n    else:\n        right_max = max(right_max, heights[right])\n        water += right_max - heights[right]\n        right -= 1\n\nprint(water)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0 1 0 2 1 0 1 3 2 1 2 1",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4 2 0 3 2 5",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 0 3",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 3 2 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 0 2 0 2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5 0 0 0 1",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0 7 1 4 6",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "0 0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 08: Lists",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the heights, separated by single spaces.",
+        "output_format": "One integer: the total units of trapped water."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_08_lists.csv",
+    "total_rows": 18,
+    "total_questions": 18,
+    "valid_questions": 18,
+    "total_test_cases": 180,
+    "visible_test_cases": 54,
+    "hidden_test_cases": 126,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

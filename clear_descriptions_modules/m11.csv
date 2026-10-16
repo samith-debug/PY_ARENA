@@ -1,0 +1,334 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+PY-M11-01,Squared Odd Numbers,Module 11: Comprehensions and Iteration Tools,Easy,Filter and square odd integers in a single list comprehension.,stdin/stdout,O(N),O(N),"Task: Read a line of integers and print the squares of the odd numbers, in their original order.
+• Keep only the odd numbers. A number x is odd when x % 2 != 0 (this also works for negative numbers)
+• Square each kept number
+• Do the filtering and squaring in ONE list comprehension: [expression for x in nums if condition]
+• If there are no odd numbers, print NONE
+
+Example: for 1 2 3 4 5 the output is 1 9 25.
+
+Given the integers, print the squares of the odd ones.","A single line containing the integers, separated by single spaces.","One line: the squares of the odd numbers in order, separated by single spaces, or NONE if there are no odd numbers.","1 <= number of integers <= 10^4
+-10^4 <= each integer <= 10^4",1 2 3 4 5,1 9 25,2 4 6,NONE,The filter part goes at the end of the comprehension: ... for x in nums if x % 2 != 0.,The expression part comes first: x * x.,"An empty list counts as False, so if squares: ... else: print('NONE') handles the empty case.","nums = [int(x) for x in input().split()]
+
+squares = [x * x for x in nums if x % 2 != 0]
+
+if squares:
+    print("" "".join(str(x) for x in squares))
+else:
+    print(""NONE"")","[{""input"": ""1 2 3 4 5"", ""output"": ""1 9 25"", ""is_hidden"": false}, {""input"": ""2 4 6"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""-3 -2 -1"", ""output"": ""9 1"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""49"", ""is_hidden"": true}, {""input"": ""0 1 0 1"", ""output"": ""1 1"", ""is_hidden"": true}, {""input"": ""10 9 8 7"", ""output"": ""81 49"", ""is_hidden"": true}, {""input"": ""-10000 9999"", ""output"": ""99980001"", ""is_hidden"": true}, {""input"": ""5 5 2 5"", ""output"": ""25 25 25"", ""is_hidden"": true}]"
+PY-M11-02,Enumerate with Custom Start,Module 11: Comprehensions and Iteration Tools,Easy,Number items from a custom starting index using enumerate().,stdin/stdout,O(N),O(N),"Task: Read a list of items and a starting number, and print the items as a numbered list.
+• Each output line is the number, a dot, a space, then the item. For example 1. tea
+• The first item gets the starting number, the next one gets the starting number + 1, and so on
+• Use enumerate(items, start) to get the numbers. Do not use range(len(items)) or a manual counter
+• Build the lines with a list comprehension and an f-string, then print them
+
+Example: for the items tea milk and the start 5 the output is
+5. tea
+6. milk
+
+Given the items and the start, print the numbered list.","Line 1: the items, separated by single spaces.
+Line 2: the starting number (an integer).",One line per item: <number>. <item>,"1 <= number of items <= 1000
+-10^6 <= start <= 10^6","tea milk
+1","1. tea
+2. milk","a b
+5","5. a
+6. b","enumerate(items, start) gives pairs (number, item), with the first number equal to start.","Unpack each pair in the comprehension: [f'{i}. {item}' for i, item in enumerate(items, start)].","print('\n'.join(lines)) prints every line, or use a for loop.","items = input().split()
+start = int(input())
+
+lines = [f""{i}. {item}"" for i, item in enumerate(items, start)]
+
+for line in lines:
+    print(line)","[{""input"": ""tea milk\n1"", ""output"": ""1. tea\n2. milk"", ""is_hidden"": false}, {""input"": ""a b\n5"", ""output"": ""5. a\n6. b"", ""is_hidden"": false}, {""input"": ""only\n0"", ""output"": ""0. only"", ""is_hidden"": false}, {""input"": ""x y z\n-1"", ""output"": ""-1. x\n0. y\n1. z"", ""is_hidden"": true}, {""input"": ""apple banana cherry\n1"", ""output"": ""1. apple\n2. banana\n3. cherry"", ""is_hidden"": true}, {""input"": ""one\n100"", ""output"": ""100. one"", ""is_hidden"": true}, {""input"": ""p q r s\n1000000"", ""output"": ""1000000. p\n1000001. q\n1000002. r\n1000003. s"", ""is_hidden"": true}, {""input"": ""first second\n-1000000"", ""output"": ""-1000000. first\n-999999. second"", ""is_hidden"": true}]"
+PY-M11-03,Pair Lists with Zip,Module 11: Comprehensions and Iteration Tools,Easy,Pair equal-length lists of names and scores into a dictionary using zip().,stdin/stdout,O(N),O(N),"Task: Read a line of names and a line of scores, and pair them into a dictionary that maps each name to its score.
+• The first name goes with the first score, the second name with the second score, and so on
+• Use zip(names, scores) to walk through both lists together. Do not use indexes
+• If a name appears more than once, the LAST score for that name wins (that is what assigning to a dict key does)
+• Keys keep the order in which each name first appears
+• Print the dictionary
+
+Example: for the names Asha Ben and the scores 90 75 the output is {'Asha': 90, 'Ben': 75}.
+
+Given the names and scores, print the dictionary.","Line 1: the names, separated by single spaces.
+Line 2: the scores (integers), separated by single spaces. There are as many scores as names.","One line: the dictionary printed as a Python dict, {name: score}.","1 <= number of names <= 10^4
+0 <= each score <= 100","Asha Ben
+90 75","{'Asha': 90, 'Ben': 75}","A B A
+1 2 3","{'A': 3, 'B': 2}",Convert the scores to ints first with a list comprehension.,"dict(zip(names, scores)) turns the pairs into a dictionary in one step.",print(d) shows the dictionary in Python format.,"names = input().split()
+scores = [int(x) for x in input().split()]
+
+name_to_score = dict(zip(names, scores))
+
+print(name_to_score)","[{""input"": ""Asha Ben\n90 75"", ""output"": ""{'Asha': 90, 'Ben': 75}"", ""is_hidden"": false}, {""input"": ""A B A\n1 2 3"", ""output"": ""{'A': 3, 'B': 2}"", ""is_hidden"": false}, {""input"": ""Solo\n100"", ""output"": ""{'Solo': 100}"", ""is_hidden"": false}, {""input"": ""x y z\n0 0 0"", ""output"": ""{'x': 0, 'y': 0, 'z': 0}"", ""is_hidden"": true}, {""input"": ""Cat cat\n10 20"", ""output"": ""{'Cat': 10, 'cat': 20}"", ""is_hidden"": true}, {""input"": ""Zed Amy Bob\n55 66 77"", ""output"": ""{'Zed': 55, 'Amy': 66, 'Bob': 77}"", ""is_hidden"": true}, {""input"": ""a a a\n5 6 7"", ""output"": ""{'a': 7}"", ""is_hidden"": true}, {""input"": ""Mia Leo Mia Ava\n80 70 95 60"", ""output"": ""{'Mia': 95, 'Leo': 70, 'Ava': 60}"", ""is_hidden"": true}]"
+PY-M11-04,Map Sensor Float Conversions,Module 11: Comprehensions and Iteration Tools,Easy,Convert comma-separated tokens to rounded floats using map().,stdin/stdout,O(L),O(N),"Task: A sensor sends its readings as one line of text, with the numbers separated by commas. Read the line and print the readings as floats rounded to 2 decimal places.
+• Split the line on commas
+• Tokens may have spaces around them. float() ignores spaces at the start and end, so ' 5.678' works
+• Convert every token with map() and a lambda: round(float(token), 2)
+• Turn the map object into a list with list(...), then print the values separated by spaces
+
+Example: for 1.234, 5.678,9 the output is 1.23 5.68 9.0.
+
+Given the line, print the rounded readings.",A single line of numbers separated by commas (there may be spaces around each number).,"One line: the rounded floats, separated by single spaces.","1 <= number of tokens <= 1000
+Every token is a valid number","1.234, 5.678,9",1.23 5.68 9.0,"-1.5,2.25",-1.5 2.25,"line.split(',') gives the tokens.","map(lambda t: round(float(t), 2), tokens) converts every token. map() is lazy, so wrap it in list().","Printing str() of a float gives Python's normal form, such as 9.0 or 1.23.","line = input()
+
+tokens = line.split("","")
+readings = list(map(lambda t: round(float(t), 2), tokens))
+
+print("" "".join(str(x) for x in readings))","[{""input"": ""1.234, 5.678,9"", ""output"": ""1.23 5.68 9.0"", ""is_hidden"": false}, {""input"": ""-1.5,2.25"", ""output"": ""-1.5 2.25"", ""is_hidden"": false}, {""input"": ""3.14159"", ""output"": ""3.14"", ""is_hidden"": false}, {""input"": ""10,20,30"", ""output"": ""10.0 20.0 30.0"", ""is_hidden"": true}, {""input"": ""0.001, 0.009"", ""output"": ""0.0 0.01"", ""is_hidden"": true}, {""input"": ""-0.126"", ""output"": ""-0.13"", ""is_hidden"": true}, {""input"": ""100.456,-100.456"", ""output"": ""100.46 -100.46"", ""is_hidden"": true}, {""input"": ""7.1 , 7.12 , 7.123"", ""output"": ""7.1 7.12 7.12"", ""is_hidden"": true}]"
+PY-M11-05,Filter Primes in List,Module 11: Comprehensions and Iteration Tools,Easy,Filter primes from integer list using filter() and a predicate.,stdin/stdout,O(N x sqrt(V)),O(N),"Task: Read a line of integers and print the prime numbers among them, in their original order.
+• A prime is a whole number greater than 1 whose only divisors are 1 and itself. So 0, 1 and negative numbers are not prime
+• Write the test as a predicate: a lambda that returns True or False. It only needs to test divisors from 2 up to the square root of n, for example:
+is_prime = lambda n: n > 1 and all(n % d != 0 for d in range(2, int(n ** 0.5) + 1))
+• Use filter(is_prime, nums) and turn the result into a list
+• Repeated primes stay repeated
+• If there are no primes, print NONE
+
+Example: for 1 2 3 4 5 9 11 the output is 2 3 5 11.
+
+Given the integers, print the primes.","A single line containing the integers, separated by single spaces.","One line: the primes in their original order separated by single spaces, or NONE.","1 <= number of integers <= 10^4
+-10^6 <= each integer <= 10^6",1 2 3 4 5 9 11,2 3 5 11,4 6 8 9,NONE,all(...) with a generator expression stops at the first divisor it finds.,"n > 1 and all(...) is False straight away for 0, 1 and negative numbers, before any division.","filter(is_prime, nums) keeps the items where is_prime returns True. Pass is_prime without brackets.","nums = [int(x) for x in input().split()]
+
+is_prime = lambda n: n > 1 and all(n % d != 0 for d in range(2, int(n ** 0.5) + 1))
+
+primes = list(filter(is_prime, nums))
+
+if primes:
+    print("" "".join(str(x) for x in primes))
+else:
+    print(""NONE"")","[{""input"": ""1 2 3 4 5 9 11"", ""output"": ""2 3 5 11"", ""is_hidden"": false}, {""input"": ""4 6 8 9"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""0 1 -7"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""97 98 99 100 101"", ""output"": ""97 101"", ""is_hidden"": true}, {""input"": ""2 2 3 3"", ""output"": ""2 2 3 3"", ""is_hidden"": true}, {""input"": ""25 49 121 169"", ""output"": ""NONE"", ""is_hidden"": true}, {""input"": ""999983 1000000"", ""output"": ""999983"", ""is_hidden"": true}]"
+PY-M11-06,Set Comprehension Clean Words,Module 11: Comprehensions and Iteration Tools,Easy,Extract unique stripped lowercase words using set comprehension.,stdin/stdout,O(total characters),O(N),"Task: Read a list of words separated by commas, clean them, and print the different cleaned words.
+• Clean a word by removing the spaces around it with strip() and converting it to lower case with lower()
+• Skip words that are empty after stripping
+• Build the result with ONE set comprehension: {expression for w in words if condition}. A set keeps each value only once, so Apple and ' apple ' become one item
+• A set has no order, so print the words in alphabetical order (use sorted()), one per line
+• If no word is left, print NONE
+
+Example: for ' Apple,apple ,BANANA' the output is
+apple
+banana
+
+Given the line, print the unique cleaned words.",A single line of words separated by commas. Words may have spaces around them or inside them.,"One line per unique cleaned word, in alphabetical order, or NONE if there are none.","1 <= number of comma-separated parts <= 10^4
+0 <= length of each part <= 50","  Apple,apple ,BANANA","apple
+banana",one,one,"line.split(',') gives the raw words.",{w.strip().lower() for w in words if w.strip()} cleans the words and skips blank ones.,for word in sorted(clean): print(word) gives a fixed order.,"words = input().split("","")
+
+clean = {w.strip().lower() for w in words if w.strip()}
+
+if clean:
+    for word in sorted(clean):
+        print(word)
+else:
+    print(""NONE"")","[{""input"": ""  Apple,apple ,BANANA"", ""output"": ""apple\nbanana"", ""is_hidden"": false}, {""input"": ""one"", ""output"": ""one"", ""is_hidden"": false}, {""input"": ""A,a, A ,b"", ""output"": ""a\nb"", ""is_hidden"": false}, {""input"": "",,  ,"", ""output"": ""NONE"", ""is_hidden"": true}, {""input"": ""Hello World,hello world  "", ""output"": ""hello world"", ""is_hidden"": true}, {""input"": ""x,y,z,X"", ""output"": ""x\ny\nz"", ""is_hidden"": true}, {""input"": ""dog,Cat,DOG, cat,bird"", ""output"": ""bird\ncat\ndog"", ""is_hidden"": true}, {""input"": ""MiXeD,  mixed,other "", ""output"": ""mixed\nother"", ""is_hidden"": true}]"
+PY-M11-07,Inverted Index Dict Comprehension,Module 11: Comprehensions and Iteration Tools,Medium,Map each unique character to list of appearance indices via dict comp.,stdin/stdout,O(K x L),O(L),"Task: Read a string and build a dictionary that maps every different character to the list of positions where it appears. Then print the dictionary.
+• Positions start at 0 and each list is in increasing order
+• Keys are in the order each character first appears in the string
+• Characters are case-sensitive, and spaces count as characters
+• Build the dictionary with a dict comprehension whose values are list comprehensions using enumerate()
+
+Example: for banana the output is {'b': [0], 'a': [1, 3, 5], 'n': [2, 4]}.
+
+Given a string, print the index dictionary.",A single line containing the string.,"One line: the dictionary printed as a Python dict, {character: list of indices}.",1 <= length of the string <= 1000,banana,"{'b': [0], 'a': [1, 3, 5], 'n': [2, 4]}",a,{'a': [0]},"The list for one character ch is [i for i, c in enumerate(s) if c == ch].",Use it as the value of a dict comprehension: {ch: ... for ch in s}.,"A repeated character writes the same key again with the same list, and the key keeps its first position.","s = input()
+
+indices = {ch: [i for i, c in enumerate(s) if c == ch] for ch in s}
+
+print(indices)","[{""input"": ""banana"", ""output"": ""{'b': [0], 'a': [1, 3, 5], 'n': [2, 4]}"", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""{'a': [0]}"", ""is_hidden"": false}, {""input"": ""abc"", ""output"": ""{'a': [0], 'b': [1], 'c': [2]}"", ""is_hidden"": false}, {""input"": ""aaaa"", ""output"": ""{'a': [0, 1, 2, 3]}"", ""is_hidden"": true}, {""input"": ""Aa"", ""output"": ""{'A': [0], 'a': [1]}"", ""is_hidden"": true}, {""input"": ""a b a"", ""output"": ""{'a': [0, 4], ' ': [1, 3], 'b': [2]}"", ""is_hidden"": true}, {""input"": ""mississippi"", ""output"": ""{'m': [0], 'i': [1, 4, 7, 10], 's': [2, 3, 5, 6], 'p': [8, 9]}"", ""is_hidden"": true}, {""input"": ""hello world"", ""output"": ""{'h': [0], 'e': [1], 'l': [2, 3, 9], 'o': [4, 7], ' ': [5], 'w': [6], 'r': [8], 'd': [10]}"", ""is_hidden"": true}]"
+PY-M11-08,Nested Grid Generation,Module 11: Comprehensions and Iteration Tools,Medium,Generate N x M multiplication table matrix via nested list comprehension.,stdin/stdout,O(N x M),O(N x M),"Task: Read n and m, build an n x m multiplication table as a list of lists, and print it row by row.
+• Rows and columns are numbered from 1
+• The item in row r and column c is r * c
+• Build the table with ONE nested list comprehension: the outer comprehension makes the rows, the inner one makes the items of a row
+• Print each row on its own line, items separated by spaces
+
+Example: for 2 3 the output is
+1 2 3
+2 4 6
+
+Given n and m, print the table.",A single line containing two integers n and m.,"n lines, each with m integers separated by single spaces.","1 <= n, m <= 50",2 3,"1 2 3
+2 4 6",1 1,1,"One row r is [r * c for c in range(1, m + 1)].","Put that inside another comprehension: [[...] for r in range(1, n + 1)].",Print with for row in grid: print(' '.join(str(x) for x in row)).,"n, m = map(int, input().split())
+
+grid = [[r * c for c in range(1, m + 1)] for r in range(1, n + 1)]
+
+for row in grid:
+    print("" "".join(str(x) for x in row))","[{""input"": ""2 3"", ""output"": ""1 2 3\n2 4 6"", ""is_hidden"": false}, {""input"": ""1 1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""3 3"", ""output"": ""1 2 3\n2 4 6\n3 6 9"", ""is_hidden"": false}, {""input"": ""1 5"", ""output"": ""1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""5 1"", ""output"": ""1\n2\n3\n4\n5"", ""is_hidden"": true}, {""input"": ""4 2"", ""output"": ""1 2\n2 4\n3 6\n4 8"", ""is_hidden"": true}, {""input"": ""3 6"", ""output"": ""1 2 3 4 5 6\n2 4 6 8 10 12\n3 6 9 12 15 18"", ""is_hidden"": true}, {""input"": ""10 3"", ""output"": ""1 2 3\n2 4 6\n3 6 9\n4 8 12\n5 10 15\n6 12 18\n7 14 21\n8 16 24\n9 18 27\n10 20 30"", ""is_hidden"": true}]"
+PY-M11-09,Grid Replication Aliasing Trap,Module 11: Comprehensions and Iteration Tools,Medium,Contrast [[0]*n for _ in range(m)] against trap [[0]*n]*m.,stdin/stdout,O(N x M),O(N x M),"Task: There are two ways that look alike for making a grid of zeros with m rows and n columns:
+• safe = [[0] * n for _ in range(m)] runs [0] * n once per row, so every row is a NEW list
+• trap = [[0] * n] * m makes ONE row list and repeats a reference to it m times, so every row is the SAME list
+
+Read n and m and show the difference:
+• Build safe and trap as above
+• Set safe[0][0] = 1 and trap[0][0] = 1
+• Print both grids with labels
+
+In safe only the first row changes. In trap every row shows the 1, because all rows are one list.
+
+Example: for 3 2 the output is
+safe: [[1, 0, 0], [0, 0, 0]]
+trap: [[1, 0, 0], [1, 0, 0]]
+
+Given n and m, print the two grids.",A single line containing two integers n (columns) and m (rows).,"Two lines:
+safe: <safe grid as a Python list>
+trap: <trap grid as a Python list>","1 <= n, m <= 20",3 2,"safe: [[1, 0, 0], [0, 0, 0]]
+trap: [[1, 0, 0], [1, 0, 0]]",1 1,"safe: [[1]]
+trap: [[1]]",The _ in for _ in range(m) is a normal variable name that means 'not used'.,"Multiplying a list of lists with * copies references, not lists. That is the trap.","print('safe:', safe) prints the label and the list with one space between them.","n, m = map(int, input().split())
+
+safe = [[0] * n for _ in range(m)]   # m separate row lists
+trap = [[0] * n] * m                 # one row list, referenced m times
+
+safe[0][0] = 1
+trap[0][0] = 1                       # shows up in every row
+
+print(""safe:"", safe)
+print(""trap:"", trap)","[{""input"": ""3 2"", ""output"": ""safe: [[1, 0, 0], [0, 0, 0]]\ntrap: [[1, 0, 0], [1, 0, 0]]"", ""is_hidden"": false}, {""input"": ""1 1"", ""output"": ""safe: [[1]]\ntrap: [[1]]"", ""is_hidden"": false}, {""input"": ""1 3"", ""output"": ""safe: [[1], [0], [0]]\ntrap: [[1], [1], [1]]"", ""is_hidden"": false}, {""input"": ""2 2"", ""output"": ""safe: [[1, 0], [0, 0]]\ntrap: [[1, 0], [1, 0]]"", ""is_hidden"": true}, {""input"": ""3 1"", ""output"": ""safe: [[1, 0, 0]]\ntrap: [[1, 0, 0]]"", ""is_hidden"": true}, {""input"": ""4 3"", ""output"": ""safe: [[1, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]\ntrap: [[1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]"", ""is_hidden"": true}, {""input"": ""2 5"", ""output"": ""safe: [[1, 0], [0, 0], [0, 0], [0, 0], [0, 0]]\ntrap: [[1, 0], [1, 0], [1, 0], [1, 0], [1, 0]]"", ""is_hidden"": true}, {""input"": ""6 4"", ""output"": ""safe: [[1, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]\ntrap: [[1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0], [1, 0, 0, 0, 0, 0]]"", ""is_hidden"": true}]"
+PY-M11-10,Conditional Dict Filter,Module 11: Comprehensions and Iteration Tools,Medium,Filter pairs from dictionary where value exceeds threshold via dict comp.,stdin/stdout,O(N),O(N),"Task: Read N key-value pairs into a dictionary and a threshold min_v. Print a new dictionary with only the pairs whose value is strictly greater than min_v.
+• Equal to min_v is NOT enough: the value must be bigger
+• Keep the original order of the keys
+• Use a dict comprehension over d.items()
+• If no pair is left, the result is an empty dictionary and prints as {}
+
+Example: for the pairs a 5, b 12, c 9 and min_v = 8 the output is {'b': 12, 'c': 9}.
+
+Given the pairs and min_v, print the filtered dictionary.","Line 1: the number of pairs N.
+Next N lines: a key and an integer value separated by a single space.
+Last line: the integer min_v.",One line: the filtered dictionary printed as a Python dict.,"1 <= N <= 10^4
+Keys are different words without spaces
+-10^9 <= values, min_v <= 10^9","3
+a 5
+b 12
+c 9
+8","{'b': 12, 'c': 9}","1
+x 1
+1",{},"Read the pairs with a loop: key, value = input().split(), then d[key] = int(value).","d.items() gives (key, value) pairs; unpack them with for k, v in d.items().","{k: v for k, v in d.items() if v > min_v}.","n = int(input())
+
+d = {}
+for _ in range(n):
+    key, value = input().split()
+    d[key] = int(value)
+
+min_v = int(input())
+
+filtered = {k: v for k, v in d.items() if v > min_v}
+
+print(filtered)","[{""input"": ""3\na 5\nb 12\nc 9\n8"", ""output"": ""{'b': 12, 'c': 9}"", ""is_hidden"": false}, {""input"": ""1\nx 1\n1"", ""output"": ""{}"", ""is_hidden"": false}, {""input"": ""1\nx 2\n1"", ""output"": ""{'x': 2}"", ""is_hidden"": false}, {""input"": ""2\na -1\nb -5\n-3"", ""output"": ""{'a': -1}"", ""is_hidden"": true}, {""input"": ""3\np 10\nq 20\nr 30\n0"", ""output"": ""{'p': 10, 'q': 20, 'r': 30}"", ""is_hidden"": true}, {""input"": ""3\np 10\nq 20\nr 30\n30"", ""output"": ""{}"", ""is_hidden"": true}, {""input"": ""3\nz 3\ny 7\nx 5\n4"", ""output"": ""{'y': 7, 'x': 5}"", ""is_hidden"": true}, {""input"": ""2\nbig 1000000000\nsmall -1000000000\n0"", ""output"": ""{'big': 1000000000}"", ""is_hidden"": true}]"
+PY-M11-11,Any and All Predicate Validation,Module 11: Comprehensions and Iteration Tools,Medium,Validate metrics using short-circuiting all() and any().,stdin/stdout,O(N),O(1),"Task: Read a list of metric values and print three checks:
+• all_valid: True if EVERY value is between 0 and 100 (both included)
+• has_alert: True if ANY value is greater than 90
+• has_negative: True if ANY value is below 0
+
+Use all() and any() with generator expressions, such as all(0 <= x <= 100 for x in nums). They short-circuit: all() stops at the first False and any() stops at the first True.
+
+Print the three results on one line, separated by spaces, in the order all_valid has_alert has_negative.
+
+Example: for 10 50 120 the output is False True False.
+
+Given the values, print the three checks.","A single line containing the integers, separated by single spaces.","One line: three words, each True or False: all_valid has_alert has_negative.","1 <= number of values <= 10^5
+-10^6 <= each value <= 10^6",10 50 120,False True False,0 100,True True False,"A generator expression looks like a list comprehension with round brackets, and it can go straight inside all(...).",Python allows chained comparisons: 0 <= x <= 100.,"print(all_valid, has_alert, has_negative) prints the three booleans with spaces between them.","nums = [int(x) for x in input().split()]
+
+all_valid = all(0 <= x <= 100 for x in nums)
+has_alert = any(x > 90 for x in nums)
+has_negative = any(x < 0 for x in nums)
+
+print(all_valid, has_alert, has_negative)","[{""input"": ""10 50 120"", ""output"": ""False True False"", ""is_hidden"": false}, {""input"": ""0 100"", ""output"": ""True True False"", ""is_hidden"": false}, {""input"": ""-1 50"", ""output"": ""False False True"", ""is_hidden"": false}, {""input"": ""90"", ""output"": ""True False False"", ""is_hidden"": true}, {""input"": ""91"", ""output"": ""True True False"", ""is_hidden"": true}, {""input"": ""50 60 70"", ""output"": ""True False False"", ""is_hidden"": true}, {""input"": ""-5 95 101"", ""output"": ""False True True"", ""is_hidden"": true}, {""input"": ""0 -1000000 1000000"", ""output"": ""False True True"", ""is_hidden"": true}]"
+PY-M11-12,Generator Expression Squares,Module 11: Comprehensions and Iteration Tools,Medium,Compute sum of squares of sequence lazily without storing full list.,stdin/stdout,O(N),O(1),"Task: Read n and print 1^2 + 2^2 + ... + n^2.
+• Use sum() with a generator expression: sum(i * i for i in range(1, n + 1))
+• A generator expression makes the values one at a time, so no list of n numbers is ever stored in memory. A list comprehension inside sum([...]) would build the whole list first
+• For n = 0 the sum is 0
+
+Example: for 3 the output is 14 (1 + 4 + 9).
+
+Given n, print the sum of squares.",A single line containing the integer n.,One integer: the sum of the squares from 1 to n.,0 <= n <= 10^6,3,14,0,0,"range(1, n + 1) gives 1, 2, ..., n.","When a generator expression is the only argument of a function, you do not need extra brackets: sum(i * i for i in ...).","sum() of an empty sequence is 0, so n = 0 needs no special case.","n = int(input())
+
+total = sum(i * i for i in range(1, n + 1))
+
+print(total)","[{""input"": ""3"", ""output"": ""14"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""385"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""338350"", ""is_hidden"": true}, {""input"": ""1000"", ""output"": ""333833500"", ""is_hidden"": true}, {""input"": ""12345"", ""output"": ""627198189445"", ""is_hidden"": true}, {""input"": ""1000000"", ""output"": ""333333833333500000"", ""is_hidden"": true}]"
+PY-M11-13,Multi-Key Lambda Sorting,Module 11: Comprehensions and Iteration Tools,Medium,"Sort user dictionaries by multiple keys (age desc, name asc) via sorted(key=).",stdin/stdout,O(N log N),O(N),"Task: Read N users. Store each user as a dictionary {'name': name, 'age': age}, then print the users sorted:
+• Older users first (age descending)
+• Users with the same age are sorted by name in alphabetical order (name ascending). Capital letters come before small letters
+• Use sorted() with a lambda that returns a tuple: key=lambda u: (-u['age'], u['name'])
+
+Example: for the users Ben 30, Amy 30, Cal 25 the output is
+Amy 30
+Ben 30
+Cal 25
+
+Given the users, print them in sorted order.","Line 1: the number of users N.
+Next N lines: a name and an age separated by a single space.","N lines: name age, in sorted order.","1 <= N <= 10^4
+Names have no spaces
+0 <= age <= 150","3
+Ben 30
+Amy 30
+Cal 25","Amy 30
+Ben 30
+Cal 25","2
+Kid 5
+Elder 90","Elder 90
+Kid 5","Build the list with users.append({'name': name, 'age': int(age)}).","Tuples are compared item by item: first -age, then name. The minus sign turns the age order around.","Print with print(u['name'], u['age']) for every user in the sorted list.","n = int(input())
+
+users = []
+for _ in range(n):
+    name, age = input().split()
+    users.append({""name"": name, ""age"": int(age)})
+
+ordered = sorted(users, key=lambda u: (-u[""age""], u[""name""]))
+
+for u in ordered:
+    print(u[""name""], u[""age""])","[{""input"": ""3\nBen 30\nAmy 30\nCal 25"", ""output"": ""Amy 30\nBen 30\nCal 25"", ""is_hidden"": false}, {""input"": ""2\nKid 5\nElder 90"", ""output"": ""Elder 90\nKid 5"", ""is_hidden"": false}, {""input"": ""1\nSolo 40"", ""output"": ""Solo 40"", ""is_hidden"": false}, {""input"": ""3\nb 20\na 20\nc 20"", ""output"": ""a 20\nb 20\nc 20"", ""is_hidden"": true}, {""input"": ""2\nbob 1\nBob 1"", ""output"": ""Bob 1\nbob 1"", ""is_hidden"": true}, {""input"": ""3\nZoe 0\nYan 150\nXi 75"", ""output"": ""Yan 150\nXi 75\nZoe 0"", ""is_hidden"": true}, {""input"": ""4\nD 2\nC 3\nB 2\nA 3"", ""output"": ""A 3\nC 3\nB 2\nD 2"", ""is_hidden"": true}, {""input"": ""4\nMia 28\nLeo 31\nAva 28\nEli 31"", ""output"": ""Eli 31\nLeo 31\nAva 28\nMia 28"", ""is_hidden"": true}]"
+PY-M11-14,Filtered Cartesian Product,Module 11: Comprehensions and Iteration Tools,Hard,"Generate (x, y) where x + y == target via multi-variable comprehension.",stdin/stdout,O(N x M),O(N x M),"Task: The Cartesian product of xs and ys is every pair (x, y) with x from xs and y from ys. Read xs, ys and a target t, and print only the pairs with x + y == t.
+• Build the pairs with ONE list comprehension with two for clauses and an if clause
+• The order follows the loops: for each x in xs (in order), go through every y in ys (in order)
+• Repeated values in xs or ys give repeated pairs
+• Print each pair as a tuple on its own line, such as (2, 5)
+• If no pair matches, print NONE
+
+Example: for xs = 1 2 3, ys = 4 5 and t = 7 the output is
+(2, 5)
+(3, 4)
+
+Given xs, ys and t, print the matching pairs.","Line 1: the integers of xs, separated by single spaces.
+Line 2: the integers of ys, separated by single spaces.
+Line 3: the target t.","One line per matching pair, printed as a Python tuple (x, y), or NONE if there are none.","1 <= len(xs), len(ys) <= 1000
+-10^6 <= values, t <= 10^6","1 2 3
+4 5
+7","(2, 5)
+(3, 4)","10 20
+1 2
+100",NONE,Two for clauses in one comprehension work like nested loops: the first for is the outer loop.,"[(x, y) for x in xs for y in ys if x + y == t].","print(pair) prints a tuple in the (x, y) form.","xs = [int(x) for x in input().split()]
+ys = [int(y) for y in input().split()]
+t = int(input())
+
+pairs = [(x, y) for x in xs for y in ys if x + y == t]
+
+if pairs:
+    for pair in pairs:
+        print(pair)
+else:
+    print(""NONE"")","[{""input"": ""1 2 3\n4 5\n7"", ""output"": ""(2, 5)\n(3, 4)"", ""is_hidden"": false}, {""input"": ""10 20\n1 2\n100"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""0\n0\n0"", ""output"": ""(0, 0)"", ""is_hidden"": false}, {""input"": ""1 2 3\n1 2 3\n4"", ""output"": ""(1, 3)\n(2, 2)\n(3, 1)"", ""is_hidden"": true}, {""input"": ""5 5\n5\n10"", ""output"": ""(5, 5)\n(5, 5)"", ""is_hidden"": true}, {""input"": ""-1 0 1\n1 0 -1\n0"", ""output"": ""(-1, 1)\n(0, 0)\n(1, -1)"", ""is_hidden"": true}, {""input"": ""3 1 2\n2 3 1\n4"", ""output"": ""(3, 1)\n(1, 3)\n(2, 2)"", ""is_hidden"": true}, {""input"": ""1000000 -1000000\n-1000000 1000000\n0"", ""output"": ""(1000000, -1000000)\n(-1000000, 1000000)"", ""is_hidden"": true}]"
+PY-M11-15,Nested Record Extraction,Module 11: Comprehensions and Iteration Tools,Hard,Transform and filter deeply nested JSON student records via comprehension.,stdin/stdout,O(total grades),O(S),"Task: School data often arrives as nested JSON: a school has classes, each class has students, and each student has a list of grades. Read one line of JSON and print the honor-roll students.
+
+The data looks like {""school"": ""GHS"", ""classes"": [{""name"": ""10A"", ""students"": [{""name"": ""Asha"", ""grades"": [95, 90]}]}]}.
+
+• A student is on the honor roll when the average of their grades is at least 90
+• Skip students with an empty grades list (they have no average)
+• Round the average with round(avg, 1)
+• Keep the order of the data: classes in order, and students in order inside each class
+• Build the list of (class_name, student_name, average) tuples with ONE list comprehension with two for clauses (classes, then students) and an if clause
+• Print one student per line as: class_name student_name average
+• If nobody is on the honor roll, print NONE
+
+Example: for the class 10A with Asha [95, 90] and Ben [70, 80], the output is 10A Asha 92.5.
+
+Given the JSON line, print the honor roll.",A single line of JSON. Read it with json.loads(input()) after import json.,"One line per honor-roll student: <class name> <student name> <average>, or NONE.","0 <= number of classes <= 100
+0 <= students per class <= 100
+0 <= grades per student <= 50
+0 <= each grade <= 100
+Names have no spaces","{""school"": ""GHS"", ""classes"": [{""name"": ""10A"", ""students"": [{""name"": ""Asha"", ""grades"": [95, 90]}, {""name"": ""Ben"", ""grades"": [70, 80]}]}]}",10A Asha 92.5,"{""school"": ""X"", ""classes"": [{""name"": ""9B"", ""students"": [{""name"": ""Nia"", ""grades"": []}, {""name"": ""Om"", ""grades"": [90]}]}]}",9B Om 90.0,json.loads turns the JSON text into Python dicts and lists.,The two loops are for cls in data['classes'] for st in cls['students']. Put st['grades'] first in the condition so the and stops before dividing by zero.,"Unpack each tuple when printing: for class_name, name, avg in honor: print(class_name, name, avg).","import json
+
+data = json.loads(input())
+
+honor = [
+    (cls[""name""], st[""name""], round(sum(st[""grades""]) / len(st[""grades""]), 1))
+    for cls in data[""classes""]
+    for st in cls[""students""]
+    if st[""grades""] and sum(st[""grades""]) / len(st[""grades""]) >= 90
+]
+
+if honor:
+    for class_name, name, avg in honor:
+        print(class_name, name, avg)
+else:
+    print(""NONE"")","[{""input"": ""{\""school\"": \""GHS\"", \""classes\"": [{\""name\"": \""10A\"", \""students\"": [{\""name\"": \""Asha\"", \""grades\"": [95, 90]}, {\""name\"": \""Ben\"", \""grades\"": [70, 80]}]}]}"", ""output"": ""10A Asha 92.5"", ""is_hidden"": false}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""9B\"", \""students\"": [{\""name\"": \""Nia\"", \""grades\"": []}, {\""name\"": \""Om\"", \""grades\"": [90]}]}]}"", ""output"": ""9B Om 90.0"", ""is_hidden"": false}, {""input"": ""{\""school\"": \""X\"", \""classes\"": []}"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""A\"", \""students\"": [{\""name\"": \""Edge\"", \""grades\"": [89, 91]}, {\""name\"": \""Low\"", \""grades\"": [89, 90]}]}]}"", ""output"": ""A Edge 90.0"", ""is_hidden"": true}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""A\"", \""students\"": [{\""name\"": \""P\"", \""grades\"": [100, 100, 99]}]}, {\""name\"": \""B\"", \""students\"": [{\""name\"": \""Q\"", \""grades\"": [92, 93, 95]}]}]}"", ""output"": ""A P 99.7\nB Q 93.3"", ""is_hidden"": true}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""C1\"", \""students\"": [{\""name\"": \""R\"", \""grades\"": [50]}]}, {\""name\"": \""C2\"", \""students\"": []}]}"", ""output"": ""NONE"", ""is_hidden"": true}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""M\"", \""students\"": [{\""name\"": \""Z\"", \""grades\"": [91]}, {\""name\"": \""Y\"", \""grades\"": [99, 98]}, {\""name\"": \""X\"", \""grades\"": [100, 70]}]}]}"", ""output"": ""M Z 91.0\nM Y 98.5"", ""is_hidden"": true}, {""input"": ""{\""school\"": \""X\"", \""classes\"": [{\""name\"": \""11C\"", \""students\"": [{\""name\"": \""Kai\"", \""grades\"": [90, 90, 91]}]}, {\""name\"": \""T\"", \""students\"": [{\""name\"": \""V\"", \""grades\"": []}, {\""name\"": \""W\"", \""grades\"": [0, 100]}]}]}"", ""output"": ""11C Kai 90.3"", ""is_hidden"": true}]"

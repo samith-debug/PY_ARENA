@@ -1,0 +1,1876 @@
+{
+  "id": "8e9d82bd",
+  "filename": "module_06_functions_i.csv",
+  "imported_at": "2026-10-16T06:28:42.565649Z",
+  "total_questions": 17,
+  "total_test_cases": 170,
+  "visible_test_cases": 51,
+  "hidden_test_cases": 119,
+  "questions": [
+    {
+      "question_id": "M06-01",
+      "title": "Room Tile Calculation",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Return integer tile count given room dimension and optional tile size.",
+      "problem_statement": "Task: Write a function tiles_needed(l, w, s=1) that tells how many square tiles are needed to cover a rectangular room.\n• l and w are the length and width of the room\n• s is the side length of one square tile (default value is 1)\n• If a room side is not an exact multiple of the tile side, the last row or column still needs a whole tile, so round up in each direction\n• Return the tile count as an integer\n\nExample: tiles_needed(10, 10, 3) → 16, because 10 / 3 rounds up to 4 tiles in each direction (4 × 4 = 16).",
+      "input_format": "Function signature: tiles_needed(l, w, s=1) -> int\nParameters:\n• l: room length (positive integer)\n• w: room width (positive integer)\n• s: tile side length (positive integer, default 1)\nTest format: each line of a test input is the argument list of one call (for example, 5, 4 means tiles_needed(5, 4)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return an int: the total number of tiles needed.",
+      "constraints": "1 <= l, w <= 10^4\n1 <= s <= 10^4",
+      "sample_inputs": [
+        "5, 4",
+        "10, 10, 3"
+      ],
+      "sample_outputs": [
+        "20",
+        "16"
+      ],
+      "hints": [
+        "Tiles needed along the length = ceil(l / s), and along the width = ceil(w / s).",
+        "Round up with integer maths: -(-l // s) or (l + s - 1) // s.",
+        "Multiply the two counts to get the answer."
+      ],
+      "starter_code": null,
+      "reference_solution": "def tiles_needed(l, w, s=1):\n    rows = (l + s - 1) // s\n    cols = (w + s - 1) // s\n    return rows * cols",
+      "execution_mode": "function",
+      "function_name": "tiles_needed",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5, 4",
+          "output": "20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10, 10, 3",
+          "output": "16",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7, 3, s=2",
+          "output": "8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1, 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100, 100, 10",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9, 9, 4",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000, 1000, 7",
+          "output": "20449",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6, 6, 6",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "13, 17, 5",
+          "output": "12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "50, 2, 3",
+          "output": "17",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: tiles_needed(l, w, s=1) -> int\nParameters:\n• l: room length (positive integer)\n• w: room width (positive integer)\n• s: tile side length (positive integer, default 1)\nTest format: each line of a test input is the argument list of one call (for example, 5, 4 means tiles_needed(5, 4)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return an int: the total number of tiles needed."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-02",
+      "title": "Better Deal Selector",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Compare two discounted offerings and return 1 or 2 identifying the cheaper option.",
+      "problem_statement": "Task: Write a function better_deal(p1, d1, p2, d2) that compares two offers. Offer 1 has price p1 with a discount of d1 percent. Offer 2 has price p2 with a discount of d2 percent.\n• Final price = price x (100 - discount) / 100\n• Return 1 if offer 1 has the lower final price\n• Return 2 if offer 2 has the lower final price\n• If both final prices are equal, return 1\n\nExample: better_deal(1000, 20, 900, 5) → 1, because the final prices are 800 and 855.",
+      "input_format": "Function signature: better_deal(p1, d1, p2, d2) -> int\nParameters:\n• p1: price of offer 1 (positive integer)\n• d1: discount of offer 1 in percent (integer, 0 to 100)\n• p2: price of offer 2 (positive integer)\n• d2: discount of offer 2 in percent (integer, 0 to 100)\nTest format: each line of a test input is the argument list of one call (for example, 1000, 20, 900, 5 means better_deal(1000, 20, 900, 5)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return an int: 1 or 2.",
+      "constraints": "1 <= p1, p2 <= 10^9\n0 <= d1, d2 <= 100",
+      "sample_inputs": [
+        "1000, 20, 900, 5",
+        "500, 10, 400, 0"
+      ],
+      "sample_outputs": [
+        "1",
+        "2"
+      ],
+      "hints": [
+        "You can compare p1 * (100 - d1) with p2 * (100 - d2) and skip the division by 100.",
+        "Using integers only avoids rounding errors.",
+        "Use <= so that an equal price returns 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "def better_deal(p1, d1, p2, d2):\n    if p1 * (100 - d1) <= p2 * (100 - d2):\n        return 1\n    return 2",
+      "execution_mode": "function",
+      "function_name": "better_deal",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000, 20, 900, 5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "500, 10, 400, 0",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000, 10, 900, 0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100, 100, 50, 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100, 0, 100, 100",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "999, 33, 1000, 34",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "250, 40, 300, 50",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000, 15, 900000, 5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1, 0, 1, 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "800, 25, 700, 15",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: better_deal(p1, d1, p2, d2) -> int\nParameters:\n• p1: price of offer 1 (positive integer)\n• d1: discount of offer 1 in percent (integer, 0 to 100)\n• p2: price of offer 2 (positive integer)\n• d2: discount of offer 2 in percent (integer, 0 to 100)\nTest format: each line of a test input is the argument list of one call (for example, 1000, 20, 900, 5 means better_deal(1000, 20, 900, 5)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return an int: 1 or 2."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-03",
+      "title": "Seconds to Duration String",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Return formatted duration string \"Xh Ym Zs\" from integer seconds.",
+      "problem_statement": "Task: Write a function format_duration(sec) that converts a number of seconds into hours, minutes and seconds.\n• 1 hour = 3600 seconds and 1 minute = 60 seconds\n• Return a string in this exact format: \"Xh Ym Zs\" (for example \"1h 1m 1s\")\n• Always show all three parts, even when a part is 0\n• Hours are not limited to 24\n\nExample: format_duration(3661) → \"1h 1m 1s\". Example: format_duration(100000) → \"27h 46m 40s\".",
+      "input_format": "Function signature: format_duration(sec) -> str\nParameters:\n• sec: number of seconds (non-negative integer)\nTest format: each line of a test input is the argument list of one call (for example, 3661 means format_duration(3661)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a str such as \"1h 1m 1s\".",
+      "constraints": "0 <= sec <= 10^9",
+      "sample_inputs": [
+        "3661",
+        "0"
+      ],
+      "sample_outputs": [
+        "'1h 1m 1s'",
+        "'0h 0m 0s'"
+      ],
+      "hints": [
+        "divmod(sec, 3600) gives the hours and the remaining seconds.",
+        "Use divmod again on the remaining seconds with 60 to get minutes and seconds.",
+        "Build the string with an f-string: f\"{h}h {m}m {s}s\"."
+      ],
+      "starter_code": null,
+      "reference_solution": "def format_duration(sec):\n    h, rest = divmod(sec, 3600)\n    m, s = divmod(rest, 60)\n    return f\"{h}h {m}m {s}s\"",
+      "execution_mode": "function",
+      "function_name": "format_duration",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3661",
+          "output": "'1h 1m 1s'",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "'0h 0m 0s'",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "59",
+          "output": "'0h 0m 59s'",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3600",
+          "output": "'1h 0m 0s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "86399",
+          "output": "'23h 59m 59s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100000",
+          "output": "'27h 46m 40s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7325",
+          "output": "'2h 2m 5s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "60",
+          "output": "'0h 1m 0s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1",
+          "output": "'0h 0m 1s'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "360000",
+          "output": "'100h 0m 0s'",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: format_duration(sec) -> str\nParameters:\n• sec: number of seconds (non-negative integer)\nTest format: each line of a test input is the argument list of one call (for example, 3661 means format_duration(3661)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a str such as \"1h 1m 1s\"."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-04",
+      "title": "Numeric Palindrome Predicate",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Return Boolean indicating whether an integer reads the same forwards and backwards.",
+      "problem_statement": "Task: Write a function is_num_pal(n) that returns True if an integer reads the same forwards and backwards, and False otherwise.\n• Use maths only (// and %). Do not convert the number to a string\n• Negative numbers are never palindromes\n• 0 is a palindrome\n\nExamples: is_num_pal(121) → True, is_num_pal(10) → False, is_num_pal(-121) → False.",
+      "input_format": "Function signature: is_num_pal(n) -> bool\nParameters:\n• n: an integer\nTest format: each line of a test input is the argument list of one call (for example, 121 means is_num_pal(121)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a bool: True or False.",
+      "constraints": "-10^18 <= n <= 10^18",
+      "sample_inputs": [
+        "121",
+        "-121"
+      ],
+      "sample_outputs": [
+        "True",
+        "False"
+      ],
+      "hints": [
+        "Return False at once if n is negative.",
+        "Reverse a copy of n with a loop: rev = rev * 10 + n % 10, then n //= 10.",
+        "Compare the reversed number with the original number."
+      ],
+      "starter_code": null,
+      "reference_solution": "def is_num_pal(n):\n    if n < 0:\n        return False\n    original = n\n    rev = 0\n    while n > 0:\n        rev = rev * 10 + n % 10\n        n //= 10\n    return rev == original",
+      "execution_mode": "function",
+      "function_name": "is_num_pal",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "121",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-121",
+          "output": "False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12321",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000001",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1221",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "100",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: is_num_pal(n) -> bool\nParameters:\n• n: an integer\nTest format: each line of a test input is the argument list of one call (for example, 121 means is_num_pal(121)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a bool: True or False."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-05",
+      "title": "Compound Interest Return",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Compute compound return given principal, annual rate, and years.",
+      "problem_statement": "Task: Write a function compound_int(p, r, t, n=1) that returns the final amount after compound interest.\n• Formula: A = p x (1 + r / (100 x n)) ^ (n x t)\n• p is the principal (starting money), r is the annual rate in percent (5 means 5%), t is the number of years\n• n is how many times interest is added per year (default 1)\n• Return A rounded to 2 decimal places\n\nExample: compound_int(1000, 5, 2) → 1102.5, because 1000 × 1.05 ^ 2 = 1102.5.",
+      "input_format": "Function signature: compound_int(p, r, t, n=1) -> float\nParameters:\n• p: principal amount (positive number)\n• r: annual interest rate in percent (non-negative number)\n• t: number of years (non-negative integer)\n• n: compounding periods per year (positive integer, default 1)\nTest format: each line of a test input is the argument list of one call (for example, 1000, 5, 2 means compound_int(1000, 5, 2)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a float: the final amount rounded to 2 decimal places.",
+      "constraints": "1 <= p <= 10^6\n0 <= r <= 100\n0 <= t <= 50\n1 <= n <= 365",
+      "sample_inputs": [
+        "1000, 5, 2",
+        "1000, 10, 1, 2"
+      ],
+      "sample_outputs": [
+        "1102.5"
+      ],
+      "hints": [
+        "The rate per period is r / (100 * n), and the number of periods is n * t.",
+        "In Python the power operator is **.",
+        "Finish with round(result, 2)."
+      ],
+      "starter_code": null,
+      "reference_solution": "def compound_int(p, r, t, n=1):\n    amount = p * (1 + r / (100 * n)) ** (n * t)\n    return round(amount, 2)",
+      "execution_mode": "function",
+      "function_name": "compound_int",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000, 5, 2",
+          "output": "1102.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1000, 10, 1, 2",
+          "output": "1102.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5000, 8, 3, 4",
+          "output": "6341.21",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000, 0, 5",
+          "output": "1000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100, 12, 10, 12",
+          "output": "330.04",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "250000, 7.5, 10, 4",
+          "output": "525587.32",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1, 100, 1",
+          "output": "2.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10000, 6, 30, 365",
+          "output": "60487.53",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "500, 5, 0",
+          "output": "500.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "2000, 3.5, 5, 2",
+          "output": "2378.89",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: compound_int(p, r, t, n=1) -> float\nParameters:\n• p: principal amount (positive number)\n• r: annual interest rate in percent (non-negative number)\n• t: number of years (non-negative integer)\n• n: compounding periods per year (positive integer, default 1)\nTest format: each line of a test input is the argument list of one call (for example, 1000, 5, 2 means compound_int(1000, 5, 2)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a float: the final amount rounded to 2 decimal places."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-06",
+      "title": "Scope Shadowing Trace",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Predict return value when a local function variable shadows a global variable.",
+      "problem_statement": "Task: A variable created inside a function is local. If it has the same name as a global variable, it shadows (hides) the global one inside the function, and the global value is not changed.\n\nAssume your file starts with these two global variables:\nlevel = 10\nbonus = 5\n\nWrite a function compute_shadow(x) that follows these rules:\n• Create a local variable named level inside the function and set it to x * 2 (this shadows the global level)\n• Read the global variable bonus (do not create a local bonus)\n• Return the local level plus bonus\n• Do not use the global keyword. The global level must stay 10\n\nExample: compute_shadow(4) → 13, because the local level is 8 and bonus is 5.",
+      "input_format": "Function signature: compute_shadow(x) -> int\nParameters:\n• x: an integer\nThe module already contains the globals level = 10 and bonus = 5.\nTest format: each line of a test input is the argument list of one call (for example, 4 means compute_shadow(4)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return an int: (x * 2) + bonus.",
+      "constraints": "-10^6 <= x <= 10^6",
+      "sample_inputs": [
+        "4",
+        "0"
+      ],
+      "sample_outputs": [
+        "13",
+        "5"
+      ],
+      "hints": [
+        "Assigning to a name inside a function makes that name local to the function.",
+        "Reading a name that is not assigned inside the function uses the global one.",
+        "So level = x * 2 is local, while bonus is read from the global scope."
+      ],
+      "starter_code": null,
+      "reference_solution": "level = 10\nbonus = 5\n\ndef compute_shadow(x):\n    level = x * 2\n    return level + bonus",
+      "execution_mode": "function",
+      "function_name": "compute_shadow",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "13",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-3",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10",
+          "output": "25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "205",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-50",
+          "output": "-95",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "19",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1000000",
+          "output": "2000005",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "25",
+          "output": "55",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: compute_shadow(x) -> int\nParameters:\n• x: an integer\nThe module already contains the globals level = 10 and bonus = 5.\nTest format: each line of a test input is the argument list of one call (for example, 4 means compute_shadow(4)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return an int: (x * 2) + bonus."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-07",
+      "title": "Keyword-Only Invoicing",
+      "module": "Module 06: Functions I",
+      "difficulty": "Easy",
+      "objective": "Enforce keyword-only parameters using * syntax to format user billing strings.",
+      "problem_statement": "Task: In Python, every parameter written after a bare * in the parameter list is keyword-only: the caller must pass it by name.\n\nWrite a function format_inv(c, *, amt, rate=0.18) that builds a billing line.\n• c is the customer name (a normal parameter)\n• amt is the bill amount and must be passed by keyword, for example amt=1000\n• rate is the tax rate (default 0.18) and must also be passed by keyword\n• tax = amt x rate, and total = amt + tax\n• Return exactly: Invoice for <c>: amount=<amt>, tax=<tax>, total=<total>, with each of the three numbers written with 2 decimal places\n• If the caller passes amt without its keyword, as in format_inv('Asha', 1000), Python raises TypeError by itself. This is the expected behaviour\n\nExample: format_inv('Asha', amt=1000) → \"Invoice for Asha: amount=1000.00, tax=180.00, total=1180.00\".",
+      "input_format": "Function signature: format_inv(c, *, amt, rate=0.18) -> str\nParameters:\n• c: customer name (string)\n• amt: bill amount, keyword-only (non-negative number)\n• rate: tax rate, keyword-only (default 0.18)\nTest format: each line of a test input is the argument list of one call (for example, 'Asha', amt=1000 means format_inv('Asha', amt=1000)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a str in the format: Invoice for <c>: amount=<amt>, tax=<tax>, total=<total>. If a call breaks the keyword-only rule, it raises TypeError (the expected output line is TypeError).",
+      "constraints": "0 <= amt <= 10^9\n0 <= rate <= 1",
+      "sample_inputs": [
+        "'Asha', amt=1000",
+        "'Ravi', amt=200, rate=0.25"
+      ],
+      "sample_outputs": [
+        "'Invoice for Asha: amount=1000.00, tax=180.00, total=1180.00'",
+        "'Invoice for Ravi: amount=200.00, tax=50.00, total=250.00'"
+      ],
+      "hints": [
+        "A bare * in the parameter list makes every parameter after it keyword-only.",
+        "Format each number with f\"{value:.2f}\".",
+        "You do not need to write any code to raise the TypeError. Python does it for you."
+      ],
+      "starter_code": null,
+      "reference_solution": "def format_inv(c, *, amt, rate=0.18):\n    tax = amt * rate\n    total = amt + tax\n    return f\"Invoice for {c}: amount={amt:.2f}, tax={tax:.2f}, total={total:.2f}\"",
+      "execution_mode": "function",
+      "function_name": "format_inv",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "'Asha', amt=1000",
+          "output": "'Invoice for Asha: amount=1000.00, tax=180.00, total=1180.00'",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "'Ravi', amt=200, rate=0.25",
+          "output": "'Invoice for Ravi: amount=200.00, tax=50.00, total=250.00'",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "'Asha', 1000",
+          "output": "TypeError",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "'Meena', amt=0",
+          "output": "'Invoice for Meena: amount=0.00, tax=0.00, total=0.00'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "'Kiran', amt=500, rate=0",
+          "output": "'Invoice for Kiran: amount=500.00, tax=0.00, total=500.00'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "'A', 100, 0.5",
+          "output": "TypeError",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "'Zed', amt=99.5, rate=0.1",
+          "output": "'Invoice for Zed: amount=99.50, tax=9.95, total=109.45'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "'Big', amt=1000000",
+          "output": "'Invoice for Big: amount=1000000.00, tax=180000.00, total=1180000.00'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "'Neo', amt=50, rate=0.2",
+          "output": "'Invoice for Neo: amount=50.00, tax=10.00, total=60.00'",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "'Tia', amt=1234.56",
+          "output": "'Invoice for Tia: amount=1234.56, tax=222.22, total=1456.78'",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: format_inv(c, *, amt, rate=0.18) -> str\nParameters:\n• c: customer name (string)\n• amt: bill amount, keyword-only (non-negative number)\n• rate: tax rate, keyword-only (default 0.18)\nTest format: each line of a test input is the argument list of one call (for example, 'Asha', amt=1000 means format_inv('Asha', amt=1000)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a str in the format: Invoice for <c>: amount=<amt>, tax=<tax>, total=<total>. If a call breaks the keyword-only rule, it raises TypeError (the expected output line is TypeError)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-08",
+      "title": "Mutable Default Trap Demo",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Demonstrate default argument trap contrasting None sentinel vs mutable list.",
+      "problem_statement": "Task: A default argument value is created only once, when the function is defined. If the default is a mutable list ([]), the same list is shared by every call, so entries from earlier calls pile up. This is a common trap. The safe way is to use None as the default value and create a new list inside the function.\n\nWrite a function append_entry(e, led=None) that follows these rules:\n• If led is None, start a new empty list for this call\n• Append e to the list and return that list\n• If a list is given in led, append e to that same list and return it\n• Calls without led must never share data: append_entry(1) followed by append_entry(2) must return [1] and then [2]\n\nExample: append_entry(5, [1, 2]) → [1, 2, 5].",
+      "input_format": "Function signature: append_entry(e, led=None) -> list\nParameters:\n• e: the entry to add (any value)\n• led: the ledger, a list (default None)\nTest format: each line of a test input is the argument list of one call (for example, 1\n2\n3 means append_entry(1), then append_entry(2), then append_entry(3)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return the list that contains the new entry as its last item.",
+      "constraints": "The list led, when given, holds at most 1000 items.",
+      "sample_inputs": [
+        "5",
+        "1\n2\n3"
+      ],
+      "sample_outputs": [
+        "[5]",
+        "[1]\n[2]\n[3]"
+      ],
+      "hints": [
+        "Never write led=[] in the parameter list.",
+        "Use led=None, then check: if led is None: led = [].",
+        "Append e with led.append(e) and return led."
+      ],
+      "starter_code": null,
+      "reference_solution": "def append_entry(e, led=None):\n    if led is None:\n        led = []\n    led.append(e)\n    return led",
+      "execution_mode": "function",
+      "function_name": "append_entry",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "[5]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n2\n3",
+          "output": "[1]\n[2]\n[3]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5, [1, 2]",
+          "output": "[1, 2, 5]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "'x', ['a']",
+          "output": "['a', 'x']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "'z', []",
+          "output": "['z']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "'a'\n'b'",
+          "output": "['a']\n['b']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n8, [1]\n9",
+          "output": "[7]\n[1, 8]\n[9]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1, [2, 3]\n4",
+          "output": "[2, 3, 1]\n[4]",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "'k'\n'k'\n'k'\n'k'",
+          "output": "['k']\n['k']\n['k']\n['k']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "0",
+          "output": "[0]",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: append_entry(e, led=None) -> list\nParameters:\n• e: the entry to add (any value)\n• led: the ledger, a list (default None)\nTest format: each line of a test input is the argument list of one call (for example, 1\n2\n3 means append_entry(1), then append_entry(2), then append_entry(3)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return the list that contains the new entry as its last item."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-09",
+      "title": "Tax Slab Function",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Calculate progressive income tax across 3 fictional brackets.",
+      "problem_statement": "Task: Write a function calc_tax(income) that returns the income tax using progressive brackets. Each rate applies only to the part of the income that falls inside that bracket:\n• First 250000: 0% tax\n• From 250001 to 500000: 10% tax\n• Above 500000: 20% tax\nReturn the total tax rounded to 2 decimal places.\n\nExample: calc_tax(750000) → 75000.0. The tax is 0 on the first 250000, plus 10% of the next 250000 (= 25000), plus 20% of the last 250000 (= 50000).",
+      "input_format": "Function signature: calc_tax(income: float) -> float\nParameters:\n• income: annual income (non-negative number)\nTest format: each line of a test input is the argument list of one call (for example, 750000 means calc_tax(750000)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a float: the total tax rounded to 2 decimal places.",
+      "constraints": "0 <= income <= 10^9",
+      "sample_inputs": [
+        "200000",
+        "300000"
+      ],
+      "sample_outputs": [
+        "0.0",
+        "5000.0"
+      ],
+      "hints": [
+        "Tax is marginal: only the slice of income inside a bracket uses that bracket's rate.",
+        "Work from the top bracket down: tax the part above 500000, then cut the income to 500000 and continue.",
+        "Return round(tax, 2). Start with tax = 0.0 so the result is always a float."
+      ],
+      "starter_code": null,
+      "reference_solution": "def calc_tax(income):\n    tax = 0.0\n    if income > 500000:\n        tax += (income - 500000) * 0.20\n        income = 500000\n    if income > 250000:\n        tax += (income - 250000) * 0.10\n    return round(tax, 2)",
+      "execution_mode": "function",
+      "function_name": "calc_tax",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "200000",
+          "output": "0.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "300000",
+          "output": "5000.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "750000",
+          "output": "75000.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "500000",
+          "output": "25000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "250000.5",
+          "output": "0.05",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0",
+          "output": "0.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "125000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1234567.89",
+          "output": "171913.58",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "250001",
+          "output": "0.1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "499999.99",
+          "output": "25000.0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: calc_tax(income: float) -> float\nParameters:\n• income: annual income (non-negative number)\nTest format: each line of a test input is the argument list of one call (for example, 750000 means calc_tax(750000)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a float: the total tax rounded to 2 decimal places."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-10",
+      "title": "Loan EMI Computation",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Compute monthly loan repayment using standard EMI formula.",
+      "problem_statement": "Task: EMI (equated monthly instalment) is the fixed amount you pay every month to repay a loan. Write a function calc_emi(p, r, n) that returns the EMI.\n• p is the loan amount, r is the annual interest rate in percent, n is the number of months\n• Monthly rate: R = r / 12 / 100\n• Formula: EMI = p x R x (1 + R)^n / ((1 + R)^n - 1)\n• Special case: if r is 0 there is no interest, so EMI = p / n\n• Return the EMI rounded to 2 decimal places\n\nExample: calc_emi(100000, 10, 12) → 8791.59.",
+      "input_format": "Function signature: calc_emi(p, r, n) -> float\nParameters:\n• p: loan amount (positive number)\n• r: annual interest rate in percent (non-negative number)\n• n: number of months (positive integer)\nTest format: each line of a test input is the argument list of one call (for example, 100000, 10, 12 means calc_emi(100000, 10, 12)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a float: the monthly EMI rounded to 2 decimal places.",
+      "constraints": "1 <= p <= 10^8\n0 <= r <= 100\n1 <= n <= 600",
+      "sample_inputs": [
+        "100000, 10, 12",
+        "500000, 8.5, 60"
+      ],
+      "sample_outputs": [
+        "8791.59",
+        "10258.27"
+      ],
+      "hints": [
+        "Compute the monthly rate once: R = r / 12 / 100.",
+        "Store (1 + R) ** n in a variable because it is used twice in the formula.",
+        "Handle r == 0 first so you never divide by zero."
+      ],
+      "starter_code": null,
+      "reference_solution": "def calc_emi(p, r, n):\n    if r == 0:\n        return round(p / n, 2)\n    m = r / 12 / 100\n    f = (1 + m) ** n\n    return round(p * m * f / (f - 1), 2)",
+      "execution_mode": "function",
+      "function_name": "calc_emi",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100000, 10, 12",
+          "output": "8791.59",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "500000, 8.5, 60",
+          "output": "10258.27",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1200000, 7, 240",
+          "output": "9303.59",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10000, 0, 10",
+          "output": "1000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "50000, 12, 6",
+          "output": "8627.42",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "250000, 9.5, 36",
+          "output": "8008.24",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000, 5, 1",
+          "output": "1004.17",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "75000, 11.25, 24",
+          "output": "3504.3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2000000, 6.5, 180",
+          "output": "17422.15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "30000, 14, 48",
+          "output": "819.79",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: calc_emi(p, r, n) -> float\nParameters:\n• p: loan amount (positive number)\n• r: annual interest rate in percent (non-negative number)\n• n: number of months (positive integer)\nTest format: each line of a test input is the argument list of one call (for example, 100000, 10, 12 means calc_emi(100000, 10, 12)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a float: the monthly EMI rounded to 2 decimal places."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-11",
+      "title": "Leap Year Predicate",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Return True if year is a Gregorian leap year, False otherwise.",
+      "problem_statement": "Task: Write a function is_leap(year) that returns True if the year is a leap year in the Gregorian calendar, and False otherwise.\n• A year divisible by 4 is a leap year\n• Exception: a year divisible by 100 is NOT a leap year\n• Exception to the exception: a year divisible by 400 IS a leap year\n\nExamples: 2024 → True, 2023 → False, 1900 → False (divisible by 100 but not by 400), 2000 → True (divisible by 400).",
+      "input_format": "Function signature: is_leap(year: int) -> bool\nParameters:\n• year: a positive integer\nTest format: each line of a test input is the argument list of one call (for example, 2024 means is_leap(2024)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a bool: True or False.",
+      "constraints": "1 <= year <= 9999",
+      "sample_inputs": [
+        "2024",
+        "1900"
+      ],
+      "sample_outputs": [
+        "True",
+        "False"
+      ],
+      "hints": [
+        "Check the divisibility by 400 first, then by 100, then by 4.",
+        "A one-line version: (year % 4 == 0 and year % 100 != 0) or year % 400 == 0.",
+        "Return the boolean value directly."
+      ],
+      "starter_code": null,
+      "reference_solution": "def is_leap(year):\n    return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0",
+      "execution_mode": "function",
+      "function_name": "is_leap",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2024",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1900",
+          "output": "False",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2000",
+          "output": "True",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2023",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2100",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2400",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1600",
+          "output": "True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1700",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: is_leap(year: int) -> bool\nParameters:\n• year: a positive integer\nTest format: each line of a test input is the argument list of one call (for example, 2024 means is_leap(2024)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a bool: True or False."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-12",
+      "title": "GCD and LCM Tuple Return",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Return a tuple (gcd, lcm) for two integers using Euclidean algorithm.",
+      "problem_statement": "Task: Write a function gcd_lcm(a, b) that returns both the GCD and the LCM of two positive integers as a tuple (gcd, lcm).\n• GCD (greatest common divisor) is the largest number that divides both a and b\n• Find the GCD with the Euclidean algorithm: while b is not 0, replace (a, b) by (b, a % b). When b becomes 0, the answer is a\n• LCM (least common multiple) = original a x original b // gcd\n• Do not use math.gcd\n• Return the two values in this order: (gcd, lcm)\n\nExample: gcd_lcm(12, 18) → (6, 36).",
+      "input_format": "Function signature: gcd_lcm(a, b) -> tuple[int, int]\nParameters:\n• a: a positive integer\n• b: a positive integer\nTest format: each line of a test input is the argument list of one call (for example, 12, 18 means gcd_lcm(12, 18)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a tuple of two ints: (gcd, lcm).",
+      "constraints": "1 <= a, b <= 10^9",
+      "sample_inputs": [
+        "12, 18",
+        "7, 13"
+      ],
+      "sample_outputs": [
+        "(6, 36)",
+        "(1, 91)"
+      ],
+      "hints": [
+        "Keep copies of the original a and b, because the loop changes them.",
+        "Euclid loop: while b: a, b = b, a % b. The GCD is the final a.",
+        "lcm = original_a * original_b // gcd. Return (gcd, lcm)."
+      ],
+      "starter_code": null,
+      "reference_solution": "def gcd_lcm(a, b):\n    x, y = a, b\n    while y:\n        x, y = y, x % y\n    return (x, a * b // x)",
+      "execution_mode": "function",
+      "function_name": "gcd_lcm",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12, 18",
+          "output": "(6, 36)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7, 13",
+          "output": "(1, 91)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100, 25",
+          "output": "(25, 100)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1, 1",
+          "output": "(1, 1)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "270, 192",
+          "output": "(6, 8640)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000007, 13",
+          "output": "(1, 13000000091)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "48, 180",
+          "output": "(12, 720)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "17, 17",
+          "output": "(17, 17)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "21, 6",
+          "output": "(3, 42)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "99999, 33333",
+          "output": "(33333, 99999)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(log min(a, b))",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: gcd_lcm(a, b) -> tuple[int, int]\nParameters:\n• a: a positive integer\n• b: a positive integer\nTest format: each line of a test input is the argument list of one call (for example, 12, 18 means gcd_lcm(12, 18)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a tuple of two ints: (gcd, lcm)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-13",
+      "title": "Quadratic Equation Solver",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Return real roots of ax^2 + bx + c = 0 as sorted tuple, or empty if complex.",
+      "problem_statement": "Task: Write a function solve_quad(a, b, c) that returns the real roots of the equation ax^2 + bx + c = 0 as a tuple. The value of a is never 0.\n• Discriminant: D = b^2 - 4ac\n• If D < 0, there are no real roots: return an empty tuple ()\n• If D == 0, there is one root: return a tuple with one value, (root,)\n• If D > 0, there are two roots: return (smaller, larger)\n• Roots are x = (-b +/- sqrt(D)) / (2a)\n• Round every root to 4 decimal places\n\nExamples: solve_quad(1, -3, 2) → (1.0, 2.0), solve_quad(1, 2, 1) → (-1.0,), solve_quad(1, 0, 1) → ().",
+      "input_format": "Function signature: solve_quad(a, b, c) -> tuple\nParameters:\n• a: coefficient of x^2 (non-zero integer)\n• b: coefficient of x (integer)\n• c: constant term (integer)\nTest format: each line of a test input is the argument list of one call (for example, 1, -3, 2 means solve_quad(1, -3, 2)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a tuple of floats: () or (root,) or (smaller, larger).",
+      "constraints": "-1000 <= a, b, c <= 1000\na != 0",
+      "sample_inputs": [
+        "1, -3, 2",
+        "1, 2, 1"
+      ],
+      "sample_outputs": [
+        "(1.0, 2.0)",
+        "(-1.0,)"
+      ],
+      "hints": [
+        "Compute D = b * b - 4 * a * c first and decide the case from D.",
+        "Use math.sqrt(D). When a is negative the first root can be larger, so sort the two roots.",
+        "round(x, 4) + 0.0 turns a possible -0.0 into 0.0."
+      ],
+      "starter_code": null,
+      "reference_solution": "import math\n\ndef solve_quad(a, b, c):\n    d = b * b - 4 * a * c\n    if d < 0:\n        return ()\n    if d == 0:\n        return (round(-b / (2 * a), 4) + 0.0,)\n    s = math.sqrt(d)\n    r1 = round((-b - s) / (2 * a), 4) + 0.0\n    r2 = round((-b + s) / (2 * a), 4) + 0.0\n    return tuple(sorted((r1, r2)))",
+      "execution_mode": "function",
+      "function_name": "solve_quad",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1, -3, 2",
+          "output": "(1.0, 2.0)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1, 2, 1",
+          "output": "(-1.0,)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1, 0, 1",
+          "output": "()",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2, -4, -6",
+          "output": "(-1.0, 3.0)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1, 0, -4",
+          "output": "(-2.0, 2.0)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1, 1, 1",
+          "output": "()",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1, -2, 1",
+          "output": "(1.0,)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3, 2, -1",
+          "output": "(-1.0, 0.3333)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-1, 0, 4",
+          "output": "(-2.0, 2.0)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1, -1, -1",
+          "output": "(-0.618, 1.618)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: solve_quad(a, b, c) -> tuple\nParameters:\n• a: coefficient of x^2 (non-zero integer)\n• b: coefficient of x (integer)\n• c: constant term (integer)\nTest format: each line of a test input is the argument list of one call (for example, 1, -3, 2 means solve_quad(1, -3, 2)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a tuple of floats: () or (root,) or (smaller, larger)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-14",
+      "title": "Safe Integer Conversion",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Parse string to int, returning default fallback integer when conversion fails.",
+      "problem_statement": "Task: Write a function safe_int(val, default=0) that converts a string to an integer, but never crashes.\n• Try to convert val with int(val)\n• If the conversion works, return the integer\n• If the conversion fails (int() raises ValueError), return default instead\n• Spaces around the number are fine: ' 77 ' → 77\n• Text such as 'abc', '12.5' or an empty string cannot be converted, so the default is returned\n\nExamples: safe_int('42') → 42, safe_int('abc') → 0, safe_int('12.5', default=-1) → -1.",
+      "input_format": "Function signature: safe_int(val, default=0) -> int\nParameters:\n• val: a string\n• default: the integer to return when conversion fails (default 0)\nTest format: each line of a test input is the argument list of one call (for example, '42' means safe_int('42')). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return an int: the converted number or the default value.",
+      "constraints": "0 <= length of val <= 50",
+      "sample_inputs": [
+        "'42'",
+        "'abc'"
+      ],
+      "sample_outputs": [
+        "42",
+        "0"
+      ],
+      "hints": [
+        "Put int(val) inside a try block.",
+        "Catch ValueError in the except block and return default there.",
+        "int() already accepts leading and trailing spaces and a + or - sign."
+      ],
+      "starter_code": null,
+      "reference_solution": "def safe_int(val, default=0):\n    try:\n        return int(val)\n    except ValueError:\n        return default",
+      "execution_mode": "function",
+      "function_name": "safe_int",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "'42'",
+          "output": "42",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "'abc'",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "'12.5', default=-1",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "' 77 '",
+          "output": "77",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "''",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "'-15'",
+          "output": "-15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "'0x1F', -5",
+          "output": "-5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "'+8'",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "'9999999999'",
+          "output": "9999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "'3 4', 99",
+          "output": "99",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: safe_int(val, default=0) -> int\nParameters:\n• val: a string\n• default: the integer to return when conversion fails (default 0)\nTest format: each line of a test input is the argument list of one call (for example, '42' means safe_int('42')). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return an int: the converted number or the default value."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-15",
+      "title": "Temperature Scale Converter",
+      "module": "Module 06: Functions I",
+      "difficulty": "Medium",
+      "objective": "Convert temperature between C, F, and K based on source and target unit codes.",
+      "problem_statement": "Task: Write a function convert_temp(v, fr, to) that converts the temperature v from the unit fr to the unit to. The unit codes are 'C' (Celsius), 'F' (Fahrenheit) and 'K' (Kelvin).\n• C to F: C x 9 / 5 + 32\n• F to C: (F - 32) x 5 / 9\n• C to K: C + 273.15\n• K to C: K - 273.15\n• For other pairs, convert to Celsius first, then to the target unit\n• If fr and to are the same, the value stays the same\n• If either unit code is not 'C', 'F' or 'K', raise ValueError\n• Return the result rounded to 2 decimal places\n\nExample: convert_temp(100, 'C', 'F') → 212.0.",
+      "input_format": "Function signature: convert_temp(v, fr, to) -> float\nParameters:\n• v: temperature value (number)\n• fr: source unit code ('C', 'F' or 'K')\n• to: target unit code ('C', 'F' or 'K')\nTest format: each line of a test input is the argument list of one call (for example, 100, 'C', 'F' means convert_temp(100, 'C', 'F')). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a float rounded to 2 decimal places. For an invalid unit code, the call raises ValueError (the expected output line is ValueError).",
+      "constraints": "-1000 <= v <= 10^6\nUnit codes are single uppercase letters",
+      "sample_inputs": [
+        "100, 'C', 'F'",
+        "32, 'F', 'C'"
+      ],
+      "sample_outputs": [
+        "212.0",
+        "0.0"
+      ],
+      "hints": [
+        "Use Celsius as the middle step: first convert v to Celsius, then convert Celsius to the target.",
+        "Validate both unit codes before converting, and raise ValueError(...) for a bad code.",
+        "Convert v with float(v) and end with round(result, 2)."
+      ],
+      "starter_code": null,
+      "reference_solution": "def convert_temp(v, fr, to):\n    if fr not in (\"C\", \"F\", \"K\") or to not in (\"C\", \"F\", \"K\"):\n        raise ValueError(\"invalid unit\")\n    v = float(v)\n    if fr == \"C\":\n        c = v\n    elif fr == \"F\":\n        c = (v - 32) * 5 / 9\n    else:\n        c = v - 273.15\n    if to == \"C\":\n        out = c\n    elif to == \"F\":\n        out = c * 9 / 5 + 32\n    else:\n        out = c + 273.15\n    return round(out, 2)",
+      "execution_mode": "function",
+      "function_name": "convert_temp",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100, 'C', 'F'",
+          "output": "212.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "32, 'F', 'C'",
+          "output": "0.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0, 'C', 'K'",
+          "output": "273.15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "300, 'K', 'F'",
+          "output": "80.33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-40, 'C', 'F'",
+          "output": "-40.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "212, 'F', 'K'",
+          "output": "373.15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "98.6, 'F', 'C'",
+          "output": "37.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "273.15, 'K', 'C'",
+          "output": "0.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "50, 'C', 'C'",
+          "output": "50.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "10, 'C', 'X'",
+          "output": "ValueError",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: convert_temp(v, fr, to) -> float\nParameters:\n• v: temperature value (number)\n• fr: source unit code ('C', 'F' or 'K')\n• to: target unit code ('C', 'F' or 'K')\nTest format: each line of a test input is the argument list of one call (for example, 100, 'C', 'F' means convert_temp(100, 'C', 'F')). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a float rounded to 2 decimal places. For an invalid unit code, the call raises ValueError (the expected output line is ValueError)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-16",
+      "title": "Permutations Formula",
+      "module": "Module 06: Functions I",
+      "difficulty": "Hard",
+      "objective": "Compute permutations of N items taken R at a time using factorial functions.",
+      "problem_statement": "Task: A permutation is an ordered arrangement. The number of ways to arrange r items chosen from n different items is written nPr.\n\nWrite a function perm_count(n, r) that returns nPr. Follow these rules:\n• Formula: nPr = n! / (n - r)!\n• n! (factorial) means 1 × 2 × 3 x ... x n, and 0! = 1\n• Write your own helper function fact(k) that returns k!. You may use a loop or recursion. Do not use math.factorial\n• Use fact() inside perm_count(), and use integer division (//) so the result stays an int\n• If r is greater than n, there are no arrangements: return 0\n• If n or r is negative, raise ValueError\n• r = 0 gives 1, because there is exactly one way to choose nothing\n\nExamples: perm_count(5, 2) → 20 (5 × 4), perm_count(5, 5) → 120, perm_count(5, 0) → 1, perm_count(3, 5) → 0.",
+      "input_format": "Function signature: perm_count(n, r) -> int\nParameters:\n• n: number of different items (integer)\n• r: number of items taken at a time (integer)\nTest format: each line of a test input is the argument list of one call (for example, 5, 2 means perm_count(5, 2)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return an int: the number of permutations. For a negative n or r, the call raises ValueError (the expected output line is ValueError).",
+      "constraints": "-10 <= n, r <= 100",
+      "sample_inputs": [
+        "5, 2",
+        "10, 3"
+      ],
+      "sample_outputs": [
+        "20",
+        "720"
+      ],
+      "hints": [
+        "Check the special cases first: negative values raise ValueError, and r > n returns 0.",
+        "fact(k) can be a loop: result = 1, then multiply by every number from 2 to k.",
+        "Return fact(n) // fact(n - r)."
+      ],
+      "starter_code": null,
+      "reference_solution": "def fact(k):\n    result = 1\n    for i in range(2, k + 1):\n        result *= i\n    return result\n\ndef perm_count(n, r):\n    if n < 0 or r < 0:\n        raise ValueError(\"n and r must be non-negative\")\n    if r > n:\n        return 0\n    return fact(n) // fact(n - r)",
+      "execution_mode": "function",
+      "function_name": "perm_count",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5, 2",
+          "output": "20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10, 3",
+          "output": "720",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5, 5",
+          "output": "120",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5, 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0, 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3, 5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "20, 10",
+          "output": "670442572800",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100, 3",
+          "output": "970200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "52, 5",
+          "output": "311875200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "-1, 2",
+          "output": "ValueError",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(n)",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: perm_count(n, r) -> int\nParameters:\n• n: number of different items (integer)\n• r: number of items taken at a time (integer)\nTest format: each line of a test input is the argument list of one call (for example, 5, 2 means perm_count(5, 2)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return an int: the number of permutations. For a negative n or r, the call raises ValueError (the expected output line is ValueError)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M06-17",
+      "title": "Bisection Root Finder",
+      "module": "Module 06: Functions I",
+      "difficulty": "Hard",
+      "objective": "Approximate square root of float N to 6 decimals using binary bisection.",
+      "problem_statement": "Task: Bisection finds a square root by repeatedly cutting a search interval in half. Write a function sqrt_bisect(n, eps=1e-6) that approximates the square root of n without using math.sqrt() or **0.5. Follow these steps exactly, so that everyone gets the same answer.\n\nStep 1: If n < 0, raise ValueError.\nStep 2: Set low = 0.0 and high = max(1.0, n). (When n is between 0 and 1, its square root is larger than n, so high must be at least 1.)\nStep 3: While high - low > eps, repeat:\n• mid = (low + high) / 2\n• If mid * mid < n, the root is in the upper half, so set low = mid\n• Otherwise the root is in the lower half, so set high = mid\nStep 4: Return round((low + high) / 2, 6).\n\nExamples:\n• sqrt_bisect(25) → 5.0\n• sqrt_bisect(2) → 1.414214\n• sqrt_bisect(0.25) → 0.5\n• sqrt_bisect(2, eps=0.001) → 1.414551 (a larger eps stops earlier and gives a rougher answer)",
+      "input_format": "Function signature: sqrt_bisect(n, eps=1e-6) -> float\nParameters:\n• n: the number whose square root is needed (non-negative number)\n• eps: required accuracy, the loop stops when the interval is not wider than eps (default 1e-6)\nTest format: each line of a test input is the argument list of one call (for example, 25 means sqrt_bisect(25)). The expected output is the repr of the returned value, one line per call.",
+      "output_format": "Return a float: the approximate square root rounded to 6 decimal places. For a negative n, the call raises ValueError (the expected output line is ValueError).",
+      "constraints": "-100 <= n <= 10^12\n10^-9 <= eps <= 1",
+      "sample_inputs": [
+        "25",
+        "2"
+      ],
+      "sample_outputs": [
+        "5.0",
+        "1.414214"
+      ],
+      "hints": [
+        "Each loop step halves the interval, so the loop needs only about log2((high - low) / eps) steps.",
+        "Compare mid * mid with n to decide which half to keep.",
+        "Follow the steps in the description exactly (including high = max(1.0, n)), then return the rounded midpoint."
+      ],
+      "starter_code": null,
+      "reference_solution": "def sqrt_bisect(n, eps=1e-6):\n    if n < 0:\n        raise ValueError(\"n must be non-negative\")\n    low = 0.0\n    high = max(1.0, n)\n    while high - low > eps:\n        mid = (low + high) / 2\n        if mid * mid < n:\n            low = mid\n        else:\n            high = mid\n    return round((low + high) / 2, 6)",
+      "execution_mode": "function",
+      "function_name": "sqrt_bisect",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "25",
+          "output": "5.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2",
+          "output": "1.414214",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0.25",
+          "output": "0.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "0.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100",
+          "output": "10.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10",
+          "output": "3.162278",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "1000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2.25",
+          "output": "1.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "2, eps=0.001",
+          "output": "1.414551",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "-4",
+          "output": "ValueError",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Functions I",
+        "time_complexity": "O(log(n / eps))",
+        "space_complexity": "O(1)",
+        "input_format": "Function signature: sqrt_bisect(n, eps=1e-6) -> float\nParameters:\n• n: the number whose square root is needed (non-negative number)\n• eps: required accuracy, the loop stops when the interval is not wider than eps (default 1e-6)\nTest format: each line of a test input is the argument list of one call (for example, 25 means sqrt_bisect(25)). The expected output is the repr of the returned value, one line per call.",
+        "output_format": "Return a float: the approximate square root rounded to 6 decimal places. For a negative n, the call raises ValueError (the expected output line is ValueError)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_06_functions_i.csv",
+    "total_rows": 17,
+    "total_questions": 17,
+    "valid_questions": 17,
+    "total_test_cases": 170,
+    "visible_test_cases": 51,
+    "hidden_test_cases": 119,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

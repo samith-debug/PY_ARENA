@@ -1,0 +1,1877 @@
+{
+  "id": "9c8992d3",
+  "filename": "module_04_conditional_statements.csv",
+  "imported_at": "2026-10-16T05:49:15.951299Z",
+  "total_questions": 17,
+  "total_test_cases": 170,
+  "visible_test_cases": 51,
+  "hidden_test_cases": 119,
+  "questions": [
+    {
+      "question_id": "M04-01",
+      "title": "Lab Bench Allocation",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Easy",
+      "objective": "Branch on integer parity (n % 2 == 0) to assign Left or Right bench.",
+      "problem_statement": "Task: In a computer lab, benches are given by roll number:\n• Even roll number: Left bench\n• Odd roll number: Right bench\n\nA number is even when it leaves remainder 0 after dividing by 2 (n % 2 == 0).\n\nGiven a roll number, print which bench the student gets.",
+      "input_format": "A single line containing one positive integer n (the roll number).",
+      "output_format": "One line: Bench: <Left/Right>",
+      "constraints": "1 <= n <= 10^18",
+      "sample_inputs": [
+        "12",
+        "7"
+      ],
+      "sample_outputs": [
+        "Bench: Left",
+        "Bench: Right"
+      ],
+      "hints": [
+        "Parity is decided by the remainder when n is divided by 2.",
+        "If n % 2 == 0 the number is even; otherwise it is odd.",
+        "Use a two-way if/else and print the label for the chosen branch."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nif n % 2 == 0:\n    print(\"Bench: Left\")\nelse:\n    print(\"Bench: Right\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12",
+          "output": "Bench: Left",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7",
+          "output": "Bench: Right",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100",
+          "output": "Bench: Left",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "Bench: Right",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2",
+          "output": "Bench: Left",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "999999999999999999",
+          "output": "Bench: Right",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000000000000",
+          "output": "Bench: Left",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "50",
+          "output": "Bench: Left",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "33",
+          "output": "Bench: Right",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "64",
+          "output": "Bench: Left",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one positive integer n (the roll number).",
+        "output_format": "One line: Bench: <Left/Right>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-02",
+      "title": "Bank Transaction Category",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Easy",
+      "objective": "Classify integer amount as \"CREDIT\", \"DEBIT\", or \"ZERO\" using 3-way if/elif/else.",
+      "problem_statement": "Task: A bank gives every transaction a category based on its amount:\n• If the amount is greater than 0, the category is CREDIT (money came in).\n• If the amount is less than 0, the category is DEBIT (money went out).\n• If the amount is exactly 0, the category is ZERO.\n\nGiven one integer amount, print its category.",
+      "input_format": "A single line containing one integer amount.",
+      "output_format": "One line: Category: <CREDIT/DEBIT/ZERO>",
+      "constraints": "-10^9 <= amount <= 10^9",
+      "sample_inputs": [
+        "500",
+        "-250"
+      ],
+      "sample_outputs": [
+        "Category: CREDIT",
+        "Category: DEBIT"
+      ],
+      "hints": [
+        "There are exactly three mutually exclusive cases: amount > 0, amount < 0, and amount == 0.",
+        "Test amount > 0 first, then amount < 0 with elif, and let else cover zero.",
+        "Print the label with the prefix 'Category: '."
+      ],
+      "starter_code": null,
+      "reference_solution": "amount = int(input())\nif amount > 0:\n    print(\"Category: CREDIT\")\nelif amount < 0:\n    print(\"Category: DEBIT\")\nelse:\n    print(\"Category: ZERO\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "500",
+          "output": "Category: CREDIT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-250",
+          "output": "Category: DEBIT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "Category: ZERO",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "Category: CREDIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-1",
+          "output": "Category: DEBIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000",
+          "output": "Category: CREDIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1000000000",
+          "output": "Category: DEBIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "Category: CREDIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-999",
+          "output": "Category: DEBIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "12345",
+          "output": "Category: CREDIT",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer amount.",
+        "output_format": "One line: Category: <CREDIT/DEBIT/ZERO>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-03",
+      "title": "Coordinate Plane Quadrant",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Easy",
+      "objective": "Determine quadrant I, II, III, IV, AXIS, or ORIGIN from coordinates (x, y).",
+      "problem_statement": "Task: A point on a graph has two numbers: x (left-right) and y (up-down). Where the point lies depends on x and y:\n• x = 0 and y = 0: ORIGIN\n• Exactly one of x or y is 0: AXIS (the point is on the x-axis or the y-axis)\n• x > 0 and y > 0: Quadrant I\n• x < 0 and y > 0: Quadrant II\n• x < 0 and y < 0: Quadrant III\n• x > 0 and y < 0: Quadrant IV\n\nGiven x and y, print where the point lies.",
+      "input_format": "A single line containing two space-separated integers x and y.",
+      "output_format": "One line: Location: <I/II/III/IV/AXIS/ORIGIN>",
+      "constraints": "-10^9 <= x, y <= 10^9",
+      "sample_inputs": [
+        "3 4",
+        "-5 2"
+      ],
+      "sample_outputs": [
+        "Location: I",
+        "Location: II"
+      ],
+      "hints": [
+        "Handle the special cases (origin and axes) before checking quadrants.",
+        "x == 0 and y == 0 is the ORIGIN; otherwise x == 0 or y == 0 means AXIS.",
+        "For the remaining points, the signs of x and y pick exactly one quadrant."
+      ],
+      "starter_code": null,
+      "reference_solution": "x, y = map(int, input().split())\nif x == 0 and y == 0:\n    loc = \"ORIGIN\"\nelif x == 0 or y == 0:\n    loc = \"AXIS\"\nelif x > 0 and y > 0:\n    loc = \"I\"\nelif x < 0 and y > 0:\n    loc = \"II\"\nelif x < 0 and y < 0:\n    loc = \"III\"\nelse:\n    loc = \"IV\"\nprint(f\"Location: {loc}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 4",
+          "output": "Location: I",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-5 2",
+          "output": "Location: II",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0 0",
+          "output": "Location: ORIGIN",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-4 -9",
+          "output": "Location: III",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6 -1",
+          "output": "Location: IV",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 -8",
+          "output": "Location: AXIS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12 0",
+          "output": "Location: AXIS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000000 -1000000000",
+          "output": "Location: IV",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "-1 0",
+          "output": "Location: AXIS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "0 1",
+          "output": "Location: AXIS",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated integers x and y.",
+        "output_format": "One line: Location: <I/II/III/IV/AXIS/ORIGIN>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-04",
+      "title": "Cheapest Vendor Quote",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Easy",
+      "objective": "Identify minimum of 3 quotes and print vendor name with strict tie-break rules.",
+      "problem_statement": "Task: A company asks three vendors (A, B and C) for a price quote.\n• The vendor with the lowest quote wins.\n• If two or more vendors give the same lowest quote, the vendor who comes first in the alphabet wins (A before B, and B before C).\n\nGiven the three quotes, print the winning vendor and its price.\n\nExample: quotes 500 400 400 → B and C both quote 400, so B wins.",
+      "input_format": "A single line containing three space-separated integers: the quotes of vendors A, B, and C.",
+      "output_format": "Two lines:\nLine 1: Vendor: <A/B/C>\nLine 2: Price: <lowest quote>",
+      "constraints": "1 <= quote <= 10^9",
+      "sample_inputs": [
+        "300 250 400",
+        "100 200 300"
+      ],
+      "sample_outputs": [
+        "Vendor: B\nPrice: 250",
+        "Vendor: A\nPrice: 100"
+      ],
+      "hints": [
+        "Check vendors in alphabetical order so that ties automatically favour the earlier vendor.",
+        "A wins if a <= b and a <= c (use <=, not <).",
+        "If A did not win, B wins when b <= c; otherwise C wins."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b, c = map(int, input().split())\nif a <= b and a <= c:\n    vendor, price = \"A\", a\nelif b <= c:\n    vendor, price = \"B\", b\nelse:\n    vendor, price = \"C\", c\nprint(f\"Vendor: {vendor}\")\nprint(f\"Price: {price}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "300 250 400",
+          "output": "Vendor: B\nPrice: 250",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "100 200 300",
+          "output": "Vendor: A\nPrice: 100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "500 400 400",
+          "output": "Vendor: B\nPrice: 400",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "250 250 250",
+          "output": "Vendor: A\nPrice: 250",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "900 800 700",
+          "output": "Vendor: C\nPrice: 700",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "700 800 700",
+          "output": "Vendor: A\nPrice: 700",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 1000000000 1000000000",
+          "output": "Vendor: A\nPrice: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "999999999 1000000000 999999999",
+          "output": "Vendor: A\nPrice: 999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "600 500 500",
+          "output": "Vendor: B\nPrice: 500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "20 30 10",
+          "output": "Vendor: C\nPrice: 10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated integers: the quotes of vendors A, B, and C.",
+        "output_format": "Two lines:\nLine 1: Vendor: <A/B/C>\nLine 2: Price: <lowest quote>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-05",
+      "title": "Ternary Surcharge Evaluator",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Easy",
+      "objective": "Assign delivery surcharge using single-line ternary expression based on distance.",
+      "problem_statement": "Task: A delivery app adds an extra charge (surcharge) for long trips:\n• Distance of 10 km or less: surcharge is 0\n• Distance of more than 10 km: surcharge is 25\n• Total fee = base fee + surcharge\n\nGiven the base fee and the distance, find the surcharge and the total fee.\n\nChoose the surcharge in a single line using a ternary expression: value_if_true if condition else value_if_false.",
+      "input_format": "A single line containing two space-separated integers: base_fee and distance_km.",
+      "output_format": "Two lines:\nLine 1: Surcharge: <surcharge>\nLine 2: Total: <base_fee + surcharge>",
+      "constraints": "0 <= base_fee <= 100000\n0 <= distance_km <= 1000",
+      "sample_inputs": [
+        "40 5",
+        "40 15"
+      ],
+      "sample_outputs": [
+        "Surcharge: 0\nTotal: 40",
+        "Surcharge: 25\nTotal: 65"
+      ],
+      "hints": [
+        "A trip of exactly 10 km is NOT longer than 10 km, so it gets no surcharge.",
+        "Ternary syntax: surcharge = 25 if distance_km > 10 else 0.",
+        "Add the surcharge to the base fee to get the total."
+      ],
+      "starter_code": null,
+      "reference_solution": "base, dist = map(int, input().split())\nsurcharge = 25 if dist > 10 else 0\nprint(f\"Surcharge: {surcharge}\")\nprint(f\"Total: {base + surcharge}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "40 5",
+          "output": "Surcharge: 0\nTotal: 40",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "40 15",
+          "output": "Surcharge: 25\nTotal: 65",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "60 10",
+          "output": "Surcharge: 0\nTotal: 60",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 0",
+          "output": "Surcharge: 0\nTotal: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "50 11",
+          "output": "Surcharge: 25\nTotal: 75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100000 1000",
+          "output": "Surcharge: 25\nTotal: 100025",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "30 1",
+          "output": "Surcharge: 0\nTotal: 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "75 9",
+          "output": "Surcharge: 0\nTotal: 75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "20 100",
+          "output": "Surcharge: 25\nTotal: 45",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "45 12",
+          "output": "Surcharge: 25\nTotal: 70",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated integers: base_fee and distance_km.",
+        "output_format": "Two lines:\nLine 1: Surcharge: <surcharge>\nLine 2: Total: <base_fee + surcharge>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-06",
+      "title": "Triangle Validity & Class",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Validate triangle inequality and classify EQUILATERAL, ISOSCELES, or SCALENE.",
+      "problem_statement": "Task: Three sides can form a triangle only if the sum of any two sides is strictly greater than the third side. All three checks must be true:\n• a + b > c\n• a + c > b\n• b + c > a\n\nIf any check fails, the triangle is INVALID. For example, sides 1, 2, 3 are invalid because 1 + 2 is equal to 3, not greater than 3.\n\nIf the triangle is valid, find its type:\n• EQUILATERAL: all three sides are equal\n• ISOSCELES: exactly two sides are equal\n• SCALENE: all three sides are different\n\nGiven a, b and c, print INVALID or the type of the triangle.",
+      "input_format": "A single line containing three space-separated positive integers a, b, and c.",
+      "output_format": "One line: Triangle: <INVALID/EQUILATERAL/ISOSCELES/SCALENE>",
+      "constraints": "1 <= a, b, c <= 10^9",
+      "sample_inputs": [
+        "3 4 5",
+        "5 5 5"
+      ],
+      "sample_outputs": [
+        "Triangle: SCALENE",
+        "Triangle: EQUILATERAL"
+      ],
+      "hints": [
+        "Check validity first: a + b > c, a + c > b, and b + c > a must all hold.",
+        "If the sides are valid, test for all three equal before testing for any two equal.",
+        "Sides 1 2 3 are invalid because 1 + 2 is not strictly greater than 3."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b, c = map(int, input().split())\nif a + b <= c or a + c <= b or b + c <= a:\n    kind = \"INVALID\"\nelif a == b == c:\n    kind = \"EQUILATERAL\"\nelif a == b or b == c or a == c:\n    kind = \"ISOSCELES\"\nelse:\n    kind = \"SCALENE\"\nprint(f\"Triangle: {kind}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 4 5",
+          "output": "Triangle: SCALENE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5 5 5",
+          "output": "Triangle: EQUILATERAL",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3",
+          "output": "Triangle: INVALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5 8",
+          "output": "Triangle: ISOSCELES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2 5",
+          "output": "Triangle: INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7 10 5",
+          "output": "Triangle: SCALENE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000 1000000000 1000000000",
+          "output": "Triangle: EQUILATERAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 1 1000000000",
+          "output": "Triangle: INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "6 6 11",
+          "output": "Triangle: ISOSCELES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "9 4 9",
+          "output": "Triangle: ISOSCELES",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated positive integers a, b, and c.",
+        "output_format": "One line: Triangle: <INVALID/EQUILATERAL/ISOSCELES/SCALENE>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-07",
+      "title": "Calendar Date Validator",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Validate day, month, year taking full leap-year rules for February into account.",
+      "problem_statement": "Task: Check whether a date (day, month, year) really exists on the calendar.\n\nA date is VALID only when both of these are true:\n• the month is from 1 to 12\n• the day is from 1 to the number of days in that month\n\nDays in each month:\n• 31 days: January, March, May, July, August, October, December\n• 30 days: April, June, September, November\n• February: 28 days, or 29 days in a leap year\n\nA year is a leap year if it is divisible by 4. The exception is a year divisible by 100, which is a leap year only if it is also divisible by 400. So 2024 and 2000 are leap years, but 2023 and 1900 are not.\n\nGiven day, month and year, print whether the date is VALID or INVALID.",
+      "input_format": "A single line containing three space-separated integers: day, month, and year.",
+      "output_format": "One line: Date: <VALID/INVALID>",
+      "constraints": "0 <= day <= 100\n0 <= month <= 100\n1 <= year <= 9999",
+      "sample_inputs": [
+        "29 2 2024",
+        "29 2 2023"
+      ],
+      "sample_outputs": [
+        "Date: VALID",
+        "Date: INVALID"
+      ],
+      "hints": [
+        "Reject any month outside 1..12 before looking up the number of days.",
+        "Leap year: (year % 4 == 0 and year % 100 != 0) or year % 400 == 0.",
+        "Pick max_day for the month (28/29, 30, or 31) and accept the date if 1 <= day <= max_day."
+      ],
+      "starter_code": null,
+      "reference_solution": "d, m, y = map(int, input().split())\nleap = (y % 4 == 0 and y % 100 != 0) or y % 400 == 0\nif m < 1 or m > 12:\n    valid = False\nelse:\n    if m == 2:\n        max_day = 29 if leap else 28\n    elif m in (4, 6, 9, 11):\n        max_day = 30\n    else:\n        max_day = 31\n    valid = 1 <= d <= max_day\nprint(\"Date: VALID\" if valid else \"Date: INVALID\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "29 2 2024",
+          "output": "Date: VALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "29 2 2023",
+          "output": "Date: INVALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "31 4 2025",
+          "output": "Date: INVALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "29 2 1900",
+          "output": "Date: INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "29 2 2000",
+          "output": "Date: VALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "31 12 9999",
+          "output": "Date: VALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0 5 2020",
+          "output": "Date: INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15 13 2020",
+          "output": "Date: INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "30 6 2021",
+          "output": "Date: VALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "28 2 2023",
+          "output": "Date: VALID",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated integers: day, month, and year.",
+        "output_format": "One line: Date: <VALID/INVALID>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-08",
+      "title": "Tiered Electricity Billing",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Calculate electric bill using exact slab table: 0-100 @ 2.0, 101-300 @ 3.5, 301+ @ 5.0.",
+      "problem_statement": "Task: An electricity company charges by slabs. Each slab has its own price per unit, and a price applies only to the units that fall inside that slab:\n• First 100 units (units 1 to 100): 2.0 per unit\n• Next 200 units (units 101 to 300): 3.5 per unit\n• Every unit above 300: 5.0 per unit\n\nExample: for 250 units, the bill is 100 × 2.0 + 150 × 3.5 = 725.00.\n\nGiven the units used, print the total bill with exactly 2 digits after the decimal point.",
+      "input_format": "A single line containing one integer: units consumed.",
+      "output_format": "One line: Bill: <amount with 2 decimal places>",
+      "constraints": "0 <= units <= 1000000",
+      "sample_inputs": [
+        "50",
+        "250"
+      ],
+      "sample_outputs": [
+        "Bill: 100.00",
+        "Bill: 725.00"
+      ],
+      "hints": [
+        "Rates apply per slab, not to the whole consumption (for 250 units, only 150 are billed at 3.5).",
+        "Use three branches: units <= 100, units <= 300, and everything above 300.",
+        "Format the result with f\"{bill:.2f}\"."
+      ],
+      "starter_code": null,
+      "reference_solution": "units = int(input())\nif units <= 100:\n    bill = units * 2.0\nelif units <= 300:\n    bill = 100 * 2.0 + (units - 100) * 3.5\nelse:\n    bill = 100 * 2.0 + 200 * 3.5 + (units - 300) * 5.0\nprint(f\"Bill: {bill:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "50",
+          "output": "Bill: 100.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "250",
+          "output": "Bill: 725.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100",
+          "output": "Bill: 200.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "Bill: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "101",
+          "output": "Bill: 203.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "300",
+          "output": "Bill: 900.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "301",
+          "output": "Bill: 905.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000",
+          "output": "Bill: 4999400.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "1",
+          "output": "Bill: 2.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "450",
+          "output": "Bill: 1650.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one integer: units consumed.",
+        "output_format": "One line: Bill: <amount with 2 decimal places>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-09",
+      "title": "Freelancer Tie-Breaker Bid",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Select lowest bid among 3; on numeric ties, pick earlier vendor alphabetically.",
+      "problem_statement": "Task: Three freelancers each send a bid (price) for a project.\n• The freelancer with the lowest bid wins.\n• If two or more freelancers have the same lowest bid, the freelancer whose name comes first in alphabetical order wins.\n\nEach freelancer is given as a name and a bid on one line. Read all three lines, then print the name of the winner and the winning bid.\n\nExample: dev 200, cara 200, abel 200 → all bids are equal, so abel wins because it comes first in alphabetical order.",
+      "input_format": "Three lines. Each line contains a freelancer's name and bid separated by a space.",
+      "output_format": "Two lines:\nLine 1: Winner: <name>\nLine 2: Bid: <amount>",
+      "constraints": "Names consist of 1 to 20 lowercase English letters and are all distinct.\n1 <= bid <= 10^9",
+      "sample_inputs": [
+        "zara 500\nmila 450\nomar 600",
+        "kiran 300\naman 300\nbela 400"
+      ],
+      "sample_outputs": [
+        "Winner: mila\nBid: 450",
+        "Winner: aman\nBid: 300"
+      ],
+      "hints": [
+        "Keep a 'best so far' name and bid, and compare each remaining freelancer against it.",
+        "A challenger replaces the best when its bid is lower, or when the bids are equal and its name is alphabetically smaller.",
+        "Python compares strings alphabetically with <; remember to convert bids to int."
+      ],
+      "starter_code": null,
+      "reference_solution": "n1, b1 = input().split()\nn2, b2 = input().split()\nn3, b3 = input().split()\nbest_name, best_bid = n1, int(b1)\nb2 = int(b2)\nif b2 < best_bid or (b2 == best_bid and n2 < best_name):\n    best_name, best_bid = n2, b2\nb3 = int(b3)\nif b3 < best_bid or (b3 == best_bid and n3 < best_name):\n    best_name, best_bid = n3, b3\nprint(f\"Winner: {best_name}\")\nprint(f\"Bid: {best_bid}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "zara 500\nmila 450\nomar 600",
+          "output": "Winner: mila\nBid: 450",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "kiran 300\naman 300\nbela 400",
+          "output": "Winner: aman\nBid: 300",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "dev 200\ncara 200\nabel 200",
+          "output": "Winner: abel\nBid: 200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "xena 100\nyuri 90\nzoe 95",
+          "output": "Winner: yuri\nBid: 90",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "bob 10\nbobby 10\nbo 10",
+          "output": "Winner: bo\nBid: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "tom 999999999\nsam 1000000000\nrex 999999999",
+          "output": "Winner: rex\nBid: 999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "anna 5\nbeth 6\ncara 7",
+          "output": "Winner: anna\nBid: 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "mike 8\nlena 9\nnora 8",
+          "output": "Winner: mike\nBid: 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "pia 50\nolga 50\nqin 49",
+          "output": "Winner: qin\nBid: 49",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "eli 70\ndan 71\nfay 70",
+          "output": "Winner: eli\nBid: 70",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three lines. Each line contains a freelancer's name and bid separated by a space.",
+        "output_format": "Two lines:\nLine 1: Winner: <name>\nLine 2: Bid: <amount>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-10",
+      "title": "ASCII Range Classifier",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Classify character as UPPERCASE, LOWERCASE, DIGIT, or SPECIAL using comparisons.",
+      "problem_statement": "Task: Every character has an ASCII code, and characters are ordered by this code. Because of this, characters can be compared like numbers, for example 'A' <= ch <= 'Z'.\n\nClassify the given character:\n• UPPERCASE: from 'A' to 'Z'\n• LOWERCASE: from 'a' to 'z'\n• DIGIT: from '0' to '9'\n• SPECIAL: anything else (for example # @ ~ [ )\n\nUse comparisons only. Do not use methods such as isupper(), islower() or isdigit().",
+      "input_format": "A single line containing exactly one printable ASCII character (code 33 to 126).",
+      "output_format": "One line: Class: <UPPERCASE/LOWERCASE/DIGIT/SPECIAL>",
+      "constraints": "The input is a single character that is not a space.",
+      "sample_inputs": [
+        "G",
+        "m"
+      ],
+      "sample_outputs": [
+        "Class: UPPERCASE",
+        "Class: LOWERCASE"
+      ],
+      "hints": [
+        "Characters compare by their ASCII codes, so 'A' <= ch <= 'Z' works directly.",
+        "Check the three ranges with if/elif and let else handle SPECIAL.",
+        "Watch the boundaries: '@' and '[' sit just outside 'A'..'Z', and '/' and ':' just outside '0'..'9'."
+      ],
+      "starter_code": null,
+      "reference_solution": "ch = input()\nif 'A' <= ch <= 'Z':\n    cls = \"UPPERCASE\"\nelif 'a' <= ch <= 'z':\n    cls = \"LOWERCASE\"\nelif '0' <= ch <= '9':\n    cls = \"DIGIT\"\nelse:\n    cls = \"SPECIAL\"\nprint(f\"Class: {cls}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "G",
+          "output": "Class: UPPERCASE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "m",
+          "output": "Class: LOWERCASE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7",
+          "output": "Class: DIGIT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "A",
+          "output": "Class: UPPERCASE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "z",
+          "output": "Class: LOWERCASE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0",
+          "output": "Class: DIGIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "9",
+          "output": "Class: DIGIT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "@",
+          "output": "Class: SPECIAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "[",
+          "output": "Class: SPECIAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "~",
+          "output": "Class: SPECIAL",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing exactly one printable ASCII character (code 33 to 126).",
+        "output_format": "One line: Class: <UPPERCASE/LOWERCASE/DIGIT/SPECIAL>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-11",
+      "title": "Fictional Tax Slab Calculator",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Compute progressive tax with 0%, 10%, 20%, and 30% brackets.",
+      "problem_statement": "Task: A country collects income tax in brackets. Each rate applies only to the part of the income that falls inside that bracket:\n• First 250000: 0% tax\n• From 250001 to 500000: 10% tax\n• From 500001 to 1000000: 20% tax\n• Above 1000000: 30% tax\n\nExample: for an income of 750000, the tax is 0 on the first 250000, plus 10% of the next 250000 (= 25000), plus 20% of the remaining 250000 (= 50000). Total tax = 75000.\n\nGiven the income, print the total tax. If the tax has a fractional part, drop it (round down to a whole number).",
+      "input_format": "A single line containing one non-negative integer: the annual income.",
+      "output_format": "One line: Tax: <whole number>",
+      "constraints": "0 <= income <= 10^12",
+      "sample_inputs": [
+        "200000",
+        "300000"
+      ],
+      "sample_outputs": [
+        "Tax: 0",
+        "Tax: 5000"
+      ],
+      "hints": [
+        "Tax is marginal: only the slice of income inside a bracket is taxed at that bracket's rate.",
+        "Work from the top bracket down, taxing and then trimming the income, or compute each slice with min/max.",
+        "To avoid floating-point error, accumulate tax multiplied by 100 using integer percentages and divide by 100 with // at the end."
+      ],
+      "starter_code": null,
+      "reference_solution": "income = int(input())\nt = 0\nif income > 1000000:\n    t += (income - 1000000) * 30\n    income = 1000000\nif income > 500000:\n    t += (income - 500000) * 20\n    income = 500000\nif income > 250000:\n    t += (income - 250000) * 10\nprint(f\"Tax: {t // 100}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "200000",
+          "output": "Tax: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "300000",
+          "output": "Tax: 5000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "750000",
+          "output": "Tax: 75000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "250000",
+          "output": "Tax: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "250015",
+          "output": "Tax: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "500000",
+          "output": "Tax: 25000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "Tax: 125000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1500000",
+          "output": "Tax: 275000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "0",
+          "output": "Tax: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "1000000000000",
+          "output": "Tax: 299999825000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one non-negative integer: the annual income.",
+        "output_format": "One line: Tax: <whole number>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-12",
+      "title": "Delivery Surge Pricing Engine",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Calculate fee adding base, distance fee, rain (+20), and peak hour surcharge (+30).",
+      "problem_statement": "Task: A food delivery app calculates its fee from four parts:\n• Base fee: always 30.\n• Distance fee: 10 per km for the first 5 km, and 15 per km for every km after the first 5. For example, 8 km costs 5 × 10 + 3 × 15 = 95.\n• Rain surcharge: 20 if it is raining (YES), otherwise 0.\n• Peak-hour surcharge: 30 if the order hour is from 12 to 14 or from 19 to 21 (both ends included), otherwise 0.\n\nThe total fee is the sum of all four parts.\n\nGiven the distance, the rain status and the order hour, print each part and the total.",
+      "input_format": "A single line containing: distance_km (integer), rain (YES or NO), and hour (integer, 24-hour clock), separated by spaces.",
+      "output_format": "Five lines:\nLine 1: Base: <base fee>\nLine 2: Distance fee: <amount>\nLine 3: Rain surcharge: <amount>\nLine 4: Peak surcharge: <amount>\nLine 5: Total: <sum of all parts>",
+      "constraints": "0 <= distance_km <= 100\nrain is exactly YES or NO\n0 <= hour <= 23",
+      "sample_inputs": [
+        "3 NO 10",
+        "8 YES 20"
+      ],
+      "sample_outputs": [
+        "Base: 30\nDistance fee: 30\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 60",
+        "Base: 30\nDistance fee: 95\nRain surcharge: 20\nPeak surcharge: 30\nTotal: 175"
+      ],
+      "hints": [
+        "Split the distance fee into two cases: distance <= 5 and distance > 5.",
+        "For distance > 5 the fee is 5 * 10 + (distance - 5) * 15.",
+        "Peak hours are (12 <= hour <= 14) or (19 <= hour <= 21); evaluate rain and peak independently."
+      ],
+      "starter_code": null,
+      "reference_solution": "dist, rain, hour = input().split()\ndist = int(dist)\nhour = int(hour)\nbase = 30\nif dist <= 5:\n    dist_fee = dist * 10\nelse:\n    dist_fee = 5 * 10 + (dist - 5) * 15\nrain_fee = 20 if rain == \"YES\" else 0\npeak_fee = 30 if (12 <= hour <= 14 or 19 <= hour <= 21) else 0\ntotal = base + dist_fee + rain_fee + peak_fee\nprint(f\"Base: {base}\")\nprint(f\"Distance fee: {dist_fee}\")\nprint(f\"Rain surcharge: {rain_fee}\")\nprint(f\"Peak surcharge: {peak_fee}\")\nprint(f\"Total: {total}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 NO 10",
+          "output": "Base: 30\nDistance fee: 30\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 60",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "8 YES 20",
+          "output": "Base: 30\nDistance fee: 95\nRain surcharge: 20\nPeak surcharge: 30\nTotal: 175",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 NO 13",
+          "output": "Base: 30\nDistance fee: 50\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 110",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 NO 0",
+          "output": "Base: 30\nDistance fee: 0\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6 YES 11",
+          "output": "Base: 30\nDistance fee: 65\nRain surcharge: 20\nPeak surcharge: 0\nTotal: 115",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100 NO 21",
+          "output": "Base: 30\nDistance fee: 1475\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 1535",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 NO 14",
+          "output": "Base: 30\nDistance fee: 10\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 70",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 YES 15",
+          "output": "Base: 30\nDistance fee: 20\nRain surcharge: 20\nPeak surcharge: 0\nTotal: 70",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "10 NO 19",
+          "output": "Base: 30\nDistance fee: 125\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 185",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "7 NO 22",
+          "output": "Base: 30\nDistance fee: 80\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 110",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing: distance_km (integer), rain (YES or NO), and hour (integer, 24-hour clock), separated by spaces.",
+        "output_format": "Five lines:\nLine 1: Base: <base fee>\nLine 2: Distance fee: <amount>\nLine 3: Rain surcharge: <amount>\nLine 4: Peak surcharge: <amount>\nLine 5: Total: <sum of all parts>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-13",
+      "title": "Rock-Paper-Scissors-Lizard-Spock",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Evaluate 5-choice game outcomes between player 1 and 2 using nested conditionals.",
+      "problem_statement": "Task: Two players play Rock-Paper-Scissors-Lizard-Spock. Each player picks one of: rock, paper, scissors, lizard, spock.\n\nIf both players pick the same thing, the result is a Draw. Otherwise, these rules decide the winner:\n• rock beats scissors and lizard\n• paper beats rock and spock\n• scissors beats paper and lizard\n• lizard beats spock and paper\n• spock beats scissors and rock\n\nGiven the choice of player 1 and player 2, print who wins. Use nested if statements: first check player 1's choice, then check player 2's choice inside it.",
+      "input_format": "A single line containing two space-separated words: the choice of player 1 and the choice of player 2.",
+      "output_format": "One line: Result: <Player 1 wins/Player 2 wins/Draw>",
+      "constraints": "Each choice is exactly one of: rock, paper, scissors, lizard, spock (lowercase).",
+      "sample_inputs": [
+        "rock scissors",
+        "paper scissors"
+      ],
+      "sample_outputs": [
+        "Result: Player 1 wins",
+        "Result: Player 2 wins"
+      ],
+      "hints": [
+        "Handle the draw first (both choices equal); then branch on player 1's choice.",
+        "Inside each branch, list the two choices that player 1's pick defeats; any other choice means player 2 wins.",
+        "rock beats scissors and lizard; paper beats rock and spock; scissors beats paper and lizard; lizard beats spock and paper; spock beats scissors and rock."
+      ],
+      "starter_code": null,
+      "reference_solution": "a, b = input().split()\nif a == b:\n    result = \"Draw\"\nelif a == \"rock\":\n    if b == \"scissors\" or b == \"lizard\":\n        result = \"Player 1 wins\"\n    else:\n        result = \"Player 2 wins\"\nelif a == \"paper\":\n    if b == \"rock\" or b == \"spock\":\n        result = \"Player 1 wins\"\n    else:\n        result = \"Player 2 wins\"\nelif a == \"scissors\":\n    if b == \"paper\" or b == \"lizard\":\n        result = \"Player 1 wins\"\n    else:\n        result = \"Player 2 wins\"\nelif a == \"lizard\":\n    if b == \"spock\" or b == \"paper\":\n        result = \"Player 1 wins\"\n    else:\n        result = \"Player 2 wins\"\nelse:\n    if b == \"scissors\" or b == \"rock\":\n        result = \"Player 1 wins\"\n    else:\n        result = \"Player 2 wins\"\nprint(f\"Result: {result}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "rock scissors",
+          "output": "Result: Player 1 wins",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "paper scissors",
+          "output": "Result: Player 2 wins",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "spock spock",
+          "output": "Result: Draw",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "lizard spock",
+          "output": "Result: Player 1 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "spock paper",
+          "output": "Result: Player 2 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "scissors lizard",
+          "output": "Result: Player 1 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "rock paper",
+          "output": "Result: Player 2 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "lizard rock",
+          "output": "Result: Player 2 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "spock rock",
+          "output": "Result: Player 1 wins",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "paper lizard",
+          "output": "Result: Player 2 wins",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two space-separated words: the choice of player 1 and the choice of player 2.",
+        "output_format": "One line: Result: <Player 1 wins/Player 2 wins/Draw>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-14",
+      "title": "Loan Multi-Criteria Check",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Medium",
+      "objective": "Evaluate credit score (>=700), income (>=30000), debt (<=40%); print all failing checks.",
+      "problem_statement": "Task: A bank approves a loan only if the applicant passes all three checks:\n• Credit score is at least 700.\n• Monthly income is at least 30000.\n• Debt ratio (in percent) is at most 40.\n\nAn applicant can fail more than one check at the same time, so test each check separately.\n\nGiven the three values:\n• If all checks pass, print APPROVED.\n• Otherwise, print REJECTED and then list every check that failed, in this order: credit score, income, debt ratio.\n\nExample: score 650, income 25000, debt ratio 55 fails all three checks.",
+      "input_format": "A single line containing three space-separated integers: credit_score, income, and debt_ratio (in percent).",
+      "output_format": "If all checks pass, one line: Decision: APPROVED\nOtherwise: Decision: REJECTED, followed by one line per failed check in this order: Failed: credit score, Failed: income, Failed: debt ratio",
+      "constraints": "300 <= credit_score <= 900\n0 <= income <= 10^9\n0 <= debt_ratio <= 100",
+      "sample_inputs": [
+        "750 50000 30",
+        "650 25000 55"
+      ],
+      "sample_outputs": [
+        "Decision: APPROVED",
+        "Decision: REJECTED\nFailed: credit score\nFailed: income\nFailed: debt ratio"
+      ],
+      "hints": [
+        "Use three separate if statements (not elif) so more than one failure can be recorded.",
+        "Collect failure labels in a list as each check fails.",
+        "If the list is empty the loan is approved; otherwise print REJECTED and then each label."
+      ],
+      "starter_code": null,
+      "reference_solution": "score, income, debt = map(int, input().split())\nfails = []\nif score < 700:\n    fails.append(\"credit score\")\nif income < 30000:\n    fails.append(\"income\")\nif debt > 40:\n    fails.append(\"debt ratio\")\nif not fails:\n    print(\"Decision: APPROVED\")\nelse:\n    print(\"Decision: REJECTED\")\n    for f in fails:\n        print(f\"Failed: {f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "750 50000 30",
+          "output": "Decision: APPROVED",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "650 25000 55",
+          "output": "Decision: REJECTED\nFailed: credit score\nFailed: income\nFailed: debt ratio",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "699 40000 20",
+          "output": "Decision: REJECTED\nFailed: credit score",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "720 29999 35",
+          "output": "Decision: REJECTED\nFailed: income",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "700 30000 41",
+          "output": "Decision: REJECTED\nFailed: debt ratio",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "800 20000 60",
+          "output": "Decision: REJECTED\nFailed: income\nFailed: debt ratio",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "300 0 100",
+          "output": "Decision: REJECTED\nFailed: credit score\nFailed: income\nFailed: debt ratio",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "900 1000000000 0",
+          "output": "Decision: APPROVED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "699 29999 40",
+          "output": "Decision: REJECTED\nFailed: credit score\nFailed: income",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "710 31000 40",
+          "output": "Decision: APPROVED",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing three space-separated integers: credit_score, income, and debt_ratio (in percent).",
+        "output_format": "If all checks pass, one line: Decision: APPROVED\nOtherwise: Decision: REJECTED, followed by one line per failed check in this order: Failed: credit score, Failed: income, Failed: debt ratio"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-15",
+      "title": "Tiered Parking Garage Fee",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Hard",
+      "objective": "Compute charge for vehicle (CAR, BIKE, BUS) with weekday vs weekend slabs.",
+      "problem_statement": "Task: A parking garage charges by the hour. Follow these steps.\n\nStep 1: Billable hours: any part of an hour counts as a full hour (round up).\n• 60 minutes = 1 hour\n• 61 minutes = 2 hours\n• 0 minutes = 0 hours\n\nStep 2: Charge each hour at its own rate. The rate depends on the vehicle, the day type and the hour number:\n• Hours 1 and 2 use rate 1\n• Hours 3, 4 and 5 use rate 2\n• Hour 6 and later use rate 3\n\nRates per hour (rate 1 / rate 2 / rate 3) and the daily cap:\n• CAR: WEEKDAY 20 / 15 / 10, WEEKEND 30 / 20 / 15, daily cap 250\n• BIKE: WEEKDAY 5 / 4 / 3, WEEKEND 8 / 6 / 4, daily cap 80\n• BUS: WEEKDAY 50 / 40 / 30, WEEKEND 70 / 55 / 40, daily cap 600\n\nStep 3: Daily cap: the fee can never be more than the daily cap of that vehicle. If the calculated fee is higher, charge the cap instead.\n\nExample: a CAR on a WEEKEND for 301 minutes is 6 billable hours. Fee = 2 × 30 + 3 × 20 + 1 × 15 = 135, which is below the cap of 250, so the fee is 135.\n\nGiven the vehicle, the day type and the minutes parked, print the billable hours and the final fee.",
+      "input_format": "A single line containing: vehicle (CAR, BIKE, or BUS), day type (WEEKDAY or WEEKEND), and minutes parked (integer), separated by spaces.",
+      "output_format": "Two lines:\nLine 1: Billable hours: <hours>\nLine 2: Parking fee: <fee after cap>",
+      "constraints": "0 <= minutes <= 1440\nvehicle is one of CAR, BIKE, BUS\nday type is one of WEEKDAY, WEEKEND",
+      "sample_inputs": [
+        "CAR WEEKDAY 90",
+        "BIKE WEEKEND 200"
+      ],
+      "sample_outputs": [
+        "Billable hours: 2\nParking fee: 40",
+        "Billable hours: 4\nParking fee: 28"
+      ],
+      "hints": [
+        "Billable hours = ceil(minutes / 60), which can be computed as (minutes + 59) // 60. Zero minutes means zero hours and a fee of 0.",
+        "First pick the three slab rates and the cap from the vehicle and day type, then compute the fee slab by slab.",
+        "Fee = h*r1 for h <= 2; 2*r1 + (h-2)*r2 for h <= 5; otherwise 2*r1 + 3*r2 + (h-5)*r3. Finally apply min(fee, cap)."
+      ],
+      "starter_code": null,
+      "reference_solution": "vehicle, day, minutes = input().split()\nminutes = int(minutes)\nhours = (minutes + 59) // 60\nif vehicle == \"CAR\":\n    cap = 250\n    if day == \"WEEKDAY\":\n        r1, r2, r3 = 20, 15, 10\n    else:\n        r1, r2, r3 = 30, 20, 15\nelif vehicle == \"BIKE\":\n    cap = 80\n    if day == \"WEEKDAY\":\n        r1, r2, r3 = 5, 4, 3\n    else:\n        r1, r2, r3 = 8, 6, 4\nelse:\n    cap = 600\n    if day == \"WEEKDAY\":\n        r1, r2, r3 = 50, 40, 30\n    else:\n        r1, r2, r3 = 70, 55, 40\nif hours <= 2:\n    fee = hours * r1\nelif hours <= 5:\n    fee = 2 * r1 + (hours - 2) * r2\nelse:\n    fee = 2 * r1 + 3 * r2 + (hours - 5) * r3\nif fee > cap:\n    fee = cap\nprint(f\"Billable hours: {hours}\")\nprint(f\"Parking fee: {fee}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "CAR WEEKDAY 90",
+          "output": "Billable hours: 2\nParking fee: 40",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "BIKE WEEKEND 200",
+          "output": "Billable hours: 4\nParking fee: 28",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "BUS WEEKDAY 0",
+          "output": "Billable hours: 0\nParking fee: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "CAR WEEKEND 301",
+          "output": "Billable hours: 6\nParking fee: 135",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "CAR WEEKDAY 1440",
+          "output": "Billable hours: 24\nParking fee: 250",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "BIKE WEEKDAY 61",
+          "output": "Billable hours: 2\nParking fee: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "BUS WEEKEND 1440",
+          "output": "Billable hours: 24\nParking fee: 600",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "CAR WEEKDAY 180",
+          "output": "Billable hours: 3\nParking fee: 55",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "BIKE WEEKEND 1440",
+          "output": "Billable hours: 24\nParking fee: 80",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "BUS WEEKDAY 300",
+          "output": "Billable hours: 5\nParking fee: 220",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing: vehicle (CAR, BIKE, or BUS), day type (WEEKDAY or WEEKEND), and minutes parked (integer), separated by spaces.",
+        "output_format": "Two lines:\nLine 1: Billable hours: <hours>\nLine 2: Parking fee: <fee after cap>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-16",
+      "title": "Courier Zone Pricing Matrix",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Hard",
+      "objective": "Map pincode prefixes to LOCAL, REGIONAL, or NATIONAL with weight slabs.",
+      "problem_statement": "Task: A courier company charges by delivery zone and parcel weight. Follow these steps in order.\n\nStep 1: Check the pincode. A pincode is valid only if it has exactly 6 digits and its first digit is not 0. If it is not valid, print the pincode error and stop. Read the pincode as text so that leading zeros are not lost.\n\nStep 2: Check the weight (in grams). It must be from 1 to 25000. If it is not, print the weight error and stop. If both the pincode and the weight are wrong, the pincode error is shown.\n\nStep 3: Find the zone from the first two digits of the pincode:\n• 50: LOCAL\n• 51 to 69: REGIONAL\n• any other first two digits: NATIONAL\n\nStep 4: Find the weight slab and read the charge for the zone:\n• Up to 500 g: LOCAL 40, REGIONAL 60, NATIONAL 90\n• 501 to 2000 g: LOCAL 70, REGIONAL 110, NATIONAL 160\n• 2001 to 5000 g: LOCAL 120, REGIONAL 190, NATIONAL 280\n• 5001 to 25000 g: LOCAL 200, REGIONAL 320, NATIONAL 450\n\nExample: pincode 560001 and weight 1500 g. The first two digits are 56, so the zone is REGIONAL. 1500 g is in the 501 to 2000 g slab, so the charge is 110.\n\nGiven the pincode and the weight, print the zone and the charge, or the correct error message.",
+      "input_format": "A single line containing: pincode (a token of 1 to 10 digits) and weight in grams (integer), separated by a space.",
+      "output_format": "If valid, two lines:\nLine 1: Zone: <LOCAL/REGIONAL/NATIONAL>\nLine 2: Charge: <amount>\nIf the pincode is invalid: Error: INVALID PINCODE\nIf the pincode is valid but the weight is invalid: Error: INVALID WEIGHT",
+      "constraints": "The pincode token contains only digits (it may have leading zeros).\n-10^6 <= weight <= 10^6",
+      "sample_inputs": [
+        "500081 400",
+        "560001 1500"
+      ],
+      "sample_outputs": [
+        "Zone: LOCAL\nCharge: 40",
+        "Zone: REGIONAL\nCharge: 110"
+      ],
+      "hints": [
+        "Read the pincode as a string so leading zeros and length can be checked: len(pin) == 6 and pin[0] != '0'.",
+        "Zone: prefix = int(pin[:2]); 50 -> LOCAL, 51..69 -> REGIONAL, otherwise NATIONAL.",
+        "Choose the weight slab with if/elif on weight <= 500, <= 2000, <= 5000, <= 25000, then read the charge for the zone."
+      ],
+      "starter_code": null,
+      "reference_solution": "pin, w = input().split()\nw = int(w)\nif len(pin) != 6 or pin[0] == \"0\":\n    print(\"Error: INVALID PINCODE\")\nelif w < 1 or w > 25000:\n    print(\"Error: INVALID WEIGHT\")\nelse:\n    prefix = int(pin[:2])\n    if prefix == 50:\n        zone = \"LOCAL\"\n    elif 51 <= prefix <= 69:\n        zone = \"REGIONAL\"\n    else:\n        zone = \"NATIONAL\"\n    if w <= 500:\n        slab = 0\n    elif w <= 2000:\n        slab = 1\n    elif w <= 5000:\n        slab = 2\n    else:\n        slab = 3\n    if zone == \"LOCAL\":\n        charge = [40, 70, 120, 200][slab]\n    elif zone == \"REGIONAL\":\n        charge = [60, 110, 190, 320][slab]\n    else:\n        charge = [90, 160, 280, 450][slab]\n    print(f\"Zone: {zone}\")\n    print(f\"Charge: {charge}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "500081 400",
+          "output": "Zone: LOCAL\nCharge: 40",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "560001 1500",
+          "output": "Zone: REGIONAL\nCharge: 110",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "110001 4000",
+          "output": "Zone: NATIONAL\nCharge: 280",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "50008 100",
+          "output": "Error: INVALID PINCODE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "012345 100",
+          "output": "Error: INVALID PINCODE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "600001 5000",
+          "output": "Zone: REGIONAL\nCharge: 190",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999999 25000",
+          "output": "Zone: NATIONAL\nCharge: 450",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "500001 0",
+          "output": "Error: INVALID WEIGHT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "400001 25001",
+          "output": "Error: INVALID WEIGHT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "699999 501",
+          "output": "Zone: REGIONAL\nCharge: 110",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing: pincode (a token of 1 to 10 digits) and weight in grams (integer), separated by a space.",
+        "output_format": "If valid, two lines:\nLine 1: Zone: <LOCAL/REGIONAL/NATIONAL>\nLine 2: Charge: <amount>\nIf the pincode is invalid: Error: INVALID PINCODE\nIf the pincode is valid but the weight is invalid: Error: INVALID WEIGHT"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M04-17",
+      "title": "Credit Card Decision Tree",
+      "module": "Module 04: Conditional Statements",
+      "difficulty": "Hard",
+      "objective": "Evaluate age, income, employment type, and credit score across 4-tier tree.",
+      "problem_statement": "Task: A bank decides which credit card to offer an applicant. Follow these steps in order.\n\nStep 1: Basic checks. The decision is DECLINED right away if any of these is true:\n• age is less than 21 or more than 65\n• credit score is less than 600\n\nStep 2: Employment type. If the applicant passes Step 1, the rules depend on the employment type. Check the tiers from best to worst and use the first one that matches.\n\nSALARIED:\n• PLATINUM: income >= 100000 and score >= 750\n• GOLD: income >= 50000 and score >= 700\n• SILVER: income >= 25000\n• otherwise DECLINED\n\nSELF_EMPLOYED:\n• PLATINUM: income >= 150000 and score >= 780\n• GOLD: income >= 80000 and score >= 720\n• SILVER: income >= 40000 and score >= 650\n• otherwise DECLINED\n\nUNEMPLOYED (income comes from other sources):\n• SILVER: income >= 20000 and score >= 700\n• otherwise DECLINED\n\nExample: age 45, income 60000, SALARIED, score 710. Not PLATINUM (income and score are too low), but GOLD (60000 >= 50000 and 710 >= 700).\n\nGiven the age, income, employment type and credit score, print the decision.",
+      "input_format": "A single line containing: age (integer), monthly income (integer), employment type (SALARIED, SELF_EMPLOYED, or UNEMPLOYED), and credit score (integer), separated by spaces.",
+      "output_format": "One line: Decision: <PLATINUM/GOLD/SILVER/DECLINED>",
+      "constraints": "18 <= age <= 100\n0 <= income <= 10^9\n300 <= credit_score <= 900",
+      "sample_inputs": [
+        "30 120000 SALARIED 780",
+        "45 60000 SALARIED 710"
+      ],
+      "sample_outputs": [
+        "Decision: PLATINUM",
+        "Decision: GOLD"
+      ],
+      "hints": [
+        "Apply the global eligibility checks (age 21 to 65 and score >= 600) before looking at employment type.",
+        "Inside each employment branch, test the best tier first (PLATINUM, then GOLD, then SILVER) so the first matching rule wins.",
+        "Every path that does not satisfy a tier must end in DECLINED; keep each branch's thresholds separate."
+      ],
+      "starter_code": null,
+      "reference_solution": "age, income, emp, score = input().split()\nage = int(age)\nincome = int(income)\nscore = int(score)\nif age < 21 or age > 65 or score < 600:\n    decision = \"DECLINED\"\nelif emp == \"SALARIED\":\n    if income >= 100000 and score >= 750:\n        decision = \"PLATINUM\"\n    elif income >= 50000 and score >= 700:\n        decision = \"GOLD\"\n    elif income >= 25000:\n        decision = \"SILVER\"\n    else:\n        decision = \"DECLINED\"\nelif emp == \"SELF_EMPLOYED\":\n    if income >= 150000 and score >= 780:\n        decision = \"PLATINUM\"\n    elif income >= 80000 and score >= 720:\n        decision = \"GOLD\"\n    elif income >= 40000 and score >= 650:\n        decision = \"SILVER\"\n    else:\n        decision = \"DECLINED\"\nelse:\n    if income >= 20000 and score >= 700:\n        decision = \"SILVER\"\n    else:\n        decision = \"DECLINED\"\nprint(f\"Decision: {decision}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "30 120000 SALARIED 780",
+          "output": "Decision: PLATINUM",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "45 60000 SALARIED 710",
+          "output": "Decision: GOLD",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "19 90000 SALARIED 800",
+          "output": "Decision: DECLINED",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "35 200000 SELF_EMPLOYED 790",
+          "output": "Decision: PLATINUM",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "50 90000 SELF_EMPLOYED 730",
+          "output": "Decision: GOLD",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "40 45000 SELF_EMPLOYED 660",
+          "output": "Decision: SILVER",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "66 150000 SALARIED 800",
+          "output": "Decision: DECLINED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "30 500000 SALARIED 599",
+          "output": "Decision: DECLINED",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 9,
+          "input": "25 20000 UNEMPLOYED 720",
+          "output": "Decision: SILVER",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 10,
+          "input": "25 20000 UNEMPLOYED 699",
+          "output": "Decision: DECLINED",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 04: Conditional Statements",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing: age (integer), monthly income (integer), employment type (SALARIED, SELF_EMPLOYED, or UNEMPLOYED), and credit score (integer), separated by spaces.",
+        "output_format": "One line: Decision: <PLATINUM/GOLD/SILVER/DECLINED>"
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_04_conditional_statements.csv",
+    "total_rows": 17,
+    "total_questions": 17,
+    "valid_questions": 17,
+    "total_test_cases": 170,
+    "visible_test_cases": 51,
+    "hidden_test_cases": 119,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

@@ -1,0 +1,218 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+M03-01,Swag Kit Distribution,Module 03: Operators,Easy,"Compute per-team kit count and remainder using divmod(kits, teams).",stdin/stdout,O(1),O(1),"Task: A college is organizing an event and has a fixed number of swag kits to distribute among several teams. Every team must receive the same number of kits, and some kits may remain after sharing them equally.
+
+You are given the total number of swag kits and the number of teams. Find how many kits each team receives and how many kits are left over. Print both values using Python's divmod() function.",A single line containing two space-separated integers: kits and teams.,"Two lines:
+Line 1: Kits per team: <quotient>
+Line 2: Leftover kits: <remainder>","0 <= kits <= 1000000000
+1 <= teams <= 1000000",100 7,"Kits per team: 14
+Leftover kits: 2",50 5,"Kits per team: 10
+Leftover kits: 0","divmod(a, b) returns a tuple (a // b, a % b).","Unpack the result directly: q, r = divmod(kits, teams).",Print each value with its label using an f-string.,"k, t = map(int, input().split())
+q, r = divmod(k, t)
+print(f""Kits per team: {q}"")
+print(f""Leftover kits: {r}"")","[{""input"": ""100 7"", ""output"": ""Kits per team: 14\nLeftover kits: 2"", ""is_hidden"": false}, {""input"": ""50 5"", ""output"": ""Kits per team: 10\nLeftover kits: 0"", ""is_hidden"": false}, {""input"": ""7 10"", ""output"": ""Kits per team: 0\nLeftover kits: 7"", ""is_hidden"": false}, {""input"": ""0 3"", ""output"": ""Kits per team: 0\nLeftover kits: 0"", ""is_hidden"": true}, {""input"": ""1000000000 1"", ""output"": ""Kits per team: 1000000000\nLeftover kits: 0"", ""is_hidden"": true}, {""input"": ""999999999 1000000"", ""output"": ""Kits per team: 999\nLeftover kits: 999999"", ""is_hidden"": true}, {""input"": ""13 13"", ""output"": ""Kits per team: 1\nLeftover kits: 0"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""Kits per team: 1\nLeftover kits: 0"", ""is_hidden"": true}, {""input"": ""12345 100"", ""output"": ""Kits per team: 123\nLeftover kits: 45"", ""is_hidden"": true}, {""input"": ""86 9"", ""output"": ""Kits per team: 9\nLeftover kits: 5"", ""is_hidden"": true}]"
+M03-02,Order ID Last Digits,Module 03: Operators,Easy,Extract the last 2 digits of an arbitrary integer using % 100.,stdin/stdout,O(1),O(1),"Task: An online shopping website gives every order a numeric ID. Sometimes, the support team needs only the last two digits of an order ID.
+
+You are given an integer representing the order ID. Find its last two digits and print them. For example, if the ID is 5837, the last two digits are 37. Use the modulo operator (%) to get the last two digits.",A single line containing one non-negative integer N (it may be too large for other languages' 32-bit integers).,One line: Last two digits: <two digits>,0 <= N <= 10^18,123456,Last two digits: 56,7,Last two digits: 07,N % 100 leaves only the last two decimal digits.,A one-digit remainder must be padded: use the format spec :02d.,"Python integers have no fixed size, so large IDs need no special handling.","n = int(input())
+print(f""Last two digits: {n % 100:02d}"")","[{""input"": ""123456"", ""output"": ""Last two digits: 56"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""Last two digits: 07"", ""is_hidden"": false}, {""input"": ""100"", ""output"": ""Last two digits: 00"", ""is_hidden"": false}, {""input"": ""99"", ""output"": ""Last two digits: 99"", ""is_hidden"": true}, {""input"": ""5000000000"", ""output"": ""Last two digits: 00"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Last two digits: 00"", ""is_hidden"": true}, {""input"": ""1000000000000000000"", ""output"": ""Last two digits: 00"", ""is_hidden"": true}, {""input"": ""88888"", ""output"": ""Last two digits: 88"", ""is_hidden"": true}, {""input"": ""999999999999999999"", ""output"": ""Last two digits: 99"", ""is_hidden"": true}, {""input"": ""1001"", ""output"": ""Last two digits: 01"", ""is_hidden"": true}]"
+M03-03,Dual Sensor Trigger Logic,Module 03: Operators,Easy,"Evaluate Boolean AND, OR, and XOR on two integer flags (0 = False, nonzero = True) and print Boolean literals.",stdin/stdout,O(1),O(1),"Task: A security system uses two sensors. Each sensor sends a number: 0 means it is off, and any non-zero number means it is on.
+
+You are given the values from both sensors. Check whether both sensors are on, whether at least one sensor is on, and whether exactly one sensor is on. Use AND, OR, and XOR logic for these three checks. Print the result of each check as True or False.",A single line containing two space-separated integers A and B.,"Three lines:
+Line 1: AND: <True/False>
+Line 2: OR: <True/False>
+Line 3: XOR: <True/False>","-1000000 <= A, B <= 1000000",1 1,"AND: True
+OR: True
+XOR: False",1 0,"AND: False
+OR: True
+XOR: True",Convert each flag to a boolean first with bool(a) and bool(b).,Python has no ^^ operator; XOR of two booleans is true exactly when they differ (x != y).,print() of a bool shows the literal True or False.,"a, b = map(int, input().split())
+x, y = bool(a), bool(b)
+print(f""AND: {x and y}"")
+print(f""OR: {x or y}"")
+print(f""XOR: {x != y}"")","[{""input"": ""1 1"", ""output"": ""AND: True\nOR: True\nXOR: False"", ""is_hidden"": false}, {""input"": ""1 0"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": false}, {""input"": ""0 1"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""AND: False\nOR: False\nXOR: False"", ""is_hidden"": true}, {""input"": ""5 0"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": true}, {""input"": ""0 -3"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": true}, {""input"": ""7 -2"", ""output"": ""AND: True\nOR: True\nXOR: False"", ""is_hidden"": true}, {""input"": ""-1 1"", ""output"": ""AND: True\nOR: True\nXOR: False"", ""is_hidden"": true}, {""input"": ""1000000 0"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": true}, {""input"": ""0 1000000"", ""output"": ""AND: False\nOR: True\nXOR: True"", ""is_hidden"": true}]"
+M03-04,Valid Score Range Checker,Module 03: Operators,Easy,"Verify whether a score lies within the inclusive range [0, 100] using chained comparison 0 <= score <= 100.",stdin/stdout,O(1),O(1),"Task: An online exam accepts marks from 0 to 100. A score of exactly 0 or exactly 100 is valid, but a score below 0 or above 100 is invalid.
+
+You are given a student's score. Check whether it is within the accepted range, including both 0 and 100. Use a chained comparison and print `Valid: True` if the score is valid; otherwise, print `Valid: False`.",A single line containing one real number (score).,One line: Valid: <True/False>,-1000.0 <= score <= 1000.0,85.5,Valid: True,100.5,Valid: False,Read the score with float(input()).,Use a chained comparison: 0 <= score <= 100.,"The endpoints 0 and 100 are valid, so use <= on both sides.","s = float(input())
+print(f""Valid: {0 <= s <= 100}"")","[{""input"": ""85.5"", ""output"": ""Valid: True"", ""is_hidden"": false}, {""input"": ""100.5"", ""output"": ""Valid: False"", ""is_hidden"": false}, {""input"": ""-0.1"", ""output"": ""Valid: False"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Valid: True"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""Valid: True"", ""is_hidden"": true}, {""input"": ""55"", ""output"": ""Valid: True"", ""is_hidden"": true}, {""input"": ""100.0000001"", ""output"": ""Valid: False"", ""is_hidden"": true}, {""input"": ""99.99"", ""output"": ""Valid: True"", ""is_hidden"": true}, {""input"": ""-0"", ""output"": ""Valid: True"", ""is_hidden"": true}, {""input"": ""0.0001"", ""output"": ""Valid: True"", ""is_hidden"": true}]"
+M03-05,Identity vs Equality Checker,Module 03: Operators,Easy,Demonstrate the difference between identity (is) and equality (==) using the CPython small-integer cache.,stdin/stdout,O(1),O(1),"Task: In Python, `==` checks whether two values are equal. The `is` operator checks whether two variables refer to the same object in memory. These checks do not always give the same result.
+
+You are given two integers. Convert them to integers named `a` and `b`. Check `a == b` and `a is b` separately, then print both results. This exercise demonstrates the difference between value equality and object identity. The identity result can depend on Python's handling of integer objects.",A single line containing two space-separated integers a and b.,"Two lines:
+Line 1: a == b: <True/False>
+Line 2: a is b: <True/False>","-1000 <= a, b <= 1000
+Expected outputs assume standard CPython (small-integer cache for -5..256).",5 5,"a == b: True
+a is b: True",1000 1000,"a == b: True
+a is b: False","Convert both with a, b = map(int, input().split()).",== compares values; is compares object identity.,"CPython caches -5..256, so 256 is 256 is True but 257 is 257 (made separately) is False.","a, b = map(int, input().split())
+print(f""a == b: {a == b}"")
+print(f""a is b: {a is b}"")","[{""input"": ""5 5"", ""output"": ""a == b: True\na is b: True"", ""is_hidden"": false}, {""input"": ""1000 1000"", ""output"": ""a == b: True\na is b: False"", ""is_hidden"": false}, {""input"": ""5 6"", ""output"": ""a == b: False\na is b: False"", ""is_hidden"": false}, {""input"": ""256 256"", ""output"": ""a == b: True\na is b: True"", ""is_hidden"": true}, {""input"": ""257 257"", ""output"": ""a == b: True\na is b: False"", ""is_hidden"": true}, {""input"": ""-5 -5"", ""output"": ""a == b: True\na is b: True"", ""is_hidden"": true}, {""input"": ""-6 -6"", ""output"": ""a == b: True\na is b: False"", ""is_hidden"": true}, {""input"": ""0 0"", ""output"": ""a == b: True\na is b: True"", ""is_hidden"": true}, {""input"": ""300 301"", ""output"": ""a == b: False\na is b: False"", ""is_hidden"": true}, {""input"": ""-1000 -1000"", ""output"": ""a == b: True\na is b: False"", ""is_hidden"": true}]"
+M03-06,Augmented Assignment Accumulator,Module 03: Operators,Easy,"Accumulate a running balance across 4 transactions using +=, -=, *=, and //=.",stdin/stdout,O(1),O(1),"Task: A shop keeps a running balance while processing transactions. It starts with a balance, adds a deposit, subtracts an expense, multiplies the result, and then performs floor division.
+
+You are given the starting balance and four transaction values. Apply these operations in this exact order: add the first value, subtract the second, multiply by the third, and floor-divide by the fourth. Print the balance after each operation. Use `+=`, `-=`, `*=`, and `//=` respectively.","A single line containing five space-separated integers: initial balance, deposit, withdrawal, multiplier, divisor.","Four lines:
+After deposit (+=): <balance>
+After withdrawal (-=): <balance>
+After multiplier (*=): <balance>
+After divisor (//=): <balance>","0 <= balance, deposit, withdrawal <= 1000000
+0 <= multiplier <= 100
+1 <= divisor <= 1000",100 50 30 2 3,"After deposit (+=): 150
+After withdrawal (-=): 120
+After multiplier (*=): 240
+After divisor (//=): 80",10 5 50 3 4,"After deposit (+=): 15
+After withdrawal (-=): -35
+After multiplier (*=): -105
+After divisor (//=): -27","Keep a single variable and update it in place with +=, -=, *=, //=.",Print right after each update.,"// floors the result, so -105 // 4 is -27, not -26.","b, d, w, m, k = map(int, input().split())
+b += d
+print(f""After deposit (+=): {b}"")
+b -= w
+print(f""After withdrawal (-=): {b}"")
+b *= m
+print(f""After multiplier (*=): {b}"")
+b //= k
+print(f""After divisor (//=): {b}"")","[{""input"": ""100 50 30 2 3"", ""output"": ""After deposit (+=): 150\nAfter withdrawal (-=): 120\nAfter multiplier (*=): 240\nAfter divisor (//=): 80"", ""is_hidden"": false}, {""input"": ""10 5 50 3 4"", ""output"": ""After deposit (+=): 15\nAfter withdrawal (-=): -35\nAfter multiplier (*=): -105\nAfter divisor (//=): -27"", ""is_hidden"": false}, {""input"": ""0 0 0 5 2"", ""output"": ""After deposit (+=): 0\nAfter withdrawal (-=): 0\nAfter multiplier (*=): 0\nAfter divisor (//=): 0"", ""is_hidden"": false}, {""input"": ""1000 0 1000 9 7"", ""output"": ""After deposit (+=): 1000\nAfter withdrawal (-=): 0\nAfter multiplier (*=): 0\nAfter divisor (//=): 0"", ""is_hidden"": true}, {""input"": ""5 5 5 0 1"", ""output"": ""After deposit (+=): 10\nAfter withdrawal (-=): 5\nAfter multiplier (*=): 0\nAfter divisor (//=): 0"", ""is_hidden"": true}, {""input"": ""1000000 250000 100000 3 10"", ""output"": ""After deposit (+=): 1250000\nAfter withdrawal (-=): 1150000\nAfter multiplier (*=): 3450000\nAfter divisor (//=): 345000"", ""is_hidden"": true}, {""input"": ""7 3 20 2 5"", ""output"": ""After deposit (+=): 10\nAfter withdrawal (-=): -10\nAfter multiplier (*=): -20\nAfter divisor (//=): -4"", ""is_hidden"": true}, {""input"": ""50 25 5 1 1"", ""output"": ""After deposit (+=): 75\nAfter withdrawal (-=): 70\nAfter multiplier (*=): 70\nAfter divisor (//=): 70"", ""is_hidden"": true}, {""input"": ""20 10 100 1 7"", ""output"": ""After deposit (+=): 30\nAfter withdrawal (-=): -70\nAfter multiplier (*=): -70\nAfter divisor (//=): -10"", ""is_hidden"": true}, {""input"": ""90 10 0 3 8"", ""output"": ""After deposit (+=): 100\nAfter withdrawal (-=): 100\nAfter multiplier (*=): 300\nAfter divisor (//=): 37"", ""is_hidden"": true}]"
+M03-07,Divisibility Flags,Module 03: Operators,Easy,"Check whether an integer is divisible by both 3 and 5, by 3 only, or by 5 only using Boolean expressions.",stdin/stdout,O(1),O(1),"Task: A program must classify a number based on whether it can be divided evenly by 3 and 5. A number is divisible by another number when the remainder is zero.
+
+You are given an integer. Decide whether it is divisible by both 3 and 5, only by 3, only by 5, or by neither. Print the matching result using the required labels. Use divisibility checks and logical operators to combine the conditions.",A single line containing one integer N.,"One line: Both, Only 3, Only 5, or Neither",-1000000000 <= N <= 1000000000,15,Both,9,Only 3,n % 3 == 0 tests divisibility by 3 and gives a Boolean.,"Store the two Booleans, then combine them with and / not.","Check the ""Both"" case first so it does not fall into ""Only 3"".","n = int(input())
+a = n % 3 == 0
+b = n % 5 == 0
+if a and b:
+    print(""Both"")
+elif a:
+    print(""Only 3"")
+elif b:
+    print(""Only 5"")
+else:
+    print(""Neither"")","[{""input"": ""15"", ""output"": ""Both"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""Only 3"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""Only 5"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""Neither"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Both"", ""is_hidden"": true}, {""input"": ""-15"", ""output"": ""Both"", ""is_hidden"": true}, {""input"": ""-9"", ""output"": ""Only 3"", ""is_hidden"": true}, {""input"": ""-10"", ""output"": ""Only 5"", ""is_hidden"": true}, {""input"": ""-7"", ""output"": ""Neither"", ""is_hidden"": true}, {""input"": ""999999999"", ""output"": ""Only 3"", ""is_hidden"": true}]"
+M03-08,Bitwise Permission Merge,Module 03: Operators,Medium,"Read two 8-bit masks; output bitwise AND, OR, and XOR as 8-character binary strings.",stdin/stdout,O(1),O(1),"Task: A computer system stores two users' permissions as 8-bit binary strings. In each string, 1 means a permission is enabled and 0 means it is disabled.
+
+You are given two binary strings, each containing exactly eight bits. Calculate their bitwise AND, OR, and XOR. AND is 1 only when both bits are 1; OR is 1 when at least one bit is 1; XOR is 1 when the two bits are different. Print each result as an 8-bit binary string, keeping leading zeros.",A single line containing two space-separated 8-character binary strings (only 0 and 1).,"Three lines:
+AND: <8 bits>
+OR: <8 bits>
+XOR: <8 bits>","Each mask has exactly 8 characters, each 0 or 1.",11001100 10101010,"AND: 10001000
+OR: 11101110
+XOR: 01100110",11110000 00001111,"AND: 00000000
+OR: 11111111
+XOR: 11111111","Parse a binary string with int(s, 2).","Use & for AND, | for OR, ^ for XOR on the integers.",Format back with the spec :08b to keep leading zeros.,"a, b = input().split()
+x, y = int(a, 2), int(b, 2)
+print(f""AND: {x & y:08b}"")
+print(f""OR: {x | y:08b}"")
+print(f""XOR: {x ^ y:08b}"")","[{""input"": ""11001100 10101010"", ""output"": ""AND: 10001000\nOR: 11101110\nXOR: 01100110"", ""is_hidden"": false}, {""input"": ""11110000 00001111"", ""output"": ""AND: 00000000\nOR: 11111111\nXOR: 11111111"", ""is_hidden"": false}, {""input"": ""00000000 11111111"", ""output"": ""AND: 00000000\nOR: 11111111\nXOR: 11111111"", ""is_hidden"": false}, {""input"": ""10000001 10000001"", ""output"": ""AND: 10000001\nOR: 10000001\nXOR: 00000000"", ""is_hidden"": true}, {""input"": ""01010101 10101010"", ""output"": ""AND: 00000000\nOR: 11111111\nXOR: 11111111"", ""is_hidden"": true}, {""input"": ""11111111 11111111"", ""output"": ""AND: 11111111\nOR: 11111111\nXOR: 00000000"", ""is_hidden"": true}, {""input"": ""00000000 00000000"", ""output"": ""AND: 00000000\nOR: 00000000\nXOR: 00000000"", ""is_hidden"": true}, {""input"": ""00110011 01100110"", ""output"": ""AND: 00100010\nOR: 01110111\nXOR: 01010101"", ""is_hidden"": true}, {""input"": ""10000000 00000001"", ""output"": ""AND: 00000000\nOR: 10000001\nXOR: 10000001"", ""is_hidden"": true}, {""input"": ""11100111 00011000"", ""output"": ""AND: 00000000\nOR: 11111111\nXOR: 11111111"", ""is_hidden"": true}]"
+M03-09,Feature Flag Toggle,Module 03: Operators,Medium,Toggle specific feature bits using bitwise XOR ^ mask and print the resulting integer value.,stdin/stdout,O(1),O(1),"Task: A software application stores its feature settings in an integer. Each bit represents a feature. A second integer, called a mask, tells the program which features to switch on or off.
+
+You are given the current feature value `F` and a mask `M`. Use XOR (`^`) to toggle the selected bits: a bit changes when the matching bit in the mask is 1, and stays the same when the mask bit is 0. Print the updated value. Then apply the same mask again and print the result to show that toggling the same bits twice restores the original value.",A single line containing two space-separated integers F and M.,"Two lines:
+Toggled: <F ^ M>
+Restored: <(F ^ M) ^ M>","0 <= F, M <= 65535",5 3,"Toggled: 6
+Restored: 5",255 15,"Toggled: 240
+Restored: 255",The XOR operator in Python is ^.,Compute toggled = f ^ m once and reuse it.,"toggled ^ m flips the same bits back, so it equals F.","f, m = map(int, input().split())
+t = f ^ m
+print(f""Toggled: {t}"")
+print(f""Restored: {t ^ m}"")","[{""input"": ""5 3"", ""output"": ""Toggled: 6\nRestored: 5"", ""is_hidden"": false}, {""input"": ""255 15"", ""output"": ""Toggled: 240\nRestored: 255"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""Toggled: 0\nRestored: 0"", ""is_hidden"": false}, {""input"": ""12 12"", ""output"": ""Toggled: 0\nRestored: 12"", ""is_hidden"": true}, {""input"": ""1024 1025"", ""output"": ""Toggled: 1\nRestored: 1024"", ""is_hidden"": true}, {""input"": ""0 65535"", ""output"": ""Toggled: 65535\nRestored: 0"", ""is_hidden"": true}, {""input"": ""65535 65535"", ""output"": ""Toggled: 0\nRestored: 65535"", ""is_hidden"": true}, {""input"": ""43690 21845"", ""output"": ""Toggled: 65535\nRestored: 43690"", ""is_hidden"": true}, {""input"": ""1 2"", ""output"": ""Toggled: 3\nRestored: 1"", ""is_hidden"": true}, {""input"": ""100 200"", ""output"": ""Toggled: 172\nRestored: 100"", ""is_hidden"": true}]"
+M03-10,Operator Precedence Evaluator,Module 03: Operators,Medium,Compute 6 distinct parenthesized and unparenthesized combinations of a + b * c ** d.,stdin/stdout,O(1),O(1),"Task: Python follows operator precedence when it evaluates expressions. For example, exponentiation is evaluated before multiplication, and multiplication is evaluated before addition. Parentheses can change the order of evaluation.
+
+You are given four integers: `a`, `b`, `c`, and `d`. Calculate the six expressions specified in the problem's output requirements. Follow each expression exactly, including its parentheses, and let Python apply its normal precedence rules. Print every result with the required label.","A single line containing four space-separated integers a, b, c, d.","Six lines:
+E1: <value>
+E2: <value>
+E3: <value>
+E4: <value>
+E5: <value>
+E6: <value>","0 <= a, b, c, d <= 3
+(0 ** 0 is 1 in Python.)",2 3 2 3,"E1: 26
+E2: 40
+E3: 218
+E4: 512
+E5: 1000
+E6: 390625",1 2 3 2,"E1: 19
+E2: 27
+E3: 37
+E4: 49
+E5: 81
+E6: 19683",Type each expression with exactly the parentheses shown.,"** binds tighter than *, which binds tighter than +.","In E6, c ** d is evaluated first because ** is right-associative.","a, b, c, d = map(int, input().split())
+print(f""E1: {a + b * c ** d}"")
+print(f""E2: {(a + b) * c ** d}"")
+print(f""E3: {a + (b * c) ** d}"")
+print(f""E4: {(a + b * c) ** d}"")
+print(f""E5: {((a + b) * c) ** d}"")
+print(f""E6: {(a + b) ** c ** d}"")","[{""input"": ""2 3 2 3"", ""output"": ""E1: 26\nE2: 40\nE3: 218\nE4: 512\nE5: 1000\nE6: 390625"", ""is_hidden"": false}, {""input"": ""1 2 3 2"", ""output"": ""E1: 19\nE2: 27\nE3: 37\nE4: 49\nE5: 81\nE6: 19683"", ""is_hidden"": false}, {""input"": ""0 0 0 0"", ""output"": ""E1: 0\nE2: 0\nE3: 1\nE4: 1\nE5: 1\nE6: 0"", ""is_hidden"": false}, {""input"": ""3 3 3 3"", ""output"": ""E1: 84\nE2: 162\nE3: 732\nE4: 1728\nE5: 5832\nE6: 1023490369077469249536"", ""is_hidden"": true}, {""input"": ""1 1 1 1"", ""output"": ""E1: 2\nE2: 2\nE3: 2\nE4: 2\nE5: 2\nE6: 2"", ""is_hidden"": true}, {""input"": ""2 0 3 2"", ""output"": ""E1: 2\nE2: 18\nE3: 2\nE4: 4\nE5: 36\nE6: 512"", ""is_hidden"": true}, {""input"": ""0 2 2 2"", ""output"": ""E1: 8\nE2: 8\nE3: 16\nE4: 16\nE5: 16\nE6: 16"", ""is_hidden"": true}, {""input"": ""3 2 1 3"", ""output"": ""E1: 5\nE2: 5\nE3: 11\nE4: 125\nE5: 125\nE6: 5"", ""is_hidden"": true}, {""input"": ""2 2 2 2"", ""output"": ""E1: 10\nE2: 16\nE3: 18\nE4: 36\nE5: 64\nE6: 256"", ""is_hidden"": true}, {""input"": ""1 3 0 3"", ""output"": ""E1: 1\nE2: 0\nE3: 1\nE4: 1\nE5: 0\nE6: 1"", ""is_hidden"": true}, {""input"": ""3 1 2 0"", ""output"": ""E1: 4\nE2: 4\nE3: 4\nE4: 1\nE5: 1\nE6: 4"", ""is_hidden"": true}]"
+M03-11,Variable Swap with XOR,Module 03: Operators,Medium,Swap two positive integers using three sequential XOR operations and output step values.,stdin/stdout,O(1),O(1),"Task: You are given two positive integers stored in variables `a` and `b`. Swap their values without creating a third variable to temporarily store either value.
+
+Use three XOR operations in this order: `a ^= b`, `b ^= a`, and `a ^= b`. Print the values of `a` and `b` after each operation. After the final operation, `a` should contain the original value of `b`, and `b` should contain the original value of `a`.",A single line containing two space-separated positive integers a and b.,"Three lines:
+Step 1: a=<a> b=<b>
+Step 2: a=<a> b=<b>
+Step 3: a=<a> b=<b>","1 <= a, b <= 1000000000",5 9,"Step 1: a=12 b=9
+Step 2: a=12 b=5
+Step 3: a=9 b=5",12 12,"Step 1: a=0 b=12
+Step 2: a=0 b=12
+Step 3: a=12 b=12","Use the augmented form a ^= b exactly three times, alternating the variables.","Print both variables after each step, in the order a then b.","When a equals b, step 1 makes a zero, yet the final values are still correct.","a, b = map(int, input().split())
+a ^= b
+print(f""Step 1: a={a} b={b}"")
+b ^= a
+print(f""Step 2: a={a} b={b}"")
+a ^= b
+print(f""Step 3: a={a} b={b}"")","[{""input"": ""5 9"", ""output"": ""Step 1: a=12 b=9\nStep 2: a=12 b=5\nStep 3: a=9 b=5"", ""is_hidden"": false}, {""input"": ""12 12"", ""output"": ""Step 1: a=0 b=12\nStep 2: a=0 b=12\nStep 3: a=12 b=12"", ""is_hidden"": false}, {""input"": ""1 1000000000"", ""output"": ""Step 1: a=1000000001 b=1000000000\nStep 2: a=1000000001 b=1\nStep 3: a=1000000000 b=1"", ""is_hidden"": false}, {""input"": ""7 8"", ""output"": ""Step 1: a=15 b=8\nStep 2: a=15 b=7\nStep 3: a=8 b=7"", ""is_hidden"": true}, {""input"": ""255 1"", ""output"": ""Step 1: a=254 b=1\nStep 2: a=254 b=255\nStep 3: a=1 b=255"", ""is_hidden"": true}, {""input"": ""1000000000 999999999"", ""output"": ""Step 1: a=1023 b=999999999\nStep 2: a=1023 b=1000000000\nStep 3: a=999999999 b=1000000000"", ""is_hidden"": true}, {""input"": ""2 3"", ""output"": ""Step 1: a=1 b=3\nStep 2: a=1 b=2\nStep 3: a=3 b=2"", ""is_hidden"": true}, {""input"": ""100 200"", ""output"": ""Step 1: a=172 b=200\nStep 2: a=172 b=100\nStep 3: a=200 b=100"", ""is_hidden"": true}, {""input"": ""65536 1"", ""output"": ""Step 1: a=65537 b=1\nStep 2: a=65537 b=65536\nStep 3: a=1 b=65536"", ""is_hidden"": true}, {""input"": ""17 34"", ""output"": ""Step 1: a=51 b=34\nStep 2: a=51 b=17\nStep 3: a=34 b=17"", ""is_hidden"": true}]"
+M03-12,Power of Two Detection,Module 03: Operators,Medium,Determine whether an integer is a power of two via (n > 0) and (n & (n - 1)) == 0.,stdin/stdout,O(1),O(1),"Task: A positive integer is a power of two if it is 1, 2, 4, 8, 16, and so on. Numbers such as 6, 10, and 12 are not powers of two. Zero and negative numbers are not powers of two either.
+
+You are given an integer `n`. Check whether it is positive and has exactly one set bit in its binary representation. Use the bitwise check `n & (n - 1) == 0` together with a check that `n` is greater than zero. Print `Power of two: True` if both conditions hold; otherwise, print `Power of two: False`.",A single line containing one integer n.,One line: Power of two: <True/False>,-2^62 <= n <= 2^62,16,Power of two: True,18,Power of two: False,n & (n - 1) clears the lowest set bit of n.,"Powers of two have exactly one set bit, so the result is 0.","Also require n > 0, because 0 & -1 is 0 but 0 is not a power of two.","n = int(input())
+print(f""Power of two: {(n > 0) and (n & (n - 1)) == 0}"")","[{""input"": ""16"", ""output"": ""Power of two: True"", ""is_hidden"": false}, {""input"": ""18"", ""output"": ""Power of two: False"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Power of two: True"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Power of two: False"", ""is_hidden"": true}, {""input"": ""-8"", ""output"": ""Power of two: False"", ""is_hidden"": true}, {""input"": ""1024"", ""output"": ""Power of two: True"", ""is_hidden"": true}, {""input"": ""1099511627776"", ""output"": ""Power of two: True"", ""is_hidden"": true}, {""input"": ""1099511627775"", ""output"": ""Power of two: False"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""Power of two: False"", ""is_hidden"": true}, {""input"": ""4611686018427387904"", ""output"": ""Power of two: True"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Power of two: False"", ""is_hidden"": true}]"
+M03-13,Extract Nth Bit,Module 03: Operators,Medium,Isolate the Nth bit of an integer using right-shift >> and bitwise AND with 1.,stdin/stdout,O(1),O(1),"Task: An integer is stored in binary using bits. Bit positions are counted from right to left, starting at position 0. For example, the binary form of 13 is 1101, so bit 0 is 1, bit 1 is 0, bit 2 is 1, and bit 3 is 1.
+
+You are given an integer `n` and a non-negative bit position `k`. Find the bit at position `k`. Shift the number right by `k` positions, then use bitwise AND with 1 to extract the rightmost bit. Print the result, which will be 0 or 1.",A single line containing two space-separated integers n and k.,One line: Bit <k>: <0 or 1>,"0 <= n < 2^62
+0 <= k <= 62",5 0,Bit 0: 1,5 1,Bit 1: 0,n >> k moves bit k to the least significant position.,& 1 keeps only that lowest bit.,Bits above the highest set bit are 0.,"n, k = map(int, input().split())
+print(f""Bit {k}: {(n >> k) & 1}"")","[{""input"": ""5 0"", ""output"": ""Bit 0: 1"", ""is_hidden"": false}, {""input"": ""5 1"", ""output"": ""Bit 1: 0"", ""is_hidden"": false}, {""input"": ""5 2"", ""output"": ""Bit 2: 1"", ""is_hidden"": false}, {""input"": ""0 10"", ""output"": ""Bit 10: 0"", ""is_hidden"": true}, {""input"": ""255 7"", ""output"": ""Bit 7: 1"", ""is_hidden"": true}, {""input"": ""256 7"", ""output"": ""Bit 7: 0"", ""is_hidden"": true}, {""input"": ""256 8"", ""output"": ""Bit 8: 1"", ""is_hidden"": true}, {""input"": ""4611686018427387903 61"", ""output"": ""Bit 61: 1"", ""is_hidden"": true}, {""input"": ""4611686018427387903 62"", ""output"": ""Bit 62: 0"", ""is_hidden"": true}, {""input"": ""1 0"", ""output"": ""Bit 0: 1"", ""is_hidden"": true}, {""input"": ""1024 10"", ""output"": ""Bit 10: 1"", ""is_hidden"": true}]"
+M03-14,Set and Clear Bit Masks,Module 03: Operators,Medium,Set bit k using n | (1 << k) and clear bit m using n & ~(1 << m).,stdin/stdout,O(1),O(1),"Task: You can change one bit of an integer without changing the other bits. Setting a bit means turning it on (making it 1). Clearing a bit means turning it off (making it 0). Bit positions start at 0 from the rightmost bit.
+
+You are given an integer `n` and two non-negative positions, `k` and `m`. First, set bit `k` using `n | (1 << k)`. Then, clear bit `m` using `n & ~(1 << m)`. Calculate both results separately from the original value of `n`. Print the value after setting the bit and the value after clearing the bit.","A single line containing three space-separated integers n, k, m.","Two lines:
+Set: <value>
+Clear: <value>","0 <= n < 2^31
+0 <= k, m <= 31",5 1 0,"Set: 7
+Clear: 4",8 3 3,"Set: 8
+Clear: 0",1 << k builds a mask with only bit k set.,OR with the mask sets the bit; AND with the inverted mask (~mask) clears it.,Both results start from the original n; they are not applied one after the other.,"n, k, m = map(int, input().split())
+print(f""Set: {n | (1 << k)}"")
+print(f""Clear: {n & ~(1 << m)}"")","[{""input"": ""5 1 0"", ""output"": ""Set: 7\nClear: 4"", ""is_hidden"": false}, {""input"": ""8 3 3"", ""output"": ""Set: 8\nClear: 0"", ""is_hidden"": false}, {""input"": ""0 5 5"", ""output"": ""Set: 32\nClear: 0"", ""is_hidden"": false}, {""input"": ""255 8 0"", ""output"": ""Set: 511\nClear: 254"", ""is_hidden"": true}, {""input"": ""1023 0 9"", ""output"": ""Set: 1023\nClear: 511"", ""is_hidden"": true}, {""input"": ""0 0 0"", ""output"": ""Set: 1\nClear: 0"", ""is_hidden"": true}, {""input"": ""2147483647 31 30"", ""output"": ""Set: 4294967295\nClear: 1073741823"", ""is_hidden"": true}, {""input"": ""4096 12 12"", ""output"": ""Set: 4096\nClear: 0"", ""is_hidden"": true}, {""input"": ""1 0 0"", ""output"": ""Set: 1\nClear: 0"", ""is_hidden"": true}, {""input"": ""170 0 1"", ""output"": ""Set: 171\nClear: 168"", ""is_hidden"": true}]"
+M03-15,Multi-Layer Commercial Margin,Module 03: Operators,Medium,"Compute retailer margin by combining markup %, promo discount %, and VAT % in a fixed order.",stdin/stdout,O(1),O(1),"Task: A retailer buys a product and sells it at a higher price. The retailer first adds a markup to the cost price to get the list price. A discount is then taken off the list price, and VAT is added to the discounted price to find what the customer pays.
+
+You are given the cost price, markup percentage, VAT percentage, and discount percentage. Calculate the list price, the price after discount, the VAT amount, and the final price including VAT. Also calculate the margin as the discounted price minus the original cost price, and calculate the margin percentage using the original cost price. Print the required values to two decimal places, using the output labels specified in the problem.","A single line containing four space-separated real numbers: cost price C, markup %, VAT %, discount %.","Four lines:
+Discounted Price: <value:.2f>
+Customer Pays: <value:.2f>
+Retailer Margin: <value:.2f>
+Margin %: <value:.2f>%","0.01 <= C <= 100000.0
+0.0 <= markup <= 500.0
+0.0 <= VAT <= 30.0
+0.0 <= discount <= 90.0",100 40 18 10,"Discounted Price: 126.00
+Customer Pays: 148.68
+Retailer Margin: 26.00
+Margin %: 26.00%",250 25 12 20,"Discounted Price: 250.00
+Customer Pays: 280.00
+Retailer Margin: 0.00
+Margin %: 0.00%","Convert percentages with p / 100 and apply markup, then discount, then VAT in that order.",Margin does not include VAT: it is discounted price minus cost.,"Margin % is relative to the cost price C, and the percent sign is part of the printed text.","c, mk, vat, d = map(float, input().split())
+listed = c * (1 + mk / 100)
+disc = listed * (1 - d / 100)
+pays = disc * (1 + vat / 100)
+margin = disc - c
+pct = margin / c * 100
+print(f""Discounted Price: {disc:.2f}"")
+print(f""Customer Pays: {pays:.2f}"")
+print(f""Retailer Margin: {margin:.2f}"")
+print(f""Margin %: {pct:.2f}%"")","[{""input"": ""100 40 18 10"", ""output"": ""Discounted Price: 126.00\nCustomer Pays: 148.68\nRetailer Margin: 26.00\nMargin %: 26.00%"", ""is_hidden"": false}, {""input"": ""250 25 12 20"", ""output"": ""Discounted Price: 250.00\nCustomer Pays: 280.00\nRetailer Margin: 0.00\nMargin %: 0.00%"", ""is_hidden"": false}, {""input"": ""80 50 5 0"", ""output"": ""Discounted Price: 120.00\nCustomer Pays: 126.00\nRetailer Margin: 40.00\nMargin %: 50.00%"", ""is_hidden"": false}, {""input"": ""1000 10 18 15"", ""output"": ""Discounted Price: 935.00\nCustomer Pays: 1103.30\nRetailer Margin: -65.00\nMargin %: -6.50%"", ""is_hidden"": true}, {""input"": ""45.5 30 18 5"", ""output"": ""Discounted Price: 56.19\nCustomer Pays: 66.31\nRetailer Margin: 10.69\nMargin %: 23.50%"", ""is_hidden"": true}, {""input"": ""999.99 33.3 7.5 12.5"", ""output"": ""Discounted Price: 1166.36\nCustomer Pays: 1253.84\nRetailer Margin: 166.37\nMargin %: 16.64%"", ""is_hidden"": true}, {""input"": ""10 0 18 0"", ""output"": ""Discounted Price: 10.00\nCustomer Pays: 11.80\nRetailer Margin: 0.00\nMargin %: 0.00%"", ""is_hidden"": true}, {""input"": ""500 100 28 50"", ""output"": ""Discounted Price: 500.00\nCustomer Pays: 640.00\nRetailer Margin: 0.00\nMargin %: 0.00%"", ""is_hidden"": true}, {""input"": ""60 20 10 10"", ""output"": ""Discounted Price: 64.80\nCustomer Pays: 71.28\nRetailer Margin: 4.80\nMargin %: 8.00%"", ""is_hidden"": true}, {""input"": ""1234.56 18.75 12 7.25"", ""output"": ""Discounted Price: 1359.75\nCustomer Pays: 1522.92\nRetailer Margin: 125.19\nMargin %: 10.14%"", ""is_hidden"": true}]"
+M03-16,Check Parity via Bitwise AND,Module 03: Operators,Medium,Check the parity of positive and negative integers using n & 1 without the modulo operator.,stdin/stdout,O(1),O(1),"Task: An even number has a 0 as its rightmost binary bit. An odd number has a 1 as its rightmost binary bit. This makes it possible to check whether a number is even or odd using a bitwise operation.
+
+You are given an integer `n`. Use `n & 1` to check its rightmost bit, without using the modulo operator `%`. If the result is 0, print `Even`. If the result is 1, print `Odd`. This method also works for negative integers in Python.",A single line containing one integer n.,One line: Even or Odd,-10^18 <= n <= 10^18,7,Odd,10,Even,The least significant bit is 1 for odd numbers and 0 for even numbers.,n & 1 extracts that bit.,Python handles negative integers correctly: -3 & 1 equals 1.,"n = int(input())
+print(""Odd"" if n & 1 else ""Even"")","[{""input"": ""7"", ""output"": ""Odd"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""Even"", ""is_hidden"": false}, {""input"": ""-3"", ""output"": ""Odd"", ""is_hidden"": false}, {""input"": ""-8"", ""output"": ""Even"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Even"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Odd"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Odd"", ""is_hidden"": true}, {""input"": ""1000000000000000001"", ""output"": ""Odd"", ""is_hidden"": true}, {""input"": ""-1000000000000000000"", ""output"": ""Even"", ""is_hidden"": true}, {""input"": ""2"", ""output"": ""Even"", ""is_hidden"": true}]"
+M03-17,Gray Code Conversion,Module 03: Operators,Hard,"Convert an integer into its reflected binary Gray code using n ^ (n >> 1), and decode it back.",stdin/stdout,O(log N),O(1),"Task: Gray code is a way to represent numbers in which two consecutive values differ by only one bit. It is used in some digital systems to reduce errors when values change.
+
+You are given a non-negative integer `n`. Convert it to Gray code using `n ^ (n >> 1)`. Print the Gray code as an integer and print its binary form without leading zeros (print `0` if the value is zero). Then decode the Gray code back to a normal integer and print the decoded value. The decoded value should match the original number.",A single line containing one non-negative integer n.,"Three lines:
+Gray: <g>
+Binary: <g in binary>
+Decoded: <value>",0 <= n < 2^62,5,"Gray: 7
+Binary: 111
+Decoded: 5",10,"Gray: 15
+Binary: 1111
+Decoded: 10",Gray code is n ^ (n >> 1).,"Binary text without padding: format(g, ""b"") or f""{g:b}"".",Decode with a loop: result = 0; while g: result ^= g; g >>= 1.,"n = int(input())
+g = n ^ (n >> 1)
+d = 0
+t = g
+while t:
+    d ^= t
+    t >>= 1
+print(f""Gray: {g}"")
+print(f""Binary: {g:b}"")
+print(f""Decoded: {d}"")","[{""input"": ""5"", ""output"": ""Gray: 7\nBinary: 111\nDecoded: 5"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""Gray: 15\nBinary: 1111\nDecoded: 10"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Gray: 0\nBinary: 0\nDecoded: 0"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Gray: 1\nBinary: 1\nDecoded: 1"", ""is_hidden"": true}, {""input"": ""2"", ""output"": ""Gray: 3\nBinary: 11\nDecoded: 2"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""Gray: 2\nBinary: 10\nDecoded: 3"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""Gray: 6\nBinary: 110\nDecoded: 4"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""Gray: 4\nBinary: 100\nDecoded: 7"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""Gray: 12\nBinary: 1100\nDecoded: 8"", ""is_hidden"": true}, {""input"": ""15"", ""output"": ""Gray: 8\nBinary: 1000\nDecoded: 15"", ""is_hidden"": true}, {""input"": ""255"", ""output"": ""Gray: 128\nBinary: 10000000\nDecoded: 255"", ""is_hidden"": true}, {""input"": ""1023"", ""output"": ""Gray: 512\nBinary: 1000000000\nDecoded: 1023"", ""is_hidden"": true}, {""input"": ""4611686018427387903"", ""output"": ""Gray: 2305843009213693952\nBinary: 10000000000000000000000000000000000000000000000000000000000000\nDecoded: 4611686018427387903"", ""is_hidden"": true}]"
+M03-18,Bitwise Sign Detection,Module 03: Operators,Hard,Determine whether two nonzero integers have opposite signs via (x ^ y) < 0 without branching.,stdin/stdout,O(1),O(1),"Task: Two non-zero integers have opposite signs when one is positive and the other is negative. For example, 5 and -3 have opposite signs, but 5 and 3 have the same sign.
+
+You are given two non-zero integers, `x` and `y`. Check whether their signs are different using the bitwise expression `(x ^ y) < 0`. Do not use an `if` statement or multiply the numbers. Print `Opposite signs: True` if their signs are different; otherwise, print `Opposite signs: False`.",A single line containing two space-separated nonzero integers x and y.,One line: Opposite signs: <True/False>,"-2^62 < x, y < 2^62
+x != 0 and y != 0",5 -3,Opposite signs: True,-7 -2,Opposite signs: False,"Python integers behave like infinite two's-complement numbers, so a negative value has an infinite run of leading 1 bits.","x ^ y has a 1 in the sign position only if exactly one of x, y is negative.","A negative number is less than 0, so the whole answer is (x ^ y) < 0.","x, y = map(int, input().split())
+print(f""Opposite signs: {(x ^ y) < 0}"")","[{""input"": ""5 -3"", ""output"": ""Opposite signs: True"", ""is_hidden"": false}, {""input"": ""-7 -2"", ""output"": ""Opposite signs: False"", ""is_hidden"": false}, {""input"": ""4 9"", ""output"": ""Opposite signs: False"", ""is_hidden"": false}, {""input"": ""-1 1"", ""output"": ""Opposite signs: True"", ""is_hidden"": true}, {""input"": ""1000000000 -1000000000"", ""output"": ""Opposite signs: True"", ""is_hidden"": true}, {""input"": ""-4611686018427387903 5"", ""output"": ""Opposite signs: True"", ""is_hidden"": true}, {""input"": ""8 -1"", ""output"": ""Opposite signs: True"", ""is_hidden"": true}, {""input"": ""-2 -8"", ""output"": ""Opposite signs: False"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""Opposite signs: False"", ""is_hidden"": true}, {""input"": ""4611686018427387903 -4611686018427387903"", ""output"": ""Opposite signs: True"", ""is_hidden"": true}]"

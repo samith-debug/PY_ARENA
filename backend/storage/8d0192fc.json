@@ -1,0 +1,1734 @@
+{
+  "id": "8d0192fc",
+  "filename": "module_12_exceptions_and_debugging.csv",
+  "imported_at": "2026-10-16T09:27:06.010130Z",
+  "total_questions": 18,
+  "total_test_cases": 144,
+  "visible_test_cases": 54,
+  "hidden_test_cases": 90,
+  "questions": [
+    {
+      "question_id": "PY-M12-01",
+      "title": "Safe Division Handler",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Divide two floats; catch ZeroDivisionError and ValueError with error tags.",
+      "problem_statement": "Task: Read two numbers as text and divide the first by the second, without ever crashing.\n• Convert both values with float(). Text that is not a number makes float() raise ValueError\n• Dividing by zero raises ZeroDivisionError\n• Put the conversion and the division in a try block, and catch each error in its own except block\n• On success, print the result with 2 decimal places\n• On ValueError, print ERROR: INVALID NUMBER\n• On ZeroDivisionError, print ERROR: DIVIDE BY ZERO\n\nExamples: 10 and 4 → 2.50, 5 and 0 → ERROR: DIVIDE BY ZERO, x and 2 → ERROR: INVALID NUMBER.",
+      "input_format": "Line 1: the dividend a (text).\nLine 2: the divisor b (text).",
+      "output_format": "One line: the result with 2 decimal places, or one of the two error tags.",
+      "constraints": "1 <= length of each line <= 20",
+      "sample_inputs": [
+        "10\n4",
+        "5\n0"
+      ],
+      "sample_outputs": [
+        "2.50",
+        "ERROR: DIVIDE BY ZERO"
+      ],
+      "hints": [
+        "float(' 3 ') works because float() ignores spaces around the number.",
+        "Write two except blocks: except ValueError: and except ZeroDivisionError:.",
+        "float('0.0') is still zero, so 5 / 0.0 also raises ZeroDivisionError. Print the result with f'{result:.2f}'."
+      ],
+      "starter_code": null,
+      "reference_solution": "a = input()\nb = input()\n\ntry:\n    result = float(a) / float(b)\nexcept ValueError:\n    print(\"ERROR: INVALID NUMBER\")\nexcept ZeroDivisionError:\n    print(\"ERROR: DIVIDE BY ZERO\")\nelse:\n    print(f\"{result:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n4",
+          "output": "2.50",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n0",
+          "output": "ERROR: DIVIDE BY ZERO",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "x\n2",
+          "output": "ERROR: INVALID NUMBER",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-9\n3",
+          "output": "-3.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n0.0",
+          "output": "ERROR: DIVIDE BY ZERO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7.5\nabc",
+          "output": "ERROR: INVALID NUMBER",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n3",
+          "output": "0.33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1,5\n1",
+          "output": "ERROR: INVALID NUMBER",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the dividend a (text).\nLine 2: the divisor b (text).",
+        "output_format": "One line: the result with 2 decimal places, or one of the two error tags."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-02",
+      "title": "Safe Dictionary Accessor",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Access nested dict keys, catching KeyError and returning default fallback.",
+      "problem_statement": "Task: Read a nested dictionary, a dotted key path and a default text. Follow the path through the dictionaries and print what you find.\n• Read the dictionary with ast.literal_eval(input()) after import ast\n• Split the path on '.' and go one level deeper for each key: value = value[key]\n• A missing key raises KeyError. A value on the way that is not a dictionary (for example a number) raises TypeError when you index it with a string. Catch both and print the default\n• If the whole path exists, print the value\n\nExamples: for {'user': {'name': 'Asha'}} and the path user.name the output is Asha. For {'a': 1} and the path b with the default N/A the output is N/A.",
+      "input_format": "Line 1: the dictionary as a Python literal.\nLine 2: the key path, keys separated by dots.\nLine 3: the default text.",
+      "output_format": "One line: the value at the path, or the default text.",
+      "constraints": "1 <= number of keys in the path <= 20\nAll keys are strings",
+      "sample_inputs": [
+        "{'user': {'name': 'Asha'}}\nuser.name\nN/A",
+        "{'a': 1}\nb\nN/A"
+      ],
+      "sample_outputs": [
+        "Asha",
+        "N/A"
+      ],
+      "hints": [
+        "Start with value = data and loop over path.split('.').",
+        "except (KeyError, TypeError): catches both errors in one block.",
+        "Print in an else block, so it only runs when the whole path worked."
+      ],
+      "starter_code": null,
+      "reference_solution": "import ast\n\ndata = ast.literal_eval(input())\npath = input()\ndefault = input()\n\nvalue = data\ntry:\n    for key in path.split(\".\"):\n        value = value[key]\nexcept (KeyError, TypeError):\n    print(default)\nelse:\n    print(value)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "{'user': {'name': 'Asha'}}\nuser.name\nN/A",
+          "output": "Asha",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "{'a': 1}\nb\nN/A",
+          "output": "N/A",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "{'a': {'b': {'c': 42}}}\na.b.c\n-",
+          "output": "42",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "{'a': {'b': 1}}\na.b.c\nnone",
+          "output": "none",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "{'a': {'b': 2}}\na.x\nmissing",
+          "output": "missing",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "{}\nx\nempty",
+          "output": "empty",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "{'cfg': {'debug': False}}\ncfg.debug\n?",
+          "output": "False",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "{'a': {'b': [1, 2]}}\na.b\nN/A",
+          "output": "[1, 2]",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(depth)",
+        "space_complexity": "O(depth)",
+        "input_format": "Line 1: the dictionary as a Python literal.\nLine 2: the key path, keys separated by dots.\nLine 3: the default text.",
+        "output_format": "One line: the value at the path, or the default text."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-03",
+      "title": "Safe List Index Lookup",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Retrieve list element at index, catching IndexError and returning None.",
+      "problem_statement": "Task: Read a list of words and an index, and print the word at that index, or None when the index does not exist.\n• Normal Python indexing rules apply: -1 is the last item, -2 the one before it, and so on\n• An index that is too big or too small makes Python raise IndexError. Catch it with try / except IndexError and print None\n• Do not check the length yourself with if: the point of this exercise is to use the exception\n\nExamples: for the words ten twenty thirty, index 1 → twenty, index 3 → None, index -1 → thirty.",
+      "input_format": "Line 1: the words, separated by single spaces.\nLine 2: the index (an integer, can be negative).",
+      "output_format": "One line: the word at the index, or None.",
+      "constraints": "1 <= number of words <= 1000\n-10^4 <= index <= 10^4",
+      "sample_inputs": [
+        "ten twenty thirty\n1",
+        "ten twenty thirty\n3"
+      ],
+      "sample_outputs": [
+        "twenty",
+        "None"
+      ],
+      "hints": [
+        "Put only the risky line inside the try block: word = items[idx].",
+        "except IndexError: print('None').",
+        "Negative indexes that are in range work normally, so they need no special code."
+      ],
+      "starter_code": null,
+      "reference_solution": "items = input().split()\nidx = int(input())\n\ntry:\n    word = items[idx]\nexcept IndexError:\n    print(\"None\")\nelse:\n    print(word)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "ten twenty thirty\n1",
+          "output": "twenty",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "ten twenty thirty\n3",
+          "output": "None",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "ten twenty thirty\n-1",
+          "output": "thirty",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a b\n-3",
+          "output": "None",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "solo\n0",
+          "output": "solo",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "x y z\n-3",
+          "output": "x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "one two\n10000",
+          "output": "None",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "seven\n-1",
+          "output": "seven",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the words, separated by single spaces.\nLine 2: the index (an integer, can be negative).",
+        "output_format": "One line: the word at the index, or None."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-04",
+      "title": "Resource Finally Block",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Demonstrate try/finally guaranteeing cleanup regardless of exceptions.",
+      "problem_statement": "Task: A finally block runs whether the try block succeeds or fails. It is used to close files, release locks and do other cleanup.\n\nRead a list of jobs. Each job is OK <name> (it works) or FAIL <name> (it breaks). Process every job like this:\n• Print open <name>\n• Inside a try block: for a FAIL job, raise RuntimeError(f'processing failed for {name}'). For an OK job, print work <name>\n• In the finally block, print close <name>. It must print for BOTH kinds of job\n• The RuntimeError is NOT caught by this inner try (it has only finally). Catch it in an outer try / except RuntimeError around the whole job, and print error: <message>\n• Then continue with the next job\n\nExample: the jobs OK a and FAIL b print\nopen a\nwork a\nclose a\nopen b\nclose b\nerror: processing failed for b",
+      "input_format": "Line 1: the number of jobs N.\nNext N lines: OK <name> or FAIL <name>.",
+      "output_format": "For every job: open, then work (OK jobs only), then close, then error: <message> (FAIL jobs only), each on its own line.",
+      "constraints": "1 <= N <= 100\nNames are words without spaces",
+      "sample_inputs": [
+        "2\nOK a\nFAIL b",
+        "1\nFAIL solo"
+      ],
+      "sample_outputs": [
+        "open a\nwork a\nclose a\nopen b\nclose b\nerror: processing failed for b",
+        "open solo\nclose solo\nerror: processing failed for solo"
+      ],
+      "hints": [
+        "Nest the statements: try: (outer) → print open → try: (inner) ... finally: print close → except RuntimeError as e: (outer).",
+        "try: ... finally: ... without any except block is allowed.",
+        "print(f'error: {e}') prints the message of the exception."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nfor _ in range(n):\n    status, name = input().split()\n    try:\n        print(f\"open {name}\")\n        try:\n            if status == \"FAIL\":\n                raise RuntimeError(f\"processing failed for {name}\")\n            print(f\"work {name}\")\n        finally:\n            print(f\"close {name}\")      # runs whether or not an error happened\n    except RuntimeError as e:\n        print(f\"error: {e}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\nOK a\nFAIL b",
+          "output": "open a\nwork a\nclose a\nopen b\nclose b\nerror: processing failed for b",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nFAIL solo",
+          "output": "open solo\nclose solo\nerror: processing failed for solo",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nOK solo",
+          "output": "open solo\nwork solo\nclose solo",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nOK x\nOK y\nOK z",
+          "output": "open x\nwork x\nclose x\nopen y\nwork y\nclose y\nopen z\nwork z\nclose z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\nFAIL p\nFAIL q\nOK r",
+          "output": "open p\nclose p\nerror: processing failed for p\nopen q\nclose q\nerror: processing failed for q\nopen r\nwork r\nclose r",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nFAIL db\nFAIL db",
+          "output": "open db\nclose db\nerror: processing failed for db\nopen db\nclose db\nerror: processing failed for db",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\nOK a\nFAIL b\nOK c\nFAIL d",
+          "output": "open a\nwork a\nclose a\nopen b\nclose b\nerror: processing failed for b\nopen c\nwork c\nclose c\nopen d\nclose d\nerror: processing failed for d",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nOK file1\nOK file2",
+          "output": "open file1\nwork file1\nclose file1\nopen file2\nwork file2\nclose file2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of jobs N.\nNext N lines: OK <name> or FAIL <name>.",
+        "output_format": "For every job: open, then work (OK jobs only), then close, then error: <message> (FAIL jobs only), each on its own line."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-05",
+      "title": "Multiple Exception Dispatch",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Parse mixed token list catching TypeError and ValueError with distinct tags.",
+      "problem_statement": "Task: Read N values written as Python literals (for example '42', 3.9, None or [1, 2]) and try to turn each one into an integer with int(value).\n• Read each value with ast.literal_eval(input()) after import ast. Then '42' is a string, 3.9 is a float, None is None, and so on\n• int() raises ValueError for text that is not a whole number, like 'abc' or '3.5'\n• int() raises TypeError for a value of the wrong type, like None or a list\n• Catch each error type in its own except block\n• Print one line per value: INT:<number> on success, VALUE_ERROR or TYPE_ERROR\n\nNote: int(3.9) works and gives 3, and int(' 7 ') works and gives 7.\n\nExample: for '42', 'abc' and None the output is INT:42, VALUE_ERROR, TYPE_ERROR.",
+      "input_format": "Line 1: the number of values N.\nNext N lines: one Python literal each (a quoted string, a number, None, a list, ...).",
+      "output_format": "N lines: INT:<number>, VALUE_ERROR or TYPE_ERROR.",
+      "constraints": "1 <= N <= 100\nEvery line is a valid Python literal",
+      "sample_inputs": [
+        "3\n'42'\n'abc'\nNone",
+        "2\n3.9\n' 7 '"
+      ],
+      "sample_outputs": [
+        "INT:42\nVALUE_ERROR\nTYPE_ERROR",
+        "INT:3\nINT:7"
+      ],
+      "hints": [
+        "Use one try block with number = int(value) inside it.",
+        "Add except ValueError: and except TypeError: with different prints.",
+        "Print f'INT:{number}' in the else block."
+      ],
+      "starter_code": null,
+      "reference_solution": "import ast\n\nn = int(input())\nfor _ in range(n):\n    value = ast.literal_eval(input())\n    try:\n        number = int(value)\n    except ValueError:\n        print(\"VALUE_ERROR\")\n    except TypeError:\n        print(\"TYPE_ERROR\")\n    else:\n        print(f\"INT:{number}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n'42'\n'abc'\nNone",
+          "output": "INT:42\nVALUE_ERROR\nTYPE_ERROR",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n3.9\n' 7 '",
+          "output": "INT:3\nINT:7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n[1, 2]",
+          "output": "TYPE_ERROR",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n'3.5'\n'-0'",
+          "output": "VALUE_ERROR\nINT:0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n{'a': 1}\n-12\n'1_000'",
+          "output": "TYPE_ERROR\nINT:-12\nINT:1000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n''\n7",
+          "output": "VALUE_ERROR\nINT:7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n(1,)",
+          "output": "TYPE_ERROR",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n'12'\n12\n12.0\n'12.0'",
+          "output": "INT:12\nINT:12\nINT:12\nVALUE_ERROR",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of values N.\nNext N lines: one Python literal each (a quoted string, a number, None, a list, ...).",
+        "output_format": "N lines: INT:<number>, VALUE_ERROR or TYPE_ERROR."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-06",
+      "title": "Debug: Fix Off-by-One Range",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Correct loop boundary off-by-one bug in legacy accumulator function.",
+      "problem_statement": "Task: This old program should add up all numbers on a line, but its results are wrong:\n\nnums = [int(x) for x in input().split()]\ntotal = 0\nfor i in range(1, len(nums) - 1):\ntotal += nums[i]\nprint(total)\n\nFor 1 2 3 it prints 2 instead of 6.\n\nFind the bug and write the fixed program.\n• It must add EVERY number, from index 0 to the last index\n• Keep the index-based loop (do not just call sum()), so you practise fixing the range\n\nExample: for 1 2 3 the output is 6.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One integer: the sum of all numbers.",
+      "constraints": "1 <= number of integers <= 10^4\n-10^6 <= each integer <= 10^6",
+      "sample_inputs": [
+        "1 2 3",
+        "5"
+      ],
+      "sample_outputs": [
+        "6",
+        "5"
+      ],
+      "hints": [
+        "Write down which indexes range(1, len(nums) - 1) gives for a list of 3 items: only 1.",
+        "The first index is 0, and range() stops BEFORE its end value.",
+        "range(len(nums)) gives exactly 0, 1, ..., len(nums) - 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\ntotal = 0\nfor i in range(len(nums)):      # was range(1, len(nums) - 1): skipped first and last\n    total += nums[i]\n\nprint(total)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-1 -2 -3 -4",
+          "output": "-10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0 0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10 20 30 40 50",
+          "output": "150",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000 -1000000 7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4 4",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One integer: the sum of all numbers."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-07",
+      "title": "Debug: Fix Mutable Default",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Fix buggy cart function retaining items across successive invocations.",
+      "problem_statement": "Task: This program gives every customer a cart and prints it. Each input line is a customer name followed by the items they buy:\n\ndef add_item(item, cart=[]):\ncart.append(item)\nreturn cart\n\nn = int(input())\nfor _ in range(n):\nname, *items = input().split()\ncart = add_item(items[0]) # start a new cart\nfor item in items[1:]:\ncart = add_item(item, cart)\nprint(name, cart)\n\nFor the customers 'asha apple' and 'ben pen' it prints asha ['apple'] and then ben ['apple', 'pen']. Ben gets Asha's apple! The default list [] is created only ONCE, when Python runs the def line, so every call without a cart shares that same list.\n\nFix the program:\n• Use None as the default value of cart, and create a new list inside add_item when cart is None\n• Keep the rest of the program the same\n\nExample: for asha apple and ben pen the output is asha ['apple'] and ben ['pen'].",
+      "input_format": "Line 1: the number of customers N.\nNext N lines: a customer name followed by at least one item, separated by single spaces.",
+      "output_format": "N lines: <name> <cart as a Python list>.",
+      "constraints": "1 <= N <= 100\n1 <= items per customer <= 20\nNames and items are words without spaces",
+      "sample_inputs": [
+        "2\nasha apple\nben pen",
+        "1\nsolo milk bread"
+      ],
+      "sample_outputs": [
+        "asha ['apple']\nben ['pen']",
+        "solo ['milk', 'bread']"
+      ],
+      "hints": [
+        "Default values are evaluated once, when Python runs the def line.",
+        "if cart is None: cart = [] runs on every call, so each call without a cart gets a fresh list.",
+        "Use 'is None', not 'not cart': an empty list that a caller passes in should still be used."
+      ],
+      "starter_code": null,
+      "reference_solution": "def add_item(item, cart=None):\n    if cart is None:        # a new list on every call\n        cart = []\n    cart.append(item)\n    return cart\n\n\nn = int(input())\nfor _ in range(n):\n    name, *items = input().split()\n    cart = add_item(items[0])           # start a new cart\n    for item in items[1:]:\n        cart = add_item(item, cart)\n    print(name, cart)",
+      "execution_mode": "stdin/stdout",
+      "function_name": "add_item",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\nasha apple\nben pen",
+          "output": "asha ['apple']\nben ['pen']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nsolo milk bread",
+          "output": "solo ['milk', 'bread']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\na x\nb y\nc z",
+          "output": "a ['x']\nb ['y']\nc ['z']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nkim tea tea\nlee cup",
+          "output": "kim ['tea', 'tea']\nlee ['cup']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\nonly one",
+          "output": "only ['one']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\np 1\nq 2 3\nr 4\ns 5 6 7",
+          "output": "p ['1']\nq ['2', '3']\nr ['4']\ns ['5', '6', '7']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nzed a b c d\nyan e",
+          "output": "zed ['a', 'b', 'c', 'd']\nyan ['e']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nm k\nm k\nm k",
+          "output": "m ['k']\nm ['k']\nm ['k']",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of customers N.\nNext N lines: a customer name followed by at least one item, separated by single spaces.",
+        "output_format": "N lines: <name> <cart as a Python list>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-08",
+      "title": "Debug: Fix Recursive Base Case",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Correct missing/invalid base cases in recursive countdown function.",
+      "problem_statement": "Task: This program should print 1 + 2 + ... + n for each number n, using a recursive function:\n\ndef rec_sum(n):\nif n == 1:\nreturn 1\nreturn n + rec_sum(n - 1)\n\nq = int(input())\nfor _ in range(q):\nprint(rec_sum(int(input())))\n\nIt works for 5, but for 0 or -3 the calls never reach n == 1. They keep counting down until Python stops with RecursionError.\n\nFix the program:\n• For n <= 0 the sum is empty, so rec_sum must return 0. Make this the base case, so the recursion always stops\n• Keep rec_sum recursive (no loop and no formula)\n\nExample: for the numbers 5, 0 and -3 the output is 15, 0 and 0.",
+      "input_format": "Line 1: the number of values Q.\nNext Q lines: one integer n each.",
+      "output_format": "Q lines: the sum 1 + 2 + ... + n, or 0 when n <= 0.",
+      "constraints": "1 <= Q <= 100\n-10^6 <= n <= 500",
+      "sample_inputs": [
+        "3\n5\n0\n-3",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "15\n0\n0",
+        "1"
+      ],
+      "hints": [
+        "n == 1 only stops values that pass exactly through 1. Which values never do?",
+        "Use a condition that catches a whole range: if n <= 0.",
+        "With the base case n <= 0, the old n == 1 case is no longer needed: 1 + rec_sum(0) is 1."
+      ],
+      "starter_code": null,
+      "reference_solution": "def rec_sum(n):\n    if n <= 0:              # was n == 1: missed 0 and negative numbers\n        return 0\n    return n + rec_sum(n - 1)\n\n\nq = int(input())\nfor _ in range(q):\n    print(rec_sum(int(input())))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "rec_sum",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n5\n0\n-3",
+          "output": "15\n0\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n2\n10",
+          "output": "3\n55",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n-1000000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n500",
+          "output": "125250",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n0\n0\n1",
+          "output": "0\n0\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n100\n-1",
+          "output": "5050\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n3",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of values Q.\nNext Q lines: one integer n each.",
+        "output_format": "Q lines: the sum 1 + 2 + ... + n, or 0 when n <= 0."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-09",
+      "title": "Debug: Fix Swallowed Error",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Refactor bare except: block that accidentally hides errors and loses data.",
+      "problem_statement": "Task: This program reads settings like port=8080; host=local:\n\ntext = input()\nsettings = {}\ntry:\nfor part in text.split(\";\"):\nkey, value = part.split(\"=\", 1)\nsettings[key.strip()] = int(value)\nexcept:\npass\nprint(settings)\n\nIts bare except: hides EVERY error. The first bad part (a part without =, or a value that is not a number) stops the whole loop, so all later settings are lost and nobody is told.\n\nWrite the fixed program. Never use a bare except:\n• Split the line on ';'. Skip parts that are empty after strip()\n• Split each part on the FIRST '='. A part without '=' makes the unpacking raise ValueError: catch only that ValueError, print SKIPPED: <part without spaces around it>, and continue with the next part\n• Strip spaces from the key and the value\n• Try int(value). If that raises ValueError, keep the value as text\n• At the end, print one line per setting in the order they were first added: <key>=<value> (int) or <key>=<value> (str). If the same key appears twice, the later value wins. If there are no settings, print NO SETTINGS\n\nExample: for port=8080; bad; host=local the output is\nSKIPPED: bad\nport=8080 (int)\nhost=local (str)",
+      "input_format": "A single line of settings separated by ';'.",
+      "output_format": "One SKIPPED line for every part without '=', in order, then one line per setting (or NO SETTINGS).",
+      "constraints": "1 <= length of the line <= 1000",
+      "sample_inputs": [
+        "port=8080; bad; host=local",
+        "bad"
+      ],
+      "sample_outputs": [
+        "SKIPPED: bad\nport=8080 (int)\nhost=local (str)",
+        "SKIPPED: bad\nNO SETTINGS"
+      ],
+      "hints": [
+        "Put a small try / except ValueError around each risky step, inside the loop, so one bad part does not stop the others.",
+        "Use continue in the except block to skip a bad part.",
+        "isinstance(value, int) tells you whether to print (int) or (str)."
+      ],
+      "starter_code": null,
+      "reference_solution": "text = input()\nsettings = {}\n\nfor part in text.split(\";\"):\n    part = part.strip()\n    if not part:\n        continue\n    try:\n        key, value = part.split(\"=\", 1)\n    except ValueError:          # no \"=\" in this part: report it and skip only this part\n        print(f\"SKIPPED: {part}\")\n        continue\n\n    key = key.strip()\n    value = value.strip()\n    try:\n        settings[key] = int(value)\n    except ValueError:          # not a number: keep the text\n        settings[key] = value\n\nif settings:\n    for key, value in settings.items():\n        kind = \"int\" if isinstance(value, int) else \"str\"\n        print(f\"{key}={value} ({kind})\")\nelse:\n    print(\"NO SETTINGS\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "port=8080; bad; host=local",
+          "output": "SKIPPED: bad\nport=8080 (int)\nhost=local (str)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "bad",
+          "output": "SKIPPED: bad\nNO SETTINGS",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a=1",
+          "output": "a=1 (int)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "x = 5 ;; y=abc ; z",
+          "output": "SKIPPED: z\nx=5 (int)\ny=abc (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "url=http://a?b=c",
+          "output": "url=http://a?b=c (str)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "n=-7; n=8; m= 0 ",
+          "output": "n=8 (int)\nm=0 (int)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "one; two; three",
+          "output": "SKIPPED: one\nSKIPPED: two\nSKIPPED: three\nNO SETTINGS",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "k=v=w; empty=",
+          "output": "k=v=w (str)\nempty= (str)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line of settings separated by ';'.",
+        "output_format": "One SKIPPED line for every part without '=', in order, then one line per setting (or NO SETTINGS)."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-10",
+      "title": "Age Range ValueError",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Validate ages; raise ValueError(\"INVALID_AGE\") if age < 0 or > 150 and report it.",
+      "problem_statement": "Task: Read N age entries and check each one by RAISING an exception for a bad value, then catching it and printing it.\n\nFor every entry, inside a try block:\n• If the text is not a whole number (digits, optionally with ONE minus sign in front), raise TypeError('AGE_MUST_BE_INT'). Remove one leading '-' (if there is one) and check the rest with isdigit()\n• Convert it with int(). If the age is < 0 or > 150, raise ValueError('INVALID_AGE')\n• Otherwise print VALID: <age>\n\nCatch (TypeError, ValueError) as e and print <ExceptionName>: <message>, using type(e).__name__ for the name.\n\nExample: for 30, -1 and abc the output is VALID: 30, ValueError: INVALID_AGE and TypeError: AGE_MUST_BE_INT.",
+      "input_format": "Line 1: the number of entries N.\nNext N lines: one age entry (text) each.",
+      "output_format": "N lines: VALID: <age>, or <ExceptionName>: <message>.",
+      "constraints": "1 <= N <= 100\n1 <= length of each entry <= 20",
+      "sample_inputs": [
+        "3\n30\n-1\nabc",
+        "2\n0\n150"
+      ],
+      "sample_outputs": [
+        "VALID: 30\nValueError: INVALID_AGE\nTypeError: AGE_MUST_BE_INT",
+        "VALID: 0\nVALID: 150"
+      ],
+      "hints": [
+        "raise ValueError('INVALID_AGE') puts the message text into the exception; str(e) gives it back.",
+        "except (TypeError, ValueError) as e: catches both kinds in one block.",
+        "0 and 150 are both valid ages."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nfor _ in range(n):\n    text = input().strip()\n    try:\n        digits = text[1:] if text.startswith(\"-\") else text\n        if not digits.isdigit():\n            raise TypeError(\"AGE_MUST_BE_INT\")\n        age = int(text)\n        if age < 0 or age > 150:\n            raise ValueError(\"INVALID_AGE\")\n        print(f\"VALID: {age}\")\n    except (TypeError, ValueError) as e:\n        print(f\"{type(e).__name__}: {e}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n30\n-1\nabc",
+          "output": "VALID: 30\nValueError: INVALID_AGE\nTypeError: AGE_MUST_BE_INT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n0\n150",
+          "output": "VALID: 0\nVALID: 150",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n151",
+          "output": "ValueError: INVALID_AGE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n25.0",
+          "output": "TypeError: AGE_MUST_BE_INT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n-0\n007\n1000000",
+          "output": "VALID: 0\nVALID: 7\nValueError: INVALID_AGE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n--5\n12a",
+          "output": "TypeError: AGE_MUST_BE_INT\nTypeError: AGE_MUST_BE_INT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n100",
+          "output": "VALID: 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n-150\n149",
+          "output": "ValueError: INVALID_AGE\nVALID: 149",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of entries N.\nNext N lines: one age entry (text) each.",
+        "output_format": "N lines: VALID: <age>, or <ExceptionName>: <message>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-11",
+      "title": "Type Coercion Pipeline",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Coerce mixed strings, floats, ints to integers, logging invalid items.",
+      "problem_statement": "Task: Data from files is often messy. Read a line of comma-separated items, turn every usable item into an int, and keep a list of the items that cannot be used.\n\nFor each item (with the spaces around it removed):\n• First try int(item). This works for text holding a whole number like 12 or -3\n• If that raises ValueError, try int(float(item)). This handles text like 3.7 (→ 3) or 1e3 (→ 1000)\n• If that also fails, the item is invalid. Catch ValueError and OverflowError here (float('inf') converts, but int() of it raises OverflowError)\n\nPrint two lines:\nclean: <the list of ints>\ninvalid: <the list of invalid items>\nBoth lists are printed as Python lists, in the original order.\n\nExample: for 1, 2, 3.7, x the output is\nclean: [1, 2, 3]\ninvalid: ['x']",
+      "input_format": "A single line of items separated by commas.",
+      "output_format": "Two lines: clean: <list of ints> and invalid: <list of invalid items (stripped text)>.",
+      "constraints": "1 <= number of items <= 10^4",
+      "sample_inputs": [
+        "1, 2, 3.7, x",
+        "4.9, none"
+      ],
+      "sample_outputs": [
+        "clean: [1, 2, 3]\ninvalid: ['x']",
+        "clean: [4]\ninvalid: ['none']"
+      ],
+      "hints": [
+        "Nest the second try inside the except block of the first one.",
+        "except (ValueError, OverflowError): catches two types in one block.",
+        "Strip each item first: items = [x.strip() for x in line.split(',')]."
+      ],
+      "starter_code": null,
+      "reference_solution": "items = [x.strip() for x in input().split(\",\")]\n\nclean = []\ninvalid = []\nfor item in items:\n    try:\n        clean.append(int(item))\n    except ValueError:\n        try:\n            clean.append(int(float(item)))     # text like \"3.7\"\n        except (ValueError, OverflowError):\n            invalid.append(item)\n\nprint(\"clean:\", clean)\nprint(\"invalid:\", invalid)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1, 2, 3.7, x",
+          "output": "clean: [1, 2, 3]\ninvalid: ['x']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4.9, none",
+          "output": "clean: [4]\ninvalid: ['none']",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "12, -3.2, 1e3",
+          "output": "clean: [12, -3, 1000]\ninvalid: []",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "nan, inf, abc",
+          "output": "clean: []\ninvalid: ['nan', 'inf', 'abc']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-7.9, 0.0, 0",
+          "output": "clean: [-7, 0, 0]\ninvalid: []",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": ", ,5",
+          "output": "clean: [5]\ninvalid: ['', '']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10, 10.5, ten",
+          "output": "clean: [10, 10]\ninvalid: ['ten']",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "42",
+          "output": "clean: [42]\ninvalid: []",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line of items separated by commas.",
+        "output_format": "Two lines: clean: <list of ints> and invalid: <list of invalid items (stripped text)>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-12",
+      "title": "Bank Withdrawal Rules",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Raise specific built-in exception types with exact canonical messages.",
+      "problem_statement": "Task: Read a starting balance and a list of withdrawal requests. Check each request by RAISING a specific built-in exception with an exact message, then catching and printing it. Check the rules in this order:\n1. If the amount is not a number (float() fails), raise TypeError('amount must be a number'). Note: catch the ValueError from float() and raise the TypeError instead\n2. If the amount <= 0, raise ValueError('amount must be positive')\n3. If the amount is bigger than the current balance, raise ValueError('insufficient funds')\n4. Otherwise take the amount from the balance and print OK: <new balance with 2 decimal places>\n\nFor a rejected request print <ExceptionName>: <message>, and the balance does not change.\n\nExample: balance 100, then 30, 0 and abc print OK: 70.00, ValueError: amount must be positive and TypeError: amount must be a number.",
+      "input_format": "Line 1: the starting balance (a number).\nLine 2: the number of requests N.\nNext N lines: one amount (text) each.",
+      "output_format": "N lines: OK: <balance> or <ExceptionName>: <message>.",
+      "constraints": "0 <= starting balance <= 10^9\n1 <= N <= 100",
+      "sample_inputs": [
+        "100\n3\n30\n0\nabc",
+        "50\n2\n50\n1"
+      ],
+      "sample_outputs": [
+        "OK: 70.00\nValueError: amount must be positive\nTypeError: amount must be a number",
+        "OK: 0.00\nValueError: insufficient funds"
+      ],
+      "hints": [
+        "Inside the try: try: amount = float(text) except ValueError: raise TypeError('amount must be a number').",
+        "Wrap the whole check in an outer try / except (TypeError, ValueError) as e.",
+        "Print with f'{type(e).__name__}: {e}'."
+      ],
+      "starter_code": null,
+      "reference_solution": "balance = float(input())\nn = int(input())\n\nfor _ in range(n):\n    text = input()\n    try:\n        try:\n            amount = float(text)\n        except ValueError:\n            raise TypeError(\"amount must be a number\")\n        if amount <= 0:\n            raise ValueError(\"amount must be positive\")\n        if amount > balance:\n            raise ValueError(\"insufficient funds\")\n        balance -= amount\n        print(f\"OK: {balance:.2f}\")\n    except (TypeError, ValueError) as e:\n        print(f\"{type(e).__name__}: {e}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "100\n3\n30\n0\nabc",
+          "output": "OK: 70.00\nValueError: amount must be positive\nTypeError: amount must be a number",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "50\n2\n50\n1",
+          "output": "OK: 0.00\nValueError: insufficient funds",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10.5\n1\n0.5",
+          "output": "OK: 10.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n1\n-1",
+          "output": "ValueError: amount must be positive",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100\n4\n60\n50\n40\n1",
+          "output": "OK: 40.00\nValueError: insufficient funds\nOK: 0.00\nValueError: insufficient funds",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "20\n2\nten\n20",
+          "output": "TypeError: amount must be a number\nOK: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000\n1\n999999999.99",
+          "output": "OK: 0.01",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n3\n5.01\n-0\n2.5",
+          "output": "ValueError: insufficient funds\nValueError: amount must be positive\nOK: 2.50",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the starting balance (a number).\nLine 2: the number of requests N.\nNext N lines: one amount (text) each.",
+        "output_format": "N lines: OK: <balance> or <ExceptionName>: <message>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-13",
+      "title": "Safe Arithmetic Evaluator",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Hard",
+      "objective": "Parse expressions with +, -, *, /, raising designated syntax/runtime errors.",
+      "problem_statement": "Task: Read N arithmetic expressions and calculate each one WITHOUT using eval(). Report errors by raising exceptions and catching them.\n\nRules of an expression:\n• It contains non-negative numbers (whole or decimal, like 12 or 0.5), the operators + - * / and spaces\n• Numbers and operators must alternate: number, operator, number, ..., number. It cannot start or end with an operator, or have two operators in a row. There are no brackets and no negative numbers\n• * and / are done before + and -. Operators of the same level go from left to right\n\nErrors to raise:\n• SyntaxError('INVALID_EXPRESSION') for any character that is not a digit, '.', an operator or a space, for a badly written number such as 1.2.3, and for every broken order of numbers and operators\n• ZeroDivisionError('DIVISION_BY_ZERO') when dividing by zero\n\nFor each expression print the result as a float, or <ExceptionName>: <message>.\n\nMethod: first split the text into tokens (numbers and operators). Then go through the tokens and keep a list of terms: a number after * or / is combined with the last term right away, and a number after + or - starts a new term (negative for -). The result is the sum of the terms.\n\nExamples: 2 + 3 * 4 → 14.0, 8 / 0 → ZeroDivisionError: DIVISION_BY_ZERO, 2 + → SyntaxError: INVALID_EXPRESSION.",
+      "input_format": "Line 1: the number of expressions N.\nNext N lines: one expression each.",
+      "output_format": "N lines: the result as a float, or <ExceptionName>: <message>.",
+      "constraints": "1 <= N <= 100\n1 <= length of each expression <= 1000",
+      "sample_inputs": [
+        "3\n2 + 3 * 4\n8 / 0\n2 +",
+        "2\n10 - 4 - 3\n1.5 * 4 / 3"
+      ],
+      "sample_outputs": [
+        "14.0\nZeroDivisionError: DIVISION_BY_ZERO\nSyntaxError: INVALID_EXPRESSION",
+        "3.0\n2.0"
+      ],
+      "hints": [
+        "Build numbers character by character: while the character is a digit or '.', add it to the current number text. float('1.2.3') raises ValueError, which you turn into the SyntaxError.",
+        "After tokenizing, the token list must have odd length, numbers at even positions and operators at odd positions.",
+        "Put all the work for one expression in one try block, and catch (SyntaxError, ZeroDivisionError) as e."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nfor _ in range(n):\n    expr = input()\n    try:\n        # 1) split the text into tokens\n        tokens = []\n        number = \"\"\n        for ch in expr:\n            if ch.isdigit() or ch == \".\":\n                number += ch\n                continue\n            if number:\n                tokens.append(number)\n                number = \"\"\n            if ch in \"+-*/\":\n                tokens.append(ch)\n            elif ch != \" \":\n                raise SyntaxError(\"INVALID_EXPRESSION\")\n        if number:\n            tokens.append(number)\n\n        # 2) check the pattern: number op number op ... number\n        if len(tokens) % 2 == 0:\n            raise SyntaxError(\"INVALID_EXPRESSION\")\n        values = []\n        for i, tok in enumerate(tokens):\n            if i % 2 == 0:\n                try:\n                    values.append(float(tok))\n                except ValueError:      # an operator here, or something like \"1.2.3\"\n                    raise SyntaxError(\"INVALID_EXPRESSION\")\n            elif tok not in \"+-*/\":\n                raise SyntaxError(\"INVALID_EXPRESSION\")\n\n        # 3) evaluate: * and / first, then + and -\n        terms = [values[0]]\n        for i in range(1, len(values)):\n            op = tokens[2 * i - 1]\n            value = values[i]\n            if op == \"*\":\n                terms[-1] *= value\n            elif op == \"/\":\n                if value == 0:\n                    raise ZeroDivisionError(\"DIVISION_BY_ZERO\")\n                terms[-1] /= value\n            elif op == \"+\":\n                terms.append(value)\n            else:\n                terms.append(-value)\n        print(sum(terms))\n    except (SyntaxError, ZeroDivisionError) as e:\n        print(f\"{type(e).__name__}: {e}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n2 + 3 * 4\n8 / 0\n2 +",
+          "output": "14.0\nZeroDivisionError: DIVISION_BY_ZERO\nSyntaxError: INVALID_EXPRESSION",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n10 - 4 - 3\n1.5 * 4 / 3",
+          "output": "3.0\n2.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n7 % 2",
+          "output": "SyntaxError: INVALID_EXPRESSION",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n1.2.3 + 1",
+          "output": "SyntaxError: INVALID_EXPRESSION",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n* 3\n4 4",
+          "output": "SyntaxError: INVALID_EXPRESSION\nSyntaxError: INVALID_EXPRESSION",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n100 / 8 - 2 * 3 + 0.5",
+          "output": "7.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 / 5\n5 / 0.0",
+          "output": "0.0\nZeroDivisionError: DIVISION_BY_ZERO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n2 ++ 2",
+          "output": "SyntaxError: INVALID_EXPRESSION",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Line 1: the number of expressions N.\nNext N lines: one expression each.",
+        "output_format": "N lines: the result as a float, or <ExceptionName>: <message>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-14",
+      "title": "Resilient Retry Simulator",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Hard",
+      "objective": "Simulate executing unreliable function N times before raising final error.",
+      "problem_statement": "Task: Network calls sometimes fail and work on the next try. Read the maximum number of attempts and how many times the operation fails, and simulate retrying it.\n\n• If tries < 1, print ValueError: tries must be at least 1 and stop. Do this by raising ValueError('tries must be at least 1') and catching it\n• For attempt n = 1, 2, ... up to tries, inside a try block: if n <= fails, raise ConnectionError(f'attempt {n} failed'). Otherwise the attempt works\n• Catch ConnectionError, print its message, and try again\n• When an attempt works, print SUCCESS on attempt <n> and stop\n• If every attempt fails, raise RuntimeError(f'FAILED after {tries} attempts'), catch it at the end and print RuntimeError: FAILED after <tries> attempts\n\nExample: for tries 3 and fails 1 the output is\nattempt 1 failed\nSUCCESS on attempt 2",
+      "input_format": "A single line containing two integers: tries and fails.",
+      "output_format": "One line for every failed attempt, then SUCCESS on attempt <n> or RuntimeError: FAILED after <tries> attempts. For tries < 1 only the ValueError line.",
+      "constraints": "-10 <= tries <= 1000\n0 <= fails <= 1000",
+      "sample_inputs": [
+        "3 1",
+        "2 5"
+      ],
+      "sample_outputs": [
+        "attempt 1 failed\nSUCCESS on attempt 2",
+        "attempt 1 failed\nattempt 2 failed\nRuntimeError: FAILED after 2 attempts"
+      ],
+      "hints": [
+        "Use a flag succeeded = False and break out of the loop when an attempt works.",
+        "except ConnectionError as err: print(err) prints just the message.",
+        "Wrap the whole simulation in one outer try / except (ValueError, RuntimeError) as e."
+      ],
+      "starter_code": null,
+      "reference_solution": "tries, fails = map(int, input().split())\n\ntry:\n    if tries < 1:\n        raise ValueError(\"tries must be at least 1\")\n\n    succeeded = False\n    for n in range(1, tries + 1):\n        try:\n            if n <= fails:\n                raise ConnectionError(f\"attempt {n} failed\")\n        except ConnectionError as err:\n            print(err)              # report it and try again\n            continue\n        print(f\"SUCCESS on attempt {n}\")\n        succeeded = True\n        break\n\n    if not succeeded:\n        raise RuntimeError(f\"FAILED after {tries} attempts\")\nexcept (ValueError, RuntimeError) as e:\n    print(f\"{type(e).__name__}: {e}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 1",
+          "output": "attempt 1 failed\nSUCCESS on attempt 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2 5",
+          "output": "attempt 1 failed\nattempt 2 failed\nRuntimeError: FAILED after 2 attempts",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 0",
+          "output": "SUCCESS on attempt 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 0",
+          "output": "ValueError: tries must be at least 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 4",
+          "output": "attempt 1 failed\nattempt 2 failed\nattempt 3 failed\nattempt 4 failed\nSUCCESS on attempt 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5 5",
+          "output": "attempt 1 failed\nattempt 2 failed\nattempt 3 failed\nattempt 4 failed\nattempt 5 failed\nRuntimeError: FAILED after 5 attempts",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-3 1",
+          "output": "ValueError: tries must be at least 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4 0",
+          "output": "SUCCESS on attempt 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(tries)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing two integers: tries and fails.",
+        "output_format": "One line for every failed attempt, then SUCCESS on attempt <n> or RuntimeError: FAILED after <tries> attempts. For tries < 1 only the ValueError line."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-15",
+      "title": "Try / Except / Else / Finally Flow",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Easy",
+      "objective": "Trace which of try, except, else and finally blocks run for each input.",
+      "problem_statement": "Task: A try statement can have four parts, and they run in a fixed order:\n• try: the risky code. It always starts\n• except: runs only if the try block raised a matching error\n• else: runs only if the try block raised NO error\n• finally: always runs last, error or not\n\nRead N values and, for each one, record which parts run while converting it with int(). Use a list called steps:\n• In try: append 'try', then convert with n = int(value)\n• In except ValueError: append 'except'\n• In else: append f'else:{n}'\n• In finally: append 'finally'\n• After the whole try statement, print the steps joined with ' -> '\n\nExamples: 42 → try -> else:42 -> finally, abc → try -> except -> finally.",
+      "input_format": "Line 1: the number of values N.\nNext N lines: one value (text) each.",
+      "output_format": "N lines: the blocks that ran, joined with ' -> '.",
+      "constraints": "1 <= N <= 100\n1 <= length of each value <= 20",
+      "sample_inputs": [
+        "2\n42\nabc",
+        "1\n3.99"
+      ],
+      "sample_outputs": [
+        "try -> else:42 -> finally\ntry -> except -> finally",
+        "try -> except -> finally"
+      ],
+      "hints": [
+        "Put only the risky line (int(value)) in the try block. Code in else is not protected by the except.",
+        "Start a new steps = [] for every value.",
+        "Print after the try statement ends: print(' -> '.join(steps))."
+      ],
+      "starter_code": null,
+      "reference_solution": "count = int(input())\n\nfor _ in range(count):\n    value = input()\n    steps = []\n    try:\n        steps.append(\"try\")\n        n = int(value)\n    except ValueError:\n        steps.append(\"except\")\n    else:\n        steps.append(f\"else:{n}\")      # only when no error happened\n    finally:\n        steps.append(\"finally\")       # always runs\n    print(\" -> \".join(steps))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\n42\nabc",
+          "output": "try -> else:42 -> finally\ntry -> except -> finally",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n3.99",
+          "output": "try -> except -> finally",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n-8",
+          "output": "try -> else:-8 -> finally",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n007",
+          "output": "try -> else:7 -> finally",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n1\nx\n2",
+          "output": "try -> else:1 -> finally\ntry -> except -> finally\ntry -> else:2 -> finally",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n+5\n5-",
+          "output": "try -> else:5 -> finally\ntry -> except -> finally",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n1_000",
+          "output": "try -> else:1000 -> finally",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nzero\n0",
+          "output": "try -> except -> finally\ntry -> else:0 -> finally",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of values N.\nNext N lines: one value (text) each.",
+        "output_format": "N lines: the blocks that ran, joined with ' -> '."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-16",
+      "title": "Exception Chaining with raise from",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Translate low-level KeyError into LookupError with context using raise ... from.",
+      "problem_statement": "Task: Code that reads a record should report a clear error, not a raw KeyError, but it should keep the original error attached as the cause.\n\nRead a record (a dictionary) and N field names. For each field:\n• Read record[key] inside a try block\n• If the key is missing, catch the KeyError and raise LookupError(f'missing field: {key}') from the KeyError. The 'from err' part stores the KeyError in the new error's __cause__\n• If the value is None, raise ValueError(f'empty field: {key}')\n• Otherwise print <key>: <value>\n\nCatch (LookupError, ValueError) as e around each field and print <ExceptionName>: <message>. If the error has a cause (e.__cause__ is not None), add [cause: <CauseName>] at the end of the line.\n\nExample: for the record {'name': 'Asha', 'age': None} and the fields name, age, email the output is\nname: Asha\nValueError: empty field: age\nLookupError: missing field: email [cause: KeyError]",
+      "input_format": "Line 1: the record as a Python dict literal (read it with ast.literal_eval).\nLine 2: the number of fields N.\nNext N lines: one field name each.",
+      "output_format": "N lines: <key>: <value>, or <ExceptionName>: <message>, followed by [cause: <CauseName>] when the error has a cause.",
+      "constraints": "1 <= N <= 100\nKeys are strings without spaces",
+      "sample_inputs": [
+        "{'name': 'Asha', 'age': None}\n3\nname\nage\nemail",
+        "{}\n1\nage"
+      ],
+      "sample_outputs": [
+        "name: Asha\nValueError: empty field: age\nLookupError: missing field: email [cause: KeyError]",
+        "LookupError: missing field: age [cause: KeyError]"
+      ],
+      "hints": [
+        "Nest two try statements: the inner one turns KeyError into LookupError, the outer one catches and prints.",
+        "raise LookupError(f'missing field: {key}') from err links the two errors.",
+        "type(e.__cause__).__name__ gives 'KeyError'."
+      ],
+      "starter_code": null,
+      "reference_solution": "import ast\n\nrecord = ast.literal_eval(input())\nn = int(input())\n\nfor _ in range(n):\n    key = input()\n    try:\n        try:\n            value = record[key]\n        except KeyError as err:\n            raise LookupError(f\"missing field: {key}\") from err\n        if value is None:\n            raise ValueError(f\"empty field: {key}\")\n        print(f\"{key}: {value}\")\n    except (LookupError, ValueError) as e:\n        line = f\"{type(e).__name__}: {e}\"\n        if e.__cause__ is not None:\n            line += f\" [cause: {type(e.__cause__).__name__}]\"\n        print(line)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "{'name': 'Asha', 'age': None}\n3\nname\nage\nemail",
+          "output": "name: Asha\nValueError: empty field: age\nLookupError: missing field: email [cause: KeyError]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "{}\n1\nage",
+          "output": "LookupError: missing field: age [cause: KeyError]",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "{'age': 0}\n1\nage",
+          "output": "age: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "{'a': 1}\n2\nA\na",
+          "output": "LookupError: missing field: A [cause: KeyError]\na: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "{'tags': []}\n1\ntags",
+          "output": "tags: []",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "{'x': None, 'y': 2}\n3\nz\ny\nx",
+          "output": "LookupError: missing field: z [cause: KeyError]\ny: 2\nValueError: empty field: x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "{'ok': True}\n1\nok",
+          "output": "ok: True",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "{'k': 'v'}\n2\nk\nk",
+          "output": "k: v\nk: v",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the record as a Python dict literal (read it with ast.literal_eval).\nLine 2: the number of fields N.\nNext N lines: one field name each.",
+        "output_format": "N lines: <key>: <value>, or <ExceptionName>: <message>, followed by [cause: <CauseName>] when the error has a cause."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-17",
+      "title": "Debug: Fix Except Clause Order",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Medium",
+      "objective": "Reorder except clauses so specific handlers run before the general Exception catch.",
+      "problem_statement": "Task: This program should explain why an integer division failed, but it reports UNKNOWN for everything:\n\nn = int(input())\nfor _ in range(n):\na, b = input().split()\na = None if a == \"none\" else a\nb = None if b == \"none\" else b\ntry:\nprint(f\"RESULT: {int(a) // int(b)}\")\nexcept Exception as e:\nprint(f\"UNKNOWN: {type(e).__name__}\")\nexcept ValueError:\nprint(\"BAD_INPUT\")\nexcept ZeroDivisionError:\nprint(\"DIVIDE_BY_ZERO\")\n\nThe word none in the input stands for a missing value (Python's None). Python checks except clauses from top to bottom and uses the FIRST one that matches. ValueError and ZeroDivisionError are both kinds of Exception, so the first clause catches everything and the specific handlers never run.\n\nFix the order of the except clauses so that:\n• Success prints RESULT: <int(a) // int(b)>\n• ValueError (text that is not a whole number) prints BAD_INPUT\n• ZeroDivisionError prints DIVIDE_BY_ZERO\n• Any other Exception prints UNKNOWN: <ExceptionName>, for example UNKNOWN: TypeError for none\n\nExample: for 7 2, 7 0 and none 1 the output is RESULT: 3, DIVIDE_BY_ZERO and UNKNOWN: TypeError.",
+      "input_format": "Line 1: the number of pairs N.\nNext N lines: two values a and b separated by a space. The word none means a missing value.",
+      "output_format": "N lines: RESULT: <n>, BAD_INPUT, DIVIDE_BY_ZERO or UNKNOWN: <ExceptionName>.",
+      "constraints": "1 <= N <= 100",
+      "sample_inputs": [
+        "3\n7 2\n7 0\nnone 1",
+        "1\nx 2"
+      ],
+      "sample_outputs": [
+        "RESULT: 3\nDIVIDE_BY_ZERO\nUNKNOWN: TypeError",
+        "BAD_INPUT"
+      ],
+      "hints": [
+        "Order except clauses from the most specific to the most general.",
+        "except Exception as e: must be the LAST clause.",
+        "type(e).__name__ gives the name of the exception class as text, such as 'TypeError'."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\n\nfor _ in range(n):\n    a, b = input().split()\n    a = None if a == \"none\" else a\n    b = None if b == \"none\" else b\n    try:\n        print(f\"RESULT: {int(a) // int(b)}\")\n    except ValueError:                  # specific handlers first\n        print(\"BAD_INPUT\")\n    except ZeroDivisionError:\n        print(\"DIVIDE_BY_ZERO\")\n    except Exception as e:              # the general catch goes last\n        print(f\"UNKNOWN: {type(e).__name__}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n7 2\n7 0\nnone 1",
+          "output": "RESULT: 3\nDIVIDE_BY_ZERO\nUNKNOWN: TypeError",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nx 2",
+          "output": "BAD_INPUT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n-7 2",
+          "output": "RESULT: -4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n10 none\n1.5 1",
+          "output": "UNKNOWN: TypeError\nBAD_INPUT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n100 7",
+          "output": "RESULT: 14",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n0 5\n0 0",
+          "output": "RESULT: 0\nDIVIDE_BY_ZERO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\nnone none",
+          "output": "UNKNOWN: TypeError",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n12 -5",
+          "output": "RESULT: -3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of pairs N.\nNext N lines: two values a and b separated by a space. The word none means a missing value.",
+        "output_format": "N lines: RESULT: <n>, BAD_INPUT, DIVIDE_BY_ZERO or UNKNOWN: <ExceptionName>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M12-18",
+      "title": "Batch Order Validator",
+      "module": "Module 12: Exceptions and Debugging",
+      "difficulty": "Hard",
+      "objective": "Validate a batch of records, collecting every error instead of stopping at the first.",
+      "problem_statement": "Task: When you import a batch of data, one bad record should not stop the whole import. Read N orders (each written as a Python literal), check every one, add up the valid ones and report every invalid one.\n\nCheck each order inside a try block, in this order, RAISING an error for a bad order:\n1. If the order is not a dict: raise TypeError('order must be a dict')\n2. Read order['id'], order['qty'] and order['price'] in that order. A missing key raises KeyError by itself\n3. qty must be an int (not a bool) and > 0, otherwise raise ValueError('qty must be a positive int')\n4. price must be an int or a float (not a bool) and >= 0, otherwise raise ValueError('price must be a non-negative number')\n5. A valid order adds qty * price to the total\n\nCatch only KeyError, ValueError and TypeError:\n• For KeyError, the message is missing <key> (the missing key is err.args[0])\n• For the other two, the message is str(err)\n• Print order <index>: <message> right away (index starts at 0)\n\nAt the end, print total: <total with 2 decimal places>.\n\nExample: for {'id': 'A1', 'qty': 2, 'price': 9.5} and {'id': 'B2', 'price': 3} the output is\norder 1: missing qty\ntotal: 19.00",
+      "input_format": "Line 1: the number of orders N.\nNext N lines: one order each, as a Python literal (read it with ast.literal_eval).",
+      "output_format": "One line per invalid order, in input order, then total: <total with 2 decimals>.",
+      "constraints": "1 <= N <= 10^4\nEvery line is a valid Python literal",
+      "sample_inputs": [
+        "2\n{'id': 'A1', 'qty': 2, 'price': 9.5}\n{'id': 'B2', 'price': 3}",
+        "3\nNone\n'order'\n{'id': 1, 'qty': 1, 'price': 1}"
+      ],
+      "sample_outputs": [
+        "order 1: missing qty\ntotal: 19.00",
+        "order 0: order must be a dict\norder 1: order must be a dict\ntotal: 1.00"
+      ],
+      "hints": [
+        "except KeyError as err: and except (ValueError, TypeError) as err: can be two clauses of the same try.",
+        "isinstance(qty, bool) must be checked too, because True is also an int in Python.",
+        "Only add to the total in the else block (or at the end of the try), after every check passed."
+      ],
+      "starter_code": null,
+      "reference_solution": "import ast\n\nn = int(input())\ntotal = 0.0\n\nfor index in range(n):\n    order = ast.literal_eval(input())\n    try:\n        if not isinstance(order, dict):\n            raise TypeError(\"order must be a dict\")\n        order_id = order[\"id\"]          # a missing key raises KeyError\n        qty = order[\"qty\"]\n        price = order[\"price\"]\n        if not isinstance(qty, int) or isinstance(qty, bool) or qty <= 0:\n            raise ValueError(\"qty must be a positive int\")\n        if not isinstance(price, (int, float)) or isinstance(price, bool) or price < 0:\n            raise ValueError(\"price must be a non-negative number\")\n    except KeyError as err:\n        print(f\"order {index}: missing {err.args[0]}\")\n    except (ValueError, TypeError) as err:\n        print(f\"order {index}: {err}\")\n    else:\n        total += qty * price\n\nprint(f\"total: {total:.2f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\n{'id': 'A1', 'qty': 2, 'price': 9.5}\n{'id': 'B2', 'price': 3}",
+          "output": "order 1: missing qty\ntotal: 19.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nNone\n'order'\n{'id': 1, 'qty': 1, 'price': 1}",
+          "output": "order 0: order must be a dict\norder 1: order must be a dict\ntotal: 1.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n{'id': 'x', 'qty': 4, 'price': 2.25}",
+          "output": "total: 9.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n{'qty': 1, 'price': 1}\n{'id': 'x', 'qty': 1}",
+          "output": "order 0: missing id\norder 1: missing price\ntotal: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n{'id': 'a', 'qty': 0, 'price': 5}\n{'id': 'b', 'qty': 2.0, 'price': 5}\n{'id': 'c', 'qty': True, 'price': 5}",
+          "output": "order 0: qty must be a positive int\norder 1: qty must be a positive int\norder 2: qty must be a positive int\ntotal: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n{'id': 'a', 'qty': 3, 'price': -1}\n{'id': 'b', 'qty': 3, 'price': '9'}\n{'id': 'c', 'qty': 3, 'price': 0}",
+          "output": "order 0: price must be a non-negative number\norder 1: price must be a non-negative number\ntotal: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n{'id': 'p', 'qty': 3, 'price': 0.1}\n{'id': 'q', 'qty': 1, 'price': 0.2}",
+          "output": "total: 0.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n{'id': 'big', 'qty': 1000000, 'price': 1000.25}\n{'id': 'neg', 'qty': -5, 'price': 1}\n{}",
+          "output": "order 1: qty must be a positive int\norder 2: missing id\ntotal: 1000250000.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Exceptions and Debugging",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the number of orders N.\nNext N lines: one order each, as a Python literal (read it with ast.literal_eval).",
+        "output_format": "One line per invalid order, in input order, then total: <total with 2 decimals>."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_12_exceptions_and_debugging.csv",
+    "total_rows": 18,
+    "total_questions": 18,
+    "valid_questions": 18,
+    "total_test_cases": 144,
+    "visible_test_cases": 54,
+    "hidden_test_cases": 90,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

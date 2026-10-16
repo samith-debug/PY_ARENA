@@ -1,0 +1,1829 @@
+{
+  "id": "2d71103a",
+  "filename": "module_15_algorithmic_thinking_and_complexity.csv",
+  "imported_at": "2026-10-16T10:18:27.322134Z",
+  "total_questions": 19,
+  "total_test_cases": 152,
+  "visible_test_cases": 57,
+  "hidden_test_cases": 95,
+  "questions": [
+    {
+      "question_id": "PY-M15-01",
+      "title": "Big-O Estimation Quiz",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Easy",
+      "objective": "Print exact Big-O complexity strings for canonical code snippets.",
+      "problem_statement": "Task: Each code snippet below takes longer when its input size N grows. Big-O notation describes HOW FAST the work grows. Your program must report the Big-O of a snippet when it is given the snippet's letter.\n\nSnippets (nums is a list with N items; n is a number of size N):\n\nA: x = nums[0]\n\nB: for x in nums:\ntotal += x\n\nC: for x in nums:\nfor y in nums:\ncount += 1\n\nD: while n > 1:\nn = n // 2\n\nE: for x in nums:\nm = n\nwhile m > 1:\nm = m // 2\n\nF: def fib(n):\nif n < 2:\nreturn n\nreturn fib(n - 1) + fib(n - 2)\n\nG: for i in range(n):\nfor j in range(n):\nfor k in range(n):\ntotal += 1\n\nH: for x in nums:\na += x\nfor x in nums:\nb += x\n\nWhat to do:\n• Work out the Big-O of each snippet yourself, and store the answers in a dictionary that maps each letter to its answer\n• Read the letters and print the answer for each one\n• Write every answer EXACTLY as one of these strings: O(1), O(log N), O(N), O(N log N), O(N^2), O(N^3), O(2^N)\n• If a letter is not one of A to H (lower-case letters count as wrong too), print UNKNOWN\n\nRules for working out Big-O:\n• Work that does not depend on N is O(1)\n• A loop that halves n each round runs about log N times\n• Loops written one INSIDE another multiply their counts\n• Loops written one AFTER another add their counts, and Big-O drops constant factors (2N is still O(N))\n\nExample:\nInput:\n4\nA\nB\nC\nD\nOutput:\nO(1)\nO(N)\nO(N^2)\nO(log N)",
+      "input_format": "Line 1: the number of questions Q.\nNext Q lines: one snippet letter each.",
+      "output_format": "Q lines: the Big-O string of each snippet, or UNKNOWN.",
+      "constraints": "1 <= Q <= 100",
+      "sample_inputs": [
+        "4\nA\nB\nC\nD",
+        "2\nE\nF"
+      ],
+      "sample_outputs": [
+        "O(1)\nO(N)\nO(N^2)\nO(log N)",
+        "O(N log N)\nO(2^N)"
+      ],
+      "hints": [
+        "A loop that halves n each time runs about log2(N) times.",
+        "Nested loops multiply: a loop of N inside a loop of N is N * N.",
+        "Every call of the naive fib makes two more calls, so the number of calls roughly doubles with each level."
+      ],
+      "starter_code": null,
+      "reference_solution": "complexity = {\n    \"A\": \"O(1)\",\n    \"B\": \"O(N)\",\n    \"C\": \"O(N^2)\",\n    \"D\": \"O(log N)\",\n    \"E\": \"O(N log N)\",\n    \"F\": \"O(2^N)\",\n    \"G\": \"O(N^3)\",\n    \"H\": \"O(N)\",\n}\n\nq = int(input())\nfor _ in range(q):\n    letter = input().strip()\n    print(complexity.get(letter, \"UNKNOWN\"))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nA\nB\nC\nD",
+          "output": "O(1)\nO(N)\nO(N^2)\nO(log N)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\nE\nF",
+          "output": "O(N log N)\nO(2^N)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nG\nH",
+          "output": "O(N^3)\nO(N)",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nZ",
+          "output": "UNKNOWN",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "8\nH\nG\nF\nE\nD\nC\nB\nA",
+          "output": "O(N)\nO(N^3)\nO(2^N)\nO(N log N)\nO(log N)\nO(N^2)\nO(N)\nO(1)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\na\nB\nB",
+          "output": "UNKNOWN\nO(N)\nO(N)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\nE",
+          "output": "O(N log N)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nD\nF",
+          "output": "O(log N)\nO(2^N)",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(Q)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the number of questions Q.\nNext Q lines: one snippet letter each.",
+        "output_format": "Q lines: the Big-O string of each snippet, or UNKNOWN."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-02",
+      "title": "Prefix Sum Array Constructor",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Easy",
+      "objective": "Construct prefix sum array allowing O(1) range sum queries.",
+      "problem_statement": "Task: A prefix sum array stores running totals of a list. Read a list of integers and print its prefix sum array.\n\nWhat the prefix sum array is:\n• It has N + 1 items, called P[0] to P[N]\n• P[0] = 0\n• P[i] = the sum of the first i numbers of the list\n\nOnce P is built, the sum of any part of the list can be found with one subtraction, which is used in the next question.\n\nHow to build it (O(N)):\n• Start with prefix = [0]\n• For each number x, append prefix[-1] + x (the last total plus the new number)\n• Do not call sum() inside the loop: that would add up the list again and again, which is O(N^2)\n\nExample:\nInput:\n3 1 4\nOutput:\n0 3 4 8\nExplanation: 0, then 3, then 3 + 1 = 4, then 4 + 4 = 8.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the N + 1 prefix sums, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "3 1 4",
+        "5"
+      ],
+      "sample_outputs": [
+        "0 3 4 8",
+        "0 5"
+      ],
+      "hints": [
+        "Start with prefix = [0].",
+        "For each x, append prefix[-1] + x.",
+        "The result has len(nums) + 1 items, and the last one is the total."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nprefix = [0]\nfor x in nums:\n    prefix.append(prefix[-1] + x)\n\nprint(\" \".join(str(x) for x in prefix))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 1 4",
+          "output": "0 3 4 8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "0 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1 -2 -3",
+          "output": "0 -1 -3 -6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 0 0",
+          "output": "0 0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4 5",
+          "output": "0 1 3 6 10 15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10 -10 10 -10",
+          "output": "0 10 0 10 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000 1000000000",
+          "output": "0 1000000000 2000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7 0 -7 3",
+          "output": "0 7 7 0 3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the N + 1 prefix sums, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-03",
+      "title": "Static Range Sum Queries",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Easy",
+      "objective": "Answer multiple range sum queries in O(1) using precomputed prefix sums.",
+      "problem_statement": "Task: Read a list of integers and several questions of the form \"what is the sum of the numbers from index l to index r?\". Answer every question.\n\nRules:\n• Indexes start at 0, and both l and r are included in the sum\n• Every query is valid: 0 <= l <= r < N\n\nHow to answer quickly:\n• Adding up the range for each query costs O(N) per query, which is too slow for many queries\n• Build the prefix sum array ONCE: P[0] = 0 and P[i + 1] = P[i] + nums[i]\n• Then each answer is P[r + 1] - P[l]: the total up to r, minus the total before l. That is O(1) per query\n\nExample:\nInput:\n3 1 4 1 5\n2\n1 3\n0 4\nOutput:\n6\n14\nExplanation: indexes 1 to 3 hold 1, 4 and 1, so the sum is 6. Indexes 0 to 4 cover the whole list: 3 + 1 + 4 + 1 + 5 = 14.",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the number of queries Q.\nNext Q lines: two indexes l and r with 0 <= l <= r < N.",
+      "output_format": "Q lines: the sum of each range.",
+      "constraints": "1 <= N <= 10^5\n1 <= Q <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "3 1 4 1 5\n2\n1 3\n0 4",
+        "7\n1\n0 0"
+      ],
+      "sample_outputs": [
+        "6\n14",
+        "7"
+      ],
+      "hints": [
+        "Build prefix with one loop before reading the queries.",
+        "The sum of nums[l..r] is prefix[r + 1] - prefix[l]: everything up to r, minus everything before l.",
+        "Check the formula with l = 0: prefix[0] is 0, so you get prefix[r + 1]."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nprefix = [0]\nfor x in nums:\n    prefix.append(prefix[-1] + x)\n\nq = int(input())\nfor _ in range(q):\n    l, r = map(int, input().split())\n    print(prefix[r + 1] - prefix[l])",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 1 4 1 5\n2\n1 3\n0 4",
+          "output": "6\n14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7\n1\n0 0",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1 2 -3 4\n3\n0 0\n0 3\n2 3",
+          "output": "-1\n2\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5 5 5\n2\n1 1\n0 3",
+          "output": "5\n20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4 5 6 7 8 9 10\n3\n0 9\n4 6\n9 9",
+          "output": "55\n18\n10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 0 0\n1\n0 2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000 -1000000000 1000000000\n2\n0 2\n1 2",
+          "output": "1000000000\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4 -4 4 -4\n2\n0 1\n1 2",
+          "output": "0\n0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N + Q)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the number of queries Q.\nNext Q lines: two indexes l and r with 0 <= l <= r < N.",
+        "output_format": "Q lines: the sum of each range."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-04",
+      "title": "Kadane's Max Subarray Sum",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Find contiguous subarray with largest sum in O(N) time and O(1) space.",
+      "problem_statement": "Task: A subarray is a part of the list made of numbers that stand NEXT to each other (at least one number). Read a list of integers and print the largest sum that any subarray can have.\n\nRules:\n• The subarray cannot be empty, so if every number is negative, the answer is the largest (least negative) single number\n\nMethod: Kadane's algorithm (one pass, O(N) time, O(1) memory). Keep two numbers:\n• best_here: the best sum of a subarray that ENDS at the current number\n• best: the best sum found anywhere so far\n• Start both with the first number\n• For every next number x: best_here = max(x, best_here + x). In words: either continue the previous subarray with x, or start a new subarray at x, whichever gives more. Then best = max(best, best_here)\n\nExample:\nInput:\n-2 1 -3 4 -1 2 1 -5 4\nOutput:\n6\nExplanation: the subarray 4 -1 2 1 adds up to 6, and no other subarray adds up to more.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One integer: the maximum subarray sum.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^4 <= each integer <= 10^4",
+      "sample_inputs": [
+        "-2 1 -3 4 -1 2 1 -5 4",
+        "-3 -1 -2"
+      ],
+      "sample_outputs": [
+        "6",
+        "-1"
+      ],
+      "hints": [
+        "Trying every subarray is O(N^2). Kadane keeps only the best sum ending here.",
+        "If best_here + x is smaller than x alone, the earlier part only hurts, so start again at x.",
+        "Update best = max(best, best_here) after each step."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nbest_here = nums[0]\nbest = nums[0]\nfor x in nums[1:]:\n    best_here = max(x, best_here + x)   # extend, or start again at x\n    best = max(best, best_here)\n\nprint(best)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "-2 1 -3 4 -1 2 1 -5 4",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-3 -1 -2",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 -9 6",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 0 -2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 -1 2 -1 2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10000 -10000 10000",
+          "output": "10000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One integer: the maximum subarray sum."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-05",
+      "title": "Two-Pointer Sorted Pair Sum",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Find pair in sorted array summing to target in O(N) using two pointers.",
+      "problem_statement": "Task: Read a list of integers that is sorted from small to large, and a target number t. Find two numbers at different positions that add up to t, using the two-pointer method, and print their positions.\n\nMethod (follow it exactly, because a list can contain several pairs and the expected answer is the one this method finds first):\n• Put one pointer at each end: lo = 0 and hi = N - 1\n• Repeat while lo < hi:\n- If nums[lo] + nums[hi] equals t, print lo and hi and stop\n- If the sum is smaller than t, move lo one step to the right (the sum becomes bigger)\n- If the sum is bigger than t, move hi one step to the left (the sum becomes smaller)\n• If the pointers meet without finding a pair, print NOT FOUND\n\nEvery step moves one pointer, so there are at most N steps: O(N).\n\nExample:\nInput:\n1 2 4 7 11\n9\nOutput:\n1 3\nExplanation: 1 + 11 = 12 is too big, so hi moves left. 1 + 7 = 8 is too small, so lo moves right. 2 + 7 = 9 matches, at positions 1 and 3.",
+      "input_format": "Line 1: the sorted integers, separated by single spaces.\nLine 2: the target t.",
+      "output_format": "One line: the two indexes lo and hi separated by a space, or NOT FOUND.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= each integer, t <= 10^9\nThe list is sorted in increasing order (duplicates allowed)",
+      "sample_inputs": [
+        "1 2 4 7 11\n9",
+        "1 2 3\n100"
+      ],
+      "sample_outputs": [
+        "1 3",
+        "NOT FOUND"
+      ],
+      "hints": [
+        "Because the list is sorted, nums[lo] is the smallest and nums[hi] the largest value still possible.",
+        "If the sum is too small, nothing paired with nums[lo] can work any more, so lo moves right.",
+        "Use a found flag (or while ... else) to print NOT FOUND."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nt = int(input())\n\nlo = 0\nhi = len(nums) - 1\nfound = False\nwhile lo < hi:\n    s = nums[lo] + nums[hi]\n    if s == t:\n        print(lo, hi)\n        found = True\n        break\n    if s < t:\n        lo += 1        # need a bigger sum\n    else:\n        hi -= 1        # need a smaller sum\n\nif not found:\n    print(\"NOT FOUND\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 4 7 11\n9",
+          "output": "1 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3\n100",
+          "output": "NOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n10",
+          "output": "NOT FOUND",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 1 1 1\n2",
+          "output": "0 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-5 -2 0 3 8\n1",
+          "output": "1 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5 6\n7",
+          "output": "0 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 2\n4",
+          "output": "0 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 1000000000\n0",
+          "output": "0 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the sorted integers, separated by single spaces.\nLine 2: the target t.",
+        "output_format": "One line: the two indexes lo and hi separated by a space, or NOT FOUND."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-06",
+      "title": "Container With Most Water",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Compute maximum water container using two-pointer shrinking in O(N).",
+      "problem_statement": "Task: Imagine N vertical lines standing at positions 0, 1, ..., N - 1. The number at each position is the height of that line. Any two lines, together with the ground, form a container that can hold water. Print the largest amount of water one container can hold.\n\nHow much a container holds:\n• water = (distance between the two lines) * (height of the SHORTER line)\n• Water would spill over the shorter line, so the taller line does not matter\n\nMethod: two pointers (O(N)):\n• Start with the widest container: lo = 0 and hi = N - 1\n• Compute its water and remember the largest value seen\n• Then move the pointer at the SHORTER line one step inward (if both lines are equal, move either one). Moving the taller line can never give more water: the width gets smaller and the height is still limited by the shorter line\n• Stop when the pointers meet\n\nExample:\nInput:\n1 8 6 2 5 4 8 3 7\nOutput:\n49\nExplanation: the lines at positions 1 (height 8) and 8 (height 7) are 7 apart, and the shorter one is 7 high: 7 * 7 = 49.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One integer: the largest area.",
+      "constraints": "2 <= N <= 10^5\n0 <= each height <= 10^4",
+      "sample_inputs": [
+        "1 8 6 2 5 4 8 3 7",
+        "1 1"
+      ],
+      "sample_outputs": [
+        "49",
+        "1"
+      ],
+      "hints": [
+        "area = (hi - lo) * min(height[lo], height[hi]).",
+        "If the heights are equal, you can move either pointer.",
+        "Checking every pair would be O(N^2); the two pointers make it O(N)."
+      ],
+      "starter_code": null,
+      "reference_solution": "height = [int(x) for x in input().split()]\n\nlo = 0\nhi = len(height) - 1\nbest = 0\nwhile lo < hi:\n    area = (hi - lo) * min(height[lo], height[hi])\n    best = max(best, area)\n    if height[lo] < height[hi]:\n        lo += 1        # the shorter line limits the area\n    else:\n        hi -= 1\n\nprint(best)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 8 6 2 5 4 8 3 7",
+          "output": "49",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4 3 2 1 4",
+          "output": "16",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000 1 10000",
+          "output": "20000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2 3 10 5 7 8 9",
+          "output": "36",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One integer: the largest area."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-07",
+      "title": "Fixed Sliding Window Max Sum",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Find max sum of contiguous subarray of exact length K in O(N) time.",
+      "problem_statement": "Task: Read a list of integers and a window size k. Look at every group of k numbers that stand next to each other, and print the largest sum of such a group.\n\nMethod: sliding window (O(N)):\n• Add up the first k numbers. This is the sum of the first window\n• Slide the window one step to the right at a time. The new sum is the old sum + the number that enters on the right - the number that leaves on the left. You never add up a whole window again\n• Remember the largest window sum. Start with the first window's sum (not with 0), because all sums may be negative\n\nExample:\nInput:\n2 1 5 1 3 2\n3\nOutput:\n9\nExplanation: the windows of size 3 have sums 8 (2 1 5), 7 (1 5 1), 9 (5 1 3) and 6 (1 3 2). The largest is 9.",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the window size k.",
+      "output_format": "One integer: the largest sum of k consecutive numbers.",
+      "constraints": "1 <= k <= N <= 10^5\n-10^4 <= each integer <= 10^4",
+      "sample_inputs": [
+        "2 1 5 1 3 2\n3",
+        "5\n1"
+      ],
+      "sample_outputs": [
+        "9",
+        "5"
+      ],
+      "hints": [
+        "window = sum(nums[:k]) is computed once.",
+        "For i from k to N - 1: window += nums[i] - nums[i - k].",
+        "Start best with the first window, not with 0, because all sums may be negative."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nk = int(input())\n\nwindow = sum(nums[:k])\nbest = window\nfor i in range(k, len(nums)):\n    window += nums[i] - nums[i - k]     # one number enters, one leaves\n    best = max(best, window)\n\nprint(best)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 1 5 1 3 2\n3",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n1",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1 -2 -3\n2",
+          "output": "-3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3 4\n4",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4 -1 4 -1 4\n2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 0 0 0\n3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000 -10000 10000\n1",
+          "output": "10000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3 3 9 1 1 1 1\n2",
+          "output": "12",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the window size k.",
+        "output_format": "One integer: the largest sum of k consecutive numbers."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-08",
+      "title": "Leaders in an Array",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Identify elements strictly greater than all elements to their right in O(N).",
+      "problem_statement": "Task: A number in a list is a leader if it is STRICTLY greater than every number to its right. The last number is always a leader, because nothing is to its right. Read a list of integers and print all the leaders, in the order they appear in the list.\n\nRules:\n• Strictly greater means equal numbers do not count: in 5 5 5 only the last 5 is a leader\n\nMethod (O(N)):\n• Comparing every number with all numbers to its right would be O(N^2)\n• Instead, walk through the list from RIGHT to LEFT and remember the largest number seen so far (start with negative infinity)\n• A number is a leader exactly when it is bigger than that largest number. When it is, save it and make it the new largest number\n• You collect the leaders from right to left, so reverse them before printing\n\nExample:\nInput:\n16 17 4 3 5 2\nOutput:\n17 5 2\nExplanation: 2 is last. 5 is bigger than 2. 3 and 4 are not bigger than 5. 17 is bigger than everything after it. 16 is smaller than 17.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the leaders in original order, separated by single spaces.",
+      "constraints": "1 <= number of integers <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "16 17 4 3 5 2",
+        "5"
+      ],
+      "sample_outputs": [
+        "17 5 2",
+        "5"
+      ],
+      "hints": [
+        "Start with max_right as negative infinity: float('-inf').",
+        "for x in reversed(nums): if x > max_right: it is a leader.",
+        "Equal values are not leaders: 5 5 gives only the last 5."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nleaders = []\nmax_right = float(\"-inf\")\nfor x in reversed(nums):\n    if x > max_right:\n        leaders.append(x)\n        max_right = x\n\nleaders.reverse()\nprint(\" \".join(str(x) for x in leaders))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "16 17 4 3 5 2",
+          "output": "17 5 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3 4",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4 3 2 1",
+          "output": "4 3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 5 5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 -5 -3",
+          "output": "-1 -3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7 10 4 10 6 5 2",
+          "output": "10 6 5 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 -1 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(N)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the leaders in original order, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-09",
+      "title": "Boyer-Moore Majority Element",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Find element occurring > N//2 times in O(N) time and O(1) space.",
+      "problem_statement": "Task: A majority element is a number that appears MORE than N // 2 times in a list of N numbers. There is at most one such number. Read a list of integers and print its majority element, or NONE if there is none.\n\nMethod: Boyer-Moore voting (O(N) time, O(1) extra memory, so no dictionary of counts):\n• Pass 1 finds a candidate. Keep candidate and count, with count starting at 0. For each number x:\n- If count is 0, make x the new candidate\n- If x equals the candidate, add 1 to count; otherwise subtract 1\n• Think of it as different numbers cancelling each other out in pairs. A real majority element has more copies than all other numbers together, so it is the one left over\n• Pass 2 checks the candidate. If there is NO majority, pass 1 still leaves some candidate (for 1 2 3 it is 3). So count how often the candidate appears and print it only if that count is more than N // 2\n\nExample:\nInput:\n2 2 1 1 1 2 2\nOutput:\n2\nExplanation: 2 appears 4 times, and 4 > 7 // 2 = 3.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the majority element, or NONE.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "2 2 1 1 1 2 2",
+        "1 2 3"
+      ],
+      "sample_outputs": [
+        "2",
+        "NONE"
+      ],
+      "hints": [
+        "Do not use a dictionary of counts: the goal is O(1) extra space.",
+        "The voting pass only gives a candidate.",
+        "nums.count(candidate) > len(nums) // 2 is the check in the second pass."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\ncandidate = None\ncount = 0\nfor x in nums:\n    if count == 0:\n        candidate = x\n    count += 1 if x == candidate else -1\n\n# second pass: the candidate must really be a majority\nif nums.count(candidate) > len(nums) // 2:\n    print(candidate)\nelse:\n    print(\"NONE\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 2 1 1 1 2 2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 1 2 2",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 3 4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-5 -5 -5 1 2",
+          "output": "-5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 2 1 2 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9 8 9 8 9 8",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the majority element, or NONE."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-10",
+      "title": "Move Zeroes In-Place",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Shift zeroes to array end preserving relative non-zero order in O(N).",
+      "problem_statement": "Task: Read a list of integers, move all the zeros to the end of the list IN PLACE (inside the same list), and print the list.\n\nRules:\n• The non-zero numbers must keep their original order\n• Do not build a second list, and do not use sort() or remove(). Each remove() call is O(N), which would make the program O(N^2)\n\nMethod (one pass, O(N)):\n• Keep a write position w, starting at 0. It is where the next non-zero number belongs\n• Go through the list with index i. When nums[i] is not 0, swap nums[i] and nums[w], then add 1 to w\n• The swaps push the zeros backward automatically\n\nExample:\nInput:\n0 1 0 3 12\nOutput:\n1 3 12 0 0",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the rearranged list, separated by single spaces.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= each integer <= 10^9",
+      "sample_inputs": [
+        "0 1 0 3 12",
+        "0"
+      ],
+      "sample_outputs": [
+        "1 3 12 0 0",
+        "0"
+      ],
+      "hints": [
+        "w is the position where the next non-zero number belongs.",
+        "Swapping (instead of only copying) moves the zeros backward automatically.",
+        "nums[i], nums[w] = nums[w], nums[i] swaps two items."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nw = 0\nfor i in range(len(nums)):\n    if nums[i] != 0:\n        nums[i], nums[w] = nums[w], nums[i]\n        w += 1\n\nprint(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0 1 0 3 12",
+          "output": "1 3 12 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3",
+          "output": "1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 0 1",
+          "output": "1 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4 0 0 0 5 0 6",
+          "output": "4 5 6 0 0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 0 -2 0",
+          "output": "-1 -2 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0 0 0 0",
+          "output": "0 0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5 0",
+          "output": "5 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the rearranged list, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-11",
+      "title": "Product of Array Except Self",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Compute output[i] = product of all elements except nums[i] without division.",
+      "problem_statement": "Task: Read a list of integers. For every position i, compute the product of all the numbers EXCEPT the one at position i, and print these products in order.\n\nRules:\n• Do not use division. Division fails when the list contains a 0\n• Do not multiply all the other numbers separately for each position: that is O(N^2)\n\nMethod (two passes, O(N)):\n• Make a result list out filled with 1\n• Pass 1, left to right: keep a running product left (start 1). For each i: out[i] = left, then left = left * nums[i]. Now out[i] holds the product of everything LEFT of i\n• Pass 2, right to left: keep a running product right (start 1). For each i: out[i] = out[i] * right, then right = right * nums[i]. Now out[i] also includes everything RIGHT of i\n\nExample:\nInput:\n1 2 3 4\nOutput:\n24 12 8 6\nExplanation: position 0: 2 * 3 * 4 = 24. Position 1: 1 * 3 * 4 = 12. Position 2: 1 * 2 * 4 = 8. Position 3: 1 * 2 * 3 = 6.",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line: the N products, separated by single spaces.",
+      "constraints": "2 <= N <= 10^5\n-30 <= each integer <= 30\nEvery product fits in the integer range Python handles easily",
+      "sample_inputs": [
+        "1 2 3 4",
+        "5 7"
+      ],
+      "sample_outputs": [
+        "24 12 8 6",
+        "7 5"
+      ],
+      "hints": [
+        "Start out = [1] * n and left = 1. For each i: out[i] = left, then left *= nums[i].",
+        "Then right = 1 and go from n - 1 down to 0: out[i] *= right, then right *= nums[i].",
+        "The order inside each step matters: use the running product before multiplying nums[i] into it."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nout = [1] * n\nleft = 1\nfor i in range(n):\n    out[i] = left          # product of everything left of i\n    left *= nums[i]\n\nright = 1\nfor i in range(n - 1, -1, -1):\n    out[i] *= right        # times the product of everything right of i\n    right *= nums[i]\n\nprint(\" \".join(str(x) for x in out))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 3 4",
+          "output": "24 12 8 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5 7",
+          "output": "7 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0 4 5",
+          "output": "20 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 0 3",
+          "output": "0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-1 1 0 -3 3",
+          "output": "0 0 9 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2 2 2",
+          "output": "8 8 8 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-2 -3",
+          "output": "-3 -2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "30 30 30 1",
+          "output": "900 900 900 27000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1) extra (besides the output)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line: the N products, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-12",
+      "title": "Three Sum Zero Triplets",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Hard",
+      "objective": "Find all unique triplets summing to zero in O(N^2) without duplicates.",
+      "problem_statement": "Task: Read a list of integers and find every group of three numbers (taken from three DIFFERENT positions) that adds up to 0. Print each different group once.\n\nOutput rules:\n• Print each triplet as three numbers in increasing order: a b c, with a <= b <= c\n• Print the triplets in increasing order: sort by a, then by b\n• A triplet of values is printed only once, even if the list contains it several times (for example because a value appears twice)\n• If there is no triplet, print NONE\n\nMethod (O(N^2), much faster than checking all O(N^3) groups):\n• Sort the list\n• For each index i, fix nums[i] as the smallest number. Skip i when nums[i] equals nums[i - 1], because it would give the same triplets again\n• Look for two more numbers after i with two pointers: lo = i + 1 and hi = N - 1. If the three numbers add up to less than 0, move lo right. If more than 0, move hi left\n• On a match, print it, move both pointers, and keep moving them past equal values to avoid printing the same triplet again\n\nExample:\nInput:\n-1 0 1 2 -1 -4\nOutput:\n-1 -1 2\n-1 0 1",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One line per triplet: a b c, or NONE.",
+      "constraints": "3 <= N <= 3000\n-10^5 <= each integer <= 10^5",
+      "sample_inputs": [
+        "-1 0 1 2 -1 -4",
+        "1 2 3"
+      ],
+      "sample_outputs": [
+        "-1 -1 2\n-1 0 1",
+        "NONE"
+      ],
+      "hints": [
+        "Sort first; then skipping repeated values removes duplicate triplets.",
+        "Inside the two-pointer loop, if the sum is too small move lo right, if too big move hi left.",
+        "After a match: lo += 1 while nums[lo] == nums[lo - 1] (and lo < hi), and hi -= 1 likewise."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = sorted(int(x) for x in input().split())\nn = len(nums)\n\nfound = False\nfor i in range(n - 2):\n    if i > 0 and nums[i] == nums[i - 1]:\n        continue                        # same first value: same triplets\n    lo, hi = i + 1, n - 1\n    while lo < hi:\n        s = nums[i] + nums[lo] + nums[hi]\n        if s < 0:\n            lo += 1\n        elif s > 0:\n            hi -= 1\n        else:\n            print(nums[i], nums[lo], nums[hi])\n            found = True\n            lo += 1\n            hi -= 1\n            while lo < hi and nums[lo] == nums[lo - 1]:\n                lo += 1\n            while lo < hi and nums[hi] == nums[hi + 1]:\n                hi -= 1\n\nif not found:\n    print(\"NONE\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "-1 0 1 2 -1 -4",
+          "output": "-1 -1 2\n-1 0 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0 0 0 0",
+          "output": "0 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-2 0 1 1 2",
+          "output": "-2 0 2\n-2 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 -3 0",
+          "output": "-3 0 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-4 -2 -2 -2 0 1 2 2 2 3 3 4 4 6 6",
+          "output": "-4 -2 6\n-4 0 4\n-4 1 3\n-4 2 2\n-2 -2 4\n-2 0 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 -1 1 -1",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-100000 50000 50000 0",
+          "output": "-100000 50000 50000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(1) extra (besides the output)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One line per triplet: a b c, or NONE."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-13",
+      "title": "Trapping Rain Water 2-Pointer",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Hard",
+      "objective": "Compute trapped water in O(N) time and O(1) space using two pointers.",
+      "problem_statement": "Task: Bars of width 1 stand in a row, and the number at position i is the height of bar i. After it rains, water is trapped in the dips between bars. Read the heights and print the total amount of trapped water.\n\nHow much water stands on one bar:\n• Water on bar i rises up to the lower of two walls: the highest bar on its left and the highest bar on its right (both including bar i itself)\n• So the water on bar i is min(left_max, right_max) - heights[i]. This is never negative\n• The first and last bars never hold water, because it flows off the ends\n\nMethod: two pointers (O(N) time, O(1) memory):\n• lo = 0, hi = N - 1, left_max = 0, right_max = 0, water = 0\n• While lo < hi:\n- If heights[lo] < heights[hi]: the left side is lower, so its water level is decided by left_max. Set left_max = max(left_max, heights[lo]), add left_max - heights[lo] to water, and move lo right\n- Otherwise do the same on the right side with right_max, and move hi left\n\nExample:\nInput:\n0 1 0 2 1 0 1 3 2 1 2 1\nOutput:\n6",
+      "input_format": "A single line containing the integers, separated by single spaces.",
+      "output_format": "One integer: the total trapped water.",
+      "constraints": "1 <= N <= 10^5\n0 <= each height <= 10^5",
+      "sample_inputs": [
+        "0 1 0 2 1 0 1 3 2 1 2 1",
+        "4 2 0 3 2 5"
+      ],
+      "sample_outputs": [
+        "6",
+        "9"
+      ],
+      "hints": [
+        "left_max = max(left_max, heights[lo]) before adding water.",
+        "The water added at a bar is never negative, because the maximum includes the bar itself.",
+        "Compare with the O(N)-space version that stores two arrays of maxima: this one keeps only two numbers."
+      ],
+      "starter_code": null,
+      "reference_solution": "heights = [int(x) for x in input().split()]\n\nlo, hi = 0, len(heights) - 1\nleft_max = right_max = 0\nwater = 0\nwhile lo < hi:\n    if heights[lo] < heights[hi]:\n        left_max = max(left_max, heights[lo])\n        water += left_max - heights[lo]\n        lo += 1\n    else:\n        right_max = max(right_max, heights[hi])\n        water += right_max - heights[hi]\n        hi -= 1\n\nprint(water)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0 1 0 2 1 0 1 3 2 1 2 1",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4 2 0 3 2 5",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3 4",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 0 3",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 0 2 0 2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 0 0 0 1",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 7 1 4 6",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the integers, separated by single spaces.",
+        "output_format": "One integer: the total trapped water."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-14",
+      "title": "Longest Substr No Repeats",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Hard",
+      "objective": "Find length of longest substring without duplicates in O(N) sliding window.",
+      "problem_statement": "Task: Read a string and print the length of its longest substring with no repeated characters. A substring is a group of characters that stand next to each other.\n\nRules:\n• Upper and lower case are different characters (a and A are different)\n• Spaces count as characters too\n\nMethod: sliding window (O(N)):\n• The window is the part of the string from index start to the current index i. It never contains a repeated character\n• Keep a dictionary last that stores the last index where each character was seen\n• For each index i with character ch:\n- If ch was seen before AND that position is inside the window (last[ch] >= start), move start to last[ch] + 1, just past the earlier copy\n- Set last[ch] = i\n- The window length is i - start + 1; remember the largest one\n• start only moves forward, never back\n\nExample:\nInput:\nabcabcbb\nOutput:\n3\nExplanation: the longest substrings without repeats are abc, bca and cab, all of length 3.",
+      "input_format": "A single line containing the string.",
+      "output_format": "One integer: the length of the longest substring without repeating characters.",
+      "constraints": "1 <= length of the string <= 10^5",
+      "sample_inputs": [
+        "abcabcbb",
+        "bbbbb"
+      ],
+      "sample_outputs": [
+        "3",
+        "1"
+      ],
+      "hints": [
+        "The window is s[start..i]; it never contains a repeated character.",
+        "Only move start forward, never back: that is why the check is last[ch] >= start.",
+        "For abba, at the last 'a' the old 'a' is already outside the window."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\n\nlast = {}\nstart = 0\nbest = 0\nfor i, ch in enumerate(s):\n    if ch in last and last[ch] >= start:\n        start = last[ch] + 1        # jump past the earlier copy\n    last[ch] = i\n    best = max(best, i - start + 1)\n\nprint(best)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "abcabcbb",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "bbbbb",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "pwwkew",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abba",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "a b c a",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "AaBbAa",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "dvdf",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(K)",
+        "input_format": "A single line containing the string.",
+        "output_format": "One integer: the length of the longest substring without repeating characters."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-15",
+      "title": "Minimum Window Substring",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Hard",
+      "objective": "Find minimum window in S containing all characters of T in O(N) window.",
+      "problem_statement": "Task: Read two strings s and t. Print the shortest substring of s that contains every character of t. A substring is a group of characters that stand next to each other.\n\nRules:\n• Repeated characters count: if t has two a's, the substring needs at least two a's\n• Upper and lower case are different characters\n• If several shortest substrings exist, print the one that starts first (leftmost)\n• If no substring of s contains all the characters, print NONE\n\nMethod: sliding window (O(len(s) + len(t))):\n• Count the characters of t in a dictionary need. Keep missing = len(t), the number of characters still missing\n• Move the right end through s. When the new character is one that is still needed (need[ch] > 0), missing goes down by 1. Then subtract 1 from need[ch]\n• While missing is 0, the window contains everything:\n- If it is shorter than the best window so far, remember it (strictly shorter only, so the leftmost one wins a tie)\n- Remove the leftmost character: add 1 to need[ch] for it, and if need[ch] becomes positive, that character is now missing again, so missing goes up by 1. Move the left end one step right\n\nExample:\nInput:\nADOBECODEBANC\nABC\nOutput:\nBANC\nExplanation: BANC contains A, B and C, and no shorter part of s contains all three.",
+      "input_format": "Line 1: the string s.\nLine 2: the string t.",
+      "output_format": "One line: the shortest window, or NONE.",
+      "constraints": "1 <= length of s, t <= 10^5\nThe strings have no spaces",
+      "sample_inputs": [
+        "ADOBECODEBANC\nABC",
+        "a\naa"
+      ],
+      "sample_outputs": [
+        "BANC",
+        "NONE"
+      ],
+      "hints": [
+        "need[ch] > 0 means the window still lacks ch. Decrease need[ch] when ch enters, increase it when ch leaves.",
+        "A character counts toward missing only while need[ch] was positive before it entered.",
+        "Recording only a strictly shorter window keeps the leftmost one on a tie."
+      ],
+      "starter_code": null,
+      "reference_solution": "s = input()\nt = input()\n\nneed = {}\nfor ch in t:\n    need[ch] = need.get(ch, 0) + 1\nmissing = len(t)\n\nbest_start, best_len = 0, float(\"inf\")\nleft = 0\nfor right, ch in enumerate(s):\n    if need.get(ch, 0) > 0:\n        missing -= 1\n    need[ch] = need.get(ch, 0) - 1\n\n    while missing == 0:                     # window s[left..right] is valid\n        if right - left + 1 < best_len:\n            best_start, best_len = left, right - left + 1\n        out = s[left]\n        need[out] += 1\n        if need[out] > 0:                   # a needed character just left\n            missing += 1\n        left += 1\n\nif best_len == float(\"inf\"):\n    print(\"NONE\")\nelse:\n    print(s[best_start:best_start + best_len])",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "ADOBECODEBANC\nABC",
+          "output": "BANC",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a\naa",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a\na",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "ab\nb",
+          "output": "b",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "aa\naa",
+          "output": "aa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abcabc\ncb",
+          "output": "bc",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "xyz\nq",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "acbbaca\naba",
+          "output": "baca",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(|S| + |T|)",
+        "space_complexity": "O(K)",
+        "input_format": "Line 1: the string s.\nLine 2: the string t.",
+        "output_format": "One line: the shortest window, or NONE."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-16",
+      "title": "Count Occurrences via Binary Search",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Count a value in a sorted list with two O(log N) binary searches.",
+      "problem_statement": "Task: Read a list of integers sorted from small to large, then several values. For each value x, print how many times x appears in the list.\n\nRules:\n• Write the binary searches yourself. Do not use the bisect module, list.count(), or a loop over the whole list (that is O(N) per value)\n\nMethod: two binary searches (O(log N) per value):\n• first = the smallest index whose number is >= x (it is N if every number is smaller than x)\n• last = the smallest index whose number is > x (it is N if no number is bigger than x)\n• Every copy of x lies between these two indexes, so the count is last - first (0 when x is not in the list)\n\nHow one binary search works:\n• lo = 0 and hi = N. While lo < hi: mid = (lo + hi) // 2. If nums[mid] < x, the answer is to the right, so lo = mid + 1; otherwise hi = mid\n• When the loop ends, lo is the answer\n• For last, use nums[mid] <= x instead of nums[mid] < x\n\nExample:\nInput:\n1 2 2 2 3 5\n3\n2\n4\n5\nOutput:\n3\n0\n1\nExplanation: for x = 2, first = 1 and last = 4, so the count is 3.",
+      "input_format": "Line 1: the sorted integers, separated by single spaces.\nLine 2: the number of queries Q.\nNext Q lines: one value x each.",
+      "output_format": "Q lines: the number of times each value appears.",
+      "constraints": "1 <= N <= 10^5\n1 <= Q <= 10^5\n-10^9 <= values <= 10^9\nThe list is sorted in increasing order",
+      "sample_inputs": [
+        "1 2 2 2 3 5\n3\n2\n4\n5",
+        "7\n2\n7\n8"
+      ],
+      "sample_outputs": [
+        "3\n0\n1",
+        "1\n0"
+      ],
+      "hints": [
+        "Use lo = 0, hi = N. While lo < hi: if nums[mid] < x then lo = mid + 1, else hi = mid. At the end lo is the first index with nums[lo] >= x.",
+        "The second search is the same with <= instead of <.",
+        "Both searches return N when every number is too small, and the count becomes 0."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nq = int(input())\nfor _ in range(q):\n    x = int(input())\n\n    lo, hi = 0, n               # first index with nums[i] >= x\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] < x:\n            lo = mid + 1\n        else:\n            hi = mid\n    first = lo\n\n    lo, hi = 0, n               # first index with nums[i] > x\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] <= x:\n            lo = mid + 1\n        else:\n            hi = mid\n\n    print(lo - first)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 2 2 3 5\n3\n2\n4\n5",
+          "output": "3\n0\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7\n2\n7\n8",
+          "output": "1\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1 1 1\n2\n1\n0",
+          "output": "4\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-5 -5 0 3 3 3\n3\n-5\n3\n-6",
+          "output": "2\n3\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4 5\n2\n1\n5",
+          "output": "1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 2 2 2 2 2 2\n1\n2",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10 20 30\n3\n15\n31\n9",
+          "output": "0\n0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 1000000000\n2\n1000000000\n0",
+          "output": "1\n0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N + Q log N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: the sorted integers, separated by single spaces.\nLine 2: the number of queries Q.\nNext Q lines: one value x each.",
+        "output_format": "Q lines: the number of times each value appears."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-17",
+      "title": "Remove Duplicates from Sorted Array",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Easy",
+      "objective": "Compact a sorted list in place with a slow and a fast pointer in O(N).",
+      "problem_statement": "Task: Read a list of integers sorted from small to large. Remove the repeated values IN PLACE, so that the beginning of the same list holds each different value once. Then print how many different values there are, and print those values.\n\nRules:\n• Change the list itself. Do not use set() or build a second list\n• The kept values stay in increasing order\n\nMethod: two pointers (O(N) time, O(1) extra memory):\n• The first value is always kept. Keep a write position w = 1 (where the next new value goes)\n• Read the rest of the list with index i from 1 to N - 1\n• Because the list is sorted, equal values stand next to each other. If nums[i] is different from the last value kept (nums[w - 1]), copy it to nums[w] and add 1 to w\n• At the end, w is the number of different values, and they are in nums[0] to nums[w - 1]\n\nExample:\nInput:\n0 0 1 1 1 2 2 3 3 4\nOutput:\n5\n0 1 2 3 4",
+      "input_format": "A single line containing the sorted integers, separated by single spaces.",
+      "output_format": "Line 1: k, the number of different values.\nLine 2: the first k values of the list after the change.",
+      "constraints": "1 <= N <= 10^5\n-10^9 <= each integer <= 10^9\nThe list is sorted in increasing order",
+      "sample_inputs": [
+        "0 0 1 1 1 2 2 3 3 4",
+        "5"
+      ],
+      "sample_outputs": [
+        "5\n0 1 2 3 4",
+        "1\n5"
+      ],
+      "hints": [
+        "Because the list is sorted, equal values are next to each other.",
+        "Compare with the last KEPT value nums[w - 1], not with nums[i - 1].",
+        "Print nums[:w] at the end."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nw = 1\nfor i in range(1, len(nums)):\n    if nums[i] != nums[w - 1]:\n        nums[w] = nums[i]\n        w += 1\n\nprint(w)\nprint(\" \".join(str(x) for x in nums[:w]))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0 0 1 1 1 2 2 3 3 4",
+          "output": "5\n0 1 2 3 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "1\n5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1 1",
+          "output": "1\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3",
+          "output": "3\n1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-3 -3 -1 0 0",
+          "output": "3\n-3 -1 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7 7 8",
+          "output": "2\n7 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 2 2 2 2 2 9",
+          "output": "3\n1 2 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 -1000000000 1000000000",
+          "output": "2\n-1000000000 1000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the sorted integers, separated by single spaces.",
+        "output_format": "Line 1: k, the number of different values.\nLine 2: the first k values of the list after the change."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-18",
+      "title": "Shortest Subarray with Sum at Least K",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Medium",
+      "objective": "Use a variable-size sliding window to find the minimum length subarray reaching a target.",
+      "problem_statement": "Task: Read a list of POSITIVE integers and a target number. Find the shortest group of numbers standing next to each other whose sum is AT LEAST the target, and print its length. Print 0 if even the whole list does not reach the target.\n\nMethod: a sliding window that grows and shrinks (O(N)):\n• The window runs from index left to index right. Start with left = 0 and a window sum of 0\n• Move right through the list and add each number to the window sum\n• While the window sum is >= target, the window is long enough: record its length (right - left + 1) if it is the shortest so far, then remove nums[left] from the sum and move left one step right, to try a shorter window\n• This works because all numbers are positive: adding a number always increases the sum and removing one always decreases it. Every number enters and leaves the window at most once\n\nExample:\nInput:\n2 3 1 2 4 3\n7\nOutput:\n2\nExplanation: 4 + 3 = 7 reaches the target with only 2 numbers. No single number is 7 or more.",
+      "input_format": "Line 1: the positive integers, separated by single spaces.\nLine 2: the target.",
+      "output_format": "One integer: the minimum length, or 0.",
+      "constraints": "1 <= N <= 10^5\n1 <= each integer <= 10^4\n1 <= target <= 10^9",
+      "sample_inputs": [
+        "2 3 1 2 4 3\n7",
+        "1 1 1\n10"
+      ],
+      "sample_outputs": [
+        "2",
+        "0"
+      ],
+      "hints": [
+        "Unlike a fixed window, this window grows and shrinks.",
+        "Start best as float('inf') and print 0 if it never changes.",
+        "The inner while loop runs at most N times in total over the whole program, not N times per r."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\ntarget = int(input())\n\nbest = float(\"inf\")\nwindow = 0\nleft = 0\nfor r in range(len(nums)):\n    window += nums[r]\n    while window >= target:             # shrink while still valid\n        best = min(best, r - left + 1)\n        window -= nums[left]\n        left += 1\n\nprint(0 if best == float(\"inf\") else best)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 3 1 2 4 3\n7",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1 1\n10",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 4 4\n4",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4 5\n11",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 1 1 1 1 1 1 1\n8",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000 1 10000\n20001",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3 1 1 1 3\n5",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the positive integers, separated by single spaces.\nLine 2: the target.",
+        "output_format": "One integer: the minimum length, or 0."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M15-19",
+      "title": "Sliding Window Maximum (Monotonic Deque)",
+      "module": "Module 15: Algorithmic Thinking & Complexity",
+      "difficulty": "Hard",
+      "objective": "Find the maximum of every window of size K in O(N) with a monotonic deque.",
+      "problem_statement": "Task: Read a list of integers and a window size k. Slide a window of k numbers from the left end to the right end of the list, one step at a time, and print the largest number in each window. There are N - k + 1 windows.\n\nWhy not max()? Calling max() on every window takes O(k) each time, so O(N * k) in total. This method takes O(N).\n\nMethod: a monotonic deque of INDEXES (from collections import deque):\n• The deque keeps indexes whose numbers get SMALLER from front to back. The front index always holds the largest number of the current window\n• For each index i with number x:\n1. Remove indexes from the BACK while their number is <= x. They can never be a window's largest number again, because x is at least as big and stays in the window longer\n2. Append i at the back\n3. If the front index has left the window (front <= i - k), remove it from the FRONT\n4. Once the first full window is reached (i >= k - 1), the number at the front index is this window's maximum\n• Each index is added once and removed at most once\n\nExample:\nInput:\n1 3 -1 -3 5 3 6 7\n3\nOutput:\n3 3 5 5 6 7\nExplanation: the windows are [1 3 -1], [3 -1 -3], [-1 -3 5], [-3 5 3], [5 3 6] and [3 6 7].",
+      "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the window size k.",
+      "output_format": "One line: the N - k + 1 window maximums, separated by single spaces.",
+      "constraints": "1 <= k <= N <= 10^5\n-10^4 <= each integer <= 10^4",
+      "sample_inputs": [
+        "1 3 -1 -3 5 3 6 7\n3",
+        "5\n1"
+      ],
+      "sample_outputs": [
+        "3 3 5 5 6 7",
+        "5"
+      ],
+      "hints": [
+        "from collections import deque; dq.pop() removes from the back and dq.popleft() from the front.",
+        "Store indexes, not values, so you can tell when the front has left the window.",
+        "The front of the deque is always the index of the largest value in the window."
+      ],
+      "starter_code": null,
+      "reference_solution": "from collections import deque\n\nnums = [int(x) for x in input().split()]\nk = int(input())\n\ndq = deque()        # indexes, values decreasing from front to back\nresult = []\nfor i, x in enumerate(nums):\n    while dq and nums[dq[-1]] <= x:\n        dq.pop()                    # smaller values can never be the maximum\n    dq.append(i)\n    if dq[0] <= i - k:\n        dq.popleft()                # the front slid out of the window\n    if i >= k - 1:\n        result.append(nums[dq[0]])\n\nprint(\" \".join(str(x) for x in result))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 3 -1 -3 5 3 6 7\n3",
+          "output": "3 3 5 5 6 7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n1",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4 3 2 1\n2",
+          "output": "4 3 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3 4\n4",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2 2 2\n2",
+          "output": "2 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9 1 1 1 1\n3",
+          "output": "9 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1 -5 -3 -2\n2",
+          "output": "-1 -3 -2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 3 1 2 0 5\n3",
+          "output": "3 3 2 5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Algorithmic Thinking & Complexity",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(K)",
+        "input_format": "Line 1: the integers, separated by single spaces.\nLine 2: the window size k.",
+        "output_format": "One line: the N - k + 1 window maximums, separated by single spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_15_algorithmic_thinking_and_complexity.csv",
+    "total_rows": 19,
+    "total_questions": 19,
+    "valid_questions": 19,
+    "total_test_cases": 152,
+    "visible_test_cases": 57,
+    "hidden_test_cases": 95,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}

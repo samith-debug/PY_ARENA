@@ -1,0 +1,1993 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+PY-M17-01,Valid Parentheses Stack,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Easy,Validate string containing ()[]{} using LIFO stack.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a string containing only the bracket characters `()`, `[]`, and `{}`. Decide whether the brackets are valid and print the result as `True` or `False`.
+
+A string is valid when every opening bracket has a matching closing bracket of the same type, and brackets close in the correct order. For example, `([])` is valid, but `([)]` is not because the brackets close in the wrong order. An empty string is also valid if the input format permits it.
+
+Use a stack to remember opening brackets. When you see an opening bracket, push it onto the stack. When you see a closing bracket, the stack must contain the matching opening bracket at its top; otherwise, the string is invalid. At the end, the string is valid only if no unmatched opening brackets remain.
+
+Valid Parentheses Stack
+Problem Description
+You are given a string made only of the bracket characters `(`, `)`, `[`, `]`, `{` and `}`.
+The string is **valid** when:
+
+* every opening bracket is closed by a bracket of the **same type**, and
+* brackets are closed in the **correct order**: the bracket opened last must be closed first.
+
+Print `True` if the string is valid, otherwise print `False`.
+Use a **stack** (a Python list with `append()` and `pop()`): push every opening bracket; for a closing bracket, the top of the stack must be the matching opening bracket.
+Example 1
+Input
+
+```
+([]){}
+```
+
+Output
+
+```
+True
+```
+
+Explanation
+The string is `([]){}`.
+
+* `(` → push. Stack: `(`
+* `[` → push. Stack: `( [`
+* `]` → the top is `[`, which matches. Pop. Stack: `(`
+* `)` → the top is `(`, which matches. Pop. Stack is empty.
+* `{` → push, `}` → matches, pop.
+
+The stack ends empty and every bracket matched, so the output is `True`.
+Example 2
+Input
+
+```
+(]
+```
+
+Output
+
+```
+False
+```
+
+Explanation
+The string is `(]`. When `]` arrives, the top of the stack is `(`, which is the wrong type, so the output is `False`.
+Input Format
+
+* Line 1: a string of bracket characters.
+
+Output Format
+Print `True` if the brackets are valid, otherwise `False`.
+Constraints
+
+* `1 ≤ length of the string ≤ 10^4`
+* The string contains only `()[]{}`
+
+Hint
+Use a dictionary that maps each closing bracket to its opening bracket: `{')': '(', ']': '[', '}': '{'}`.",Line 1: a string of bracket characters.,"Print `True` if the brackets are valid, otherwise `False`.","`1 ≤ length of the string ≤ 10^4`
+The string contains only `()[]{}`",([]){},True,(],False,"Use a dictionary that maps each closing bracket to its opening bracket: `{')': '(', ']': '[', '}': '{'}`.",A closing bracket with an empty stack is also invalid.,At the end the stack must be empty; otherwise some bracket was never closed.,"s = input().strip()
+pairs = {"")"": ""("", ""]"": ""["", ""}"": ""{""}
+
+stack = []
+valid = True
+for ch in s:
+    if ch in ""([{"":
+        stack.append(ch)
+    elif not stack or stack.pop() != pairs[ch]:
+        valid = False
+        break
+
+print(valid and not stack)","[{""input"": ""([]){}"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""(]"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""()"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""(("", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""{[()()]}"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""]"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""([)]"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""{{{}}}[]()"", ""output"": ""True"", ""is_hidden"": true}]"
+PY-M17-02,Reverse Singly Linked List,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Easy,Reverse singly linked list in O(N) time and O(1) space.,stdin/stdout,O(N),O(1) extra,"Detailed Task
+You are given the head of a singly linked list. Reverse the links so the list runs in the opposite direction, then print the values of the reversed list in order.
+
+Each node contains a value and a pointer to the next node. You must change the links between nodes rather than simply print the values backwards or create a reversed copy. Use three pointers: the previous node, the current node, and the next node. Save the next node before changing the current node's link, point the current node back to the previous node, and then advance the pointers. When all links have been processed, the previous pointer is the new head. Handle an empty list and a list containing one node according to the given input format.
+
+Reverse Singly Linked List
+Problem Description
+You are given the values of a singly linked list. Build the linked list from `Node` objects (each node has a `val` and a `next` pointer), **reverse it** by changing the `next` pointers, and print the values of the reversed list.
+
+* Do not just reverse the Python list of input values: the point is to reverse the **links** between the nodes.
+* Use three pointers: `prev` (starts as `None`), `current` (starts at the head) and `nxt`. For each node, remember `nxt = current.next`, point `current.next` back to `prev`, then move `prev` and `current` one step forward.
+* When `current` becomes `None`, `prev` is the new head.
+
+This takes O(N) time and O(1) extra space.
+Example 1
+Input
+
+```
+1 2 3 4
+```
+
+Output
+
+```
+4 3 2 1
+```
+
+Explanation
+The list is `1 → 2 → 3 → 4`. After turning every arrow around, it becomes `4 → 3 → 2 → 1`, so the output is `4 3 2 1`.
+Example 2
+Input
+
+```
+7
+```
+
+Output
+
+```
+7
+```
+
+Explanation
+A list with one node is its own reverse, so the output is `7`.
+Input Format
+
+* Line 1: the values of the linked list from head to tail, separated by spaces.
+
+Output Format
+Print the values of the reversed list from its new head to its new tail, separated by spaces.
+Constraints
+
+* `1 ≤ number of nodes ≤ 10^5`
+* `-10^9 ≤ each value ≤ 10^9`
+
+Hint
+Save `current.next` before changing it, otherwise you lose the rest of the list.","Line 1: the values of the linked list from head to tail, separated by spaces.","Print the values of the reversed list from its new head to its new tail, separated by spaces.","`1 ≤ number of nodes ≤ 10^5`
+`-10^9 ≤ each value ≤ 10^9`",1 2 3 4,4 3 2 1,7,7,"Save `current.next` before changing it, otherwise you lose the rest of the list.","After the loop, walk from the new head with `while node: ... node = node.next` to collect the values.",Each node is visited once and only three extra variables are used.,"class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+def build_list(values):
+    head = None
+    tail = None
+    for v in values:
+        node = Node(v)
+        if head is None:
+            head = node
+        else:
+            tail.next = node
+        tail = node
+    return head
+
+
+values = [int(x) for x in input().split()]
+head = build_list(values)
+
+prev = None
+current = head
+while current:
+    nxt = current.next
+    current.next = prev         # turn the arrow around
+    prev = current
+    current = nxt
+head = prev
+
+out = []
+node = head
+while node:
+    out.append(str(node.val))
+    node = node.next
+print("" "".join(out))","[{""input"": ""1 2 3 4"", ""output"": ""4 3 2 1"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""7"", ""is_hidden"": false}, {""input"": ""1 2"", ""output"": ""2 1"", ""is_hidden"": false}, {""input"": ""5 5 5"", ""output"": ""5 5 5"", ""is_hidden"": true}, {""input"": ""-1 0 1"", ""output"": ""1 0 -1"", ""is_hidden"": true}, {""input"": ""10 20 30 40 50 60"", ""output"": ""60 50 40 30 20 10"", ""is_hidden"": true}, {""input"": ""3 1 2"", ""output"": ""2 1 3"", ""is_hidden"": true}, {""input"": ""1000000000 -1000000000"", ""output"": ""-1000000000 1000000000"", ""is_hidden"": true}]"
+PY-M17-03,Kth Largest via Min-Heap,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Easy,Find Kth largest element in unsorted array using Python's heapq.,stdin/stdout,O(N log K),O(K),"Detailed Task
+You are given a list of integers and an integer `K`. Find the K-th largest value when the values are arranged from largest to smallest. Count duplicate values as separate entries unless the problem explicitly says otherwise.
+
+Use a min-heap that stores at most `K` values. Add each number to the heap. Whenever the heap grows larger than `K`, remove its smallest value. This keeps only the `K` largest values seen so far. After all numbers have been processed, the smallest value remaining at the top of the heap is the K-th largest value. Print that value in the required format.
+
+Kth Largest via Min-Heap
+Problem Description
+You are given a list of `N` integers (not sorted) and a number `K`. Print the `K`-th largest number. Repeated values count separately: in `5 5 3`, the 1st and 2nd largest are both `5`.
+Use a **min-heap of size `K`** with Python's `heapq` module:
+
+* A min-heap always keeps its smallest element at index `0`.
+* Push the numbers one by one. Whenever the heap has more than `K` elements, pop the smallest one.
+* At the end the heap holds the `K` largest numbers, and the smallest of them, `heap[0]`, is the `K`-th largest.
+
+This takes O(N log K) time, which is faster than sorting when `K` is small.
+Example 1
+Input
+
+```
+3 2 1 5 6 4
+2
+```
+
+Output
+
+```
+5
+```
+
+Explanation
+The numbers are `3 2 1 5 6 4` and `K = 2`.
+The heap keeps the 2 largest numbers seen so far. At the end it holds `5` and `6`. The smaller of them, `5`, is the 2nd largest, so the output is `5`.
+Example 2
+Input
+
+```
+3 2 3 1 2 4 5 5 6
+4
+```
+
+Output
+
+```
+4
+```
+
+Explanation
+The numbers are `3 2 3 1 2 4 5 5 6` and `K = 4`. In decreasing order they are `6 5 5 4 3 3 2 2 1`, so the 4th largest is `4`.
+Input Format
+
+* Line 1: `N` integers separated by spaces.
+* Line 2: an integer `K`.
+
+Output Format
+Print one integer: the `K`-th largest number.
+Constraints
+
+* `1 ≤ K ≤ N ≤ 10^5`
+* `-10^4 ≤ each integer ≤ 10^4`
+
+Hint
+`import heapq`, then `heapq.heappush(heap, x)` adds a number and `heapq.heappop(heap)` removes the smallest.","Line 1: `N` integers separated by spaces.
+Line 2: an integer `K`.",Print one integer: the `K`-th largest number.,"`1 ≤ K ≤ N ≤ 10^5`
+`-10^4 ≤ each integer ≤ 10^4`","3 2 1 5 6 4
+2",5,"3 2 3 1 2 4 5 5 6
+4",4,"`import heapq`, then `heapq.heappush(heap, x)` adds a number and `heapq.heappop(heap)` removes the smallest.",Pop only when `len(heap) > K`.,Do not sort the whole list: the goal is to practise heaps.,"import heapq
+
+nums = [int(x) for x in input().split()]
+k = int(input())
+
+heap = []
+for x in nums:
+    heapq.heappush(heap, x)
+    if len(heap) > k:
+        heapq.heappop(heap)     # drop the smallest; keep the k largest
+
+print(heap[0])","[{""input"": ""3 2 1 5 6 4\n2"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""3 2 3 1 2 4 5 5 6\n4"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""7\n1"", ""output"": ""7"", ""is_hidden"": false}, {""input"": ""5 5 3\n2"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""1 2 3 4 5\n5"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""-1 -2 -3\n1"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""10 9 8 7 6\n3"", ""output"": ""8"", ""is_hidden"": true}, {""input"": ""2 2 2 2\n3"", ""output"": ""2"", ""is_hidden"": true}]"
+PY-M17-04,Graph Adjacency List Builder,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Easy,Read N nodes and M edges; print sorted adjacency list representation.,stdin/stdout,O(N + M log M),O(N + M),"Detailed Task
+You are given the number of vertices and the edges of a graph. Build an adjacency list that records which vertices are connected to each vertex.
+
+For an undirected edge `u v`, add `v` to the neighbour list of `u` and add `u` to the neighbour list of `v`. For a directed edge, record only the direction specified by the problem. Follow the exact graph type and output requirements in the original statement. If the output requires sorted neighbours, sort each adjacency list before printing it. Include vertices that have no neighbours, and print the lists in vertex order so the output is predictable.
+
+Graph Adjacency List Builder
+Problem Description
+You are given an **undirected** graph. The graph has `N` nodes numbered `0` to `N - 1`. It is given as an **edge list**: first a line with `N` and `M`, then `M` lines with two nodes `u v`, meaning there is an edge between `u` and `v`.
+Build its **adjacency list**: for every node, the list of nodes it is connected to. Because the graph is undirected, an edge `u v` adds `v` to the list of `u` **and** `u` to the list of `v`.
+Print one line per node, from node `0` to node `N - 1`, in the form `node: neighbours`, with the neighbours sorted in increasing order. A node without neighbours prints just `node:`.
+Example 1
+Input
+
+```
+4 3
+0 1
+0 2
+2 1
+```
+
+Output
+
+```
+0: 1 2
+1: 0 2
+2: 0 1
+3:
+```
+
+Explanation
+There are `4` nodes and the edges `0-1`, `0-2` and `2-1`.
+
+* Node `0` is connected to `1` and `2`.
+* Node `1` is connected to `0` and `2`.
+* Node `2` is connected to `0` and `1`.
+* Node `3` has no edges, so its line is just `3:`.
+Example 2
+Input
+
+```
+3 0
+```
+
+Output
+
+```
+0:
+1:
+2:
+```
+
+Explanation
+There are `3` nodes and no edges, so every line shows only the node number.
+Input Format
+
+* Line 1: two integers `N` and `M`, the number of nodes and edges.
+* Next `M` lines: two integers `u v`, an edge between `u` and `v`.
+
+Output Format
+Print `N` lines: `i:` followed by the sorted neighbours of node `i`, separated by spaces.
+Constraints
+
+* `1 ≤ N ≤ 10^4`
+* `0 ≤ M ≤ 10^5`
+* `0 ≤ u, v < N`, `u != v`
+* No edge appears twice
+
+Hint
+Create `adj = [[] for _ in range(n)]`, one empty list per node.","Line 1: two integers `N` and `M`, the number of nodes and edges.
+Next `M` lines: two integers `u v`, an edge between `u` and `v`.","Print `N` lines: `i:` followed by the sorted neighbours of node `i`, separated by spaces.","`1 ≤ N ≤ 10^4`
+`0 ≤ M ≤ 10^5`
+`0 ≤ u, v < N`, `u != v`
+No edge appears twice","4 3
+0 1
+0 2
+2 1","0: 1 2
+1: 0 2
+2: 0 1
+3:",3 0,"0:
+1:
+2:","Create `adj = [[] for _ in range(n)]`, one empty list per node.","For each edge, append in both directions: `adj[u].append(v)` and `adj[v].append(u)`.","Print with `print(f'{i}:', *sorted(adj[i]))`; when the list is empty this prints just `i:`.","n, m = map(int, input().split())
+
+adj = [[] for _ in range(n)]
+for _ in range(m):
+    u, v = map(int, input().split())
+    adj[u].append(v)
+    adj[v].append(u)        # undirected: both directions
+
+for i in range(n):
+    print(f""{i}:"", *sorted(adj[i]))","[{""input"": ""4 3\n0 1\n0 2\n2 1"", ""output"": ""0: 1 2\n1: 0 2\n2: 0 1\n3:"", ""is_hidden"": false}, {""input"": ""3 0"", ""output"": ""0:\n1:\n2:"", ""is_hidden"": false}, {""input"": ""2 1\n1 0"", ""output"": ""0: 1\n1: 0"", ""is_hidden"": false}, {""input"": ""5 4\n0 4\n4 3\n3 2\n2 1"", ""output"": ""0: 4\n1: 2\n2: 1 3\n3: 2 4\n4: 0 3"", ""is_hidden"": true}, {""input"": ""1 0"", ""output"": ""0:"", ""is_hidden"": true}, {""input"": ""4 6\n0 1\n0 2\n0 3\n1 2\n1 3\n2 3"", ""output"": ""0: 1 2 3\n1: 0 2 3\n2: 0 1 3\n3: 0 1 2"", ""is_hidden"": true}, {""input"": ""6 3\n5 0\n3 1\n4 2"", ""output"": ""0: 5\n1: 3\n2: 4\n3: 1\n4: 2\n5: 0"", ""is_hidden"": true}, {""input"": ""3 2\n2 0\n1 2"", ""output"": ""0: 2\n1: 2\n2: 0 1"", ""is_hidden"": true}]"
+PY-M17-05,Reverse Polish Notation Eval,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Evaluate arithmetic RPN tokens using a stack.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given an arithmetic expression written in Reverse Polish Notation (RPN), also called postfix notation. In this format, each operator appears after its operands. Evaluate the expression and print its final integer result.
+
+Process the tokens from left to right using a stack. When a token is a number, push it onto the stack. When it is an operator, pop the required operands, apply the operator in the correct order, and push the result back. For subtraction and division, order matters: the first value popped is the right operand and the second value popped is the left operand. After all tokens have been processed, the stack contains the expression's result. Follow the problem's specified rules for integer division and valid input.
+
+Reverse Polish Notation Eval
+Problem Description
+In **Reverse Polish Notation (RPN)**, an operator comes **after** its two numbers. For example, `3 + 4` is written `3 4 +`, and `(2 + 1) * 3` is written `2 1 + 3 *`. RPN never needs brackets.
+You are given a valid RPN expression with integers and the operators `+`, `-`, `*` and `/`. Print its value.
+Use a **stack**:
+
+* For a number, push it.
+* For an operator, pop the top value `b`, then pop `a`, compute `a op b`, and push the result. The order matters for `-` and `/`: the value popped **second** is the left side.
+* At the end, the stack holds exactly one value: the answer.
+
+Division is integer division that **rounds toward zero**: `7 / 2 = 3` and `-7 / 2 = -3` (note that Python's `//` would give `-4`).
+Example 1
+Input
+
+```
+2 1 + 3 *
+```
+
+Output
+
+```
+9
+```
+
+Explanation
+The tokens are `2 1 + 3 *`.
+
+* `2` → push. Stack: `2`
+* `1` → push. Stack: `2 1`
+* `+` → pop `1` and `2`, push `2 + 1 = 3`. Stack: `3`
+* `3` → push. Stack: `3 3`
+* `*` → pop `3` and `3`, push `9`. Stack: `9`
+
+Therefore, the output is `9`.
+Example 2
+Input
+
+```
+4 13 5 / +
+```
+
+Output
+
+```
+6
+```
+
+Explanation
+The tokens are `4 13 5 / +`. First `13 / 5 = 2` (rounded toward zero), then `4 + 2 = 6`.
+Input Format
+
+* Line 1: the RPN tokens separated by spaces.
+
+Output Format
+Print one integer: the value of the expression.
+Constraints
+
+* `1 ≤ number of tokens ≤ 10^4`
+* The expression is always valid and never divides by zero
+* All intermediate values fit in `-10^18 … 10^18`
+
+Hint
+Check whether a token is an operator with `if token in '+-*/'` (a negative number like `-3` has more than one character, so compare whole tokens).",Line 1: the RPN tokens separated by spaces.,Print one integer: the value of the expression.,"`1 ≤ number of tokens ≤ 10^4`
+The expression is always valid and never divides by zero
+All intermediate values fit in `-10^18 … 10^18`",2 1 + 3 *,9,4 13 5 / +,6,"Check whether a token is an operator with `if token in '+-*/'` (a negative number like `-3` has more than one character, so compare whole tokens).","For division rounding toward zero, use `int(a / b)` for small numbers, or compute `abs(a) // abs(b)` and add the sign yourself.","Pop `b` first, then `a`.","tokens = input().split()
+
+stack = []
+for token in tokens:
+    if token in (""+"", ""-"", ""*"", ""/""):
+        b = stack.pop()
+        a = stack.pop()
+        if token == ""+"":
+            stack.append(a + b)
+        elif token == ""-"":
+            stack.append(a - b)
+        elif token == ""*"":
+            stack.append(a * b)
+        else:
+            q = abs(a) // abs(b)            # round toward zero
+            stack.append(q if (a < 0) == (b < 0) else -q)
+    else:
+        stack.append(int(token))
+
+print(stack[0])","[{""input"": ""2 1 + 3 *"", ""output"": ""9"", ""is_hidden"": false}, {""input"": ""4 13 5 / +"", ""output"": ""6"", ""is_hidden"": false}, {""input"": ""42"", ""output"": ""42"", ""is_hidden"": false}, {""input"": ""7 2 /"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""-7 2 /"", ""output"": ""-3"", ""is_hidden"": true}, {""input"": ""5 1 2 + 4 * + 3 -"", ""output"": ""14"", ""is_hidden"": true}, {""input"": ""10 6 9 3 + -11 * / * 17 + 5 +"", ""output"": ""22"", ""is_hidden"": true}, {""input"": ""3 -4 -"", ""output"": ""7"", ""is_hidden"": true}]"
+PY-M17-06,Detect Cycle in Linked List,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Determine if linked list has cycle using Floyd's algorithm.,stdin/stdout,O(N),O(1),"Detailed Task
+You are given the head of a singly linked list. Determine whether the list contains a cycle. A cycle exists if following `next` pointers eventually brings you back to a node that has already been visited instead of reaching `None`.
+
+Use Floyd's slow-and-fast pointer method. Start both pointers at the head. Move the slow pointer one node at a time and the fast pointer two nodes at a time. If they meet, the list contains a cycle. If the fast pointer or its next pointer becomes `None`, the list ends and there is no cycle. Print the boolean result in the exact format required by the problem. Do not modify the list.
+
+Detect Cycle in Linked List
+Problem Description
+You are given the values of a singly linked list and a number `pos`. Build the linked list from `Node` objects. If `pos` is not `-1`, connect the `next` pointer of the **last** node to the node at index `pos` (counting from `0`), which creates a **cycle**. If `pos` is `-1`, there is no cycle.
+Then detect whether the list has a cycle using **Floyd's algorithm** (tortoise and hare), and print `True` or `False`.
+
+* Use two pointers that start at the head: `slow` moves 1 step at a time, `fast` moves 2 steps.
+* If there is no cycle, `fast` reaches the end (`None`).
+* If there is a cycle, `fast` laps around and eventually meets `slow`.
+
+Do not use `pos` to answer, and do not store visited nodes in a set: the algorithm must work with O(1) extra memory.
+Example 1
+Input
+
+```
+3 2 0 -4
+1
+```
+
+Output
+
+```
+True
+```
+
+Explanation
+The list is `3 → 2 → 0 → -4`, and `pos = 1`, so the last node `-4` points back to the node `2`. The fast pointer keeps circling through `2 → 0 → -4 → 2` and finally lands on the same node as the slow pointer, so the output is `True`.
+Example 2
+Input
+
+```
+1 2
+-1
+```
+
+Output
+
+```
+False
+```
+
+Explanation
+The list is `1 → 2` and `pos = -1`, so there is no cycle. The fast pointer reaches the end, and the output is `False`.
+Input Format
+
+* Line 1: the values of the nodes from head to tail, separated by spaces.
+* Line 2: an integer `pos`: the index the last node points back to, or `-1` for no cycle.
+
+Output Format
+Print `True` if the list has a cycle, otherwise `False`.
+Constraints
+
+* `1 ≤ number of nodes ≤ 10^4`
+* `-1 ≤ pos < number of nodes`
+* `-10^5 ≤ each value ≤ 10^5`
+
+Hint
+Keep all nodes in a Python list while building, so you can find the node at index `pos` to link the tail to it.","Line 1: the values of the nodes from head to tail, separated by spaces.
+Line 2: an integer `pos`: the index the last node points back to, or `-1` for no cycle.","Print `True` if the list has a cycle, otherwise `False`.","`1 ≤ number of nodes ≤ 10^4`
+`-1 ≤ pos < number of nodes`
+`-10^5 ≤ each value ≤ 10^5`","3 2 0 -4
+1",True,"1 2
+-1",False,"Keep all nodes in a Python list while building, so you can find the node at index `pos` to link the tail to it.","Loop `while fast and fast.next:`, moving `slow = slow.next` and `fast = fast.next.next`, and check `slow is fast` (the same object, not just equal values).","Values can repeat, so compare the node objects with `is`, never their values.","class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+values = [int(x) for x in input().split()]
+pos = int(input())
+
+nodes = [Node(v) for v in values]
+for i in range(len(nodes) - 1):
+    nodes[i].next = nodes[i + 1]
+if pos != -1:
+    nodes[-1].next = nodes[pos]     # create the cycle
+
+head = nodes[0]
+slow = fast = head
+has_cycle = False
+while fast and fast.next:
+    slow = slow.next
+    fast = fast.next.next
+    if slow is fast:
+        has_cycle = True
+        break
+
+print(has_cycle)","[{""input"": ""3 2 0 -4\n1"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""1 2\n-1"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""1\n0"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""1\n-1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""1 2\n0"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""5 5 5 5\n-1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""1 2 3 4 5 6\n5"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""9 8 7 6 5\n2"", ""output"": ""True"", ""is_hidden"": true}]"
+PY-M17-07,Merge Sorted Linked Lists,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Merge two sorted singly linked lists into single sorted list.,stdin/stdout,O(N + M),O(1) extra,"Detailed Task
+You are given the heads of two linked lists whose values are already sorted in increasing order. Merge them into one sorted linked list by reusing the existing nodes, then output the merged list.
+
+Compare the current node from each list. Attach the smaller value to the result and advance in the list from which that node came. Continue until one list is exhausted, then attach the remaining part of the other list because it is already sorted. A dummy starting node can simplify building the result because you do not need a separate special case for its first node. Handle either list being empty, and preserve duplicate values.
+
+Merge Sorted Linked Lists
+Problem Description
+You are given two linked lists whose values are sorted in increasing order. Build both lists from `Node` objects, then **merge** them into one sorted linked list by re-linking the existing nodes (do not create new nodes and do not sort), and print its values.
+
+* Create a **dummy** starting node and a pointer `tail` to the end of the merged list.
+* While both lists still have nodes, compare their first nodes, attach the smaller one to `tail.next`, and move forward in that list. If the values are equal, take the node from the **first** list.
+* When one list is used up, attach the rest of the other list.
+* The merged list starts at `dummy.next`.
+Example 1
+Input
+
+```
+1 2 4
+1 3 4
+```
+
+Output
+
+```
+1 1 2 3 4 4
+```
+
+Explanation
+The lists are `1 → 2 → 4` and `1 → 3 → 4`. Comparing the front nodes again and again gives `1 1 2 3 4 4`.
+Example 2
+Input
+
+```
+5
+1 2 3
+```
+
+Output
+
+```
+1 2 3 5
+```
+
+Explanation
+The lists are `5` and `1 → 2 → 3`. The nodes `1`, `2` and `3` are all smaller than `5`, so they come first; then the rest of the first list (`5`) is attached. The output is `1 2 3 5`.
+Input Format
+
+* Line 1: the values of the first sorted list, separated by spaces.
+* Line 2: the values of the second sorted list, separated by spaces.
+
+Output Format
+Print the values of the merged list, separated by spaces.
+Constraints
+
+* `1 ≤ length of each list ≤ 10^5`
+* `-10^9 ≤ each value ≤ 10^9`
+* Both lists are sorted in increasing order
+
+Hint
+The dummy node saves you from a special case for the first node of the result.","Line 1: the values of the first sorted list, separated by spaces.
+Line 2: the values of the second sorted list, separated by spaces.","Print the values of the merged list, separated by spaces.","`1 ≤ length of each list ≤ 10^5`
+`-10^9 ≤ each value ≤ 10^9`
+Both lists are sorted in increasing order","1 2 4
+1 3 4",1 1 2 3 4 4,"5
+1 2 3",1 2 3 5,The dummy node saves you from a special case for the first node of the result.,"Use `<=` when comparing, so equal values from the first list go first.",`tail.next = a if a else b` attaches whatever is left after the loop.,"class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
+def build_list(values):
+    head = None
+    tail = None
+    for v in values:
+        node = Node(v)
+        if head is None:
+            head = node
+        else:
+            tail.next = node
+        tail = node
+    return head
+
+
+a = build_list([int(x) for x in input().split()])
+b = build_list([int(x) for x in input().split()])
+
+dummy = Node(0)
+tail = dummy
+while a and b:
+    if a.val <= b.val:
+        tail.next = a
+        a = a.next
+    else:
+        tail.next = b
+        b = b.next
+    tail = tail.next
+tail.next = a if a else b       # attach the remaining nodes
+
+out = []
+node = dummy.next
+while node:
+    out.append(str(node.val))
+    node = node.next
+print("" "".join(out))","[{""input"": ""1 2 4\n1 3 4"", ""output"": ""1 1 2 3 4 4"", ""is_hidden"": false}, {""input"": ""5\n1 2 3"", ""output"": ""1 2 3 5"", ""is_hidden"": false}, {""input"": ""1\n2"", ""output"": ""1 2"", ""is_hidden"": false}, {""input"": ""2 2 2\n2 2"", ""output"": ""2 2 2 2 2"", ""is_hidden"": true}, {""input"": ""-5 0 5\n-3 3"", ""output"": ""-5 -3 0 3 5"", ""is_hidden"": true}, {""input"": ""1 3 5 7\n2 4 6 8"", ""output"": ""1 2 3 4 5 6 7 8"", ""is_hidden"": true}, {""input"": ""10 20\n30 40"", ""output"": ""10 20 30 40"", ""is_hidden"": true}, {""input"": ""-1000000000\n1000000000"", ""output"": ""-1000000000 1000000000"", ""is_hidden"": true}]"
+PY-M17-08,Min Stack with O(1) Min,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,"Implement stack with push, pop, top, getMin in O(1) each.",command-driver,O(1) per command,O(N),"Detailed Task
+Implement a stack named `MinStack` that supports retrieving the smallest value currently stored without scanning the stack. Every required operation—`push`, `pop`, `top`, and `get_min`—must run in O(1) time.
+
+`push(x)` adds `x` to the top. `pop()` removes and returns the top value. `top()` returns the top value without removing it. `get_min()` returns the current minimum. To keep minimum queries constant-time, store each pushed value together with the minimum of that value and the previous minimum. When a value is popped, its saved minimum disappears with it, so the minimum for the remaining stack is immediately available. Follow the command input rules and print `EMPTY` for `POP`, `TOP`, or `MIN` when the stack is empty; `PUSH` produces no output.
+
+Min Stack with O(1) Min
+Problem Description
+Write a class `MinStack` that works like a normal stack but can also tell you its **smallest** value at any time. Every operation must run in **O(1)** time, so you cannot search the stack for the minimum.
+
+The class has these methods:
+
+* `push(x)`: put `x` on top of the stack.
+* `pop()`: remove the top value and return it.
+* `top()`: return the top value without removing it.
+* `get_min()`: return the smallest value currently in the stack.
+
+Trick: next to every value, also store the minimum **at the moment it was pushed**: push the pair `(x, min(x, current_min))`. Then the minimum is always in the top pair, even after pops.
+
+The program runs commands:
+
+* `PUSH x` → push (prints nothing)
+* `POP` → print the removed value
+* `TOP` → print the top value
+* `MIN` → print the smallest value
+* If the stack is empty, `POP`, `TOP` and `MIN` print `EMPTY`.
+Example 1
+Input
+
+```
+7
+PUSH 5
+PUSH 3
+PUSH 7
+MIN
+POP
+POP
+MIN
+```
+
+Output
+
+```
+3
+7
+3
+5
+```
+
+Explanation
+* `PUSH 5`, `PUSH 3`, `PUSH 7` → the pairs are `(5, 5)`, `(3, 3)`, `(7, 3)`.
+* `MIN` → the top pair says the minimum is `3`.
+* `POP` → removes and prints `7`.
+* `POP` → removes and prints `3`. Now the top pair is `(5, 5)`.
+* `MIN` → `5`.
+Example 2
+Input
+
+```
+3
+TOP
+PUSH -2
+MIN
+```
+
+Output
+
+```
+EMPTY
+-2
+```
+
+Explanation
+The stack is empty, so `TOP` prints `EMPTY`. After `PUSH -2`, `MIN` prints `-2`.
+Input Format
+
+* Line 1: an integer `Q`, the number of commands.
+* Next `Q` lines: one command each (`PUSH x`, `POP`, `TOP` or `MIN`).
+
+Output Format
+Print one line for every `POP`, `TOP` and `MIN` command.
+Constraints
+
+* `1 ≤ Q ≤ 10^5`
+* `-10^9 ≤ x ≤ 10^9`
+
+Hint
+Store tuples in one list: `self.items.append((x, x if not self.items else min(x, self.items[-1][1])))`.","Line 1: an integer `Q`, the number of commands.
+Next `Q` lines: one command each (`PUSH x`, `POP`, `TOP` or `MIN`).","Print one line for every `POP`, `TOP` and `MIN` command.","`1 ≤ Q ≤ 10^5`
+`-10^9 ≤ x ≤ 10^9`","7
+PUSH 5
+PUSH 3
+PUSH 7
+MIN
+POP
+POP
+MIN","3
+7
+3
+5","3
+TOP
+PUSH -2
+MIN","EMPTY
+-2","Store tuples in one list: `self.items.append((x, x if not self.items else min(x, self.items[-1][1])))`.",`top()` returns `self.items[-1][0]` and `get_min()` returns `self.items[-1][1]`.,"Check for an empty stack in the driver before calling `pop`, `top` or `get_min`.","class MinStack:
+    def __init__(self):
+        self.items = []     # pairs (value, minimum so far)
+
+    def push(self, x):
+        current_min = x if not self.items else min(x, self.items[-1][1])
+        self.items.append((x, current_min))
+
+    def pop(self):
+        return self.items.pop()[0]
+
+    def top(self):
+        return self.items[-1][0]
+
+    def get_min(self):
+        return self.items[-1][1]
+
+    def is_empty(self):
+        return not self.items
+
+
+stack = MinStack()
+
+q = int(input())
+for _ in range(q):
+    parts = input().split()
+    command = parts[0]
+    if command == ""PUSH"":
+        stack.push(int(parts[1]))
+    elif stack.is_empty():
+        print(""EMPTY"")
+    elif command == ""POP"":
+        print(stack.pop())
+    elif command == ""TOP"":
+        print(stack.top())
+    elif command == ""MIN"":
+        print(stack.get_min())","[{""input"": ""7\nPUSH 5\nPUSH 3\nPUSH 7\nMIN\nPOP\nPOP\nMIN"", ""output"": ""3\n7\n3\n5"", ""is_hidden"": false}, {""input"": ""3\nTOP\nPUSH -2\nMIN"", ""output"": ""EMPTY\n-2"", ""is_hidden"": false}, {""input"": ""4\nPOP\nMIN\nPUSH 1\nTOP"", ""output"": ""EMPTY\nEMPTY\n1"", ""is_hidden"": false}, {""input"": ""6\nPUSH 2\nPUSH 2\nMIN\nPOP\nMIN\nPOP"", ""output"": ""2\n2\n2\n2"", ""is_hidden"": true}, {""input"": ""5\nPUSH 3\nPUSH 1\nPUSH 4\nPUSH 1\nMIN"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""7\nPUSH 9\nPUSH 8\nPUSH 7\nPOP\nPOP\nMIN\nTOP"", ""output"": ""7\n8\n9\n9"", ""is_hidden"": true}, {""input"": ""4\nPUSH 1000000000\nPUSH -1000000000\nMIN\nTOP"", ""output"": ""-1000000000\n-1000000000"", ""is_hidden"": true}, {""input"": ""6\nPUSH 4\nPOP\nPOP\nPUSH 6\nMIN\nTOP"", ""output"": ""4\nEMPTY\n6\n6"", ""is_hidden"": true}]"
+PY-M17-09,Binary Tree Max Depth,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Find maximum depth of binary tree given in level-order format.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree and must find its maximum depth. The depth is the number of nodes on the longest path from the root down to any leaf. A leaf is a node with no children. An empty tree has depth 0.
+
+The tree is represented in level order: start with the root, then list each level from left to right. The token `null` represents a missing child. Build the tree using nodes with `val`, `left`, and `right` fields. Then calculate the depth recursively: an empty child has depth 0, and any real node has depth one plus the larger depth of its two children. Print one integer, the maximum depth.
+
+Binary Tree Max Depth
+Problem Description
+You are given a binary tree. Print its **maximum depth**: the number of nodes on the longest path from the root down to a leaf (a node with no children). An empty tree has depth `0`.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+First build the tree from `TreeNode` objects (each node has `val`, `left` and `right`). Then compute the depth **recursively**: the depth of a node is `1 + max(depth(left), depth(right))`, and the depth of `None` is `0`.
+Example 1
+Input
+
+```
+3 9 20 null null 15 7
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The tree is
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+The longest path is `3 → 20 → 15` (or `3 → 20 → 7`), which has `3` nodes. Therefore, the output is `3`.
+Example 2
+Input
+
+```
+1 null 2
+```
+
+Output
+
+```
+2
+```
+
+Explanation
+The tree is `1` with a single right child `2`. The longest path is `1 → 2`, so the depth is `2`.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Print one integer: the maximum depth.
+Constraints
+
+* `0 ≤ number of nodes ≤ 10^4`
+* `-1000 ≤ each value ≤ 1000`
+* The depth is at most `500`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.",Print one integer: the maximum depth.,"`0 ≤ number of nodes ≤ 10^4`
+`-1000 ≤ each value ≤ 1000`
+The depth is at most `500`",3 9 20 null null 15 7,3,1 null 2,2,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","The recursive function needs only two lines: `if node is None: return 0` and `return 1 + max(depth(node.left), depth(node.right))`.","An input of just `null` is an empty tree, whose depth is `0`.","from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def depth(node):
+    if node is None:
+        return 0
+    return 1 + max(depth(node.left), depth(node.right))
+
+
+root = build_tree(input().split())
+print(depth(root))","[{""input"": ""3 9 20 null null 15 7"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""1 null 2"", ""output"": ""2"", ""is_hidden"": false}, {""input"": ""null"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""1 2 3 4 5 6 7"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""1 2 null 3 null 4"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""1 2 3 null null null 4 null 5"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""0 -1 1"", ""output"": ""2"", ""is_hidden"": true}]"
+PY-M17-10,Binary Tree Level-Order BFS,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Print level-by-level node values of binary tree using queue.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree. Print its values one level per line, starting with the root. Within each level, print nodes from left to right. If the tree is empty, print `EMPTY`.
+
+The input represents the tree in level order, with `null` marking a missing child. Build the tree, then traverse it using breadth-first search (BFS) and a queue. At the beginning of each level, record the number of nodes currently in the queue. Process exactly that many nodes to finish the current level, adding each real left child and then each real right child to the queue. Print the collected values for that level on one line, separated by spaces.
+
+Binary Tree Level-Order BFS
+Problem Description
+You are given a binary tree. Print its values **level by level**: first the root, then all nodes one level below it, and so on. Inside each level, go from left to right. Print each level on its own line. For an empty tree, print `EMPTY`.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+Use **breadth-first search (BFS)** with a queue (`collections.deque`):
+
+* Put the root in the queue.
+* At the start of each level, the queue holds exactly the nodes of that level, so remember `size = len(queue)`.
+* Pop `size` nodes, record their values, and push their children (left child first). Then print the level.
+Example 1
+Input
+
+```
+3 9 20 null null 15 7
+```
+
+Output
+
+```
+3
+9 20
+15 7
+```
+
+Explanation
+The tree is
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+Level 1 is `3`, level 2 is `9 20`, and level 3 is `15 7`.
+Example 2
+Input
+
+```
+1
+```
+
+Output
+
+```
+1
+```
+
+Explanation
+The tree has only the root `1`, so there is a single level: `1`.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Print one line per level, with the values of that level separated by spaces, or `EMPTY` for an empty tree.
+Constraints
+
+* `0 ≤ number of nodes ≤ 10^4`
+* `-1000 ≤ each value ≤ 1000`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.","Print one line per level, with the values of that level separated by spaces, or `EMPTY` for an empty tree.","`0 ≤ number of nodes ≤ 10^4`
+`-1000 ≤ each value ≤ 1000`",3 9 20 null null 15 7,"3
+9 20
+15 7",1,1,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.",Loop `for _ in range(len(queue))` to handle exactly one level at a time.,Only push children that exist: `if node.left: queue.append(node.left)`.,"from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+root = build_tree(input().split())
+
+if root is None:
+    print(""EMPTY"")
+else:
+    queue = deque([root])
+    while queue:
+        level = []
+        for _ in range(len(queue)):     # exactly the nodes of this level
+            node = queue.popleft()
+            level.append(str(node.val))
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        print("" "".join(level))","[{""input"": ""3 9 20 null null 15 7"", ""output"": ""3\n9 20\n15 7"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""null"", ""output"": ""EMPTY"", ""is_hidden"": false}, {""input"": ""1 2 3 4 5 6 7"", ""output"": ""1\n2 3\n4 5 6 7"", ""is_hidden"": true}, {""input"": ""1 null 2 null 3"", ""output"": ""1\n2\n3"", ""is_hidden"": true}, {""input"": ""1 2 3 null 4 5"", ""output"": ""1\n2 3\n4 5"", ""is_hidden"": true}, {""input"": ""-1 -2 -3"", ""output"": ""-1\n-2 -3"", ""is_hidden"": true}, {""input"": ""1 2 null 3 null 4 null"", ""output"": ""1\n2\n3\n4"", ""is_hidden"": true}]"
+PY-M17-11,Invert Binary Tree,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Invert binary tree left-to-right and print serialized tree string.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree and must invert it, making it the mirror image of the original tree. At every node, swap its left child and right child. After all nodes have been inverted, print the resulting tree in level-order format.
+
+The input uses level order, with `null` marking missing children. Invert the tree recursively: if the current node is empty, return; otherwise swap its two children and invert each child subtree. When printing the tree, include `null` tokens where needed to preserve the tree shape, but remove all `null` tokens at the end of the output. If the input tree is empty, print `null`.
+
+Invert Binary Tree
+Problem Description
+You are given a binary tree. **Invert** it: swap the left and right child of **every** node, so the tree becomes its mirror image. Then print the inverted tree in level order.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+Output rules: print the inverted tree in the same level-order format, with `null` for missing children, but **remove all `null` tokens at the end**. Print `null` for an empty tree.
+
+To invert recursively: swap `node.left` and `node.right`, then invert both children.
+Example 1
+Input
+
+```
+4 2 7 1 3 6 9
+```
+
+Output
+
+```
+4 7 2 9 6 3 1
+```
+
+Explanation
+The tree is
+
+```
+     4                 4
+   /   \             /   \
+  2     7    →      7     2
+ / \   / \         / \   / \
+1   3 6   9       9   6 3   1
+```
+
+In level order the inverted tree is `4 7 2 9 6 3 1`.
+Example 2
+Input
+
+```
+2 1 3
+```
+
+Output
+
+```
+2 3 1
+```
+
+Explanation
+The tree is `2` with left child `1` and right child `3`. After swapping, the left child is `3` and the right child is `1`, so the output is `2 3 1`.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Print the inverted tree in level order, separated by spaces, without trailing `null` tokens (or `null` for an empty tree).
+Constraints
+
+* `0 ≤ number of nodes ≤ 10^4`
+* `-1000 ≤ each value ≤ 1000`
+* The depth is at most `500`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.","Print the inverted tree in level order, separated by spaces, without trailing `null` tokens (or `null` for an empty tree).","`0 ≤ number of nodes ≤ 10^4`
+`-1000 ≤ each value ≤ 1000`
+The depth is at most `500`",4 2 7 1 3 6 9,4 7 2 9 6 3 1,2 1 3,2 3 1,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Swap in one line: `node.left, node.right = node.right, node.left`, then call the function on both children.","To print, run BFS again but also add `None` children to the queue, writing `null` for them; then remove the `null` tokens at the end.","from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def to_level_order(root):
+    """"""Level-order tokens with 'null' for missing children; trailing nulls removed.""""""
+    if root is None:
+        return ""null""
+    out = []
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        if node is None:
+            out.append(""null"")
+        else:
+            out.append(str(node.val))
+            queue.append(node.left)
+            queue.append(node.right)
+    while out[-1] == ""null"":
+        out.pop()
+    return "" "".join(out)
+
+
+def invert(node):
+    if node is None:
+        return
+    node.left, node.right = node.right, node.left
+    invert(node.left)
+    invert(node.right)
+
+
+root = build_tree(input().split())
+invert(root)
+print(to_level_order(root))","[{""input"": ""4 2 7 1 3 6 9"", ""output"": ""4 7 2 9 6 3 1"", ""is_hidden"": false}, {""input"": ""2 1 3"", ""output"": ""2 3 1"", ""is_hidden"": false}, {""input"": ""null"", ""output"": ""null"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""1 2"", ""output"": ""1 null 2"", ""is_hidden"": true}, {""input"": ""1 null 2"", ""output"": ""1 2"", ""is_hidden"": true}, {""input"": ""1 2 3 4 null null 5"", ""output"": ""1 3 2 5 null null 4"", ""is_hidden"": true}, {""input"": ""5 3 8 1 4 7 9 0"", ""output"": ""5 8 3 9 7 4 1 null null null null null null null 0"", ""is_hidden"": true}]"
+PY-M17-12,Validate Binary Search Tree,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Verify if binary tree satisfies BST invariant across all descendants.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree. Determine whether it satisfies the binary search tree (BST) property and print `True` or `False`.
+
+For every node, all values anywhere in its left subtree must be strictly smaller than the node's value, and all values anywhere in its right subtree must be strictly greater. Duplicate values are therefore not allowed under this rule. Checking only the immediate children is insufficient, because a deeper descendant can violate an ancestor's rule. Validate the tree recursively by passing an allowed lower and upper bound to each node. Moving left makes the current value the upper bound; moving right makes it the lower bound. Every node must lie strictly inside its allowed range. An empty tree is a valid BST.
+
+Validate Binary Search Tree
+Problem Description
+You are given a binary tree. Print `True` if it is a valid **binary search tree (BST)**, otherwise print `False`.
+A tree is a valid BST when, for **every** node:
+
+* **all** values in its left subtree are strictly smaller than the node's value, and
+* **all** values in its right subtree are strictly greater than the node's value.
+
+Checking only a node's direct children is not enough: a value deep in the left subtree can still be too big. Instead, pass down an allowed range `(low, high)`: the root may have any value; going left, the node's value becomes the new upper limit; going right, it becomes the new lower limit. Every value must lie strictly inside its range. An empty tree is a valid BST.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+Example 1
+Input
+
+```
+2 1 3
+```
+
+Output
+
+```
+True
+```
+
+Explanation
+The tree is `2` with left child `1` and right child `3`. `1 < 2 < 3`, so the output is `True`.
+Example 2
+Input
+
+```
+5 1 4 null null 3 6
+```
+
+Output
+
+```
+False
+```
+
+Explanation
+The tree is
+
+```
+    5
+   / \
+  1   4
+     / \
+    3   6
+```
+
+The node `4` is in the right subtree of `5`, but `4` is not greater than `5`. Therefore, the output is `False`.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Print `True` if the tree is a valid BST, otherwise `False`.
+Constraints
+
+* `0 ≤ number of nodes ≤ 10^4`
+* `-10^9 ≤ each value ≤ 10^9`
+* The depth is at most `500`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.","Print `True` if the tree is a valid BST, otherwise `False`.","`0 ≤ number of nodes ≤ 10^4`
+`-10^9 ≤ each value ≤ 10^9`
+The depth is at most `500`",2 1 3,True,5 1 4 null null 3 6,False,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Write `valid(node, low, high)`. Return `True` for `None`; return `False` if `not (low < node.val < high)`; otherwise check both children with the tighter ranges.",Start with `low = float('-inf')` and `high = float('inf')`. Equal values are not allowed (strictly smaller / greater).,"from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def valid(node, low, high):
+    if node is None:
+        return True
+    if not (low < node.val < high):
+        return False
+    return valid(node.left, low, node.val) and valid(node.right, node.val, high)
+
+
+root = build_tree(input().split())
+print(valid(root, float(""-inf""), float(""inf"")))","[{""input"": ""2 1 3"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""5 1 4 null null 3 6"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""null"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""1 1"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""5 4 6 null null 3 7"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""10 5 15 null null 12 20"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""3 1 5 0 2 4 6"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""True"", ""is_hidden"": true}]"
+PY-M17-13,Graph Breadth-First Search,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Perform BFS from node 0 on unweighted graph and output order.,stdin/stdout,O(N + M log M),O(N + M),"Detailed Task
+You are given an undirected graph with `N` vertices numbered from `0` to `N - 1` and `M` edges. Each edge `u v` connects `u` and `v` in both directions. Perform breadth-first search (BFS) starting at vertex `0`, then print the vertices in the order they are visited.
+
+First build an adjacency list, adding each undirected edge to both endpoint lists. Sort every neighbour list in increasing order so the traversal order is deterministic. Start a queue with vertex `0` and mark it visited immediately. Repeatedly remove the front vertex, record it, and add each unvisited neighbour to the queue, marking each neighbour visited when it is added. Print only vertices reachable from `0`; disconnected vertices must not appear in the output.
+
+Graph Breadth-First Search
+Problem Description
+You are given an **undirected** graph. The graph has `N` nodes numbered `0` to `N - 1`. It is given as an **edge list**: first a line with `N` and `M`, then `M` lines with two nodes `u v`, meaning there is an edge between `u` and `v`.
+Run a **breadth-first search (BFS)** starting at node `0`, and print the nodes in the order they are visited.
+
+* Use a queue (`collections.deque`) and a `visited` set. Start with node `0` in both.
+* Repeatedly take the node at the front of the queue and record it. Then add each of its neighbours that is not visited yet to the queue (and mark it visited).
+* To get one exact order, visit the neighbours of a node in **increasing** order.
+
+Nodes that cannot be reached from `0` are not printed.
+Example 1
+Input
+
+```
+5 4
+0 1
+0 2
+1 3
+2 4
+```
+
+Output
+
+```
+0 1 2 3 4
+```
+
+Explanation
+There are `5` nodes and the edges `0-1`, `0-2`, `1-3` and `2-4`.
+
+* Start at `0`. Its neighbours are `1` and `2` → queue: `1 2`
+* Visit `1`. Its new neighbour is `3` → queue: `2 3`
+* Visit `2`. Its new neighbour is `4` → queue: `3 4`
+* Visit `3`, then `4`.
+
+The order is `0 1 2 3 4`.
+Example 2
+Input
+
+```
+3 1
+1 2
+```
+
+Output
+
+```
+0
+```
+
+Explanation
+There are `3` nodes and only the edge `1-2`. Node `0` has no neighbours, so the BFS only visits `0`.
+Input Format
+
+* Line 1: two integers `N` and `M`.
+* Next `M` lines: two integers `u v`, an edge between `u` and `v`.
+
+Output Format
+Print the visited nodes in BFS order, separated by spaces.
+Constraints
+
+* `1 ≤ N ≤ 10^4`
+* `0 ≤ M ≤ 10^5`
+* `0 ≤ u, v < N`, `u != v`
+* No edge appears twice
+
+Hint
+Build the adjacency list first (both directions), then sort each node's list.","Line 1: two integers `N` and `M`.
+Next `M` lines: two integers `u v`, an edge between `u` and `v`.","Print the visited nodes in BFS order, separated by spaces.","`1 ≤ N ≤ 10^4`
+`0 ≤ M ≤ 10^5`
+`0 ≤ u, v < N`, `u != v`
+No edge appears twice","5 4
+0 1
+0 2
+1 3
+2 4",0 1 2 3 4,"3 1
+1 2",0,"Build the adjacency list first (both directions), then sort each node's list.","Mark a node as visited when you ADD it to the queue, not when you take it out; otherwise it can be added twice.",BFS visits nodes in order of their distance from the start.,"from collections import deque
+
+n, m = map(int, input().split())
+adj = [[] for _ in range(n)]
+for _ in range(m):
+    u, v = map(int, input().split())
+    adj[u].append(v)
+    adj[v].append(u)
+for neighbours in adj:
+    neighbours.sort()
+
+order = []
+visited = {0}
+queue = deque([0])
+while queue:
+    node = queue.popleft()
+    order.append(node)
+    for nb in adj[node]:
+        if nb not in visited:
+            visited.add(nb)         # mark when it enters the queue
+            queue.append(nb)
+
+print("" "".join(str(x) for x in order))","[{""input"": ""5 4\n0 1\n0 2\n1 3\n2 4"", ""output"": ""0 1 2 3 4"", ""is_hidden"": false}, {""input"": ""3 1\n1 2"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1 0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""4 3\n0 3\n3 2\n2 1"", ""output"": ""0 3 2 1"", ""is_hidden"": true}, {""input"": ""6 5\n0 5\n0 1\n5 2\n1 3\n3 4"", ""output"": ""0 1 5 3 2 4"", ""is_hidden"": true}, {""input"": ""4 4\n0 1\n1 2\n2 3\n3 0"", ""output"": ""0 1 3 2"", ""is_hidden"": true}, {""input"": ""5 2\n0 4\n4 3"", ""output"": ""0 4 3"", ""is_hidden"": true}, {""input"": ""6 6\n0 2\n0 1\n1 3\n2 3\n3 4\n4 5"", ""output"": ""0 1 2 3 4 5"", ""is_hidden"": true}]"
+PY-M17-14,Directed Graph Cycle DFS,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Medium,Detect whether directed graph contains cycle via three-color DFS.,stdin/stdout,O(N + M),O(N + M),"Detailed Task
+You are given a directed graph with `N` vertices numbered from `0` to `N - 1` and `M` directed edges. An edge `u v` allows movement from `u` to `v`, not automatically from `v` to `u`. Determine whether the graph contains a directed cycle and print `True` if one exists or `False` otherwise.
+
+Use depth-first search (DFS) with three states: WHITE means not visited, GRAY means currently on the active DFS path, and BLACK means fully processed. Start DFS from every vertex that is still WHITE so disconnected parts of the graph are also checked. Mark a vertex GRAY when entering it, explore its outgoing neighbours, then mark it BLACK when finished. An edge to a GRAY vertex points back into the current path and proves that a cycle exists. An edge to a BLACK vertex alone does not prove a cycle.
+
+Directed Graph Cycle DFS
+Problem Description
+You are given a **directed** graph: an edge `u v` goes **from** `u` **to** `v` only. `N` nodes numbered `0` to `N - 1`. It is given as an **edge list**: first a line with `N` and `M`, then `M` lines with two nodes `u v`, meaning there is an edge from `u` to `v`.
+Print `True` if the graph contains a **cycle** (a path that leaves a node and comes back to it), otherwise print `False`.
+Use **depth-first search (DFS)** with three colours:
+
+* **WHITE**: not visited yet.
+* **GRAY**: currently on the DFS path (we are still exploring from it).
+* **BLACK**: completely finished; no cycle goes through it.
+
+Start a DFS from every WHITE node. When a node is visited, colour it GRAY; explore its neighbours; then colour it BLACK. If you reach a **GRAY** neighbour, you have found an edge back to the current path: that is a cycle.
+Example 1
+Input
+
+```
+3 3
+0 1
+1 2
+2 0
+```
+
+Output
+
+```
+True
+```
+
+Explanation
+There are `3` nodes and the edges `0 → 1`, `1 → 2` and `2 → 0`. The DFS goes `0 → 1 → 2` (all GRAY), and then `2 → 0` reaches the GRAY node `0`. That closes the loop `0 → 1 → 2 → 0`, so the output is `True`.
+Example 2
+Input
+
+```
+3 3
+0 1
+0 2
+1 2
+```
+
+Output
+
+```
+False
+```
+
+Explanation
+There are `3` nodes and the edges `0 → 1`, `0 → 2` and `1 → 2`. Every path only moves forward and never comes back, so the output is `False`. Note that two paths reaching node `2` is **not** a cycle: when `0 → 2` is checked, node `2` is already BLACK, not GRAY.
+Input Format
+
+* Line 1: two integers `N` and `M`.
+* Next `M` lines: two integers `u v`, an edge from `u` to `v`.
+
+Output Format
+Print `True` if the graph has a cycle, otherwise `False`.
+Constraints
+
+* `1 ≤ N ≤ 1000`
+* `0 ≤ M ≤ 10^4`
+* `0 ≤ u, v < N` (an edge `u u` is a cycle of length 1)
+
+Hint
+Store the colours in a list: `color = [0] * n` with `0 = WHITE`, `1 = GRAY`, `2 = BLACK`.","Line 1: two integers `N` and `M`.
+Next `M` lines: two integers `u v`, an edge from `u` to `v`.","Print `True` if the graph has a cycle, otherwise `False`.","`1 ≤ N ≤ 1000`
+`0 ≤ M ≤ 10^4`
+`0 ≤ u, v < N` (an edge `u u` is a cycle of length 1)","3 3
+0 1
+1 2
+2 0",True,"3 3
+0 1
+0 2
+1 2",False,"Store the colours in a list: `color = [0] * n` with `0 = WHITE`, `1 = GRAY`, `2 = BLACK`.",A BLACK neighbour is safe to skip; only a GRAY neighbour means a cycle.,"The graph may have several separate parts, so start a DFS from every node that is still WHITE.","import sys
+sys.setrecursionlimit(10000)
+
+WHITE, GRAY, BLACK = 0, 1, 2
+
+n, m = map(int, input().split())
+adj = [[] for _ in range(n)]
+for _ in range(m):
+    u, v = map(int, input().split())
+    adj[u].append(v)                # directed: one direction only
+
+color = [WHITE] * n
+
+
+def has_cycle(node):
+    color[node] = GRAY              # on the current path
+    for nb in adj[node]:
+        if color[nb] == GRAY:
+            return True             # back edge: a cycle
+        if color[nb] == WHITE and has_cycle(nb):
+            return True
+    color[node] = BLACK             # finished
+    return False
+
+
+print(any(color[i] == WHITE and has_cycle(i) for i in range(n)))","[{""input"": ""3 3\n0 1\n1 2\n2 0"", ""output"": ""True"", ""is_hidden"": false}, {""input"": ""3 3\n0 1\n0 2\n1 2"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""1 0"", ""output"": ""False"", ""is_hidden"": false}, {""input"": ""1 1\n0 0"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""4 2\n0 1\n2 3"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""4 4\n0 1\n1 2\n2 3\n3 1"", ""output"": ""True"", ""is_hidden"": true}, {""input"": ""5 4\n4 3\n3 2\n2 1\n1 0"", ""output"": ""False"", ""is_hidden"": true}, {""input"": ""6 6\n0 1\n1 2\n3 4\n4 5\n5 3\n2 3"", ""output"": ""True"", ""is_hidden"": true}]"
+PY-M17-15,Merge K Lists via Heap,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Hard,Merge K sorted lists in O(N log K) time using priority queue.,stdin/stdout,O(N log K),O(K),"Detailed Task
+You are given `K` lists, each sorted in increasing order. Merge all of them into one increasing list and print the result. Preserve duplicate values: if the same number occurs in multiple lists, it must appear the corresponding number of times in the output.
+
+Use a min-heap so you do not have to compare every list's next value on every step. Initially, insert the first value from each non-empty list, together with that list's index and the value's position. Repeatedly remove the smallest heap entry and append its value to the result. Then insert the next value from that same list, if one remains. Continue until the heap is empty. The result contains all values from all input lists in sorted order.
+
+Merge K Lists via Heap
+Problem Description
+You are given `K` lists, each sorted in increasing order. Merge them into one sorted list and print it.
+Merging two lists at a time works, but it is slow. Use a **min-heap** (`heapq`) that holds one entry per list:
+
+* Each heap entry is a tuple `(value, list_index, position)`: the current front value of a list, which list it comes from, and its position in that list.
+* Start by pushing the first value of every list.
+* Repeatedly pop the smallest entry, add its value to the result, and push the **next** value from the same list (if that list has one).
+
+The heap never holds more than `K` entries, so each step costs O(log K), and the whole merge costs O(N log K), where `N` is the total number of values.
+Example 1
+Input
+
+```
+3
+1 4 5
+1 3 4
+2 6
+```
+
+Output
+
+```
+1 1 2 3 4 4 5 6
+```
+
+Explanation
+The lists are `1 4 5`, `1 3 4` and `2 6`. The heap starts with `1`, `1` and `2`. Popping the smallest value each time and replacing it with the next value of its list gives `1 1 2 3 4 4 5 6`.
+Example 2
+Input
+
+```
+1
+5 10
+```
+
+Output
+
+```
+5 10
+```
+
+Explanation
+There is only one list, `5 10`, so the merged list is the same list.
+Input Format
+
+* Line 1: an integer `K`, the number of lists.
+* Next `K` lines: the values of one sorted list each, separated by spaces.
+
+Output Format
+Print all values in increasing order, separated by spaces.
+Constraints
+
+* `1 ≤ K ≤ 10^4`
+* `1 ≤ length of each list ≤ 500`
+* `-10^4 ≤ each value ≤ 10^4`
+* Each list is sorted in increasing order
+
+Hint
+`heapq.heappush(heap, (lists[i][0], i, 0))` pushes the first value of list `i`.","Line 1: an integer `K`, the number of lists.
+Next `K` lines: the values of one sorted list each, separated by spaces.","Print all values in increasing order, separated by spaces.","`1 ≤ K ≤ 10^4`
+`1 ≤ length of each list ≤ 500`
+`-10^4 ≤ each value ≤ 10^4`
+Each list is sorted in increasing order","3
+1 4 5
+1 3 4
+2 6",1 1 2 3 4 4 5 6,"1
+5 10",5 10,"`heapq.heappush(heap, (lists[i][0], i, 0))` pushes the first value of list `i`.","The list index in the tuple also breaks ties between equal values, so the tuples can always be compared.","After popping `(value, i, p)`, push `(lists[i][p + 1], i, p + 1)` if `p + 1 < len(lists[i])`.","import heapq
+
+k = int(input())
+lists = [[int(x) for x in input().split()] for _ in range(k)]
+
+heap = []
+for i in range(k):
+    heapq.heappush(heap, (lists[i][0], i, 0))
+
+result = []
+while heap:
+    value, i, p = heapq.heappop(heap)
+    result.append(value)
+    if p + 1 < len(lists[i]):
+        heapq.heappush(heap, (lists[i][p + 1], i, p + 1))
+
+print("" "".join(str(x) for x in result))","[{""input"": ""3\n1 4 5\n1 3 4\n2 6"", ""output"": ""1 1 2 3 4 4 5 6"", ""is_hidden"": false}, {""input"": ""1\n5 10"", ""output"": ""5 10"", ""is_hidden"": false}, {""input"": ""2\n1\n1"", ""output"": ""1 1"", ""is_hidden"": false}, {""input"": ""3\n7\n3\n5"", ""output"": ""3 5 7"", ""is_hidden"": true}, {""input"": ""4\n1 2\n1 2\n1 2\n1 2"", ""output"": ""1 1 1 1 2 2 2 2"", ""is_hidden"": true}, {""input"": ""2\n-10 -5 0\n-7 8"", ""output"": ""-10 -7 -5 0 8"", ""is_hidden"": true}, {""input"": ""3\n10 20 30\n5 15 25\n1 100"", ""output"": ""1 5 10 15 20 25 30 100"", ""is_hidden"": true}, {""input"": ""2\n1 2 3 4 5\n6"", ""output"": ""1 2 3 4 5 6"", ""is_hidden"": true}]"
+PY-M17-16,Lowest Common Ancestor,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Hard,Find lowest common ancestor of two nodes in binary tree.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree whose node values are distinct and two values `p` and `q` that both appear in the tree. Find and print their lowest common ancestor (LCA): the deepest node that has both values in its subtree. A node is considered part of its own subtree, so if one target is an ancestor of the other, that target is the LCA.
+
+The tree is provided in level order, with `null` marking missing children; the second input line contains `p` and `q`. Use a recursive search. Return an empty result when the current node is missing, and return the current node when its value equals either target. Otherwise search both subtrees. If both searches find a target, the current node is the LCA. If only one side returns a node, pass that result upward. Print the LCA's value.
+
+Lowest Common Ancestor
+Problem Description
+You are given a binary tree with **distinct** values, and two values `p` and `q` that both appear in the tree. Print their **lowest common ancestor (LCA)**: the deepest node that has both `p` and `q` in its subtree. A node counts as being in its own subtree, so if `p` is an ancestor of `q`, the answer is `p`.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+Recursive method: `lca(node)` returns the node that is `p` or `q` or their LCA within this subtree (or `None`).
+
+* If `node` is `None`, or its value is `p` or `q`, return `node`.
+* Otherwise search both children. If **both** sides return a node, `p` and `q` are on different sides, so `node` is the LCA. If only one side returns a node, pass that result up.
+Example 1
+Input
+
+```
+3 5 1 6 2 0 8 null null 7 4
+5 1
+```
+
+Output
+
+```
+3
+```
+
+Explanation
+The tree is
+
+```
+        3
+      /   \
+     5     1
+    / \   / \
+   6   2 0   8
+      / \
+     7   4
+```
+
+For `p = 5` and `q = 1`, they are on different sides of `3`, so the LCA is `3`.
+Example 2
+Input
+
+```
+3 5 1 6 2 0 8 null null 7 4
+5 4
+```
+
+Output
+
+```
+5
+```
+
+Explanation
+In the same tree, for `p = 5` and `q = 4`, the node `4` is inside the subtree of `5`, so the LCA is `5` itself.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+* Line 2: two integers `p` and `q`.
+
+Output Format
+Print one integer: the value of the lowest common ancestor.
+Constraints
+
+* `1 ≤ number of nodes ≤ 10^4`
+* All values are different
+* `p` and `q` are different and both are in the tree
+* The depth is at most `500`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.
+Line 2: two integers `p` and `q`.",Print one integer: the value of the lowest common ancestor.,"`1 ≤ number of nodes ≤ 10^4`
+All values are different
+`p` and `q` are different and both are in the tree
+The depth is at most `500`","3 5 1 6 2 0 8 null null 7 4
+5 1",3,"3 5 1 6 2 0 8 null null 7 4
+5 4",5,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Compare values, not node objects: `if node is None or node.val in (p, q): return node`.","`if left and right: return node`, otherwise `return left or right`.","from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def lca(node, p, q):
+    if node is None or node.val in (p, q):
+        return node
+    left = lca(node.left, p, q)
+    right = lca(node.right, p, q)
+    if left and right:
+        return node             # p and q are on different sides
+    return left or right
+
+
+root = build_tree(input().split())
+p, q = map(int, input().split())
+print(lca(root, p, q).val)","[{""input"": ""3 5 1 6 2 0 8 null null 7 4\n5 1"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""3 5 1 6 2 0 8 null null 7 4\n5 4"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""1 2\n1 2"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""1 2 3\n2 3"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""3 5 1 6 2 0 8 null null 7 4\n7 8"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""3 5 1 6 2 0 8 null null 7 4\n6 4"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""1 null 2 null 3 null 4\n4 2"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""10 5 15 3 7 12 20\n12 20"", ""output"": ""15"", ""is_hidden"": true}]"
+PY-M17-17,Binary Tree Max Path Sum,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Hard,Find maximum path sum between any two nodes in binary tree.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a non-empty binary tree whose node values may be positive, zero, or negative. Find the largest sum possible along any path and print that sum. A path follows parent-child edges, may start and end at any nodes, does not visit a node more than once, and does not have to pass through the root.
+
+For each node, calculate the best downward path sum that starts at that node and continues through at most one child. A child branch with a negative contribution should be ignored, because including it would reduce the sum. Also calculate a path that passes through the current node and joins the best positive contribution from the left and right children; this may be the best overall path. Keep a global maximum of these through-node sums, and return the best one-sided sum to the parent. This distinction is important because a path returned to a parent cannot branch in two directions.
+
+Binary Tree Max Path Sum
+Problem Description
+You are given a non-empty binary tree. A **path** is a sequence of nodes where each pair of neighbours in the sequence is connected by an edge. A path does not have to go through the root, it can start and end at any node, and it uses each node at most once. It contains at least one node.
+The **path sum** is the sum of the values on the path. Print the largest path sum in the tree. Values can be negative.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+Recursive method: `gain(node)` returns the best sum of a path that **starts at `node` and goes down** into one side.
+
+* `left = max(gain(node.left), 0)` and `right = max(gain(node.right), 0)`: a negative branch is better left out.
+* A path that **bends** at `node` has the sum `node.val + left + right`. Compare it with the best answer so far.
+* Return `node.val + max(left, right)`, because a path going up to the parent can use only one side.
+Example 1
+Input
+
+```
+1 2 3
+```
+
+Output
+
+```
+6
+```
+
+Explanation
+The tree is `1` with children `2` and `3`. The best path is `2 → 1 → 3`, with the sum `2 + 1 + 3 = 6`.
+Example 2
+Input
+
+```
+-10 9 20 null null 15 7
+```
+
+Output
+
+```
+42
+```
+
+Explanation
+The tree is
+
+```
+   -10
+   /  \
+  9    20
+      /  \
+     15   7
+```
+
+The best path is `15 → 20 → 7`, with the sum `42`. Going through `-10` would only make it smaller.
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Print one integer: the maximum path sum.
+Constraints
+
+* `1 ≤ number of nodes ≤ 10^4`
+* `-1000 ≤ each value ≤ 1000`
+* The depth is at most `500`
+
+Hint
+Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.","Line 1: the tree in level order, values and `null` separated by spaces.",Print one integer: the maximum path sum.,"`1 ≤ number of nodes ≤ 10^4`
+`-1000 ≤ each value ≤ 1000`
+The depth is at most `500`",1 2 3,6,-10 9 20 null null 15 7,42,"Build the tree with a queue: take the next node from the queue and give it the next two tokens as its left and right child (skipping `null`), adding real children to the queue.",Keep the best answer in a variable outside the function (for example a one-item list `best = [root.val]`) and update it inside `gain`.,"Start `best` with the root value, not `0`: if all values are negative, the answer is the largest single value.","from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def max_path_sum(root):
+    best = [root.val]
+
+    def gain(node):
+        if node is None:
+            return 0
+        left = max(gain(node.left), 0)      # skip a negative branch
+        right = max(gain(node.right), 0)
+        best[0] = max(best[0], node.val + left + right)
+        return node.val + max(left, right)
+
+    gain(root)
+    return best[0]
+
+
+root = build_tree(input().split())
+print(max_path_sum(root))","[{""input"": ""1 2 3"", ""output"": ""6"", ""is_hidden"": false}, {""input"": ""-10 9 20 null null 15 7"", ""output"": ""42"", ""is_hidden"": false}, {""input"": ""-3"", ""output"": ""-3"", ""is_hidden"": false}, {""input"": ""2 -1"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""-2 -1 -3"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""5 4 8 11 null 13 4 7 2 null null null 1"", ""output"": ""48"", ""is_hidden"": true}, {""input"": ""1 -2 3"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""10 2 10 20 1 null -25 null null null null 3 4"", ""output"": ""42"", ""is_hidden"": true}]"
+PY-M17-18,Serialize & Deserialize Tree,"Module 17: Data Structures (Linear, Trees, Heaps, Graphs)",Hard,Serialize tree to string and reconstruct identical structure.,stdin/stdout,O(N),O(N),"Detailed Task
+You are given a binary tree in level-order input format. Serialize it into a string, deserialize that string to rebuild the tree, and print both the serialized string and the rebuilt tree's level-order representation.
+
+Serialization must use preorder traversal: write the current node first, then its left subtree, then its right subtree. Write node values as tokens separated by commas, and write `#` whenever a child is missing. Including missing-child markers preserves the exact structure of the tree. For example, a node `1` with children `2` and `3` serializes as `1,2,#,#,3,#,#`. Deserialize by reading these tokens in the same preorder sequence: `#` means an empty child; any other token creates a node whose left and right children are then read recursively. Print the rebuilt tree in level order, omitting trailing `null` tokens. An empty tree serializes to `#` and prints as `null` after rebuilding.
+
+Serialize & Deserialize Tree
+Problem Description
+**Serializing** a tree means turning it into a string so it can be saved or sent; **deserializing** means building the exact same tree back from that string.
+
+You are given a binary tree in level order. Do three things:
+
+1. Build the tree.
+2. **Serialize** it in **preorder** (node, then left subtree, then right subtree), writing each value, and `#` for every missing child, separated by commas. For example, the tree `1` with children `2` and `3` becomes `1,2,#,#,3,#,#`.
+3. **Deserialize** that string back into a new tree, and print the new tree in level order to prove it is identical.
+
+A tree is given on one line in **level order**: the root first, then the nodes of each level from left to right. The word `null` marks a missing child. For example, `3 9 20 null null 15 7` is the tree
+
+```
+    3
+   / \
+  9   20
+     /  \
+    15   7
+```
+
+A tree with no nodes is written as `null`.
+
+Output: line 1 is the preorder string. Line 2 is the rebuilt tree in level order, without `null` tokens at the end (`null` for an empty tree). An empty tree serializes to `#`.
+Example 1
+Input
+
+```
+1 2 3 null null 4 5
+```
+
+Output
+
+```
+1,2,#,#,3,4,#,#,5,#,#
+1 2 3 null null 4 5
+```
+
+Explanation
+The tree is
+
+```
+    1
+   / \
+  2   3
+     / \
+    4   5
+```
+
+In preorder: `1`, then the left subtree `2,#,#`, then the right subtree `3,4,#,#,5,#,#`. So line 1 is `1,2,#,#,3,4,#,#,5,#,#`. Rebuilding the tree from it gives the same tree, whose level order is `1 2 3 null null 4 5`.
+Example 2
+Input
+
+```
+null
+```
+
+Output
+
+```
+#
+null
+```
+
+Explanation
+The tree is empty, so the serialized string is `#`, and the rebuilt tree is also empty (`null`).
+Input Format
+
+* Line 1: the tree in level order, values and `null` separated by spaces.
+
+Output Format
+Line 1: the preorder serialization. Line 2: the rebuilt tree in level order.
+Constraints
+
+* `0 ≤ number of nodes ≤ 10^4`
+* `-1000 ≤ each value ≤ 1000`
+* The depth is at most `500`
+
+Hint
+Serialize recursively: for `None` add `#`; otherwise add the value, then serialize the left and the right child.","Line 1: the tree in level order, values and `null` separated by spaces.",Line 1: the preorder serialization. Line 2: the rebuilt tree in level order.,"`0 ≤ number of nodes ≤ 10^4`
+`-1000 ≤ each value ≤ 1000`
+The depth is at most `500`",1 2 3 null null 4 5,"1,2,#,#,3,4,#,#,5,#,#
+1 2 3 null null 4 5",,"#
+null","Serialize recursively: for `None` add `#`; otherwise add the value, then serialize the left and the right child.","Deserialize with an iterator over the tokens: `build()` takes the next token; for `#` return `None`, otherwise create a node and build its left and then its right child.","Preorder with `#` markers is enough to rebuild the tree exactly, because the markers show where every subtree ends.","from collections import deque
+
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+
+def build_tree(tokens):
+    """"""Build a tree from level-order tokens, where 'null' means no child.""""""
+    if not tokens or tokens[0] == ""null"":
+        return None
+    root = TreeNode(int(tokens[0]))
+    queue = deque([root])
+    i = 1
+    while queue and i < len(tokens):
+        node = queue.popleft()
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.left = TreeNode(int(tokens[i]))
+            queue.append(node.left)
+        i += 1
+        if i < len(tokens) and tokens[i] != ""null"":
+            node.right = TreeNode(int(tokens[i]))
+            queue.append(node.right)
+        i += 1
+    return root
+
+
+def to_level_order(root):
+    """"""Level-order tokens with 'null' for missing children; trailing nulls removed.""""""
+    if root is None:
+        return ""null""
+    out = []
+    queue = deque([root])
+    while queue:
+        node = queue.popleft()
+        if node is None:
+            out.append(""null"")
+        else:
+            out.append(str(node.val))
+            queue.append(node.left)
+            queue.append(node.right)
+    while out[-1] == ""null"":
+        out.pop()
+    return "" "".join(out)
+
+
+def serialize(node, out):
+    if node is None:
+        out.append(""#"")
+        return
+    out.append(str(node.val))
+    serialize(node.left, out)
+    serialize(node.right, out)
+
+
+def deserialize(data):
+    tokens = iter(data.split("",""))
+
+    def build():
+        token = next(tokens)
+        if token == ""#"":
+            return None
+        node = TreeNode(int(token))
+        node.left = build()
+        node.right = build()
+        return node
+
+    return build()
+
+
+root = build_tree(input().split())
+parts = []
+serialize(root, parts)
+text = "","".join(parts)
+print(text)
+print(to_level_order(deserialize(text)))","[{""input"": ""1 2 3 null null 4 5"", ""output"": ""1,2,#,#,3,4,#,#,5,#,#\n1 2 3 null null 4 5"", ""is_hidden"": false}, {""input"": ""null"", ""output"": ""#\nnull"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""7,#,#\n7"", ""is_hidden"": false}, {""input"": ""1 2"", ""output"": ""1,2,#,#,#\n1 2"", ""is_hidden"": true}, {""input"": ""1 null 2"", ""output"": ""1,#,2,#,#\n1 null 2"", ""is_hidden"": true}, {""input"": ""-1 -2 -3 -4"", ""output"": ""-1,-2,-4,#,#,#,-3,#,#\n-1 -2 -3 -4"", ""is_hidden"": true}, {""input"": ""5 3 8 1 4 null 9 null 2"", ""output"": ""5,3,1,#,2,#,#,4,#,#,8,#,9,#,#\n5 3 8 1 4 null 9 null 2"", ""is_hidden"": true}, {""input"": ""0 0 0 null 0 0"", ""output"": ""0,0,#,0,#,#,0,0,#,#,#\n0 0 0 null 0 0"", ""is_hidden"": true}]"

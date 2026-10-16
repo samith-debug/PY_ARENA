@@ -1,0 +1,490 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+M04-01,Lab Bench Allocation,Module 04: Conditional Statements,Easy,Branch on integer parity (n % 2 == 0) to assign Left or Right bench.,stdin/stdout,O(1),O(1),"Task: In a computer lab, benches are given by roll number:
+• Even roll number: Left bench
+• Odd roll number: Right bench
+
+A number is even when it leaves remainder 0 after dividing by 2 (n % 2 == 0).
+
+Given a roll number, print which bench the student gets.",A single line containing one positive integer n (the roll number).,One line: Bench: <Left/Right>,1 <= n <= 10^18,12,Bench: Left,7,Bench: Right,Parity is decided by the remainder when n is divided by 2.,If n % 2 == 0 the number is even; otherwise it is odd.,Use a two-way if/else and print the label for the chosen branch.,"n = int(input())
+if n % 2 == 0:
+    print(""Bench: Left"")
+else:
+    print(""Bench: Right"")","[{""input"": ""12"", ""output"": ""Bench: Left"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""Bench: Right"", ""is_hidden"": false}, {""input"": ""100"", ""output"": ""Bench: Left"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Bench: Right"", ""is_hidden"": true}, {""input"": ""2"", ""output"": ""Bench: Left"", ""is_hidden"": true}, {""input"": ""999999999999999999"", ""output"": ""Bench: Right"", ""is_hidden"": true}, {""input"": ""1000000000000000000"", ""output"": ""Bench: Left"", ""is_hidden"": true}, {""input"": ""50"", ""output"": ""Bench: Left"", ""is_hidden"": true}, {""input"": ""33"", ""output"": ""Bench: Right"", ""is_hidden"": true}, {""input"": ""64"", ""output"": ""Bench: Left"", ""is_hidden"": true}]"
+M04-02,Bank Transaction Category,Module 04: Conditional Statements,Easy,"Classify integer amount as ""CREDIT"", ""DEBIT"", or ""ZERO"" using 3-way if/elif/else.",stdin/stdout,O(1),O(1),"Task: A bank gives every transaction a category based on its amount:
+• If the amount is greater than 0, the category is CREDIT (money came in).
+• If the amount is less than 0, the category is DEBIT (money went out).
+• If the amount is exactly 0, the category is ZERO.
+
+Given one integer amount, print its category.",A single line containing one integer amount.,One line: Category: <CREDIT/DEBIT/ZERO>,-10^9 <= amount <= 10^9,500,Category: CREDIT,-250,Category: DEBIT,"There are exactly three mutually exclusive cases: amount > 0, amount < 0, and amount == 0.","Test amount > 0 first, then amount < 0 with elif, and let else cover zero.",Print the label with the prefix 'Category: '.,"amount = int(input())
+if amount > 0:
+    print(""Category: CREDIT"")
+elif amount < 0:
+    print(""Category: DEBIT"")
+else:
+    print(""Category: ZERO"")","[{""input"": ""500"", ""output"": ""Category: CREDIT"", ""is_hidden"": false}, {""input"": ""-250"", ""output"": ""Category: DEBIT"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Category: ZERO"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Category: CREDIT"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Category: DEBIT"", ""is_hidden"": true}, {""input"": ""1000000000"", ""output"": ""Category: CREDIT"", ""is_hidden"": true}, {""input"": ""-1000000000"", ""output"": ""Category: DEBIT"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""Category: CREDIT"", ""is_hidden"": true}, {""input"": ""-999"", ""output"": ""Category: DEBIT"", ""is_hidden"": true}, {""input"": ""12345"", ""output"": ""Category: CREDIT"", ""is_hidden"": true}]"
+M04-03,Coordinate Plane Quadrant,Module 04: Conditional Statements,Easy,"Determine quadrant I, II, III, IV, AXIS, or ORIGIN from coordinates (x, y).",stdin/stdout,O(1),O(1),"Task: A point on a graph has two numbers: x (left-right) and y (up-down). Where the point lies depends on x and y:
+• x = 0 and y = 0: ORIGIN
+• Exactly one of x or y is 0: AXIS (the point is on the x-axis or the y-axis)
+• x > 0 and y > 0: Quadrant I
+• x < 0 and y > 0: Quadrant II
+• x < 0 and y < 0: Quadrant III
+• x > 0 and y < 0: Quadrant IV
+
+Given x and y, print where the point lies.",A single line containing two space-separated integers x and y.,One line: Location: <I/II/III/IV/AXIS/ORIGIN>,"-10^9 <= x, y <= 10^9",3 4,Location: I,-5 2,Location: II,Handle the special cases (origin and axes) before checking quadrants.,x == 0 and y == 0 is the ORIGIN; otherwise x == 0 or y == 0 means AXIS.,"For the remaining points, the signs of x and y pick exactly one quadrant.","x, y = map(int, input().split())
+if x == 0 and y == 0:
+    loc = ""ORIGIN""
+elif x == 0 or y == 0:
+    loc = ""AXIS""
+elif x > 0 and y > 0:
+    loc = ""I""
+elif x < 0 and y > 0:
+    loc = ""II""
+elif x < 0 and y < 0:
+    loc = ""III""
+else:
+    loc = ""IV""
+print(f""Location: {loc}"")","[{""input"": ""3 4"", ""output"": ""Location: I"", ""is_hidden"": false}, {""input"": ""-5 2"", ""output"": ""Location: II"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""Location: ORIGIN"", ""is_hidden"": false}, {""input"": ""-4 -9"", ""output"": ""Location: III"", ""is_hidden"": true}, {""input"": ""6 -1"", ""output"": ""Location: IV"", ""is_hidden"": true}, {""input"": ""0 -8"", ""output"": ""Location: AXIS"", ""is_hidden"": true}, {""input"": ""12 0"", ""output"": ""Location: AXIS"", ""is_hidden"": true}, {""input"": ""1000000000 -1000000000"", ""output"": ""Location: IV"", ""is_hidden"": true}, {""input"": ""-1 0"", ""output"": ""Location: AXIS"", ""is_hidden"": true}, {""input"": ""0 1"", ""output"": ""Location: AXIS"", ""is_hidden"": true}]"
+M04-04,Cheapest Vendor Quote,Module 04: Conditional Statements,Easy,Identify minimum of 3 quotes and print vendor name with strict tie-break rules.,stdin/stdout,O(1),O(1),"Task: A company asks three vendors (A, B and C) for a price quote.
+• The vendor with the lowest quote wins.
+• If two or more vendors give the same lowest quote, the vendor who comes first in the alphabet wins (A before B, and B before C).
+
+Given the three quotes, print the winning vendor and its price.
+
+Example: quotes 500 400 400 → B and C both quote 400, so B wins.","A single line containing three space-separated integers: the quotes of vendors A, B, and C.","Two lines:
+Line 1: Vendor: <A/B/C>
+Line 2: Price: <lowest quote>",1 <= quote <= 10^9,300 250 400,"Vendor: B
+Price: 250",100 200 300,"Vendor: A
+Price: 100",Check vendors in alphabetical order so that ties automatically favour the earlier vendor.,"A wins if a <= b and a <= c (use <=, not <).","If A did not win, B wins when b <= c; otherwise C wins.","a, b, c = map(int, input().split())
+if a <= b and a <= c:
+    vendor, price = ""A"", a
+elif b <= c:
+    vendor, price = ""B"", b
+else:
+    vendor, price = ""C"", c
+print(f""Vendor: {vendor}"")
+print(f""Price: {price}"")","[{""input"": ""300 250 400"", ""output"": ""Vendor: B\nPrice: 250"", ""is_hidden"": false}, {""input"": ""100 200 300"", ""output"": ""Vendor: A\nPrice: 100"", ""is_hidden"": false}, {""input"": ""500 400 400"", ""output"": ""Vendor: B\nPrice: 400"", ""is_hidden"": false}, {""input"": ""250 250 250"", ""output"": ""Vendor: A\nPrice: 250"", ""is_hidden"": true}, {""input"": ""900 800 700"", ""output"": ""Vendor: C\nPrice: 700"", ""is_hidden"": true}, {""input"": ""700 800 700"", ""output"": ""Vendor: A\nPrice: 700"", ""is_hidden"": true}, {""input"": ""1 1000000000 1000000000"", ""output"": ""Vendor: A\nPrice: 1"", ""is_hidden"": true}, {""input"": ""999999999 1000000000 999999999"", ""output"": ""Vendor: A\nPrice: 999999999"", ""is_hidden"": true}, {""input"": ""600 500 500"", ""output"": ""Vendor: B\nPrice: 500"", ""is_hidden"": true}, {""input"": ""20 30 10"", ""output"": ""Vendor: C\nPrice: 10"", ""is_hidden"": true}]"
+M04-05,Ternary Surcharge Evaluator,Module 04: Conditional Statements,Easy,Assign delivery surcharge using single-line ternary expression based on distance.,stdin/stdout,O(1),O(1),"Task: A delivery app adds an extra charge (surcharge) for long trips:
+• Distance of 10 km or less: surcharge is 0
+• Distance of more than 10 km: surcharge is 25
+• Total fee = base fee + surcharge
+
+Given the base fee and the distance, find the surcharge and the total fee.
+
+Choose the surcharge in a single line using a ternary expression: value_if_true if condition else value_if_false.",A single line containing two space-separated integers: base_fee and distance_km.,"Two lines:
+Line 1: Surcharge: <surcharge>
+Line 2: Total: <base_fee + surcharge>","0 <= base_fee <= 100000
+0 <= distance_km <= 1000",40 5,"Surcharge: 0
+Total: 40",40 15,"Surcharge: 25
+Total: 65","A trip of exactly 10 km is NOT longer than 10 km, so it gets no surcharge.",Ternary syntax: surcharge = 25 if distance_km > 10 else 0.,Add the surcharge to the base fee to get the total.,"base, dist = map(int, input().split())
+surcharge = 25 if dist > 10 else 0
+print(f""Surcharge: {surcharge}"")
+print(f""Total: {base + surcharge}"")","[{""input"": ""40 5"", ""output"": ""Surcharge: 0\nTotal: 40"", ""is_hidden"": false}, {""input"": ""40 15"", ""output"": ""Surcharge: 25\nTotal: 65"", ""is_hidden"": false}, {""input"": ""60 10"", ""output"": ""Surcharge: 0\nTotal: 60"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""Surcharge: 0\nTotal: 0"", ""is_hidden"": true}, {""input"": ""50 11"", ""output"": ""Surcharge: 25\nTotal: 75"", ""is_hidden"": true}, {""input"": ""100000 1000"", ""output"": ""Surcharge: 25\nTotal: 100025"", ""is_hidden"": true}, {""input"": ""30 1"", ""output"": ""Surcharge: 0\nTotal: 30"", ""is_hidden"": true}, {""input"": ""75 9"", ""output"": ""Surcharge: 0\nTotal: 75"", ""is_hidden"": true}, {""input"": ""20 100"", ""output"": ""Surcharge: 25\nTotal: 45"", ""is_hidden"": true}, {""input"": ""45 12"", ""output"": ""Surcharge: 25\nTotal: 70"", ""is_hidden"": true}]"
+M04-06,Triangle Validity & Class,Module 04: Conditional Statements,Medium,"Validate triangle inequality and classify EQUILATERAL, ISOSCELES, or SCALENE.",stdin/stdout,O(1),O(1),"Task: Three sides can form a triangle only if the sum of any two sides is strictly greater than the third side. All three checks must be true:
+• a + b > c
+• a + c > b
+• b + c > a
+
+If any check fails, the triangle is INVALID. For example, sides 1, 2, 3 are invalid because 1 + 2 is equal to 3, not greater than 3.
+
+If the triangle is valid, find its type:
+• EQUILATERAL: all three sides are equal
+• ISOSCELES: exactly two sides are equal
+• SCALENE: all three sides are different
+
+Given a, b and c, print INVALID or the type of the triangle.","A single line containing three space-separated positive integers a, b, and c.",One line: Triangle: <INVALID/EQUILATERAL/ISOSCELES/SCALENE>,"1 <= a, b, c <= 10^9",3 4 5,Triangle: SCALENE,5 5 5,Triangle: EQUILATERAL,"Check validity first: a + b > c, a + c > b, and b + c > a must all hold.","If the sides are valid, test for all three equal before testing for any two equal.",Sides 1 2 3 are invalid because 1 + 2 is not strictly greater than 3.,"a, b, c = map(int, input().split())
+if a + b <= c or a + c <= b or b + c <= a:
+    kind = ""INVALID""
+elif a == b == c:
+    kind = ""EQUILATERAL""
+elif a == b or b == c or a == c:
+    kind = ""ISOSCELES""
+else:
+    kind = ""SCALENE""
+print(f""Triangle: {kind}"")","[{""input"": ""3 4 5"", ""output"": ""Triangle: SCALENE"", ""is_hidden"": false}, {""input"": ""5 5 5"", ""output"": ""Triangle: EQUILATERAL"", ""is_hidden"": false}, {""input"": ""1 2 3"", ""output"": ""Triangle: INVALID"", ""is_hidden"": false}, {""input"": ""5 5 8"", ""output"": ""Triangle: ISOSCELES"", ""is_hidden"": true}, {""input"": ""2 2 5"", ""output"": ""Triangle: INVALID"", ""is_hidden"": true}, {""input"": ""7 10 5"", ""output"": ""Triangle: SCALENE"", ""is_hidden"": true}, {""input"": ""1000000000 1000000000 1000000000"", ""output"": ""Triangle: EQUILATERAL"", ""is_hidden"": true}, {""input"": ""1 1 1000000000"", ""output"": ""Triangle: INVALID"", ""is_hidden"": true}, {""input"": ""6 6 11"", ""output"": ""Triangle: ISOSCELES"", ""is_hidden"": true}, {""input"": ""9 4 9"", ""output"": ""Triangle: ISOSCELES"", ""is_hidden"": true}]"
+M04-07,Calendar Date Validator,Module 04: Conditional Statements,Medium,"Validate day, month, year taking full leap-year rules for February into account.",stdin/stdout,O(1),O(1),"Task: Check whether a date (day, month, year) really exists on the calendar.
+
+A date is VALID only when both of these are true:
+• the month is from 1 to 12
+• the day is from 1 to the number of days in that month
+
+Days in each month:
+• 31 days: January, March, May, July, August, October, December
+• 30 days: April, June, September, November
+• February: 28 days, or 29 days in a leap year
+
+A year is a leap year if it is divisible by 4. The exception is a year divisible by 100, which is a leap year only if it is also divisible by 400. So 2024 and 2000 are leap years, but 2023 and 1900 are not.
+
+Given day, month and year, print whether the date is VALID or INVALID.","A single line containing three space-separated integers: day, month, and year.",One line: Date: <VALID/INVALID>,"0 <= day <= 100
+0 <= month <= 100
+1 <= year <= 9999",29 2 2024,Date: VALID,29 2 2023,Date: INVALID,Reject any month outside 1..12 before looking up the number of days.,Leap year: (year % 4 == 0 and year % 100 != 0) or year % 400 == 0.,"Pick max_day for the month (28/29, 30, or 31) and accept the date if 1 <= day <= max_day.","d, m, y = map(int, input().split())
+leap = (y % 4 == 0 and y % 100 != 0) or y % 400 == 0
+if m < 1 or m > 12:
+    valid = False
+else:
+    if m == 2:
+        max_day = 29 if leap else 28
+    elif m in (4, 6, 9, 11):
+        max_day = 30
+    else:
+        max_day = 31
+    valid = 1 <= d <= max_day
+print(""Date: VALID"" if valid else ""Date: INVALID"")","[{""input"": ""29 2 2024"", ""output"": ""Date: VALID"", ""is_hidden"": false}, {""input"": ""29 2 2023"", ""output"": ""Date: INVALID"", ""is_hidden"": false}, {""input"": ""31 4 2025"", ""output"": ""Date: INVALID"", ""is_hidden"": false}, {""input"": ""29 2 1900"", ""output"": ""Date: INVALID"", ""is_hidden"": true}, {""input"": ""29 2 2000"", ""output"": ""Date: VALID"", ""is_hidden"": true}, {""input"": ""31 12 9999"", ""output"": ""Date: VALID"", ""is_hidden"": true}, {""input"": ""0 5 2020"", ""output"": ""Date: INVALID"", ""is_hidden"": true}, {""input"": ""15 13 2020"", ""output"": ""Date: INVALID"", ""is_hidden"": true}, {""input"": ""30 6 2021"", ""output"": ""Date: VALID"", ""is_hidden"": true}, {""input"": ""28 2 2023"", ""output"": ""Date: VALID"", ""is_hidden"": true}]"
+M04-08,Tiered Electricity Billing,Module 04: Conditional Statements,Medium,"Calculate electric bill using exact slab table: 0-100 @ 2.0, 101-300 @ 3.5, 301+ @ 5.0.",stdin/stdout,O(1),O(1),"Task: An electricity company charges by slabs. Each slab has its own price per unit, and a price applies only to the units that fall inside that slab:
+• First 100 units (units 1 to 100): 2.0 per unit
+• Next 200 units (units 101 to 300): 3.5 per unit
+• Every unit above 300: 5.0 per unit
+
+Example: for 250 units, the bill is 100 × 2.0 + 150 × 3.5 = 725.00.
+
+Given the units used, print the total bill with exactly 2 digits after the decimal point.",A single line containing one integer: units consumed.,One line: Bill: <amount with 2 decimal places>,0 <= units <= 1000000,50,Bill: 100.00,250,Bill: 725.00,"Rates apply per slab, not to the whole consumption (for 250 units, only 150 are billed at 3.5).","Use three branches: units <= 100, units <= 300, and everything above 300.","Format the result with f""{bill:.2f}"".","units = int(input())
+if units <= 100:
+    bill = units * 2.0
+elif units <= 300:
+    bill = 100 * 2.0 + (units - 100) * 3.5
+else:
+    bill = 100 * 2.0 + 200 * 3.5 + (units - 300) * 5.0
+print(f""Bill: {bill:.2f}"")","[{""input"": ""50"", ""output"": ""Bill: 100.00"", ""is_hidden"": false}, {""input"": ""250"", ""output"": ""Bill: 725.00"", ""is_hidden"": false}, {""input"": ""100"", ""output"": ""Bill: 200.00"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Bill: 0.00"", ""is_hidden"": true}, {""input"": ""101"", ""output"": ""Bill: 203.50"", ""is_hidden"": true}, {""input"": ""300"", ""output"": ""Bill: 900.00"", ""is_hidden"": true}, {""input"": ""301"", ""output"": ""Bill: 905.00"", ""is_hidden"": true}, {""input"": ""1000000"", ""output"": ""Bill: 4999400.00"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Bill: 2.00"", ""is_hidden"": true}, {""input"": ""450"", ""output"": ""Bill: 1650.00"", ""is_hidden"": true}]"
+M04-09,Freelancer Tie-Breaker Bid,Module 04: Conditional Statements,Medium,"Select lowest bid among 3; on numeric ties, pick earlier vendor alphabetically.",stdin/stdout,O(1),O(1),"Task: Three freelancers each send a bid (price) for a project.
+• The freelancer with the lowest bid wins.
+• If two or more freelancers have the same lowest bid, the freelancer whose name comes first in alphabetical order wins.
+
+Each freelancer is given as a name and a bid on one line. Read all three lines, then print the name of the winner and the winning bid.
+
+Example: dev 200, cara 200, abel 200 → all bids are equal, so abel wins because it comes first in alphabetical order.",Three lines. Each line contains a freelancer's name and bid separated by a space.,"Two lines:
+Line 1: Winner: <name>
+Line 2: Bid: <amount>","Names consist of 1 to 20 lowercase English letters and are all distinct.
+1 <= bid <= 10^9","zara 500
+mila 450
+omar 600","Winner: mila
+Bid: 450","kiran 300
+aman 300
+bela 400","Winner: aman
+Bid: 300","Keep a 'best so far' name and bid, and compare each remaining freelancer against it.","A challenger replaces the best when its bid is lower, or when the bids are equal and its name is alphabetically smaller.",Python compares strings alphabetically with <; remember to convert bids to int.,"n1, b1 = input().split()
+n2, b2 = input().split()
+n3, b3 = input().split()
+best_name, best_bid = n1, int(b1)
+b2 = int(b2)
+if b2 < best_bid or (b2 == best_bid and n2 < best_name):
+    best_name, best_bid = n2, b2
+b3 = int(b3)
+if b3 < best_bid or (b3 == best_bid and n3 < best_name):
+    best_name, best_bid = n3, b3
+print(f""Winner: {best_name}"")
+print(f""Bid: {best_bid}"")","[{""input"": ""zara 500\nmila 450\nomar 600"", ""output"": ""Winner: mila\nBid: 450"", ""is_hidden"": false}, {""input"": ""kiran 300\naman 300\nbela 400"", ""output"": ""Winner: aman\nBid: 300"", ""is_hidden"": false}, {""input"": ""dev 200\ncara 200\nabel 200"", ""output"": ""Winner: abel\nBid: 200"", ""is_hidden"": false}, {""input"": ""xena 100\nyuri 90\nzoe 95"", ""output"": ""Winner: yuri\nBid: 90"", ""is_hidden"": true}, {""input"": ""bob 10\nbobby 10\nbo 10"", ""output"": ""Winner: bo\nBid: 10"", ""is_hidden"": true}, {""input"": ""tom 999999999\nsam 1000000000\nrex 999999999"", ""output"": ""Winner: rex\nBid: 999999999"", ""is_hidden"": true}, {""input"": ""anna 5\nbeth 6\ncara 7"", ""output"": ""Winner: anna\nBid: 5"", ""is_hidden"": true}, {""input"": ""mike 8\nlena 9\nnora 8"", ""output"": ""Winner: mike\nBid: 8"", ""is_hidden"": true}, {""input"": ""pia 50\nolga 50\nqin 49"", ""output"": ""Winner: qin\nBid: 49"", ""is_hidden"": true}, {""input"": ""eli 70\ndan 71\nfay 70"", ""output"": ""Winner: eli\nBid: 70"", ""is_hidden"": true}]"
+M04-10,ASCII Range Classifier,Module 04: Conditional Statements,Medium,"Classify character as UPPERCASE, LOWERCASE, DIGIT, or SPECIAL using comparisons.",stdin/stdout,O(1),O(1),"Task: Every character has an ASCII code, and characters are ordered by this code. Because of this, characters can be compared like numbers, for example 'A' <= ch <= 'Z'.
+
+Classify the given character:
+• UPPERCASE: from 'A' to 'Z'
+• LOWERCASE: from 'a' to 'z'
+• DIGIT: from '0' to '9'
+• SPECIAL: anything else (for example # @ ~ [ )
+
+Use comparisons only. Do not use methods such as isupper(), islower() or isdigit().",A single line containing exactly one printable ASCII character (code 33 to 126).,One line: Class: <UPPERCASE/LOWERCASE/DIGIT/SPECIAL>,The input is a single character that is not a space.,G,Class: UPPERCASE,m,Class: LOWERCASE,"Characters compare by their ASCII codes, so 'A' <= ch <= 'Z' works directly.",Check the three ranges with if/elif and let else handle SPECIAL.,"Watch the boundaries: '@' and '[' sit just outside 'A'..'Z', and '/' and ':' just outside '0'..'9'.","ch = input()
+if 'A' <= ch <= 'Z':
+    cls = ""UPPERCASE""
+elif 'a' <= ch <= 'z':
+    cls = ""LOWERCASE""
+elif '0' <= ch <= '9':
+    cls = ""DIGIT""
+else:
+    cls = ""SPECIAL""
+print(f""Class: {cls}"")","[{""input"": ""G"", ""output"": ""Class: UPPERCASE"", ""is_hidden"": false}, {""input"": ""m"", ""output"": ""Class: LOWERCASE"", ""is_hidden"": false}, {""input"": ""7"", ""output"": ""Class: DIGIT"", ""is_hidden"": false}, {""input"": ""A"", ""output"": ""Class: UPPERCASE"", ""is_hidden"": true}, {""input"": ""z"", ""output"": ""Class: LOWERCASE"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Class: DIGIT"", ""is_hidden"": true}, {""input"": ""9"", ""output"": ""Class: DIGIT"", ""is_hidden"": true}, {""input"": ""@"", ""output"": ""Class: SPECIAL"", ""is_hidden"": true}, {""input"": ""["", ""output"": ""Class: SPECIAL"", ""is_hidden"": true}, {""input"": ""~"", ""output"": ""Class: SPECIAL"", ""is_hidden"": true}]"
+M04-11,Fictional Tax Slab Calculator,Module 04: Conditional Statements,Medium,"Compute progressive tax with 0%, 10%, 20%, and 30% brackets.",stdin/stdout,O(1),O(1),"Task: A country collects income tax in brackets. Each rate applies only to the part of the income that falls inside that bracket:
+• First 250000: 0% tax
+• From 250001 to 500000: 10% tax
+• From 500001 to 1000000: 20% tax
+• Above 1000000: 30% tax
+
+Example: for an income of 750000, the tax is 0 on the first 250000, plus 10% of the next 250000 (= 25000), plus 20% of the remaining 250000 (= 50000). Total tax = 75000.
+
+Given the income, print the total tax. If the tax has a fractional part, drop it (round down to a whole number).",A single line containing one non-negative integer: the annual income.,One line: Tax: <whole number>,0 <= income <= 10^12,200000,Tax: 0,300000,Tax: 5000,Tax is marginal: only the slice of income inside a bracket is taxed at that bracket's rate.,"Work from the top bracket down, taxing and then trimming the income, or compute each slice with min/max.","To avoid floating-point error, accumulate tax multiplied by 100 using integer percentages and divide by 100 with // at the end.","income = int(input())
+t = 0
+if income > 1000000:
+    t += (income - 1000000) * 30
+    income = 1000000
+if income > 500000:
+    t += (income - 500000) * 20
+    income = 500000
+if income > 250000:
+    t += (income - 250000) * 10
+print(f""Tax: {t // 100}"")","[{""input"": ""200000"", ""output"": ""Tax: 0"", ""is_hidden"": false}, {""input"": ""300000"", ""output"": ""Tax: 5000"", ""is_hidden"": false}, {""input"": ""750000"", ""output"": ""Tax: 75000"", ""is_hidden"": false}, {""input"": ""250000"", ""output"": ""Tax: 0"", ""is_hidden"": true}, {""input"": ""250015"", ""output"": ""Tax: 1"", ""is_hidden"": true}, {""input"": ""500000"", ""output"": ""Tax: 25000"", ""is_hidden"": true}, {""input"": ""1000000"", ""output"": ""Tax: 125000"", ""is_hidden"": true}, {""input"": ""1500000"", ""output"": ""Tax: 275000"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Tax: 0"", ""is_hidden"": true}, {""input"": ""1000000000000"", ""output"": ""Tax: 299999825000"", ""is_hidden"": true}]"
+M04-12,Delivery Surge Pricing Engine,Module 04: Conditional Statements,Medium,"Calculate fee adding base, distance fee, rain (+20), and peak hour surcharge (+30).",stdin/stdout,O(1),O(1),"Task: A food delivery app calculates its fee from four parts:
+• Base fee: always 30.
+• Distance fee: 10 per km for the first 5 km, and 15 per km for every km after the first 5. For example, 8 km costs 5 × 10 + 3 × 15 = 95.
+• Rain surcharge: 20 if it is raining (YES), otherwise 0.
+• Peak-hour surcharge: 30 if the order hour is from 12 to 14 or from 19 to 21 (both ends included), otherwise 0.
+
+The total fee is the sum of all four parts.
+
+Given the distance, the rain status and the order hour, print each part and the total.","A single line containing: distance_km (integer), rain (YES or NO), and hour (integer, 24-hour clock), separated by spaces.","Five lines:
+Line 1: Base: <base fee>
+Line 2: Distance fee: <amount>
+Line 3: Rain surcharge: <amount>
+Line 4: Peak surcharge: <amount>
+Line 5: Total: <sum of all parts>","0 <= distance_km <= 100
+rain is exactly YES or NO
+0 <= hour <= 23",3 NO 10,"Base: 30
+Distance fee: 30
+Rain surcharge: 0
+Peak surcharge: 0
+Total: 60",8 YES 20,"Base: 30
+Distance fee: 95
+Rain surcharge: 20
+Peak surcharge: 30
+Total: 175",Split the distance fee into two cases: distance <= 5 and distance > 5.,For distance > 5 the fee is 5 * 10 + (distance - 5) * 15.,Peak hours are (12 <= hour <= 14) or (19 <= hour <= 21); evaluate rain and peak independently.,"dist, rain, hour = input().split()
+dist = int(dist)
+hour = int(hour)
+base = 30
+if dist <= 5:
+    dist_fee = dist * 10
+else:
+    dist_fee = 5 * 10 + (dist - 5) * 15
+rain_fee = 20 if rain == ""YES"" else 0
+peak_fee = 30 if (12 <= hour <= 14 or 19 <= hour <= 21) else 0
+total = base + dist_fee + rain_fee + peak_fee
+print(f""Base: {base}"")
+print(f""Distance fee: {dist_fee}"")
+print(f""Rain surcharge: {rain_fee}"")
+print(f""Peak surcharge: {peak_fee}"")
+print(f""Total: {total}"")","[{""input"": ""3 NO 10"", ""output"": ""Base: 30\nDistance fee: 30\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 60"", ""is_hidden"": false}, {""input"": ""8 YES 20"", ""output"": ""Base: 30\nDistance fee: 95\nRain surcharge: 20\nPeak surcharge: 30\nTotal: 175"", ""is_hidden"": false}, {""input"": ""5 NO 13"", ""output"": ""Base: 30\nDistance fee: 50\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 110"", ""is_hidden"": false}, {""input"": ""0 NO 0"", ""output"": ""Base: 30\nDistance fee: 0\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 30"", ""is_hidden"": true}, {""input"": ""6 YES 11"", ""output"": ""Base: 30\nDistance fee: 65\nRain surcharge: 20\nPeak surcharge: 0\nTotal: 115"", ""is_hidden"": true}, {""input"": ""100 NO 21"", ""output"": ""Base: 30\nDistance fee: 1475\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 1535"", ""is_hidden"": true}, {""input"": ""1 NO 14"", ""output"": ""Base: 30\nDistance fee: 10\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 70"", ""is_hidden"": true}, {""input"": ""2 YES 15"", ""output"": ""Base: 30\nDistance fee: 20\nRain surcharge: 20\nPeak surcharge: 0\nTotal: 70"", ""is_hidden"": true}, {""input"": ""10 NO 19"", ""output"": ""Base: 30\nDistance fee: 125\nRain surcharge: 0\nPeak surcharge: 30\nTotal: 185"", ""is_hidden"": true}, {""input"": ""7 NO 22"", ""output"": ""Base: 30\nDistance fee: 80\nRain surcharge: 0\nPeak surcharge: 0\nTotal: 110"", ""is_hidden"": true}]"
+M04-13,Rock-Paper-Scissors-Lizard-Spock,Module 04: Conditional Statements,Medium,Evaluate 5-choice game outcomes between player 1 and 2 using nested conditionals.,stdin/stdout,O(1),O(1),"Task: Two players play Rock-Paper-Scissors-Lizard-Spock. Each player picks one of: rock, paper, scissors, lizard, spock.
+
+If both players pick the same thing, the result is a Draw. Otherwise, these rules decide the winner:
+• rock beats scissors and lizard
+• paper beats rock and spock
+• scissors beats paper and lizard
+• lizard beats spock and paper
+• spock beats scissors and rock
+
+Given the choice of player 1 and player 2, print who wins. Use nested if statements: first check player 1's choice, then check player 2's choice inside it.",A single line containing two space-separated words: the choice of player 1 and the choice of player 2.,One line: Result: <Player 1 wins/Player 2 wins/Draw>,"Each choice is exactly one of: rock, paper, scissors, lizard, spock (lowercase).",rock scissors,Result: Player 1 wins,paper scissors,Result: Player 2 wins,Handle the draw first (both choices equal); then branch on player 1's choice.,"Inside each branch, list the two choices that player 1's pick defeats; any other choice means player 2 wins.",rock beats scissors and lizard; paper beats rock and spock; scissors beats paper and lizard; lizard beats spock and paper; spock beats scissors and rock.,"a, b = input().split()
+if a == b:
+    result = ""Draw""
+elif a == ""rock"":
+    if b == ""scissors"" or b == ""lizard"":
+        result = ""Player 1 wins""
+    else:
+        result = ""Player 2 wins""
+elif a == ""paper"":
+    if b == ""rock"" or b == ""spock"":
+        result = ""Player 1 wins""
+    else:
+        result = ""Player 2 wins""
+elif a == ""scissors"":
+    if b == ""paper"" or b == ""lizard"":
+        result = ""Player 1 wins""
+    else:
+        result = ""Player 2 wins""
+elif a == ""lizard"":
+    if b == ""spock"" or b == ""paper"":
+        result = ""Player 1 wins""
+    else:
+        result = ""Player 2 wins""
+else:
+    if b == ""scissors"" or b == ""rock"":
+        result = ""Player 1 wins""
+    else:
+        result = ""Player 2 wins""
+print(f""Result: {result}"")","[{""input"": ""rock scissors"", ""output"": ""Result: Player 1 wins"", ""is_hidden"": false}, {""input"": ""paper scissors"", ""output"": ""Result: Player 2 wins"", ""is_hidden"": false}, {""input"": ""spock spock"", ""output"": ""Result: Draw"", ""is_hidden"": false}, {""input"": ""lizard spock"", ""output"": ""Result: Player 1 wins"", ""is_hidden"": true}, {""input"": ""spock paper"", ""output"": ""Result: Player 2 wins"", ""is_hidden"": true}, {""input"": ""scissors lizard"", ""output"": ""Result: Player 1 wins"", ""is_hidden"": true}, {""input"": ""rock paper"", ""output"": ""Result: Player 2 wins"", ""is_hidden"": true}, {""input"": ""lizard rock"", ""output"": ""Result: Player 2 wins"", ""is_hidden"": true}, {""input"": ""spock rock"", ""output"": ""Result: Player 1 wins"", ""is_hidden"": true}, {""input"": ""paper lizard"", ""output"": ""Result: Player 2 wins"", ""is_hidden"": true}]"
+M04-14,Loan Multi-Criteria Check,Module 04: Conditional Statements,Medium,"Evaluate credit score (>=700), income (>=30000), debt (<=40%); print all failing checks.",stdin/stdout,O(1),O(1),"Task: A bank approves a loan only if the applicant passes all three checks:
+• Credit score is at least 700.
+• Monthly income is at least 30000.
+• Debt ratio (in percent) is at most 40.
+
+An applicant can fail more than one check at the same time, so test each check separately.
+
+Given the three values:
+• If all checks pass, print APPROVED.
+• Otherwise, print REJECTED and then list every check that failed, in this order: credit score, income, debt ratio.
+
+Example: score 650, income 25000, debt ratio 55 fails all three checks.","A single line containing three space-separated integers: credit_score, income, and debt_ratio (in percent).","If all checks pass, one line: Decision: APPROVED
+Otherwise: Decision: REJECTED, followed by one line per failed check in this order: Failed: credit score, Failed: income, Failed: debt ratio","300 <= credit_score <= 900
+0 <= income <= 10^9
+0 <= debt_ratio <= 100",750 50000 30,Decision: APPROVED,650 25000 55,"Decision: REJECTED
+Failed: credit score
+Failed: income
+Failed: debt ratio",Use three separate if statements (not elif) so more than one failure can be recorded.,Collect failure labels in a list as each check fails.,If the list is empty the loan is approved; otherwise print REJECTED and then each label.,"score, income, debt = map(int, input().split())
+fails = []
+if score < 700:
+    fails.append(""credit score"")
+if income < 30000:
+    fails.append(""income"")
+if debt > 40:
+    fails.append(""debt ratio"")
+if not fails:
+    print(""Decision: APPROVED"")
+else:
+    print(""Decision: REJECTED"")
+    for f in fails:
+        print(f""Failed: {f}"")","[{""input"": ""750 50000 30"", ""output"": ""Decision: APPROVED"", ""is_hidden"": false}, {""input"": ""650 25000 55"", ""output"": ""Decision: REJECTED\nFailed: credit score\nFailed: income\nFailed: debt ratio"", ""is_hidden"": false}, {""input"": ""699 40000 20"", ""output"": ""Decision: REJECTED\nFailed: credit score"", ""is_hidden"": false}, {""input"": ""720 29999 35"", ""output"": ""Decision: REJECTED\nFailed: income"", ""is_hidden"": true}, {""input"": ""700 30000 41"", ""output"": ""Decision: REJECTED\nFailed: debt ratio"", ""is_hidden"": true}, {""input"": ""800 20000 60"", ""output"": ""Decision: REJECTED\nFailed: income\nFailed: debt ratio"", ""is_hidden"": true}, {""input"": ""300 0 100"", ""output"": ""Decision: REJECTED\nFailed: credit score\nFailed: income\nFailed: debt ratio"", ""is_hidden"": true}, {""input"": ""900 1000000000 0"", ""output"": ""Decision: APPROVED"", ""is_hidden"": true}, {""input"": ""699 29999 40"", ""output"": ""Decision: REJECTED\nFailed: credit score\nFailed: income"", ""is_hidden"": true}, {""input"": ""710 31000 40"", ""output"": ""Decision: APPROVED"", ""is_hidden"": true}]"
+M04-15,Tiered Parking Garage Fee,Module 04: Conditional Statements,Hard,"Compute charge for vehicle (CAR, BIKE, BUS) with weekday vs weekend slabs.",stdin/stdout,O(1),O(1),"Task: A parking garage charges by the hour. Follow these steps.
+
+Step 1: Billable hours: any part of an hour counts as a full hour (round up).
+• 60 minutes = 1 hour
+• 61 minutes = 2 hours
+• 0 minutes = 0 hours
+
+Step 2: Charge each hour at its own rate. The rate depends on the vehicle, the day type and the hour number:
+• Hours 1 and 2 use rate 1
+• Hours 3, 4 and 5 use rate 2
+• Hour 6 and later use rate 3
+
+Rates per hour (rate 1 / rate 2 / rate 3) and the daily cap:
+• CAR: WEEKDAY 20 / 15 / 10, WEEKEND 30 / 20 / 15, daily cap 250
+• BIKE: WEEKDAY 5 / 4 / 3, WEEKEND 8 / 6 / 4, daily cap 80
+• BUS: WEEKDAY 50 / 40 / 30, WEEKEND 70 / 55 / 40, daily cap 600
+
+Step 3: Daily cap: the fee can never be more than the daily cap of that vehicle. If the calculated fee is higher, charge the cap instead.
+
+Example: a CAR on a WEEKEND for 301 minutes is 6 billable hours. Fee = 2 × 30 + 3 × 20 + 1 × 15 = 135, which is below the cap of 250, so the fee is 135.
+
+Given the vehicle, the day type and the minutes parked, print the billable hours and the final fee.","A single line containing: vehicle (CAR, BIKE, or BUS), day type (WEEKDAY or WEEKEND), and minutes parked (integer), separated by spaces.","Two lines:
+Line 1: Billable hours: <hours>
+Line 2: Parking fee: <fee after cap>","0 <= minutes <= 1440
+vehicle is one of CAR, BIKE, BUS
+day type is one of WEEKDAY, WEEKEND",CAR WEEKDAY 90,"Billable hours: 2
+Parking fee: 40",BIKE WEEKEND 200,"Billable hours: 4
+Parking fee: 28","Billable hours = ceil(minutes / 60), which can be computed as (minutes + 59) // 60. Zero minutes means zero hours and a fee of 0.","First pick the three slab rates and the cap from the vehicle and day type, then compute the fee slab by slab.","Fee = h*r1 for h <= 2; 2*r1 + (h-2)*r2 for h <= 5; otherwise 2*r1 + 3*r2 + (h-5)*r3. Finally apply min(fee, cap).","vehicle, day, minutes = input().split()
+minutes = int(minutes)
+hours = (minutes + 59) // 60
+if vehicle == ""CAR"":
+    cap = 250
+    if day == ""WEEKDAY"":
+        r1, r2, r3 = 20, 15, 10
+    else:
+        r1, r2, r3 = 30, 20, 15
+elif vehicle == ""BIKE"":
+    cap = 80
+    if day == ""WEEKDAY"":
+        r1, r2, r3 = 5, 4, 3
+    else:
+        r1, r2, r3 = 8, 6, 4
+else:
+    cap = 600
+    if day == ""WEEKDAY"":
+        r1, r2, r3 = 50, 40, 30
+    else:
+        r1, r2, r3 = 70, 55, 40
+if hours <= 2:
+    fee = hours * r1
+elif hours <= 5:
+    fee = 2 * r1 + (hours - 2) * r2
+else:
+    fee = 2 * r1 + 3 * r2 + (hours - 5) * r3
+if fee > cap:
+    fee = cap
+print(f""Billable hours: {hours}"")
+print(f""Parking fee: {fee}"")","[{""input"": ""CAR WEEKDAY 90"", ""output"": ""Billable hours: 2\nParking fee: 40"", ""is_hidden"": false}, {""input"": ""BIKE WEEKEND 200"", ""output"": ""Billable hours: 4\nParking fee: 28"", ""is_hidden"": false}, {""input"": ""BUS WEEKDAY 0"", ""output"": ""Billable hours: 0\nParking fee: 0"", ""is_hidden"": false}, {""input"": ""CAR WEEKEND 301"", ""output"": ""Billable hours: 6\nParking fee: 135"", ""is_hidden"": true}, {""input"": ""CAR WEEKDAY 1440"", ""output"": ""Billable hours: 24\nParking fee: 250"", ""is_hidden"": true}, {""input"": ""BIKE WEEKDAY 61"", ""output"": ""Billable hours: 2\nParking fee: 10"", ""is_hidden"": true}, {""input"": ""BUS WEEKEND 1440"", ""output"": ""Billable hours: 24\nParking fee: 600"", ""is_hidden"": true}, {""input"": ""CAR WEEKDAY 180"", ""output"": ""Billable hours: 3\nParking fee: 55"", ""is_hidden"": true}, {""input"": ""BIKE WEEKEND 1440"", ""output"": ""Billable hours: 24\nParking fee: 80"", ""is_hidden"": true}, {""input"": ""BUS WEEKDAY 300"", ""output"": ""Billable hours: 5\nParking fee: 220"", ""is_hidden"": true}]"
+M04-16,Courier Zone Pricing Matrix,Module 04: Conditional Statements,Hard,"Map pincode prefixes to LOCAL, REGIONAL, or NATIONAL with weight slabs.",stdin/stdout,O(1),O(1),"Task: A courier company charges by delivery zone and parcel weight. Follow these steps in order.
+
+Step 1: Check the pincode. A pincode is valid only if it has exactly 6 digits and its first digit is not 0. If it is not valid, print the pincode error and stop. Read the pincode as text so that leading zeros are not lost.
+
+Step 2: Check the weight (in grams). It must be from 1 to 25000. If it is not, print the weight error and stop. If both the pincode and the weight are wrong, the pincode error is shown.
+
+Step 3: Find the zone from the first two digits of the pincode:
+• 50: LOCAL
+• 51 to 69: REGIONAL
+• any other first two digits: NATIONAL
+
+Step 4: Find the weight slab and read the charge for the zone:
+• Up to 500 g: LOCAL 40, REGIONAL 60, NATIONAL 90
+• 501 to 2000 g: LOCAL 70, REGIONAL 110, NATIONAL 160
+• 2001 to 5000 g: LOCAL 120, REGIONAL 190, NATIONAL 280
+• 5001 to 25000 g: LOCAL 200, REGIONAL 320, NATIONAL 450
+
+Example: pincode 560001 and weight 1500 g. The first two digits are 56, so the zone is REGIONAL. 1500 g is in the 501 to 2000 g slab, so the charge is 110.
+
+Given the pincode and the weight, print the zone and the charge, or the correct error message.","A single line containing: pincode (a token of 1 to 10 digits) and weight in grams (integer), separated by a space.","If valid, two lines:
+Line 1: Zone: <LOCAL/REGIONAL/NATIONAL>
+Line 2: Charge: <amount>
+If the pincode is invalid: Error: INVALID PINCODE
+If the pincode is valid but the weight is invalid: Error: INVALID WEIGHT","The pincode token contains only digits (it may have leading zeros).
+-10^6 <= weight <= 10^6",500081 400,"Zone: LOCAL
+Charge: 40",560001 1500,"Zone: REGIONAL
+Charge: 110",Read the pincode as a string so leading zeros and length can be checked: len(pin) == 6 and pin[0] != '0'.,"Zone: prefix = int(pin[:2]); 50 -> LOCAL, 51..69 -> REGIONAL, otherwise NATIONAL.","Choose the weight slab with if/elif on weight <= 500, <= 2000, <= 5000, <= 25000, then read the charge for the zone.","pin, w = input().split()
+w = int(w)
+if len(pin) != 6 or pin[0] == ""0"":
+    print(""Error: INVALID PINCODE"")
+elif w < 1 or w > 25000:
+    print(""Error: INVALID WEIGHT"")
+else:
+    prefix = int(pin[:2])
+    if prefix == 50:
+        zone = ""LOCAL""
+    elif 51 <= prefix <= 69:
+        zone = ""REGIONAL""
+    else:
+        zone = ""NATIONAL""
+    if w <= 500:
+        slab = 0
+    elif w <= 2000:
+        slab = 1
+    elif w <= 5000:
+        slab = 2
+    else:
+        slab = 3
+    if zone == ""LOCAL"":
+        charge = [40, 70, 120, 200][slab]
+    elif zone == ""REGIONAL"":
+        charge = [60, 110, 190, 320][slab]
+    else:
+        charge = [90, 160, 280, 450][slab]
+    print(f""Zone: {zone}"")
+    print(f""Charge: {charge}"")","[{""input"": ""500081 400"", ""output"": ""Zone: LOCAL\nCharge: 40"", ""is_hidden"": false}, {""input"": ""560001 1500"", ""output"": ""Zone: REGIONAL\nCharge: 110"", ""is_hidden"": false}, {""input"": ""110001 4000"", ""output"": ""Zone: NATIONAL\nCharge: 280"", ""is_hidden"": false}, {""input"": ""50008 100"", ""output"": ""Error: INVALID PINCODE"", ""is_hidden"": true}, {""input"": ""012345 100"", ""output"": ""Error: INVALID PINCODE"", ""is_hidden"": true}, {""input"": ""600001 5000"", ""output"": ""Zone: REGIONAL\nCharge: 190"", ""is_hidden"": true}, {""input"": ""999999 25000"", ""output"": ""Zone: NATIONAL\nCharge: 450"", ""is_hidden"": true}, {""input"": ""500001 0"", ""output"": ""Error: INVALID WEIGHT"", ""is_hidden"": true}, {""input"": ""400001 25001"", ""output"": ""Error: INVALID WEIGHT"", ""is_hidden"": true}, {""input"": ""699999 501"", ""output"": ""Zone: REGIONAL\nCharge: 110"", ""is_hidden"": true}]"
+M04-17,Credit Card Decision Tree,Module 04: Conditional Statements,Hard,"Evaluate age, income, employment type, and credit score across 4-tier tree.",stdin/stdout,O(1),O(1),"Task: A bank decides which credit card to offer an applicant. Follow these steps in order.
+
+Step 1: Basic checks. The decision is DECLINED right away if any of these is true:
+• age is less than 21 or more than 65
+• credit score is less than 600
+
+Step 2: Employment type. If the applicant passes Step 1, the rules depend on the employment type. Check the tiers from best to worst and use the first one that matches.
+
+SALARIED:
+• PLATINUM: income >= 100000 and score >= 750
+• GOLD: income >= 50000 and score >= 700
+• SILVER: income >= 25000
+• otherwise DECLINED
+
+SELF_EMPLOYED:
+• PLATINUM: income >= 150000 and score >= 780
+• GOLD: income >= 80000 and score >= 720
+• SILVER: income >= 40000 and score >= 650
+• otherwise DECLINED
+
+UNEMPLOYED (income comes from other sources):
+• SILVER: income >= 20000 and score >= 700
+• otherwise DECLINED
+
+Example: age 45, income 60000, SALARIED, score 710. Not PLATINUM (income and score are too low), but GOLD (60000 >= 50000 and 710 >= 700).
+
+Given the age, income, employment type and credit score, print the decision.","A single line containing: age (integer), monthly income (integer), employment type (SALARIED, SELF_EMPLOYED, or UNEMPLOYED), and credit score (integer), separated by spaces.",One line: Decision: <PLATINUM/GOLD/SILVER/DECLINED>,"18 <= age <= 100
+0 <= income <= 10^9
+300 <= credit_score <= 900",30 120000 SALARIED 780,Decision: PLATINUM,45 60000 SALARIED 710,Decision: GOLD,Apply the global eligibility checks (age 21 to 65 and score >= 600) before looking at employment type.,"Inside each employment branch, test the best tier first (PLATINUM, then GOLD, then SILVER) so the first matching rule wins.",Every path that does not satisfy a tier must end in DECLINED; keep each branch's thresholds separate.,"age, income, emp, score = input().split()
+age = int(age)
+income = int(income)
+score = int(score)
+if age < 21 or age > 65 or score < 600:
+    decision = ""DECLINED""
+elif emp == ""SALARIED"":
+    if income >= 100000 and score >= 750:
+        decision = ""PLATINUM""
+    elif income >= 50000 and score >= 700:
+        decision = ""GOLD""
+    elif income >= 25000:
+        decision = ""SILVER""
+    else:
+        decision = ""DECLINED""
+elif emp == ""SELF_EMPLOYED"":
+    if income >= 150000 and score >= 780:
+        decision = ""PLATINUM""
+    elif income >= 80000 and score >= 720:
+        decision = ""GOLD""
+    elif income >= 40000 and score >= 650:
+        decision = ""SILVER""
+    else:
+        decision = ""DECLINED""
+else:
+    if income >= 20000 and score >= 700:
+        decision = ""SILVER""
+    else:
+        decision = ""DECLINED""
+print(f""Decision: {decision}"")","[{""input"": ""30 120000 SALARIED 780"", ""output"": ""Decision: PLATINUM"", ""is_hidden"": false}, {""input"": ""45 60000 SALARIED 710"", ""output"": ""Decision: GOLD"", ""is_hidden"": false}, {""input"": ""19 90000 SALARIED 800"", ""output"": ""Decision: DECLINED"", ""is_hidden"": false}, {""input"": ""35 200000 SELF_EMPLOYED 790"", ""output"": ""Decision: PLATINUM"", ""is_hidden"": true}, {""input"": ""50 90000 SELF_EMPLOYED 730"", ""output"": ""Decision: GOLD"", ""is_hidden"": true}, {""input"": ""40 45000 SELF_EMPLOYED 660"", ""output"": ""Decision: SILVER"", ""is_hidden"": true}, {""input"": ""66 150000 SALARIED 800"", ""output"": ""Decision: DECLINED"", ""is_hidden"": true}, {""input"": ""30 500000 SALARIED 599"", ""output"": ""Decision: DECLINED"", ""is_hidden"": true}, {""input"": ""25 20000 UNEMPLOYED 720"", ""output"": ""Decision: SILVER"", ""is_hidden"": true}, {""input"": ""25 20000 UNEMPLOYED 699"", ""output"": ""Decision: DECLINED"", ""is_hidden"": true}]"

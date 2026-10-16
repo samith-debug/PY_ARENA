@@ -1,0 +1,1449 @@
+{
+  "id": "88b4a4a5",
+  "filename": "module_16_searching_and_sorting.csv",
+  "imported_at": "2026-10-16T10:39:55.608214Z",
+  "total_questions": 15,
+  "total_test_cases": 120,
+  "visible_test_cases": 45,
+  "hidden_test_cases": 75,
+  "questions": [
+    {
+      "question_id": "PY-M16-01",
+      "title": "Linear Search First/Last",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Easy",
+      "objective": "Find first and last index of target in unsorted array, printing -1 -1 if absent.",
+      "problem_statement": "Linear Search First/Last\nProblem Description\nYou are given a list of `N` integers that is **not sorted**, and a target value `T`.\nFind the **first** index and the **last** index where `T` appears in the list. Indexes start at `0`.\nIf `T` does not appear in the list at all, print `-1 -1`.\nBecause the list is not sorted, you must check the elements one by one (linear search). Your solution should run in O(N) time.\nExample 1\nInput\n\n```\n7 4 2 4 8 4 1\n4\n```\n\nOutput\n\n```\n1 5\n```\n\nExplanation\nThe value `T = 4` appears at index `1`, index `3` and index `5`.\nThe first index is `1` and the last index is `5`.\nTherefore, the output is `1 5`.\nExample 2\nInput\n\n```\n1 2 3\n9\n```\n\nOutput\n\n```\n-1 -1\n```\n\nExplanation\nThe value `9` does not appear anywhere in the list, so the output is `-1 -1`.\nInput Format\n\n* Line 1: `N` integers separated by spaces.\n* Line 2: an integer `T`, the target.\n\nOutput Format\nPrint two integers separated by a space: the first index and the last index of `T`, or `-1 -1` if `T` is not in the list.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer, T ≤ 10^9`\n\nHint\nStart with `first = -1` and `last = -1`. Go through the list with `enumerate()`. When you find `T`, set `first` only if it is still `-1`, and always update `last`.",
+      "input_format": "Line 1: `N` integers separated by spaces.\nLine 2: an integer `T`, the target.",
+      "output_format": "Print two integers separated by a space: the first index and the last index of `T`, or `-1 -1` if `T` is not in the list.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer, T ≤ 10^9`",
+      "sample_inputs": [
+        "7 4 2 4 8 4 1\n4",
+        "1 2 3\n9"
+      ],
+      "sample_outputs": [
+        "1 5",
+        "-1 -1"
+      ],
+      "hints": [
+        "Start with `first = -1` and `last = -1`. Go through the list with `enumerate()`. When you find `T`, set `first` only if it is still `-1`, and always update `last`.",
+        "One pass through the list is enough to get both answers.",
+        "If `T` appears only once, `first` and `last` are the same index."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nt = int(input())\n\nfirst = -1\nlast = -1\nfor i, x in enumerate(nums):\n    if x == t:\n        if first == -1:\n            first = i\n        last = i\n\nprint(first, last)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7 4 2 4 8 4 1\n4",
+          "output": "1 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3\n9",
+          "output": "-1 -1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 3 3 3\n3",
+          "output": "0 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 2 3 4 5\n5",
+          "output": "4 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 0 -1\n-1",
+          "output": "0 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10 20 30 20 10\n10",
+          "output": "0 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8 6 7 5 3 0 9\n0",
+          "output": "5 5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers separated by spaces.\nLine 2: an integer `T`, the target.",
+        "output_format": "Print two integers separated by a space: the first index and the last index of `T`, or `-1 -1` if `T` is not in the list."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-02",
+      "title": "Standard Binary Search",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Easy",
+      "objective": "Print index of target in sorted array in O(log N) or -1 if not found.",
+      "problem_statement": "Standard Binary Search\nProblem Description\nYou are given a list of `N` **distinct** integers sorted in increasing order, and a target value `T`.\nPrint the index where `T` is found (indexes start at `0`). If `T` is not in the list, print `-1`.\nYou must use **binary search**: look at the middle element, and throw away the half of the list where `T` cannot be. Repeat until you find `T` or nothing is left. Your solution should run in O(log N) time.\nDo not use `list.index()` or the `in` operator.\nExample 1\nInput\n\n```\n1 3 5 7 9 11\n7\n```\n\nOutput\n\n```\n3\n```\n\nExplanation\nThe list is `[1, 3, 5, 7, 9, 11]` and `T = 7`.\n\n* `lo = 0`, `hi = 5`, `mid = 2` → `nums[2] = 5` is smaller than `7`, so search the right half: `lo = 3`.\n* `lo = 3`, `hi = 5`, `mid = 4` → `nums[4] = 9` is bigger than `7`, so search the left half: `hi = 3`.\n* `lo = 3`, `hi = 3`, `mid = 3` → `nums[3] = 7`. Found!\n\nTherefore, the output is `3`.\nExample 2\nInput\n\n```\n1 3 5\n4\n```\n\nOutput\n\n```\n-1\n```\n\nExplanation\nThe value `4` lies between `3` and `5`, but it is not in the list. The search range becomes empty, so the output is `-1`.\nInput Format\n\n* Line 1: `N` distinct integers in increasing order, separated by spaces.\n* Line 2: an integer `T`, the target.\n\nOutput Format\nPrint one integer: the index of `T`, or `-1` if it is not in the list.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer, T ≤ 10^9`\n* All integers in the list are different\n\nHint\nUse `lo = 0` and `hi = N - 1`. While `lo <= hi`, compute `mid = (lo + hi) // 2` and compare `nums[mid]` with `T`.",
+      "input_format": "Line 1: `N` distinct integers in increasing order, separated by spaces.\nLine 2: an integer `T`, the target.",
+      "output_format": "Print one integer: the index of `T`, or `-1` if it is not in the list.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer, T ≤ 10^9`\nAll integers in the list are different",
+      "sample_inputs": [
+        "1 3 5 7 9 11\n7",
+        "1 3 5\n4"
+      ],
+      "sample_outputs": [
+        "3",
+        "-1"
+      ],
+      "hints": [
+        "Use `lo = 0` and `hi = N - 1`. While `lo <= hi`, compute `mid = (lo + hi) // 2` and compare `nums[mid]` with `T`.",
+        "If `nums[mid] < T`, the target can only be to the right: `lo = mid + 1`. If `nums[mid] > T`: `hi = mid - 1`.",
+        "When `lo > hi`, the range is empty and the target is not in the list."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nt = int(input())\n\nlo = 0\nhi = len(nums) - 1\nanswer = -1\nwhile lo <= hi:\n    mid = (lo + hi) // 2\n    if nums[mid] == t:\n        answer = mid\n        break\n    if nums[mid] < t:\n        lo = mid + 1\n    else:\n        hi = mid - 1\n\nprint(answer)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 3 5 7 9 11\n7",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 3 5\n4",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n6",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-10 -3 0 2 8 15\n-10",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 4 6 8 10 12 14 16\n16",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 4 6 8\n1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 0 1000000000\n1000000000",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` distinct integers in increasing order, separated by spaces.\nLine 2: an integer `T`, the target.",
+        "output_format": "Print one integer: the index of `T`, or `-1` if it is not in the list."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-03",
+      "title": "Bubble Sort Pass Trace",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Easy",
+      "objective": "Implement bubble sort without early exit; output array state after each pass.",
+      "problem_statement": "Bubble Sort Pass Trace\nProblem Description\nYou are given a list of `N` integers. Sort it in increasing order using **bubble sort**, and show the list after every pass.\nIn one **pass**, go from left to right and compare each pair of neighbours. If the left one is bigger than the right one, swap them. After the first pass, the biggest number has \"bubbled\" to the end; after the second pass, the second biggest is in place, and so on.\nDo exactly `N - 1` passes, even if the list becomes sorted earlier (no early exit). Pass number `p` (counting from 1) only needs to compare the first `N - p + 1` elements, because the last `p - 1` are already in place.\nAfter each pass, print the whole list on one line.\nExample 1\nInput\n\n```\n5 1 4 2\n```\n\nOutput\n\n```\n1 4 2 5\n1 2 4 5\n1 2 4 5\n```\n\nExplanation\nThe list is `[5, 1, 4, 2]`, so there are `3` passes.\n\n* Pass 1: `5 > 1` swap, `5 > 4` swap, `5 > 2` swap → `1 4 2 5`\n* Pass 2: `1 < 4` keep, `4 > 2` swap → `1 2 4 5`\n* Pass 3: `1 < 2` keep → `1 2 4 5`\n\nPass 3 changes nothing, but it is still printed because there is no early exit.\nExample 2\nInput\n\n```\n2 1\n```\n\nOutput\n\n```\n1 2\n```\n\nExplanation\nThe list `[2, 1]` needs `1` pass. `2 > 1`, so they are swapped, giving `1 2`.\nInput Format\n\n* Line 1: `N` integers separated by spaces.\n\nOutput Format\nPrint `N - 1` lines. Line `p` shows the list after pass `p`, with the numbers separated by spaces.\nConstraints\n\n* `2 ≤ N ≤ 100`\n* `-10^4 ≤ each integer ≤ 10^4`\n\nHint\nUse two loops: the outer loop counts the passes, `for p in range(n - 1)`; the inner loop compares `nums[j]` and `nums[j + 1]` for `j` in `range(n - 1 - p)`.",
+      "input_format": "Line 1: `N` integers separated by spaces.",
+      "output_format": "Print `N - 1` lines. Line `p` shows the list after pass `p`, with the numbers separated by spaces.",
+      "constraints": "`2 ≤ N ≤ 100`\n`-10^4 ≤ each integer ≤ 10^4`",
+      "sample_inputs": [
+        "5 1 4 2",
+        "2 1"
+      ],
+      "sample_outputs": [
+        "1 4 2 5\n1 2 4 5\n1 2 4 5",
+        "1 2"
+      ],
+      "hints": [
+        "Use two loops: the outer loop counts the passes, `for p in range(n - 1)`; the inner loop compares `nums[j]` and `nums[j + 1]` for `j` in `range(n - 1 - p)`.",
+        "Swap two items in one line: `nums[j], nums[j + 1] = nums[j + 1], nums[j]`.",
+        "Print after the inner loop ends, not after every swap."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nfor p in range(n - 1):\n    for j in range(n - 1 - p):\n        if nums[j] > nums[j + 1]:\n            nums[j], nums[j + 1] = nums[j + 1], nums[j]\n    print(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5 1 4 2",
+          "output": "1 4 2 5\n1 2 4 5\n1 2 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2 1",
+          "output": "1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 2 3",
+          "output": "1 2 3\n1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 2 1",
+          "output": "2 1 3\n1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4 4 1 4",
+          "output": "4 1 4 4\n1 4 4 4\n1 4 4 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 5 -3 0 2",
+          "output": "-1 -3 0 2 5\n-3 -1 0 2 5\n-3 -1 0 2 5\n-3 -1 0 2 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "9 8 7 6 5 4",
+          "output": "8 7 6 5 4 9\n7 6 5 4 8 9\n6 5 4 7 8 9\n5 4 6 7 8 9\n4 5 6 7 8 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 1",
+          "output": "1 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers separated by spaces.",
+        "output_format": "Print `N - 1` lines. Line `p` shows the list after pass `p`, with the numbers separated by spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-04",
+      "title": "Insertion Sort Step Trace",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Easy",
+      "objective": "Implement insertion sort; output state after each element is inserted.",
+      "problem_statement": "Insertion Sort Step Trace\nProblem Description\nYou are given a list of `N` integers. Sort it in increasing order using **insertion sort**, and show the list after every step.\nInsertion sort grows a sorted part at the front of the list, like sorting playing cards in your hand:\n\n* At the start, the first element alone is the sorted part.\n* In step `i` (for `i = 1, 2, ..., N - 1`), take `key = nums[i]`. Shift every element of the sorted part that is **bigger** than `key` one position to the right, then put `key` into the gap.\n\nAfter each step, print the whole list on one line.\nExample 1\nInput\n\n```\n4 3 1 2\n```\n\nOutput\n\n```\n3 4 1 2\n1 3 4 2\n1 2 3 4\n```\n\nExplanation\nThe list is `[4, 3, 1, 2]`, so there are `3` steps.\n\n* Step 1: `key = 3`. `4` is bigger, so it shifts right → `3 4 1 2`\n* Step 2: `key = 1`. `4` and `3` are bigger, so they shift right → `1 3 4 2`\n* Step 3: `key = 2`. `4` and `3` are bigger, so they shift right; `1` is not → `1 2 3 4`\nExample 2\nInput\n\n```\n1 2 3\n```\n\nOutput\n\n```\n1 2 3\n1 2 3\n```\n\nExplanation\nThe list `[1, 2, 3]` is already sorted. In each step the key is not smaller than anything before it, so nothing moves, and every step prints `1 2 3`.\nInput Format\n\n* Line 1: `N` integers separated by spaces.\n\nOutput Format\nPrint `N - 1` lines. Line `i` shows the list after step `i`, with the numbers separated by spaces.\nConstraints\n\n* `2 ≤ N ≤ 100`\n* `-10^4 ≤ each integer ≤ 10^4`\n\nHint\nFor each `i`, save `key = nums[i]` and set `j = i - 1`. While `j >= 0` and `nums[j] > key`: copy `nums[j]` to `nums[j + 1]` and decrease `j`. Finally `nums[j + 1] = key`.",
+      "input_format": "Line 1: `N` integers separated by spaces.",
+      "output_format": "Print `N - 1` lines. Line `i` shows the list after step `i`, with the numbers separated by spaces.",
+      "constraints": "`2 ≤ N ≤ 100`\n`-10^4 ≤ each integer ≤ 10^4`",
+      "sample_inputs": [
+        "4 3 1 2",
+        "1 2 3"
+      ],
+      "sample_outputs": [
+        "3 4 1 2\n1 3 4 2\n1 2 3 4",
+        "1 2 3\n1 2 3"
+      ],
+      "hints": [
+        "For each `i`, save `key = nums[i]` and set `j = i - 1`. While `j >= 0` and `nums[j] > key`: copy `nums[j]` to `nums[j + 1]` and decrease `j`. Finally `nums[j + 1] = key`.",
+        "Only elements that are strictly bigger than `key` move, so equal elements keep their order (insertion sort is stable).",
+        "Print the list after placing the key, once per step."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nfor i in range(1, len(nums)):\n    key = nums[i]\n    j = i - 1\n    while j >= 0 and nums[j] > key:\n        nums[j + 1] = nums[j]       # shift the bigger element right\n        j -= 1\n    nums[j + 1] = key\n    print(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 3 1 2",
+          "output": "3 4 1 2\n1 3 4 2\n1 2 3 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3",
+          "output": "1 2 3\n1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2 1",
+          "output": "1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5 1",
+          "output": "5 5 1\n1 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 -1 2 -5",
+          "output": "-1 3 2 -5\n-1 2 3 -5\n-5 -1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9 7 5 3 1",
+          "output": "7 9 5 3 1\n5 7 9 3 1\n3 5 7 9 1\n1 3 5 7 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 3 2 4",
+          "output": "1 3 2 4\n1 2 3 4\n1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0 0 0",
+          "output": "0 0 0\n0 0 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers separated by spaces.",
+        "output_format": "Print `N - 1` lines. Line `i` shows the list after step `i`, with the numbers separated by spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-05",
+      "title": "Lower Bound Index",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Find index of first element >= target in sorted array in O(log N).",
+      "problem_statement": "Lower Bound Index\nProblem Description\nYou are given a list of `N` integers sorted in increasing order (the list may contain repeated values), and `Q` query values.\nFor each query value `X`, find its **lower bound**: the index of the **first** element that is **greater than or equal to** `X`. If every element is smaller than `X`, the lower bound is `N` (one position past the end).\nThe lower bound is also the position where `X` could be inserted while keeping the list sorted.\nUse binary search, so each query runs in O(log N) time. Do not use the `bisect` module.\nExample 1\nInput\n\n```\n1 2 4 4 4 7\n3\n4\n5\n8\n```\n\nOutput\n\n```\n2\n5\n6\n```\n\nExplanation\nThe list is `[1, 2, 4, 4, 4, 7]`.\n\n* `X = 4` → the first element `>= 4` is the `4` at index `2`.\n* `X = 5` → the first element `>= 5` is `7` at index `5`.\n* `X = 8` → no element is `>= 8`, so the answer is `N = 6`.\nExample 2\nInput\n\n```\n10 20 30\n1\n5\n```\n\nOutput\n\n```\n0\n```\n\nExplanation\nThe list is `[10, 20, 30]`. For `X = 5`, the very first element `10` is already `>= 5`, so the answer is `0`.\nInput Format\n\n* Line 1: `N` integers in increasing order, separated by spaces.\n* Line 2: an integer `Q`, the number of queries.\n* Next `Q` lines: one integer `X` each.\n\nOutput Format\nPrint `Q` lines: the lower bound of each query value.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `1 ≤ Q ≤ 10^5`\n* `-10^9 ≤ values ≤ 10^9`\n\nHint\nUse `lo = 0` and `hi = N` (not `N - 1`, because `N` is a possible answer). While `lo < hi`: if `nums[mid] < X`, set `lo = mid + 1`; otherwise `hi = mid`.",
+      "input_format": "Line 1: `N` integers in increasing order, separated by spaces.\nLine 2: an integer `Q`, the number of queries.\nNext `Q` lines: one integer `X` each.",
+      "output_format": "Print `Q` lines: the lower bound of each query value.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`1 ≤ Q ≤ 10^5`\n`-10^9 ≤ values ≤ 10^9`",
+      "sample_inputs": [
+        "1 2 4 4 4 7\n3\n4\n5\n8",
+        "10 20 30\n1\n5"
+      ],
+      "sample_outputs": [
+        "2\n5\n6",
+        "0"
+      ],
+      "hints": [
+        "Use `lo = 0` and `hi = N` (not `N - 1`, because `N` is a possible answer). While `lo < hi`: if `nums[mid] < X`, set `lo = mid + 1`; otherwise `hi = mid`.",
+        "When the loop ends, `lo == hi`, and that is the answer.",
+        "Setting `hi = mid` (not `mid - 1`) keeps `mid` as a possible answer, because `nums[mid]` might be the first element `>= X`."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nq = int(input())\nfor _ in range(q):\n    x = int(input())\n    lo, hi = 0, n\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] < x:\n            lo = mid + 1\n        else:\n            hi = mid\n    print(lo)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 4 4 4 7\n3\n4\n5\n8",
+          "output": "2\n5\n6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10 20 30\n1\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 5 5\n2\n5\n6",
+          "output": "0\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n2\n0\n1",
+          "output": "0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-3 -1 0 0 2\n3\n0\n-2\n2",
+          "output": "2\n1\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5 6 7 8\n2\n4\n9",
+          "output": "3\n8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 2\n1\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 1000000000\n2\n0\n1000000000",
+          "output": "1\n1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N) per query",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers in increasing order, separated by spaces.\nLine 2: an integer `Q`, the number of queries.\nNext `Q` lines: one integer `X` each.",
+        "output_format": "Print `Q` lines: the lower bound of each query value."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-06",
+      "title": "Upper Bound Index",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Find index of first element > target in sorted array in O(log N).",
+      "problem_statement": "Upper Bound Index\nProblem Description\nYou are given a list of `N` integers sorted in increasing order (the list may contain repeated values), and `Q` query values.\nFor each query value `X`, find its **upper bound**: the index of the **first** element that is **strictly greater than** `X`. If no element is greater than `X`, the upper bound is `N` (one position past the end).\nCompare with the lower bound: the lower bound stops at the first copy of `X`, while the upper bound jumps past the last copy of `X`.\nUse binary search, so each query runs in O(log N) time. Do not use the `bisect` module.\nExample 1\nInput\n\n```\n1 2 4 4 4 7\n3\n4\n0\n7\n```\n\nOutput\n\n```\n5\n0\n6\n```\n\nExplanation\nThe list is `[1, 2, 4, 4, 4, 7]`.\n\n* `X = 4` → the first element `> 4` is `7` at index `5` (all three `4`s are skipped).\n* `X = 0` → the very first element `1` is already `> 0`, so the answer is `0`.\n* `X = 7` → no element is `> 7`, so the answer is `N = 6`.\nExample 2\nInput\n\n```\n10 20 30\n1\n20\n```\n\nOutput\n\n```\n2\n```\n\nExplanation\nThe list is `[10, 20, 30]`. For `X = 20`, the first element strictly greater than `20` is `30` at index `2`.\nInput Format\n\n* Line 1: `N` integers in increasing order, separated by spaces.\n* Line 2: an integer `Q`, the number of queries.\n* Next `Q` lines: one integer `X` each.\n\nOutput Format\nPrint `Q` lines: the upper bound of each query value.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `1 ≤ Q ≤ 10^5`\n* `-10^9 ≤ values ≤ 10^9`\n\nHint\nIt is the same loop as the lower bound, with one change: move right when `nums[mid] <= X` (instead of `< X`).",
+      "input_format": "Line 1: `N` integers in increasing order, separated by spaces.\nLine 2: an integer `Q`, the number of queries.\nNext `Q` lines: one integer `X` each.",
+      "output_format": "Print `Q` lines: the upper bound of each query value.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`1 ≤ Q ≤ 10^5`\n`-10^9 ≤ values ≤ 10^9`",
+      "sample_inputs": [
+        "1 2 4 4 4 7\n3\n4\n0\n7",
+        "10 20 30\n1\n20"
+      ],
+      "sample_outputs": [
+        "5\n0\n6",
+        "2"
+      ],
+      "hints": [
+        "It is the same loop as the lower bound, with one change: move right when `nums[mid] <= X` (instead of `< X`).",
+        "Use `lo = 0`, `hi = N`, and stop when `lo == hi`.",
+        "Upper bound minus lower bound is the number of copies of `X` in the list."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nn = len(nums)\n\nq = int(input())\nfor _ in range(q):\n    x = int(input())\n    lo, hi = 0, n\n    while lo < hi:\n        mid = (lo + hi) // 2\n        if nums[mid] <= x:\n            lo = mid + 1\n        else:\n            hi = mid\n    print(lo)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 4 4 4 7\n3\n4\n0\n7",
+          "output": "5\n0\n6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10 20 30\n1\n20",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 5 5\n2\n5\n4",
+          "output": "3\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n2\n1\n0",
+          "output": "1\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-3 -1 0 0 2\n3\n0\n-1\n-4",
+          "output": "4\n2\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5 6 7 8\n2\n4\n8",
+          "output": "4\n8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 2\n1\n3",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000000000 1000000000\n2\n-1000000000\n999999999",
+          "output": "1\n1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N) per query",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers in increasing order, separated by spaces.\nLine 2: an integer `Q`, the number of queries.\nNext `Q` lines: one integer `X` each.",
+        "output_format": "Print `Q` lines: the upper bound of each query value."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-07",
+      "title": "Search in Rotated Sorted Array",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Search target in distinct rotated sorted array in O(log N) time.",
+      "problem_statement": "Search in Rotated Sorted Array\nProblem Description\nYou are given a list of `N` **distinct** integers that was sorted in increasing order and then **rotated**: some elements from the front were moved to the end. For example, `[1, 2, 4, 5, 6, 7]` rotated at index 3 becomes `[5, 6, 7, 1, 2, 4]`. The list may also not be rotated at all.\nYou are also given a target `T`. Print the index of `T` in the rotated list, or `-1` if it is not there.\nYour solution must run in O(log N) time, so you cannot simply scan the list. Use a modified binary search: at every step, **one of the two halves around `mid` is always sorted**. Check whether `T` lies inside the sorted half; if yes, search there, otherwise search the other half.\nExample 1\nInput\n\n```\n4 5 6 7 0 1 2\n0\n```\n\nOutput\n\n```\n4\n```\n\nExplanation\nThe list is `[4, 5, 6, 7, 0, 1, 2]` and `T = 0`.\n\n* `lo = 0`, `hi = 6`, `mid = 3` → `nums[3] = 7`. The left half `[4, 5, 6, 7]` is sorted, but `0` is not between `4` and `7`, so search the right half: `lo = 4`.\n* `lo = 4`, `hi = 6`, `mid = 5` → `nums[5] = 1`. The left half `[0, 1]` is sorted and `0` is inside it, so `hi = 4`.\n* `lo = 4`, `hi = 4`, `mid = 4` → `nums[4] = 0`. Found!\n\nTherefore, the output is `4`.\nExample 2\nInput\n\n```\n4 5 6 7 0 1 2\n3\n```\n\nOutput\n\n```\n-1\n```\n\nExplanation\nThe value `3` is not in the list `[4, 5, 6, 7, 0, 1, 2]`, so the output is `-1`.\nInput Format\n\n* Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.\n* Line 2: an integer `T`, the target.\n\nOutput Format\nPrint one integer: the index of `T`, or `-1` if it is not in the list.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer, T ≤ 10^9`\n* All integers in the list are different\n\nHint\nIf `nums[lo] <= nums[mid]`, the left half `nums[lo..mid]` is sorted. Otherwise the right half `nums[mid..hi]` is sorted.",
+      "input_format": "Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.\nLine 2: an integer `T`, the target.",
+      "output_format": "Print one integer: the index of `T`, or `-1` if it is not in the list.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer, T ≤ 10^9`\nAll integers in the list are different",
+      "sample_inputs": [
+        "4 5 6 7 0 1 2\n0",
+        "4 5 6 7 0 1 2\n3"
+      ],
+      "sample_outputs": [
+        "4",
+        "-1"
+      ],
+      "hints": [
+        "If `nums[lo] <= nums[mid]`, the left half `nums[lo..mid]` is sorted. Otherwise the right half `nums[mid..hi]` is sorted.",
+        "For a sorted left half, `T` is inside it when `nums[lo] <= T < nums[mid]`; then set `hi = mid - 1`, else `lo = mid + 1`.",
+        "For a sorted right half, `T` is inside it when `nums[mid] < T <= nums[hi]`; then set `lo = mid + 1`, else `hi = mid - 1`."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\nt = int(input())\n\nlo, hi = 0, len(nums) - 1\nanswer = -1\nwhile lo <= hi:\n    mid = (lo + hi) // 2\n    if nums[mid] == t:\n        answer = mid\n        break\n    if nums[lo] <= nums[mid]:               # left half is sorted\n        if nums[lo] <= t < nums[mid]:\n            hi = mid - 1\n        else:\n            lo = mid + 1\n    else:                                   # right half is sorted\n        if nums[mid] < t <= nums[hi]:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n\nprint(answer)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 5 6 7 0 1 2\n0",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4 5 6 7 0 1 2\n3",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 3\n3",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 1\n1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2 3 4 5\n4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6 7 8 1 2 3 4 5\n8",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "30 40 50 10 20\n25",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.\nLine 2: an integer `T`, the target.",
+        "output_format": "Print one integer: the index of `T`, or `-1` if it is not in the list."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-08",
+      "title": "Find Min in Rotated Sorted Array",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Locate minimum element in distinct rotated sorted array in O(log N).",
+      "problem_statement": "Find Min in Rotated Sorted Array\nProblem Description\nYou are given a list of `N` **distinct** integers that was sorted in increasing order and then **rotated** (some elements from the front were moved to the end). The list may also not be rotated at all.\nPrint the **smallest** element of the list.\nYour solution must run in O(log N) time, so you cannot use `min()` or scan the whole list. Use binary search:\n\n* Compare the middle element `nums[mid]` with the last element of the current range `nums[hi]`.\n* If `nums[mid] > nums[hi]`, the \"drop\" (where the rotation happened) is to the right of `mid`, so the minimum is in the right part.\n* Otherwise, the minimum is at `mid` or to its left.\nExample 1\nInput\n\n```\n3 4 5 1 2\n```\n\nOutput\n\n```\n1\n```\n\nExplanation\nThe list is `[3, 4, 5, 1, 2]`.\n\n* `lo = 0`, `hi = 4`, `mid = 2` → `nums[2] = 5 > nums[4] = 2`, so the minimum is to the right: `lo = 3`.\n* `lo = 3`, `hi = 4`, `mid = 3` → `nums[3] = 1 < nums[4] = 2`, so the minimum is at `mid` or to its left: `hi = 3`.\n* `lo == hi == 3`, so the minimum is `nums[3] = 1`.\nExample 2\nInput\n\n```\n11 13 15 17\n```\n\nOutput\n\n```\n11\n```\n\nExplanation\nThe list `[11, 13, 15, 17]` was not rotated. The binary search keeps moving left and ends at index `0`, so the output is `11`.\nInput Format\n\n* Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.\n\nOutput Format\nPrint one integer: the smallest element.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer ≤ 10^9`\n* All integers in the list are different\n\nHint\nUse `lo = 0`, `hi = N - 1` and loop while `lo < hi`.",
+      "input_format": "Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.",
+      "output_format": "Print one integer: the smallest element.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer ≤ 10^9`\nAll integers in the list are different",
+      "sample_inputs": [
+        "3 4 5 1 2",
+        "11 13 15 17"
+      ],
+      "sample_outputs": [
+        "1",
+        "11"
+      ],
+      "hints": [
+        "Use `lo = 0`, `hi = N - 1` and loop while `lo < hi`.",
+        "If `nums[mid] > nums[hi]`, set `lo = mid + 1`; otherwise set `hi = mid` (not `mid - 1`, because `mid` itself might be the minimum).",
+        "When the loop ends, `nums[lo]` is the minimum."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nlo, hi = 0, len(nums) - 1\nwhile lo < hi:\n    mid = (lo + hi) // 2\n    if nums[mid] > nums[hi]:\n        lo = mid + 1        # the drop is to the right of mid\n    else:\n        hi = mid            # mid may be the minimum\n\nprint(nums[lo])",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 4 5 1 2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "11 13 15 17",
+          "output": "11",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4 5 6 7 0 1 2",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 6 7 8 9 10 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-5 -3 -10 -8",
+          "output": "-10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` distinct integers (a rotated sorted list), separated by spaces.",
+        "output_format": "Print one integer: the smallest element."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-09",
+      "title": "Peak Element Detection",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Find a peak element strictly greater than its neighbors in O(log N).",
+      "problem_statement": "Peak Element Detection\nProblem Description\nYou are given a list of `N` integers in which **no two neighbours are equal**. A **peak** is an element that is strictly greater than its neighbours. Imagine that there is a value of minus infinity before the first element and after the last element, so the first or last element can also be a peak.\nA list can have several peaks. To get one exact answer, find a peak with **this** binary search and print its index:\n\n* Start with `lo = 0` and `hi = N - 1`.\n* While `lo < hi`: compute `mid = (lo + hi) // 2`. If `nums[mid] < nums[mid + 1]`, the numbers go **up** to the right, so a peak must exist on the right: set `lo = mid + 1`. Otherwise they go **down**, so `mid` itself or something to its left is a peak: set `hi = mid`.\n* When `lo == hi`, that index is a peak.\n\nThis runs in O(log N) time.\nExample 1\nInput\n\n```\n1 2 1 3 5 6 4\n```\n\nOutput\n\n```\n5\n```\n\nExplanation\nThe list is `[1, 2, 1, 3, 5, 6, 4]`. It has two peaks: `2` (index `1`) and `6` (index `5`).\n\n* `lo = 0`, `hi = 6`, `mid = 3` → `3 < 5` (going up), so `lo = 4`.\n* `lo = 4`, `hi = 6`, `mid = 5` → `6 > 4` (going down), so `hi = 5`.\n* `lo = 4`, `hi = 5`, `mid = 4` → `5 < 6` (going up), so `lo = 5`.\n* `lo == hi == 5`.\n\nThis method finds the peak at index `5`, so the output is `5`.\nExample 2\nInput\n\n```\n1 2 3\n```\n\nOutput\n\n```\n2\n```\n\nExplanation\nThe list `[1, 2, 3]` only goes up. The last element `3` is a peak, because the imaginary value after it is minus infinity. The output is `2`.\nInput Format\n\n* Line 1: `N` integers separated by spaces, with no two neighbours equal.\n\nOutput Format\nPrint one integer: the index of the peak found by the method above.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer ≤ 10^9`\n* `nums[i] != nums[i + 1]` for every `i`\n\nHint\nOnly compare `nums[mid]` with `nums[mid + 1]`. Because `lo < hi`, `mid + 1` is always a valid index.",
+      "input_format": "Line 1: `N` integers separated by spaces, with no two neighbours equal.",
+      "output_format": "Print one integer: the index of the peak found by the method above.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer ≤ 10^9`\n`nums[i] != nums[i + 1]` for every `i`",
+      "sample_inputs": [
+        "1 2 1 3 5 6 4",
+        "1 2 3"
+      ],
+      "sample_outputs": [
+        "5",
+        "2"
+      ],
+      "hints": [
+        "Only compare `nums[mid]` with `nums[mid + 1]`. Because `lo < hi`, `mid + 1` is always a valid index.",
+        "Going up means a peak exists to the right: the numbers cannot rise forever, because the end counts as minus infinity.",
+        "Use `hi = mid` (not `mid - 1`) when going down, because `mid` itself may be the peak."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nlo, hi = 0, len(nums) - 1\nwhile lo < hi:\n    mid = (lo + hi) // 2\n    if nums[mid] < nums[mid + 1]:\n        lo = mid + 1        # going up: a peak is on the right\n    else:\n        hi = mid            # going down: mid or the left side has a peak\n\nprint(lo)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 2 1 3 5 6 4",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 2 3",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 2 1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 3 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2 1 2",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 5 4 3 2 1 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-5 -4 -3 -2 -1 -2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers separated by spaces, with no two neighbours equal.",
+        "output_format": "Print one integer: the index of the peak found by the method above."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-10",
+      "title": "Merge Sort Implementation",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Implement merge sort recursively producing a newly sorted list.",
+      "problem_statement": "Merge Sort Implementation\nProblem Description\nYou are given a list of `N` integers. Sort it in increasing order using **merge sort**, and print the sorted list.\nMerge sort is a divide-and-conquer algorithm:\n\n* **Divide:** split the list into a left half and a right half.\n* **Conquer:** sort each half by calling merge sort on it (recursion). A list with 0 or 1 elements is already sorted; this is the base case.\n* **Combine:** merge the two sorted halves into one sorted list. Compare the first remaining element of each half, take the smaller one, and repeat. When one half runs out, add the rest of the other half.\n\nWrite a recursive function `merge_sort(nums)` that returns a **new** sorted list. Do not use `sorted()` or `list.sort()`. Merge sort runs in O(N log N) time.\nExample 1\nInput\n\n```\n5 2 4 1\n```\n\nOutput\n\n```\n1 2 4 5\n```\n\nExplanation\nThe list `[5, 2, 4, 1]` is split into `[5, 2]` and `[4, 1]`.\n\n* `[5, 2]` is split into `[5]` and `[2]`, which merge into `[2, 5]`.\n* `[4, 1]` is split into `[4]` and `[1]`, which merge into `[1, 4]`.\n* Merging `[2, 5]` and `[1, 4]`: take `1`, then `2`, then `4`, then `5` → `[1, 2, 4, 5]`.\n\nTherefore, the output is `1 2 4 5`.\nExample 2\nInput\n\n```\n7\n```\n\nOutput\n\n```\n7\n```\n\nExplanation\nA list with a single element is already sorted (base case), so the output is `7`.\nInput Format\n\n* Line 1: `N` integers separated by spaces.\n\nOutput Format\nPrint the sorted list on one line, with the numbers separated by spaces.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* `-10^9 ≤ each integer ≤ 10^9`\n\nHint\nBase case: `if len(nums) <= 1: return nums[:]`. Otherwise `mid = len(nums) // 2`, sort `nums[:mid]` and `nums[mid:]` recursively.",
+      "input_format": "Line 1: `N` integers separated by spaces.",
+      "output_format": "Print the sorted list on one line, with the numbers separated by spaces.",
+      "constraints": "`1 ≤ N ≤ 10^5`\n`-10^9 ≤ each integer ≤ 10^9`",
+      "sample_inputs": [
+        "5 2 4 1",
+        "7"
+      ],
+      "sample_outputs": [
+        "1 2 4 5",
+        "7"
+      ],
+      "hints": [
+        "Base case: `if len(nums) <= 1: return nums[:]`. Otherwise `mid = len(nums) // 2`, sort `nums[:mid]` and `nums[mid:]` recursively.",
+        "Merge with two indexes `i` and `j`. Use `<=` when comparing, so that equal elements from the left half come first (this keeps merge sort stable).",
+        "After the merge loop, use `result.extend(left[i:])` and `result.extend(right[j:])` to add what is left."
+      ],
+      "starter_code": null,
+      "reference_solution": "def merge_sort(nums):\n    if len(nums) <= 1:\n        return nums[:]\n    mid = len(nums) // 2\n    left = merge_sort(nums[:mid])\n    right = merge_sort(nums[mid:])\n\n    result = []\n    i = j = 0\n    while i < len(left) and j < len(right):\n        if left[i] <= right[j]:\n            result.append(left[i])\n            i += 1\n        else:\n            result.append(right[j])\n            j += 1\n    result.extend(left[i:])\n    result.extend(right[j:])\n    return result\n\n\nnums = [int(x) for x in input().split()]\nprint(\" \".join(str(x) for x in merge_sort(nums)))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "merge_sort",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5 2 4 1",
+          "output": "1 2 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 3 1 1",
+          "output": "1 1 3 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3 4",
+          "output": "1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "9 8 7 6 5 4 3 2 1",
+          "output": "1 2 3 4 5 6 7 8 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1 5 -3 0",
+          "output": "-3 -1 0 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 1",
+          "output": "1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000000 -1000000000 0 0",
+          "output": "-1000000000 0 0 1000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "Line 1: `N` integers separated by spaces.",
+        "output_format": "Print the sorted list on one line, with the numbers separated by spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-11",
+      "title": "Lomuto Partition Quicksort",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Implement Quicksort using Lomuto partition with last-element pivot.",
+      "problem_statement": "Lomuto Partition Quicksort\nProblem Description\nYou are given a list of `N` integers. Sort it in increasing order using **Quicksort with the Lomuto partition scheme**, and show the list after every partition.\n\n**Lomuto partition** of the part `nums[lo..hi]`:\n\n* The **pivot** is the last element, `nums[hi]`.\n* Keep a position `i = lo`. Go through `j = lo, lo + 1, ..., hi - 1`. Whenever `nums[j] < pivot`, swap `nums[i]` and `nums[j]`, then increase `i` by 1.\n* Finally swap `nums[i]` and `nums[hi]`. Now the pivot is at position `i`: everything to its left is smaller, everything to its right is greater or equal.\n\n**Quicksort** of `nums[lo..hi]`: if `lo < hi`, partition it, **print the whole list**, then quicksort the left part `nums[lo..i-1]`, then the right part `nums[i+1..hi]`. Parts with fewer than 2 elements are not partitioned and print nothing.\n\nAfter all partitions, print a last line `Sorted: ` followed by the sorted list.\nExample 1\nInput\n\n```\n3 6 1 5 2\n```\n\nOutput\n\n```\n1 2 3 5 6\n1 2 3 5 6\n1 2 3 5 6\nSorted: 1 2 3 5 6\n```\n\nExplanation\nThe list is `[3, 6, 1, 5, 2]`.\n\n* Partition `[3, 6, 1, 5, 2]` with pivot `2`: only `1` is smaller, so it moves to the front, and the pivot goes to index `1` → `1 2 3 5 6`\n* The left part `[1]` has 1 element, so nothing happens.\n* Partition the right part `[3, 5, 6]` with pivot `6`: `3` and `5` are smaller and stay, the pivot stays at the end → `1 2 3 5 6`\n* Partition `[3, 5]` with pivot `5`: `3` is smaller → `1 2 3 5 6`\n\nThen the last line is `Sorted: 1 2 3 5 6`.\nExample 2\nInput\n\n```\n4\n```\n\nOutput\n\n```\nSorted: 4\n```\n\nExplanation\nA list with a single element needs no partition, so only the line `Sorted: 4` is printed.\nInput Format\n\n* Line 1: `N` integers separated by spaces.\n\nOutput Format\nPrint the whole list after every partition (one line each, numbers separated by spaces), then a last line `Sorted: ` followed by the sorted list.\nConstraints\n\n* `1 ≤ N ≤ 100`\n* `-10^4 ≤ each integer ≤ 10^4`\n\nHint\nWrite `partition(nums, lo, hi)` that returns the final index of the pivot, and a recursive `quicksort(nums, lo, hi)`.",
+      "input_format": "Line 1: `N` integers separated by spaces.",
+      "output_format": "Print the whole list after every partition (one line each, numbers separated by spaces), then a last line `Sorted: ` followed by the sorted list.",
+      "constraints": "`1 ≤ N ≤ 100`\n`-10^4 ≤ each integer ≤ 10^4`",
+      "sample_inputs": [
+        "3 6 1 5 2",
+        "4"
+      ],
+      "sample_outputs": [
+        "1 2 3 5 6\n1 2 3 5 6\n1 2 3 5 6\nSorted: 1 2 3 5 6",
+        "Sorted: 4"
+      ],
+      "hints": [
+        "Write `partition(nums, lo, hi)` that returns the final index of the pivot, and a recursive `quicksort(nums, lo, hi)`.",
+        "Only elements strictly smaller than the pivot are moved to the left side (`nums[j] < pivot`).",
+        "The order of the printed lines comes from the recursion: first the whole list, then everything on the left side, then everything on the right side."
+      ],
+      "starter_code": null,
+      "reference_solution": "def partition(nums, lo, hi):\n    pivot = nums[hi]\n    i = lo\n    for j in range(lo, hi):\n        if nums[j] < pivot:\n            nums[i], nums[j] = nums[j], nums[i]\n            i += 1\n    nums[i], nums[hi] = nums[hi], nums[i]\n    return i\n\n\ndef quicksort(nums, lo, hi):\n    if lo < hi:\n        p = partition(nums, lo, hi)\n        print(\" \".join(str(x) for x in nums))\n        quicksort(nums, lo, p - 1)\n        quicksort(nums, p + 1, hi)\n\n\nnums = [int(x) for x in input().split()]\nquicksort(nums, 0, len(nums) - 1)\nprint(\"Sorted: \" + \" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": "partition",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 6 1 5 2",
+          "output": "1 2 3 5 6\n1 2 3 5 6\n1 2 3 5 6\nSorted: 1 2 3 5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4",
+          "output": "Sorted: 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2 1",
+          "output": "1 2\nSorted: 1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3",
+          "output": "1 2 3\n1 2 3\nSorted: 1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 5 5",
+          "output": "5 5 5\n5 5 5\nSorted: 5 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 1 3 9 7",
+          "output": "4 1 3 7 9\n1 3 4 7 9\nSorted: 1 3 4 7 9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-2 8 -5 0",
+          "output": "-2 -5 0 8\n-5 -2 0 8\nSorted: -5 -2 0 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 9 8 7 6",
+          "output": "6 9 8 7 10\n6 9 8 7 10\n6 7 8 9 10\n6 7 8 9 10\nSorted: 6 7 8 9 10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N log N) average, O(N^2) worst",
+        "space_complexity": "O(N) recursion depth (worst case)",
+        "input_format": "Line 1: `N` integers separated by spaces.",
+        "output_format": "Print the whole list after every partition (one line each, numbers separated by spaces), then a last line `Sorted: ` followed by the sorted list."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-12",
+      "title": "Sort Colors (Dutch Flag)",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Medium",
+      "objective": "Sort array of 0s, 1s, and 2s in-place in single O(N) pass.",
+      "problem_statement": "Sort Colors (Dutch Flag)\nProblem Description\nYou are given a list containing only the numbers `0`, `1` and `2` (think of them as the colours red, white and blue). Sort the list so that all `0`s come first, then all `1`s, then all `2`s, and print it.\nDo it **in place** and in **one pass**, using the Dutch National Flag method with three pointers:\n\n* `low`: everything before it is `0`.\n* `mid`: the element currently being looked at.\n* `high`: everything after it is `2`.\n\nStart with `low = 0`, `mid = 0`, `high = N - 1`, and repeat while `mid <= high`:\n\n* If `nums[mid] == 0`: swap it with `nums[low]`, then move both `low` and `mid` one step right.\n* If `nums[mid] == 1`: it is already in the middle part; move `mid` one step right.\n* If `nums[mid] == 2`: swap it with `nums[high]` and move `high` one step left. Do **not** move `mid`, because the element that just arrived has not been checked yet.\n\nDo not use `sort()` or count the numbers first.\nExample 1\nInput\n\n```\n2 0 2 1 1 0\n```\n\nOutput\n\n```\n0 0 1 1 2 2\n```\n\nExplanation\nThe list is `[2, 0, 2, 1, 1, 0]`. The `0`s move to the front, the `2`s move to the back, and the `1`s end up in the middle, giving `0 0 1 1 2 2`.\nExample 2\nInput\n\n```\n2 0 1\n```\n\nOutput\n\n```\n0 1 2\n```\n\nExplanation\nThe list `[2, 0, 1]` becomes `0 1 2`.\nInput Format\n\n* Line 1: `N` integers separated by spaces, each one `0`, `1` or `2`.\n\nOutput Format\nPrint the sorted list on one line, with the numbers separated by spaces.\nConstraints\n\n* `1 ≤ N ≤ 10^5`\n* Every integer is `0`, `1` or `2`\n\nHint\nThe loop condition is `mid <= high`, because the element at `high` has not been checked yet.",
+      "input_format": "Line 1: `N` integers separated by spaces, each one `0`, `1` or `2`.",
+      "output_format": "Print the sorted list on one line, with the numbers separated by spaces.",
+      "constraints": "`1 ≤ N ≤ 10^5`\nEvery integer is `0`, `1` or `2`",
+      "sample_inputs": [
+        "2 0 2 1 1 0",
+        "2 0 1"
+      ],
+      "sample_outputs": [
+        "0 0 1 1 2 2",
+        "0 1 2"
+      ],
+      "hints": [
+        "The loop condition is `mid <= high`, because the element at `high` has not been checked yet.",
+        "After swapping a `2` to the back, check the new `nums[mid]` again in the next round.",
+        "Each step either moves `mid` right or `high` left, so the loop runs at most `N` times."
+      ],
+      "starter_code": null,
+      "reference_solution": "nums = [int(x) for x in input().split()]\n\nlow, mid, high = 0, 0, len(nums) - 1\nwhile mid <= high:\n    if nums[mid] == 0:\n        nums[low], nums[mid] = nums[mid], nums[low]\n        low += 1\n        mid += 1\n    elif nums[mid] == 1:\n        mid += 1\n    else:\n        nums[mid], nums[high] = nums[high], nums[mid]\n        high -= 1           # do not move mid: check the swapped-in value\n\nprint(\" \".join(str(x) for x in nums))",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 0 2 1 1 0",
+          "output": "0 0 1 1 2 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2 0 1",
+          "output": "0 1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2 2 2",
+          "output": "2 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1 0",
+          "output": "0 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 1 2 0 1 2",
+          "output": "0 0 1 1 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 1 0 0 1 2 2 1",
+          "output": "0 0 1 1 1 2 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 1 1 0",
+          "output": "0 1 1 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: `N` integers separated by spaces, each one `0`, `1` or `2`.",
+        "output_format": "Print the sorted list on one line, with the numbers separated by spaces."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-13",
+      "title": "Largest Number Comparator",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Hard",
+      "objective": "Arrange integers so their concatenated string forms the largest number.",
+      "problem_statement": "Largest Number Comparator\nProblem Description\nYou are given a list of non-negative integers. Arrange them in an order so that, when you write them next to each other, they form the **largest possible number**. Print that number.\nNormal sorting does not work. For example, `9` should come before `34` even though `9 < 34`, and `3` should come before `30` because `330 > 303`.\nUse a **custom comparator**: for two numbers `a` and `b` (as strings), put `a` first if `a + b > b + a` (string concatenation). For example, `\"3\" + \"30\" = \"330\"` is bigger than `\"30\" + \"3\" = \"303\"`, so `3` goes first.\nSort with `functools.cmp_to_key` and your comparator. If the result starts with `0`, all numbers were `0`, so print just `0`.\nExample 1\nInput\n\n```\n3 30 34 5 9\n```\n\nOutput\n\n```\n9534330\n```\n\nExplanation\nThe numbers are `3 30 34 5 9`.\nUsing the comparator, the order is `9`, `5`, `34`, `3`, `30`. Joining them gives `9534330`, which is the largest possible number.\nExample 2\nInput\n\n```\n0 0\n```\n\nOutput\n\n```\n0\n```\n\nExplanation\nBoth numbers are `0`. Joining them would give `00`, but a number does not start with extra zeros, so the output is `0`.\nInput Format\n\n* Line 1: `N` non-negative integers separated by spaces.\n\nOutput Format\nPrint the largest number that can be formed.\nConstraints\n\n* `1 ≤ N ≤ 100`\n* `0 ≤ each integer ≤ 10^9`\n\nHint\nThe comparator returns a negative number when `a` should come first: `return -1 if a + b > b + a else (1 if a + b < b + a else 0)`.",
+      "input_format": "Line 1: `N` non-negative integers separated by spaces.",
+      "output_format": "Print the largest number that can be formed.",
+      "constraints": "`1 ≤ N ≤ 100`\n`0 ≤ each integer ≤ 10^9`",
+      "sample_inputs": [
+        "3 30 34 5 9",
+        "0 0"
+      ],
+      "sample_outputs": [
+        "9534330",
+        "0"
+      ],
+      "hints": [
+        "The comparator returns a negative number when `a` should come first: `return -1 if a + b > b + a else (1 if a + b < b + a else 0)`.",
+        "Keep the numbers as strings while sorting: `sorted(words, key=cmp_to_key(compare))`.",
+        "Check `result[0] == '0'` at the end to handle a list of only zeros."
+      ],
+      "starter_code": null,
+      "reference_solution": "from functools import cmp_to_key\n\n\ndef compare(a, b):\n    if a + b > b + a:\n        return -1           # a goes first\n    if a + b < b + a:\n        return 1            # b goes first\n    return 0\n\n\nwords = input().split()\nwords.sort(key=cmp_to_key(compare))\nresult = \"\".join(words)\n\nprint(\"0\" if result[0] == \"0\" else result)",
+      "execution_mode": "stdin/stdout",
+      "function_name": "compare",
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 30 34 5 9",
+          "output": "9534330",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0 0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10 2",
+          "output": "210",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "121 12",
+          "output": "12121",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0 5 0",
+          "output": "500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999 99 9",
+          "output": "999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "824 8247",
+          "output": "8248247",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N log N x L)",
+        "space_complexity": "O(N x L)",
+        "input_format": "Line 1: `N` non-negative integers separated by spaces.",
+        "output_format": "Print the largest number that can be formed."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-14",
+      "title": "Median of Two Sorted Arrays",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Hard",
+      "objective": "Find median of two sorted arrays in O(log(min(M, N))) time.",
+      "problem_statement": "Median of Two Sorted Arrays\nProblem Description\nYou are given two lists `A` and `B`, each sorted in increasing order. Print the **median** of all their numbers together.\n\n* If the total count is odd, the median is the middle number.\n* If the total count is even, the median is the average of the two middle numbers.\n\nMerging the lists would take O(M + N) time. Instead, use binary search on the **shorter** list to find a \"cut\" that splits all numbers into a left half and a right half:\n\n* Cut `A` after `i` elements and `B` after `j` elements, where `i + j` is half of the total (rounded up).\n* The cut is correct when the largest number on the left is not bigger than the smallest number on the right: `A[i-1] <= B[j]` and `B[j-1] <= A[i]`.\n* If `A[i-1] > B[j]`, move the cut in `A` to the left; otherwise move it to the right.\n\nPrint the median with exactly one digit after the decimal point.\nExample 1\nInput\n\n```\n1 3\n2 4\n```\n\nOutput\n\n```\n2.5\n```\n\nExplanation\nAll numbers together, in order, are `1 2 3 4`. The count `4` is even, so the median is the average of the middle two: `(2 + 3) / 2 = 2.5`.\nExample 2\nInput\n\n```\n1 3\n2\n```\n\nOutput\n\n```\n2.0\n```\n\nExplanation\nAll numbers together are `1 2 3`. The count is odd, so the median is the middle number `2`, printed as `2.0`.\nInput Format\n\n* Line 1: the integers of list `A` in increasing order, separated by spaces.\n* Line 2: the integers of list `B` in increasing order, separated by spaces.\n\nOutput Format\nPrint the median with one digit after the decimal point.\nConstraints\n\n* `1 ≤ M, N ≤ 10^5` (both lists have at least one number)\n* `-10^6 ≤ each integer ≤ 10^6`\n\nHint\nMake `A` the shorter list (swap them if needed) and binary search `i` between `0` and `len(A)`; then `j = (M + N + 1) // 2 - i`.",
+      "input_format": "Line 1: the integers of list `A` in increasing order, separated by spaces.\nLine 2: the integers of list `B` in increasing order, separated by spaces.",
+      "output_format": "Print the median with one digit after the decimal point.",
+      "constraints": "`1 ≤ M, N ≤ 10^5` (both lists have at least one number)\n`-10^6 ≤ each integer ≤ 10^6`",
+      "sample_inputs": [
+        "1 3\n2 4",
+        "1 3\n2"
+      ],
+      "sample_outputs": [
+        "2.5",
+        "2.0"
+      ],
+      "hints": [
+        "Make `A` the shorter list (swap them if needed) and binary search `i` between `0` and `len(A)`; then `j = (M + N + 1) // 2 - i`.",
+        "When a cut is at the very edge, use `float('-inf')` for a missing left value and `float('inf')` for a missing right value.",
+        "For an odd total, the median is `max(left values)`; for an even total, it is `(max(left values) + min(right values)) / 2`."
+      ],
+      "starter_code": null,
+      "reference_solution": "a = [int(x) for x in input().split()]\nb = [int(x) for x in input().split()]\nif len(a) > len(b):\n    a, b = b, a                     # binary search on the shorter list\n\nm, n = len(a), len(b)\nhalf = (m + n + 1) // 2\nlo, hi = 0, m\nwhile lo <= hi:\n    i = (lo + hi) // 2\n    j = half - i\n    a_left = a[i - 1] if i > 0 else float(\"-inf\")\n    a_right = a[i] if i < m else float(\"inf\")\n    b_left = b[j - 1] if j > 0 else float(\"-inf\")\n    b_right = b[j] if j < n else float(\"inf\")\n\n    if a_left <= b_right and b_left <= a_right:\n        if (m + n) % 2 == 1:\n            median = max(a_left, b_left)\n        else:\n            median = (max(a_left, b_left) + min(a_right, b_right)) / 2\n        break\n    if a_left > b_right:\n        hi = i - 1\n    else:\n        lo = i + 1\n\nprint(f\"{median:.1f}\")",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1 3\n2 4",
+          "output": "2.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 3\n2",
+          "output": "2.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "5.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1 2 3\n4 5 6 7",
+          "output": "4.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n1 2 3 4",
+          "output": "3.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-5 -1\n-3",
+          "output": "-3.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 1 1\n1 1 1",
+          "output": "1.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1 2\n100 200 300",
+          "output": "100.0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(log(min(M, N)))",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: the integers of list `A` in increasing order, separated by spaces.\nLine 2: the integers of list `B` in increasing order, separated by spaces.",
+        "output_format": "Print the median with one digit after the decimal point."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "PY-M16-15",
+      "title": "Kth Smallest in Sorted Matrix",
+      "module": "Module 16: Searching and Sorting",
+      "difficulty": "Hard",
+      "objective": "Find Kth smallest in N x N matrix with sorted rows and columns.",
+      "problem_statement": "Kth Smallest in Sorted Matrix\nProblem Description\nYou are given an `N x N` matrix in which **every row** is sorted from left to right and **every column** is sorted from top to bottom. You are also given a number `K`.\nPrint the `K`-th smallest number of the matrix (counting from 1, and counting repeated numbers separately).\nPutting all `N * N` numbers into a list and sorting it works, but it is slow. Use **binary search on the value** instead:\n\n* The answer lies between the smallest value `matrix[0][0]` and the largest value `matrix[N-1][N-1]`.\n* For a guess `mid`, count how many numbers are `<= mid`. Thanks to the sorting, you can count in O(N): start at the bottom-left corner; if the number there is `<= mid`, the whole column part above it counts, so add `row + 1` and move right; otherwise move up.\n* If the count is at least `K`, the answer is `mid` or smaller; otherwise it is bigger.\nExample 1\nInput\n\n```\n3\n1 5 9\n10 11 13\n12 13 15\n8\n```\n\nOutput\n\n```\n13\n```\n\nExplanation\nThe matrix is\n\n```\n1  5  9\n10 11 13\n12 13 15\n```\n\nIn sorted order the numbers are `1 5 9 10 11 12 13 13 15`. The 8th smallest is `13`.\nExample 2\nInput\n\n```\n1\n-5\n1\n```\n\nOutput\n\n```\n-5\n```\n\nExplanation\nThe matrix has one number, `-5`, and `K = 1`, so the output is `-5`.\nInput Format\n\n* Line 1: an integer `N`, the size of the matrix.\n* Next `N` lines: `N` integers each, separated by spaces (one row per line).\n* Last line: an integer `K`.\n\nOutput Format\nPrint one integer: the `K`-th smallest number of the matrix.\nConstraints\n\n* `1 ≤ N ≤ 300`\n* `1 ≤ K ≤ N * N`\n* `-10^9 ≤ each number ≤ 10^9`\n* Every row and every column is sorted in increasing order\n\nHint\nBinary search with `lo = matrix[0][0]` and `hi = matrix[N-1][N-1]`. While `lo < hi`: if `count(mid) >= K`, set `hi = mid`, else `lo = mid + 1`.",
+      "input_format": "Line 1: an integer `N`, the size of the matrix.\nNext `N` lines: `N` integers each, separated by spaces (one row per line).\nLast line: an integer `K`.",
+      "output_format": "Print one integer: the `K`-th smallest number of the matrix.",
+      "constraints": "`1 ≤ N ≤ 300`\n`1 ≤ K ≤ N * N`\n`-10^9 ≤ each number ≤ 10^9`\nEvery row and every column is sorted in increasing order",
+      "sample_inputs": [
+        "3\n1 5 9\n10 11 13\n12 13 15\n8",
+        "1\n-5\n1"
+      ],
+      "sample_outputs": [
+        "13",
+        "-5"
+      ],
+      "hints": [
+        "Binary search with `lo = matrix[0][0]` and `hi = matrix[N-1][N-1]`. While `lo < hi`: if `count(mid) >= K`, set `hi = mid`, else `lo = mid + 1`.",
+        "Counting from the bottom-left corner touches each row and column at most once, so it is O(N).",
+        "When the loop ends, `lo` is a value that really appears in the matrix, and it is the answer."
+      ],
+      "starter_code": null,
+      "reference_solution": "n = int(input())\nmatrix = [[int(x) for x in input().split()] for _ in range(n)]\nk = int(input())\n\nlo, hi = matrix[0][0], matrix[n - 1][n - 1]\nwhile lo < hi:\n    mid = (lo + hi) // 2\n    # count the numbers <= mid, starting from the bottom-left corner\n    count = 0\n    row, col = n - 1, 0\n    while row >= 0 and col < n:\n        if matrix[row][col] <= mid:\n            count += row + 1\n            col += 1\n        else:\n            row -= 1\n    if count >= k:\n        hi = mid\n    else:\n        lo = mid + 1\n\nprint(lo)",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n1 5 9\n10 11 13\n12 13 15\n8",
+          "output": "13",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n-5\n1",
+          "output": "-5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n1 2\n1 3\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n1 2\n3 4\n4",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n1 2 3\n4 5 6\n7 8 9\n5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n-5 -4 -3\n-2 -1 0\n1 2 3\n1",
+          "output": "-5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n5 5\n5 5\n3",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n1 3 5 7\n2 4 6 8\n3 5 7 9\n4 6 8 10\n10",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting",
+        "time_complexity": "O(N log(max - min))",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: an integer `N`, the size of the matrix.\nNext `N` lines: `N` integers each, separated by spaces (one row per line).\nLast line: an integer `K`.",
+        "output_format": "Print one integer: the `K`-th smallest number of the matrix."
+      },
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "module_16_searching_and_sorting.csv",
+    "total_rows": 15,
+    "total_questions": 15,
+    "valid_questions": 15,
+    "total_test_cases": 120,
+    "visible_test_cases": 45,
+    "hidden_test_cases": 75,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  }
+}
