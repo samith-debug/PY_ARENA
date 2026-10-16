@@ -15,7 +15,12 @@ except Exception:
 
 import re
 
-DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("SUPABASE_DB_URL")
+DATABASE_URL = (
+    os.environ.get("DATABASE_URL")
+    or os.environ.get("Database_url")
+    or os.environ.get("database_url")
+    or os.environ.get("SUPABASE_DB_URL")
+)
 
 # Auto-convert direct Supabase URL to IPv4 pooler if needed (Vercel serverless has no IPv6 outbound routing)
 if DATABASE_URL and "db.azttnwtsiirnqifcctlb.supabase.co" in DATABASE_URL:
