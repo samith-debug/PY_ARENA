@@ -13,7 +13,25 @@ try:
 except Exception:
     pass
 
+import re
+
 DATABASE_URL = os.environ.get("DATABASE_URL") or os.environ.get("SUPABASE_DB_URL")
+
+# Auto-convert direct Supabase URL to IPv4 pooler if needed (Vercel serverless has no IPv6 outbound routing)
+if DATABASE_URL and "db.azttnwtsiirnqifcctlb.supabase.co" in DATABASE_URL:
+    m = re.match(r"(postgresql?://)([^:]+):([^@]+)@db\.([a-zA-Z0-9]+)\.supabase\.co(?::5432)?(/.*)?", DATABASE_URL)
+    if m:
+        scheme, user, pwd, project_ref, path = m.groups()
+        path = path or "/postgres"
+        if "?" in path:
+            path_part, query_part = path.split("?", 1)
+            path = f"{path_part}?sslmode=require&{query_part}"
+        else:
+            path = f"{path}?sslmode=require"
+        pooler_user = f"{user}.{project_ref}" if "." not in user else user
+        DATABASE_URL = f"{scheme}{pooler_user}:{pwd}@aws-0-ap-south-1.pooler.supabase.com:5432{path}"
+        print("🔄 Converted direct Supabase URL to IPv4 Pooler URL for serverless compatibility")
+
 USE_POSTGRES = bool(DATABASE_URL and DATABASE_URL.startswith(("postgres://", "postgresql://")))
 
 if USE_POSTGRES:
@@ -22,13 +40,17 @@ if USE_POSTGRES:
     print("🔌 Using Supabase / PostgreSQL cloud database")
 else:
     import sqlite3
-    DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "storage", "codementor.db")
-    print("💾 Using local SQLite database (backend/storage/codementor.db)")
+    # In serverless environments like Vercel, the filesystem is read-only except /tmp
+    if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+        DB_PATH = "/tmp/pyarena.db"
+    else:
+        DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "storage", "pyarena.db")
+    print(f"💾 Using SQLite database ({DB_PATH})")
 
 def get_connection():
     if USE_POSTGRES:
-        # Supabase/PostgreSQL connection
-        conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor)
+        # Supabase/PostgreSQL connection with 10s connect timeout
+        conn = psycopg2.connect(DATABASE_URL, cursor_factory=RealDictCursor, connect_timeout=10)
         conn.autocommit = False
         return conn
     else:
@@ -371,5 +393,9 @@ def get_user_progress_summary(user_id: int) -> Dict[str, Any]:
         }
     }
 
-# Run init on import
-init_db()
+# Run init on import safely
+try:
+    init_db()
+except Exception as e:
+    print(f"⚠️ init_db warning (will retry on first query): {e}")
+

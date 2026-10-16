@@ -342,6 +342,8 @@ def register_student(req: UserRegisterRequest):
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Registration failed: {str(e)}")
 
 @router.post("/auth/login", response_model=AuthResponse)
