@@ -1,0 +1,1937 @@
+{
+  "id": "b8ceace9",
+  "filename": "JP_M11_Java_Recursion_and_Backtracking.csv",
+  "imported_at": "2026-10-24T16:09:38.535775Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M11-01",
+      "title": "Factorial Using Recursion",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Write a recursive method with a base case and a smaller recursive call.",
+      "problem_statement": "Given a non-negative integer N, calculate N! using recursion. Factorial is defined as 0! = 1 and N! = N × (N−1)! for N greater than 0.\n\nExplanation: 5! = 5 × 4 × 3 × 2 × 1 = 120.",
+      "input_format": "One line containing N.",
+      "output_format": "Print N!.",
+      "constraints": "0 ≤ N ≤ 20",
+      "sample_inputs": [
+        "5",
+        "0"
+      ],
+      "sample_outputs": [
+        "120",
+        "1"
+      ],
+      "hints": [
+        "The base case is N = 0, which returns 1.",
+        "Otherwise, return n * factorial(n - 1).",
+        "Use long for the return type, because 20! exceeds the int range."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long factorial(int n) {\n        if (n == 0) {\n            return 1;\n        }\n        return n * factorial(n - 1);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        System.out.println(factorial(n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "120",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "3628800",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "13",
+          "output": "6227020800",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "20",
+          "output": "2432902008176640000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print N!."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-02",
+      "title": "Sum of Natural Numbers",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Express a running total as a recursive definition.",
+      "problem_statement": "Given a non-negative integer N, calculate the sum of all integers from 1 through N using recursion. If N = 0, the answer is 0.\n\nExplanation: 1 + 2 + 3 + 4 + 5 = 15.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the sum.",
+      "constraints": "0 ≤ N ≤ 1000",
+      "sample_inputs": [
+        "5",
+        "0"
+      ],
+      "sample_outputs": [
+        "15",
+        "0"
+      ],
+      "hints": [
+        "The sum of 1 through N equals N plus the sum of 1 through N − 1.",
+        "The base case is N = 0, which returns 0.",
+        "Each call reduces N by one, so the recursion depth is N."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long sum(int n) {\n        if (n == 0) {\n            return 0;\n        }\n        return n + sum(n - 1);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        System.out.println(sum(n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000",
+          "output": "500500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "55",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "5050",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999",
+          "output": "499500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the sum."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-03",
+      "title": "Sum of Digits Using Recursion",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Recurse on a number by removing its last digit at each step.",
+      "problem_statement": "Given a non-negative integer N, calculate the sum of its decimal digits using recursion. If N = 0, print 0.\n\nExplanation: 4 + 7 + 2 + 9 = 22.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the sum of the digits.",
+      "constraints": "0 ≤ N ≤ 10^18",
+      "sample_inputs": [
+        "4729",
+        "0"
+      ],
+      "sample_outputs": [
+        "22",
+        "0"
+      ],
+      "hints": [
+        "Read N as a long.",
+        "The base case is N = 0, which returns 0.",
+        "Otherwise, return n % 10 + digitSum(n / 10)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int digitSum(long n) {\n        if (n == 0) {\n            return 0;\n        }\n        return (int) (n % 10) + digitSum(n / 10);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        System.out.println(digitSum(n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4729",
+          "output": "22",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "9",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000000000000000000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "999999999999999999",
+          "output": "162",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456789",
+          "output": "45",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "505",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the sum of the digits."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-04",
+      "title": "Print Numbers in Increasing Order",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Place the print statement after the recursive call to produce increasing order.",
+      "problem_statement": "Given a non-negative integer N, print the integers from 1 through N in increasing order using recursion. Separate consecutive integers with one space, without leading or trailing spaces. If N = 0, print an empty line.\n\nExplanation: The sequence begins at 1 and ends at 5.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the sequence on one line.",
+      "constraints": "0 ≤ N ≤ 1000",
+      "sample_inputs": [
+        "5",
+        "0"
+      ],
+      "sample_outputs": [
+        "1 2 3 4 5"
+      ],
+      "hints": [
+        "Call the method for N − 1 first, then add N; this prints the smaller numbers before the larger ones.",
+        "Append the numbers to a StringBuilder passed to the method.",
+        "Add a space before every number except 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void build(int n, StringBuilder out) {\n        if (n == 0) {\n            return;\n        }\n        build(n - 1, out);\n        if (n > 1) {\n            out.append(' ');\n        }\n        out.append(n);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        StringBuilder out = new StringBuilder();\n        build(n, out);\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "1 2 3 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "1 2 3 4 5 6 7 8 9 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "20",
+          "output": "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3",
+          "output": "1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "1 2 3 4 5 6 7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the sequence on one line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-05",
+      "title": "Greatest Common Divisor Using Recursion",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Implement the Euclidean algorithm as a recursive method.",
+      "problem_statement": "Given non-negative integers A and B, find their greatest common divisor (GCD) using recursion. The GCD is the largest non-negative integer that divides both values exactly. Define GCD(A, 0) = A and GCD(0, 0) = 0.\n\nExplanation: 6 is the largest integer that divides both 48 and 18.",
+      "input_format": "Line 1: A.\nLine 2: B.",
+      "output_format": "Print the GCD.",
+      "constraints": "0 ≤ A, B ≤ 2,000,000,000",
+      "sample_inputs": [
+        "48\n18",
+        "0\n0"
+      ],
+      "sample_outputs": [
+        "6",
+        "0"
+      ],
+      "hints": [
+        "Read both values as long, because 2,000,000,000 is close to the int limit.",
+        "The base case is B = 0, which returns A.",
+        "Otherwise, return gcd(b, a % b)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long gcd(long a, long b) {\n        if (b == 0) {\n            return a;\n        }\n        return gcd(b, a % b);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long a = Long.parseLong(sc.next());\n        long b = Long.parseLong(sc.next());\n        System.out.println(gcd(a, b));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "48\n18",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7\n0",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "17\n5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2000000000\n1000000000",
+          "output": "1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1071\n462",
+          "output": "21",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n100",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: A.\nLine 2: B.",
+        "output_format": "Print the GCD."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-06",
+      "title": "Reverse a String Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Easy",
+      "objective": "Recurse over a string's indices to build its reverse.",
+      "problem_statement": "Given a string S, print its characters in reverse order using recursion. Preserve every character, including spaces and punctuation. Do not use a built-in reverse method. If S is empty, print an empty line.\n\nExplanation: The characters are printed in the opposite order.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the reversed string on one line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "hello"
+      ],
+      "sample_outputs": [
+        "olleh"
+      ],
+      "hints": [
+        "Read the line with sc.nextLine() so spaces are kept.",
+        "Write a method that appends the character at index i after reversing the rest from i + 1.",
+        "The base case is an index equal to the string's length, which appends nothing."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static void reverse(String s, int i, StringBuilder out) {\n        if (i == s.length()) {\n            return;\n        }\n        reverse(s, i + 1, out);\n        out.append(s.charAt(i));\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        reverse(s, 0, out);\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "hello",
+          "output": "olleh",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "ab c",
+          "output": "c ba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "racecar",
+          "output": "racecar",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hello, World!",
+          "output": "!dlroW ,olleH",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12345",
+          "output": "54321",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "x y",
+          "output": "y x",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the reversed string on one line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-07",
+      "title": "Fibonacci Number Using Recursion",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Implement a recursive definition with two base cases and two recursive calls.",
+      "problem_statement": "The Fibonacci sequence is defined by F(0) = 0, F(1) = 1, and F(N) = F(N−1) + F(N−2) for N ≥ 2. Given N, calculate F(N) using the direct recursive definition, without memoization or iteration.\n\nExplanation: The sequence begins 0, 1, 1, 2, 3, 5, 8, 13. Therefore, F(7) = 13.",
+      "input_format": "One line containing N.",
+      "output_format": "Print F(N).",
+      "constraints": "0 ≤ N ≤ 30",
+      "sample_inputs": [
+        "7",
+        "0"
+      ],
+      "sample_outputs": [
+        "13",
+        "0"
+      ],
+      "hints": [
+        "There are two base cases: F(0) = 0 and F(1) = 1.",
+        "For N ≥ 2, return fib(n - 1) + fib(n - 2).",
+        "This makes an exponential number of calls, which is why N is limited to 30."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int fib(int n) {\n        if (n < 2) {\n            return n;\n        }\n        return fib(n - 1) + fib(n - 2);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        System.out.println(fib(n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7",
+          "output": "13",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "55",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "20",
+          "output": "6765",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "30",
+          "output": "832040",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "25",
+          "output": "75025",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print F(N)."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-08",
+      "title": "Calculate Power Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Define exponentiation recursively, including the zero-exponent base case.",
+      "problem_statement": "Given integers A and N, calculate A raised to the power N using recursion. N is non-negative. Define A⁰ = 1, including when A = 0.\n\nExplanation: 2⁵ = 32.",
+      "input_format": "Line 1: A.\nLine 2: N.",
+      "output_format": "Print A raised to the power N.",
+      "constraints": "−10 ≤ A ≤ 10\n0 ≤ N ≤ 18\nThe result fits in a Java long.",
+      "sample_inputs": [
+        "2\n5",
+        "0\n0"
+      ],
+      "sample_outputs": [
+        "32",
+        "1"
+      ],
+      "hints": [
+        "The base case is N = 0, which returns 1, even for A = 0.",
+        "Otherwise, return a * power(a, n - 1).",
+        "Return a long, because 10¹⁸ does not fit in an int."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long power(long a, int n) {\n        if (n == 0) {\n            return 1;\n        }\n        return a * power(a, n - 1);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long a = Long.parseLong(sc.next());\n        int n = Integer.parseInt(sc.next());\n        System.out.println(power(a, n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\n5",
+          "output": "32",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-3\n3",
+          "output": "-27",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n18",
+          "output": "1000000000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-2\n4",
+          "output": "16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-10\n17",
+          "output": "-100000000000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: A.\nLine 2: N.",
+        "output_format": "Print A raised to the power N."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-09",
+      "title": "Check a Palindrome Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Compare the outermost characters and recurse on the inner part of the string.",
+      "problem_statement": "Given a string S, determine whether it is a palindrome using recursion. Characters must match exactly; uppercase and lowercase letters differ, and spaces and punctuation are significant. An empty string is a palindrome.\n\nExplanation: Each pair of characters moving inward matches.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print YES if S is a palindrome; otherwise, print NO.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "level"
+      ],
+      "sample_outputs": [
+        "YES"
+      ],
+      "hints": [
+        "Pass two indices, left and right, instead of creating substrings.",
+        "If left >= right, return true; if the characters at left and right differ, return false.",
+        "Otherwise, recurse with left + 1 and right − 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static boolean isPalindrome(String s, int left, int right) {\n        if (left >= right) {\n            return true;\n        }\n        if (s.charAt(left) != s.charAt(right)) {\n            return false;\n        }\n        return isPalindrome(s, left + 1, right - 1);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        System.out.println(isPalindrome(s, 0, s.length() - 1) ? \"YES\" : \"NO\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "level",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Level",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abba",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "ab",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a b a",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abca",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print YES if S is a palindrome; otherwise, print NO."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-10",
+      "title": "Sum of Array Elements Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Recurse over an array by index, adding one element per call.",
+      "problem_statement": "Given an integer array, calculate the sum of its elements using recursion. Include every element exactly once. An empty array has sum 0.\n\nExplanation: 2 − 3 + 8 + 1 + 4 = 12.",
+      "input_format": "Line 1: integer N.\nLine 2: N space-separated integers. If N = 0, this line is empty.",
+      "output_format": "Print the sum.",
+      "constraints": "0 ≤ N ≤ 1000\n−1,000,000 ≤ each element ≤ 1,000,000\nThe sum fits in a Java long.",
+      "sample_inputs": [
+        "5\n2 -3 8 1 4",
+        "0\n"
+      ],
+      "sample_outputs": [
+        "12",
+        "0"
+      ],
+      "hints": [
+        "Write a method sum(int[] a, int i) that sums the elements from index i to the end.",
+        "The base case is i == a.length, which returns 0.",
+        "Otherwise, return a[i] + sum(a, i + 1), using long for the result."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long sum(int[] a, int i) {\n        if (i == a.length) {\n            return 0;\n        }\n        return a[i] + sum(a, i + 1);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        System.out.println(sum(a, 0));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 -3 8 1 4",
+          "output": "12",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n-7",
+          "output": "-7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1000000 1000000 1000000",
+          "output": "3000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n-1 -2 -3 -4",
+          "output": "-10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n1 1 1 1 1 1",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n10 -10 10 -10 10",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nLine 2: N space-separated integers. If N = 0, this line is empty.",
+        "output_format": "Print the sum."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-11",
+      "title": "Find the First Occurrence Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Write a recursive linear search with two base cases.",
+      "problem_statement": "Given an integer array and target X, find the zero-based index of the first occurrence of X using recursive linear search. If X does not appear, print -1. An empty array has no matching element.\n\nExplanation: The first occurrence of 7 is at index 1.",
+      "input_format": "Line 1: integer N.\nLine 2: N space-separated integers. If N = 0, this line is empty.\nLine 3: integer X.",
+      "output_format": "Print the first matching index, or -1.",
+      "constraints": "0 ≤ N ≤ 1000\n−1,000,000,000 ≤ each array element and X ≤ 1,000,000,000",
+      "sample_inputs": [
+        "6\n4 7 2 7 9 7\n7",
+        "3\n1 2 3\n5"
+      ],
+      "sample_outputs": [
+        "1",
+        "-1"
+      ],
+      "hints": [
+        "Write find(int[] a, int i, int x) that searches from index i onward.",
+        "Return -1 when i reaches the end of the array, and return i when a[i] == x.",
+        "Otherwise, return find(a, i + 1, x)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int find(int[] a, int i, int x) {\n        if (i == a.length) {\n            return -1;\n        }\n        if (a[i] == x) {\n            return i;\n        }\n        return find(a, i + 1, x);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int x = Integer.parseInt(sc.next());\n        System.out.println(find(a, 0, x));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n4 7 2 7 9 7\n7",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n1 2 3\n5",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n\n7",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n5\n5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n9 9 9 9\n9",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1 2 3 4 5\n5",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n-1000000000 0 -1000000000\n-1000000000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n1 2 3 4\n-1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nLine 2: N space-separated integers. If N = 0, this line is empty.\nLine 3: integer X.",
+        "output_format": "Print the first matching index, or -1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-12",
+      "title": "Binary Search Using Recursion",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Halve the search range recursively while continuing left after a match.",
+      "problem_statement": "Given an integer array sorted in non-decreasing order and a target X, find the smallest zero-based index containing X using recursive binary search. If X does not occur, print -1. The array may contain duplicates.\n\nExplanation: The target occurs at indices 1, 2, and 3. The smallest is 1.",
+      "input_format": "Line 1: integer N.\nLine 2: N space-separated integers in non-decreasing order. If N = 0, this line is empty.\nLine 3: integer X.",
+      "output_format": "Print the smallest matching index, or -1.",
+      "constraints": "0 ≤ N ≤ 100,000\n−1,000,000,000 ≤ each array element and X ≤ 1,000,000,000",
+      "sample_inputs": [
+        "6\n1 2 2 2 5 9\n2",
+        "0\n\n5"
+      ],
+      "sample_outputs": [
+        "1",
+        "-1"
+      ],
+      "hints": [
+        "Write search(a, low, high, x) and return -1 when low > high.",
+        "When a[mid] == x, don't stop: remember mid, then search the left half for an earlier match.",
+        "Compute mid as low + (high − low) / 2."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int search(int[] a, int low, int high, int x) {\n        if (low > high) {\n            return -1;\n        }\n        int mid = low + (high - low) / 2;\n        if (a[mid] == x) {\n            int earlier = search(a, low, mid - 1, x);\n            return earlier == -1 ? mid : earlier;\n        } else if (a[mid] < x) {\n            return search(a, mid + 1, high, x);\n        }\n        return search(a, low, mid - 1, x);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int x = Integer.parseInt(sc.next());\n        System.out.println(search(a, 0, n - 1, x));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n1 2 2 2 5 9\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n\n5",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n5\n4",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 3 5 7 9\n9",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7\n2 2 2 2 2 2 2\n2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n1 3 5 7 9\n4",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n-5 -5 0 0 0 10\n0",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nLine 2: N space-separated integers in non-decreasing order. If N = 0, this line is empty.\nLine 3: integer X.",
+        "output_format": "Print the smallest matching index, or -1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-13",
+      "title": "Tower of Hanoi",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Solve Tower of Hanoi by moving N − 1 disks out of the way recursively.",
+      "problem_statement": "There are N disks of different sizes stacked on rod A, with the largest at the bottom. Move all disks to rod C, using rod B as an auxiliary rod. Only one disk may be moved at a time, and a larger disk may never be placed on a smaller disk.\n\nUse recursion to print every move in the required order. Number the disks from 1 (smallest) to N (largest). Print each move as Move disk X from A to C, replacing X and the rod letters with their actual values.\n\nExplanation: The smaller disk first moves to B, the larger disk moves to C, and the smaller disk moves onto it.",
+      "input_format": "One line containing N.",
+      "output_format": "Print one move per line. Do not print any additional text.",
+      "constraints": "1 ≤ N ≤ 10",
+      "sample_inputs": [
+        "2",
+        "1"
+      ],
+      "sample_outputs": [
+        "Move disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C",
+        "Move disk 1 from A to C"
+      ],
+      "hints": [
+        "Write hanoi(n, from, to, via) with the rod letters as char parameters.",
+        "To move n disks: move n − 1 disks from 'from' to 'via', move disk n from 'from' to 'to', then move n − 1 disks from 'via' to 'to'.",
+        "The base case is n = 0, which makes no moves. N disks always take 2^N − 1 moves."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void hanoi(int n, char from, char to, char via, StringBuilder out) {\n        if (n == 0) {\n            return;\n        }\n        hanoi(n - 1, from, via, to, out);\n        out.append(\"Move disk \").append(n).append(\" from \").append(from).append(\" to \").append(to).append(\"\\n\");\n        hanoi(n - 1, via, to, from, out);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        StringBuilder out = new StringBuilder();\n        hanoi(n, 'A', 'C', 'B', out);\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2",
+          "output": "Move disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "Move disk 1 from A to C",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3",
+          "output": "Move disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4",
+          "output": "Move disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5",
+          "output": "Move disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 4 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 5 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 4 from B to C\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6",
+          "output": "Move disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7",
+          "output": "Move disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 4 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 5 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 4 from B to C\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 6 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 4 from C to A\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 5 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 4 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 7 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 4 from B to C\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 5 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 4 from C to A\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 6 from B to C\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 4 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 3 from C to B\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 5 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 3 from B to A\nMove disk 1 from C to B\nMove disk 2 from C to A\nMove disk 1 from B to A\nMove disk 4 from B to C\nMove disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10",
+          "output": "Move disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 7 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 6 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 8 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 6 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 7 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 9 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 6 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 7 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 6 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 8 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 7 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 6 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 10 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 6 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 7 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 8 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 6 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 7 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 6 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 9 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 7 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 6 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 8 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 6 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 5 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 7 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 5 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 4 from C to B\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 6 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 4 from B to A\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 3 from C to A\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 5 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C\nMove disk 3 from A to B\nMove disk 1 from C to A\nMove disk 2 from C to B\nMove disk 1 from A to B\nMove disk 4 from A to C\nMove disk 1 from B to C\nMove disk 2 from B to A\nMove disk 1 from C to A\nMove disk 3 from B to C\nMove disk 1 from A to B\nMove disk 2 from A to C\nMove disk 1 from B to C",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print one move per line. Do not print any additional text."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-14",
+      "title": "Count Ways to Climb Stairs",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Add memoization to a recursive count so each subproblem is solved once.",
+      "problem_statement": "A staircase has N steps. At each move, you may climb either 1 step or 2 steps. Count the different ordered sequences of moves that reach exactly step N. Use recursion with memoization so repeated subproblems are not recalculated.\n\nThere is one way to climb zero steps: make no moves.\n\nExplanation: The five ways are 1+1+1+1, 1+1+2, 1+2+1, 2+1+1, and 2+2.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the number of distinct ways.",
+      "constraints": "0 ≤ N ≤ 90\nThe answer fits in a Java long.",
+      "sample_inputs": [
+        "4",
+        "0"
+      ],
+      "sample_outputs": [
+        "5",
+        "1"
+      ],
+      "hints": [
+        "The number of ways to reach step N is ways(N − 1) + ways(N − 2), because the last move is 1 or 2 steps.",
+        "Base cases: ways(0) = 1 and ways(1) = 1.",
+        "Store each computed answer in a long array and return it immediately if it is already filled; without this, N = 90 would never finish."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long[] memo = new long[91];\n\n    static long ways(int n) {\n        if (n <= 1) {\n            return 1;\n        }\n        if (memo[n] != 0) {\n            return memo[n];\n        }\n        memo[n] = ways(n - 1) + ways(n - 2);\n        return memo[n];\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        System.out.println(ways(n));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10",
+          "output": "89",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50",
+          "output": "20365011074",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "90",
+          "output": "4660046610375530309",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the number of distinct ways."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-15",
+      "title": "Convert Decimal to Binary Recursively",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Medium",
+      "objective": "Print digits in the correct order by recursing before printing the last digit.",
+      "problem_statement": "Given a non-negative integer N, print its binary representation using recursion. Print no leading zeros, except that N = 0 must be printed as 0. Do not convert the binary digits into a decimal integer.\n\nExplanation: 13 = 8 + 4 + 1, so its binary representation is 1101.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the binary representation.",
+      "constraints": "0 ≤ N ≤ 2,000,000,000",
+      "sample_inputs": [
+        "13",
+        "0"
+      ],
+      "sample_outputs": [
+        "1101",
+        "0"
+      ],
+      "hints": [
+        "N % 2 is the last binary digit and N / 2 holds the rest.",
+        "Recurse on N / 2 first, then append N % 2, so higher digits come first.",
+        "Stop when N is 0 or 1, appending N itself; this also handles N = 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void toBinary(long n, StringBuilder out) {\n        if (n < 2) {\n            out.append(n);\n            return;\n        }\n        toBinary(n / 2, out);\n        out.append(n % 2);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        StringBuilder out = new StringBuilder();\n        toBinary(n, out);\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "13",
+          "output": "1101",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "255",
+          "output": "11111111",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "256",
+          "output": "100000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2000000000",
+          "output": "1110111001101011001010000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1023",
+          "output": "1111111111",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the binary representation."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-16",
+      "title": "Generate All Subsequences of a String",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Hard",
+      "objective": "Make an exclude/include choice for each character to generate every subsequence.",
+      "problem_statement": "Given a string S containing distinct characters, generate all subsequences using recursion and backtracking. A subsequence keeps zero or more characters in their original order; selected characters need not be adjacent.\n\nFor each character, first explore the branch that excludes it, then the branch that includes it. Process characters from left to right. Print the empty subsequence as {} to avoid ambiguity with blank output lines.\n\nExplanation: Excluding both characters gives the empty subsequence. The other branches produce b, a, and ab.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print all 2^N subsequences, one per line, in the specified order. Here N is the length of S. Represent the empty subsequence as {}.",
+      "constraints": "0 ≤ N ≤ 15\nAll characters in S are distinct printable ASCII characters.",
+      "sample_inputs": [
+        "ab"
+      ],
+      "sample_outputs": [
+        "{}\nb\na\nab",
+        "{}"
+      ],
+      "hints": [
+        "Write generate(s, i, current) that decides about character i.",
+        "Call generate(s, i + 1, current) first (exclude), then generate(s, i + 1, current + s.charAt(i)) (include).",
+        "When i reaches the end, print current, or {} if it is empty. Collect the lines in a StringBuilder for speed."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static void generate(String s, int i, String current, StringBuilder out) {\n        if (i == s.length()) {\n            out.append(current.isEmpty() ? \"{}\" : current).append(\"\\n\");\n            return;\n        }\n        generate(s, i + 1, current, out);\n        generate(s, i + 1, current + s.charAt(i), out);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        generate(s, 0, \"\", out);\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "ab",
+          "output": "{}\nb\na\nab",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "{}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "{}\na",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc",
+          "output": "{}\nc\nb\nbc\na\nac\nab\nabc",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "ba",
+          "output": "{}\na\nb\nba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abcd",
+          "output": "{}\nd\nc\ncd\nb\nbd\nbc\nbcd\na\nad\nac\nacd\nab\nabd\nabc\nabcd",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a1!",
+          "output": "{}\n!\n1\n1!\na\na!\na1\na1!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abcdefgh",
+          "output": "{}\nh\ng\ngh\nf\nfh\nfg\nfgh\ne\neh\neg\negh\nef\nefh\nefg\nefgh\nd\ndh\ndg\ndgh\ndf\ndfh\ndfg\ndfgh\nde\ndeh\ndeg\ndegh\ndef\ndefh\ndefg\ndefgh\nc\nch\ncg\ncgh\ncf\ncfh\ncfg\ncfgh\nce\nceh\nceg\ncegh\ncef\ncefh\ncefg\ncefgh\ncd\ncdh\ncdg\ncdgh\ncdf\ncdfh\ncdfg\ncdfgh\ncde\ncdeh\ncdeg\ncdegh\ncdef\ncdefh\ncdefg\ncdefgh\nb\nbh\nbg\nbgh\nbf\nbfh\nbfg\nbfgh\nbe\nbeh\nbeg\nbegh\nbef\nbefh\nbefg\nbefgh\nbd\nbdh\nbdg\nbdgh\nbdf\nbdfh\nbdfg\nbdfgh\nbde\nbdeh\nbdeg\nbdegh\nbdef\nbdefh\nbdefg\nbdefgh\nbc\nbch\nbcg\nbcgh\nbcf\nbcfh\nbcfg\nbcfgh\nbce\nbceh\nbceg\nbcegh\nbcef\nbcefh\nbcefg\nbcefgh\nbcd\nbcdh\nbcdg\nbcdgh\nbcdf\nbcdfh\nbcdfg\nbcdfgh\nbcde\nbcdeh\nbcdeg\nbcdegh\nbcdef\nbcdefh\nbcdefg\nbcdefgh\na\nah\nag\nagh\naf\nafh\nafg\nafgh\nae\naeh\naeg\naegh\naef\naefh\naefg\naefgh\nad\nadh\nadg\nadgh\nadf\nadfh\nadfg\nadfgh\nade\nadeh\nadeg\nadegh\nadef\nadefh\nadefg\nadefgh\nac\nach\nacg\nacgh\nacf\nacfh\nacfg\nacfgh\nace\naceh\naceg\nacegh\nacef\nacefh\nacefg\nacefgh\nacd\nacdh\nacdg\nacdgh\nacdf\nacdfh\nacdfg\nacdfgh\nacde\nacdeh\nacdeg\nacdegh\nacdef\nacdefh\nacdefg\nacdefgh\nab\nabh\nabg\nabgh\nabf\nabfh\nabfg\nabfgh\nabe\nabeh\nabeg\nabegh\nabef\nabefh\nabefg\nabefgh\nabd\nabdh\nabdg\nabdgh\nabdf\nabdfh\nabdfg\nabdfgh\nabde\nabdeh\nabdeg\nabdegh\nabdef\nabdefh\nabdefg\nabdefgh\nabc\nabch\nabcg\nabcgh\nabcf\nabcfh\nabcfg\nabcfgh\nabce\nabceh\nabceg\nabcegh\nabcef\nabcefh\nabcefg\nabcefgh\nabcd\nabcdh\nabcdg\nabcdgh\nabcdf\nabcdfh\nabcdfg\nabcdfgh\nabcde\nabcdeh\nabcdeg\nabcdegh\nabcdef\nabcdefh\nabcdefg\nabcdefgh",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print all 2^N subsequences, one per line, in the specified order. Here N is the length of S. Represent the empty subsequence as {}."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-17",
+      "title": "Generate All Permutations of a String",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Hard",
+      "objective": "Build permutations with backtracking, marking characters as used and unused.",
+      "problem_statement": "Given a string S containing distinct characters, print every permutation exactly once in lexicographic order based on ASCII character values. A permutation uses every character exactly once. The input characters are not guaranteed to be sorted, so arrange them in the required order before generating the permutations.\n\nIf S is empty, print one empty line representing its only permutation.\n\nExplanation: The six permutations are printed in lexicographic order, regardless of the input order.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print one permutation per line in lexicographic order.",
+      "constraints": "0 ≤ length of S ≤ 8\nAll characters in S are distinct printable ASCII characters.",
+      "sample_inputs": [
+        "cab"
+      ],
+      "sample_outputs": [
+        "abc\nacb\nbac\nbca\ncab\ncba"
+      ],
+      "hints": [
+        "Sort the characters first: char[] chars = s.toCharArray(); Arrays.sort(chars);.",
+        "Keep a boolean used[] array; at each level, try every unused character in sorted order, mark it, recurse, then unmark it.",
+        "When the current permutation has all characters, print it. Trying characters in sorted order produces lexicographic output automatically."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Arrays;\nimport java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static void permute(char[] chars, boolean[] used, StringBuilder current, StringBuilder out) {\n        if (current.length() == chars.length) {\n            out.append(current).append(\"\\n\");\n            return;\n        }\n        for (int i = 0; i < chars.length; i++) {\n            if (!used[i]) {\n                used[i] = true;\n                current.append(chars[i]);\n                permute(chars, used, current, out);\n                current.deleteCharAt(current.length() - 1);\n                used[i] = false;\n            }\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        char[] chars = s.toCharArray();\n        Arrays.sort(chars);\n        StringBuilder out = new StringBuilder();\n        permute(chars, new boolean[chars.length], new StringBuilder(), out);\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "cab",
+          "output": "abc\nacb\nbac\nbca\ncab\ncba",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "ba",
+          "output": "ab\nba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abc",
+          "output": "abc\nacb\nbac\nbca\ncab\ncba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "dcba",
+          "output": "abcd\nabdc\nacbd\nacdb\nadbc\nadcb\nbacd\nbadc\nbcad\nbcda\nbdac\nbdca\ncabd\ncadb\ncbad\ncbda\ncdab\ncdba\ndabc\ndacb\ndbac\ndbca\ndcab\ndcba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a1B",
+          "output": "1Ba\n1aB\nB1a\nBa1\na1B\naB1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "zyxw",
+          "output": "wxyz\nwxzy\nwyxz\nwyzx\nwzxy\nwzyx\nxwyz\nxwzy\nxywz\nxyzw\nxzwy\nxzyw\nywxz\nywzx\nyxwz\nyxzw\nyzwx\nyzxw\nzwxy\nzwyx\nzxwy\nzxyw\nzywx\nzyxw",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print one permutation per line in lexicographic order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-18",
+      "title": "Count Paths Through a Maze",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Hard",
+      "objective": "Count paths recursively by branching right and down, stopping at walls and edges.",
+      "problem_statement": "A maze is an N × M grid where 0 represents an open cell and 1 represents a blocked cell. Start at cell (0, 0) and reach cell (N−1, M−1). You may move only right or down, and may not enter blocked cells or leave the grid.\n\nIf either the starting cell or destination cell is blocked, print 0. Count each distinct sequence of moves as one path.\n\nExplanation: Two paths avoid the blocked center: right, right, down, down; and down, down, right, right.",
+      "input_format": "Line 1: integers N and M.\nNext N lines: M space-separated integers representing the grid.",
+      "output_format": "Print the number of valid paths.",
+      "constraints": "1 ≤ N, M ≤ 12\nEach grid value is either 0 or 1.\nThe answer fits in a Java long.",
+      "sample_inputs": [
+        "3 3\n0 0 0\n0 1 0\n0 0 0",
+        "1 1\n0"
+      ],
+      "sample_outputs": [
+        "2",
+        "1"
+      ],
+      "hints": [
+        "Write paths(r, c) that returns the number of paths from cell (r, c) to the destination.",
+        "Return 0 if (r, c) is outside the grid or blocked, and 1 if it is the destination.",
+        "Otherwise, return paths(r, c + 1) + paths(r + 1, c)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int[][] grid;\n    static int rows;\n    static int cols;\n\n    static long paths(int r, int c) {\n        if (r >= rows || c >= cols || grid[r][c] == 1) {\n            return 0;\n        }\n        if (r == rows - 1 && c == cols - 1) {\n            return 1;\n        }\n        return paths(r, c + 1) + paths(r + 1, c);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        rows = Integer.parseInt(sc.next());\n        cols = Integer.parseInt(sc.next());\n        grid = new int[rows][cols];\n        for (int r = 0; r < rows; r++) {\n            for (int c = 0; c < cols; c++) {\n                grid[r][c] = Integer.parseInt(sc.next());\n            }\n        }\n        System.out.println(paths(0, 0));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 3\n0 0 0\n0 1 0\n0 0 0",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2 2\n1 0\n0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 2\n0 0\n0 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3 3\n0 0 0\n0 0 0\n0 0 0",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12 12\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0 0 0 0",
+          "output": "705432",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3 4\n0 0 1 0\n0 0 0 0\n1 0 0 0",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integers N and M.\nNext N lines: M space-separated integers representing the grid.",
+        "output_format": "Print the number of valid paths."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-19",
+      "title": "Solve the N-Queens Problem",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Hard",
+      "objective": "Count N-Queens solutions with backtracking and constant-time conflict checks.",
+      "problem_statement": "Place N queens on an N × N chessboard so that no two queens share a row, column, or diagonal. Count all distinct valid arrangements using recursion and backtracking. Place exactly one queen in each row. Two arrangements are different if at least one queen is in a different column.\n\nExplanation: There are exactly two valid arrangements for a 4 × 4 board.",
+      "input_format": "One line containing N.",
+      "output_format": "Print the total number of valid arrangements.",
+      "constraints": "1 ≤ N ≤ 12",
+      "sample_inputs": [
+        "4",
+        "1"
+      ],
+      "sample_outputs": [
+        "2",
+        "1"
+      ],
+      "hints": [
+        "Place one queen per row; the recursive method takes the current row.",
+        "Track used columns and both diagonals in boolean arrays: row + col identifies one diagonal and row − col + N − 1 the other.",
+        "Mark a square before recursing to the next row and unmark it afterwards; count 1 when every row has a queen."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int n;\n    static boolean[] colUsed;\n    static boolean[] diag1;\n    static boolean[] diag2;\n\n    static long place(int row) {\n        if (row == n) {\n            return 1;\n        }\n        long count = 0;\n        for (int col = 0; col < n; col++) {\n            if (!colUsed[col] && !diag1[row + col] && !diag2[row - col + n - 1]) {\n                colUsed[col] = true;\n                diag1[row + col] = true;\n                diag2[row - col + n - 1] = true;\n                count += place(row + 1);\n                colUsed[col] = false;\n                diag1[row + col] = false;\n                diag2[row - col + n - 1] = false;\n            }\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        n = Integer.parseInt(sc.next());\n        colUsed = new boolean[n];\n        diag1 = new boolean[2 * n - 1];\n        diag2 = new boolean[2 * n - 1];\n        System.out.println(place(0));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "8",
+          "output": "92",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12",
+          "output": "14200",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N.",
+        "output_format": "Print the total number of valid arrangements."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M11-20",
+      "title": "Find Combinations That Sum to a Target",
+      "module": "Module 11: Recursion and Backtracking",
+      "difficulty": "Hard",
+      "objective": "Use backtracking over sorted values to list every subset with a given sum in numeric order.",
+      "problem_statement": "Given N distinct positive integers and target T, print every combination whose sum equals T. Each input number may be used at most once. The order of numbers within a combination does not create a different combination.\n\nPrint the numbers in each combination in increasing numeric order. Print combinations in lexicographic order by comparing their elements as numbers, element by element; do not compare their textual representations. Do not print duplicate combinations.\n\nIf no combination exists, print NONE. If T = 0, print {} as the single empty combination.\n\nExplanation: The valid combinations are 2 + 5 and 3 + 4. Each number is used at most once.",
+      "input_format": "Line 1: integers N and T.\nLine 2: N distinct positive integers. If N = 0, this line is empty.",
+      "output_format": "Print each combination on a separate line, with numbers separated by one space. Print {} for the empty combination or NONE if no combination exists.",
+      "constraints": "0 ≤ N ≤ 20\n0 ≤ T ≤ 1000\nEach array element is between 1 and 1000.\nAll array elements are distinct.",
+      "sample_inputs": [
+        "4 7\n2 3 4 5",
+        "3 0\n1 2 3"
+      ],
+      "sample_outputs": [
+        "2 5\n3 4",
+        "{}"
+      ],
+      "hints": [
+        "Sort the numbers first; the input is not guaranteed to be in order.",
+        "Write search(start, remaining) that tries each index from start onward, adds that number, and recurses with the next index.",
+        "Stop a branch when the remaining sum becomes negative; a branch with remaining sum 0 is a complete combination."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Arrays;\nimport java.util.Scanner;\n\npublic class Main {\n    static int[] nums;\n    static int[] chosen;\n    static StringBuilder out = new StringBuilder();\n\n    static void search(int start, int count, int remaining) {\n        if (remaining == 0) {\n            if (count == 0) {\n                out.append(\"{}\");\n            }\n            for (int i = 0; i < count; i++) {\n                if (i > 0) {\n                    out.append(' ');\n                }\n                out.append(chosen[i]);\n            }\n            out.append(\"\\n\");\n            return;\n        }\n        for (int i = start; i < nums.length; i++) {\n            if (nums[i] > remaining) {\n                break;\n            }\n            chosen[count] = nums[i];\n            search(i + 1, count + 1, remaining - nums[i]);\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int t = Integer.parseInt(sc.next());\n        nums = new int[n];\n        for (int i = 0; i < n; i++) {\n            nums[i] = Integer.parseInt(sc.next());\n        }\n        Arrays.sort(nums);\n        chosen = new int[n];\n        search(0, 0, t);\n        if (out.length() == 0) {\n            System.out.println(\"NONE\");\n        } else {\n            System.out.print(out);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 7\n2 3 4 5",
+          "output": "2 5\n3 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3 0\n1 2 3",
+          "output": "{}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0 0\n",
+          "output": "{}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0 5\n",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 100\n1 2 3",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5 10\n10 2 8 3 7",
+          "output": "2 8\n3 7\n10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6 6\n1 2 3 4 5 6",
+          "output": "1 2 3\n1 5\n2 4\n6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4 5\n5 4 1 2",
+          "output": "1 4\n5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 11: Recursion and Backtracking",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integers N and T.\nLine 2: N distinct positive integers. If N = 0, this line is empty.",
+        "output_format": "Print each combination on a separate line, with numbers separated by one space. Print {} for the empty combination or NONE if no combination exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M11_Java_Recursion_and_Backtracking.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

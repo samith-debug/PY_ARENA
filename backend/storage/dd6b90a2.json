@@ -1,0 +1,1945 @@
+{
+  "id": "dd6b90a2",
+  "filename": "JP_M3_Java_Operators_and_Bit_Basics.csv",
+  "imported_at": "2026-10-24T13:57:58.335809Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M3-01",
+      "title": "Arithmetic Expression Evaluator",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Apply +, -, *, /, and % to two integers, including negative operands.",
+      "problem_statement": "Read two integers a and b. Print their sum, difference (a - b), product, integer quotient (a / b), and remainder (a % b), each on a separate line and in that order. Both inputs may be negative, but b must not be zero. All results must fit in a Java int.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "Five lines: a + b, a - b, a * b, a / b, and a % b, in that order.",
+      "constraints": "b != 0\nAll results fit in a Java int.",
+      "sample_inputs": [
+        "17\n5",
+        "-17\n5"
+      ],
+      "sample_outputs": [
+        "22\n12\n85\n3\n2",
+        "-12\n-22\n-85\n-3\n-2"
+      ],
+      "hints": [
+        "Use the five arithmetic operators +, -, *, /, and % on two int variables.",
+        "Integer division truncates toward zero, so -17 / 5 is -3, not -4.",
+        "The result of % takes the sign of the left operand, so -17 % 5 is -2."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        System.out.println(a + b);\n        System.out.println(a - b);\n        System.out.println(a * b);\n        System.out.println(a / b);\n        System.out.println(a % b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "17\n5",
+          "output": "22\n12\n85\n3\n2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-17\n5",
+          "output": "-12\n-22\n-85\n-3\n-2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7\n-2",
+          "output": "5\n9\n-14\n-3\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-7\n-2",
+          "output": "-9\n-5\n14\n3\n-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n3",
+          "output": "3\n-3\n0\n0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100\n7",
+          "output": "107\n93\n700\n14\n2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "46340\n46340",
+          "output": "92680\n0\n2147395600\n1\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1000\n33",
+          "output": "-967\n-1033\n-33000\n-30\n-10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "Five lines: a + b, a - b, a * b, a / b, and a % b, in that order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-02",
+      "title": "Relational Operator Results",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Evaluate all six relational operators on two integers.",
+      "problem_statement": "Read integers a and b. Print the results of a < b, a <= b, a > b, a >= b, a == b, and a != b, in that order. Print each Boolean result on a separate line.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "Six lines containing true or false, in the order listed.",
+      "constraints": "-2147483648 <= a, b <= 2147483647",
+      "sample_inputs": [
+        "8\n12",
+        "12\n8"
+      ],
+      "sample_outputs": [
+        "true\ntrue\nfalse\nfalse\nfalse\ntrue",
+        "false\nfalse\ntrue\ntrue\nfalse\ntrue"
+      ],
+      "hints": [
+        "Each relational expression produces a boolean value.",
+        "You can print an expression directly: System.out.println(a < b);",
+        "Use == for equality; a single = is assignment."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        System.out.println(a < b);\n        System.out.println(a <= b);\n        System.out.println(a > b);\n        System.out.println(a >= b);\n        System.out.println(a == b);\n        System.out.println(a != b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8\n12",
+          "output": "true\ntrue\nfalse\nfalse\nfalse\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "12\n8",
+          "output": "false\nfalse\ntrue\ntrue\nfalse\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5",
+          "output": "false\ntrue\nfalse\ntrue\ntrue\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-3\n-3",
+          "output": "false\ntrue\nfalse\ntrue\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-10\n4",
+          "output": "true\ntrue\nfalse\nfalse\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0\n-1",
+          "output": "false\nfalse\ntrue\ntrue\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2147483647\n-2147483648",
+          "output": "false\nfalse\ntrue\ntrue\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n101",
+          "output": "true\ntrue\nfalse\nfalse\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "Six lines containing true or false, in the order listed."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-03",
+      "title": "Logical Operator Evaluator",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Evaluate &&, ||, and ! on two boolean values.",
+      "problem_statement": "Read two Boolean values, a and b, each entered as true or false. Print a && b, a || b, and !a, in that order.",
+      "input_format": "Two separate lines:\nLine 1: true or false\nLine 2: true or false",
+      "output_format": "Three lines: a && b, a || b, and !a, in that order.",
+      "constraints": "Each input is exactly true or false (lowercase).",
+      "sample_inputs": [
+        "true\nfalse",
+        "false\ntrue"
+      ],
+      "sample_outputs": [
+        "false\ntrue\nfalse",
+        "false\ntrue\ntrue"
+      ],
+      "hints": [
+        "Read each value with Boolean.parseBoolean(sc.next()).",
+        "&& is true only when both values are true; || is true when at least one is true.",
+        "!a reverses the value of a."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        boolean a = Boolean.parseBoolean(sc.next());\n        boolean b = Boolean.parseBoolean(sc.next());\n        System.out.println(a && b);\n        System.out.println(a || b);\n        System.out.println(!a);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "true\nfalse",
+          "output": "false\ntrue\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "false\ntrue",
+          "output": "false\ntrue\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "true\ntrue",
+          "output": "true\ntrue\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "false\nfalse",
+          "output": "false\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "true\nfalse",
+          "output": "false\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "false\ntrue",
+          "output": "false\ntrue\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "true\ntrue",
+          "output": "true\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "false\nfalse",
+          "output": "false\nfalse\ntrue",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: true or false\nLine 2: true or false",
+        "output_format": "Three lines: a && b, a || b, and !a, in that order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-04",
+      "title": "Ternary Operator: Larger Number",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Select the larger of two integers using the ternary operator.",
+      "problem_statement": "Read two integers a and b. Use the ternary operator ?: to print the larger value. If both values are equal, print that value. Do not use if-else.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "A single line containing the larger value.",
+      "constraints": "-2147483648 <= a, b <= 2147483647",
+      "sample_inputs": [
+        "14\n9",
+        "3\n3"
+      ],
+      "sample_outputs": [
+        "14",
+        "3"
+      ],
+      "hints": [
+        "The ternary operator has the form condition ? valueIfTrue : valueIfFalse.",
+        "Use a > b as the condition.",
+        "When a and b are equal, either branch gives the correct answer."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        int larger = a > b ? a : b;\n        System.out.println(larger);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "14\n9",
+          "output": "14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n3",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-5\n-2",
+          "output": "-2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n-1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647\n-2147483648",
+          "output": "2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9\n14",
+          "output": "14",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-7\n-7",
+          "output": "-7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n99",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "A single line containing the larger value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-05",
+      "title": "Prefix and Postfix Increment",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Distinguish the value returned by x++ from the value returned by ++x.",
+      "problem_statement": "Read an integer x. Print the result of x++, then the updated value of x, then the result of ++x, and finally the updated value of x again. Assume no integer overflow occurs.",
+      "input_format": "A single line containing an integer x.",
+      "output_format": "Four lines: x++, x, ++x, and x, in that order.",
+      "constraints": "-2147483648 <= x <= 2147483645",
+      "sample_inputs": [
+        "5",
+        "0"
+      ],
+      "sample_outputs": [
+        "5\n6\n7\n7",
+        "0\n1\n2\n2"
+      ],
+      "hints": [
+        "System.out.println(x++); prints the old value, then increases x.",
+        "System.out.println(++x); increases x first, then prints the new value.",
+        "Print x on its own between the two increments to see the updated value."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = Integer.parseInt(sc.next());\n        System.out.println(x++);\n        System.out.println(x);\n        System.out.println(++x);\n        System.out.println(x);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "5\n6\n7\n7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0\n1\n2\n2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1",
+          "output": "-1\n0\n1\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-10",
+          "output": "-10\n-9\n-8\n-8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100",
+          "output": "100\n101\n102\n102",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2147483645",
+          "output": "2147483645\n2147483646\n2147483647\n2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-2147483648",
+          "output": "-2147483648\n-2147483647\n-2147483646\n-2147483646",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "42",
+          "output": "42\n43\n44\n44",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer x.",
+        "output_format": "Four lines: x++, x, ++x, and x, in that order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-06",
+      "title": "Operator Precedence Challenge",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Compare an expression evaluated by default precedence with one changed by parentheses.",
+      "problem_statement": "Read integers a, b, and c. Print a + b * c and (a + b) * c, in that order. Assume both results fit in a Java int.",
+      "input_format": "Three separate lines:\nLine 1: Integer a\nLine 2: Integer b\nLine 3: Integer c",
+      "output_format": "Two lines: a + b * c, then (a + b) * c.",
+      "constraints": "Both results fit in a Java int.",
+      "sample_inputs": [
+        "4\n3\n2",
+        "2\n5\n3"
+      ],
+      "sample_outputs": [
+        "10\n14",
+        "17\n21"
+      ],
+      "hints": [
+        "Multiplication is evaluated before addition.",
+        "Parentheses force the expression inside them to be evaluated first.",
+        "Write both expressions exactly as shown; do not simplify them."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        int c = Integer.parseInt(sc.next());\n        System.out.println(a + b * c);\n        System.out.println((a + b) * c);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n3\n2",
+          "output": "10\n14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n5\n3",
+          "output": "17\n21",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1\n4\n2",
+          "output": "7\n6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n7\n7",
+          "output": "49\n49",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n-3\n4",
+          "output": "-2\n28",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100\n100\n100",
+          "output": "10100\n20000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-5\n-5\n-5",
+          "output": "20\n50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n2\n3",
+          "output": "7\n9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: Integer a\nLine 2: Integer b\nLine 3: Integer c",
+        "output_format": "Two lines: a + b * c, then (a + b) * c."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-07",
+      "title": "Bitwise AND and OR",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Apply the bitwise & and | operators to two non-negative integers.",
+      "problem_statement": "Read two non-negative integers a and b. Print a & b, followed by a | b. Both results must fit in a Java int.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "Two lines: a & b, then a | b.",
+      "constraints": "0 <= a, b <= 2147483647",
+      "sample_inputs": [
+        "6\n3",
+        "12\n10"
+      ],
+      "sample_outputs": [
+        "2\n7",
+        "8\n14"
+      ],
+      "hints": [
+        "Write each number in binary to see which bits are set.",
+        "& keeps a bit only when it is 1 in both numbers.",
+        "| keeps a bit when it is 1 in either number."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        System.out.println(a & b);\n        System.out.println(a | b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n3",
+          "output": "2\n7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "12\n10",
+          "output": "8\n14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n5",
+          "output": "0\n5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "15\n15",
+          "output": "15\n15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "255\n256",
+          "output": "0\n511",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2147483647\n1",
+          "output": "1\n2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1023\n512",
+          "output": "512\n1023",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8\n7",
+          "output": "0\n15",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "Two lines: a & b, then a | b."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-08",
+      "title": "Left and Right Bit Shifts",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Easy",
+      "objective": "Shift a non-negative integer left and right by k positions.",
+      "problem_statement": "Read a non-negative integer n and an integer k from 0 to 30. Print n << k and n >> k, in that order. The left-shift result must fit in a Java int.",
+      "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Shift distance k",
+      "output_format": "Two lines: n << k, then n >> k.",
+      "constraints": "n >= 0\n0 <= k <= 30\nn << k fits in a Java int.",
+      "sample_inputs": [
+        "12\n2",
+        "1\n30"
+      ],
+      "sample_outputs": [
+        "48\n3",
+        "1073741824\n0"
+      ],
+      "hints": [
+        "Shifting left by k positions multiplies a non-negative number by 2 to the power k.",
+        "Shifting right by k positions divides a non-negative number by 2 to the power k, discarding the remainder.",
+        "Shifting by 0 leaves the value unchanged."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        System.out.println(n << k);\n        System.out.println(n >> k);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12\n2",
+          "output": "48\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n30",
+          "output": "1073741824\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n0",
+          "output": "5\n5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n10",
+          "output": "0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000\n3",
+          "output": "8000\n125",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7\n1",
+          "output": "14\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n0",
+          "output": "1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "65535\n15",
+          "output": "2147450880\n1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Shift distance k",
+        "output_format": "Two lines: n << k, then n >> k."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-09",
+      "title": "Integer Overflow with Increment and Decrement",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Apply ++ and -- to an int and observe wraparound at the int limits.",
+      "problem_statement": "Read an integer x. Apply x++ and print x. Then apply x-- and print x. Apply x-- once more and print x.\n\nJava int arithmetic wraps around on overflow: one more than 2147483647 is -2147483648, and one less than -2147483648 is 2147483647. No error is reported when this happens.",
+      "input_format": "A single line containing an integer x.",
+      "output_format": "Three lines: x after x++, after the first x--, and after the second x--.",
+      "constraints": "-2147483648 <= x <= 2147483647",
+      "sample_inputs": [
+        "2147483647",
+        "-2147483648"
+      ],
+      "sample_outputs": [
+        "-2147483648\n2147483647\n2147483646",
+        "-2147483647\n-2147483648\n2147483647"
+      ],
+      "hints": [
+        "Use x++; and x--; as separate statements, then print x after each one.",
+        "Integer.MAX_VALUE is 2147483647 and Integer.MIN_VALUE is -2147483648.",
+        "Going one past either limit wraps around to the other limit."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = Integer.parseInt(sc.next());\n        x++;\n        System.out.println(x);\n        x--;\n        System.out.println(x);\n        x--;\n        System.out.println(x);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2147483647",
+          "output": "-2147483648\n2147483647\n2147483646",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-2147483648",
+          "output": "-2147483647\n-2147483648\n2147483647",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "11\n10\n9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "1\n0\n-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-2147483647",
+          "output": "-2147483646\n-2147483647\n-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2147483646",
+          "output": "2147483647\n2147483646\n2147483645",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1",
+          "output": "0\n-1\n-2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100",
+          "output": "101\n100\n99",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer x.",
+        "output_format": "Three lines: x after x++, after the first x--, and after the second x--."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-10",
+      "title": "Compound Assignment Sequence",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Apply a sequence of compound assignments and track the variable after each one.",
+      "problem_statement": "Read an integer x. Apply these operations in order, printing the value after each operation: x += 8, x *= 3, x -= 5, x /= 2, and x %= 4. Each intermediate result must fit in a Java int.",
+      "input_format": "A single line containing an integer x.",
+      "output_format": "Five lines: the value of x after each operation, in order.",
+      "constraints": "-100000 <= x <= 100000",
+      "sample_inputs": [
+        "4",
+        "-4"
+      ],
+      "sample_outputs": [
+        "12\n36\n31\n15\n3",
+        "4\n12\n7\n3\n3"
+      ],
+      "hints": [
+        "Each compound assignment uses the current value of x, not the original input.",
+        "x /= 2 uses integer division, which truncates toward zero.",
+        "For a negative x, x %= 4 can produce a negative result."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int x = Integer.parseInt(sc.next());\n        x += 8;\n        System.out.println(x);\n        x *= 3;\n        System.out.println(x);\n        x -= 5;\n        System.out.println(x);\n        x /= 2;\n        System.out.println(x);\n        x %= 4;\n        System.out.println(x);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4",
+          "output": "12\n36\n31\n15\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-4",
+          "output": "4\n12\n7\n3\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "8\n24\n19\n9\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10",
+          "output": "18\n54\n49\n24\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-20",
+          "output": "-12\n-36\n-41\n-20\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "108\n324\n319\n159\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-10",
+          "output": "-2\n-6\n-11\n-5\n-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "15\n45\n40\n20\n0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer x.",
+        "output_format": "Five lines: the value of x after each operation, in order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-11",
+      "title": "Combined Relational and Logical Expressions",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Combine relational comparisons with &&, ||, and ! in compound Boolean expressions.",
+      "problem_statement": "Read an integer age, an integer score, and an integer attendance. Print the results of these expressions, one per line:\n1. age >= 18 && score >= 50\n2. score >= 75 || attendance >= 90\n3. !(age < 18)\n4. age >= 18 && score >= 50 && attendance >= 75\nAssume each input is between 0 and 150.",
+      "input_format": "Three separate lines:\nLine 1: age\nLine 2: score\nLine 3: attendance",
+      "output_format": "Four lines containing true or false, one for each expression in order.",
+      "constraints": "0 <= age, score, attendance <= 150",
+      "sample_inputs": [
+        "20\n60\n80",
+        "17\n80\n95"
+      ],
+      "sample_outputs": [
+        "true\nfalse\ntrue\ntrue",
+        "false\ntrue\nfalse\nfalse"
+      ],
+      "hints": [
+        "Relational operators are evaluated before && and ||, so no extra parentheses are needed around comparisons.",
+        "!(age < 18) needs its parentheses because ! cannot be applied to an int.",
+        "Evaluate each comparison by hand first, then combine the results."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int age = Integer.parseInt(sc.next());\n        int score = Integer.parseInt(sc.next());\n        int attendance = Integer.parseInt(sc.next());\n        System.out.println(age >= 18 && score >= 50);\n        System.out.println(score >= 75 || attendance >= 90);\n        System.out.println(!(age < 18));\n        System.out.println(age >= 18 && score >= 50 && attendance >= 75);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "20\n60\n80",
+          "output": "true\nfalse\ntrue\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "17\n80\n95",
+          "output": "false\ntrue\nfalse\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "18\n50\n75",
+          "output": "true\nfalse\ntrue\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "30\n40\n90",
+          "output": "false\ntrue\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "16\n30\n50",
+          "output": "false\nfalse\nfalse\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "25\n75\n74",
+          "output": "true\ntrue\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "18\n49\n100",
+          "output": "false\ntrue\ntrue\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "40\n100\n100",
+          "output": "true\ntrue\ntrue\ntrue",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: age\nLine 2: score\nLine 3: attendance",
+        "output_format": "Four lines containing true or false, one for each expression in order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-12",
+      "title": "Numeric Promotion in Arithmetic",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Compare integer division with floating-point division after casting one operand to double.",
+      "problem_statement": "Read two integers a and b, where b is non-zero. Print the result of integer division a / b, then the result of floating-point division (double) a / b. Assume -1,000,000 <= a <= 1,000,000 and 1 <= |b| <= 1,000, so the floating-point result prints in ordinary decimal notation.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "Two lines: a / b, then (double) a / b.",
+      "constraints": "-1,000,000 <= a <= 1,000,000\n1 <= |b| <= 1,000",
+      "sample_inputs": [
+        "7\n2",
+        "-7\n2"
+      ],
+      "sample_outputs": [
+        "3\n3.5",
+        "-3\n-3.5"
+      ],
+      "hints": [
+        "When both operands are int, / performs integer division.",
+        "The cast in (double) a / b applies to a before the division happens.",
+        "Once one operand is double, Java promotes the other operand to double as well."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        System.out.println(a / b);\n        System.out.println((double) a / b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n2",
+          "output": "3\n3.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-7\n2",
+          "output": "-3\n-3.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n3",
+          "output": "0\n0.3333333333333333",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10\n5",
+          "output": "2\n2.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n1000",
+          "output": "0\n0.001",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000\n7",
+          "output": "142857\n142857.14285714287",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1000000\n-1",
+          "output": "1000000\n1000000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n-1000",
+          "output": "0\n-0.005",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "Two lines: a / b, then (double) a / b."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-13",
+      "title": "Character and Integer Promotion",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Use a char in arithmetic and convert the result back to char.",
+      "problem_statement": "Read an uppercase English letter. Print its integer character code plus one, then print the character obtained by converting that incremented code back to char. The input letter must be between A and Y, inclusive. Read the letter with sc.next().charAt(0).",
+      "input_format": "A single line containing one uppercase letter from A to Y.",
+      "output_format": "Two lines: the character code plus one, then the next character.",
+      "constraints": "'A' <= letter <= 'Y'",
+      "sample_inputs": [
+        "A",
+        "Y"
+      ],
+      "sample_outputs": [
+        "66\nB",
+        "90\nZ"
+      ],
+      "hints": [
+        "In c + 1, the char c is promoted to int, so the result is a number.",
+        "Store c + 1 in an int variable and print it.",
+        "Cast the int back with (char) to print it as a letter."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        char c = sc.next().charAt(0);\n        int next = c + 1;\n        System.out.println(next);\n        System.out.println((char) next);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "A",
+          "output": "66\nB",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Y",
+          "output": "90\nZ",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "M",
+          "output": "78\nN",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "B",
+          "output": "67\nC",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "C",
+          "output": "68\nD",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "X",
+          "output": "89\nY",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "H",
+          "output": "73\nI",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Q",
+          "output": "82\nR",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing one uppercase letter from A to Y.",
+        "output_format": "Two lines: the character code plus one, then the next character."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-14",
+      "title": "XOR Swap",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Swap two integers using only XOR compound assignments and no temporary variable.",
+      "problem_statement": "Read two integers a and b. Swap their values without using a third variable by applying these three XOR compound assignments in order: a ^= b, b ^= a, a ^= b. Print a, then b.\n\nXOR sets a bit when the corresponding bits of the two operands are different. Applying XOR with the same value twice restores the original value, which is what makes the swap work.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "Two lines: the new value of a, then the new value of b.",
+      "constraints": "-2147483648 <= a, b <= 2147483647",
+      "sample_inputs": [
+        "10\n6",
+        "-5\n12"
+      ],
+      "sample_outputs": [
+        "6\n10",
+        "12\n-5"
+      ],
+      "hints": [
+        "After a ^= b, the variable a holds the combined bits of both values.",
+        "b ^= a then recovers the original a and stores it in b.",
+        "a ^= b finally recovers the original b and stores it in a."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        a ^= b;\n        b ^= a;\n        a ^= b;\n        System.out.println(a);\n        System.out.println(b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n6",
+          "output": "6\n10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-5\n12",
+          "output": "12\n-5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n0",
+          "output": "0\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7\n7",
+          "output": "7\n7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647\n-2147483648",
+          "output": "-2147483648\n2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n2",
+          "output": "2\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1\n-100",
+          "output": "-100\n-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "255\n0",
+          "output": "0\n255",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "Two lines: the new value of a, then the new value of b."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-15",
+      "title": "Bitwise Complement",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Apply ~ to an int and interpret the result in 32-bit two's complement.",
+      "problem_statement": "Read a Java int value n. Print ~n. The output is the signed decimal representation of the resulting 32-bit integer.",
+      "input_format": "A single line containing an integer n.",
+      "output_format": "A single line containing ~n.",
+      "constraints": "-2147483648 <= n <= 2147483647",
+      "sample_inputs": [
+        "5",
+        "-6"
+      ],
+      "sample_outputs": [
+        "-6",
+        "5"
+      ],
+      "hints": [
+        "~ flips every one of the 32 bits, including the sign bit.",
+        "Flipping the sign bit turns a non-negative number negative, and the reverse.",
+        "For any Java int, ~n equals -n - 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        System.out.println(~n);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "-6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-6",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647",
+          "output": "-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-2147483648",
+          "output": "2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100",
+          "output": "-101",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-100",
+          "output": "99",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer n.",
+        "output_format": "A single line containing ~n."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-16",
+      "title": "Signed and Unsigned Right Shift",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Compare >> and >>> on negative and non-negative integers.",
+      "problem_statement": "Read a signed Java int value n and an integer k from 0 to 31. Print n >> k, followed by n >>> k. The first operator preserves the sign bit; the second fills the newly opened positions with zeros.",
+      "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Shift distance k",
+      "output_format": "Two lines: n >> k, then n >>> k.",
+      "constraints": "-2147483648 <= n <= 2147483647\n0 <= k <= 31",
+      "sample_inputs": [
+        "-8\n1",
+        "16\n2"
+      ],
+      "sample_outputs": [
+        "-4\n2147483644",
+        "4\n4"
+      ],
+      "hints": [
+        "For non-negative n, >> and >>> give the same result.",
+        ">> copies the sign bit into the opened positions, so a negative number stays negative.",
+        ">>> always fills with zeros, so a negative number becomes a large positive number when k > 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        System.out.println(n >> k);\n        System.out.println(n >>> k);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "-8\n1",
+          "output": "-4\n2147483644",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "16\n2",
+          "output": "4\n4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1\n31",
+          "output": "-1\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-1\n0",
+          "output": "-1\n-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647\n31",
+          "output": "0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-2147483648\n31",
+          "output": "-1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100\n3",
+          "output": "12\n12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-100\n4",
+          "output": "-7\n268435449",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Shift distance k",
+        "output_format": "Two lines: n >> k, then n >>> k."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-17",
+      "title": "Extract a Bit at a Given Position",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Medium",
+      "objective": "Extract a single bit from an integer using a shift and a mask.",
+      "problem_statement": "Read a non-negative integer n and a bit position p from 0 to 30. Print the bit at position p, counting from the rightmost bit as position 0. Use bitwise operators to extract the bit.",
+      "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Bit position p",
+      "output_format": "A single line containing 0 or 1.",
+      "constraints": "0 <= n <= 2147483647\n0 <= p <= 30",
+      "sample_inputs": [
+        "13\n2",
+        "13\n1"
+      ],
+      "sample_outputs": [
+        "1",
+        "0"
+      ],
+      "hints": [
+        "Shift n right by p positions so the wanted bit moves to position 0.",
+        "AND the result with 1 to discard every other bit.",
+        "The full expression is (n >> p) & 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int p = Integer.parseInt(sc.next());\n        System.out.println((n >> p) & 1);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "13\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "13\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647\n30",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1073741824\n30",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "8\n3",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8\n2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer n\nLine 2: Bit position p",
+        "output_format": "A single line containing 0 or 1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-18",
+      "title": "Short-Circuit Division Guard",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Hard",
+      "objective": "Write a Boolean expression whose operand order uses short-circuit evaluation to avoid division by zero.",
+      "problem_statement": "Read integers a and b. Print true if b is not zero and a / b is greater than 2; otherwise, print false. Print the value of a single Boolean expression. Do not use if-else or the ternary operator.\n\nYour expression must not cause a division-by-zero error when b is 0.",
+      "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+      "output_format": "A single line containing true or false.",
+      "constraints": "-2147483648 <= a <= 2147483647\n-2147483648 <= b <= 2147483647\nb may be 0.",
+      "sample_inputs": [
+        "10\n3",
+        "10\n0"
+      ],
+      "sample_outputs": [
+        "true",
+        "false"
+      ],
+      "hints": [
+        "&& evaluates its right operand only when the left operand is true.",
+        "The order of the two conditions matters: put the check that protects the division first.",
+        "Using & instead of && evaluates both sides and throws ArithmeticException when b is 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        System.out.println(b != 0 && a / b > 2);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n3",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10\n0",
+          "output": "false",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "9\n3",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "6\n3",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n0",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-10\n-3",
+          "output": "true",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100\n0",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-9\n3",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer a\nLine 2: Integer b",
+        "output_format": "A single line containing true or false."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-19",
+      "title": "Compound Assignment and Narrowing Conversion",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Hard",
+      "objective": "Compare the implicit narrowing in b += x with ordinary int addition b + x.",
+      "problem_statement": "Start with byte b = 10. Read an integer x, then apply b += x and print the resulting value. Also calculate b + x from the original value of b, using ordinary addition, and print that result on a second line. For the second calculation, use the original value 10, not the updated b. Assume -10,000 <= x <= 10,000.",
+      "input_format": "A single line containing an integer x.",
+      "output_format": "Two lines: b after b += x, then 10 + x computed as an int.",
+      "constraints": "-10,000 <= x <= 10,000",
+      "sample_inputs": [
+        "300",
+        "20"
+      ],
+      "sample_outputs": [
+        "54\n310",
+        "30\n30"
+      ],
+      "hints": [
+        "b += x compiles because it includes a hidden cast back to byte, like b = (byte) (b + x).",
+        "b + x on its own is promoted to int, so it does not wrap.",
+        "Calculate and store b + x before applying b += x, so you still have the original b."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        byte b = 10;\n        int x = Integer.parseInt(sc.next());\n        int sum = b + x;\n        b += x;\n        System.out.println(b);\n        System.out.println(sum);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "300",
+          "output": "54\n310",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "20",
+          "output": "30\n30",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-138",
+          "output": "-128\n-128",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-139",
+          "output": "127\n-129",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "117",
+          "output": "127\n127",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "118",
+          "output": "-128\n128",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000",
+          "output": "26\n10010",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-10000",
+          "output": "-6\n-9990",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer x.",
+        "output_format": "Two lines: b after b += x, then 10 + x computed as an int."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M3-20",
+      "title": "Independent Bitwise Flag Operations",
+      "module": "Module 03: Java Operators and Bit Basics",
+      "difficulty": "Hard",
+      "objective": "Set, toggle, clear, and test masked bits using |, ^, & with ~, and a comparison.",
+      "problem_statement": "Read non-negative integers flags and mask. Print the following four results, each on a separate line:\n1. flags | mask\n2. flags ^ mask\n3. flags & ~mask\n4. (flags & mask) != 0\nEach operation must use the original input values; do not feed one operation's result into the next. All numeric results must fit in a Java int.",
+      "input_format": "Two separate lines:\nLine 1: Integer flags\nLine 2: Integer mask",
+      "output_format": "Four lines: three integers followed by true or false.",
+      "constraints": "0 <= flags, mask <= 2147483647",
+      "sample_inputs": [
+        "10\n6",
+        "0\n0"
+      ],
+      "sample_outputs": [
+        "14\n12\n8\ntrue",
+        "0\n0\n0\nfalse"
+      ],
+      "hints": [
+        "| sets the masked bits, and ^ toggles them.",
+        "~mask has 1s everywhere except the masked bits, so flags & ~mask clears those bits.",
+        "(flags & mask) != 0 needs its parentheses because != has higher precedence than &."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int flags = Integer.parseInt(sc.next());\n        int mask = Integer.parseInt(sc.next());\n        System.out.println(flags | mask);\n        System.out.println(flags ^ mask);\n        System.out.println(flags & ~mask);\n        System.out.println((flags & mask) != 0);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n6",
+          "output": "14\n12\n8\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n0",
+          "output": "0\n0\n0\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "15\n0",
+          "output": "15\n15\n15\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n15",
+          "output": "15\n15\n0\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n2",
+          "output": "7\n7\n5\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "255\n15",
+          "output": "255\n240\n240\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2147483647\n1073741824",
+          "output": "2147483647\n1073741823\n1073741823\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8\n7",
+          "output": "15\n15\n8\nfalse",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 03: Java Operators and Bit Basics",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer flags\nLine 2: Integer mask",
+        "output_format": "Four lines: three integers followed by true or false."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M3_Java_Operators_and_Bit_Basics.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

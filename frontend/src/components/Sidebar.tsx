@@ -34,6 +34,9 @@ interface SidebarProps {
   currentUser?: User | null;
   onSignOut?: () => void;
   onOpenAuth?: () => void;
+  activeCourse?: 'python' | 'java';
+  onSelectCourse?: (course: 'python' | 'java') => void;
+  courseModuleCounts?: { python: number; java: number };
 }
 
 export const Sidebar: React.FC<SidebarProps> = ({
@@ -51,7 +54,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   currentBankIssuesCount,
   currentUser,
   onSignOut,
-  onOpenAuth
+  onOpenAuth,
+  activeCourse = 'python',
+  onSelectCourse,
+  courseModuleCounts
 }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
@@ -88,8 +94,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
   // Filter modules and questions by search term and module-level solved status
   const filteredModules = useMemo(() => {
     const s = searchTerm.trim().toLowerCase();
+    const courseFiltered = modules.filter(
+      (mod) => (mod.course || 'python') === activeCourse
+    );
 
-    return modules.map((mod) => {
+    return courseFiltered.map((mod) => {
       const currentFilter = moduleStatusFilters[mod.bankId] || 'all';
       const totalCount = mod.questions.length;
       const solvedCount = mod.questions.filter((q) => questionStatuses[q.question_id] === 'passed').length;
@@ -136,17 +145,23 @@ export const Sidebar: React.FC<SidebarProps> = ({
       }
       return true;
     });
-  }, [modules, searchTerm, moduleStatusFilters, questionStatuses]);
+  }, [modules, searchTerm, moduleStatusFilters, questionStatuses, activeCourse]);
 
 
-  // Total questions count and solved count across all modules
+  // Total questions count and solved count across current course
   const totalQuestionsCount = useMemo(() => {
-    return modules.reduce((acc, m) => acc + m.questions.length, 0);
-  }, [modules]);
+    const courseFiltered = modules.filter(
+      (mod) => (mod.course || 'python') === activeCourse
+    );
+    return courseFiltered.reduce((acc, m) => acc + m.questions.length, 0);
+  }, [modules, activeCourse]);
 
   const totalSolvedCount = useMemo(() => {
     const allIds = new Set<string>();
-    modules.forEach((m) => {
+    const courseFiltered = modules.filter(
+      (mod) => (mod.course || 'python') === activeCourse
+    );
+    courseFiltered.forEach((m) => {
       m.questions.forEach((q) => {
         if (questionStatuses[q.question_id] === 'passed') {
           allIds.add(q.question_id);
@@ -154,7 +169,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       });
     });
     return allIds.size;
-  }, [modules, questionStatuses]);
+  }, [modules, activeCourse, questionStatuses]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -168,16 +183,43 @@ export const Sidebar: React.FC<SidebarProps> = ({
       <aside className="w-12 h-full bg-[#11151e] border-r border-[#1e2638] flex flex-col items-center py-3 select-none z-10 transition-all duration-200">
         <button
           onClick={() => setIsCollapsed(false)}
-          className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md transition mb-4"
+          className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/60 rounded-md transition mb-3"
           title="Expand sidebar"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
+
+        {/* Collapsed Course Switcher */}
+        <div className="flex flex-col space-y-1.5 mb-4">
+          <button
+            onClick={() => onSelectCourse?.('python')}
+            className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs transition ${
+              activeCourse === 'python'
+                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm font-bold'
+                : 'text-zinc-400 hover:bg-zinc-800'
+            }`}
+            title="Switch to Python Course"
+          >
+            🐍
+          </button>
+          <button
+            onClick={() => onSelectCourse?.('java')}
+            className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs transition ${
+              activeCourse === 'java'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm font-bold'
+                : 'text-zinc-400 hover:bg-zinc-800'
+            }`}
+            title="Switch to Java Course"
+          >
+            ☕
+          </button>
+        </div>
+
         <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-mono text-xs font-bold mb-4">
           {'</>'}
         </div>
         <div className="flex-1 flex flex-col items-center space-y-2 overflow-y-auto">
-          {modules.map((m) => (
+          {filteredModules.map((m) => (
             <div key={m.bankId} className="flex flex-col items-center space-y-1">
               <span className="text-[9px] font-mono font-bold text-slate-500">M{m.moduleNumber}</span>
               {m.questions.slice(0, 5).map((q) => (
@@ -228,9 +270,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
               className="text-left group flex items-center space-x-1.5 min-w-0"
             >
               <h2 className="text-[13px] font-bold text-zinc-100 tracking-tight group-hover:text-white transition flex items-center gap-1.5">
-                <span>PyArena</span>
-                <span className="text-[9px] font-mono font-medium uppercase px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">
-                  Lab
+                <span>CodeArena</span>
+                <span className={`text-[9px] font-mono font-medium uppercase px-1.5 py-0.5 rounded border ${
+                  activeCourse === 'java'
+                    ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30'
+                    : 'bg-zinc-800 text-zinc-300 border-zinc-700'
+                }`}>
+                  {activeCourse === 'java' ? 'Java' : 'Python'}
                 </span>
               </h2>
             </button>
@@ -243,6 +289,45 @@ export const Sidebar: React.FC<SidebarProps> = ({
             title="Collapse sidebar"
           >
             <ChevronLeft className="w-4 h-4" />
+          </button>
+        </div>
+
+        {/* Course Switcher: Python vs Java */}
+        <div className="mt-2.5 p-1 bg-[#0b0e15] rounded-lg border border-[#1e2638] grid grid-cols-2 gap-1.5 shadow-inner">
+          <button
+            type="button"
+            onClick={() => onSelectCourse?.('python')}
+            className={`flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded-md text-xs font-semibold transition ${
+              activeCourse === 'python'
+                ? 'bg-[#1b2333] text-amber-300 border border-amber-500/40 shadow-sm'
+                : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#141a26]'
+            }`}
+          >
+            <span className="text-sm">🐍</span>
+            <span>Python</span>
+            <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+              activeCourse === 'python' ? 'bg-amber-500/20 text-amber-300' : 'bg-zinc-800 text-zinc-400'
+            }`}>
+              {courseModuleCounts?.python ?? 18}M
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onSelectCourse?.('java')}
+            className={`flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded-md text-xs font-semibold transition ${
+              activeCourse === 'java'
+                ? 'bg-[#142333] text-cyan-300 border border-cyan-500/40 shadow-sm'
+                : 'text-zinc-400 hover:text-zinc-200 hover:bg-[#141a26]'
+            }`}
+          >
+            <span className="text-sm">☕</span>
+            <span>Java</span>
+            <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
+              activeCourse === 'java' ? 'bg-cyan-500/20 text-cyan-300' : 'bg-zinc-800 text-zinc-400'
+            }`}>
+              {courseModuleCounts?.java ?? 1}M
+            </span>
           </button>
         </div>
 

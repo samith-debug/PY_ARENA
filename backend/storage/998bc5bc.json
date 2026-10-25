@@ -1,0 +1,1944 @@
+{
+  "id": "998bc5bc",
+  "filename": "JP_M16_Java_Searching_and_Sorting_Algorithms.csv",
+  "imported_at": "2026-10-24T17:28:56.327575Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M16-01",
+      "title": "Insertion Sort with Pass-by-Pass Output",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Implement insertion sort and show the array after every pass.",
+      "problem_statement": "Given an array of N integers, sort it in ascending order using insertion sort. Start with the second element and insert each element into its correct position within the already-sorted prefix.\n\nAfter every insertion pass, print the entire array on one line, including passes where the array does not change. Do not use Arrays.sort() or another library sorting method.\n\nExplanation: Pass 1 inserts 2 before 5. Pass 2 inserts 4 between 2 and 5. Pass 3 moves 1 to the front. Pass 4 inserts 3 between 2 and 4, leaving the array sorted.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print N \u2212 1 lines. Each line contains the array after one insertion pass, with values separated by single spaces. If N = 1, print the single input element on one line.",
+      "constraints": "1 \u2264 N \u2264 100\n\u22121,000,000 \u2264 each value \u2264 1,000,000",
+      "sample_inputs": [
+        "5\n5 2 4 1 3",
+        "1\n7"
+      ],
+      "sample_outputs": [
+        "2 5 4 1 3\n2 4 5 1 3\n1 2 4 5 3\n1 2 3 4 5",
+        "7"
+      ],
+      "hints": [
+        "For each index i from 1 to N \u2212 1, save key = a[i] and shift larger elements of the prefix one position right.",
+        "Stop shifting when you reach an element less than or equal to key; this keeps equal values in their original order.",
+        "Print the array after every value of i, even if nothing moved."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    static String join(int[] a) {\n        StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < a.length; i++) {\n            if (i > 0) {\n                sb.append(' ');\n            }\n            sb.append(a[i]);\n        }\n        return sb.toString();\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        StringBuilder out = new StringBuilder();\n        if (n == 1) {\n            out.append(a[0]).append(\"\\n\");\n        }\n        for (int i = 1; i < n; i++) {\n            int key = a[i];\n            int j = i - 1;\n            while (j >= 0 && a[j] > key) {\n                a[j + 1] = a[j];\n                j--;\n            }\n            a[j + 1] = key;\n            out.append(join(a)).append(\"\\n\");\n        }\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n5 2 4 1 3",
+          "output": "2 5 4 1 3\n2 4 5 1 3\n1 2 4 5 3\n1 2 3 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n2 1",
+          "output": "1 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1 2 3",
+          "output": "1 2 3\n1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n4 3 2 1",
+          "output": "3 4 2 1\n2 3 4 1\n1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n5 5 5",
+          "output": "5 5 5\n5 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n-1 1000000 -1000000 0 3",
+          "output": "-1 1000000 -1000000 0 3\n-1000000 -1 1000000 0 3\n-1000000 -1 0 1000000 3\n-1000000 -1 0 3 1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n2 1 2 1",
+          "output": "1 2 2 1\n1 2 2 1\n1 1 2 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print N \u2212 1 lines. Each line contains the array after one insertion pass, with values separated by single spaces. If N = 1, print the single input element on one line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-02",
+      "title": "Counting Sort for a Small Value Range",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Sort by counting frequencies over a known value range, including negative values.",
+      "problem_statement": "Given N integers, sort them in ascending order using counting sort. Negative values and duplicates are allowed. Every input value must appear in the output with exactly the same frequency as in the input.\n\nDo not use a comparison-based sorting library method. Use a frequency array for the specified value range.\n\nExplanation: The counts are two \u22121s, one 0, two 2s, and two 3s. Writing each value as many times as it was counted, in increasing order, gives the sorted sequence.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the sorted integers on one line, separated by single spaces.",
+      "constraints": "1 \u2264 N \u2264 100,000\n\u22121,000 \u2264 each value \u2264 1,000",
+      "sample_inputs": [
+        "7\n3 -1 2 3 0 -1 2",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "-1 -1 0 2 2 3 3",
+        "0"
+      ],
+      "hints": [
+        "Use an array of 2001 counts and an offset of 1000, so value v is counted at index v + 1000.",
+        "Walk the count array from index 0 to 2000 and output index \u2212 1000 as many times as its count.",
+        "Build the output with a StringBuilder for speed."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int[] count = new int[2001];\n        for (int v : a) {\n            count[v + 1000]++;\n        }\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < count.length; i++) {\n            for (int c = 0; c < count[i]; c++) {\n                if (out.length() > 0) {\n                    out.append(' ');\n                }\n                out.append(i - 1000);\n            }\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n3 -1 2 3 0 -1 2",
+          "output": "-1 -1 0 2 2 3 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n1000 -1000 0 1000 -1000",
+          "output": "-1000 -1000 0 1000 1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n5 5 5",
+          "output": "5 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n4 3 2 1",
+          "output": "1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n-1 -2 -3 1 2 3",
+          "output": "-3 -2 -1 1 2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 -0",
+          "output": "0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n10 -10 10 -10 0",
+          "output": "-10 -10 0 10 10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the sorted integers on one line, separated by single spaces."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-03",
+      "title": "Lower Bound in a Sorted Array",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Write a binary search that returns the first index with a value at least X.",
+      "problem_statement": "Given an array sorted in non-decreasing order and an integer X, find the first index whose value is greater than or equal to X. If every array value is smaller than X, return N.\n\nImplement binary search. The returned index is zero-based.\n\nExplanation: The values at indices 1 and 2 are both 4, which is at least 4. The first such index is 1.",
+      "input_format": "The first line contains N.\nThe second line contains N sorted integers.\nThe third line contains X.",
+      "output_format": "Print the first qualifying index, or N if no qualifying element exists.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAll array values and X fit in a Java int.",
+      "sample_inputs": [
+        "5\n2 4 4 7 9\n4",
+        "1\n5\n5"
+      ],
+      "sample_outputs": [
+        "1",
+        "0"
+      ],
+      "hints": [
+        "Search the half-open range [low, high) with low = 0 and high = N.",
+        "If a[mid] < x, the answer is to the right: low = mid + 1; otherwise high = mid.",
+        "When low == high, that index is the answer; it is N if every value is smaller than X."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int x = Integer.parseInt(sc.next());\n        int low = 0;\n        int high = n;\n        while (low < high) {\n            int mid = low + (high - low) / 2;\n            if (a[mid] < x) {\n                low = mid + 1;\n            } else {\n                high = mid;\n            }\n        }\n        System.out.println(low);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 4 4 7 9\n4",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5\n6",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n5\n4",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 1 1 1 1\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n1 2 3 4\n100",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n-2147483648 0 0 2147483647\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n2 4 4 4 7 9\n8",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N sorted integers.\nThe third line contains X.",
+        "output_format": "Print the first qualifying index, or N if no qualifying element exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-04",
+      "title": "Stable Sorting of Student Records",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Implement a stable sort and observe that equal keys keep their input order.",
+      "problem_statement": "Each student has a name and an integer score. Sort the students by score in ascending order. If two students have equal scores, preserve their original input order.\n\nImplement a stable insertion sort on the records. Do not use library sorting methods. Student names contain no spaces.\n\nExplanation: Dev (60) and Ben (70) come first. Ana and Cara both scored 80, so they keep their input order: Ana before Cara.",
+      "input_format": "The first line contains N.\nEach of the next N lines contains a student name followed by an integer score.",
+      "output_format": "Print N lines, each containing the student name and score separated by one space.",
+      "constraints": "1 \u2264 N \u2264 100\n0 \u2264 score \u2264 100",
+      "sample_inputs": [
+        "4\nAna 80\nBen 70\nCara 80\nDev 60",
+        "1\nSolo 50"
+      ],
+      "sample_outputs": [
+        "Dev 60\nBen 70\nAna 80\nCara 80",
+        "Solo 50"
+      ],
+      "hints": [
+        "Store names and scores in parallel arrays, or in a small record class.",
+        "Shift a record right only while the previous score is strictly greater than the key's score.",
+        "Using >= instead of > would move equal scores past each other and break stability."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        String[] names = new String[n];\n        int[] scores = new int[n];\n        for (int i = 0; i < n; i++) {\n            names[i] = sc.next();\n            scores[i] = Integer.parseInt(sc.next());\n        }\n        for (int i = 1; i < n; i++) {\n            String keyName = names[i];\n            int keyScore = scores[i];\n            int j = i - 1;\n            while (j >= 0 && scores[j] > keyScore) {\n                names[j + 1] = names[j];\n                scores[j + 1] = scores[j];\n                j--;\n            }\n            names[j + 1] = keyName;\n            scores[j + 1] = keyScore;\n        }\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            out.append(names[i]).append(' ').append(scores[i]).append(\"\\n\");\n        }\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nAna 80\nBen 70\nCara 80\nDev 60",
+          "output": "Dev 60\nBen 70\nAna 80\nCara 80",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nSolo 50",
+          "output": "Solo 50",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nA 100\nB 100\nC 100",
+          "output": "A 100\nB 100\nC 100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nC 3\nB 2\nA 1",
+          "output": "A 1\nB 2\nC 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\nZed 0\nAmy 0\nBob 1\nCal 0",
+          "output": "Zed 0\nAmy 0\nCal 0\nBob 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nX 10\nY 5",
+          "output": "Y 5\nX 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\nP 5\nQ 4\nR 5\nS 4\nT 5",
+          "output": "Q 4\nS 4\nP 5\nR 5\nT 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nSame 1\nSame 1",
+          "output": "Same 1\nSame 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nEach of the next N lines contains a student name followed by an integer score.",
+        "output_format": "Print N lines, each containing the student name and score separated by one space."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-05",
+      "title": "Search in a Rotated Sorted Array",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Adapt binary search by identifying which half of the range is sorted.",
+      "problem_statement": "An array was originally sorted in strictly increasing order and then rotated at an unknown position. It may also be unrotated. Given a target X, find its zero-based index. If X is absent, print -1.\n\nImplement modified binary search. All values are distinct, so the target's index is unique.\n\nExplanation: The array is [5, 10, 20, 25, 30, 40, 50] rotated so that 30 comes first. The target 10 is at index 4.",
+      "input_format": "The first line contains N.\nThe second line contains N integers representing the rotated array.\nThe third line contains X.",
+      "output_format": "Print the target index or -1.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAll values are distinct Java int values.",
+      "sample_inputs": [
+        "7\n30 40 50 5 10 20 25\n10",
+        "1\n5\n5"
+      ],
+      "sample_outputs": [
+        "4",
+        "0"
+      ],
+      "hints": [
+        "At each step, at least one half, [low, mid] or [mid, high], is sorted.",
+        "If a[low] <= a[mid], the left half is sorted: search there only if a[low] <= x < a[mid].",
+        "Otherwise the right half is sorted: search there only if a[mid] < x <= a[high]."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int x = Integer.parseInt(sc.next());\n        int low = 0;\n        int high = n - 1;\n        int answer = -1;\n        while (low <= high) {\n            int mid = low + (high - low) / 2;\n            if (a[mid] == x) {\n                answer = mid;\n                break;\n            }\n            if (a[low] <= a[mid]) {\n                if (a[low] <= x && x < a[mid]) {\n                    high = mid - 1;\n                } else {\n                    low = mid + 1;\n                }\n            } else {\n                if (a[mid] < x && x <= a[high]) {\n                    low = mid + 1;\n                } else {\n                    high = mid - 1;\n                }\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n30 40 50 5 10 20 25\n10",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5\n3",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5\n4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n4 5 1 2 3\n1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n2 3 4 5 1\n1",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n6 7 8 1 2 3\n9",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n2147483647 -2147483648 0\n0",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers representing the rotated array.\nThe third line contains X.",
+        "output_format": "Print the target index or -1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-06",
+      "title": "Integer Square Root",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Easy",
+      "objective": "Binary search over possible answers, using long to avoid overflow in the check.",
+      "problem_statement": "Given a non-negative integer X, find the largest integer r satisfying r \u00d7 r \u2264 X. Do not use Math.sqrt().\n\nImplement binary search over the possible answer. Use long arithmetic when checking whether a candidate's square exceeds X.\n\nExplanation: 5 \u00d7 5 = 25 \u2264 27, but 6 \u00d7 6 = 36 > 27, so the integer square root of 27 is 5.",
+      "input_format": "One line containing X.",
+      "output_format": "Print the integer square root of X.",
+      "constraints": "0 \u2264 X \u2264 2,147,483,647",
+      "sample_inputs": [
+        "27",
+        "0"
+      ],
+      "sample_outputs": [
+        "5",
+        "0"
+      ],
+      "hints": [
+        "Search r in the range 0 to 46,341, because 46,341\u00b2 already exceeds the int range.",
+        "Compute the square as (long) mid * mid; as an int it can overflow and look negative.",
+        "Keep the largest mid whose square is at most X."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long x = Long.parseLong(sc.next());\n        long low = 0;\n        long high = 46341;\n        long answer = 0;\n        while (low <= high) {\n            long mid = (low + high) / 2;\n            if (mid * mid <= x) {\n                answer = mid;\n                low = mid + 1;\n            } else {\n                high = mid - 1;\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "27",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2147483647",
+          "output": "46340",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2147395600",
+          "output": "46340",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2147395599",
+          "output": "46339",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing X.",
+        "output_format": "Print the integer square root of X."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-07",
+      "title": "Dutch National Flag Sort",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Partition an array into three regions in one pass with three pointers.",
+      "problem_statement": "An array contains only 0, 1, and 2. Sort the array in ascending order in one traversal using the Dutch national flag algorithm.\n\nUse three pointers to divide the array into regions containing 0s, 1s, and 2s. Do not use a sorting library or an additional array. The required complexity is O(N) time and O(1) auxiliary space.\n\nExplanation: The two 0s are swapped to the front, the two 2s to the back, and the 1s remain in the middle, all in a single pass.",
+      "input_format": "The first line contains N.\nThe second line contains N integers, each equal to 0, 1, or 2.",
+      "output_format": "Print the sorted array on one line, with values separated by single spaces.",
+      "constraints": "1 \u2264 N \u2264 200,000",
+      "sample_inputs": [
+        "6\n2 0 2 1 1 0",
+        "1\n2"
+      ],
+      "sample_outputs": [
+        "0 0 1 1 2 2",
+        "2"
+      ],
+      "hints": [
+        "Keep low (end of the 0s), mid (current element), and high (start of the 2s).",
+        "A 0 is swapped to low and both low and mid advance; a 1 just advances mid.",
+        "A 2 is swapped to high and high moves left, but mid stays, because the swapped-in value hasn't been checked yet."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    static String join(int[] a) {\n        StringBuilder sb = new StringBuilder();\n        for (int i = 0; i < a.length; i++) {\n            if (i > 0) {\n                sb.append(' ');\n            }\n            sb.append(a[i]);\n        }\n        return sb.toString();\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int low = 0;\n        int mid = 0;\n        int high = n - 1;\n        while (mid <= high) {\n            if (a[mid] == 0) {\n                int t = a[low];\n                a[low] = a[mid];\n                a[mid] = t;\n                low++;\n                mid++;\n            } else if (a[mid] == 1) {\n                mid++;\n            } else {\n                int t = a[high];\n                a[high] = a[mid];\n                a[mid] = t;\n                high--;\n            }\n        }\n        System.out.println(join(a));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n2 0 2 1 1 0",
+          "output": "0 0 1 1 2 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n0 0 0",
+          "output": "0 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n2 2 2",
+          "output": "2 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n2 1 0 1 2",
+          "output": "0 1 1 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n1 1 0 0",
+          "output": "0 0 1 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n0 1 2 0 1 2",
+          "output": "0 0 1 1 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n2 0",
+          "output": "0 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers, each equal to 0, 1, or 2.",
+        "output_format": "Print the sorted array on one line, with values separated by single spaces."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-08",
+      "title": "Minimum Capacity to Ship Packages",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Binary search on the answer with a greedy feasibility check.",
+      "problem_statement": "N packages must be shipped in their given order within at most D days. Each day, the ship takes the next packages in order until adding another package would exceed its capacity.\n\nFind the smallest integer capacity that allows all packages to be shipped within D days. Implement binary search on the answer. For each candidate capacity, calculate how many days are required.\n\nExplanation: With capacity 4, the loads are [3], [2, 2], [4], [1], which takes 4 days. With capacity 5, the loads are [3, 2], [2], [4, 1], which takes 3 days. The smallest feasible capacity is therefore 5.",
+      "input_format": "The first line contains N and D.\nThe second line contains N positive package weights.",
+      "output_format": "Print the minimum feasible capacity.",
+      "constraints": "1 \u2264 D \u2264 N \u2264 100,000\n1 \u2264 each package weight \u2264 1,000,000",
+      "sample_inputs": [
+        "5 3\n3 2 2 4 1",
+        "1 1\n10"
+      ],
+      "sample_outputs": [
+        "5",
+        "10"
+      ],
+      "hints": [
+        "The answer is at least the heaviest package and at most the total weight; store the total in a long.",
+        "To test a capacity, fill each day greedily and start a new day when the next package would not fit.",
+        "If a capacity works, try smaller ones; otherwise try larger ones."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    static int daysNeeded(int[] a, long capacity) {\n        int days = 1;\n        long load = 0;\n        for (int w : a) {\n            if (load + w > capacity) {\n                days++;\n                load = 0;\n            }\n            load += w;\n        }\n        return days;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int d = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long low = 0;\n        long high = 0;\n        for (int w : a) {\n            low = Math.max(low, w);\n            high += w;\n        }\n        while (low < high) {\n            long mid = (low + high) / 2;\n            if (daysNeeded(a, mid) <= d) {\n                high = mid;\n            } else {\n                low = mid + 1;\n            }\n        }\n        System.out.println(low);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5 3\n3 2 2 4 1",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n10",
+          "output": "10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 1\n1 2 3",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 3\n1 2 3",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4 2\n1000000 1000000 1000000 1000000",
+          "output": "2000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6 2\n1 2 3 4 5 6",
+          "output": "11",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 5\n5 1 1 1 1",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10 3\n1 2 3 4 5 6 7 8 9 10",
+          "output": "21",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and D.\nThe second line contains N positive package weights.",
+        "output_format": "Print the minimum feasible capacity."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-09",
+      "title": "Count Pairs with a Given Sum",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Count index pairs by sorting and moving two pointers, handling runs of equal values.",
+      "problem_statement": "Given N integers and a target X, count the pairs of indices (i, j) satisfying i < j and array[i] + array[j] = X.\n\nEach pair of indices counts separately, even if the values are equal. The answer may exceed the Java int range, so store the count in a long. Use an algorithm with O(N log N) or better time complexity, and use long when adding values to avoid overflow.\n\nExplanation: All five values are 3, and 3 + 3 = 6. Every pair of indices qualifies, giving 5 \u00d7 4 / 2 = 10 pairs.",
+      "input_format": "The first line contains N and X.\nThe second line contains N integers.",
+      "output_format": "Print the number of valid pairs.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAll values and X fit in a Java int.",
+      "sample_inputs": [
+        "5 6\n3 3 3 3 3",
+        "5 6\n1 5 7 -1 5"
+      ],
+      "sample_outputs": [
+        "10",
+        "3"
+      ],
+      "hints": [
+        "Sort the array, then start one pointer at each end.",
+        "When the sum matches and the two values differ, multiply the size of the run of equal values on the left by the run on the right.",
+        "When the two pointers reach the same value, the remaining k equal elements form k \u00d7 (k \u2212 1) / 2 pairs."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long x = Long.parseLong(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        Arrays.sort(a);\n        long count = 0;\n        int i = 0;\n        int j = n - 1;\n        while (i < j) {\n            long sum = (long) a[i] + a[j];\n            if (sum < x) {\n                i++;\n            } else if (sum > x) {\n                j--;\n            } else if (a[i] == a[j]) {\n                long k = j - i + 1;\n                count += k * (k - 1) / 2;\n                break;\n            } else {\n                long left = 1;\n                while (i + 1 < j && a[i + 1] == a[i]) {\n                    left++;\n                    i++;\n                }\n                long right = 1;\n                while (j - 1 > i && a[j - 1] == a[j]) {\n                    right++;\n                    j--;\n                }\n                count += left * right;\n                i++;\n                j--;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5 6\n3 3 3 3 3",
+          "output": "10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5 6\n1 5 7 -1 5",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4 0\n0 0 0 0",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 -2147483648\n-1073741824 -1073741824 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 10\n1 2 3 4",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6 4\n2 2 2 2 2 2",
+          "output": "15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5 0\n-1 1 -1 1 0",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and X.\nThe second line contains N integers.",
+        "output_format": "Print the number of valid pairs."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-10",
+      "title": "Minimum Difference Between Two Values",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Use sorting so that the closest pair must be adjacent.",
+      "problem_statement": "Given N integers, find the minimum absolute difference between values at two distinct indices. Duplicate values are allowed, so the answer may be zero.\n\nImplement an algorithm that sorts the values and checks adjacent elements. The required time complexity is O(N log N). Calculate differences using long to handle the full Java int range safely.\n\nExplanation: After sorting, the adjacent pairs are (\u22122147483648, 10), (10, 11), and (11, 2147483647). The smallest difference is 11 \u2212 10 = 1.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the minimum absolute difference as a long.",
+      "constraints": "2 \u2264 N \u2264 200,000\nAll values fit in a Java int.",
+      "sample_inputs": [
+        "4\n-2147483648 10 2147483647 11",
+        "2\n5 5"
+      ],
+      "sample_outputs": [
+        "1",
+        "0"
+      ],
+      "hints": [
+        "After sorting, the closest pair is always next to each other.",
+        "Compute each difference as (long) a[i + 1] - a[i].",
+        "2147483647 \u2212 (\u22122147483648) is 4,294,967,295, which needs a long."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        Arrays.sort(a);\n        long best = Long.MAX_VALUE;\n        for (int i = 0; i + 1 < n; i++) {\n            best = Math.min(best, (long) a[i + 1] - a[i]);\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n-2147483648 10 2147483647 11",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n5 5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n-2147483648 2147483647",
+          "output": "4294967295",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1 10 100",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n9 4 1 7 3",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n100 -100 50 -50",
+          "output": "50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n0 0 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n-1 1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the minimum absolute difference as a long."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-11",
+      "title": "Kth Smallest Element",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Implement quickselect, partitioning only the side that contains the answer.",
+      "problem_statement": "Given an unsorted array of N integers and an integer K, find the Kth smallest value. Duplicate values occupy separate positions in the sorted order.\n\nImplement the quickselect algorithm rather than sorting the entire array. Your solution should have expected O(N) time complexity. The input is guaranteed to contain a valid K.\n\nExplanation: In sorted order the values are [1, 2, 2, 5, 7, 9]. The 4th smallest is 5.",
+      "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+      "output_format": "Print the Kth smallest value.",
+      "constraints": "1 \u2264 K \u2264 N \u2264 200,000\nAll values fit in a Java int.",
+      "sample_inputs": [
+        "6 4\n7 2 9 2 5 1",
+        "1 1\n5"
+      ],
+      "sample_outputs": [
+        "5"
+      ],
+      "hints": [
+        "Partition around a pivot, as in quicksort, then continue only in the part that contains index K \u2212 1.",
+        "Choose a random pivot: always taking the last element makes already-sorted input take O(N\u00b2) time.",
+        "Three-way partitioning (less, equal, greater) handles many duplicate values efficiently."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        Random random = new Random(12345);\n        int target = k - 1;\n        int low = 0;\n        int high = n - 1;\n        int answer = 0;\n        while (true) {\n            int pivot = a[low + random.nextInt(high - low + 1)];\n            int lt = low;\n            int gt = high;\n            int i = low;\n            while (i <= gt) {\n                if (a[i] < pivot) {\n                    int t = a[lt];\n                    a[lt] = a[i];\n                    a[i] = t;\n                    lt++;\n                    i++;\n                } else if (a[i] > pivot) {\n                    int t = a[gt];\n                    a[gt] = a[i];\n                    a[i] = t;\n                    gt--;\n                } else {\n                    i++;\n                }\n            }\n            if (target < lt) {\n                high = lt - 1;\n            } else if (target > gt) {\n                low = gt + 1;\n            } else {\n                answer = pivot;\n                break;\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6 4\n7 2 9 2 5 1",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 1\n5 4 3 2 1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5\n5 4 3 2 1",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4 2\n7 7 7 7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6 3\n-2147483648 2147483647 0 0 -1 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 3\n1 2 3 4 5",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6 6\n3 1 4 1 5 9",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+        "output_format": "Print the Kth smallest value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-12",
+      "title": "Longest Subarray with at Most K Distinct Values",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Maintain a variable-size sliding window with a frequency map.",
+      "problem_statement": "Find the length of the longest contiguous subarray containing at most K distinct values. Use a sliding window and a frequency map to maintain the number of distinct values in the current window.\n\nA subarray must consist of consecutive elements of the original array.\n\nExplanation: The subarray [2, 3, 3, 2, 2] has length 5 and contains exactly two distinct values.",
+      "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+      "output_format": "Print the maximum subarray length.",
+      "constraints": "1 \u2264 K \u2264 N \u2264 200,000\nAll array values fit in a Java int.",
+      "sample_inputs": [
+        "8 2\n1 2 1 2 3 3 2 2",
+        "1 1\n5"
+      ],
+      "sample_outputs": [
+        "5",
+        "1"
+      ],
+      "hints": [
+        "Use a HashMap<Integer, Integer> for the counts in the window; its size is the number of distinct values.",
+        "Add the element at the right edge, then remove elements from the left while the map has more than K keys.",
+        "Remove a key from the map when its count drops to 0, so the size stays accurate."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        Map<Integer, Integer> freq = new HashMap<>();\n        int left = 0;\n        int best = 0;\n        for (int right = 0; right < n; right++) {\n            freq.merge(a[right], 1, Integer::sum);\n            while (freq.size() > k) {\n                int count = freq.get(a[left]) - 1;\n                if (count == 0) {\n                    freq.remove(a[left]);\n                } else {\n                    freq.put(a[left], count);\n                }\n                left++;\n            }\n            best = Math.max(best, right - left + 1);\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8 2\n1 2 1 2 3 3 2 2",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5 1\n1 1 2 2 2",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 5\n1 2 3 4 5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6 2\n1 2 3 4 5 6",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 1\n7 7 7 7",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7 3\n1 2 1 3 4 3 3",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5 2\n-2147483648 2147483647 -2147483648 0 0",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+        "output_format": "Print the maximum subarray length."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-13",
+      "title": "Peak in a Strictly Unimodal Array",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Find the maximum of a unimodal array with binary search on the slope.",
+      "problem_statement": "The array strictly increases to its maximum value and then strictly decreases. The decreasing part may be empty, so the array may be entirely increasing. There is exactly one maximum element.\n\nFind the zero-based index of the maximum using binary search in O(log N) time. The input is guaranteed to satisfy the stated shape.\n\nExplanation: The values rise 1, 3, 5 and then fall 4, 2. The maximum, 5, is at index 2.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the index of the maximum element.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAdjacent elements are unequal.",
+      "sample_inputs": [
+        "5\n1 3 5 4 2",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "2",
+        "0"
+      ],
+      "hints": [
+        "Compare a[mid] with a[mid + 1] to see whether you are on the rising or falling slope.",
+        "If a[mid] < a[mid + 1], the peak is to the right: low = mid + 1. Otherwise it is at mid or to its left: high = mid.",
+        "Loop while low < high; mid + 1 is then always a valid index."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int low = 0;\n        int high = n - 1;\n        while (low < high) {\n            int mid = low + (high - low) / 2;\n            if (a[mid] < a[mid + 1]) {\n                low = mid + 1;\n            } else {\n                high = mid;\n            }\n        }\n        System.out.println(low);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n1 3 5 4 2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n1 2 3",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n9 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n1 3 2 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n-2147483648 0 2147483647 0 -1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n1 2 3 4 5 0",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n3 2 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the index of the maximum element."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-14",
+      "title": "Minimum-Length Subarray with Sum at Least S",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Shrink a sliding window from the left whenever its sum reaches the target.",
+      "problem_statement": "Given an array of positive integers and a target sum S, find the minimum length of a non-empty contiguous subarray whose sum is at least S. If no such subarray exists, print 0.\n\nUse a sliding window. Store S and the running window sum as long values.\n\nExplanation: The subarray [4, 3] has sum 7 and length 2. No single element reaches 7, so 2 is the minimum.",
+      "input_format": "The first line contains N and S.\nThe second line contains N positive integers.",
+      "output_format": "Print the minimum length, or 0 if no valid subarray exists.",
+      "constraints": "1 \u2264 N \u2264 200,000\n1 \u2264 S \u2264 10\u00b9\u2078\n1 \u2264 each array value \u2264 1,000,000,000",
+      "sample_inputs": [
+        "6 7\n2 3 1 2 4 3",
+        "1 5\n5"
+      ],
+      "sample_outputs": [
+        "2",
+        "1"
+      ],
+      "hints": [
+        "Add a[right] to the window sum on each step.",
+        "While the sum is at least S, record the window length and remove a[left] from the sum.",
+        "Because every value is positive, shrinking the window always lowers the sum, so each element is added and removed at most once."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long s = Long.parseLong(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long sum = 0;\n        int left = 0;\n        int best = Integer.MAX_VALUE;\n        for (int right = 0; right < n; right++) {\n            sum += a[right];\n            while (sum >= s) {\n                best = Math.min(best, right - left + 1);\n                sum -= a[left];\n                left++;\n            }\n        }\n        System.out.println(best == Integer.MAX_VALUE ? 0 : best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6 7\n2 3 1 2 4 3",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 5\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 6\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3 100\n1 2 3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 15\n1 2 3 4 5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 1000000000000000000\n1000000000 1000000000 1000000000 1000000000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 4\n1 4 4 1 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3 2000000000\n1000000000 1000000000 1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and S.\nThe second line contains N positive integers.",
+        "output_format": "Print the minimum length, or 0 if no valid subarray exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-15",
+      "title": "Minimum Swaps to Group Values at Most K",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Medium",
+      "objective": "Turn a swap-counting problem into a fixed-size window minimum.",
+      "problem_statement": "Given an array and an integer K, group all elements whose values are less than or equal to K into one contiguous block using the minimum number of swaps. You may swap any two positions.\n\nUse a fixed-size sliding window. First count the elements that qualify; this count determines the required block size. Then find the window of that size containing the fewest non-qualifying elements.\n\nExplanation: Four values (2, 1, 3, 1) are at most 3, so the block has size 4. The windows of size 4 contain 2, 2, 3, and 2 values greater than 3. The best window has 2 values that must be swapped out, so the answer is 2.",
+      "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+      "output_format": "Print the minimum number of swaps required.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAll values and K fit in a Java int.",
+      "sample_inputs": [
+        "7 3\n2 1 5 6 3 4 1",
+        "1 0\n5"
+      ],
+      "sample_outputs": [
+        "2",
+        "0"
+      ],
+      "hints": [
+        "Let m be the number of values \u2264 K; the final block must have length m.",
+        "Each value > K inside the chosen window needs exactly one swap, so count those per window.",
+        "Slide the window one step at a time, adjusting the count for the element that leaves and the one that enters. If m is 0, the answer is 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int m = 0;\n        for (int v : a) {\n            if (v <= k) {\n                m++;\n            }\n        }\n        if (m == 0) {\n            System.out.println(0);\n        } else {\n            int bad = 0;\n            for (int i = 0; i < m; i++) {\n                if (a[i] > k) {\n                    bad++;\n                }\n            }\n            int best = bad;\n            for (int i = m; i < n; i++) {\n                if (a[i] > k) {\n                    bad++;\n                }\n                if (a[i - m] > k) {\n                    bad--;\n                }\n                best = Math.min(best, bad);\n            }\n            System.out.println(best);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7 3\n2 1 5 6 3 4 1",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 0\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 10\n1 2 3",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5 2\n1 5 2 5 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6 0\n0 1 0 1 0 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4 5\n6 7 8 9",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 3\n3 3 3 3 3",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6 1\n1 9 9 1 9 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+        "output_format": "Print the minimum number of swaps required."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-16",
+      "title": "Count Inversions Using Merge Sort",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Hard",
+      "objective": "Count inversions in O(N log N) by counting cross pairs during each merge.",
+      "problem_statement": "An inversion is a pair of indices (i, j) such that i < j and array[i] > array[j]. Count all inversions in the array. Equal values do not form an inversion.\n\nImplement a merge-sort-based algorithm that counts inversions while merging sorted portions. Do not enumerate every pair of indices. The required time complexity is O(N log N), with O(N) auxiliary space. Store the answer as a long.\n\nExplanation: The inversions are (2, 1), (4, 1), and (4, 3), where each pair represents values appearing in that order in the array.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the total inversion count.",
+      "constraints": "1 \u2264 N \u2264 200,000\nAll values fit in a Java int.",
+      "sample_inputs": [
+        "5\n2 4 1 3 5",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Sort each half recursively, counting inversions inside each half.",
+        "While merging, when an element from the right half is placed before the remaining left elements, it forms an inversion with every one of them.",
+        "Take from the left half when values are equal (<=), so equal values are not counted. A reverse-sorted array of 200,000 elements has about 2 \u00d7 10\u00b9\u2070 inversions, so use long."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    static long sortCount(int[] a, int[] tmp, int lo, int hi) {\n        if (lo >= hi) {\n            return 0;\n        }\n        int mid = (lo + hi) / 2;\n        long count = sortCount(a, tmp, lo, mid) + sortCount(a, tmp, mid + 1, hi);\n        int i = lo;\n        int j = mid + 1;\n        int k = lo;\n        while (i <= mid && j <= hi) {\n            if (a[i] <= a[j]) {\n                tmp[k++] = a[i++];\n            } else {\n                count += mid - i + 1;\n                tmp[k++] = a[j++];\n            }\n        }\n        while (i <= mid) {\n            tmp[k++] = a[i++];\n        }\n        while (j <= hi) {\n            tmp[k++] = a[j++];\n        }\n        for (int t = lo; t <= hi; t++) {\n            a[t] = tmp[t];\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        System.out.println(sortCount(a, new int[n], 0, n - 1));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 4 1 3 5",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5 4 3 2 1",
+          "output": "10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n2 2 2 2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n3 1 2 3",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n-2147483648 2147483647 0 -1 1 0",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n1 3 2 3 1",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the total inversion count."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-17",
+      "title": "Median of Two Sorted Arrays",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Hard",
+      "objective": "Find the median by binary-searching a partition of the smaller array.",
+      "problem_statement": "Given two non-empty arrays sorted in non-decreasing order, find the median of all their elements combined. Do not explicitly merge the arrays or create a combined array.\n\nImplement binary search on the smaller array to find a valid partition. The required time complexity is O(log(min(N, M))) and the auxiliary space complexity is O(1).\n\nIf the combined number of elements is odd, the median is the middle element. If it is even, the median is the average of the two middle elements. Convert to long before adding the two middle values to prevent integer overflow.\n\nExplanation: The combined values in order are [1, 2, 3, 4, 5]. There are five values, so the median is the middle one, 3.",
+      "input_format": "The first line contains N and M.\nThe second line contains N integers for the first array.\nThe third line contains M integers for the second array.",
+      "output_format": "Print the median with exactly one digit after the decimal point, using Locale.US.",
+      "constraints": "1 \u2264 N, M \u2264 200,000\nAll values fit in a Java int.",
+      "sample_inputs": [
+        "2 3\n1 3\n2 4 5",
+        "1 1\n1\n2"
+      ],
+      "sample_outputs": [
+        "3.0",
+        "1.5"
+      ],
+      "hints": [
+        "Binary search the number of elements i taken from the smaller array; the larger array then contributes (N + M + 1) / 2 \u2212 i.",
+        "A partition is valid when the largest value on each left side is at most the smallest value on the other right side. Use long sentinels for empty sides.",
+        "For an even total, average the larger left value and the smaller right value as (left + (long) right) / 2.0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int m = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        int[] b = new int[m];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        for (int i = 0; i < m; i++) {\n            b[i] = Integer.parseInt(sc.next());\n        }\n        if (n > m) {\n            int[] t = a;\n            a = b;\n            b = t;\n            int tn = n;\n            n = m;\n            m = tn;\n        }\n        int half = (n + m + 1) / 2;\n        int low = 0;\n        int high = n;\n        double median = 0;\n        while (low <= high) {\n            int i = (low + high) / 2;\n            int j = half - i;\n            long aLeft = i == 0 ? Long.MIN_VALUE : a[i - 1];\n            long aRight = i == n ? Long.MAX_VALUE : a[i];\n            long bLeft = j == 0 ? Long.MIN_VALUE : b[j - 1];\n            long bRight = j == m ? Long.MAX_VALUE : b[j];\n            if (aLeft <= bRight && bLeft <= aRight) {\n                long leftMax = Math.max(aLeft, bLeft);\n                if ((n + m) % 2 == 1) {\n                    median = leftMax;\n                } else {\n                    median = (leftMax + Math.min(aRight, bRight)) / 2.0;\n                }\n                break;\n            } else if (aLeft > bRight) {\n                high = i - 1;\n            } else {\n                low = i + 1;\n            }\n        }\n        System.out.println(String.format(Locale.US, \"%.1f\", median));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2 3\n1 3\n2 4 5",
+          "output": "3.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\n1\n2",
+          "output": "1.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1 1\n2147483647\n2147483647",
+          "output": "2147483647.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2 2\n1 2\n3 4",
+          "output": "2.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3 1\n1 2 3\n100",
+          "output": "2.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1 3\n5\n1 2 3",
+          "output": "2.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2 3\n-5 -3\n-4 -2 -1",
+          "output": "-3.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3 3\n1 1 1\n1 1 1",
+          "output": "1.0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and M.\nThe second line contains N integers for the first array.\nThe third line contains M integers for the second array.",
+        "output_format": "Print the median with exactly one digit after the decimal point, using Locale.US."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-18",
+      "title": "Smallest Missing Positive Integer",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Hard",
+      "objective": "Place each value 1..N at its own index in place, then scan for the first gap.",
+      "problem_statement": "Given an unsorted array of N integers, find the smallest positive integer that does not appear in the array.\n\nImplement an in-place rearrangement algorithm with O(N) time complexity and O(1) auxiliary space. Do not use a set, sort a copy, or allocate another array proportional to N.\n\nOnly values from 1 through N can be placed at their corresponding array positions. Check that a value is within this range before using it to calculate an array index. If all integers from 1 through N are present, the answer is N + 1.\n\nExplanation: The array contains 1, 2, 3, and 4 but not 5. Since N = 5 and 5 is missing, the answer is 5.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the smallest missing positive integer.",
+      "constraints": "1 \u2264 N \u2264 200,000\nEach input value is within the Java int range.",
+      "sample_inputs": [
+        "5\n3 4 -1 1 2",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "5",
+        "2"
+      ],
+      "hints": [
+        "Value v belongs at index v \u2212 1. Keep swapping a[i] into place while 1 \u2264 a[i] \u2264 N and a[a[i] \u2212 1] != a[i].",
+        "The second condition stops endless swaps between duplicates.",
+        "Afterwards, the first index i with a[i] != i + 1 gives the answer i + 1; if there is none, the answer is N + 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        for (int i = 0; i < n; i++) {\n            while (a[i] >= 1 && a[i] <= n && a[a[i] - 1] != a[i]) {\n                int target = a[i] - 1;\n                int t = a[target];\n                a[target] = a[i];\n                a[i] = t;\n            }\n        }\n        int answer = n + 1;\n        for (int i = 0; i < n; i++) {\n            if (a[i] != i + 1) {\n                answer = i + 1;\n                break;\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n3 4 -1 1 2",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n-1 -2 -3",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n1 2 3 4",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n2 2 2 2 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n7 8 9 11",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n1 1 0 -1 3 2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the smallest missing positive integer."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-19",
+      "title": "Maximum Product of a Contiguous Subarray",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Hard",
+      "objective": "Track both the largest and smallest products ending at each position.",
+      "problem_statement": "Given an array of integers, find the maximum product of any non-empty contiguous subarray. A negative product can become positive when multiplied by another negative value.\n\nAt each position, maintain both the maximum and minimum products of subarrays ending at that position. This is necessary because multiplying the minimum product by a negative value may produce the new maximum.\n\nUse O(N) time and O(1) auxiliary space. Return the result as a long.\n\nExplanation: The product of the entire array is 2 \u00d7 2 \u00d7 (\u22122) \u00d7 2 \u00d7 (\u22121) = 16. Tracking both maximum and minimum products also handles arrays where the best product comes from only part of the array.",
+      "input_format": "The first line contains N.\nThe second line contains N integers.",
+      "output_format": "Print the maximum contiguous-subarray product.",
+      "constraints": "1 \u2264 N \u2264 60\n\u22122 \u2264 each value \u2264 2\nAll intermediate products fit in a Java long.",
+      "sample_inputs": [
+        "5\n2 2 -2 2 -1",
+        "1\n-2"
+      ],
+      "sample_outputs": [
+        "16",
+        "-2"
+      ],
+      "hints": [
+        "For each value v, the new maximum is the largest of v, v \u00d7 previous max, and v \u00d7 previous min.",
+        "Compute the new minimum the same way, using the previous values before you overwrite them.",
+        "A zero resets both to 0, and the next element starts a fresh subarray."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long maxEnd = a[0];\n        long minEnd = a[0];\n        long best = a[0];\n        for (int i = 1; i < n; i++) {\n            long v = a[i];\n            long p1 = v * maxEnd;\n            long p2 = v * minEnd;\n            maxEnd = Math.max(v, Math.max(p1, p2));\n            minEnd = Math.min(v, Math.min(p1, p2));\n            best = Math.max(best, maxEnd);\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 2 -2 2 -1",
+          "output": "16",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n-2",
+          "output": "-2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n-2 0 -1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n-2 -2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n2 -2 2 -2",
+          "output": "16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "60\n2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2",
+          "output": "1152921504606846976",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n-1 -1 -1 -1 -1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N.\nThe second line contains N integers.",
+        "output_format": "Print the maximum contiguous-subarray product."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M16-20",
+      "title": "Kth Smallest Pair Distance",
+      "module": "Module 16: Searching and Sorting Algorithms",
+      "difficulty": "Hard",
+      "objective": "Binary search on the distance, counting pairs within a candidate distance with two pointers.",
+      "problem_statement": "Given an array of N integers, consider every pair of distinct indices (i, j) with i < j. The distance of a pair is the absolute difference between its two values. Find the Kth smallest distance when all pair distances are sorted in non-decreasing order. Equal distances from different pairs count separately.\n\nSort the array, then use binary search on the possible distance. For each candidate distance, use a two-pointer technique to count how many pairs have distance at most that candidate. Do not generate all pairs.\n\nThe required time complexity is O(N log N + N log D), where D is the difference between the maximum and minimum array values. Use long for K, pair counts, and distance calculations.\n\nExplanation: The six index-pair distances are 2, 0, 3, 2, 1, 3. After sorting, they become [0, 1, 2, 2, 3, 3], so the third-smallest distance is 2.",
+      "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+      "output_format": "Print the Kth smallest pair distance as a long.",
+      "constraints": "2 \u2264 N \u2264 100,000\n1 \u2264 K \u2264 N \u00d7 (N \u2212 1) / 2\nAll values fit in a Java int.",
+      "sample_inputs": [
+        "4 3\n1 3 1 4",
+        "2 1\n5 5"
+      ],
+      "sample_outputs": [
+        "2",
+        "0"
+      ],
+      "hints": [
+        "After sorting, for each right index j, the pairs with distance \u2264 D use left indices from the first i where a[j] \u2212 a[i] \u2264 D; i only moves forward.",
+        "Find the smallest D whose pair count is at least K; search D from 0 to max \u2212 min.",
+        "Read K as a long: N = 100,000 gives about 5 \u00d7 10\u2079 pairs."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\n\npublic class Main {\n    static long countAtMost(int[] a, long d) {\n        long count = 0;\n        int i = 0;\n        for (int j = 0; j < a.length; j++) {\n            while ((long) a[j] - a[i] > d) {\n                i++;\n            }\n            count += j - i;\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long k = Long.parseLong(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        Arrays.sort(a);\n        long low = 0;\n        long high = (long) a[n - 1] - a[0];\n        while (low < high) {\n            long mid = (low + high) / 2;\n            if (countAtMost(a, mid) >= k) {\n                high = mid;\n            } else {\n                low = mid + 1;\n            }\n        }\n        System.out.println(low);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 3\n1 3 1 4",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2 1\n5 5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2 1\n-2147483648 2147483647",
+          "output": "4294967295",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4 6\n1 3 1 4",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5 1\n1 2 3 4 5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5 10\n1 2 3 4 5",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3 2\n1 1 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5 5\n10 20 30 40 50",
+          "output": "20",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 16: Searching and Sorting Algorithms",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "The first line contains N and K.\nThe second line contains N integers.",
+        "output_format": "Print the Kth smallest pair distance as a long."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M16_Java_Searching_and_Sorting_Algorithms.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

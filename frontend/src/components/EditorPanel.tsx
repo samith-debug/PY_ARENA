@@ -19,6 +19,8 @@ interface EditorPanelProps {
   onLoadReferenceSolution: () => void;
   isRunning: boolean;
   questionId?: string;
+  language?: string;
+  onChangeLanguage?: (newLang: 'python' | 'java') => void;
 }
 
 export const EditorPanel: React.FC<EditorPanelProps> = ({
@@ -30,14 +32,19 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
   onLoadStarterCode,
   onLoadReferenceSolution,
   isRunning,
-  questionId = 'M02-01'
+  questionId = 'M02-01',
+  language = 'python',
+  onChangeLanguage
 }) => {
   const [showResetConfirm, setShowResetConfirm] = useState(false);
   const [showSolutionConfirm, setShowSolutionConfirm] = useState(false);
   const [explorerOpen, setExplorerOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
 
-  // Derive file name like CTP3341.py or M02-01.py
-  const fileName = `${questionId ? questionId.replace('-', '') : 'CTP3341'}.py`;
+  const isJava = (language || 'python').toLowerCase() === 'java';
+  const ext = isJava ? 'java' : 'py';
+  const baseName = questionId ? questionId.replace('-', '') : (isJava ? 'Solution' : 'CTP3341');
+  const fileName = `${baseName}.${ext}`;
 
   return (
     <div className="h-full flex flex-row bg-[#0c0f17] text-slate-200 select-none overflow-hidden">
@@ -118,9 +125,47 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
           {/* Right Toolbar: Language selector, Play icon, SUBMIT button */}
           <div className="flex items-center space-x-2">
             {/* Language dropdown */}
-            <div className="flex items-center space-x-1 px-2.5 py-1 bg-[#151923] rounded-md text-zinc-300 text-xs font-medium border border-[#232b3b] cursor-default">
-              <span>PYTHON</span>
-              <ChevronDown className="w-3 h-3 text-zinc-400" />
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                className="flex items-center space-x-1.5 px-2.5 py-1 bg-[#151923] hover:bg-[#1a2130] rounded-md text-zinc-300 text-xs font-medium border border-[#232b3b] transition"
+                title="Switch programming language"
+              >
+                <span className="font-mono tracking-wider">{isJava ? 'JAVA' : 'PYTHON'}</span>
+                <ChevronDown className={`w-3 h-3 text-zinc-400 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {langDropdownOpen && (
+                <div className="absolute right-0 top-full mt-1 w-36 bg-[#121724] border border-[#232b3b] rounded-md shadow-2xl py-1 z-30 animate-in fade-in-50">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChangeLanguage?.('python');
+                      setLangDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 text-xs flex items-center justify-between ${
+                      !isJava ? 'text-amber-400 font-semibold bg-white/5' : 'text-zinc-300 hover:bg-white/5'
+                    }`}
+                  >
+                    <span>Python 3</span>
+                    {!isJava && <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onChangeLanguage?.('java');
+                      setLangDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-1.5 text-xs flex items-center justify-between ${
+                      isJava ? 'text-cyan-400 font-semibold bg-white/5' : 'text-zinc-300 hover:bg-white/5'
+                    }`}
+                  >
+                    <span>Java (JDK 27)</span>
+                    {isJava && <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* Run Play Button (neutral solid) */}
@@ -198,7 +243,7 @@ export const EditorPanel: React.FC<EditorPanelProps> = ({
         <div className="flex-1 min-h-0 relative">
           <Editor
             height="100%"
-            defaultLanguage="python"
+            language={isJava ? 'java' : 'python'}
             theme="vs-dark"
             value={code}
             onChange={(val) => onChangeCode(val || '')}

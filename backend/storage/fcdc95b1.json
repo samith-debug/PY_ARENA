@@ -1,0 +1,1934 @@
+{
+  "id": "fcdc95b1",
+  "filename": "JP_M10_Java_Strings.csv",
+  "imported_at": "2026-10-24T15:32:19.638742Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M10-01",
+      "title": "Count Characters in a String",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Read a whole line, including spaces, and report its length.",
+      "problem_statement": "Given a string S, count every character in it, including letters, digits, spaces, and punctuation. Do not count the newline that terminates the input line. If S is empty, the answer is 0.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the length of S.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "Java Programming!"
+      ],
+      "sample_outputs": [
+        "17",
+        "0"
+      ],
+      "hints": [
+        "Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",
+        "s.length() returns the number of characters in the string.",
+        "nextLine() does not include the line's newline, so no adjustment is needed."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        System.out.println(s.length());\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Java Programming!",
+          "output": "17",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": " ",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "   leading",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hello, World! 123",
+          "output": "17",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "abcdefghijklmnopqrstuvwxyz0123456789",
+          "output": "36",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "!@#$%^&*()",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the length of S."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-02",
+      "title": "Count Vowels and Consonants",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Classify each character with char comparisons.",
+      "problem_statement": "Given a string S, count its English vowels and consonants. The vowels are A, E, I, O, U in uppercase or lowercase. Count only the 52 uppercase and lowercase English letters. Ignore spaces, digits, punctuation, and all other characters.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print two integers separated by one space: vowel count followed by consonant count.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "Java 123!"
+      ],
+      "sample_outputs": [
+        "2 2",
+        "0 0"
+      ],
+      "hints": [
+        "Loop over the string with s.charAt(i).",
+        "A character is an English letter when it lies between 'a' and 'z' or between 'A' and 'Z'.",
+        "Check for a vowel first; any other English letter is a consonant."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static boolean isVowel(char c) {\n        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'\n            || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int vowels = 0;\n        int consonants = 0;\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            boolean letter = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');\n            if (letter) {\n                if (isVowel(c)) {\n                    vowels++;\n                } else {\n                    consonants++;\n                }\n            }\n        }\n        System.out.println(vowels + \" \" + consonants);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Java 123!",
+          "output": "2 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "AEIOUaeiou",
+          "output": "10 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "BCDFG xyz",
+          "output": "0 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "12345 !?",
+          "output": "0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hello World",
+          "output": "3 7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Programming is FUN",
+          "output": "5 11",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "y Y",
+          "output": "0 2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print two integers separated by one space: vowel count followed by consonant count."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-03",
+      "title": "Count a Specific Character",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Read a character that may be a space and count its occurrences.",
+      "problem_statement": "Given a string S and a character C, count the occurrences of C in S. Matching is case-sensitive. C may be a letter, digit, punctuation mark, or ordinary space.\n\nImplementation note: To read C when it is a space, read the entire line and access its first character. Do not use next().charAt(0), because next() skips whitespace.",
+      "input_format": "Line 1: S, possibly empty.\nLine 2: exactly one character C. This line may contain a single space.",
+      "output_format": "Print the number of occurrences of C in S.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "banana\na",
+        "banana\nA"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Read both lines with nextLine().",
+        "C is the first character of the second line: readLine(sc).charAt(0).",
+        "Compare each character of S with C using ==."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        char c = readLine(sc).charAt(0);\n        int count = 0;\n        for (int i = 0; i < s.length(); i++) {\n            if (s.charAt(i) == c) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "banana\na",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "banana\nA",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "\na",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a b c d\n ",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Mississippi\ns",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "...!\n.",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "aaaa\na",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hello World\no",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: S, possibly empty.\nLine 2: exactly one character C. This line may contain a single space.",
+        "output_format": "Print the number of occurrences of C in S."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-04",
+      "title": "Toggle Letter Case",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Change letter case with char arithmetic instead of library methods.",
+      "problem_statement": "Given a string S, change every lowercase English letter to uppercase and every uppercase English letter to lowercase. Leave all other characters unchanged. Do not use built-in case-conversion methods.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the converted string on one line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "Java 123!"
+      ],
+      "sample_outputs": [
+        "jAVA 123!"
+      ],
+      "hints": [
+        "Build the result with a StringBuilder.",
+        "Lowercase and uppercase codes differ by 32: (char) (c - 32) turns 'a' into 'A'.",
+        "Append every non-letter character unchanged."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            if (c >= 'a' && c <= 'z') {\n                out.append((char) (c - 32));\n            } else if (c >= 'A' && c <= 'Z') {\n                out.append((char) (c + 32));\n            } else {\n                out.append(c);\n            }\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Java 123!",
+          "output": "jAVA 123!",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "ABC",
+          "output": "abc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc",
+          "output": "ABC",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Hello, World!",
+          "output": "hELLO, wORLD!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "123 !?",
+          "output": "123 !?",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "jAvA",
+          "output": "JaVa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "MiXeD CaSe 42",
+          "output": "mIxEd cAsE 42",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the converted string on one line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-05",
+      "title": "Reverse a String",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Build a reversed string by reading characters from the end.",
+      "problem_statement": "Given a string S, print its characters in reverse order. Include every space and punctuation mark. Do not remove, replace, or rearrange characters beyond reversing their order. Do not use a built-in reverse method.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the reversed string. If S is empty, print an empty line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "hello"
+      ],
+      "sample_outputs": [
+        "olleh"
+      ],
+      "hints": [
+        "Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",
+        "Loop from index s.length() − 1 down to 0.",
+        "Append each character to a StringBuilder instead of using StringBuilder.reverse()."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        for (int i = s.length() - 1; i >= 0; i--) {\n            out.append(s.charAt(i));\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "hello",
+          "output": "olleh",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "ab ",
+          "output": " ba",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "racecar",
+          "output": "racecar",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hello, World!",
+          "output": "!dlroW ,olleH",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12 34",
+          "output": "43 21",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "A man",
+          "output": "nam A",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the reversed string. If S is empty, print an empty line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-06",
+      "title": "Check for a Palindrome",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Compare characters from both ends moving inward.",
+      "problem_statement": "A string is a palindrome if it reads identically from left to right and right to left. Given S, determine whether it is a palindrome using exact, case-sensitive comparison. Spaces and punctuation are significant; do not remove or ignore them. An empty string is a palindrome.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print YES if S is a palindrome; otherwise, print NO.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "madam",
+        "Madam"
+      ],
+      "sample_outputs": [
+        "YES",
+        "NO"
+      ],
+      "hints": [
+        "Use two indices, one at each end.",
+        "Compare s.charAt(left) with s.charAt(right), then move both inward.",
+        "If the loop finishes without a mismatch, the string is a palindrome; this also covers the empty string."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        boolean palindrome = true;\n        int left = 0;\n        int right = s.length() - 1;\n        while (left < right) {\n            if (s.charAt(left) != s.charAt(right)) {\n                palindrome = false;\n                break;\n            }\n            left++;\n            right--;\n        }\n        System.out.println(palindrome ? \"YES\" : \"NO\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "madam",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Madam",
+          "output": "NO",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "ab",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abba",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a b a",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a ba",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print YES if S is a palindrome; otherwise, print NO."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-07",
+      "title": "Remove All Ordinary Spaces",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Filter characters into a StringBuilder, skipping spaces.",
+      "problem_statement": "Given a string S, remove every ordinary space character (ASCII 32). Preserve the order of every remaining character, including punctuation and digits.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the resulting string. If every character is a space or S is empty, print an empty line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "Java is fun"
+      ],
+      "sample_outputs": [
+        "Javaisfun"
+      ],
+      "hints": [
+        "Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",
+        "Append each character to a StringBuilder unless it equals ' '.",
+        "Do not use replace(); building the result yourself is the point of the exercise."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < s.length(); i++) {\n            if (s.charAt(i) != ' ') {\n                out.append(s.charAt(i));\n            }\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Java is fun",
+          "output": "Javaisfun",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "   ",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "nospaces",
+          "output": "nospaces",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": " a b c ",
+          "output": "abc",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Hello,  World!",
+          "output": "Hello,World!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1 2 3",
+          "output": "123",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "  x  ",
+          "output": "x",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the resulting string. If every character is a space or S is empty, print an empty line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-08",
+      "title": "Replace a Character",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Easy",
+      "objective": "Rebuild a string, substituting one character for another.",
+      "problem_statement": "Given S and two characters A and B, replace every occurrence of A in S with B. Matching is case-sensitive. If A equals B, the string remains unchanged. A and B may be ordinary spaces. Do not use a built-in replacement method.\n\nImplementation note: Read A and B as complete lines and access their first characters. Do not use next().charAt(0) when a character can be a space.",
+      "input_format": "Line 1: S; it may be empty.\nLine 2: exactly one character A.\nLine 3: exactly one character B.\nEach character input line may contain a single space.",
+      "output_format": "Print the modified string on one line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "banana\na\no",
+        "banana\nb\nb"
+      ],
+      "sample_outputs": [
+        "bonono",
+        "banana"
+      ],
+      "hints": [
+        "Read all three lines with nextLine(), and take charAt(0) of lines 2 and 3.",
+        "Append B whenever the current character equals A; otherwise append the character itself.",
+        "Use a StringBuilder to collect the result."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        char a = readLine(sc).charAt(0);\n        char b = readLine(sc).charAt(0);\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < s.length(); i++) {\n            char c = s.charAt(i);\n            out.append(c == a ? b : c);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "banana\na\no",
+          "output": "bonono",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "banana\nb\nb",
+          "output": "banana",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a b c\n \n_",
+          "output": "a_b_c",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "hello world\no\n ",
+          "output": "hell  w rld",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "\na\nb",
+          "output": "",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "AaAa\na\nA",
+          "output": "AAAA",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "x\ny\nz",
+          "output": "x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Mississippi\ns\nS",
+          "output": "MiSSiSSippi",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: S; it may be empty.\nLine 2: exactly one character A.\nLine 3: exactly one character B.\nEach character input line may contain a single space.",
+        "output_format": "Print the modified string on one line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-09",
+      "title": "Count Words in a Sentence",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Count words by detecting where each word begins.",
+      "problem_statement": "A word is a maximal sequence of characters that are not ordinary spaces. Given S, count its words. One or more consecutive spaces separate words. Leading and trailing spaces are allowed and do not count as words. An empty line or a line containing only spaces has zero words.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the number of words.",
+      "constraints": "0 ≤ length of S ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "  Java   is fun  "
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "A word starts at a non-space character that is either at index 0 or follows a space.",
+        "Count those starting positions in one pass.",
+        "If you use split(\" +\"), note that leading spaces produce an empty first element, which must not be counted."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int words = 0;\n        for (int i = 0; i < s.length(); i++) {\n            if (s.charAt(i) != ' ' && (i == 0 || s.charAt(i - 1) == ' ')) {\n                words++;\n            }\n        }\n        System.out.println(words);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "  Java   is fun  ",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "     ",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Hello",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "one two three four",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": " a",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a b  c   d",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hello,world! and   more",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the number of words."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-10",
+      "title": "Run-Length Encoding",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Group consecutive identical characters and output each group's character and length.",
+      "problem_statement": "A storage system compresses text with run-length encoding. Replace each maximal run of identical consecutive characters with the character followed by the run length, written in decimal. A character that is not repeated gets a count of 1. Matching is case-sensitive, and spaces are ordinary characters.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the encoded string. If S is empty, print an empty line.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "aaabcc"
+      ],
+      "sample_outputs": [
+        "a3b1c2"
+      ],
+      "hints": [
+        "Walk through the string, counting how many times the current character repeats in a row.",
+        "When the next character differs, or the string ends, append the character and its count.",
+        "Counts can have more than one digit, so append the int itself, for example a12."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        int i = 0;\n        while (i < s.length()) {\n            char c = s.charAt(i);\n            int run = 0;\n            while (i < s.length() && s.charAt(i) == c) {\n                run++;\n                i++;\n            }\n            out.append(c).append(run);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "aaabcc",
+          "output": "a3b1c2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "a1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc",
+          "output": "a1b1c1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "aaaaaaaaaaaa",
+          "output": "a12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aAaA",
+          "output": "a1A1a1A1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "  xx",
+          "output": " 2x2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "zzzz  yy",
+          "output": "z4 2y2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the encoded string. If S is empty, print an empty line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-11",
+      "title": "Find the First Non-Repeating Character",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Count character frequencies in an array, then scan the string again in order.",
+      "problem_statement": "Given S, find the first character that appears exactly once in the entire string. Matching is case-sensitive, and spaces and punctuation count as characters. If no character appears exactly once, print NONE.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the first non-repeating character, or NONE if none exists.",
+      "constraints": "0 ≤ length of S ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "swiss",
+        "aabb"
+      ],
+      "sample_outputs": [
+        "w",
+        "NONE"
+      ],
+      "hints": [
+        "Use an int array of size 128 indexed by character code to count every character.",
+        "Then loop through the string again, from the start.",
+        "The first character whose count is 1 is the answer."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int[] freq = new int[128];\n        for (int i = 0; i < s.length(); i++) {\n            freq[s.charAt(i)]++;\n        }\n        String answer = \"NONE\";\n        for (int i = 0; i < s.length(); i++) {\n            if (freq[s.charAt(i)] == 1) {\n                answer = String.valueOf(s.charAt(i));\n                break;\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "swiss",
+          "output": "w",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "aabb",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "x",
+          "output": "x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "aAbB",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "  a b",
+          "output": "a",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "stress",
+          "output": "t",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abcabcd",
+          "output": "d",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the first non-repeating character, or NONE if none exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-12",
+      "title": "Check Whether Two Strings Are Anagrams",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Compare two strings' character frequencies with a counting array.",
+      "problem_statement": "Two strings are anagrams if they contain exactly the same characters with exactly the same frequencies, regardless of order. Given A and B, determine whether they are anagrams. Matching is case-sensitive. Spaces and punctuation count as characters and must match in frequency too.",
+      "input_format": "Line 1: string A; it may be empty.\nLine 2: string B; it may be empty.",
+      "output_format": "Print YES if A and B are anagrams; otherwise, print NO.",
+      "constraints": "0 ≤ length of A, length of B ≤ 1000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "listen\nsilent",
+        "Listen\nsilent"
+      ],
+      "sample_outputs": [
+        "YES",
+        "NO"
+      ],
+      "hints": [
+        "Strings of different lengths can never be anagrams.",
+        "Add 1 to a frequency array for each character of A and subtract 1 for each character of B.",
+        "The strings are anagrams exactly when every count ends at 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String a = readLine(sc);\n        String b = readLine(sc);\n        boolean anagram = a.length() == b.length();\n        if (anagram) {\n            int[] freq = new int[128];\n            for (int i = 0; i < a.length(); i++) {\n                freq[a.charAt(i)]++;\n                freq[b.charAt(i)]--;\n            }\n            for (int i = 0; i < 128; i++) {\n                if (freq[i] != 0) {\n                    anagram = false;\n                    break;\n                }\n            }\n        }\n        System.out.println(anagram ? \"YES\" : \"NO\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "listen\nsilent",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Listen\nsilent",
+          "output": "NO",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "\n",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc\nab",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "a b\nb a",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "a b\nab ",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "aab\nabb",
+          "output": "NO",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "dormitory\ndirtyroom",
+          "output": "YES",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: string A; it may be empty.\nLine 2: string B; it may be empty.",
+        "output_format": "Print YES if A and B are anagrams; otherwise, print NO."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-13",
+      "title": "Find the First Occurrence of a Substring",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Implement substring search by comparing the pattern at each starting position.",
+      "problem_statement": "Given text T and pattern P, find the smallest zero-based index where P occurs as a contiguous substring of T. If P is empty, return index 0. If P is non-empty but does not occur in T, return -1. Do not use indexOf() or contains().",
+      "input_format": "Line 1: T; it may be empty.\nLine 2: P; it may be empty.",
+      "output_format": "Print the smallest matching index or -1.",
+      "constraints": "0 ≤ length of T ≤ 2000\n0 ≤ length of P ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "programming\ngram",
+        "abc\n"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Try every start index from 0 to T.length() − P.length().",
+        "At each start, compare P character by character and stop at the first mismatch.",
+        "If P is longer than T, the loop never runs, so the answer is −1; an empty P matches at index 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static boolean matchesAt(String t, String p, int start) {\n        for (int j = 0; j < p.length(); j++) {\n            if (t.charAt(start + j) != p.charAt(j)) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String t = readLine(sc);\n        String p = readLine(sc);\n        int answer = -1;\n        for (int start = 0; start + p.length() <= t.length(); start++) {\n            if (matchesAt(t, p, start)) {\n                answer = start;\n                break;\n            }\n        }\n        System.out.println(answer);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "programming\ngram",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "abc\n",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "\n",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "\na",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abc\nabcd",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aaaa\naa",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "hello world\no w",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abcabd\nabd",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: T; it may be empty.\nLine 2: P; it may be empty.",
+        "output_format": "Print the smallest matching index or -1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-14",
+      "title": "Count Substring Occurrences",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Count every starting position where a pattern matches, including overlapping matches.",
+      "problem_statement": "Given text T and a non-empty pattern P, count the number of starting positions at which P matches a contiguous substring of T. Overlapping occurrences count separately. For example, aa occurs three times in aaaa, starting at indices 0, 1, and 2.",
+      "input_format": "Line 1: T; it may be empty.\nLine 2: non-empty P.",
+      "output_format": "Print the total number of occurrences. Print 0 if P is longer than T.",
+      "constraints": "0 ≤ length of T ≤ 2000\n1 ≤ length of P ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "aaaa\naa",
+        "\na"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Check every start index from 0 to T.length() − P.length().",
+        "After a match, move to the next start index, not past the end of the match, so overlaps are counted.",
+        "A helper method that tests a match at one position keeps the loop simple."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static boolean matchesAt(String t, String p, int start) {\n        for (int j = 0; j < p.length(); j++) {\n            if (t.charAt(start + j) != p.charAt(j)) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String t = readLine(sc);\n        String p = readLine(sc);\n        int count = 0;\n        for (int start = 0; start + p.length() <= t.length(); start++) {\n            if (matchesAt(t, p, start)) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "aaaa\naa",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "\na",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "abc\nabcd",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abababa\naba",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "hello\nl",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aaaaa\na",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a b a b\n ",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "xyz\nq",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: T; it may be empty.\nLine 2: non-empty P.",
+        "output_format": "Print the total number of occurrences. Print 0 if P is longer than T."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-15",
+      "title": "Reverse the Order of Words",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Extract words from a line and output them in reverse order with normalized spacing.",
+      "problem_statement": "Given a sentence S, print its words in reverse order. A word is a maximal sequence of non-space characters separated by one or more ordinary spaces. Remove leading and trailing spaces from the output and separate the output words with exactly one space. Do not reverse the characters inside a word. If there are no words, print an empty line.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the words in reverse order, separated by exactly one space.",
+      "constraints": "0 ≤ length of S ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "  Java   is fun  ",
+        "Java is very useful"
+      ],
+      "sample_outputs": [
+        "fun is Java",
+        "useful very is Java"
+      ],
+      "hints": [
+        "Scan from the end of the string toward the start.",
+        "Skip spaces, then find where the current word begins and append that word with s.substring(start, end).",
+        "Add a single space before every word except the first one appended."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        StringBuilder out = new StringBuilder();\n        int i = s.length() - 1;\n        while (i >= 0) {\n            while (i >= 0 && s.charAt(i) == ' ') {\n                i--;\n            }\n            if (i < 0) {\n                break;\n            }\n            int end = i + 1;\n            while (i >= 0 && s.charAt(i) != ' ') {\n                i--;\n            }\n            if (out.length() > 0) {\n                out.append(' ');\n            }\n            out.append(s.substring(i + 1, end));\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "  Java   is fun  ",
+          "output": "fun is Java",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Java is very useful",
+          "output": "useful very is Java",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "    ",
+          "output": "",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "single",
+          "output": "single",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "a b",
+          "output": "b a",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": " x  y  z ",
+          "output": "z y x",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hello, world!",
+          "output": "world! Hello,",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the words in reverse order, separated by exactly one space."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-16",
+      "title": "Count Palindromic Substrings",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Expand around every possible center to count palindromic substrings.",
+      "problem_statement": "Given a string S, count all non-empty contiguous substrings that are palindromes. Two occurrences at different starting or ending positions count separately, even if their character sequences are identical.\n\nFor example, aaa contains six palindromic substrings: three occurrences of a, two occurrences of aa, and one occurrence of aaa.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the total number of palindromic substring occurrences.",
+      "constraints": "0 ≤ length of S ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "aaa",
+        "abc"
+      ],
+      "sample_outputs": [
+        "6",
+        "3"
+      ],
+      "hints": [
+        "Every palindrome has a center: a single character (odd length) or the gap between two characters (even length).",
+        "From each center, expand outward while the characters on both sides match, counting one palindrome per step.",
+        "There are 2N − 1 centers, so the total work is O(N²); store the count in a long to be safe."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static long expand(String s, int left, int right) {\n        long count = 0;\n        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {\n            count++;\n            left--;\n            right++;\n        }\n        return count;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        long total = 0;\n        for (int center = 0; center < s.length(); center++) {\n            total += expand(s, center, center);\n            total += expand(s, center, center + 1);\n        }\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "aaa",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "abc",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abba",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aba",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "a a",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "racecar",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the total number of palindromic substring occurrences."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-17",
+      "title": "Longest Palindromic Substring",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Medium",
+      "objective": "Expand around each center and track the longest palindrome found.",
+      "problem_statement": "Given S, find the length of the longest contiguous substring that is a palindrome. A substring is a palindrome when it reads identically in both directions. Matching is case-sensitive, and spaces and punctuation are significant.\n\nIf multiple substrings have the maximum length, print only that length. The solution must run in O(N²) time or better. An empty string has answer 0.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the length of the longest palindromic substring.",
+      "constraints": "0 ≤ length of S ≤ 2000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "babad",
+        "cbbd"
+      ],
+      "sample_outputs": [
+        "3",
+        "2"
+      ],
+      "hints": [
+        "Reuse the expand-around-center idea: try every single character and every adjacent pair as a center.",
+        "Expand while both sides match; the palindrome's length is right − left − 1 after the loop stops.",
+        "Keep the maximum length across all centers."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    static int expand(String s, int left, int right) {\n        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {\n            left--;\n            right++;\n        }\n        return right - left - 1;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int best = 0;\n        for (int center = 0; center < s.length(); center++) {\n            best = Math.max(best, expand(s, center, center));\n            best = Math.max(best, expand(s, center, center + 1));\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "babad",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "cbbd",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "a",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "racecar",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abcde",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "aaaa",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a b a",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the length of the longest palindromic substring."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-18",
+      "title": "Longest Substring Without Repeating Characters",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Hard",
+      "objective": "Maintain a sliding window with the last-seen index of each character.",
+      "problem_statement": "Given S, find the maximum length of a contiguous substring in which no character appears more than once. Matching is case-sensitive, and spaces and punctuation count as characters. The substring must contain consecutive characters from S.\n\nThe solution must run in O(N) time, where N is the length of S. If S is empty, print 0.",
+      "input_format": "One line containing S; it may be empty.",
+      "output_format": "Print the maximum valid substring length.",
+      "constraints": "0 ≤ N ≤ 100,000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "abcabcbb",
+        "bbbbb"
+      ],
+      "sample_outputs": [
+        "3",
+        "1"
+      ],
+      "hints": [
+        "Keep the window's left edge and an int array of size 128 storing each character's last index, filled with −1.",
+        "When the current character was last seen inside the window, move the left edge just past that position.",
+        "After updating the last-seen index, compare the window length right − left + 1 with the best so far."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int[] last = new int[128];\n        for (int i = 0; i < 128; i++) {\n            last[i] = -1;\n        }\n        int left = 0;\n        int best = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char c = s.charAt(right);\n            if (last[c] >= left) {\n                left = last[c] + 1;\n            }\n            last[c] = right;\n            best = Math.max(best, right - left + 1);\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "abcabcbb",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "bbbbb",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "pwwkew",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": " ",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abc def",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "dvdf",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abba",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing S; it may be empty.",
+        "output_format": "Print the maximum valid substring length."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-19",
+      "title": "Longest Substring with Exactly K Distinct Characters",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Hard",
+      "objective": "Shrink and grow a sliding window while counting distinct characters with a frequency array.",
+      "problem_statement": "Given a string S and an integer K, find the maximum length of a contiguous substring containing exactly K distinct characters. Character matching is case-sensitive, and spaces and punctuation count as characters.\n\nIf K is zero or greater than the number of distinct characters in S, print 0. The solution must run in O(N) time using a fixed-size frequency array rather than collections.",
+      "input_format": "Line 1: string S; it may be empty.\nLine 2: integer K.",
+      "output_format": "Print the maximum valid substring length, or 0 if no such substring exists.",
+      "constraints": "0 ≤ N ≤ 100,000\n0 ≤ K ≤ 95\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "araaci\n2",
+        "araaci\n1"
+      ],
+      "sample_outputs": [
+        "4",
+        "2"
+      ],
+      "hints": [
+        "Read K with Integer.parseInt(readLine(sc).trim()) after reading S with nextLine().",
+        "Expand the right edge, updating a frequency array and a distinct counter; while distinct > K, move the left edge and decrease counts.",
+        "Record the window length only when distinct is exactly K."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        int k = Integer.parseInt(readLine(sc).trim());\n        int[] freq = new int[128];\n        int distinct = 0;\n        int left = 0;\n        int best = 0;\n        if (k > 0) {\n            for (int right = 0; right < s.length(); right++) {\n                char c = s.charAt(right);\n                if (freq[c] == 0) {\n                    distinct++;\n                }\n                freq[c]++;\n                while (distinct > k) {\n                    char d = s.charAt(left);\n                    freq[d]--;\n                    if (freq[d] == 0) {\n                        distinct--;\n                    }\n                    left++;\n                }\n                if (distinct == k) {\n                    best = Math.max(best, right - left + 1);\n                }\n            }\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "araaci\n2",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "araaci\n1",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "cbbebi\n3",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "\n0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "abc\n0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "abc\n4",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "aaaa\n1",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "a b c\n2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: string S; it may be empty.\nLine 2: integer K.",
+        "output_format": "Print the maximum valid substring length, or 0 if no such substring exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M10-20",
+      "title": "Minimum Window Containing All Target Characters",
+      "module": "Module 10: Java Strings",
+      "difficulty": "Hard",
+      "objective": "Find the shortest window covering a target multiset with two pointers and frequency arrays.",
+      "problem_statement": "Given a source string S and a target string T, find the shortest contiguous substring of S containing every character in T with at least the same frequency as in T.\n\nCharacter matching is case-sensitive. Spaces and punctuation are ordinary characters. If multiple windows have the same minimum length, choose the one with the smallest starting index in S.\n\nIf T is empty, print an empty line. If no valid window exists, print NONE.\n\nThe solution must run in O(N + M) time, where N is the length of S and M is the length of T. Use fixed-size character-frequency arrays rather than collections.",
+      "input_format": "Line 1: source string S; it may be empty.\nLine 2: target string T; it may be empty.",
+      "output_format": "Print the shortest valid substring, preserving its original characters. Print an empty line if T is empty, or NONE if no valid window exists.",
+      "constraints": "0 ≤ N, M ≤ 100,000\nAll characters are printable ASCII (codes 32–126).",
+      "sample_inputs": [
+        "ADOBECODEBANC\nABC",
+        "a\na"
+      ],
+      "sample_outputs": [
+        "BANC",
+        "a"
+      ],
+      "hints": [
+        "Count the characters of T in a need array, and track how many of T's characters the window still lacks.",
+        "Expand the right edge; once nothing is missing, shrink from the left while the window stays valid, recording the shortest window.",
+        "Only replace the best window when a strictly shorter one is found, so ties keep the smallest starting index."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static String readLine(Scanner sc) {\n        if (sc.hasNextLine()) {\n            return sc.nextLine();\n        }\n        return \"\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String s = readLine(sc);\n        String t = readLine(sc);\n        if (t.length() == 0) {\n            System.out.println();\n        } else {\n            int[] need = new int[128];\n            for (int i = 0; i < t.length(); i++) {\n                need[t.charAt(i)]++;\n            }\n            int missing = t.length();\n            int left = 0;\n            int bestStart = -1;\n            int bestLength = Integer.MAX_VALUE;\n            for (int right = 0; right < s.length(); right++) {\n                char c = s.charAt(right);\n                if (need[c] > 0) {\n                    missing--;\n                }\n                need[c]--;\n                while (missing == 0) {\n                    if (right - left + 1 < bestLength) {\n                        bestLength = right - left + 1;\n                        bestStart = left;\n                    }\n                    char d = s.charAt(left);\n                    need[d]++;\n                    if (need[d] > 0) {\n                        missing++;\n                    }\n                    left++;\n                }\n            }\n            if (bestStart == -1) {\n                System.out.println(\"NONE\");\n            } else {\n                System.out.println(s.substring(bestStart, bestStart + bestLength));\n            }\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "ADOBECODEBANC\nABC",
+          "output": "BANC",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "a\na",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a\naa",
+          "output": "NONE",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "abc\n",
+          "output": "",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "\na",
+          "output": "NONE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "aaflslflsldkalskaaa\naaa",
+          "output": "aaa",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "this is a test string\ntist",
+          "output": "t stri",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "abcab\nab",
+          "output": "ab",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 10: Java Strings",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: source string S; it may be empty.\nLine 2: target string T; it may be empty.",
+        "output_format": "Print the shortest valid substring, preserving its original characters. Print an empty line if T is empty, or NONE if no valid window exists."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M10_Java_Strings.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

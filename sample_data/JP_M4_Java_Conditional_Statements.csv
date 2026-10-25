@@ -1,0 +1,510 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M4-01,Employee Bonus Eligibility,Module 04: Java Conditional Statements,Easy,"Validate a range with if, then use a switch statement with grouped case labels.",stdin/stdout,O(1),O(1),"A company awards bonuses based on an employee's performance rating. Read an integer rating. If the rating is outside 1 to 5, print Invalid Rating. Otherwise, use a switch statement to print Bonus Approved for ratings 4 and 5, and Bonus Not Approved for ratings 1, 2, and 3. You may group multiple case labels that produce the same result.",A single line containing an integer rating.,"A single line: Bonus Approved, Bonus Not Approved, or Invalid Rating.",-1000 <= rating <= 1000,4,Bonus Approved,2,Bonus Not Approved,Check the range first with if (rating < 1 || rating > 5).,Stacked labels such as case 4: case 5: share the same block of code.,End each group with break so execution does not fall through to the next group.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int rating = Integer.parseInt(sc.next());
+        if (rating < 1 || rating > 5) {
+            System.out.println(""Invalid Rating"");
+        } else {
+            switch (rating) {
+                case 4:
+                case 5:
+                    System.out.println(""Bonus Approved"");
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    System.out.println(""Bonus Not Approved"");
+                    break;
+            }
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""Bonus Approved"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""Bonus Not Approved"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""Bonus Approved"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Bonus Not Approved"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""Bonus Not Approved"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Invalid Rating"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""Invalid Rating"", ""is_hidden"": true}, {""input"": ""-3"", ""output"": ""Invalid Rating"", ""is_hidden"": true}]"
+JP-M4-02,Warehouse Package Routing,Module 04: Java Conditional Statements,Easy,Use the remainder operator inside an if-else chain to test whether a number is even or odd.,stdin/stdout,O(1),O(1),"A warehouse assigns packages to one of two conveyor belts based on a package's integer identification number. Read an integer packageId. Print Invalid Package ID if the ID is zero or negative. Otherwise, print Conveyor A if the ID is even and Conveyor B if the ID is odd.",A single line containing an integer packageId.,"A single line: Conveyor A, Conveyor B, or Invalid Package ID.",-2147483648 <= packageId <= 2147483647,135,Conveyor B,42,Conveyor A,Handle the invalid case first with if (packageId <= 0).,A number is even when packageId % 2 == 0.,Use else if and else so exactly one message is printed.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int packageId = Integer.parseInt(sc.next());
+        if (packageId <= 0) {
+            System.out.println(""Invalid Package ID"");
+        } else if (packageId % 2 == 0) {
+            System.out.println(""Conveyor A"");
+        } else {
+            System.out.println(""Conveyor B"");
+        }
+    }
+}","[{""input"": ""135"", ""output"": ""Conveyor B"", ""is_hidden"": false}, {""input"": ""42"", ""output"": ""Conveyor A"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Conveyor B"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""Conveyor A"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Invalid Package ID"", ""is_hidden"": true}, {""input"": ""-4"", ""output"": ""Invalid Package ID"", ""is_hidden"": true}, {""input"": ""2147483647"", ""output"": ""Conveyor B"", ""is_hidden"": true}, {""input"": ""1000000"", ""output"": ""Conveyor A"", ""is_hidden"": true}]"
+JP-M4-03,ATM Withdrawal Approval,Module 04: Java Conditional Statements,Easy,Validate two inputs and choose between three outcomes with an if-else chain.,stdin/stdout,O(1),O(1),"An ATM receives a customer's account balance and requested withdrawal amount as integers. Read both values. If the balance is negative or the withdrawal amount is not positive, print Invalid Input. Otherwise, print Withdrawal Approved if the requested amount does not exceed the balance. If it exceeds the balance, print Insufficient Balance.","Two separate lines:
+Line 1: Integer balance
+Line 2: Integer withdrawal amount","A single line: Withdrawal Approved, Insufficient Balance, or Invalid Input.","-1,000,000,000 <= balance, amount <= 1,000,000,000","5000
+2000",Withdrawal Approved,"1000
+1500",Insufficient Balance,Check for invalid input first: balance < 0 || amount <= 0.,"""Does not exceed"" means amount <= balance, so an exact match is approved.",Use else if and else for the remaining two outcomes.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int balance = Integer.parseInt(sc.next());
+        int amount = Integer.parseInt(sc.next());
+        if (balance < 0 || amount <= 0) {
+            System.out.println(""Invalid Input"");
+        } else if (amount <= balance) {
+            System.out.println(""Withdrawal Approved"");
+        } else {
+            System.out.println(""Insufficient Balance"");
+        }
+    }
+}","[{""input"": ""5000\n2000"", ""output"": ""Withdrawal Approved"", ""is_hidden"": false}, {""input"": ""1000\n1500"", ""output"": ""Insufficient Balance"", ""is_hidden"": false}, {""input"": ""1000\n1000"", ""output"": ""Withdrawal Approved"", ""is_hidden"": false}, {""input"": ""0\n1"", ""output"": ""Insufficient Balance"", ""is_hidden"": true}, {""input"": ""-1\n100"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""500\n0"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""500\n-50"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""0\n0"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-04,Student Scholarship Eligibility,Module 04: Java Conditional Statements,Easy,Validate a marks range and apply a single cutoff with if-else.,stdin/stdout,O(1),O(1),"A college awards scholarships based on marks out of 100. Read an integer marks. Print Invalid Marks if the value is outside 0 to 100. Otherwise, print Scholarship Eligible for marks from 90 to 100, and Not Eligible for marks below 90.",A single line containing an integer marks.,"A single line: Scholarship Eligible, Not Eligible, or Invalid Marks.",-1000 <= marks <= 1000,92,Scholarship Eligible,75,Not Eligible,Check marks < 0 || marks > 100 first.,"After validation, marks >= 90 is enough to test eligibility.","Test the boundary values 89, 90, and 100 yourself.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int marks = Integer.parseInt(sc.next());
+        if (marks < 0 || marks > 100) {
+            System.out.println(""Invalid Marks"");
+        } else if (marks >= 90) {
+            System.out.println(""Scholarship Eligible"");
+        } else {
+            System.out.println(""Not Eligible"");
+        }
+    }
+}","[{""input"": ""92"", ""output"": ""Scholarship Eligible"", ""is_hidden"": false}, {""input"": ""75"", ""output"": ""Not Eligible"", ""is_hidden"": false}, {""input"": ""90"", ""output"": ""Scholarship Eligible"", ""is_hidden"": false}, {""input"": ""89"", ""output"": ""Not Eligible"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""Scholarship Eligible"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Not Eligible"", ""is_hidden"": true}, {""input"": ""101"", ""output"": ""Invalid Marks"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Invalid Marks"", ""is_hidden"": true}]"
+JP-M4-05,Company Login Verification,Module 04: Java Conditional Statements,Easy,Combine two equality checks with && in a single condition.,stdin/stdout,O(1),O(1),"A company portal checks an employee ID and a four-digit one-time password (OTP). Read the expected employee ID, entered employee ID, expected OTP, and entered OTP as four integers, in that order. All OTPs are between 1000 and 9999, so leading zeros are not used. Print Login Successful only if both entered values match their expected values. Otherwise, print Login Failed.","Four separate lines:
+Line 1: Expected employee ID
+Line 2: Entered employee ID
+Line 3: Expected OTP
+Line 4: Entered OTP",A single line: Login Successful or Login Failed.,"1 <= employee IDs <= 1,000,000
+1000 <= OTPs <= 9999","1042
+1042
+5831
+5830",Login Failed,"1042
+1042
+5831
+5831",Login Successful,Compare int values with ==.,"Both comparisons must be true, so join them with &&.",Use else to print Login Failed in every other case.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int expectedId = Integer.parseInt(sc.next());
+        int enteredId = Integer.parseInt(sc.next());
+        int expectedOtp = Integer.parseInt(sc.next());
+        int enteredOtp = Integer.parseInt(sc.next());
+        if (enteredId == expectedId && enteredOtp == expectedOtp) {
+            System.out.println(""Login Successful"");
+        } else {
+            System.out.println(""Login Failed"");
+        }
+    }
+}","[{""input"": ""1042\n1042\n5831\n5830"", ""output"": ""Login Failed"", ""is_hidden"": false}, {""input"": ""1042\n1042\n5831\n5831"", ""output"": ""Login Successful"", ""is_hidden"": false}, {""input"": ""7\n8\n1234\n1234"", ""output"": ""Login Failed"", ""is_hidden"": false}, {""input"": ""7\n8\n1234\n1235"", ""output"": ""Login Failed"", ""is_hidden"": true}, {""input"": ""99\n99\n1000\n1000"", ""output"": ""Login Successful"", ""is_hidden"": true}, {""input"": ""99\n99\n9999\n1000"", ""output"": ""Login Failed"", ""is_hidden"": true}, {""input"": ""5\n5\n4321\n4321"", ""output"": ""Login Successful"", ""is_hidden"": true}, {""input"": ""123456\n123465\n2222\n2222"", ""output"": ""Login Failed"", ""is_hidden"": true}]"
+JP-M4-06,Ride Fare Category,Module 04: Java Conditional Statements,Easy,Classify a value into consecutive ranges with an else-if ladder.,stdin/stdout,O(1),O(1),"A ride-booking service categorizes trips by distance. Read an integer distance in kilometres. Print Invalid Distance if it is zero or negative. Otherwise, print Short Ride for distances from 1 to 5, Medium Ride for distances from 6 to 15, and Long Ride for distances greater than 15.",A single line containing an integer distance.,"A single line: Short Ride, Medium Ride, Long Ride, or Invalid Distance.",-1000 <= distance <= 100000,12,Medium Ride,1,Short Ride,Check distance <= 0 first.,"Once the earlier conditions fail, each else if only needs an upper bound, such as distance <= 5.",The final else covers every distance greater than 15.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int distance = Integer.parseInt(sc.next());
+        if (distance <= 0) {
+            System.out.println(""Invalid Distance"");
+        } else if (distance <= 5) {
+            System.out.println(""Short Ride"");
+        } else if (distance <= 15) {
+            System.out.println(""Medium Ride"");
+        } else {
+            System.out.println(""Long Ride"");
+        }
+    }
+}","[{""input"": ""12"", ""output"": ""Medium Ride"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Short Ride"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""Short Ride"", ""is_hidden"": false}, {""input"": ""6"", ""output"": ""Medium Ride"", ""is_hidden"": true}, {""input"": ""15"", ""output"": ""Medium Ride"", ""is_hidden"": true}, {""input"": ""16"", ""output"": ""Long Ride"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Invalid Distance"", ""is_hidden"": true}, {""input"": ""-7"", ""output"": ""Invalid Distance"", ""is_hidden"": true}]"
+JP-M4-07,Product Stock Alert,Module 04: Java Conditional Statements,Easy,Distinguish an exact value from ranges in an else-if ladder.,stdin/stdout,O(1),O(1),"A warehouse system checks the remaining stock of a product. Read an integer stock. Print Invalid Stock if it is negative. Otherwise, print Out of Stock if it is 0, Low Stock if it is from 1 to 10, and Stock Available if it is greater than 10.",A single line containing an integer stock.,"A single line: Out of Stock, Low Stock, Stock Available, or Invalid Stock.","-1000 <= stock <= 1,000,000",7,Low Stock,25,Stock Available,Check stock < 0 first.,Use stock == 0 for the out-of-stock case.,"After those checks, stock <= 10 identifies low stock.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int stock = Integer.parseInt(sc.next());
+        if (stock < 0) {
+            System.out.println(""Invalid Stock"");
+        } else if (stock == 0) {
+            System.out.println(""Out of Stock"");
+        } else if (stock <= 10) {
+            System.out.println(""Low Stock"");
+        } else {
+            System.out.println(""Stock Available"");
+        }
+    }
+}","[{""input"": ""7"", ""output"": ""Low Stock"", ""is_hidden"": false}, {""input"": ""25"", ""output"": ""Stock Available"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Out of Stock"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Low Stock"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""Low Stock"", ""is_hidden"": true}, {""input"": ""11"", ""output"": ""Stock Available"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Invalid Stock"", ""is_hidden"": true}, {""input"": ""500"", ""output"": ""Stock Available"", ""is_hidden"": true}]"
+JP-M4-08,Customer Support Priority,Module 04: Java Conditional Statements,Easy,Map exact integer values to labels with a switch statement and a default case.,stdin/stdout,O(1),O(1),"A company classifies support tickets using an integer priority from 1 to 4. Use a switch statement to print Low for priority 1, Medium for 2, High for 3, and Critical for 4. For any other value, print Invalid Priority.",A single line containing an integer priority.,"A single line: Low, Medium, High, Critical, or Invalid Priority.",-1000 <= priority <= 1000,4,Critical,1,Low,Write one case for each of the values 1 to 4.,Put break at the end of each case.,The default label handles every value without a matching case.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int priority = Integer.parseInt(sc.next());
+        switch (priority) {
+            case 1:
+                System.out.println(""Low"");
+                break;
+            case 2:
+                System.out.println(""Medium"");
+                break;
+            case 3:
+                System.out.println(""High"");
+                break;
+            case 4:
+                System.out.println(""Critical"");
+                break;
+            default:
+                System.out.println(""Invalid Priority"");
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""Critical"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Low"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""Medium"", ""is_hidden"": false}, {""input"": ""3"", ""output"": ""High"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Invalid Priority"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""Invalid Priority"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""Invalid Priority"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""Invalid Priority"", ""is_hidden"": true}]"
+JP-M4-09,Employee Promotion Decision,Module 04: Java Conditional Statements,Medium,Validate two inputs and apply ordered rules that combine conditions with &&.,stdin/stdout,O(1),O(1),"A company evaluates employees for promotion using years of service and performance rating. Read an integer years and an integer rating. If years is negative or rating is outside 1 to 5, print Invalid Input. Otherwise, apply these rules in order:
+- Print Promotion Approved if the employee has at least 3 years of service and a rating of at least 4.
+- Otherwise, print Performance Improvement Required if the employee has at least 3 years of service.
+- Otherwise, print Experience Requirement Not Met.","Two separate lines:
+Line 1: Integer years
+Line 2: Integer rating","A single line: Promotion Approved, Performance Improvement Required, Experience Requirement Not Met, or Invalid Input.","-100 <= years <= 100
+-100 <= rating <= 100","4
+3",Performance Improvement Required,"5
+5",Promotion Approved,Validate both inputs before applying any rule.,The first rule needs years >= 3 && rating >= 4.,"Because the rules are checked in order, the second rule only needs years >= 3.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int years = Integer.parseInt(sc.next());
+        int rating = Integer.parseInt(sc.next());
+        if (years < 0 || rating < 1 || rating > 5) {
+            System.out.println(""Invalid Input"");
+        } else if (years >= 3 && rating >= 4) {
+            System.out.println(""Promotion Approved"");
+        } else if (years >= 3) {
+            System.out.println(""Performance Improvement Required"");
+        } else {
+            System.out.println(""Experience Requirement Not Met"");
+        }
+    }
+}","[{""input"": ""4\n3"", ""output"": ""Performance Improvement Required"", ""is_hidden"": false}, {""input"": ""5\n5"", ""output"": ""Promotion Approved"", ""is_hidden"": false}, {""input"": ""3\n4"", ""output"": ""Promotion Approved"", ""is_hidden"": false}, {""input"": ""2\n5"", ""output"": ""Experience Requirement Not Met"", ""is_hidden"": true}, {""input"": ""0\n1"", ""output"": ""Experience Requirement Not Met"", ""is_hidden"": true}, {""input"": ""10\n2"", ""output"": ""Performance Improvement Required"", ""is_hidden"": true}, {""input"": ""-1\n4"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""3\n6"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-10,Insurance Premium Risk Assessment,Module 04: Java Conditional Statements,Medium,Apply ordered rules that mix && and || across three inputs.,stdin/stdout,O(1),O(1),"An insurance company assigns a risk category using a customer's age, number of previous claims, and annual income. Read these three integers in that order. Print Invalid Input if age is not positive, claims are negative, or income is negative. Otherwise, apply these rules in order:
+- Print High Risk if the customer is younger than 25 and has at least 2 previous claims.
+- Print High Risk if the customer has at least 4 previous claims, regardless of age or income.
+- Print Review Required if the customer has at least 2 previous claims or annual income is below ₹200000.
+- Print Standard Risk otherwise.","Three separate lines:
+Line 1: Integer age
+Line 2: Integer claims
+Line 3: Integer annual income","A single line: High Risk, Review Required, Standard Risk, or Invalid Input.","-100 <= age <= 150
+-100 <= claims <= 100
+-1,000,000 <= income <= 1,000,000,000","30
+2
+150000",Review Required,"22
+3
+500000",High Risk,Validate all three inputs first.,The two High Risk rules can be joined: (age < 25 && claims >= 2) || claims >= 4.,"Review Required only applies when neither High Risk rule matched, so check it in a later else if.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int age = Integer.parseInt(sc.next());
+        int claims = Integer.parseInt(sc.next());
+        int income = Integer.parseInt(sc.next());
+        if (age <= 0 || claims < 0 || income < 0) {
+            System.out.println(""Invalid Input"");
+        } else if ((age < 25 && claims >= 2) || claims >= 4) {
+            System.out.println(""High Risk"");
+        } else if (claims >= 2 || income < 200000) {
+            System.out.println(""Review Required"");
+        } else {
+            System.out.println(""Standard Risk"");
+        }
+    }
+}","[{""input"": ""30\n2\n150000"", ""output"": ""Review Required"", ""is_hidden"": false}, {""input"": ""22\n3\n500000"", ""output"": ""High Risk"", ""is_hidden"": false}, {""input"": ""40\n4\n900000"", ""output"": ""High Risk"", ""is_hidden"": false}, {""input"": ""24\n2\n100000"", ""output"": ""High Risk"", ""is_hidden"": true}, {""input"": ""50\n0\n250000"", ""output"": ""Standard Risk"", ""is_hidden"": true}, {""input"": ""30\n1\n199999"", ""output"": ""Review Required"", ""is_hidden"": true}, {""input"": ""26\n1\n200000"", ""output"": ""Standard Risk"", ""is_hidden"": true}, {""input"": ""0\n1\n300000"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-11,E-Commerce Discount Calculator,Module 04: Java Conditional Statements,Medium,Choose a discount rate with an else-if ladder and print a computed amount with two decimal places.,stdin/stdout,O(1),O(1),"An online store offers discounts based on the order amount. Read the order amount as an integer. Print Invalid Amount if it is negative. Otherwise, apply a 20% discount for amounts of ₹5000 or more, a 10% discount for amounts of ₹2000 or more but below ₹5000, and a 5% discount for amounts of ₹1000 or more but below ₹2000. Smaller orders receive no discount. Print the discount percentage as an integer and the final amount with exactly two decimal places, using a period as the decimal separator, each on a separate line.",A single line containing an integer order amount.,"Either two lines (the discount percentage, then the final amount with two decimal places) or a single line: Invalid Amount.","-1,000,000 <= amount <= 10,000,000",2500,"10
+2250.00",999,"0
+999.00",Store the discount percentage in an int variable chosen by an else-if ladder.,Compute the final amount as amount * (100 - discount) / 100.0 so the division is not integer division.,"Format with String.format(Locale.US, ""%.2f"", finalAmount); import java.util.Locale.","import java.util.Locale;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int amount = Integer.parseInt(sc.next());
+        if (amount < 0) {
+            System.out.println(""Invalid Amount"");
+        } else {
+            int discount;
+            if (amount >= 5000) {
+                discount = 20;
+            } else if (amount >= 2000) {
+                discount = 10;
+            } else if (amount >= 1000) {
+                discount = 5;
+            } else {
+                discount = 0;
+            }
+            double finalAmount = amount * (100 - discount) / 100.0;
+            System.out.println(discount);
+            System.out.println(String.format(Locale.US, ""%.2f"", finalAmount));
+        }
+    }
+}","[{""input"": ""2500"", ""output"": ""10\n2250.00"", ""is_hidden"": false}, {""input"": ""999"", ""output"": ""0\n999.00"", ""is_hidden"": false}, {""input"": ""5000"", ""output"": ""20\n4000.00"", ""is_hidden"": false}, {""input"": ""1999"", ""output"": ""5\n1899.05"", ""is_hidden"": true}, {""input"": ""1000"", ""output"": ""5\n950.00"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""0\n0.00"", ""is_hidden"": true}, {""input"": ""-5"", ""output"": ""Invalid Amount"", ""is_hidden"": true}, {""input"": ""12345"", ""output"": ""20\n9876.00"", ""is_hidden"": true}]"
+JP-M4-12,Leap Year Validator,Module 04: Java Conditional Statements,Medium,Express the leap-year rule with combined divisibility conditions.,stdin/stdout,O(1),O(1),"A calendar application determines whether a given year is a leap year. Read an integer year. Print Invalid Year if the year is not positive. Otherwise, print Leap Year if the year is divisible by 400, or if it is divisible by 4 but not by 100. Print Not a Leap Year in all other cases.",A single line containing an integer year.,"A single line: Leap Year, Not a Leap Year, or Invalid Year.",-10000 <= year <= 100000,2000,Leap Year,1900,Not a Leap Year,A year is divisible by n when year % n == 0.,The rule is year % 400 == 0 || (year % 4 == 0 && year % 100 != 0).,"Check 1900 and 2000 by hand: both are divisible by 100, but only 2000 is divisible by 400.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int year = Integer.parseInt(sc.next());
+        if (year <= 0) {
+            System.out.println(""Invalid Year"");
+        } else if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+            System.out.println(""Leap Year"");
+        } else {
+            System.out.println(""Not a Leap Year"");
+        }
+    }
+}","[{""input"": ""2000"", ""output"": ""Leap Year"", ""is_hidden"": false}, {""input"": ""1900"", ""output"": ""Not a Leap Year"", ""is_hidden"": false}, {""input"": ""2024"", ""output"": ""Leap Year"", ""is_hidden"": false}, {""input"": ""2023"", ""output"": ""Not a Leap Year"", ""is_hidden"": true}, {""input"": ""2100"", ""output"": ""Not a Leap Year"", ""is_hidden"": true}, {""input"": ""2400"", ""output"": ""Leap Year"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Invalid Year"", ""is_hidden"": true}, {""input"": ""-4"", ""output"": ""Invalid Year"", ""is_hidden"": true}]"
+JP-M4-13,Employee Attendance and Reward,Module 04: Java Conditional Statements,Medium,Validate two inputs and apply ordered rules where a stricter condition is checked first.,stdin/stdout,O(1),O(1),"A company determines an employee's attendance reward using attendance percentage and completed workdays. Read an integer attendance and an integer workdays. Print Invalid Input if attendance is outside 0 to 100 or workdays is negative. Otherwise, apply these rules in order:
+- Print Full Attendance Reward if attendance is 100 and workdays are at least 22.
+- Otherwise, print Attendance Accepted if attendance is at least 90 and workdays are at least 20.
+- Otherwise, print Attendance Warning.","Two separate lines:
+Line 1: Integer attendance
+Line 2: Integer workdays","A single line: Full Attendance Reward, Attendance Accepted, Attendance Warning, or Invalid Input.","-100 <= attendance <= 200
+-100 <= workdays <= 31","95
+21",Attendance Accepted,"100
+22",Full Attendance Reward,Validate attendance and workdays before applying any rule.,Check the stricter Full Attendance Reward condition first.,An employee with 100% attendance but only 21 workdays falls through to the second rule.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int attendance = Integer.parseInt(sc.next());
+        int workdays = Integer.parseInt(sc.next());
+        if (attendance < 0 || attendance > 100 || workdays < 0) {
+            System.out.println(""Invalid Input"");
+        } else if (attendance == 100 && workdays >= 22) {
+            System.out.println(""Full Attendance Reward"");
+        } else if (attendance >= 90 && workdays >= 20) {
+            System.out.println(""Attendance Accepted"");
+        } else {
+            System.out.println(""Attendance Warning"");
+        }
+    }
+}","[{""input"": ""95\n21"", ""output"": ""Attendance Accepted"", ""is_hidden"": false}, {""input"": ""100\n22"", ""output"": ""Full Attendance Reward"", ""is_hidden"": false}, {""input"": ""100\n21"", ""output"": ""Attendance Accepted"", ""is_hidden"": false}, {""input"": ""90\n20"", ""output"": ""Attendance Accepted"", ""is_hidden"": true}, {""input"": ""89\n25"", ""output"": ""Attendance Warning"", ""is_hidden"": true}, {""input"": ""0\n0"", ""output"": ""Attendance Warning"", ""is_hidden"": true}, {""input"": ""101\n22"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""100\n-1"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-14,Cloud Server Access Control,Module 04: Java Conditional Statements,Medium,Compare strings with .equals() and nest a Boolean check inside one branch.,stdin/stdout,O(1),O(1),"A cloud platform grants access based on a user's role and whether multi-factor authentication (MFA) is enabled. Read a role string and a Boolean value in that order. The role line must always be followed by the MFA line, even if the role is invalid. Boolean input is lowercase true or false. Roles are case-sensitive and must be lowercase: admin, developer, or viewer.
+
+Apply these rules:
+- admin: print Admin Access Granted if MFA is true; otherwise, print Access Denied.
+- developer: print Developer Access Granted.
+- viewer: print Read-Only Access.
+- Any other role: print Invalid Role.
+Use .equals() to compare role strings, not ==.","Two separate lines:
+Line 1: Role (a single word)
+Line 2: MFA status (true or false)","A single line: Admin Access Granted, Access Denied, Developer Access Granted, Read-Only Access, or Invalid Role.","The role is a single word with no spaces.
+The MFA status is exactly true or false.","admin
+false",Access Denied,"admin
+true",Admin Access Granted,Read the role with sc.next() and the MFA status with Boolean.parseBoolean(sc.next()).,"role.equals(""admin"") compares the text; role == ""admin"" compares object references and can fail.","Inside the admin branch, use a nested if on the MFA value.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String role = sc.next();
+        boolean mfa = Boolean.parseBoolean(sc.next());
+        if (role.equals(""admin"")) {
+            if (mfa) {
+                System.out.println(""Admin Access Granted"");
+            } else {
+                System.out.println(""Access Denied"");
+            }
+        } else if (role.equals(""developer"")) {
+            System.out.println(""Developer Access Granted"");
+        } else if (role.equals(""viewer"")) {
+            System.out.println(""Read-Only Access"");
+        } else {
+            System.out.println(""Invalid Role"");
+        }
+    }
+}","[{""input"": ""admin\nfalse"", ""output"": ""Access Denied"", ""is_hidden"": false}, {""input"": ""admin\ntrue"", ""output"": ""Admin Access Granted"", ""is_hidden"": false}, {""input"": ""developer\nfalse"", ""output"": ""Developer Access Granted"", ""is_hidden"": false}, {""input"": ""viewer\ntrue"", ""output"": ""Read-Only Access"", ""is_hidden"": true}, {""input"": ""Admin\ntrue"", ""output"": ""Invalid Role"", ""is_hidden"": true}, {""input"": ""guest\nfalse"", ""output"": ""Invalid Role"", ""is_hidden"": true}, {""input"": ""developer\ntrue"", ""output"": ""Developer Access Granted"", ""is_hidden"": true}, {""input"": ""viewer\nfalse"", ""output"": ""Read-Only Access"", ""is_hidden"": true}]"
+JP-M4-15,Shipping Cost by Delivery Zone,Module 04: Java Conditional Statements,Medium,Select a base charge by zone and add a weight-based charge.,stdin/stdout,O(1),O(1),"A delivery company calculates shipping charges based on a zone code and parcel weight. Read an integer zone and an integer weight in kilograms. Print Invalid Input if the zone is not 1, 2, or 3, or if weight is not positive. The base charge is ₹50 for zone 1, ₹100 for zone 2, and ₹150 for zone 3. Add ₹20 for each kilogram above the first kilogram. Print the total shipping charge as an integer.","Two separate lines:
+Line 1: Integer zone
+Line 2: Integer weight","A single line containing the total charge, or Invalid Input.","-10 <= zone <= 10
+-100 <= weight <= 10000","2
+4",160,"1
+1",50,Validate first: zone < 1 || zone > 3 || weight <= 0.,Choose the base charge with an if-else chain or a switch on the zone.,"The extra charge is (weight - 1) * 20, which is 0 for a 1 kg parcel.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int zone = Integer.parseInt(sc.next());
+        int weight = Integer.parseInt(sc.next());
+        if (zone < 1 || zone > 3 || weight <= 0) {
+            System.out.println(""Invalid Input"");
+        } else {
+            int base;
+            if (zone == 1) {
+                base = 50;
+            } else if (zone == 2) {
+                base = 100;
+            } else {
+                base = 150;
+            }
+            int total = base + (weight - 1) * 20;
+            System.out.println(total);
+        }
+    }
+}","[{""input"": ""2\n4"", ""output"": ""160"", ""is_hidden"": false}, {""input"": ""1\n1"", ""output"": ""50"", ""is_hidden"": false}, {""input"": ""3\n10"", ""output"": ""330"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""130"", ""is_hidden"": true}, {""input"": ""4\n3"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""2\n0"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""0\n2"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""3\n1"", ""output"": ""150"", ""is_hidden"": true}]"
+JP-M4-16,Hospital Triage Category,Module 04: Java Conditional Statements,Medium,"Validate a double and an int, then apply ordered rules with || conditions.",stdin/stdout,O(1),O(1),"A hospital triage training system assigns a category based on temperature and oxygen saturation. Read a double temperature in Celsius and an integer oxygen saturation percentage. First validate the inputs: if the temperature is below 30.0 or above 45.0, or oxygen saturation is outside 0 to 100, print Invalid Input. Otherwise, apply these rules in order:
+- Print Critical if oxygen saturation is below 90 or temperature is at least 40.0.
+- Otherwise, print Urgent if oxygen saturation is below 95 or temperature is at least 38.0.
+- Otherwise, print Routine.","Two separate lines:
+Line 1: Temperature (decimal number)
+Line 2: Oxygen saturation (integer)","A single line: Critical, Urgent, Routine, or Invalid Input.","0.0 <= temperature <= 60.0
+-100 <= oxygen <= 200","38.5
+97",Urgent,"36.8
+98",Routine,Read the temperature with Double.parseDouble(sc.next()).,"Validation comes first, so an out-of-range value never reaches the Critical rule.","Check Critical before Urgent, because every Critical case would also match the Urgent conditions.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double temperature = Double.parseDouble(sc.next());
+        int oxygen = Integer.parseInt(sc.next());
+        if (temperature < 30.0 || temperature > 45.0 || oxygen < 0 || oxygen > 100) {
+            System.out.println(""Invalid Input"");
+        } else if (oxygen < 90 || temperature >= 40.0) {
+            System.out.println(""Critical"");
+        } else if (oxygen < 95 || temperature >= 38.0) {
+            System.out.println(""Urgent"");
+        } else {
+            System.out.println(""Routine"");
+        }
+    }
+}","[{""input"": ""38.5\n97"", ""output"": ""Urgent"", ""is_hidden"": false}, {""input"": ""36.8\n98"", ""output"": ""Routine"", ""is_hidden"": false}, {""input"": ""37.0\n89"", ""output"": ""Critical"", ""is_hidden"": false}, {""input"": ""40.0\n99"", ""output"": ""Critical"", ""is_hidden"": true}, {""input"": ""37.5\n94"", ""output"": ""Urgent"", ""is_hidden"": true}, {""input"": ""38.0\n95"", ""output"": ""Urgent"", ""is_hidden"": true}, {""input"": ""29.9\n98"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""36.6\n101"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-17,Subscription Plan Selector,Module 04: Java Conditional Statements,Medium,Use a switch statement on a char value with a default case.,stdin/stdout,O(1),O(1),"A software company offers three monthly subscription plans. Read exactly one character as the plan code. Matching is case-sensitive.
+- B: print 499
+- P: print 999
+- E: print 1999
+- Any other character: print Invalid Plan
+Use a switch statement. For example, lowercase p is invalid.",A single line containing exactly one character.,"A single line: 499, 999, 1999, or Invalid Plan.","The input is exactly one printable, non-space character.",P,999,E,1999,Read the plan code with sc.next().charAt(0).,"char case labels use single quotes, such as case 'B':.","Because 'p' and 'P' are different characters, lowercase codes fall to default.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char plan = sc.next().charAt(0);
+        switch (plan) {
+            case 'B':
+                System.out.println(499);
+                break;
+            case 'P':
+                System.out.println(999);
+                break;
+            case 'E':
+                System.out.println(1999);
+                break;
+            default:
+                System.out.println(""Invalid Plan"");
+        }
+    }
+}","[{""input"": ""P"", ""output"": ""999"", ""is_hidden"": false}, {""input"": ""E"", ""output"": ""1999"", ""is_hidden"": false}, {""input"": ""B"", ""output"": ""499"", ""is_hidden"": false}, {""input"": ""p"", ""output"": ""Invalid Plan"", ""is_hidden"": true}, {""input"": ""X"", ""output"": ""Invalid Plan"", ""is_hidden"": true}, {""input"": ""e"", ""output"": ""Invalid Plan"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Invalid Plan"", ""is_hidden"": true}, {""input"": ""Q"", ""output"": ""Invalid Plan"", ""is_hidden"": true}]"
+JP-M4-18,Corporate Travel Reimbursement,Module 04: Java Conditional Statements,Hard,"Determine a limit from two inputs, where one condition overrides the other, then compare a claim with it.",stdin/stdout,O(1),O(1),"A company reimburses employee travel expenses according to the employee's grade, trip distance, and claimed amount. Read a grade character, an integer distance in kilometres, and an integer claim amount, in that order. Print Invalid Input if the grade is not A, B, or C, the distance is not positive, or the claim is negative.
+
+The reimbursement limit is ₹1,000 if the distance is below 50 km. Otherwise, the limit depends on grade: ₹10,000 for grade A, ₹6,000 for grade B, and ₹3,000 for grade C.
+
+Print Claim Exceeds Limit if the claim exceeds the applicable limit. Otherwise, print Reimbursement Approved: followed by the claimed amount, with exactly one space after the colon.","Three separate lines:
+Line 1: Grade (one character)
+Line 2: Integer distance
+Line 3: Integer claim","A single line: Reimbursement Approved: <claim>, Claim Exceeds Limit, or Invalid Input.","Grade is one character.
+-1000 <= distance <= 100000
+-1000 <= claim <= 1,000,000","B
+120
+4500",Reimbursement Approved: 4500,"A
+30
+1500",Claim Exceeds Limit,Grades are case-sensitive: check grade != 'A' && grade != 'B' && grade != 'C' during validation.,"Compute the limit in an int variable: 1000 when distance < 50, otherwise by grade.","A claim equal to the limit does not exceed it, so it is approved.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char grade = sc.next().charAt(0);
+        int distance = Integer.parseInt(sc.next());
+        int claim = Integer.parseInt(sc.next());
+        if ((grade != 'A' && grade != 'B' && grade != 'C') || distance <= 0 || claim < 0) {
+            System.out.println(""Invalid Input"");
+        } else {
+            int limit;
+            if (distance < 50) {
+                limit = 1000;
+            } else if (grade == 'A') {
+                limit = 10000;
+            } else if (grade == 'B') {
+                limit = 6000;
+            } else {
+                limit = 3000;
+            }
+            if (claim > limit) {
+                System.out.println(""Claim Exceeds Limit"");
+            } else {
+                System.out.println(""Reimbursement Approved: "" + claim);
+            }
+        }
+    }
+}","[{""input"": ""B\n120\n4500"", ""output"": ""Reimbursement Approved: 4500"", ""is_hidden"": false}, {""input"": ""A\n30\n1500"", ""output"": ""Claim Exceeds Limit"", ""is_hidden"": false}, {""input"": ""C\n50\n3000"", ""output"": ""Reimbursement Approved: 3000"", ""is_hidden"": false}, {""input"": ""A\n200\n10001"", ""output"": ""Claim Exceeds Limit"", ""is_hidden"": true}, {""input"": ""C\n49\n1000"", ""output"": ""Reimbursement Approved: 1000"", ""is_hidden"": true}, {""input"": ""D\n100\n500"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""B\n0\n100"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""a\n100\n500"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-19,Loan Approval Decision Engine,Module 04: Java Conditional Statements,Hard,Validate three inputs and apply a strict sequence of rejection rules.,stdin/stdout,O(1),O(1),"A bank evaluates a loan application using monthly salary, credit score, and existing monthly debt. Read these three integers in that order. Print Invalid Input if salary or debt is negative, or if the credit score is outside 0 to 900. Otherwise, apply these rules in order:
+1. If the credit score is below 600, print Loan Rejected.
+2. Otherwise, if the salary is below ₹25,000, print Salary Requirement Not Met.
+3. Otherwise, if the monthly debt is greater than half the monthly salary, print Debt Too High.
+4. Otherwise, print Loan Approved.","Three separate lines:
+Line 1: Integer salary
+Line 2: Integer credit score
+Line 3: Integer debt","A single line: Loan Rejected, Salary Requirement Not Met, Debt Too High, Loan Approved, or Invalid Input.","-1,000,000 <= salary, debt <= 100,000,000
+-1000 <= credit score <= 2000","40000
+720
+10000",Loan Approved,"50000
+580
+1000",Loan Rejected,Validate all three inputs before applying the rules.,"Keep the rules in the given order with else if, so only the first failing rule is reported.",Compare debt > salary / 2.0 so an odd salary is not rounded down by integer division.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int salary = Integer.parseInt(sc.next());
+        int creditScore = Integer.parseInt(sc.next());
+        int debt = Integer.parseInt(sc.next());
+        if (salary < 0 || debt < 0 || creditScore < 0 || creditScore > 900) {
+            System.out.println(""Invalid Input"");
+        } else if (creditScore < 600) {
+            System.out.println(""Loan Rejected"");
+        } else if (salary < 25000) {
+            System.out.println(""Salary Requirement Not Met"");
+        } else if (debt > salary / 2.0) {
+            System.out.println(""Debt Too High"");
+        } else {
+            System.out.println(""Loan Approved"");
+        }
+    }
+}","[{""input"": ""40000\n720\n10000"", ""output"": ""Loan Approved"", ""is_hidden"": false}, {""input"": ""50000\n580\n1000"", ""output"": ""Loan Rejected"", ""is_hidden"": false}, {""input"": ""20000\n750\n0"", ""output"": ""Salary Requirement Not Met"", ""is_hidden"": false}, {""input"": ""30000\n650\n15001"", ""output"": ""Debt Too High"", ""is_hidden"": true}, {""input"": ""30000\n650\n15000"", ""output"": ""Loan Approved"", ""is_hidden"": true}, {""input"": ""25000\n600\n0"", ""output"": ""Loan Approved"", ""is_hidden"": true}, {""input"": ""40000\n901\n100"", ""output"": ""Invalid Input"", ""is_hidden"": true}, {""input"": ""-1\n700\n0"", ""output"": ""Invalid Input"", ""is_hidden"": true}]"
+JP-M4-20,Fraud Alert for Online Payments,Module 04: Java Conditional Statements,Hard,Apply ordered rules that combine an amount threshold with two Boolean checks using && and ||.,stdin/stdout,O(1),O(1),"An online payment company evaluates a transaction using its amount, country match, and device trust status. Read an integer amount, a Boolean value countryMatches, and a Boolean value deviceTrusted, in that order. Boolean inputs are always lowercase true or false. The amount is expressed in rupees; the high-value transaction threshold is ₹100000.
+
+First, print Invalid Transaction if the amount is not positive. Otherwise, apply these rules in order:
+1. If the amount exceeds 100000, print Block Transaction.
+2. Otherwise, if the country does not match and the device is not trusted, print Block Transaction.
+3. Otherwise, if either the country does not match or the device is not trusted, print Additional Verification Required.
+4. Otherwise, print Transaction Approved.","Three separate lines:
+Line 1: Integer amount
+Line 2: countryMatches (true or false)
+Line 3: deviceTrusted (true or false)","A single line: Block Transaction, Additional Verification Required, Transaction Approved, or Invalid Transaction.","-1,000,000 <= amount <= 1,000,000,000
+Boolean inputs are exactly true or false.","75000
+false
+false",Block Transaction,"20000
+true
+false",Additional Verification Required,Read the Boolean values with Boolean.parseBoolean(sc.next()).,"""Does not match and is not trusted"" is !countryMatches && !deviceTrusted.","Rule 3 can simply use ||, because the case where both checks fail was already handled by rule 2.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int amount = Integer.parseInt(sc.next());
+        boolean countryMatches = Boolean.parseBoolean(sc.next());
+        boolean deviceTrusted = Boolean.parseBoolean(sc.next());
+        if (amount <= 0) {
+            System.out.println(""Invalid Transaction"");
+        } else if (amount > 100000) {
+            System.out.println(""Block Transaction"");
+        } else if (!countryMatches && !deviceTrusted) {
+            System.out.println(""Block Transaction"");
+        } else if (!countryMatches || !deviceTrusted) {
+            System.out.println(""Additional Verification Required"");
+        } else {
+            System.out.println(""Transaction Approved"");
+        }
+    }
+}","[{""input"": ""75000\nfalse\nfalse"", ""output"": ""Block Transaction"", ""is_hidden"": false}, {""input"": ""20000\ntrue\nfalse"", ""output"": ""Additional Verification Required"", ""is_hidden"": false}, {""input"": ""100001\ntrue\ntrue"", ""output"": ""Block Transaction"", ""is_hidden"": false}, {""input"": ""100000\ntrue\ntrue"", ""output"": ""Transaction Approved"", ""is_hidden"": true}, {""input"": ""50000\nfalse\ntrue"", ""output"": ""Additional Verification Required"", ""is_hidden"": true}, {""input"": ""0\ntrue\ntrue"", ""output"": ""Invalid Transaction"", ""is_hidden"": true}, {""input"": ""1\ntrue\ntrue"", ""output"": ""Transaction Approved"", ""is_hidden"": true}, {""input"": ""-500\nfalse\nfalse"", ""output"": ""Invalid Transaction"", ""is_hidden"": true}]"

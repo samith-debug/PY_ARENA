@@ -1,0 +1,996 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M13-01,E-Commerce Order Total,Module 13: Exception Handling,Easy,Detect multiplication overflow with Math.multiplyExact() and handle the resulting ArithmeticException.,stdin/stdout,O(1),O(1),"An online store calculates the total cost of a customer's order. The input provides a product price in paise, the quantity ordered, and the amount paid. The application must validate the order and calculate the change without overflowing a long.
+
+Read three integers: price, quantity, and payment. Apply these checks in order:
+1. If the price or quantity is not positive, or the payment is negative, print Invalid order.
+2. If multiplying the price by the quantity would exceed Long.MAX_VALUE, print Order total overflow.
+3. If the payment is less than the order total, print Insufficient payment.
+Otherwise, print Order confirmed followed by the change due. Use Math.multiplyExact() to detect multiplication overflow and catch ArithmeticException. Do not print a confirmation for an invalid order.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The total is 2500 × 3 = 7500 paise. The customer pays 10000 paise, so the change due is 2500 paise.","One line containing three space-separated integers: price in paise, quantity, and payment in paise.","On success, print two lines:
+Order confirmed
+Change due: <change>
+On failure, print only the applicable error message.","Price and payment are valid Java long values.
+1 ≤ quantity ≤ 1,000,000,000",2500 3 10000,"Order confirmed
+Change due: 2500",2500 3 7499,Insufficient payment,Read all three values as long.,"Math.multiplyExact(price, quantity) throws ArithmeticException instead of silently wrapping around.",Put the multiplication in a try block and print Order total overflow in the catch block.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long price = Long.parseLong(sc.next());
+        long quantity = Long.parseLong(sc.next());
+        long payment = Long.parseLong(sc.next());
+        if (price <= 0 || quantity <= 0 || payment < 0) {
+            System.out.println(""Invalid order"");
+        } else {
+            try {
+                long total = Math.multiplyExact(price, quantity);
+                if (payment < total) {
+                    System.out.println(""Insufficient payment"");
+                } else {
+                    System.out.println(""Order confirmed"");
+                    System.out.println(""Change due: "" + (payment - total));
+                }
+            } catch (ArithmeticException e) {
+                System.out.println(""Order total overflow"");
+            }
+        }
+    }
+}","[{""input"": ""2500 3 10000"", ""output"": ""Order confirmed\nChange due: 2500"", ""is_hidden"": false}, {""input"": ""2500 3 7499"", ""output"": ""Insufficient payment"", ""is_hidden"": false}, {""input"": ""2500 3 7500"", ""output"": ""Order confirmed\nChange due: 0"", ""is_hidden"": false}, {""input"": ""0 3 100"", ""output"": ""Invalid order"", ""is_hidden"": true}, {""input"": ""-5 2 100"", ""output"": ""Invalid order"", ""is_hidden"": true}, {""input"": ""100 1 -1"", ""output"": ""Invalid order"", ""is_hidden"": true}, {""input"": ""9223372036854775807 2 0"", ""output"": ""Order total overflow"", ""is_hidden"": true}, {""input"": ""3074457345618258602 3 9223372036854775807"", ""output"": ""Order confirmed\nChange due: 1"", ""is_hidden"": true}]"
+JP-M13-02,Safely Parse a Customer Age,Module 13: Exception Handling,Easy,Catch NumberFormatException from Integer.parseInt() and then validate the parsed value.,stdin/stdout,O(1),O(1),"A registration system receives a customer's age as text. Convert the entire input line to a Java int using Integer.parseInt().
+
+The input must contain a valid decimal integer representation. An optional leading + or - sign is allowed, but at least one digit must follow the sign. Leading or trailing whitespace is invalid and must not be removed with trim(). Empty input, letters, decimal points, and values outside the Java int range must also be rejected.
+
+If parsing succeeds, check the age. Print Invalid age if the age is below 0 or above 120. Otherwise, print Age accepted. If parsing fails, catch NumberFormatException and print Invalid integer.
+
+If the environment provides no line at all, treat it as invalid input. Print exactly one result line.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: Integer.parseInt(""+25"") returns 25. This value is within the permitted age range, so the registration system accepts it.",One line containing the age as text. The line may be empty.,"Print Age accepted, Invalid age, or Invalid integer.","The input line contains at most 100 characters.
+A successfully parsed integer must fit in the Java int range.",+25,Age accepted,121,Invalid age,Read the whole line with sc.nextLine(); check sc.hasNextLine() first in case there is no line.,"Integer.parseInt() throws NumberFormatException for spaces, letters, an empty string, and out-of-range values.","Check the age range only after parsing succeeds, inside the try block.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        return sc.hasNextLine() ? sc.nextLine() : null;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String line = readLine(sc);
+        try {
+            if (line == null) {
+                throw new NumberFormatException(""No input"");
+            }
+            int age = Integer.parseInt(line);
+            if (age < 0 || age > 120) {
+                System.out.println(""Invalid age"");
+            } else {
+                System.out.println(""Age accepted"");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(""Invalid integer"");
+        }
+    }
+}","[{""input"": ""+25"", ""output"": ""Age accepted"", ""is_hidden"": false}, {""input"": ""121"", ""output"": ""Invalid age"", ""is_hidden"": false}, {""input"": ""-1"", ""output"": ""Invalid age"", ""is_hidden"": false}, {""input"": "" 25"", ""output"": ""Invalid integer"", ""is_hidden"": true}, {""input"": """", ""output"": ""Invalid integer"", ""is_hidden"": true}, {""input"": ""abc"", ""output"": ""Invalid integer"", ""is_hidden"": true}, {""input"": ""2147483648"", ""output"": ""Invalid integer"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Age accepted"", ""is_hidden"": true}]"
+JP-M13-03,Retrieve a Warehouse Shelf Item,Module 13: Exception Handling,Easy,Access an array inside a try block and handle ArrayIndexOutOfBoundsException.,stdin/stdout,O(1),O(1),"A warehouse stores item quantities in an array. Each position represents a shelf number starting from zero. The program receives the number of shelves, the quantity stored on each shelf, and a requested shelf index.
+
+Attempt to retrieve the quantity at the requested index. If the index is valid, print Quantity: followed by a space and the stored quantity. If the index is negative or greater than or equal to the array length, catch ArrayIndexOutOfBoundsException and print Invalid shelf index.
+
+The array access must occur inside a try block, and the exception must be handled using catch. Do not replace the required exception-handling demonstration with only an if statement.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: Shelf index 2 contains 20 items. Since index 2 is valid for an array of length 4, the program prints that quantity.","First line: integer N.
+Second line: N space-separated quantities.
+Third line: requested index K.",Print Quantity: <value> or Invalid shelf index.,"1 ≤ N ≤ 1000
+0 ≤ each quantity ≤ 1,000,000
+−1,000,000 ≤ K ≤ 1,000,000","4
+12 8 20 15
+2",Quantity: 20,"4
+12 8 20 15
+4",Invalid shelf index,Read the quantities into an int array of length N.,Put shelves[k] inside try; Java throws ArrayIndexOutOfBoundsException automatically for a bad index.,"Print the quantity inside the try block, after the access succeeds.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int[] shelves = new int[n];
+        for (int i = 0; i < n; i++) {
+            shelves[i] = Integer.parseInt(sc.next());
+        }
+        int k = Integer.parseInt(sc.next());
+        try {
+            System.out.println(""Quantity: "" + shelves[k]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println(""Invalid shelf index"");
+        }
+    }
+}","[{""input"": ""4\n12 8 20 15\n2"", ""output"": ""Quantity: 20"", ""is_hidden"": false}, {""input"": ""4\n12 8 20 15\n4"", ""output"": ""Invalid shelf index"", ""is_hidden"": false}, {""input"": ""1\n0\n0"", ""output"": ""Quantity: 0"", ""is_hidden"": false}, {""input"": ""1\n5\n-1"", ""output"": ""Invalid shelf index"", ""is_hidden"": true}, {""input"": ""3\n1 2 3\n2"", ""output"": ""Quantity: 3"", ""is_hidden"": true}, {""input"": ""5\n9 9 9 9 9\n1000000"", ""output"": ""Invalid shelf index"", ""is_hidden"": true}, {""input"": ""2\n1000000 7\n0"", ""output"": ""Quantity: 1000000"", ""is_hidden"": true}, {""input"": ""3\n4 5 6\n-1000000"", ""output"": ""Invalid shelf index"", ""is_hidden"": true}]"
+JP-M13-04,Payment Terminal Cleanup,Module 13: Exception Handling,Easy,Use a finally block for cleanup that must run after both success and failure.,stdin/stdout,O(1),O(1),"A payment terminal must perform cleanup regardless of whether a transaction succeeds. Simulate this behavior in memory without connecting to an actual payment service.
+
+Create a method processPayment(boolean shouldFail). If shouldFail is true, the method must throw an IllegalStateException with the message Payment failed. Otherwise, it returns normally.
+
+The main program reads 0 or 1, calls the method inside a try block, and prints Payment successful when it returns normally. Catch IllegalStateException and print its message. In a finally block, print Terminal reset.
+
+The reset message must appear exactly once for both successful and failed transactions. Do not print a stack trace or exit the program before finally executes.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The payment method throws an exception. The catch block reports the failure, and the finally block resets the terminal afterward.",One integer: 0 means success and 1 means failure.,"For success:
+Payment successful
+Terminal reset
+For failure:
+Payment failed
+Terminal reset",Input is either 0 or 1.,1,"Payment failed
+Terminal reset",0,"Payment successful
+Terminal reset","Throw the exception with throw new IllegalStateException(""Payment failed"");.","Print Payment successful on the line after the method call, still inside try; it is skipped if the call throws.","The finally block runs after try or catch, whichever finished.","import java.util.Scanner;
+
+public class Main {
+    static void processPayment(boolean shouldFail) {
+        if (shouldFail) {
+            throw new IllegalStateException(""Payment failed"");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean shouldFail = Integer.parseInt(sc.next()) == 1;
+        try {
+            processPayment(shouldFail);
+            System.out.println(""Payment successful"");
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println(""Terminal reset"");
+        }
+    }
+}","[{""input"": ""1"", ""output"": ""Payment failed\nTerminal reset"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Payment successful\nTerminal reset"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Payment failed\nTerminal reset"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Payment successful\nTerminal reset"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Payment successful\nTerminal reset"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Payment failed\nTerminal reset"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Payment failed\nTerminal reset"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Payment successful\nTerminal reset"", ""is_hidden"": true}]"
+JP-M13-05,Handle Errors in a Logistics Calculator,Module 13: Exception Handling,Easy,Handle two exception types in one multi-catch clause and tell them apart by type.,stdin/stdout,O(1),O(1),"A logistics application calculates either a delivery ratio or a selected route value. It receives an operation code and two integers, A and B.
+- Operation 1: calculate the integer quotient A / B.
+- Operation 2: create an array containing exactly one element, A, and retrieve the element at index B.
+- Any other operation code: print Invalid operation.
+For operation 1, a zero divisor must result in Division by zero. For operation 2, any index other than 0 must result in Invalid route index. Handle ArithmeticException and ArrayIndexOutOfBoundsException using a Java multi-catch clause. Because the two exceptions require different messages, use the caught exception's type to select the correct message.
+
+Print only one output line. Unsupported operation codes must be handled with ordinary conditional logic, not by throwing an unrelated exception.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: Operation 1 requests integer division. The divisor is zero, so ArithmeticException is caught by the multi-catch clause and reported as a division error.","One line containing three space-separated integers: operation code, A, and B.",Print the calculation result or the appropriate error message.,"−100 ≤ operation code ≤ 100
+−1,000,000 ≤ A, B ≤ 1,000,000",1 25 0,Division by zero,1 25 4,6,A multi-catch clause lists both types: catch (ArithmeticException | ArrayIndexOutOfBoundsException e).,"Inside it, use e instanceof ArithmeticException to choose the message.",Handle unsupported codes with an if statement before or outside the try block.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int op = Integer.parseInt(sc.next());
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        if (op != 1 && op != 2) {
+            System.out.println(""Invalid operation"");
+        } else {
+            try {
+                if (op == 1) {
+                    System.out.println(a / b);
+                } else {
+                    int[] route = {a};
+                    System.out.println(route[b]);
+                }
+            } catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
+                if (e instanceof ArithmeticException) {
+                    System.out.println(""Division by zero"");
+                } else {
+                    System.out.println(""Invalid route index"");
+                }
+            }
+        }
+    }
+}","[{""input"": ""1 25 0"", ""output"": ""Division by zero"", ""is_hidden"": false}, {""input"": ""1 25 4"", ""output"": ""6"", ""is_hidden"": false}, {""input"": ""2 25 0"", ""output"": ""25"", ""is_hidden"": false}, {""input"": ""2 25 1"", ""output"": ""Invalid route index"", ""is_hidden"": true}, {""input"": ""3 1 1"", ""output"": ""Invalid operation"", ""is_hidden"": true}, {""input"": ""1 -7 2"", ""output"": ""-3"", ""is_hidden"": true}, {""input"": ""2 -5 -1"", ""output"": ""Invalid route index"", ""is_hidden"": true}, {""input"": ""0 0 0"", ""output"": ""Invalid operation"", ""is_hidden"": true}]"
+JP-M13-06,Validate a Scholarship Score,Module 13: Exception Handling,Easy,"Define a custom checked exception, declare it with throws, and catch it in the caller.",stdin/stdout,O(1),O(1),"A scholarship application accepts scores from 0 through 100, inclusive. Implement a custom checked exception named InvalidScoreException that extends Exception.
+
+Create a method validateScore(int score) that declares throws InvalidScoreException. If the score is outside the allowed range, the method must throw InvalidScoreException with the message Score must be between 0 and 100. Otherwise, it returns normally.
+
+The main program reads the score, calls the validation method, and prints Application accepted if validation succeeds. If the exception occurs, catch it and print its message. The exception must be thrown by the validation method and handled by its caller.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: A score of 105 exceeds the maximum permitted score. The validation method throws the custom checked exception, and the caller handles it.",One line containing an integer score.,Print Application accepted or Score must be between 0 and 100.,"−1,000,000 ≤ score ≤ 1,000,000",105,Score must be between 0 and 100,100,Application accepted,The exception class needs a constructor that passes the message to super(message).,"Because the exception is checked, the method header must include throws InvalidScoreException.",Print e.getMessage() in the catch block.,"import java.util.Scanner;
+
+public class Main {
+    static void validateScore(int score) throws InvalidScoreException {
+        if (score < 0 || score > 100) {
+            throw new InvalidScoreException(""Score must be between 0 and 100"");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int score = Integer.parseInt(sc.next());
+        try {
+            validateScore(score);
+            System.out.println(""Application accepted"");
+        } catch (InvalidScoreException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class InvalidScoreException extends Exception {
+    InvalidScoreException(String message) {
+        super(message);
+    }
+}","[{""input"": ""105"", ""output"": ""Score must be between 0 and 100"", ""is_hidden"": false}, {""input"": ""100"", ""output"": ""Application accepted"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Application accepted"", ""is_hidden"": false}, {""input"": ""-1"", ""output"": ""Score must be between 0 and 100"", ""is_hidden"": true}, {""input"": ""50"", ""output"": ""Application accepted"", ""is_hidden"": true}, {""input"": ""101"", ""output"": ""Score must be between 0 and 100"", ""is_hidden"": true}, {""input"": ""1000000"", ""output"": ""Score must be between 0 and 100"", ""is_hidden"": true}, {""input"": ""-1000000"", ""output"": ""Score must be between 0 and 100"", ""is_hidden"": true}]"
+JP-M13-07,Shopping Cart Price Calculation,Module 13: Exception Handling,Medium,"Accumulate a total with Math.multiplyExact() and Math.addExact(), reporting overflow instead of wrapping.",stdin/stdout,O(1),O(1),"An online shopping cart calculates the combined price of multiple products. Read the number of products, followed by each product's unit price in paise and quantity. Calculate each line total and the grand total using long.
+
+A unit price must be positive, and a quantity must be positive. Read and validate all products first: if any value violates these rules, print Invalid product details and do not calculate a total. Otherwise, use Math.multiplyExact() for each line total and Math.addExact() when accumulating the grand total. If either operation overflows, catch ArithmeticException and print Cart total overflow.
+
+If every product is valid and all calculations fit in a long, print the grand total. The calculation must not silently wrap around when a value becomes too large.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The line totals are 200, 750, and 500 paise. Their sum is 1450 paise.","First line: integer N, the number of products.
+Next N lines: two space-separated integers, unit price in paise and quantity.","Print Cart total: <total> on success. Otherwise, print Invalid product details or Cart total overflow.","1 ≤ N ≤ 1000
+Each price and quantity is a valid Java long value.","3
+100 2
+250 3
+500 1",Cart total: 1450,"1
+0 5",Invalid product details,Store the prices and quantities in long arrays so validation can finish before any calculation.,Invalid product details takes priority: check every product before multiplying.,Wrap the whole calculation loop in one try block; the first overflow jumps straight to the catch.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        long[] prices = new long[n];
+        long[] quantities = new long[n];
+        boolean valid = true;
+        for (int i = 0; i < n; i++) {
+            prices[i] = Long.parseLong(sc.next());
+            quantities[i] = Long.parseLong(sc.next());
+            if (prices[i] <= 0 || quantities[i] <= 0) {
+                valid = false;
+            }
+        }
+        if (!valid) {
+            System.out.println(""Invalid product details"");
+        } else {
+            try {
+                long total = 0;
+                for (int i = 0; i < n; i++) {
+                    total = Math.addExact(total, Math.multiplyExact(prices[i], quantities[i]));
+                }
+                System.out.println(""Cart total: "" + total);
+            } catch (ArithmeticException e) {
+                System.out.println(""Cart total overflow"");
+            }
+        }
+    }
+}","[{""input"": ""3\n100 2\n250 3\n500 1"", ""output"": ""Cart total: 1450"", ""is_hidden"": false}, {""input"": ""1\n0 5"", ""output"": ""Invalid product details"", ""is_hidden"": false}, {""input"": ""2\n100 1\n-5 2"", ""output"": ""Invalid product details"", ""is_hidden"": false}, {""input"": ""1\n9223372036854775807 2"", ""output"": ""Cart total overflow"", ""is_hidden"": true}, {""input"": ""2\n9223372036854775807 1\n1 1"", ""output"": ""Cart total overflow"", ""is_hidden"": true}, {""input"": ""2\n9223372036854775807 2\n0 1"", ""output"": ""Invalid product details"", ""is_hidden"": true}, {""input"": ""1\n1 1"", ""output"": ""Cart total: 1"", ""is_hidden"": true}, {""input"": ""2\n4611686018427387903 2\n1 1"", ""output"": ""Cart total: 9223372036854775807"", ""is_hidden"": true}]"
+JP-M13-08,Employee Leave Eligibility,Module 13: Exception Handling,Medium,Combine a custom checked exception with an unchecked one and catch each separately.,stdin/stdout,O(1),O(1),"An HR system checks whether an employee has enough available leave days to submit a leave request. Create a custom checked exception named InsufficientLeaveException that extends Exception.
+
+Implement validateLeave(int availableDays, int requestedDays) with throws InsufficientLeaveException. Apply these rules:
+1. If either value is negative, or the requested days are zero, throw IllegalArgumentException with the message Invalid leave details.
+2. If the requested days exceed the available days, throw InsufficientLeaveException with the message Insufficient leave balance.
+3. Otherwise, return normally.
+In main(), catch both exception types separately. Print Leave request approved if the method returns normally. Otherwise, print the relevant exception message. The available balance is not changed by this validation program.
+
+This question tests the compiler-enforced handling of a checked exception, not merely the production of an error message.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The employee requests 15 days but has only 12 available. The method throws InsufficientLeaveException, and the caller prints its message.",One line containing two integers: available leave days and requested leave days.,"Print Leave request approved, Invalid leave details, or Insufficient leave balance.","−1,000,000 ≤ available days ≤ 1,000,000
+−1,000,000 ≤ requested days ≤ 1,000,000",12 15,Insufficient leave balance,15 12,Leave request approved,"IllegalArgumentException is unchecked, so it doesn't need to appear in the throws clause; InsufficientLeaveException does.",Check rule 1 before rule 2.,Use two catch blocks after the same try.,"import java.util.Scanner;
+
+public class Main {
+    static void validateLeave(int availableDays, int requestedDays) throws InsufficientLeaveException {
+        if (availableDays < 0 || requestedDays <= 0) {
+            throw new IllegalArgumentException(""Invalid leave details"");
+        }
+        if (requestedDays > availableDays) {
+            throw new InsufficientLeaveException(""Insufficient leave balance"");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int available = Integer.parseInt(sc.next());
+        int requested = Integer.parseInt(sc.next());
+        try {
+            validateLeave(available, requested);
+            System.out.println(""Leave request approved"");
+        } catch (InsufficientLeaveException e) {
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class InsufficientLeaveException extends Exception {
+    InsufficientLeaveException(String message) {
+        super(message);
+    }
+}","[{""input"": ""12 15"", ""output"": ""Insufficient leave balance"", ""is_hidden"": false}, {""input"": ""15 12"", ""output"": ""Leave request approved"", ""is_hidden"": false}, {""input"": ""12 12"", ""output"": ""Leave request approved"", ""is_hidden"": false}, {""input"": ""5 0"", ""output"": ""Invalid leave details"", ""is_hidden"": true}, {""input"": ""-1 3"", ""output"": ""Invalid leave details"", ""is_hidden"": true}, {""input"": ""5 -2"", ""output"": ""Invalid leave details"", ""is_hidden"": true}, {""input"": ""0 1"", ""output"": ""Insufficient leave balance"", ""is_hidden"": true}, {""input"": ""1000000 1000000"", ""output"": ""Leave request approved"", ""is_hidden"": true}]"
+JP-M13-09,Import a Batch of Employee Records,Module 13: Exception Handling,Medium,"Parse delimited records, catching NumberFormatException per record so the batch continues.",stdin/stdout,O(1),O(1),"An HR application imports employee records from CSV-style text lines. Each record must contain an employee ID, a name, and a monthly salary, separated by commas.
+
+A record is valid only if it contains exactly two commas, the ID is a positive integer, the name is not blank after trimming, and the salary is a non-negative long. The ID and salary fields must not contain leading or trailing whitespace. The name may contain spaces but cannot contain commas.
+
+If the record has the wrong number of fields, contains malformed numeric data, or fails validation, print Record <number>: Import failed. Otherwise, print Record <number>: Imported. Handle parsing errors with NumberFormatException and continue processing later records.
+
+Read the record count with Integer.parseInt(sc.nextLine()) before reading full record lines. Do not use nextInt() followed by nextLine() without handling the leftover newline. Do not use file I/O.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The first record is valid. The second contains a non-numeric ID. The third contains a name that becomes empty after trimming. Both invalid records are rejected independently.","First line: integer N.
+Next N lines: id,name,salary.","Print one status line per record, using one-based record numbering.","1 ≤ N ≤ 1000
+Each record line contains at most 200 characters.","3
+101,Asha Rao,45000
+abc,Ravi,30000
+103,   ,25000","Record 1: Imported
+Record 2: Import failed
+Record 3: Import failed","1
+1,A,0",Record 1: Imported,"line.split("","", -1) keeps empty fields, so a valid record splits into exactly 3 parts.","Integer.parseInt and Long.parseLong reject surrounding spaces by themselves, so do not trim the numeric fields.","Put the parsing for one record inside try, and print Import failed in the catch so the loop continues.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        for (int r = 1; r <= n; r++) {
+            String line = sc.nextLine();
+            boolean ok = false;
+            try {
+                String[] parts = line.split("","", -1);
+                if (parts.length == 3) {
+                    int id = Integer.parseInt(parts[0]);
+                    long salary = Long.parseLong(parts[2]);
+                    ok = id > 0 && !parts[1].trim().isEmpty() && salary >= 0;
+                }
+            } catch (NumberFormatException e) {
+                ok = false;
+            }
+            System.out.println(""Record "" + r + "": "" + (ok ? ""Imported"" : ""Import failed""));
+        }
+    }
+}","[{""input"": ""3\n101,Asha Rao,45000\nabc,Ravi,30000\n103,   ,25000"", ""output"": ""Record 1: Imported\nRecord 2: Import failed\nRecord 3: Import failed"", ""is_hidden"": false}, {""input"": ""1\n1,A,0"", ""output"": ""Record 1: Imported"", ""is_hidden"": false}, {""input"": ""2\n1,A,-1\n2,B,5"", ""output"": ""Record 1: Import failed\nRecord 2: Imported"", ""is_hidden"": false}, {""input"": ""1\n1,A,B,5"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}, {""input"": ""1\n 1,A,5"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}, {""input"": ""1\n1,  Space Name ,5"", ""output"": ""Record 1: Imported"", ""is_hidden"": true}, {""input"": ""2\n0,X,5\n2147483647,Y,9223372036854775807"", ""output"": ""Record 1: Import failed\nRecord 2: Imported"", ""is_hidden"": true}, {""input"": ""1\n5,Name"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}]"
+JP-M13-10,ATM Withdrawal Processing,Module 13: Exception Handling,Medium,Throw checked and unchecked exceptions from an object's method and keep its state unchanged on failure.,stdin/stdout,O(1),O(1),"An ATM processes a sequence of withdrawal requests. The account balance must never become negative, and a failed request must not change the balance.
+
+Create an ATM class with a long balance field and a method withdraw(long amount) that declares a custom checked exception InsufficientFundsException.
+
+A withdrawal amount must be positive and divisible by 100. If it is not, throw IllegalArgumentException with the message Invalid withdrawal amount. If the requested amount exceeds the current balance, throw InsufficientFundsException with the message Insufficient funds. Otherwise, subtract the amount from the balance.
+
+Process each request independently. Print the updated balance after a successful withdrawal. On failure, print the exception message and preserve the previous balance. Continue to the next request even if the current request fails.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The first request succeeds. The second is rejected because 450 is not divisible by 100. The third exceeds the remaining balance. Neither failed request changes the balance.","First line: initial balance.
+Second line: integer Q.
+Third line: Q space-separated withdrawal amounts.","For each request, print either Withdrawal successful. Balance: <balance>, Invalid withdrawal amount, or Insufficient funds.","0 ≤ initial balance ≤ 1,000,000,000,000
+1 ≤ Q ≤ 1000
+Each withdrawal amount is a valid Java long value.","5000
+3
+1000 450 6000","Withdrawal successful. Balance: 4000
+Invalid withdrawal amount
+Insufficient funds","0
+1
+100",Insufficient funds,Check amount <= 0 || amount % 100 != 0 before comparing with the balance.,"Subtract only after both checks pass, so a failed request leaves the balance unchanged.",Put the try/catch inside the loop so one failure doesn't stop the remaining requests.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ATM atm = new ATM(Long.parseLong(sc.next()));
+        int q = Integer.parseInt(sc.next());
+        for (int i = 0; i < q; i++) {
+            long amount = Long.parseLong(sc.next());
+            try {
+                atm.withdraw(amount);
+                System.out.println(""Withdrawal successful. Balance: "" + atm.getBalance());
+            } catch (InsufficientFundsException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}
+
+class InsufficientFundsException extends Exception {
+    InsufficientFundsException(String message) {
+        super(message);
+    }
+}
+
+class ATM {
+    private long balance;
+
+    ATM(long balance) {
+        this.balance = balance;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void withdraw(long amount) throws InsufficientFundsException {
+        if (amount <= 0 || amount % 100 != 0) {
+            throw new IllegalArgumentException(""Invalid withdrawal amount"");
+        }
+        if (amount > balance) {
+            throw new InsufficientFundsException(""Insufficient funds"");
+        }
+        balance -= amount;
+    }
+}","[{""input"": ""5000\n3\n1000 450 6000"", ""output"": ""Withdrawal successful. Balance: 4000\nInvalid withdrawal amount\nInsufficient funds"", ""is_hidden"": false}, {""input"": ""0\n1\n100"", ""output"": ""Insufficient funds"", ""is_hidden"": false}, {""input"": ""1000\n2\n0 -100"", ""output"": ""Invalid withdrawal amount\nInvalid withdrawal amount"", ""is_hidden"": false}, {""input"": ""1000\n2\n1000 100"", ""output"": ""Withdrawal successful. Balance: 0\nInsufficient funds"", ""is_hidden"": true}, {""input"": ""1000000000000\n1\n1000000000000"", ""output"": ""Withdrawal successful. Balance: 0"", ""is_hidden"": true}, {""input"": ""500\n3\n200 200 200"", ""output"": ""Withdrawal successful. Balance: 300\nWithdrawal successful. Balance: 100\nInsufficient funds"", ""is_hidden"": true}, {""input"": ""100\n1\n-9223372036854775808"", ""output"": ""Invalid withdrawal amount"", ""is_hidden"": true}, {""input"": ""300\n1\n150"", ""output"": ""Invalid withdrawal amount"", ""is_hidden"": true}]"
+JP-M13-11,Process a Payment With Exception Propagation,Module 13: Exception Handling,Medium,Let a checked exception propagate through an intermediate method by declaring it with throws.,stdin/stdout,O(1),O(1),"A payment service receives a transaction amount and a payment status. The payment processor may fail, and its exception must propagate through the service layer to the main program.
+
+Create a custom checked exception named PaymentException that extends Exception. Implement processPayment(long amount, int status) with throws PaymentException.
+
+The amount must be positive. If it is not, throw IllegalArgumentException with the message Invalid payment amount. If status is 1, throw PaymentException with the message Payment declined. If status is 0, return normally. Any other status must produce IllegalArgumentException with the message Invalid payment status.
+
+Call processPayment() from a second method named submitOrder(long amount, int status). This method must declare throws PaymentException and must not catch that exception. In main(), catch PaymentException and IllegalArgumentException separately. Print Order confirmed on success or the relevant error message on failure.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The amount is valid, but the status indicates a declined payment. The checked exception travels from processPayment() through submitOrder() and is handled in main().",One line containing the transaction amount and status.,"Print Order confirmed, Invalid payment amount, Payment declined, or Invalid payment status.","Amount is a valid Java long value.
+Status is an integer.",1500 1,Payment declined,1500 0,Order confirmed,Check the amount before the status.,submitOrder only calls processPayment; adding throws PaymentException to its header lets the exception pass through.,"Remove the throws clause from submitOrder and the code no longer compiles, which shows that the exception is checked.","import java.util.Scanner;
+
+public class Main {
+    static void processPayment(long amount, int status) throws PaymentException {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(""Invalid payment amount"");
+        }
+        if (status == 1) {
+            throw new PaymentException(""Payment declined"");
+        }
+        if (status != 0) {
+            throw new IllegalArgumentException(""Invalid payment status"");
+        }
+    }
+
+    static void submitOrder(long amount, int status) throws PaymentException {
+        processPayment(amount, status);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long amount = Long.parseLong(sc.next());
+        int status = Integer.parseInt(sc.next());
+        try {
+            submitOrder(amount, status);
+            System.out.println(""Order confirmed"");
+        } catch (PaymentException e) {
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class PaymentException extends Exception {
+    PaymentException(String message) {
+        super(message);
+    }
+}","[{""input"": ""1500 1"", ""output"": ""Payment declined"", ""is_hidden"": false}, {""input"": ""1500 0"", ""output"": ""Order confirmed"", ""is_hidden"": false}, {""input"": ""0 0"", ""output"": ""Invalid payment amount"", ""is_hidden"": false}, {""input"": ""-5 1"", ""output"": ""Invalid payment amount"", ""is_hidden"": true}, {""input"": ""100 2"", ""output"": ""Invalid payment status"", ""is_hidden"": true}, {""input"": ""100 -1"", ""output"": ""Invalid payment status"", ""is_hidden"": true}, {""input"": ""9223372036854775807 0"", ""output"": ""Order confirmed"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""Payment declined"", ""is_hidden"": true}]"
+JP-M13-12,Validate a Booking Date,Module 13: Exception Handling,Medium,Validate a date with calendar rules and report failure through a custom checked exception.,stdin/stdout,O(1),O(1),"A hotel booking system must reject impossible calendar dates before accepting a reservation. Create a custom checked exception named InvalidDateException that extends Exception.
+
+Implement validateDate(int day, int month, int year). The year must be between 1 and 9999, and the month must be between 1 and 12. Month lengths must follow the Gregorian calendar. February has 29 days in a leap year and 28 days otherwise. A leap year is divisible by 400, or divisible by 4 but not by 100.
+
+If the date is invalid, throw InvalidDateException with the message Invalid booking date. Otherwise, return normally. The main program must catch the exception and print Booking date accepted on success or the exception message on failure.
+
+Do not use a date-parsing library to replace the required validation logic.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The year 2024 is a leap year, so February has 29 days. The date is valid.","One line containing day, month, and year as three space-separated integers.",Print Booking date accepted or Invalid booking date.,"−100,000 ≤ day, month, year ≤ 100,000",29 2 2024,Booking date accepted,29 2 2023,Invalid booking date,Check the year and month ranges before working out the month's length.,"Months 4, 6, 9, and 11 have 30 days; February depends on the leap-year rule; the rest have 31.",The day must be between 1 and the month's length.,"import java.util.Scanner;
+
+public class Main {
+    static void validateDate(int day, int month, int year) throws InvalidDateException {
+        if (year < 1 || year > 9999 || month < 1 || month > 12) {
+            throw new InvalidDateException(""Invalid booking date"");
+        }
+        int maxDay;
+        if (month == 4 || month == 6 || month == 9 || month == 11) {
+            maxDay = 30;
+        } else if (month == 2) {
+            boolean leap = year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+            maxDay = leap ? 29 : 28;
+        } else {
+            maxDay = 31;
+        }
+        if (day < 1 || day > maxDay) {
+            throw new InvalidDateException(""Invalid booking date"");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int day = Integer.parseInt(sc.next());
+        int month = Integer.parseInt(sc.next());
+        int year = Integer.parseInt(sc.next());
+        try {
+            validateDate(day, month, year);
+            System.out.println(""Booking date accepted"");
+        } catch (InvalidDateException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class InvalidDateException extends Exception {
+    InvalidDateException(String message) {
+        super(message);
+    }
+}","[{""input"": ""29 2 2024"", ""output"": ""Booking date accepted"", ""is_hidden"": false}, {""input"": ""29 2 2023"", ""output"": ""Invalid booking date"", ""is_hidden"": false}, {""input"": ""29 2 1900"", ""output"": ""Invalid booking date"", ""is_hidden"": false}, {""input"": ""29 2 2000"", ""output"": ""Booking date accepted"", ""is_hidden"": true}, {""input"": ""31 4 2024"", ""output"": ""Invalid booking date"", ""is_hidden"": true}, {""input"": ""31 12 9999"", ""output"": ""Booking date accepted"", ""is_hidden"": true}, {""input"": ""1 1 0"", ""output"": ""Invalid booking date"", ""is_hidden"": true}, {""input"": ""0 1 2024"", ""output"": ""Invalid booking date"", ""is_hidden"": true}]"
+JP-M13-13,Calculate Employee Payroll Safely,Module 13: Exception Handling,Medium,Add several long values with Math.addExact() and report overflow without printing a partial result.,stdin/stdout,O(1),O(1),"A payroll system calculates an employee's monthly gross salary from basic pay and allowances. Read the basic salary and three allowances, all represented as whole currency units using long.
+
+The basic salary must be positive, and each allowance must be non-negative. If these rules are violated, print Invalid salary details. Otherwise, calculate the gross salary by adding all four values.
+
+Use Math.addExact() for every addition. If the total exceeds the range of long, catch ArithmeticException and print Salary overflow. If the calculation succeeds, print Gross salary: followed by a space and the total.
+
+Do not print a partial salary if an addition fails. Validate all input values before performing the calculation.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The gross salary is 30000 + 5000 + 2000 + 1000 = 38000.",One line containing four space-separated integers: basic salary and three allowances.,"Print Gross salary: <total>, Invalid salary details, or Salary overflow.",All values are valid Java long values.,30000 5000 2000 1000,Gross salary: 38000,0 1 1 1,Invalid salary details,Validate the four values before any addition.,"Chain the additions: Math.addExact(Math.addExact(basic, a1), Math.addExact(a2, a3)), or add one at a time.","Print the total only after every addition has succeeded, inside the try block.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        long basic = Long.parseLong(sc.next());
+        long a1 = Long.parseLong(sc.next());
+        long a2 = Long.parseLong(sc.next());
+        long a3 = Long.parseLong(sc.next());
+        if (basic <= 0 || a1 < 0 || a2 < 0 || a3 < 0) {
+            System.out.println(""Invalid salary details"");
+        } else {
+            try {
+                long total = Math.addExact(basic, a1);
+                total = Math.addExact(total, a2);
+                total = Math.addExact(total, a3);
+                System.out.println(""Gross salary: "" + total);
+            } catch (ArithmeticException e) {
+                System.out.println(""Salary overflow"");
+            }
+        }
+    }
+}","[{""input"": ""30000 5000 2000 1000"", ""output"": ""Gross salary: 38000"", ""is_hidden"": false}, {""input"": ""0 1 1 1"", ""output"": ""Invalid salary details"", ""is_hidden"": false}, {""input"": ""100 -1 0 0"", ""output"": ""Invalid salary details"", ""is_hidden"": false}, {""input"": ""9223372036854775807 0 0 0"", ""output"": ""Gross salary: 9223372036854775807"", ""is_hidden"": true}, {""input"": ""9223372036854775807 1 0 0"", ""output"": ""Salary overflow"", ""is_hidden"": true}, {""input"": ""1 0 0 0"", ""output"": ""Gross salary: 1"", ""is_hidden"": true}, {""input"": ""9223372036854775000 300 300 300"", ""output"": ""Salary overflow"", ""is_hidden"": true}, {""input"": ""50000 0 0 0"", ""output"": ""Gross salary: 50000"", ""is_hidden"": true}]"
+JP-M13-14,Validate Shipment Route Queries,Module 13: Exception Handling,Medium,Nest try/catch blocks so each exception is reported by the right handler.,stdin/stdout,O(1),O(1),"A logistics application stores distances for a list of routes. For every requested route index, it must retrieve the distance and calculate a delivery score defined as 1000 / distance using integer division.
+
+Read an array of route distances and then a sequence of index queries. Each distance is a non-negative integer. If the index is invalid, print Invalid route index. If the index is valid but the distance is zero, print Route distance cannot be zero. Otherwise, print the calculated score.
+
+Use nested exception handling: the outer try/catch handles ArrayIndexOutOfBoundsException, and the inner try/catch handles ArithmeticException. Process every query independently, even when a query fails.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: Distance 10 produces a score of 100. The second route has distance zero, so division is rejected. The remaining two indices are invalid.","First line: integer N.
+Second line: N space-separated route distances.
+Third line: integer Q.
+Fourth line: Q space-separated indices.",Print one result line per query.,"1 ≤ N ≤ 1000
+1 ≤ Q ≤ 1000
+0 ≤ each distance ≤ 1,000,000
+−1,000,000 ≤ each index ≤ 1,000,000","3
+10 0 25
+4
+0 1 3 -1","100
+Route distance cannot be zero
+Invalid route index
+Invalid route index","1
+0
+1
+0",Route distance cannot be zero,"Read the distance in the outer try, then divide in the inner try.","If the array access fails, the inner try never runs, so a bad index can't be reported as division by zero.",Put the whole outer try/catch inside the query loop.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int[] distances = new int[n];
+        for (int i = 0; i < n; i++) {
+            distances[i] = Integer.parseInt(sc.next());
+        }
+        int q = Integer.parseInt(sc.next());
+        for (int i = 0; i < q; i++) {
+            int index = Integer.parseInt(sc.next());
+            try {
+                int distance = distances[index];
+                try {
+                    System.out.println(1000 / distance);
+                } catch (ArithmeticException e) {
+                    System.out.println(""Route distance cannot be zero"");
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(""Invalid route index"");
+            }
+        }
+    }
+}","[{""input"": ""3\n10 0 25\n4\n0 1 3 -1"", ""output"": ""100\nRoute distance cannot be zero\nInvalid route index\nInvalid route index"", ""is_hidden"": false}, {""input"": ""1\n0\n1\n0"", ""output"": ""Route distance cannot be zero"", ""is_hidden"": false}, {""input"": ""2\n3 1000000\n2\n0 1"", ""output"": ""333\n0"", ""is_hidden"": false}, {""input"": ""1\n1\n2\n0 1"", ""output"": ""1000\nInvalid route index"", ""is_hidden"": true}, {""input"": ""4\n7 8 9 10\n4\n3 2 1 0"", ""output"": ""100\n111\n125\n142"", ""is_hidden"": true}, {""input"": ""2\n0 0\n2\n1 2"", ""output"": ""Route distance cannot be zero\nInvalid route index"", ""is_hidden"": true}, {""input"": ""3\n1 2 3\n1\n-1000000"", ""output"": ""Invalid route index"", ""is_hidden"": true}, {""input"": ""1\n999\n1\n0"", ""output"": ""1"", ""is_hidden"": true}]"
+JP-M13-15,Automatically Close a Database Connection,Module 13: Exception Handling,Medium,Use try-with-resources with an AutoCloseable class and confirm the resource's state afterwards.,stdin/stdout,O(1),O(1),"A database service must close its connection whether a query succeeds or fails. Simulate this entirely in memory without connecting to a real database.
+
+Create a class DatabaseConnection that implements AutoCloseable. Its method executeQuery(boolean shouldFail) must print Query completed when shouldFail is false. When it is true, it must throw an IllegalStateException with the message Query failed. Give the class a method isClosed() that reports its state.
+
+The close() method must set the connection's state to closed. It must not throw an exception. In main(), manage the connection with a try-with-resources statement, execute the query, and catch IllegalStateException to print its message. After the resource scope ends, print Connection status: followed by a space and closed or open, based on the connection's actual state.
+
+The connection must close automatically on both success and failure. Do not manually call close() in a finally block.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The query throws an exception, which is caught. Exiting the try-with-resources statement automatically invokes close(). The connection is closed even though the query failed.",One integer: 0 means success and 1 means failure.,"On success:
+Query completed
+Connection status: closed
+On failure:
+Query failed
+Connection status: closed",Input is either 0 or 1.,1,"Query failed
+Connection status: closed",0,"Query completed
+Connection status: closed",Declare the connection before the statement and name it in the header: DatabaseConnection conn = new DatabaseConnection(); try (conn) { ... }. This works because conn is effectively final.,"Because conn is declared outside, you can call conn.isClosed() after the try statement ends.","Override close() with public void close(), without a throws clause, so the caller has no checked exception to handle.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean shouldFail = Integer.parseInt(sc.next()) == 1;
+        DatabaseConnection conn = new DatabaseConnection();
+        try (conn) {
+            conn.executeQuery(shouldFail);
+        } catch (IllegalStateException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(""Connection status: "" + (conn.isClosed() ? ""closed"" : ""open""));
+    }
+}
+
+class DatabaseConnection implements AutoCloseable {
+    private boolean closed = false;
+
+    public void executeQuery(boolean shouldFail) {
+        if (shouldFail) {
+            throw new IllegalStateException(""Query failed"");
+        }
+        System.out.println(""Query completed"");
+    }
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    @Override
+    public void close() {
+        closed = true;
+    }
+}","[{""input"": ""1"", ""output"": ""Query failed\nConnection status: closed"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Query completed\nConnection status: closed"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""Query failed\nConnection status: closed"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Query completed\nConnection status: closed"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Query completed\nConnection status: closed"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Query failed\nConnection status: closed"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Query failed\nConnection status: closed"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Query completed\nConnection status: closed"", ""is_hidden"": true}]"
+JP-M13-16,Atomic Bank Transfer With Overflow Protection,Module 13: Exception Handling,Hard,"Validate every failure condition, including overflow, before changing either of two objects.",stdin/stdout,O(1),O(1),"A banking application transfers money between two accounts. The transfer must be atomic: if any validation or arithmetic operation fails, neither account balance may change.
+
+Create a class Account that stores its balance as a long. Create a custom checked exception InsufficientFundsException that extends Exception. Implement transferTo(Account destination, long amount) with throws InsufficientFundsException.
+
+Apply these rules:
+1. If the amount is zero or negative, throw IllegalArgumentException with the message Invalid transfer amount.
+2. If the source balance is smaller than the amount, throw InsufficientFundsException with the message Insufficient funds.
+3. If the destination balance plus the amount exceeds Long.MAX_VALUE, throw ArithmeticException with the message Balance overflow.
+4. Otherwise, subtract the amount from the source and add it to the destination.
+Check every failure condition before changing either balance. A transfer that leaves the source balance at exactly zero is valid.
+
+The main program must catch the specified exceptions separately. On success, print the success message and updated balances. On failure, print the error message and both unchanged balances.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The source has sufficient funds, and the destination can accept the amount without overflow. Both balances are updated only after all checks pass.","One line containing three space-separated integers: source balance, destination balance, and transfer amount.","On success:
+Transfer successful
+Source balance: <balance>
+Destination balance: <balance>
+On failure, print the applicable error message followed by both balances using the same labels.","0 ≤ source balance ≤ 9,000,000,000,000,000,000
+0 ≤ destination balance ≤ 9,000,000,000,000,000,000
+Amount is a valid Java long value.",5000 2000 1500,"Transfer successful
+Source balance: 3500
+Destination balance: 3500",100 0 100,"Transfer successful
+Source balance: 0
+Destination balance: 100","destination + amount can overflow before you compare it, so test destination.balance > Long.MAX_VALUE - amount instead.",Run all three checks first; change the balances only on the last lines of the method.,"Print both balances after the try/catch, so they appear in both the success and failure cases.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Account source = new Account(Long.parseLong(sc.next()));
+        Account destination = new Account(Long.parseLong(sc.next()));
+        long amount = Long.parseLong(sc.next());
+        try {
+            source.transferTo(destination, amount);
+            System.out.println(""Transfer successful"");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } catch (InsufficientFundsException e) {
+            System.out.println(e.getMessage());
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(""Source balance: "" + source.getBalance());
+        System.out.println(""Destination balance: "" + destination.getBalance());
+    }
+}
+
+class InsufficientFundsException extends Exception {
+    InsufficientFundsException(String message) {
+        super(message);
+    }
+}
+
+class Account {
+    private long balance;
+
+    Account(long balance) {
+        this.balance = balance;
+    }
+
+    public long getBalance() {
+        return balance;
+    }
+
+    public void transferTo(Account destination, long amount) throws InsufficientFundsException {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(""Invalid transfer amount"");
+        }
+        if (balance < amount) {
+            throw new InsufficientFundsException(""Insufficient funds"");
+        }
+        if (destination.balance > Long.MAX_VALUE - amount) {
+            throw new ArithmeticException(""Balance overflow"");
+        }
+        balance -= amount;
+        destination.balance += amount;
+    }
+}","[{""input"": ""5000 2000 1500"", ""output"": ""Transfer successful\nSource balance: 3500\nDestination balance: 3500"", ""is_hidden"": false}, {""input"": ""100 0 100"", ""output"": ""Transfer successful\nSource balance: 0\nDestination balance: 100"", ""is_hidden"": false}, {""input"": ""100 0 101"", ""output"": ""Insufficient funds\nSource balance: 100\nDestination balance: 0"", ""is_hidden"": false}, {""input"": ""100 0 0"", ""output"": ""Invalid transfer amount\nSource balance: 100\nDestination balance: 0"", ""is_hidden"": true}, {""input"": ""100 0 -5"", ""output"": ""Invalid transfer amount\nSource balance: 100\nDestination balance: 0"", ""is_hidden"": true}, {""input"": ""9000000000000000000 9000000000000000000 9000000000000000000"", ""output"": ""Balance overflow\nSource balance: 9000000000000000000\nDestination balance: 9000000000000000000"", ""is_hidden"": true}, {""input"": ""0 0 1"", ""output"": ""Insufficient funds\nSource balance: 0\nDestination balance: 0"", ""is_hidden"": true}, {""input"": ""9000000000000000000 223372036854775807 9000000000000000000"", ""output"": ""Transfer successful\nSource balance: 0\nDestination balance: 9223372036854775807"", ""is_hidden"": true}]"
+JP-M13-17,Preserve Payment Failure Causes,Module 13: Exception Handling,Hard,Wrap a low-level exception in a custom checked exception while keeping the original as its cause.,stdin/stdout,O(1),O(1),"An online payment system has two layers: a payment gateway and an order service. The gateway can fail because a payment is declined. The order service must report a higher-level error while preserving the original cause.
+
+Create a custom checked exception named OrderPaymentException that extends Exception. Its constructor must accept a message and a cause and pass both to the superclass constructor.
+
+Implement authorizePayment(int status). If status is 0, the payment is successful and the method returns normally. If status is 1, it throws an IllegalStateException with the message Gateway declined payment. Any other status throws IllegalArgumentException with the message Invalid payment status.
+
+Implement placeOrder(int status). It must call authorizePayment(). If the gateway throws IllegalStateException, catch that exception and throw OrderPaymentException with the message Order payment failed, passing the original exception as the cause. Do not wrap IllegalArgumentException.
+
+In main(), print Order confirmed if the payment succeeds. Catch OrderPaymentException and print its message followed by the simple class name of its cause. Catch IllegalArgumentException separately and print its message.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The gateway reports a declined payment using IllegalStateException. The order service catches it and throws OrderPaymentException with the original exception as its cause. The main program can access that cause through getCause().",One integer representing the payment status.,"For status 0:
+Order confirmed
+For status 1:
+Order payment failed
+IllegalStateException
+For any other status, print Invalid payment status.",−1000 ≤ status ≤ 1000,1,"Order payment failed
+IllegalStateException",0,Order confirmed,"The constructor is OrderPaymentException(String message, Throwable cause) { super(message, cause); }.","In placeOrder, catch only IllegalStateException, so IllegalArgumentException passes through unchanged.",e.getCause().getClass().getSimpleName() returns IllegalStateException.,"import java.util.Scanner;
+
+public class Main {
+    static void authorizePayment(int status) {
+        if (status == 1) {
+            throw new IllegalStateException(""Gateway declined payment"");
+        }
+        if (status != 0) {
+            throw new IllegalArgumentException(""Invalid payment status"");
+        }
+    }
+
+    static void placeOrder(int status) throws OrderPaymentException {
+        try {
+            authorizePayment(status);
+        } catch (IllegalStateException e) {
+            throw new OrderPaymentException(""Order payment failed"", e);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int status = Integer.parseInt(sc.next());
+        try {
+            placeOrder(status);
+            System.out.println(""Order confirmed"");
+        } catch (OrderPaymentException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause().getClass().getSimpleName());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class OrderPaymentException extends Exception {
+    OrderPaymentException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}","[{""input"": ""1"", ""output"": ""Order payment failed\nIllegalStateException"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""Order confirmed"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""Invalid payment status"", ""is_hidden"": false}, {""input"": ""-1"", ""output"": ""Invalid payment status"", ""is_hidden"": true}, {""input"": ""1000"", ""output"": ""Invalid payment status"", ""is_hidden"": true}, {""input"": ""-1000"", ""output"": ""Invalid payment status"", ""is_hidden"": true}, {""input"": ""1"", ""output"": ""Order payment failed\nIllegalStateException"", ""is_hidden"": true}, {""input"": ""0"", ""output"": ""Order confirmed"", ""is_hidden"": true}]"
+JP-M13-18,Import Employee Records Without Stopping the Batch,Module 13: Exception Handling,Hard,Combine parsing errors and a custom validation exception in per-record handling.,stdin/stdout,O(1),O(1),"A company imports employee records from a text-based data feed. Each record contains an employee ID, a name, and a monthly salary separated by the | character. The program must accept valid records and reject malformed records independently.
+
+Create a custom checked exception named InvalidEmployeeException that extends Exception. Implement validateEmployee(int id, String name, long salary). It must throw InvalidEmployeeException with the message Invalid employee record if the ID is not positive, the name is blank after trimming, or the salary is negative. Salary zero is valid.
+
+A record is malformed if it does not contain exactly two | characters, if the ID or salary cannot be parsed, or if either numeric field has surrounding whitespace. Do not trim the numeric fields before parsing. The name may contain spaces but cannot contain |; trim it before checking whether it is blank.
+
+For each record, print Record <number>: Imported when it is valid. Otherwise, print Record <number>: Import failed. Parsing errors and validation exceptions must not stop the remaining records from being processed.
+
+Read the record count with Integer.parseInt(sc.nextLine()) before reading the records as complete lines. This avoids accidentally consuming the first record when using Scanner.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: Record 1 is valid. Record 2 has a non-positive ID. Record 3 has a blank name. Record 4 has a positive ID, a valid name, and a non-negative salary, so it is accepted.","First line: integer N.
+Next N lines: one record per line in the format id|name|salary.","Print one import-status line for each record, using one-based record numbering.","1 ≤ N ≤ 1000
+Each record line contains at most 200 characters.
+Valid IDs fit in the Java int range.
+Valid salaries fit in the Java long range.","4
+101|Anita Rao|45000
+0|Ravi|30000
+103|   |25000
+104|Kiran|0","Record 1: Imported
+Record 2: Import failed
+Record 3: Import failed
+Record 4: Imported","1
+1|A|0",Record 1: Imported,"| is a special character in regular expressions, so split with line.split(""\\|"", -1).",One try block per record can have two catch clauses: NumberFormatException and InvalidEmployeeException.,Treat a wrong field count as a failure too; checking parts.length != 3 before parsing handles it.,"import java.util.Scanner;
+
+public class Main {
+    static void validateEmployee(int id, String name, long salary) throws InvalidEmployeeException {
+        if (id <= 0 || name.trim().isEmpty() || salary < 0) {
+            throw new InvalidEmployeeException(""Invalid employee record"");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine());
+        for (int r = 1; r <= n; r++) {
+            String line = sc.nextLine();
+            String status;
+            try {
+                String[] parts = line.split(""\\|"", -1);
+                if (parts.length != 3) {
+                    throw new InvalidEmployeeException(""Invalid employee record"");
+                }
+                int id = Integer.parseInt(parts[0]);
+                long salary = Long.parseLong(parts[2]);
+                validateEmployee(id, parts[1], salary);
+                status = ""Imported"";
+            } catch (NumberFormatException e) {
+                status = ""Import failed"";
+            } catch (InvalidEmployeeException e) {
+                status = ""Import failed"";
+            }
+            System.out.println(""Record "" + r + "": "" + status);
+        }
+    }
+}
+
+class InvalidEmployeeException extends Exception {
+    InvalidEmployeeException(String message) {
+        super(message);
+    }
+}","[{""input"": ""4\n101|Anita Rao|45000\n0|Ravi|30000\n103|   |25000\n104|Kiran|0"", ""output"": ""Record 1: Imported\nRecord 2: Import failed\nRecord 3: Import failed\nRecord 4: Imported"", ""is_hidden"": false}, {""input"": ""1\n1|A|0"", ""output"": ""Record 1: Imported"", ""is_hidden"": false}, {""input"": ""2\n1|A|-1\n2|B|5"", ""output"": ""Record 1: Import failed\nRecord 2: Imported"", ""is_hidden"": false}, {""input"": ""1\n1|A|B|5"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}, {""input"": ""1\n 1|A|5"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}, {""input"": ""1\n1|  Space Name |5"", ""output"": ""Record 1: Imported"", ""is_hidden"": true}, {""input"": ""2\n0|X|5\n2147483647|Y|9223372036854775807"", ""output"": ""Record 1: Import failed\nRecord 2: Imported"", ""is_hidden"": true}, {""input"": ""1\n5|Name"", ""output"": ""Record 1: Import failed"", ""is_hidden"": true}]"
+JP-M13-19,Retry a Failed API Request,Module 13: Exception Handling,Hard,Catch a recurring exception inside a retry loop and throw a checked exception when attempts run out.,stdin/stdout,O(1),O(1),"An application communicates with a service that may temporarily fail. Simulate the retry behavior without using an actual network, external service, thread, or delay.
+
+Create a custom checked exception named RetryLimitExceededException that extends Exception. Implement performWithRetries(int failuresBeforeSuccess, int maxAttempts) with throws RetryLimitExceededException.
+
+The simulated request has an attempt counter starting at zero. Each attempt increments the counter. If the attempt number is less than or equal to failuresBeforeSuccess, the request throws an IllegalStateException with the message Temporary service failure. Otherwise, the request succeeds.
+
+For every failed attempt, print Attempt <number>: Temporary service failure. For the successful attempt, print Attempt <number>: Success and stop immediately.
+
+If every permitted attempt fails, throw RetryLimitExceededException with the message Retry limit exceeded. The caller must catch it and print its message after all failed-attempt lines.
+
+If failuresBeforeSuccess = maxAttempts - 1, the request must succeed on the last permitted attempt. If failuresBeforeSuccess >= maxAttempts, all attempts must fail. The program must never perform more than maxAttempts attempts.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The first two attempts fail because their attempt numbers are at most 2. The third attempt succeeds, so the application stops retrying.","One line containing two integers: F, the number of failures before success, and A, the maximum number of attempts.","Print one line per attempt. If all attempts fail, print Retry limit exceeded after the attempt lines.","0 ≤ F ≤ 1000
+1 ≤ A ≤ 1000",2 4,"Attempt 1: Temporary service failure
+Attempt 2: Temporary service failure
+Attempt 3: Success",2 3,"Attempt 1: Temporary service failure
+Attempt 2: Temporary service failure
+Attempt 3: Success",Write a helper that performs one attempt and throws IllegalStateException when the attempt number is at most F.,"Loop over attempts 1 to A; catch the exception inside the loop, print the failure, and continue.","Return as soon as an attempt succeeds; if the loop finishes, throw RetryLimitExceededException.","import java.util.Scanner;
+
+public class Main {
+    static void attempt(int attemptNumber, int failuresBeforeSuccess) {
+        if (attemptNumber <= failuresBeforeSuccess) {
+            throw new IllegalStateException(""Temporary service failure"");
+        }
+    }
+
+    static void performWithRetries(int failuresBeforeSuccess, int maxAttempts) throws RetryLimitExceededException {
+        for (int attemptNumber = 1; attemptNumber <= maxAttempts; attemptNumber++) {
+            try {
+                attempt(attemptNumber, failuresBeforeSuccess);
+                System.out.println(""Attempt "" + attemptNumber + "": Success"");
+                return;
+            } catch (IllegalStateException e) {
+                System.out.println(""Attempt "" + attemptNumber + "": "" + e.getMessage());
+            }
+        }
+        throw new RetryLimitExceededException(""Retry limit exceeded"");
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int f = Integer.parseInt(sc.next());
+        int a = Integer.parseInt(sc.next());
+        try {
+            performWithRetries(f, a);
+        } catch (RetryLimitExceededException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
+
+class RetryLimitExceededException extends Exception {
+    RetryLimitExceededException(String message) {
+        super(message);
+    }
+}","[{""input"": ""2 4"", ""output"": ""Attempt 1: Temporary service failure\nAttempt 2: Temporary service failure\nAttempt 3: Success"", ""is_hidden"": false}, {""input"": ""2 3"", ""output"": ""Attempt 1: Temporary service failure\nAttempt 2: Temporary service failure\nAttempt 3: Success"", ""is_hidden"": false}, {""input"": ""3 3"", ""output"": ""Attempt 1: Temporary service failure\nAttempt 2: Temporary service failure\nAttempt 3: Temporary service failure\nRetry limit exceeded"", ""is_hidden"": false}, {""input"": ""0 1"", ""output"": ""Attempt 1: Success"", ""is_hidden"": true}, {""input"": ""1 1"", ""output"": ""Attempt 1: Temporary service failure\nRetry limit exceeded"", ""is_hidden"": true}, {""input"": ""0 5"", ""output"": ""Attempt 1: Success"", ""is_hidden"": true}, {""input"": ""5 2"", ""output"": ""Attempt 1: Temporary service failure\nAttempt 2: Temporary service failure\nRetry limit exceeded"", ""is_hidden"": true}, {""input"": ""999 1000"", ""output"": ""Attempt 1: Temporary service failure\nAttempt 2: Temporary service failure\nAttempt 3: Temporary service failure\nAttempt 4: Temporary service failure\nAttempt 5: Temporary service failure\nAttempt 6: Temporary service failure\nAttempt 7: Temporary service failure\nAttempt 8: Temporary service failure\nAttempt 9: Temporary service failure\nAttempt 10: Temporary service failure\nAttempt 11: Temporary service failure\nAttempt 12: Temporary service failure\nAttempt 13: Temporary service failure\nAttempt 14: Temporary service failure\nAttempt 15: Temporary service failure\nAttempt 16: Temporary service failure\nAttempt 17: Temporary service failure\nAttempt 18: Temporary service failure\nAttempt 19: Temporary service failure\nAttempt 20: Temporary service failure\nAttempt 21: Temporary service failure\nAttempt 22: Temporary service failure\nAttempt 23: Temporary service failure\nAttempt 24: Temporary service failure\nAttempt 25: Temporary service failure\nAttempt 26: Temporary service failure\nAttempt 27: Temporary service failure\nAttempt 28: Temporary service failure\nAttempt 29: Temporary service failure\nAttempt 30: Temporary service failure\nAttempt 31: Temporary service failure\nAttempt 32: Temporary service failure\nAttempt 33: Temporary service failure\nAttempt 34: Temporary service failure\nAttempt 35: Temporary service failure\nAttempt 36: Temporary service failure\nAttempt 37: Temporary service failure\nAttempt 38: Temporary service failure\nAttempt 39: Temporary service failure\nAttempt 40: Temporary service failure\nAttempt 41: Temporary service failure\nAttempt 42: Temporary service failure\nAttempt 43: Temporary service failure\nAttempt 44: Temporary service failure\nAttempt 45: Temporary service failure\nAttempt 46: Temporary service failure\nAttempt 47: Temporary service failure\nAttempt 48: Temporary service failure\nAttempt 49: Temporary service failure\nAttempt 50: Temporary service failure\nAttempt 51: Temporary service failure\nAttempt 52: Temporary service failure\nAttempt 53: Temporary service failure\nAttempt 54: Temporary service failure\nAttempt 55: Temporary service failure\nAttempt 56: Temporary service failure\nAttempt 57: Temporary service failure\nAttempt 58: Temporary service failure\nAttempt 59: Temporary service failure\nAttempt 60: Temporary service failure\nAttempt 61: Temporary service failure\nAttempt 62: Temporary service failure\nAttempt 63: Temporary service failure\nAttempt 64: Temporary service failure\nAttempt 65: Temporary service failure\nAttempt 66: Temporary service failure\nAttempt 67: Temporary service failure\nAttempt 68: Temporary service failure\nAttempt 69: Temporary service failure\nAttempt 70: Temporary service failure\nAttempt 71: Temporary service failure\nAttempt 72: Temporary service failure\nAttempt 73: Temporary service failure\nAttempt 74: Temporary service failure\nAttempt 75: Temporary service failure\nAttempt 76: Temporary service failure\nAttempt 77: Temporary service failure\nAttempt 78: Temporary service failure\nAttempt 79: Temporary service failure\nAttempt 80: Temporary service failure\nAttempt 81: Temporary service failure\nAttempt 82: Temporary service failure\nAttempt 83: Temporary service failure\nAttempt 84: Temporary service failure\nAttempt 85: Temporary service failure\nAttempt 86: Temporary service failure\nAttempt 87: Temporary service failure\nAttempt 88: Temporary service failure\nAttempt 89: Temporary service failure\nAttempt 90: Temporary service failure\nAttempt 91: Temporary service failure\nAttempt 92: Temporary service failure\nAttempt 93: Temporary service failure\nAttempt 94: Temporary service failure\nAttempt 95: Temporary service failure\nAttempt 96: Temporary service failure\nAttempt 97: Temporary service failure\nAttempt 98: Temporary service failure\nAttempt 99: Temporary service failure\nAttempt 100: Temporary service failure\nAttempt 101: Temporary service failure\nAttempt 102: Temporary service failure\nAttempt 103: Temporary service failure\nAttempt 104: Temporary service failure\nAttempt 105: Temporary service failure\nAttempt 106: Temporary service failure\nAttempt 107: Temporary service failure\nAttempt 108: Temporary service failure\nAttempt 109: Temporary service failure\nAttempt 110: Temporary service failure\nAttempt 111: Temporary service failure\nAttempt 112: Temporary service failure\nAttempt 113: Temporary service failure\nAttempt 114: Temporary service failure\nAttempt 115: Temporary service failure\nAttempt 116: Temporary service failure\nAttempt 117: Temporary service failure\nAttempt 118: Temporary service failure\nAttempt 119: Temporary service failure\nAttempt 120: Temporary service failure\nAttempt 121: Temporary service failure\nAttempt 122: Temporary service failure\nAttempt 123: Temporary service failure\nAttempt 124: Temporary service failure\nAttempt 125: Temporary service failure\nAttempt 126: Temporary service failure\nAttempt 127: Temporary service failure\nAttempt 128: Temporary service failure\nAttempt 129: Temporary service failure\nAttempt 130: Temporary service failure\nAttempt 131: Temporary service failure\nAttempt 132: Temporary service failure\nAttempt 133: Temporary service failure\nAttempt 134: Temporary service failure\nAttempt 135: Temporary service failure\nAttempt 136: Temporary service failure\nAttempt 137: Temporary service failure\nAttempt 138: Temporary service failure\nAttempt 139: Temporary service failure\nAttempt 140: Temporary service failure\nAttempt 141: Temporary service failure\nAttempt 142: Temporary service failure\nAttempt 143: Temporary service failure\nAttempt 144: Temporary service failure\nAttempt 145: Temporary service failure\nAttempt 146: Temporary service failure\nAttempt 147: Temporary service failure\nAttempt 148: Temporary service failure\nAttempt 149: Temporary service failure\nAttempt 150: Temporary service failure\nAttempt 151: Temporary service failure\nAttempt 152: Temporary service failure\nAttempt 153: Temporary service failure\nAttempt 154: Temporary service failure\nAttempt 155: Temporary service failure\nAttempt 156: Temporary service failure\nAttempt 157: Temporary service failure\nAttempt 158: Temporary service failure\nAttempt 159: Temporary service failure\nAttempt 160: Temporary service failure\nAttempt 161: Temporary service failure\nAttempt 162: Temporary service failure\nAttempt 163: Temporary service failure\nAttempt 164: Temporary service failure\nAttempt 165: Temporary service failure\nAttempt 166: Temporary service failure\nAttempt 167: Temporary service failure\nAttempt 168: Temporary service failure\nAttempt 169: Temporary service failure\nAttempt 170: Temporary service failure\nAttempt 171: Temporary service failure\nAttempt 172: Temporary service failure\nAttempt 173: Temporary service failure\nAttempt 174: Temporary service failure\nAttempt 175: Temporary service failure\nAttempt 176: Temporary service failure\nAttempt 177: Temporary service failure\nAttempt 178: Temporary service failure\nAttempt 179: Temporary service failure\nAttempt 180: Temporary service failure\nAttempt 181: Temporary service failure\nAttempt 182: Temporary service failure\nAttempt 183: Temporary service failure\nAttempt 184: Temporary service failure\nAttempt 185: Temporary service failure\nAttempt 186: Temporary service failure\nAttempt 187: Temporary service failure\nAttempt 188: Temporary service failure\nAttempt 189: Temporary service failure\nAttempt 190: Temporary service failure\nAttempt 191: Temporary service failure\nAttempt 192: Temporary service failure\nAttempt 193: Temporary service failure\nAttempt 194: Temporary service failure\nAttempt 195: Temporary service failure\nAttempt 196: Temporary service failure\nAttempt 197: Temporary service failure\nAttempt 198: Temporary service failure\nAttempt 199: Temporary service failure\nAttempt 200: Temporary service failure\nAttempt 201: Temporary service failure\nAttempt 202: Temporary service failure\nAttempt 203: Temporary service failure\nAttempt 204: Temporary service failure\nAttempt 205: Temporary service failure\nAttempt 206: Temporary service failure\nAttempt 207: Temporary service failure\nAttempt 208: Temporary service failure\nAttempt 209: Temporary service failure\nAttempt 210: Temporary service failure\nAttempt 211: Temporary service failure\nAttempt 212: Temporary service failure\nAttempt 213: Temporary service failure\nAttempt 214: Temporary service failure\nAttempt 215: Temporary service failure\nAttempt 216: Temporary service failure\nAttempt 217: Temporary service failure\nAttempt 218: Temporary service failure\nAttempt 219: Temporary service failure\nAttempt 220: Temporary service failure\nAttempt 221: Temporary service failure\nAttempt 222: Temporary service failure\nAttempt 223: Temporary service failure\nAttempt 224: Temporary service failure\nAttempt 225: Temporary service failure\nAttempt 226: Temporary service failure\nAttempt 227: Temporary service failure\nAttempt 228: Temporary service failure\nAttempt 229: Temporary service failure\nAttempt 230: Temporary service failure\nAttempt 231: Temporary service failure\nAttempt 232: Temporary service failure\nAttempt 233: Temporary service failure\nAttempt 234: Temporary service failure\nAttempt 235: Temporary service failure\nAttempt 236: Temporary service failure\nAttempt 237: Temporary service failure\nAttempt 238: Temporary service failure\nAttempt 239: Temporary service failure\nAttempt 240: Temporary service failure\nAttempt 241: Temporary service failure\nAttempt 242: Temporary service failure\nAttempt 243: Temporary service failure\nAttempt 244: Temporary service failure\nAttempt 245: Temporary service failure\nAttempt 246: Temporary service failure\nAttempt 247: Temporary service failure\nAttempt 248: Temporary service failure\nAttempt 249: Temporary service failure\nAttempt 250: Temporary service failure\nAttempt 251: Temporary service failure\nAttempt 252: Temporary service failure\nAttempt 253: Temporary service failure\nAttempt 254: Temporary service failure\nAttempt 255: Temporary service failure\nAttempt 256: Temporary service failure\nAttempt 257: Temporary service failure\nAttempt 258: Temporary service failure\nAttempt 259: Temporary service failure\nAttempt 260: Temporary service failure\nAttempt 261: Temporary service failure\nAttempt 262: Temporary service failure\nAttempt 263: Temporary service failure\nAttempt 264: Temporary service failure\nAttempt 265: Temporary service failure\nAttempt 266: Temporary service failure\nAttempt 267: Temporary service failure\nAttempt 268: Temporary service failure\nAttempt 269: Temporary service failure\nAttempt 270: Temporary service failure\nAttempt 271: Temporary service failure\nAttempt 272: Temporary service failure\nAttempt 273: Temporary service failure\nAttempt 274: Temporary service failure\nAttempt 275: Temporary service failure\nAttempt 276: Temporary service failure\nAttempt 277: Temporary service failure\nAttempt 278: Temporary service failure\nAttempt 279: Temporary service failure\nAttempt 280: Temporary service failure\nAttempt 281: Temporary service failure\nAttempt 282: Temporary service failure\nAttempt 283: Temporary service failure\nAttempt 284: Temporary service failure\nAttempt 285: Temporary service failure\nAttempt 286: Temporary service failure\nAttempt 287: Temporary service failure\nAttempt 288: Temporary service failure\nAttempt 289: Temporary service failure\nAttempt 290: Temporary service failure\nAttempt 291: Temporary service failure\nAttempt 292: Temporary service failure\nAttempt 293: Temporary service failure\nAttempt 294: Temporary service failure\nAttempt 295: Temporary service failure\nAttempt 296: Temporary service failure\nAttempt 297: Temporary service failure\nAttempt 298: Temporary service failure\nAttempt 299: Temporary service failure\nAttempt 300: Temporary service failure\nAttempt 301: Temporary service failure\nAttempt 302: Temporary service failure\nAttempt 303: Temporary service failure\nAttempt 304: Temporary service failure\nAttempt 305: Temporary service failure\nAttempt 306: Temporary service failure\nAttempt 307: Temporary service failure\nAttempt 308: Temporary service failure\nAttempt 309: Temporary service failure\nAttempt 310: Temporary service failure\nAttempt 311: Temporary service failure\nAttempt 312: Temporary service failure\nAttempt 313: Temporary service failure\nAttempt 314: Temporary service failure\nAttempt 315: Temporary service failure\nAttempt 316: Temporary service failure\nAttempt 317: Temporary service failure\nAttempt 318: Temporary service failure\nAttempt 319: Temporary service failure\nAttempt 320: Temporary service failure\nAttempt 321: Temporary service failure\nAttempt 322: Temporary service failure\nAttempt 323: Temporary service failure\nAttempt 324: Temporary service failure\nAttempt 325: Temporary service failure\nAttempt 326: Temporary service failure\nAttempt 327: Temporary service failure\nAttempt 328: Temporary service failure\nAttempt 329: Temporary service failure\nAttempt 330: Temporary service failure\nAttempt 331: Temporary service failure\nAttempt 332: Temporary service failure\nAttempt 333: Temporary service failure\nAttempt 334: Temporary service failure\nAttempt 335: Temporary service failure\nAttempt 336: Temporary service failure\nAttempt 337: Temporary service failure\nAttempt 338: Temporary service failure\nAttempt 339: Temporary service failure\nAttempt 340: Temporary service failure\nAttempt 341: Temporary service failure\nAttempt 342: Temporary service failure\nAttempt 343: Temporary service failure\nAttempt 344: Temporary service failure\nAttempt 345: Temporary service failure\nAttempt 346: Temporary service failure\nAttempt 347: Temporary service failure\nAttempt 348: Temporary service failure\nAttempt 349: Temporary service failure\nAttempt 350: Temporary service failure\nAttempt 351: Temporary service failure\nAttempt 352: Temporary service failure\nAttempt 353: Temporary service failure\nAttempt 354: Temporary service failure\nAttempt 355: Temporary service failure\nAttempt 356: Temporary service failure\nAttempt 357: Temporary service failure\nAttempt 358: Temporary service failure\nAttempt 359: Temporary service failure\nAttempt 360: Temporary service failure\nAttempt 361: Temporary service failure\nAttempt 362: Temporary service failure\nAttempt 363: Temporary service failure\nAttempt 364: Temporary service failure\nAttempt 365: Temporary service failure\nAttempt 366: Temporary service failure\nAttempt 367: Temporary service failure\nAttempt 368: Temporary service failure\nAttempt 369: Temporary service failure\nAttempt 370: Temporary service failure\nAttempt 371: Temporary service failure\nAttempt 372: Temporary service failure\nAttempt 373: Temporary service failure\nAttempt 374: Temporary service failure\nAttempt 375: Temporary service failure\nAttempt 376: Temporary service failure\nAttempt 377: Temporary service failure\nAttempt 378: Temporary service failure\nAttempt 379: Temporary service failure\nAttempt 380: Temporary service failure\nAttempt 381: Temporary service failure\nAttempt 382: Temporary service failure\nAttempt 383: Temporary service failure\nAttempt 384: Temporary service failure\nAttempt 385: Temporary service failure\nAttempt 386: Temporary service failure\nAttempt 387: Temporary service failure\nAttempt 388: Temporary service failure\nAttempt 389: Temporary service failure\nAttempt 390: Temporary service failure\nAttempt 391: Temporary service failure\nAttempt 392: Temporary service failure\nAttempt 393: Temporary service failure\nAttempt 394: Temporary service failure\nAttempt 395: Temporary service failure\nAttempt 396: Temporary service failure\nAttempt 397: Temporary service failure\nAttempt 398: Temporary service failure\nAttempt 399: Temporary service failure\nAttempt 400: Temporary service failure\nAttempt 401: Temporary service failure\nAttempt 402: Temporary service failure\nAttempt 403: Temporary service failure\nAttempt 404: Temporary service failure\nAttempt 405: Temporary service failure\nAttempt 406: Temporary service failure\nAttempt 407: Temporary service failure\nAttempt 408: Temporary service failure\nAttempt 409: Temporary service failure\nAttempt 410: Temporary service failure\nAttempt 411: Temporary service failure\nAttempt 412: Temporary service failure\nAttempt 413: Temporary service failure\nAttempt 414: Temporary service failure\nAttempt 415: Temporary service failure\nAttempt 416: Temporary service failure\nAttempt 417: Temporary service failure\nAttempt 418: Temporary service failure\nAttempt 419: Temporary service failure\nAttempt 420: Temporary service failure\nAttempt 421: Temporary service failure\nAttempt 422: Temporary service failure\nAttempt 423: Temporary service failure\nAttempt 424: Temporary service failure\nAttempt 425: Temporary service failure\nAttempt 426: Temporary service failure\nAttempt 427: Temporary service failure\nAttempt 428: Temporary service failure\nAttempt 429: Temporary service failure\nAttempt 430: Temporary service failure\nAttempt 431: Temporary service failure\nAttempt 432: Temporary service failure\nAttempt 433: Temporary service failure\nAttempt 434: Temporary service failure\nAttempt 435: Temporary service failure\nAttempt 436: Temporary service failure\nAttempt 437: Temporary service failure\nAttempt 438: Temporary service failure\nAttempt 439: Temporary service failure\nAttempt 440: Temporary service failure\nAttempt 441: Temporary service failure\nAttempt 442: Temporary service failure\nAttempt 443: Temporary service failure\nAttempt 444: Temporary service failure\nAttempt 445: Temporary service failure\nAttempt 446: Temporary service failure\nAttempt 447: Temporary service failure\nAttempt 448: Temporary service failure\nAttempt 449: Temporary service failure\nAttempt 450: Temporary service failure\nAttempt 451: Temporary service failure\nAttempt 452: Temporary service failure\nAttempt 453: Temporary service failure\nAttempt 454: Temporary service failure\nAttempt 455: Temporary service failure\nAttempt 456: Temporary service failure\nAttempt 457: Temporary service failure\nAttempt 458: Temporary service failure\nAttempt 459: Temporary service failure\nAttempt 460: Temporary service failure\nAttempt 461: Temporary service failure\nAttempt 462: Temporary service failure\nAttempt 463: Temporary service failure\nAttempt 464: Temporary service failure\nAttempt 465: Temporary service failure\nAttempt 466: Temporary service failure\nAttempt 467: Temporary service failure\nAttempt 468: Temporary service failure\nAttempt 469: Temporary service failure\nAttempt 470: Temporary service failure\nAttempt 471: Temporary service failure\nAttempt 472: Temporary service failure\nAttempt 473: Temporary service failure\nAttempt 474: Temporary service failure\nAttempt 475: Temporary service failure\nAttempt 476: Temporary service failure\nAttempt 477: Temporary service failure\nAttempt 478: Temporary service failure\nAttempt 479: Temporary service failure\nAttempt 480: Temporary service failure\nAttempt 481: Temporary service failure\nAttempt 482: Temporary service failure\nAttempt 483: Temporary service failure\nAttempt 484: Temporary service failure\nAttempt 485: Temporary service failure\nAttempt 486: Temporary service failure\nAttempt 487: Temporary service failure\nAttempt 488: Temporary service failure\nAttempt 489: Temporary service failure\nAttempt 490: Temporary service failure\nAttempt 491: Temporary service failure\nAttempt 492: Temporary service failure\nAttempt 493: Temporary service failure\nAttempt 494: Temporary service failure\nAttempt 495: Temporary service failure\nAttempt 496: Temporary service failure\nAttempt 497: Temporary service failure\nAttempt 498: Temporary service failure\nAttempt 499: Temporary service failure\nAttempt 500: Temporary service failure\nAttempt 501: Temporary service failure\nAttempt 502: Temporary service failure\nAttempt 503: Temporary service failure\nAttempt 504: Temporary service failure\nAttempt 505: Temporary service failure\nAttempt 506: Temporary service failure\nAttempt 507: Temporary service failure\nAttempt 508: Temporary service failure\nAttempt 509: Temporary service failure\nAttempt 510: Temporary service failure\nAttempt 511: Temporary service failure\nAttempt 512: Temporary service failure\nAttempt 513: Temporary service failure\nAttempt 514: Temporary service failure\nAttempt 515: Temporary service failure\nAttempt 516: Temporary service failure\nAttempt 517: Temporary service failure\nAttempt 518: Temporary service failure\nAttempt 519: Temporary service failure\nAttempt 520: Temporary service failure\nAttempt 521: Temporary service failure\nAttempt 522: Temporary service failure\nAttempt 523: Temporary service failure\nAttempt 524: Temporary service failure\nAttempt 525: Temporary service failure\nAttempt 526: Temporary service failure\nAttempt 527: Temporary service failure\nAttempt 528: Temporary service failure\nAttempt 529: Temporary service failure\nAttempt 530: Temporary service failure\nAttempt 531: Temporary service failure\nAttempt 532: Temporary service failure\nAttempt 533: Temporary service failure\nAttempt 534: Temporary service failure\nAttempt 535: Temporary service failure\nAttempt 536: Temporary service failure\nAttempt 537: Temporary service failure\nAttempt 538: Temporary service failure\nAttempt 539: Temporary service failure\nAttempt 540: Temporary service failure\nAttempt 541: Temporary service failure\nAttempt 542: Temporary service failure\nAttempt 543: Temporary service failure\nAttempt 544: Temporary service failure\nAttempt 545: Temporary service failure\nAttempt 546: Temporary service failure\nAttempt 547: Temporary service failure\nAttempt 548: Temporary service failure\nAttempt 549: Temporary service failure\nAttempt 550: Temporary service failure\nAttempt 551: Temporary service failure\nAttempt 552: Temporary service failure\nAttempt 553: Temporary service failure\nAttempt 554: Temporary service failure\nAttempt 555: Temporary service failure\nAttempt 556: Temporary service failure\nAttempt 557: Temporary service failure\nAttempt 558: Temporary service failure\nAttempt 559: Temporary service failure\nAttempt 560: Temporary service failure\nAttempt 561: Temporary service failure\nAttempt 562: Temporary service failure\nAttempt 563: Temporary service failure\nAttempt 564: Temporary service failure\nAttempt 565: Temporary service failure\nAttempt 566: Temporary service failure\nAttempt 567: Temporary service failure\nAttempt 568: Temporary service failure\nAttempt 569: Temporary service failure\nAttempt 570: Temporary service failure\nAttempt 571: Temporary service failure\nAttempt 572: Temporary service failure\nAttempt 573: Temporary service failure\nAttempt 574: Temporary service failure\nAttempt 575: Temporary service failure\nAttempt 576: Temporary service failure\nAttempt 577: Temporary service failure\nAttempt 578: Temporary service failure\nAttempt 579: Temporary service failure\nAttempt 580: Temporary service failure\nAttempt 581: Temporary service failure\nAttempt 582: Temporary service failure\nAttempt 583: Temporary service failure\nAttempt 584: Temporary service failure\nAttempt 585: Temporary service failure\nAttempt 586: Temporary service failure\nAttempt 587: Temporary service failure\nAttempt 588: Temporary service failure\nAttempt 589: Temporary service failure\nAttempt 590: Temporary service failure\nAttempt 591: Temporary service failure\nAttempt 592: Temporary service failure\nAttempt 593: Temporary service failure\nAttempt 594: Temporary service failure\nAttempt 595: Temporary service failure\nAttempt 596: Temporary service failure\nAttempt 597: Temporary service failure\nAttempt 598: Temporary service failure\nAttempt 599: Temporary service failure\nAttempt 600: Temporary service failure\nAttempt 601: Temporary service failure\nAttempt 602: Temporary service failure\nAttempt 603: Temporary service failure\nAttempt 604: Temporary service failure\nAttempt 605: Temporary service failure\nAttempt 606: Temporary service failure\nAttempt 607: Temporary service failure\nAttempt 608: Temporary service failure\nAttempt 609: Temporary service failure\nAttempt 610: Temporary service failure\nAttempt 611: Temporary service failure\nAttempt 612: Temporary service failure\nAttempt 613: Temporary service failure\nAttempt 614: Temporary service failure\nAttempt 615: Temporary service failure\nAttempt 616: Temporary service failure\nAttempt 617: Temporary service failure\nAttempt 618: Temporary service failure\nAttempt 619: Temporary service failure\nAttempt 620: Temporary service failure\nAttempt 621: Temporary service failure\nAttempt 622: Temporary service failure\nAttempt 623: Temporary service failure\nAttempt 624: Temporary service failure\nAttempt 625: Temporary service failure\nAttempt 626: Temporary service failure\nAttempt 627: Temporary service failure\nAttempt 628: Temporary service failure\nAttempt 629: Temporary service failure\nAttempt 630: Temporary service failure\nAttempt 631: Temporary service failure\nAttempt 632: Temporary service failure\nAttempt 633: Temporary service failure\nAttempt 634: Temporary service failure\nAttempt 635: Temporary service failure\nAttempt 636: Temporary service failure\nAttempt 637: Temporary service failure\nAttempt 638: Temporary service failure\nAttempt 639: Temporary service failure\nAttempt 640: Temporary service failure\nAttempt 641: Temporary service failure\nAttempt 642: Temporary service failure\nAttempt 643: Temporary service failure\nAttempt 644: Temporary service failure\nAttempt 645: Temporary service failure\nAttempt 646: Temporary service failure\nAttempt 647: Temporary service failure\nAttempt 648: Temporary service failure\nAttempt 649: Temporary service failure\nAttempt 650: Temporary service failure\nAttempt 651: Temporary service failure\nAttempt 652: Temporary service failure\nAttempt 653: Temporary service failure\nAttempt 654: Temporary service failure\nAttempt 655: Temporary service failure\nAttempt 656: Temporary service failure\nAttempt 657: Temporary service failure\nAttempt 658: Temporary service failure\nAttempt 659: Temporary service failure\nAttempt 660: Temporary service failure\nAttempt 661: Temporary service failure\nAttempt 662: Temporary service failure\nAttempt 663: Temporary service failure\nAttempt 664: Temporary service failure\nAttempt 665: Temporary service failure\nAttempt 666: Temporary service failure\nAttempt 667: Temporary service failure\nAttempt 668: Temporary service failure\nAttempt 669: Temporary service failure\nAttempt 670: Temporary service failure\nAttempt 671: Temporary service failure\nAttempt 672: Temporary service failure\nAttempt 673: Temporary service failure\nAttempt 674: Temporary service failure\nAttempt 675: Temporary service failure\nAttempt 676: Temporary service failure\nAttempt 677: Temporary service failure\nAttempt 678: Temporary service failure\nAttempt 679: Temporary service failure\nAttempt 680: Temporary service failure\nAttempt 681: Temporary service failure\nAttempt 682: Temporary service failure\nAttempt 683: Temporary service failure\nAttempt 684: Temporary service failure\nAttempt 685: Temporary service failure\nAttempt 686: Temporary service failure\nAttempt 687: Temporary service failure\nAttempt 688: Temporary service failure\nAttempt 689: Temporary service failure\nAttempt 690: Temporary service failure\nAttempt 691: Temporary service failure\nAttempt 692: Temporary service failure\nAttempt 693: Temporary service failure\nAttempt 694: Temporary service failure\nAttempt 695: Temporary service failure\nAttempt 696: Temporary service failure\nAttempt 697: Temporary service failure\nAttempt 698: Temporary service failure\nAttempt 699: Temporary service failure\nAttempt 700: Temporary service failure\nAttempt 701: Temporary service failure\nAttempt 702: Temporary service failure\nAttempt 703: Temporary service failure\nAttempt 704: Temporary service failure\nAttempt 705: Temporary service failure\nAttempt 706: Temporary service failure\nAttempt 707: Temporary service failure\nAttempt 708: Temporary service failure\nAttempt 709: Temporary service failure\nAttempt 710: Temporary service failure\nAttempt 711: Temporary service failure\nAttempt 712: Temporary service failure\nAttempt 713: Temporary service failure\nAttempt 714: Temporary service failure\nAttempt 715: Temporary service failure\nAttempt 716: Temporary service failure\nAttempt 717: Temporary service failure\nAttempt 718: Temporary service failure\nAttempt 719: Temporary service failure\nAttempt 720: Temporary service failure\nAttempt 721: Temporary service failure\nAttempt 722: Temporary service failure\nAttempt 723: Temporary service failure\nAttempt 724: Temporary service failure\nAttempt 725: Temporary service failure\nAttempt 726: Temporary service failure\nAttempt 727: Temporary service failure\nAttempt 728: Temporary service failure\nAttempt 729: Temporary service failure\nAttempt 730: Temporary service failure\nAttempt 731: Temporary service failure\nAttempt 732: Temporary service failure\nAttempt 733: Temporary service failure\nAttempt 734: Temporary service failure\nAttempt 735: Temporary service failure\nAttempt 736: Temporary service failure\nAttempt 737: Temporary service failure\nAttempt 738: Temporary service failure\nAttempt 739: Temporary service failure\nAttempt 740: Temporary service failure\nAttempt 741: Temporary service failure\nAttempt 742: Temporary service failure\nAttempt 743: Temporary service failure\nAttempt 744: Temporary service failure\nAttempt 745: Temporary service failure\nAttempt 746: Temporary service failure\nAttempt 747: Temporary service failure\nAttempt 748: Temporary service failure\nAttempt 749: Temporary service failure\nAttempt 750: Temporary service failure\nAttempt 751: Temporary service failure\nAttempt 752: Temporary service failure\nAttempt 753: Temporary service failure\nAttempt 754: Temporary service failure\nAttempt 755: Temporary service failure\nAttempt 756: Temporary service failure\nAttempt 757: Temporary service failure\nAttempt 758: Temporary service failure\nAttempt 759: Temporary service failure\nAttempt 760: Temporary service failure\nAttempt 761: Temporary service failure\nAttempt 762: Temporary service failure\nAttempt 763: Temporary service failure\nAttempt 764: Temporary service failure\nAttempt 765: Temporary service failure\nAttempt 766: Temporary service failure\nAttempt 767: Temporary service failure\nAttempt 768: Temporary service failure\nAttempt 769: Temporary service failure\nAttempt 770: Temporary service failure\nAttempt 771: Temporary service failure\nAttempt 772: Temporary service failure\nAttempt 773: Temporary service failure\nAttempt 774: Temporary service failure\nAttempt 775: Temporary service failure\nAttempt 776: Temporary service failure\nAttempt 777: Temporary service failure\nAttempt 778: Temporary service failure\nAttempt 779: Temporary service failure\nAttempt 780: Temporary service failure\nAttempt 781: Temporary service failure\nAttempt 782: Temporary service failure\nAttempt 783: Temporary service failure\nAttempt 784: Temporary service failure\nAttempt 785: Temporary service failure\nAttempt 786: Temporary service failure\nAttempt 787: Temporary service failure\nAttempt 788: Temporary service failure\nAttempt 789: Temporary service failure\nAttempt 790: Temporary service failure\nAttempt 791: Temporary service failure\nAttempt 792: Temporary service failure\nAttempt 793: Temporary service failure\nAttempt 794: Temporary service failure\nAttempt 795: Temporary service failure\nAttempt 796: Temporary service failure\nAttempt 797: Temporary service failure\nAttempt 798: Temporary service failure\nAttempt 799: Temporary service failure\nAttempt 800: Temporary service failure\nAttempt 801: Temporary service failure\nAttempt 802: Temporary service failure\nAttempt 803: Temporary service failure\nAttempt 804: Temporary service failure\nAttempt 805: Temporary service failure\nAttempt 806: Temporary service failure\nAttempt 807: Temporary service failure\nAttempt 808: Temporary service failure\nAttempt 809: Temporary service failure\nAttempt 810: Temporary service failure\nAttempt 811: Temporary service failure\nAttempt 812: Temporary service failure\nAttempt 813: Temporary service failure\nAttempt 814: Temporary service failure\nAttempt 815: Temporary service failure\nAttempt 816: Temporary service failure\nAttempt 817: Temporary service failure\nAttempt 818: Temporary service failure\nAttempt 819: Temporary service failure\nAttempt 820: Temporary service failure\nAttempt 821: Temporary service failure\nAttempt 822: Temporary service failure\nAttempt 823: Temporary service failure\nAttempt 824: Temporary service failure\nAttempt 825: Temporary service failure\nAttempt 826: Temporary service failure\nAttempt 827: Temporary service failure\nAttempt 828: Temporary service failure\nAttempt 829: Temporary service failure\nAttempt 830: Temporary service failure\nAttempt 831: Temporary service failure\nAttempt 832: Temporary service failure\nAttempt 833: Temporary service failure\nAttempt 834: Temporary service failure\nAttempt 835: Temporary service failure\nAttempt 836: Temporary service failure\nAttempt 837: Temporary service failure\nAttempt 838: Temporary service failure\nAttempt 839: Temporary service failure\nAttempt 840: Temporary service failure\nAttempt 841: Temporary service failure\nAttempt 842: Temporary service failure\nAttempt 843: Temporary service failure\nAttempt 844: Temporary service failure\nAttempt 845: Temporary service failure\nAttempt 846: Temporary service failure\nAttempt 847: Temporary service failure\nAttempt 848: Temporary service failure\nAttempt 849: Temporary service failure\nAttempt 850: Temporary service failure\nAttempt 851: Temporary service failure\nAttempt 852: Temporary service failure\nAttempt 853: Temporary service failure\nAttempt 854: Temporary service failure\nAttempt 855: Temporary service failure\nAttempt 856: Temporary service failure\nAttempt 857: Temporary service failure\nAttempt 858: Temporary service failure\nAttempt 859: Temporary service failure\nAttempt 860: Temporary service failure\nAttempt 861: Temporary service failure\nAttempt 862: Temporary service failure\nAttempt 863: Temporary service failure\nAttempt 864: Temporary service failure\nAttempt 865: Temporary service failure\nAttempt 866: Temporary service failure\nAttempt 867: Temporary service failure\nAttempt 868: Temporary service failure\nAttempt 869: Temporary service failure\nAttempt 870: Temporary service failure\nAttempt 871: Temporary service failure\nAttempt 872: Temporary service failure\nAttempt 873: Temporary service failure\nAttempt 874: Temporary service failure\nAttempt 875: Temporary service failure\nAttempt 876: Temporary service failure\nAttempt 877: Temporary service failure\nAttempt 878: Temporary service failure\nAttempt 879: Temporary service failure\nAttempt 880: Temporary service failure\nAttempt 881: Temporary service failure\nAttempt 882: Temporary service failure\nAttempt 883: Temporary service failure\nAttempt 884: Temporary service failure\nAttempt 885: Temporary service failure\nAttempt 886: Temporary service failure\nAttempt 887: Temporary service failure\nAttempt 888: Temporary service failure\nAttempt 889: Temporary service failure\nAttempt 890: Temporary service failure\nAttempt 891: Temporary service failure\nAttempt 892: Temporary service failure\nAttempt 893: Temporary service failure\nAttempt 894: Temporary service failure\nAttempt 895: Temporary service failure\nAttempt 896: Temporary service failure\nAttempt 897: Temporary service failure\nAttempt 898: Temporary service failure\nAttempt 899: Temporary service failure\nAttempt 900: Temporary service failure\nAttempt 901: Temporary service failure\nAttempt 902: Temporary service failure\nAttempt 903: Temporary service failure\nAttempt 904: Temporary service failure\nAttempt 905: Temporary service failure\nAttempt 906: Temporary service failure\nAttempt 907: Temporary service failure\nAttempt 908: Temporary service failure\nAttempt 909: Temporary service failure\nAttempt 910: Temporary service failure\nAttempt 911: Temporary service failure\nAttempt 912: Temporary service failure\nAttempt 913: Temporary service failure\nAttempt 914: Temporary service failure\nAttempt 915: Temporary service failure\nAttempt 916: Temporary service failure\nAttempt 917: Temporary service failure\nAttempt 918: Temporary service failure\nAttempt 919: Temporary service failure\nAttempt 920: Temporary service failure\nAttempt 921: Temporary service failure\nAttempt 922: Temporary service failure\nAttempt 923: Temporary service failure\nAttempt 924: Temporary service failure\nAttempt 925: Temporary service failure\nAttempt 926: Temporary service failure\nAttempt 927: Temporary service failure\nAttempt 928: Temporary service failure\nAttempt 929: Temporary service failure\nAttempt 930: Temporary service failure\nAttempt 931: Temporary service failure\nAttempt 932: Temporary service failure\nAttempt 933: Temporary service failure\nAttempt 934: Temporary service failure\nAttempt 935: Temporary service failure\nAttempt 936: Temporary service failure\nAttempt 937: Temporary service failure\nAttempt 938: Temporary service failure\nAttempt 939: Temporary service failure\nAttempt 940: Temporary service failure\nAttempt 941: Temporary service failure\nAttempt 942: Temporary service failure\nAttempt 943: Temporary service failure\nAttempt 944: Temporary service failure\nAttempt 945: Temporary service failure\nAttempt 946: Temporary service failure\nAttempt 947: Temporary service failure\nAttempt 948: Temporary service failure\nAttempt 949: Temporary service failure\nAttempt 950: Temporary service failure\nAttempt 951: Temporary service failure\nAttempt 952: Temporary service failure\nAttempt 953: Temporary service failure\nAttempt 954: Temporary service failure\nAttempt 955: Temporary service failure\nAttempt 956: Temporary service failure\nAttempt 957: Temporary service failure\nAttempt 958: Temporary service failure\nAttempt 959: Temporary service failure\nAttempt 960: Temporary service failure\nAttempt 961: Temporary service failure\nAttempt 962: Temporary service failure\nAttempt 963: Temporary service failure\nAttempt 964: Temporary service failure\nAttempt 965: Temporary service failure\nAttempt 966: Temporary service failure\nAttempt 967: Temporary service failure\nAttempt 968: Temporary service failure\nAttempt 969: Temporary service failure\nAttempt 970: Temporary service failure\nAttempt 971: Temporary service failure\nAttempt 972: Temporary service failure\nAttempt 973: Temporary service failure\nAttempt 974: Temporary service failure\nAttempt 975: Temporary service failure\nAttempt 976: Temporary service failure\nAttempt 977: Temporary service failure\nAttempt 978: Temporary service failure\nAttempt 979: Temporary service failure\nAttempt 980: Temporary service failure\nAttempt 981: Temporary service failure\nAttempt 982: Temporary service failure\nAttempt 983: Temporary service failure\nAttempt 984: Temporary service failure\nAttempt 985: Temporary service failure\nAttempt 986: Temporary service failure\nAttempt 987: Temporary service failure\nAttempt 988: Temporary service failure\nAttempt 989: Temporary service failure\nAttempt 990: Temporary service failure\nAttempt 991: Temporary service failure\nAttempt 992: Temporary service failure\nAttempt 993: Temporary service failure\nAttempt 994: Temporary service failure\nAttempt 995: Temporary service failure\nAttempt 996: Temporary service failure\nAttempt 997: Temporary service failure\nAttempt 998: Temporary service failure\nAttempt 999: Temporary service failure\nAttempt 1000: Success"", ""is_hidden"": true}]"
+JP-M13-20,Update Warehouse Inventory Safely,Module 13: Exception Handling,Hard,"Validate signed long updates without overflow, including Long.MIN_VALUE, and keep state unchanged on failure.",stdin/stdout,O(1),O(1),"A warehouse system processes stock increases and decreases. Each stock update must either succeed completely or leave the existing inventory unchanged.
+
+Create a custom checked exception named InvalidInventoryOperationException that extends Exception. Create an Inventory class that stores the current quantity as a long and provides update(long change), declaring throws InvalidInventoryOperationException.
+
+Apply these rules:
+1. If change is zero, throw InvalidInventoryOperationException with the message Change cannot be zero.
+2. If change is negative and the requested removal exceeds the current quantity, throw InvalidInventoryOperationException with the message Insufficient inventory.
+3. If change is positive and adding it would exceed Long.MAX_VALUE, throw ArithmeticException with the message Inventory overflow.
+4. Otherwise, update the quantity and return normally.
+Do not modify the quantity until all checks have passed. Do not use Math.abs(change) to determine the magnitude of a negative change, because Math.abs(Long.MIN_VALUE) remains negative due to overflow. Since the stored quantity is non-negative, a safe check is to compare the negative change against -quantity.
+
+The main program processes each update independently. On success, print the updated quantity. On failure, print the exception message and preserve the previous quantity. Continue processing later requests.
+
+Additional edge cases:
+- Starting with quantity 10 and applying Long.MIN_VALUE must print Insufficient inventory.
+- Starting with quantity 9223372036854775800 and adding 10 must print Inventory overflow.
+- A zero change must print Change cannot be zero.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, including custom exceptions, without the public keyword.
+
+Explanation: The quantity increases from 10 to 15, then decreases to 12. Removing 20 would make the inventory negative, so that update fails without changing the quantity. The final update succeeds, leaving 14.","First line: initial inventory quantity.
+Second line: integer Q.
+Third line: Q space-separated signed long changes.","For each request, print Updated: <quantity> after success, or the applicable error message after failure.","0 ≤ initial quantity ≤ 9,000,000,000,000,000,000
+1 ≤ Q ≤ 1000
+Each change is a valid Java long value.","10
+4
+5 -3 -20 2","Updated: 15
+Updated: 12
+Insufficient inventory
+Updated: 14","10
+1
+-9223372036854775808",Insufficient inventory,"For a negative change, the removal is too large when change < -quantity; -quantity never overflows because quantity is non-negative.","For a positive change, adding overflows when change > Long.MAX_VALUE - quantity.",Catch InvalidInventoryOperationException and ArithmeticException inside the loop and print getMessage().,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Inventory inventory = new Inventory(Long.parseLong(sc.next()));
+        int q = Integer.parseInt(sc.next());
+        for (int i = 0; i < q; i++) {
+            long change = Long.parseLong(sc.next());
+            try {
+                inventory.update(change);
+                System.out.println(""Updated: "" + inventory.getQuantity());
+            } catch (InvalidInventoryOperationException e) {
+                System.out.println(e.getMessage());
+            } catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+}
+
+class InvalidInventoryOperationException extends Exception {
+    InvalidInventoryOperationException(String message) {
+        super(message);
+    }
+}
+
+class Inventory {
+    private long quantity;
+
+    Inventory(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getQuantity() {
+        return quantity;
+    }
+
+    public void update(long change) throws InvalidInventoryOperationException {
+        if (change == 0) {
+            throw new InvalidInventoryOperationException(""Change cannot be zero"");
+        }
+        if (change < 0 && change < -quantity) {
+            throw new InvalidInventoryOperationException(""Insufficient inventory"");
+        }
+        if (change > 0 && change > Long.MAX_VALUE - quantity) {
+            throw new ArithmeticException(""Inventory overflow"");
+        }
+        quantity += change;
+    }
+}","[{""input"": ""10\n4\n5 -3 -20 2"", ""output"": ""Updated: 15\nUpdated: 12\nInsufficient inventory\nUpdated: 14"", ""is_hidden"": false}, {""input"": ""10\n1\n-9223372036854775808"", ""output"": ""Insufficient inventory"", ""is_hidden"": false}, {""input"": ""9223372036854775800\n1\n10"", ""output"": ""Inventory overflow"", ""is_hidden"": false}, {""input"": ""0\n3\n0 -1 1"", ""output"": ""Change cannot be zero\nInsufficient inventory\nUpdated: 1"", ""is_hidden"": true}, {""input"": ""5\n2\n-5 -1"", ""output"": ""Updated: 0\nInsufficient inventory"", ""is_hidden"": true}, {""input"": ""9223372036854775806\n2\n1 1"", ""output"": ""Updated: 9223372036854775807\nInventory overflow"", ""is_hidden"": true}, {""input"": ""0\n1\n9223372036854775807"", ""output"": ""Updated: 9223372036854775807"", ""is_hidden"": true}, {""input"": ""100\n3\n-100 100 -101"", ""output"": ""Updated: 0\nUpdated: 100\nInsufficient inventory"", ""is_hidden"": true}]"

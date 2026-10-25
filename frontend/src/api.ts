@@ -250,7 +250,8 @@ export async function runCode(
   code: string,
   stdinData: string = '',
   executionMode: string = 'stdin/stdout',
-  functionName?: string | null
+  functionName?: string | null,
+  language: string = 'python'
 ): Promise<RunResult> {
   const res = await fetch(`${API_BASE}/run`, {
     method: 'POST',
@@ -259,7 +260,8 @@ export async function runCode(
       code,
       stdin_data: stdinData,
       execution_mode: executionMode,
-      function_name: functionName
+      function_name: functionName,
+      language
     })
   });
   if (!res.ok) throw new Error('Execution failed');
@@ -273,7 +275,8 @@ export async function submitSolution(
   runAll: boolean = false,
   isOwner: boolean = false,
   comparisonMode: string = 'judge',
-  normalizeCrlf: boolean = true
+  normalizeCrlf: boolean = true,
+  language?: string
 ): Promise<SubmitResult> {
   const params = new URLSearchParams();
   if (isOwner) params.append('is_owner', 'true');
@@ -287,7 +290,8 @@ export async function submitSolution(
       code,
       run_all: runAll,
       comparison_mode: comparisonMode,
-      normalize_crlf: normalizeCrlf
+      normalize_crlf: normalizeCrlf,
+      language
     })
   });
   if (!res.ok) {

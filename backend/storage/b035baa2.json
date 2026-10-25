@@ -1,0 +1,1944 @@
+{
+  "id": "b035baa2",
+  "filename": "JP_M6_Java_Methods.csv",
+  "imported_at": "2026-10-24T14:34:48.705261Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M6-01",
+      "title": "Employee Net Salary Calculator",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Write a static method that computes and returns an int using a specified integer formula.",
+      "problem_statement": "A company calculates an employee's net salary using a basic salary. Read a non-negative integer basicSalary. Declare static int calculateNetSalary(int basicSalary). Calculate the allowance as basicSalary * 20 / 100 and the deduction as basicSalary * 10 / 100. Return basicSalary + allowance - deduction. Print the returned value. Intermediate calculations must fit in an int.",
+      "input_format": "A single line containing basicSalary.",
+      "output_format": "A single line containing the net salary.",
+      "constraints": "0 <= basicSalary <= 10,000,000",
+      "sample_inputs": [
+        "30000",
+        "15"
+      ],
+      "sample_outputs": [
+        "33000",
+        "17"
+      ],
+      "hints": [
+        "Declare the method inside class Main, outside main(), with the keyword static.",
+        "Compute allowance and deduction in local variables using exactly the expressions given.",
+        "In main, print the call directly: System.out.println(calculateNetSalary(basicSalary));"
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateNetSalary(int basicSalary) {\n        int allowance = basicSalary * 20 / 100;\n        int deduction = basicSalary * 10 / 100;\n        return basicSalary + allowance - deduction;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int basicSalary = Integer.parseInt(sc.next());\n        System.out.println(calculateNetSalary(basicSalary));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "30000",
+          "output": "33000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "15",
+          "output": "17",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "99",
+          "output": "109",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100000",
+          "output": "110000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12345",
+          "output": "13580",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10000000",
+          "output": "11000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing basicSalary.",
+        "output_format": "A single line containing the net salary."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-02",
+      "title": "E-Commerce Discount Calculator",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Return one of two computed values from a method based on a condition.",
+      "problem_statement": "An online store calculates a discount for an order. Read a non-negative integer amount. Declare static int calculateDiscount(int amount). Return amount * 10 / 100 when amount is at least 2000; otherwise, return amount * 5 / 100. Print the returned discount. Use the exact multiplication-before-division expressions shown.",
+      "input_format": "A single line containing amount.",
+      "output_format": "A single line containing the discount.",
+      "constraints": "0 <= amount <= 10,000,000",
+      "sample_inputs": [
+        "1999",
+        "2500"
+      ],
+      "sample_outputs": [
+        "99",
+        "250"
+      ],
+      "hints": [
+        "A method can contain an if-else statement with a return in each branch.",
+        "Multiply before dividing: amount * 10 / 100, not amount / 100 * 10.",
+        "Integer division drops the fraction, so 1999 * 5 / 100 is 99."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateDiscount(int amount) {\n        if (amount >= 2000) {\n            return amount * 10 / 100;\n        } else {\n            return amount * 5 / 100;\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int amount = Integer.parseInt(sc.next());\n        System.out.println(calculateDiscount(amount));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1999",
+          "output": "99",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2500",
+          "output": "250",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2000",
+          "output": "200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "19",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000",
+          "output": "50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "99999",
+          "output": "9999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2001",
+          "output": "200",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing amount.",
+        "output_format": "A single line containing the discount."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-03",
+      "title": "Warehouse Reorder Decision",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Use the boolean returned by a method directly as an if condition.",
+      "problem_statement": "A warehouse determines whether a product needs restocking. Read a non-negative integer stock. Declare static boolean needsRestock(int stock), returning true when stock is below 10 and false otherwise. In main, use the returned Boolean directly in an if-else statement to print Restock Required or Stock Sufficient.",
+      "input_format": "A single line containing stock.",
+      "output_format": "A single line: Restock Required or Stock Sufficient.",
+      "constraints": "0 <= stock <= 1,000,000",
+      "sample_inputs": [
+        "7",
+        "15"
+      ],
+      "sample_outputs": [
+        "Restock Required",
+        "Stock Sufficient"
+      ],
+      "hints": [
+        "The method body can be a single statement: return stock < 10;.",
+        "Write the call itself as the condition: if (needsRestock(stock)).",
+        "A stock of exactly 10 is not below 10."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean needsRestock(int stock) {\n        return stock < 10;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int stock = Integer.parseInt(sc.next());\n        if (needsRestock(stock)) {\n            System.out.println(\"Restock Required\");\n        } else {\n            System.out.println(\"Stock Sufficient\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7",
+          "output": "Restock Required",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "15",
+          "output": "Stock Sufficient",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "Stock Sufficient",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9",
+          "output": "Restock Required",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0",
+          "output": "Restock Required",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "Stock Sufficient",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "11",
+          "output": "Stock Sufficient",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1",
+          "output": "Restock Required",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing stock.",
+        "output_format": "A single line: Restock Required or Stock Sufficient."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-04",
+      "title": "Delivery Receipt Printer",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Write a void method that prints output instead of returning a value.",
+      "problem_statement": "A delivery service needs a method that prints a receipt rather than returning a value. Read an integer orderId and a non-negative integer fee. Declare static void printReceipt(int orderId, int fee). The method must print Order ID: followed by the ID on the first line and Delivery Fee: followed by the fee on the second line, with one space after each colon. Call the method from main. Do not return a value from this method.",
+      "input_format": "Two separate lines:\nLine 1: orderId\nLine 2: fee",
+      "output_format": "Two lines: Order ID: <id> and Delivery Fee: <fee>.",
+      "constraints": "1 <= orderId <= 1,000,000\n0 <= fee <= 1,000,000",
+      "sample_inputs": [
+        "104\n80",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "Order ID: 104\nDelivery Fee: 80",
+        "Order ID: 1\nDelivery Fee: 0"
+      ],
+      "hints": [
+        "A void method has no return value, so it needs no return statement.",
+        "Put both println statements inside printReceipt.",
+        "In main, call it as a statement on its own: printReceipt(orderId, fee);"
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void printReceipt(int orderId, int fee) {\n        System.out.println(\"Order ID: \" + orderId);\n        System.out.println(\"Delivery Fee: \" + fee);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int orderId = Integer.parseInt(sc.next());\n        int fee = Integer.parseInt(sc.next());\n        printReceipt(orderId, fee);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "104\n80",
+          "output": "Order ID: 104\nDelivery Fee: 80",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "Order ID: 1\nDelivery Fee: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "999999\n150",
+          "output": "Order ID: 999999\nDelivery Fee: 150",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "42\n42",
+          "output": "Order ID: 42\nDelivery Fee: 42",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\n1000000",
+          "output": "Order ID: 7\nDelivery Fee: 1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2024\n35",
+          "output": "Order ID: 2024\nDelivery Fee: 35",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "300\n0",
+          "output": "Order ID: 300\nDelivery Fee: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "88\n12",
+          "output": "Order ID: 88\nDelivery Fee: 12",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: orderId\nLine 2: fee",
+        "output_format": "Two lines: Order ID: <id> and Delivery Fee: <fee>."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-05",
+      "title": "Performance Rating",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Return a value from an else-if ladder inside a method.",
+      "problem_statement": "A company converts an employee's score into a rating. Read an integer score from 0 to 100. Declare static int getRating(int score). Return 5 for scores at least 90, 4 for scores at least 75, 3 for scores at least 60, 2 for scores at least 40, and 1 otherwise. Print the returned rating.",
+      "input_format": "A single line containing score.",
+      "output_format": "A single line containing the rating.",
+      "constraints": "0 <= score <= 100",
+      "sample_inputs": [
+        "78",
+        "39"
+      ],
+      "sample_outputs": [
+        "4",
+        "1"
+      ],
+      "hints": [
+        "Check the highest threshold first.",
+        "Each branch can return immediately: if (score >= 90) return 5;.",
+        "The final return 1; covers every score below 40."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int getRating(int score) {\n        if (score >= 90) {\n            return 5;\n        } else if (score >= 75) {\n            return 4;\n        } else if (score >= 60) {\n            return 3;\n        } else if (score >= 40) {\n            return 2;\n        }\n        return 1;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int score = Integer.parseInt(sc.next());\n        System.out.println(getRating(score));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "78",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "39",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "90",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "89",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "75",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "60",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "40",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing score.",
+        "output_format": "A single line containing the rating."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-06",
+      "title": "Temperature Conversion Service",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Return the result of an integer formula whose order of operations matters.",
+      "problem_statement": "A monitoring system converts Celsius to Fahrenheit. Read an integer celsius. Declare static int toFahrenheit(int celsius) and return celsius * 9 / 5 + 32, in that exact order using Java integer arithmetic. Print the returned value. Assume intermediate calculations fit in an int.",
+      "input_format": "A single line containing celsius.",
+      "output_format": "A single line containing the Fahrenheit value.",
+      "constraints": "-1000 <= celsius <= 1000",
+      "sample_inputs": [
+        "25",
+        "-40"
+      ],
+      "sample_outputs": [
+        "77",
+        "-40"
+      ],
+      "hints": [
+        "Write the expression exactly as celsius * 9 / 5 + 32.",
+        "9 / 5 on its own is 1 in integer arithmetic, so 9 / 5 * celsius gives the wrong answer.",
+        "Integer division truncates toward zero, so -1 * 9 / 5 is -1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int toFahrenheit(int celsius) {\n        return celsius * 9 / 5 + 32;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int celsius = Integer.parseInt(sc.next());\n        System.out.println(toFahrenheit(celsius));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "25",
+          "output": "77",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-40",
+          "output": "-40",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "32",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100",
+          "output": "212",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1",
+          "output": "33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-1",
+          "output": "31",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "37",
+          "output": "98",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-273",
+          "output": "-459",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing celsius.",
+        "output_format": "A single line containing the Fahrenheit value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-07",
+      "title": "Early Return in an Access Check",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Use an early return to exit a method before its final return statement.",
+      "problem_statement": "A company checks whether an employee can access a restricted system. Read an integer level and a Boolean value accountActive. Declare static boolean canAccess(int level, boolean accountActive). If the account is inactive, immediately return false. Otherwise, return whether level is at least 3. Print Access Granted if the method returns true; otherwise print Access Denied. The Boolean input is lowercase true or false.",
+      "input_format": "Two separate lines:\nLine 1: level\nLine 2: true or false",
+      "output_format": "A single line: Access Granted or Access Denied.",
+      "constraints": "-100 <= level <= 100\naccountActive is exactly true or false.",
+      "sample_inputs": [
+        "4\nfalse",
+        "4\ntrue"
+      ],
+      "sample_outputs": [
+        "Access Denied",
+        "Access Granted"
+      ],
+      "hints": [
+        "Read the Boolean with Boolean.parseBoolean(sc.next()).",
+        "Start the method with if (!accountActive) { return false; }.",
+        "After that check, return level >= 3;."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean canAccess(int level, boolean accountActive) {\n        if (!accountActive) {\n            return false;\n        }\n        return level >= 3;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int level = Integer.parseInt(sc.next());\n        boolean accountActive = Boolean.parseBoolean(sc.next());\n        if (canAccess(level, accountActive)) {\n            System.out.println(\"Access Granted\");\n        } else {\n            System.out.println(\"Access Denied\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nfalse",
+          "output": "Access Denied",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4\ntrue",
+          "output": "Access Granted",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\ntrue",
+          "output": "Access Granted",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\ntrue",
+          "output": "Access Denied",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\nfalse",
+          "output": "Access Denied",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0\ntrue",
+          "output": "Access Denied",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1\ntrue",
+          "output": "Access Denied",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nfalse",
+          "output": "Access Denied",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: level\nLine 2: true or false",
+        "output_format": "A single line: Access Granted or Access Denied."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-08",
+      "title": "Service Plan Method Overloading",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Easy",
+      "objective": "Declare two methods with the same name but different parameter lists.",
+      "problem_statement": "A software company calculates subscription charges using overloaded methods. Implement static int calculateCost(int users), returning users * 100, and static int calculateCost(int users, int months), returning users * months * 100. Read positive integers users and months. Print the result of the first method call, then the result of the second method call. Both results fit in an int.",
+      "input_format": "Two separate lines:\nLine 1: users\nLine 2: months",
+      "output_format": "Two lines: calculateCost(users), then calculateCost(users, months).",
+      "constraints": "1 <= users <= 10,000\n1 <= months <= 120",
+      "sample_inputs": [
+        "5\n3",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "500\n1500",
+        "100\n100"
+      ],
+      "hints": [
+        "Overloaded methods share a name but differ in the number or types of parameters.",
+        "Java picks the version whose parameters match the arguments in the call.",
+        "Call calculateCost(users) first and calculateCost(users, months) second."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateCost(int users) {\n        return users * 100;\n    }\n\n    static int calculateCost(int users, int months) {\n        return users * months * 100;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int users = Integer.parseInt(sc.next());\n        int months = Integer.parseInt(sc.next());\n        System.out.println(calculateCost(users));\n        System.out.println(calculateCost(users, months));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n3",
+          "output": "500\n1500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "100\n100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10\n12",
+          "output": "1000\n12000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n12",
+          "output": "100\n1200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100\n1",
+          "output": "10000\n10000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7\n5",
+          "output": "700\n3500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000\n24",
+          "output": "100000\n2400000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n2",
+          "output": "300\n600",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: users\nLine 2: months",
+        "output_format": "Two lines: calculateCost(users), then calculateCost(users, months)."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-09",
+      "title": "Payroll with Overtime",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Encapsulate a two-rate pay rule in a method that returns the total.",
+      "problem_statement": "A company calculates daily pay. Read a non-negative integer hours. Declare static int calculatePay(int hours). Pay is ₹200 per hour for the first 8 hours and ₹300 for each hour above 8. Return the total pay. Print the returned value. Assume the result fits in an int.",
+      "input_format": "A single line containing hours.",
+      "output_format": "A single line containing the pay.",
+      "constraints": "0 <= hours <= 24",
+      "sample_inputs": [
+        "10",
+        "8"
+      ],
+      "sample_outputs": [
+        "2200",
+        "1600"
+      ],
+      "hints": [
+        "Handle hours <= 8 separately from longer days.",
+        "For up to 8 hours, the pay is hours * 200.",
+        "Above 8 hours, the pay is 8 * 200 + (hours - 8) * 300."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculatePay(int hours) {\n        if (hours <= 8) {\n            return hours * 200;\n        }\n        return 8 * 200 + (hours - 8) * 300;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int hours = Integer.parseInt(sc.next());\n        System.out.println(calculatePay(hours));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10",
+          "output": "2200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "8",
+          "output": "1600",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9",
+          "output": "1900",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7",
+          "output": "1400",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "24",
+          "output": "6400",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1",
+          "output": "200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12",
+          "output": "2800",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing hours.",
+        "output_format": "A single line containing the pay."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-10",
+      "title": "Project Milestone Completion",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Guard against division by zero inside a method and return a sentinel value.",
+      "problem_statement": "A project tracker evaluates a milestone using completed tasks and required tasks. Read two non-negative integers completed and required. Declare static int completionPercent(int completed, int required). If required is zero, return -1. Otherwise, return completed * 100 / required, using that exact expression and integer division. Print the returned value. Assume completed * 100 fits in an int.",
+      "input_format": "Two separate lines:\nLine 1: completed\nLine 2: required",
+      "output_format": "A single line containing the percentage, or -1.",
+      "constraints": "0 <= completed <= 1,000,000\n0 <= required <= 1,000,000",
+      "sample_inputs": [
+        "7\n10",
+        "5\n0"
+      ],
+      "sample_outputs": [
+        "70",
+        "-1"
+      ],
+      "hints": [
+        "Check required == 0 first and return -1.",
+        "Multiply by 100 before dividing so small fractions are not lost.",
+        "The result can exceed 100 when more tasks are completed than required."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int completionPercent(int completed, int required) {\n        if (required == 0) {\n            return -1;\n        }\n        return completed * 100 / required;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int completed = Integer.parseInt(sc.next());\n        int required = Integer.parseInt(sc.next());\n        System.out.println(completionPercent(completed, required));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n10",
+          "output": "70",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n0",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n0",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10\n10",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n3",
+          "output": "33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n3",
+          "output": "66",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12\n10",
+          "output": "120",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0\n5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: completed\nLine 2: required",
+        "output_format": "A single line containing the percentage, or -1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-11",
+      "title": "Loan Eligibility Through Helper Methods",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Build one method from calls to two smaller helper methods.",
+      "problem_statement": "A bank evaluates loan eligibility using salary and credit score. Implement static boolean hasSufficientSalary(int salary), returning true when salary is at least 25000, and static boolean hasGoodCredit(int score), returning true when the score is at least 650. Implement static boolean isEligible(int salary, int score) by calling both helper methods and returning true only when both return true. Read salary and score, then print the result of isEligible. Salary is non-negative and score is from 0 to 900.",
+      "input_format": "Two separate lines:\nLine 1: salary\nLine 2: score",
+      "output_format": "A single line: true or false.",
+      "constraints": "0 <= salary <= 10,000,000\n0 <= score <= 900",
+      "sample_inputs": [
+        "30000\n700",
+        "24999\n800"
+      ],
+      "sample_outputs": [
+        "true",
+        "false"
+      ],
+      "hints": [
+        "Each helper method can return a single comparison.",
+        "isEligible can return hasSufficientSalary(salary) && hasGoodCredit(score);.",
+        "Print the boolean directly with System.out.println."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean hasSufficientSalary(int salary) {\n        return salary >= 25000;\n    }\n\n    static boolean hasGoodCredit(int score) {\n        return score >= 650;\n    }\n\n    static boolean isEligible(int salary, int score) {\n        return hasSufficientSalary(salary) && hasGoodCredit(score);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int salary = Integer.parseInt(sc.next());\n        int score = Integer.parseInt(sc.next());\n        System.out.println(isEligible(salary, score));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "30000\n700",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "24999\n800",
+          "output": "false",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "25000\n650",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "25000\n649",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n0",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100000\n900",
+          "output": "true",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50000\n600",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "24000\n640",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: salary\nLine 2: score",
+        "output_format": "A single line: true or false."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-12",
+      "title": "Comparing Two Product Prices",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Return an absolute difference from a method without Math.abs().",
+      "problem_statement": "A store compares two non-negative integer prices. Declare static int getDifference(int price1, int price2) and return their absolute difference without using a library method. Print the returned value. Assume the difference fits in an int.",
+      "input_format": "Two separate lines:\nLine 1: price1\nLine 2: price2",
+      "output_format": "A single line containing the difference.",
+      "constraints": "0 <= price1, price2 <= 2,000,000,000",
+      "sample_inputs": [
+        "950\n1250",
+        "1250\n950"
+      ],
+      "sample_outputs": [
+        "300"
+      ],
+      "hints": [
+        "The answer is always the larger value minus the smaller value.",
+        "Use an if-else statement or the ternary operator to decide which to subtract from which.",
+        "Equal prices give a difference of 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int getDifference(int price1, int price2) {\n        if (price1 >= price2) {\n            return price1 - price2;\n        }\n        return price2 - price1;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int price1 = Integer.parseInt(sc.next());\n        int price2 = Integer.parseInt(sc.next());\n        System.out.println(getDifference(price1, price2));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "950\n1250",
+          "output": "300",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1250\n950",
+          "output": "300",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n1000000",
+          "output": "1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456\n654321",
+          "output": "530865",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2000000000\n0",
+          "output": "2000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: price1\nLine 2: price2",
+        "output_format": "A single line containing the difference."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-13",
+      "title": "Payment Split Validator",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Return early to avoid a division-by-zero error inside a boolean method.",
+      "problem_statement": "A payment platform checks whether an amount can be divided equally among people. Read a non-negative integer amount and an integer people. Declare static boolean canSplit(int amount, int people). Return false immediately if people is zero or negative. Otherwise, return whether amount % people == 0. Print the result. This method must avoid division or remainder operations when people is not positive.",
+      "input_format": "Two separate lines:\nLine 1: amount\nLine 2: people",
+      "output_format": "A single line: true or false.",
+      "constraints": "0 <= amount <= 2,000,000,000\n-1000 <= people <= 1000",
+      "sample_inputs": [
+        "120\n5",
+        "121\n5"
+      ],
+      "sample_outputs": [
+        "true",
+        "false"
+      ],
+      "hints": [
+        "Start with if (people <= 0) { return false; }.",
+        "Only after that check is it safe to use amount % people.",
+        "An amount of 0 can be split among any positive number of people."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean canSplit(int amount, int people) {\n        if (people <= 0) {\n            return false;\n        }\n        return amount % people == 0;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int amount = Integer.parseInt(sc.next());\n        int people = Integer.parseInt(sc.next());\n        System.out.println(canSplit(amount, people));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "120\n5",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "121\n5",
+          "output": "false",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n3",
+          "output": "true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10\n0",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n-2",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0\n0",
+          "output": "false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100\n1",
+          "output": "true",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n7",
+          "output": "true",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: amount\nLine 2: people",
+        "output_format": "A single line: true or false."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-14",
+      "title": "Progressive Electricity Bill",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Implement tiered pricing inside a method, charging each rate only within its bracket.",
+      "problem_statement": "An electricity provider calculates a bill using progressive rates. Read a non-negative integer units. Declare static int calculateBill(int units). Charge ₹2 per unit for the first 100 units, ₹3 per unit for units 101–200, and ₹5 per unit above 200. Return the total bill and print it. Apply each rate only to the units within its bracket. Assume the result fits in an int.",
+      "input_format": "A single line containing units.",
+      "output_format": "A single line containing the bill.",
+      "constraints": "0 <= units <= 100,000",
+      "sample_inputs": [
+        "250",
+        "0"
+      ],
+      "sample_outputs": [
+        "750",
+        "0"
+      ],
+      "hints": [
+        "Handle three cases: up to 100 units, 101 to 200 units, and above 200 units.",
+        "For 101 to 200 units, the bill is 100 * 2 + (units - 100) * 3.",
+        "Above 200 units, the bill is 100 * 2 + 100 * 3 + (units - 200) * 5."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateBill(int units) {\n        if (units <= 100) {\n            return units * 2;\n        } else if (units <= 200) {\n            return 100 * 2 + (units - 100) * 3;\n        }\n        return 100 * 2 + 100 * 3 + (units - 200) * 5;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int units = Integer.parseInt(sc.next());\n        System.out.println(calculateBill(units));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "250",
+          "output": "750",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100",
+          "output": "200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "101",
+          "output": "203",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "200",
+          "output": "500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "201",
+          "output": "505",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000",
+          "output": "4500",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing units.",
+        "output_format": "A single line containing the bill."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-15",
+      "title": "Parameter Passing and Original Values",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Show that changing a primitive parameter inside a method does not change the caller's variable.",
+      "problem_statement": "A system maintains an employee's access level. Declare static void increaseLevel(int level). The method increments its parameter by 1 and prints the updated parameter. In main, read level, call increaseLevel(level), then print the original variable. This problem tests Java's pass-by-value behavior for primitive values.",
+      "input_format": "A single line containing level.",
+      "output_format": "Two lines: the parameter after the increment, then the original variable.",
+      "constraints": "-2,000,000,000 <= level <= 2,000,000,000",
+      "sample_inputs": [
+        "3",
+        "0"
+      ],
+      "sample_outputs": [
+        "4\n3",
+        "1\n0"
+      ],
+      "hints": [
+        "Inside the method, write level++; and then print level.",
+        "The method receives a copy of the value, not the variable itself.",
+        "After the call, the variable in main still holds the value that was read."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void increaseLevel(int level) {\n        level++;\n        System.out.println(level);\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int level = Integer.parseInt(sc.next());\n        increaseLevel(level);\n        System.out.println(level);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3",
+          "output": "4\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "1\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-1",
+          "output": "0\n-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100",
+          "output": "101\n100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1999999999",
+          "output": "2000000000\n1999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-100",
+          "output": "-99\n-100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1",
+          "output": "2\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "42",
+          "output": "43\n42",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing level.",
+        "output_format": "Two lines: the parameter after the increment, then the original variable."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-16",
+      "title": "Profit and Loss Report",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Pass the return value of one method into another method that returns a String.",
+      "problem_statement": "A business uses two methods to report its financial result. Implement static int calculateDifference(int revenue, int cost), returning revenue - cost. Implement static String getStatus(int difference), returning Profit for a positive difference, Loss for a negative difference, and Break Even for zero. Read non-negative integers revenue and cost. Print the difference and status on separate lines. Assume the difference fits in an int.",
+      "input_format": "Two separate lines:\nLine 1: revenue\nLine 2: cost",
+      "output_format": "Two lines: the difference, then Profit, Loss, or Break Even.",
+      "constraints": "0 <= revenue, cost <= 2,000,000,000",
+      "sample_inputs": [
+        "9000\n9000",
+        "12000\n9000"
+      ],
+      "sample_outputs": [
+        "0\nBreak Even",
+        "3000\nProfit"
+      ],
+      "hints": [
+        "Store the result of calculateDifference in a variable in main.",
+        "Pass that variable to getStatus.",
+        "A method can return a String literal, for example return \"Profit\";."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateDifference(int revenue, int cost) {\n        return revenue - cost;\n    }\n\n    static String getStatus(int difference) {\n        if (difference > 0) {\n            return \"Profit\";\n        } else if (difference < 0) {\n            return \"Loss\";\n        }\n        return \"Break Even\";\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int revenue = Integer.parseInt(sc.next());\n        int cost = Integer.parseInt(sc.next());\n        int difference = calculateDifference(revenue, cost);\n        System.out.println(difference);\n        System.out.println(getStatus(difference));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "9000\n9000",
+          "output": "0\nBreak Even",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "12000\n9000",
+          "output": "3000\nProfit",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "500\n800",
+          "output": "-300\nLoss",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n0",
+          "output": "0\nBreak Even",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n100",
+          "output": "-100\nLoss",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100\n0",
+          "output": "100\nProfit",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2000000000\n1",
+          "output": "1999999999\nProfit",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n2",
+          "output": "-1\nLoss",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: revenue\nLine 2: cost",
+        "output_format": "Two lines: the difference, then Profit, Loss, or Break Even."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-17",
+      "title": "Power Calculation Service",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Medium",
+      "objective": "Write a method that uses a loop to compute and return a long result.",
+      "problem_statement": "A finance tool computes repeated growth factors using a method containing a loop. Read an integer base from -10 to 10 and an integer exponent from 0 to 18. Declare static long power(int base, int exponent). Return base multiplied by itself exponent times; any base raised to the power 0 is 1, including 0. Use a loop; do not use Math.pow() or recursion. Print the returned value.",
+      "input_format": "Two separate lines:\nLine 1: base\nLine 2: exponent",
+      "output_format": "A single line containing base raised to the power exponent.",
+      "constraints": "-10 <= base <= 10\n0 <= exponent <= 18",
+      "sample_inputs": [
+        "2\n10",
+        "5\n0"
+      ],
+      "sample_outputs": [
+        "1024",
+        "1"
+      ],
+      "hints": [
+        "Start with long result = 1; inside the method.",
+        "Multiply result by base once for each iteration of a loop that runs exponent times.",
+        "When exponent is 0, the loop does not run, so the method returns 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long power(int base, int exponent) {\n        long result = 1;\n        for (int i = 0; i < exponent; i++) {\n            result *= base;\n        }\n        return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int base = Integer.parseInt(sc.next());\n        int exponent = Integer.parseInt(sc.next());\n        System.out.println(power(base, exponent));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2\n10",
+          "output": "1024",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-3\n3",
+          "output": "-27",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10\n18",
+          "output": "1000000000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-2\n4",
+          "output": "16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "0\n5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n2",
+          "output": "49",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: base\nLine 2: exponent",
+        "output_format": "A single line containing base raised to the power exponent."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-18",
+      "title": "Multi-Stage Order Pricing Engine",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Hard",
+      "objective": "Chain three methods so that each one's return value feeds the next.",
+      "problem_statement": "An online store calculates the final amount for an order using three methods. Read positive integers price and quantity, followed by membership level 1 (Standard) or 2 (Premium).\n\nImplement these methods inside class Main:\n- static int calculateSubtotal(int price, int quantity): return price * quantity.\n- static int calculateDiscount(int subtotal, int membershipLevel): Premium members receive 15% off when the subtotal is at least ₹5000, otherwise 10%. Standard members receive 10% off when the subtotal is at least ₹5000, otherwise no discount. Calculate percentages using subtotal * 15 / 100 or subtotal * 10 / 100, as appropriate.\n- static int calculateFinalAmount(int subtotal, int discount): return subtotal - discount.\nCall the methods in dependency order. Print the subtotal, discount, and final amount on separate lines. Assume all results fit in an int.",
+      "input_format": "Three separate lines:\nLine 1: price\nLine 2: quantity\nLine 3: membership level (1 or 2)",
+      "output_format": "Three lines: subtotal, discount, and final amount.",
+      "constraints": "1 <= price <= 100,000\n1 <= quantity <= 1000\nmembershipLevel is 1 or 2.",
+      "sample_inputs": [
+        "2000\n3\n2",
+        "1000\n2\n1"
+      ],
+      "sample_outputs": [
+        "6000\n900\n5100",
+        "2000\n0\n2000"
+      ],
+      "hints": [
+        "Compute the subtotal first, because both other methods need it.",
+        "In calculateDiscount, check the membership level, then the subtotal threshold.",
+        "Store each returned value in a variable in main and pass it to the next method."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculateSubtotal(int price, int quantity) {\n        return price * quantity;\n    }\n\n    static int calculateDiscount(int subtotal, int membershipLevel) {\n        if (membershipLevel == 2) {\n            if (subtotal >= 5000) {\n                return subtotal * 15 / 100;\n            }\n            return subtotal * 10 / 100;\n        }\n        if (subtotal >= 5000) {\n            return subtotal * 10 / 100;\n        }\n        return 0;\n    }\n\n    static int calculateFinalAmount(int subtotal, int discount) {\n        return subtotal - discount;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int price = Integer.parseInt(sc.next());\n        int quantity = Integer.parseInt(sc.next());\n        int membershipLevel = Integer.parseInt(sc.next());\n        int subtotal = calculateSubtotal(price, quantity);\n        int discount = calculateDiscount(subtotal, membershipLevel);\n        int finalAmount = calculateFinalAmount(subtotal, discount);\n        System.out.println(subtotal);\n        System.out.println(discount);\n        System.out.println(finalAmount);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2000\n3\n2",
+          "output": "6000\n900\n5100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1000\n2\n1",
+          "output": "2000\n0\n2000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000\n5\n1",
+          "output": "5000\n500\n4500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4999\n1\n2",
+          "output": "4999\n499\n4500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5000\n1\n2",
+          "output": "5000\n750\n4250",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1\n1",
+          "output": "1\n0\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "333\n17\n2",
+          "output": "5661\n849\n4812",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2500\n2\n1",
+          "output": "5000\n500\n4500",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: price\nLine 2: quantity\nLine 3: membership level (1 or 2)",
+        "output_format": "Three lines: subtotal, discount, and final amount."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-19",
+      "title": "Banking Transfer with Validation",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Hard",
+      "objective": "Validate with a boolean method, then update two variables using returned values.",
+      "problem_statement": "A bank processes a transfer between two accounts. Read non-negative integers senderBalance, receiverBalance, and amount, in that order. Implement these methods:\n- static boolean canTransfer(int balance, int amount): return true only when the amount is positive and does not exceed the sender's balance.\n- static int withdraw(int balance, int amount): return balance - amount.\n- static int deposit(int balance, int amount): return balance + amount.\nIn main, call canTransfer before making any changes. If the transfer is invalid, print Transfer Rejected, then print the original sender and receiver balances on separate lines. Otherwise, use the return values from withdraw and deposit to update the balances, then print Transfer Approved followed by the updated balances, each on a separate line. Do not call withdraw or deposit for an invalid transfer. Assume all resulting balances fit in an int.",
+      "input_format": "Three separate lines:\nLine 1: senderBalance\nLine 2: receiverBalance\nLine 3: amount",
+      "output_format": "Three lines: Transfer Approved or Transfer Rejected, then the sender balance, then the receiver balance.",
+      "constraints": "0 <= senderBalance, receiverBalance, amount <= 2,000,000,000\nThe receiver's new balance fits in an int.",
+      "sample_inputs": [
+        "5000\n2000\n1500",
+        "500\n1000\n700"
+      ],
+      "sample_outputs": [
+        "Transfer Approved\n3500\n3500",
+        "Transfer Rejected\n500\n1000"
+      ],
+      "hints": [
+        "canTransfer can return amount > 0 && amount <= balance;.",
+        "Calling withdraw(senderBalance, amount) alone changes nothing; assign the result: senderBalance = withdraw(senderBalance, amount);.",
+        "Print the status line inside the if-else, then print both balances after it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean canTransfer(int balance, int amount) {\n        return amount > 0 && amount <= balance;\n    }\n\n    static int withdraw(int balance, int amount) {\n        return balance - amount;\n    }\n\n    static int deposit(int balance, int amount) {\n        return balance + amount;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int senderBalance = Integer.parseInt(sc.next());\n        int receiverBalance = Integer.parseInt(sc.next());\n        int amount = Integer.parseInt(sc.next());\n        if (canTransfer(senderBalance, amount)) {\n            senderBalance = withdraw(senderBalance, amount);\n            receiverBalance = deposit(receiverBalance, amount);\n            System.out.println(\"Transfer Approved\");\n        } else {\n            System.out.println(\"Transfer Rejected\");\n        }\n        System.out.println(senderBalance);\n        System.out.println(receiverBalance);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5000\n2000\n1500",
+          "output": "Transfer Approved\n3500\n3500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "500\n1000\n700",
+          "output": "Transfer Rejected\n500\n1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000\n0\n1000",
+          "output": "Transfer Approved\n0\n1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000\n0\n0",
+          "output": "Transfer Rejected\n1000\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n0\n0",
+          "output": "Transfer Rejected\n0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0\n500\n1",
+          "output": "Transfer Rejected\n0\n500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2000000000\n0\n2000000000",
+          "output": "Transfer Approved\n0\n2000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "750\n250\n749",
+          "output": "Transfer Approved\n1\n999",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: senderBalance\nLine 2: receiverBalance\nLine 3: amount",
+        "output_format": "Three lines: Transfer Approved or Transfer Rejected, then the sender balance, then the receiver balance."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M6-20",
+      "title": "Company Payroll Audit with Composed Methods",
+      "module": "Module 06: Java Methods",
+      "difficulty": "Hard",
+      "objective": "Coordinate five methods with dependencies, passing each result to the methods that need it.",
+      "problem_statement": "A company calculates an employee's final monthly pay using five reusable methods. Read non-negative integers baseSalary and hoursWorked, followed by a performance rating from 1 to 5. The first 8 hours worked are paid at ₹200 per hour; each additional hour is paid at ₹300 per hour.\n\nDeclare these methods as static inside class Main:\n- static int calculatePay(int hoursWorked): calculate the total pay for the given hours, using the stated regular and overtime rates.\n- static int calculateBonus(int baseSalary, int rating): return 15% of the base salary for rating 5, 10% for rating 4, 5% for rating 3, and 0 for ratings 1 or 2. Compute the percentages as baseSalary * 15 / 100, baseSalary * 10 / 100, and baseSalary * 5 / 100.\n- static int calculateGrossPay(int baseSalary, int pay, int bonus): return the sum of the three values.\n- static int calculateTax(int grossPay): return 20% of gross pay if it is at least ₹50000, 10% if it is at least ₹30000 but below ₹50000, and 0 otherwise. Calculate the percentage as grossPay * 20 / 100 or grossPay * 10 / 100, as appropriate.\n- static int calculateNetPay(int grossPay, int tax): return grossPay - tax.\nCall the methods in dependency order. Print the work-hours pay, bonus, gross pay, tax, and net pay, each on a separate line. Assume all intermediate results fit in a Java int.",
+      "input_format": "Three separate lines:\nLine 1: baseSalary\nLine 2: hoursWorked\nLine 3: rating (1 to 5)",
+      "output_format": "Five lines: work-hours pay, bonus, gross pay, tax, and net pay.",
+      "constraints": "0 <= baseSalary <= 10,000,000\n0 <= hoursWorked <= 300\n1 <= rating <= 5",
+      "sample_inputs": [
+        "40000\n10\n4",
+        "50000\n8\n5"
+      ],
+      "sample_outputs": [
+        "2200\n4000\n46200\n4620\n41580",
+        "1600\n7500\n59100\n11820\n47280"
+      ],
+      "hints": [
+        "calculatePay and calculateBonus depend only on the inputs, so call them first.",
+        "calculateGrossPay needs both of their results, and calculateTax needs the gross pay.",
+        "Check the tax thresholds at exactly 30000 and 50000: both use >=."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int calculatePay(int hoursWorked) {\n        if (hoursWorked <= 8) {\n            return hoursWorked * 200;\n        }\n        return 8 * 200 + (hoursWorked - 8) * 300;\n    }\n\n    static int calculateBonus(int baseSalary, int rating) {\n        if (rating == 5) {\n            return baseSalary * 15 / 100;\n        } else if (rating == 4) {\n            return baseSalary * 10 / 100;\n        } else if (rating == 3) {\n            return baseSalary * 5 / 100;\n        }\n        return 0;\n    }\n\n    static int calculateGrossPay(int baseSalary, int pay, int bonus) {\n        return baseSalary + pay + bonus;\n    }\n\n    static int calculateTax(int grossPay) {\n        if (grossPay >= 50000) {\n            return grossPay * 20 / 100;\n        } else if (grossPay >= 30000) {\n            return grossPay * 10 / 100;\n        }\n        return 0;\n    }\n\n    static int calculateNetPay(int grossPay, int tax) {\n        return grossPay - tax;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int baseSalary = Integer.parseInt(sc.next());\n        int hoursWorked = Integer.parseInt(sc.next());\n        int rating = Integer.parseInt(sc.next());\n        int pay = calculatePay(hoursWorked);\n        int bonus = calculateBonus(baseSalary, rating);\n        int grossPay = calculateGrossPay(baseSalary, pay, bonus);\n        int tax = calculateTax(grossPay);\n        int netPay = calculateNetPay(grossPay, tax);\n        System.out.println(pay);\n        System.out.println(bonus);\n        System.out.println(grossPay);\n        System.out.println(tax);\n        System.out.println(netPay);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "40000\n10\n4",
+          "output": "2200\n4000\n46200\n4620\n41580",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "50000\n8\n5",
+          "output": "1600\n7500\n59100\n11820\n47280",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "20000\n0\n1",
+          "output": "0\n0\n20000\n0\n20000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "28000\n9\n3",
+          "output": "1900\n1400\n31300\n3130\n28170",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0\n0\n2",
+          "output": "0\n0\n0\n0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "45000\n12\n5",
+          "output": "2800\n6750\n54550\n10910\n43640",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "29999\n0\n1",
+          "output": "0\n0\n29999\n0\n29999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "30000\n0\n2",
+          "output": "0\n0\n30000\n3000\n27000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 06: Java Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: baseSalary\nLine 2: hoursWorked\nLine 3: rating (1 to 5)",
+        "output_format": "Five lines: work-hours pay, bonus, gross pay, tax, and net pay."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M6_Java_Methods.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

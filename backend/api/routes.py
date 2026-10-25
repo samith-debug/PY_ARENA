@@ -74,8 +74,8 @@ load_banks_from_disk()
 def health_check():
     return {
         "status": "healthy",
-        "service": "PyArena Practice Lab API",
-        "version": "1.0.0",
+        "service": "CodeArena Practice Lab API",
+        "version": "2.0.0",
         "loaded_banks": len(BANKS)
     }
 
@@ -104,7 +104,8 @@ def list_question_banks():
             "total_test_cases": b.total_test_cases,
             "visible_test_cases": b.visible_test_cases,
             "hidden_test_cases": b.hidden_test_cases,
-            "validation_report": b.validation_report
+            "validation_report": b.validation_report,
+            "language": getattr(b, "language", "python") or "python"
         }
         for b in BANKS.values()
     ]
@@ -155,6 +156,7 @@ def list_questions(
             "hidden_tests": sum(1 for t in q.test_cases if t.is_hidden),
             "has_starter_code": bool(q.starter_code),
             "has_reference_solution": bool(q.reference_solution),
+            "language": getattr(q, "language", "python") or "python",
             "has_validation_errors": len(q.validation_errors) > 0,
             "validation_errors": q.validation_errors,
             "validation_warnings": q.validation_warnings
@@ -209,7 +211,8 @@ def run_code_endpoint(payload: RunRequest):
         stdin_data=payload.stdin_data,
         timeout_seconds=payload.timeout_seconds,
         execution_mode=payload.execution_mode,
-        function_name=payload.function_name
+        function_name=payload.function_name,
+        language=payload.language
     )
 
 @router.post("/submit", response_model=SubmitResult)
@@ -235,7 +238,8 @@ def submit_code_endpoint(
         is_owner=is_owner,
         comparison_mode=payload.comparison_mode,
         normalize_crlf=payload.normalize_crlf,
-        strict_newline_policy=payload.strict_newline_policy
+        strict_newline_policy=payload.strict_newline_policy,
+        language=payload.language or target_q.language
     )
 
 @router.post("/question-banks/compare", response_model=CompareResult)

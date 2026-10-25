@@ -1,0 +1,1083 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M14-01,Generic Storage Box,Module 14: Generics and Collections,Easy,Write a generic class with a type parameter and use it with two different types.,stdin/stdout,O(1),O(1),"Implement a generic class StorageBox<T> that stores one value of type T. It must have a private field, a constructor accepting the initial value, setValue(T value) to replace the stored value, and getValue() to return the current value.
+
+Read a product name and an integer quantity. Create a StorageBox<String> for the name and a StorageBox<Integer> for the quantity. Update the name box using setValue() before printing both values.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The replacement name is stored in the string box. The integer box stores the quantity independently.","First line: initial product name.
+Second line: replacement product name.
+Third line: integer quantity.","Product: <replacement name>
+Quantity: <quantity>","Each name contains 1–100 characters and may contain spaces.
+0 ≤ quantity ≤ 1,000,000","Wireless Mouse
+Gaming Mouse
+25","Product: Gaming Mouse
+Quantity: 25","A
+B
+0","Product: B
+Quantity: 0",Declare the class as class StorageBox<T> with a field private T value;.,"Read the names with sc.nextLine(), because they may contain spaces.",Create the boxes with new StorageBox<>(initialName) and new StorageBox<>(quantity); Java infers the type from the declaration.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        StorageBox<String> nameBox = new StorageBox<>(sc.nextLine());
+        nameBox.setValue(sc.nextLine());
+        StorageBox<Integer> quantityBox = new StorageBox<>(Integer.parseInt(sc.nextLine().trim()));
+        System.out.println(""Product: "" + nameBox.getValue());
+        System.out.println(""Quantity: "" + quantityBox.getValue());
+    }
+}
+
+class StorageBox<T> {
+    private T value;
+
+    StorageBox(T value) {
+        this.value = value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+}","[{""input"": ""Wireless Mouse\nGaming Mouse\n25"", ""output"": ""Product: Gaming Mouse\nQuantity: 25"", ""is_hidden"": false}, {""input"": ""A\nB\n0"", ""output"": ""Product: B\nQuantity: 0"", ""is_hidden"": false}, {""input"": ""Old Name\nNew Name With Spaces\n1000000"", ""output"": ""Product: New Name With Spaces\nQuantity: 1000000"", ""is_hidden"": false}, {""input"": ""X\nX\n5"", ""output"": ""Product: X\nQuantity: 5"", ""is_hidden"": true}, {""input"": ""Desk Lamp\nLED Desk Lamp\n12"", ""output"": ""Product: LED Desk Lamp\nQuantity: 12"", ""is_hidden"": true}, {""input"": ""a\nb c\n7"", ""output"": ""Product: b c\nQuantity: 7"", ""is_hidden"": true}, {""input"": ""Chair\nOffice Chair\n0"", ""output"": ""Product: Office Chair\nQuantity: 0"", ""is_hidden"": true}, {""input"": ""P\nQ\n999999"", ""output"": ""Product: Q\nQuantity: 999999"", ""is_hidden"": true}]"
+JP-M14-02,Generic Pair of Customer Details,Module 14: Generics and Collections,Easy,Write a generic class with two type parameters.,stdin/stdout,O(1),O(1),"Implement a generic class Pair<A, B> that stores two values of potentially different types. Provide a constructor and the methods getFirst() and getSecond(). Both fields must be private.
+
+Read an integer customer ID and a complete line containing a customer name. Store them in a Pair<Integer, String> and print the two values.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The pair stores an integer and a string without requiring a separate class for that specific combination.","First line: integer customer ID.
+Second line: customer name.","Customer ID: <id>
+Customer Name: <name>","1 ≤ ID ≤ 2,147,483,647
+Name length: 1–100 characters.","2045
+Meera Sharma","Customer ID: 2045
+Customer Name: Meera Sharma","1
+A","Customer ID: 1
+Customer Name: A","Declare the class as class Pair<A, B> with fields private A first; and private B second;.",Read the ID with Integer.parseInt(sc.nextLine()) so the name line is read correctly afterwards.,"Create the pair with new Pair<>(id, name).","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int id = Integer.parseInt(sc.nextLine().trim());
+        String name = sc.nextLine();
+        Pair<Integer, String> customer = new Pair<>(id, name);
+        System.out.println(""Customer ID: "" + customer.getFirst());
+        System.out.println(""Customer Name: "" + customer.getSecond());
+    }
+}
+
+class Pair<A, B> {
+    private A first;
+    private B second;
+
+    Pair(A first, B second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public A getFirst() {
+        return first;
+    }
+
+    public B getSecond() {
+        return second;
+    }
+}","[{""input"": ""2045\nMeera Sharma"", ""output"": ""Customer ID: 2045\nCustomer Name: Meera Sharma"", ""is_hidden"": false}, {""input"": ""1\nA"", ""output"": ""Customer ID: 1\nCustomer Name: A"", ""is_hidden"": false}, {""input"": ""2147483647\nLong Customer Name Here"", ""output"": ""Customer ID: 2147483647\nCustomer Name: Long Customer Name Here"", ""is_hidden"": false}, {""input"": ""42\nBo"", ""output"": ""Customer ID: 42\nCustomer Name: Bo"", ""is_hidden"": true}, {""input"": ""100\nAnn Lee"", ""output"": ""Customer ID: 100\nCustomer Name: Ann Lee"", ""is_hidden"": true}, {""input"": ""7\nO'Brien"", ""output"": ""Customer ID: 7\nCustomer Name: O'Brien"", ""is_hidden"": true}, {""input"": ""123456\nJ. R. R. Tolkien"", ""output"": ""Customer ID: 123456\nCustomer Name: J. R. R. Tolkien"", ""is_hidden"": true}, {""input"": ""9\nZ"", ""output"": ""Customer ID: 9\nCustomer Name: Z"", ""is_hidden"": true}]"
+JP-M14-03,Remove Duplicate Product Codes,Module 14: Generics and Collections,Easy,Use a LinkedHashSet to remove duplicates while keeping first-occurrence order.,stdin/stdout,O(1),O(1),"Read product codes and print each code only once, preserving the order in which it first appeared. Use a LinkedHashSet<String>. Codes are case-sensitive, so AB12 and ab12 are different.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Repeated codes are removed, but the order of first occurrence is retained.","First line: integer N.
+Next N lines: one product code per line.","Print Unique codes: <count>, followed by each unique code on its own line.","1 ≤ N ≤ 100,000
+Code length: 1–50 characters.","5
+P100
+P200
+P100
+P300
+P200","Unique codes: 3
+P100
+P200
+P300","1
+A","Unique codes: 1
+A",Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values; nextInt() leaves the newline behind.,"Adding an existing element to a set does nothing, so add every code.",A LinkedHashSet iterates in insertion order; set.size() gives the count.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Set<String> codes = new LinkedHashSet<>();
+        for (int i = 0; i < n; i++) {
+            codes.add(sc.nextLine());
+        }
+        StringBuilder out = new StringBuilder();
+        out.append(""Unique codes: "").append(codes.size()).append(""\n"");
+        for (String code : codes) {
+            out.append(code).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""5\nP100\nP200\nP100\nP300\nP200"", ""output"": ""Unique codes: 3\nP100\nP200\nP300"", ""is_hidden"": false}, {""input"": ""1\nA"", ""output"": ""Unique codes: 1\nA"", ""is_hidden"": false}, {""input"": ""3\nAB12\nab12\nAB12"", ""output"": ""Unique codes: 2\nAB12\nab12"", ""is_hidden"": false}, {""input"": ""4\nX\nX\nX\nX"", ""output"": ""Unique codes: 1\nX"", ""is_hidden"": true}, {""input"": ""5\nE\nD\nC\nB\nA"", ""output"": ""Unique codes: 5\nE\nD\nC\nB\nA"", ""is_hidden"": true}, {""input"": ""6\nP1\nP2\nP1\nP3\nP2\nP4"", ""output"": ""Unique codes: 4\nP1\nP2\nP3\nP4"", ""is_hidden"": true}, {""input"": ""2\na\nA"", ""output"": ""Unique codes: 2\na\nA"", ""is_hidden"": true}, {""input"": ""3\nZ9\nZ9\nY8"", ""output"": ""Unique codes: 2\nZ9\nY8"", ""is_hidden"": true}]"
+JP-M14-04,Sorted Unique Customer IDs,Module 14: Generics and Collections,Easy,Use a TreeSet to remove duplicates and keep values sorted.,stdin/stdout,O(1),O(1),"Read integer customer IDs and print their distinct values in ascending order. Use a TreeSet<Integer> so duplicates are removed and the remaining IDs are automatically sorted.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Only four distinct IDs remain, and TreeSet presents them in ascending order.","First line: integer N.
+Second line: N space-separated IDs.",Print Distinct IDs: <count> on the first line and the sorted IDs separated by one space on the second line.,"1 ≤ N ≤ 100,000
+IDs fit in Java's int range.","6
+45 12 45 30 12 20","Distinct IDs: 4
+12 20 30 45","1
+5","Distinct IDs: 1
+5",Add every ID to a TreeSet<Integer>.,Iterating over a TreeSet visits its elements in ascending order.,"Put a space before every ID except the first, so the line has no trailing space.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        TreeSet<Integer> ids = new TreeSet<>();
+        for (int i = 0; i < n; i++) {
+            ids.add(Integer.parseInt(sc.next()));
+        }
+        StringBuilder line = new StringBuilder();
+        for (int id : ids) {
+            if (line.length() > 0) {
+                line.append(' ');
+            }
+            line.append(id);
+        }
+        System.out.println(""Distinct IDs: "" + ids.size());
+        System.out.println(line);
+    }
+}","[{""input"": ""6\n45 12 45 30 12 20"", ""output"": ""Distinct IDs: 4\n12 20 30 45"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""Distinct IDs: 1\n5"", ""is_hidden"": false}, {""input"": ""3\n7 7 7"", ""output"": ""Distinct IDs: 1\n7"", ""is_hidden"": false}, {""input"": ""5\n5 4 3 2 1"", ""output"": ""Distinct IDs: 5\n1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""4\n-1 -2147483648 2147483647 0"", ""output"": ""Distinct IDs: 4\n-2147483648 -1 0 2147483647"", ""is_hidden"": true}, {""input"": ""6\n1 1 2 2 3 3"", ""output"": ""Distinct IDs: 3\n1 2 3"", ""is_hidden"": true}, {""input"": ""2\n0 0"", ""output"": ""Distinct IDs: 1\n0"", ""is_hidden"": true}, {""input"": ""5\n100 -100 50 -50 0"", ""output"": ""Distinct IDs: 5\n-100 -50 0 50 100"", ""is_hidden"": true}]"
+JP-M14-05,Count Product Categories,Module 14: Generics and Collections,Easy,Count frequencies in a HashMap and print the keys in sorted order.,stdin/stdout,O(1),O(1),"Read category names and count their occurrences using a HashMap<String, Integer>. Category names are case-sensitive and may contain spaces. Print categories in alphabetical order, regardless of the map's iteration order.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Each category's frequency is counted, then the keys are sorted alphabetically before printing.","First line: integer N.
+Next N lines: category names.","Print Distinct categories: <count>, followed by one line per category in the format <category>: <frequency>.","1 ≤ N ≤ 100,000
+Category length: 1–100 characters.","5
+Books
+Electronics
+Books
+Clothing
+Electronics","Distinct categories: 3
+Books: 2
+Clothing: 1
+Electronics: 2","1
+Books","Distinct categories: 1
+Books: 1",Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values; nextInt() leaves the newline behind.,"counts.put(name, counts.getOrDefault(name, 0) + 1) increases a count in one line.","Copy the keys into a list and sort it, or put them in a TreeSet. String order puts uppercase before lowercase.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Map<String, Integer> counts = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            String name = sc.nextLine();
+            counts.put(name, counts.getOrDefault(name, 0) + 1);
+        }
+        List<String> keys = new ArrayList<>(counts.keySet());
+        Collections.sort(keys);
+        StringBuilder out = new StringBuilder();
+        out.append(""Distinct categories: "").append(keys.size()).append(""\n"");
+        for (String key : keys) {
+            out.append(key).append("": "").append(counts.get(key)).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""5\nBooks\nElectronics\nBooks\nClothing\nElectronics"", ""output"": ""Distinct categories: 3\nBooks: 2\nClothing: 1\nElectronics: 2"", ""is_hidden"": false}, {""input"": ""1\nBooks"", ""output"": ""Distinct categories: 1\nBooks: 1"", ""is_hidden"": false}, {""input"": ""3\nHome Garden\nHome Garden\nhome garden"", ""output"": ""Distinct categories: 2\nHome Garden: 2\nhome garden: 1"", ""is_hidden"": false}, {""input"": ""4\nZ\nA\nM\nA"", ""output"": ""Distinct categories: 3\nA: 2\nM: 1\nZ: 1"", ""is_hidden"": true}, {""input"": ""2\nToys\nToys"", ""output"": ""Distinct categories: 1\nToys: 2"", ""is_hidden"": true}, {""input"": ""5\nb\na\nc\nb\na"", ""output"": ""Distinct categories: 3\na: 2\nb: 2\nc: 1"", ""is_hidden"": true}, {""input"": ""3\nSports & Outdoors\nSports\nSports"", ""output"": ""Distinct categories: 2\nSports: 2\nSports & Outdoors: 1"", ""is_hidden"": true}, {""input"": ""2\nA B\nA"", ""output"": ""Distinct categories: 2\nA: 1\nA B: 1"", ""is_hidden"": true}]"
+JP-M14-06,Generic First-Match Search,Module 14: Generics and Collections,Easy,Write a generic static method that works on a List of any element type.,stdin/stdout,O(1),O(1),"Implement a generic static method firstIndex(List<T> values, T target) that returns the index of the first element equal to the target. Use Objects.equals() for comparison. If no element matches, return -1.
+
+Read product codes into a list, then read the target code. Print the returned index.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The target first appears at index 0, even though it appears again later.","First line: integer N.
+Next N lines: product codes.
+Final line: target code.","Print the zero-based index of the first match, or -1.","1 ≤ N ≤ 100,000
+Code length: 1–50 characters.","5
+A10
+B20
+A10
+C30
+D40
+A10",0,"1
+X
+X",0,"Declare the type parameter before the return type: static <T> int firstIndex(List<T> values, T target).","Return the index as soon as Objects.equals(values.get(i), target) is true.",Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values; nextInt() leaves the newline behind.,"import java.util.*;
+
+public class Main {
+    static <T> int firstIndex(List<T> values, T target) {
+        for (int i = 0; i < values.size(); i++) {
+            if (Objects.equals(values.get(i), target)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        List<String> codes = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            codes.add(sc.nextLine());
+        }
+        String target = sc.nextLine();
+        System.out.println(firstIndex(codes, target));
+    }
+}","[{""input"": ""5\nA10\nB20\nA10\nC30\nD40\nA10"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1\nX\nX"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""3\nA\nB\nC\nD"", ""output"": ""-1"", ""is_hidden"": false}, {""input"": ""4\nq\nQ\nq\nQ\nQ"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""5\nA\nA\nA\nA\nA\nA"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""3\nP1\nP2\nP3\nP3"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""2\nab\nabc\nab"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""2\nab\nabc\nabcd"", ""output"": ""-1"", ""is_hidden"": true}]"
+JP-M14-07,Generic Inventory Repository,Module 14: Generics and Collections,Medium,"Wrap a HashMap in a generic class that exposes add, get, remove, and size operations.",stdin/stdout,O(1),O(1),"Implement a generic class Repository<T> backed by a HashMap<Integer, T>. It must provide add(int id, T value), get(int id), remove(int id), and size().
+- add inserts or replaces a record.
+- get returns the value or null if the ID is absent.
+- remove returns whether the ID existed.
+- size returns the number of stored IDs.
+Process commands in order. Values are single tokens.
+
+Performance hint: Buffer output in a StringBuilder and print once.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Replacing ID 10 changes its value but does not increase the number of stored records.","First line: integer Q.
+Next Q lines: PUT id value, GET id, DELETE id, or SIZE.",GET prints the value or Not found. DELETE prints Deleted or Not found. SIZE prints the current size. PUT prints nothing.,"1 ≤ Q ≤ 100,000
+IDs fit in int.
+Values contain 1–100 characters.","7
+PUT 10 Mouse
+PUT 20 Keyboard
+GET 10
+SIZE
+PUT 10 Trackpad
+GET 10
+DELETE 20","Mouse
+2
+Trackpad
+Deleted","1
+GET 5",Not found,"map.remove(id) returns the removed value, or null if the key was absent; use that to decide between Deleted and Not found.","Read each command word with sc.next(), then read its arguments only for the commands that have them.","Collect the output in a StringBuilder and print it once at the end; printing 100,000 lines one by one can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        Repository<String> repo = new Repository<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""PUT"")) {
+                int id = Integer.parseInt(sc.next());
+                repo.add(id, sc.next());
+            } else if (cmd.equals(""GET"")) {
+                String value = repo.get(Integer.parseInt(sc.next()));
+                out.append(value == null ? ""Not found"" : value).append(""\n"");
+            } else if (cmd.equals(""DELETE"")) {
+                out.append(repo.remove(Integer.parseInt(sc.next())) ? ""Deleted"" : ""Not found"").append(""\n"");
+            } else {
+                out.append(repo.size()).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class Repository<T> {
+    private Map<Integer, T> records = new HashMap<>();
+
+    public void add(int id, T value) {
+        records.put(id, value);
+    }
+
+    public T get(int id) {
+        return records.get(id);
+    }
+
+    public boolean remove(int id) {
+        return records.remove(id) != null;
+    }
+
+    public int size() {
+        return records.size();
+    }
+}","[{""input"": ""7\nPUT 10 Mouse\nPUT 20 Keyboard\nGET 10\nSIZE\nPUT 10 Trackpad\nGET 10\nDELETE 20"", ""output"": ""Mouse\n2\nTrackpad\nDeleted"", ""is_hidden"": false}, {""input"": ""1\nGET 5"", ""output"": ""Not found"", ""is_hidden"": false}, {""input"": ""3\nDELETE 1\nPUT 1 a\nDELETE 1"", ""output"": ""Not found\nDeleted"", ""is_hidden"": false}, {""input"": ""4\nPUT -5 neg\nGET -5\nSIZE\nGET 5"", ""output"": ""neg\n1\nNot found"", ""is_hidden"": true}, {""input"": ""5\nPUT 1 a\nPUT 1 b\nPUT 1 c\nSIZE\nGET 1"", ""output"": ""1\nc"", ""is_hidden"": true}, {""input"": ""4\nPUT 2147483647 max\nPUT -2147483648 min\nGET -2147483648\nSIZE"", ""output"": ""min\n2"", ""is_hidden"": true}, {""input"": ""3\nSIZE\nPUT 3 x\nSIZE"", ""output"": ""0\n1"", ""is_hidden"": true}, {""input"": ""4\nPUT 1 a\nDELETE 1\nDELETE 1\nSIZE"", ""output"": ""Deleted\nNot found\n0"", ""is_hidden"": true}]"
+JP-M14-08,Browser Navigation History,Module 14: Generics and Collections,Medium,"Maintain a list and a current position, truncating forward history on a new visit.",stdin/stdout,O(1),O(1),"Implement simplified browser history using an ArrayList<String> and an integer current position.
+
+Support these commands:
+- VISIT url: discard all forward-history entries, append the new URL, and make it current.
+- BACK: move one position backward if possible.
+- FORWARD: move one position forward if possible.
+After every command, print the current URL. If no page has been visited, print No page. URLs contain no spaces.
+
+Performance hint: Use a StringBuilder for output.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Visiting checkout after going back discards the old forward history containing products.","First line: integer Q.
+Next Q lines: commands.",Print the current URL or No page after every command.,"1 ≤ Q ≤ 100,000
+URL length: 1–200 characters.","6
+VISIT home
+VISIT products
+BACK
+VISIT checkout
+BACK
+FORWARD","home
+products
+home
+checkout
+home
+checkout","2
+BACK
+FORWARD","No page
+No page",Start with current = -1 to mean that no page has been visited.,"On VISIT, remove entries from the end while the list size is greater than current + 1, then add the URL and set current to the last index.",BACK needs current > 0; FORWARD needs current < size − 1.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        List<String> history = new ArrayList<>();
+        int current = -1;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""VISIT"")) {
+                String url = sc.next();
+                while (history.size() > current + 1) {
+                    history.remove(history.size() - 1);
+                }
+                history.add(url);
+                current = history.size() - 1;
+            } else if (cmd.equals(""BACK"")) {
+                if (current > 0) {
+                    current--;
+                }
+            } else if (current < history.size() - 1) {
+                current++;
+            }
+            out.append(current == -1 ? ""No page"" : history.get(current)).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""6\nVISIT home\nVISIT products\nBACK\nVISIT checkout\nBACK\nFORWARD"", ""output"": ""home\nproducts\nhome\ncheckout\nhome\ncheckout"", ""is_hidden"": false}, {""input"": ""2\nBACK\nFORWARD"", ""output"": ""No page\nNo page"", ""is_hidden"": false}, {""input"": ""4\nVISIT a\nBACK\nBACK\nFORWARD"", ""output"": ""a\na\na\na"", ""is_hidden"": false}, {""input"": ""7\nVISIT a\nVISIT b\nVISIT c\nBACK\nBACK\nVISIT d\nFORWARD"", ""output"": ""a\nb\nc\nb\na\nd\nd"", ""is_hidden"": true}, {""input"": ""5\nVISIT x\nFORWARD\nVISIT y\nBACK\nFORWARD"", ""output"": ""x\nx\ny\nx\ny"", ""is_hidden"": true}, {""input"": ""3\nVISIT a\nVISIT a\nBACK"", ""output"": ""a\na\na"", ""is_hidden"": true}, {""input"": ""1\nVISIT site.com/page?q=1"", ""output"": ""site.com/page?q=1"", ""is_hidden"": true}, {""input"": ""8\nVISIT 1\nVISIT 2\nVISIT 3\nBACK\nBACK\nFORWARD\nVISIT 4\nFORWARD"", ""output"": ""1\n2\n3\n2\n1\n2\n4\n4"", ""is_hidden"": true}]"
+JP-M14-09,Rank Products Using Comparable,Module 14: Generics and Collections,Medium,Define a class's natural ordering by implementing Comparable and compareTo().,stdin/stdout,O(1),O(1),"Create a Product class implementing Comparable<Product>. Each product has an integer ID and a non-negative stock quantity.
+
+Define natural ordering so that products with smaller stock quantities appear first. If stock quantities are equal, products with smaller IDs appear first. Implement compareTo() using Integer.compare(), not subtraction, to avoid integer overflow.
+
+Read the products, sort them using Collections.sort(), and print every record, including records with identical values.
+
+Required technique: Use Comparable<Product> and Collections.sort().
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Stock quantity determines the primary order. Product ID breaks ties.","First line: integer N.
+Next N lines: product ID and stock quantity.","Print each product as ID: <id>, Stock: <stock>.","1 ≤ N ≤ 100,000
+IDs and stock quantities fit in int.
+Stock quantity is non-negative.","4
+100 25
+200 10
+150 25
+300 10","ID: 200, Stock: 10
+ID: 300, Stock: 10
+ID: 100, Stock: 25
+ID: 150, Stock: 25","1
+5 0","ID: 5, Stock: 0",Declare the class as class Product implements Comparable<Product>.,"In compareTo, compare stock first; if the result is 0, return Integer.compare(id, other.id).",Subtraction such as id - other.id overflows for IDs near Integer.MIN_VALUE and Integer.MAX_VALUE and gives the wrong order.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int id = Integer.parseInt(sc.next());
+            int stock = Integer.parseInt(sc.next());
+            products.add(new Product(id, stock));
+        }
+        Collections.sort(products);
+        StringBuilder out = new StringBuilder();
+        for (Product p : products) {
+            out.append(""ID: "").append(p.id).append("", Stock: "").append(p.stock).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}
+
+class Product implements Comparable<Product> {
+    final int id;
+    final int stock;
+
+    Product(int id, int stock) {
+        this.id = id;
+        this.stock = stock;
+    }
+
+    @Override
+    public int compareTo(Product other) {
+        int byStock = Integer.compare(stock, other.stock);
+        if (byStock != 0) {
+            return byStock;
+        }
+        return Integer.compare(id, other.id);
+    }
+}","[{""input"": ""4\n100 25\n200 10\n150 25\n300 10"", ""output"": ""ID: 200, Stock: 10\nID: 300, Stock: 10\nID: 100, Stock: 25\nID: 150, Stock: 25"", ""is_hidden"": false}, {""input"": ""1\n5 0"", ""output"": ""ID: 5, Stock: 0"", ""is_hidden"": false}, {""input"": ""3\n2147483647 5\n-2147483648 5\n0 5"", ""output"": ""ID: -2147483648, Stock: 5\nID: 0, Stock: 5\nID: 2147483647, Stock: 5"", ""is_hidden"": false}, {""input"": ""3\n1 2147483647\n2 0\n3 2147483647"", ""output"": ""ID: 2, Stock: 0\nID: 1, Stock: 2147483647\nID: 3, Stock: 2147483647"", ""is_hidden"": true}, {""input"": ""4\n7 3\n7 3\n6 3\n8 1"", ""output"": ""ID: 8, Stock: 1\nID: 6, Stock: 3\nID: 7, Stock: 3\nID: 7, Stock: 3"", ""is_hidden"": true}, {""input"": ""2\n10 10\n5 10"", ""output"": ""ID: 5, Stock: 10\nID: 10, Stock: 10"", ""is_hidden"": true}, {""input"": ""3\n3 1\n2 2\n1 3"", ""output"": ""ID: 3, Stock: 1\nID: 2, Stock: 2\nID: 1, Stock: 3"", ""is_hidden"": true}, {""input"": ""2\n-1 0\n-2 0"", ""output"": ""ID: -2, Stock: 0\nID: -1, Stock: 0"", ""is_hidden"": true}]"
+JP-M14-10,Student Marks Ranking,Module 14: Generics and Collections,Medium,Sort with a Comparator that combines a descending key and an ascending tie-breaker.,stdin/stdout,O(1),O(1),"Sort student records by marks in descending order. If marks are equal, sort by student ID in ascending order. Use a Comparator<Student> and compare values safely with Integer.compare(). Do not remove duplicate records.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Higher marks appear first. Equal marks are ordered by ascending student ID.","First line: integer N.
+Next N lines: student ID and marks.","Print one line per student as ID: <id>, Marks: <marks>.","1 ≤ N ≤ 100,000
+IDs fit in int.
+0 ≤ marks ≤ 100","4
+104 85
+101 95
+103 85
+102 95","ID: 101, Marks: 95
+ID: 102, Marks: 95
+ID: 103, Marks: 85
+ID: 104, Marks: 85","1
+5 50","ID: 5, Marks: 50","For descending marks, swap the arguments: Integer.compare(b.marks, a.marks).","When marks are equal, fall back to Integer.compare(a.id, b.id).","Pass the comparator to list.sort(...) or Collections.sort(list, comparator).","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            int id = Integer.parseInt(sc.next());
+            int marks = Integer.parseInt(sc.next());
+            students.add(new Student(id, marks));
+        }
+        students.sort(new Comparator<Student>() {
+            @Override
+            public int compare(Student a, Student b) {
+                int byMarks = Integer.compare(b.marks, a.marks);
+                if (byMarks != 0) {
+                    return byMarks;
+                }
+                return Integer.compare(a.id, b.id);
+            }
+        });
+        StringBuilder out = new StringBuilder();
+        for (Student s : students) {
+            out.append(""ID: "").append(s.id).append("", Marks: "").append(s.marks).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}
+
+class Student {
+    final int id;
+    final int marks;
+
+    Student(int id, int marks) {
+        this.id = id;
+        this.marks = marks;
+    }
+}","[{""input"": ""4\n104 85\n101 95\n103 85\n102 95"", ""output"": ""ID: 101, Marks: 95\nID: 102, Marks: 95\nID: 103, Marks: 85\nID: 104, Marks: 85"", ""is_hidden"": false}, {""input"": ""1\n5 50"", ""output"": ""ID: 5, Marks: 50"", ""is_hidden"": false}, {""input"": ""3\n2147483647 100\n-2147483648 100\n0 100"", ""output"": ""ID: -2147483648, Marks: 100\nID: 0, Marks: 100\nID: 2147483647, Marks: 100"", ""is_hidden"": false}, {""input"": ""4\n1 0\n2 100\n3 50\n4 100"", ""output"": ""ID: 2, Marks: 100\nID: 4, Marks: 100\nID: 3, Marks: 50\nID: 1, Marks: 0"", ""is_hidden"": true}, {""input"": ""3\n7 80\n7 80\n6 80"", ""output"": ""ID: 6, Marks: 80\nID: 7, Marks: 80\nID: 7, Marks: 80"", ""is_hidden"": true}, {""input"": ""2\n10 0\n9 0"", ""output"": ""ID: 9, Marks: 0\nID: 10, Marks: 0"", ""is_hidden"": true}, {""input"": ""5\n5 1\n4 2\n3 3\n2 4\n1 5"", ""output"": ""ID: 1, Marks: 5\nID: 2, Marks: 4\nID: 3, Marks: 3\nID: 4, Marks: 2\nID: 5, Marks: 1"", ""is_hidden"": true}, {""input"": ""3\n-5 60\n-10 60\n0 61"", ""output"": ""ID: 0, Marks: 61\nID: -10, Marks: 60\nID: -5, Marks: 60"", ""is_hidden"": true}]"
+JP-M14-11,Find the Nearest Available Appointment,Module 14: Generics and Collections,Medium,Answer floor queries in O(log N) with TreeSet.floor().,stdin/stdout,O(1),O(1),"A clinic stores appointment timestamps as integers. For each requested timestamp, find the greatest available timestamp that is less than or equal to the requested time.
+
+Store the timestamps in a TreeSet<Integer>. For each query, use floor() to find the nearest qualifying timestamp. If none exists, print No appointment. Duplicate timestamps are stored only once.
+
+Required technique: Use TreeSet.floor() instead of scanning the entire set for every query.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: For query 35, timestamp 30 is the greatest available timestamp not exceeding the request.","First line: integer N.
+Second line: N space-separated timestamps.
+Third line: integer Q.
+Fourth line: Q space-separated query timestamps.",Print one result per query: the matching timestamp or No appointment.,"1 ≤ N, Q ≤ 100,000
+All timestamps fit in int.","5
+30 10 50 20 30
+4
+5 20 35 60","No appointment
+20
+30
+50","1
+10
+3
+9 10 11","No appointment
+10
+10","set.floor(x) returns the greatest element ≤ x, or null if there is none.","Store the result in an Integer, not an int, so you can check it for null.","Collect the output in a StringBuilder and print it once at the end; printing 100,000 lines one by one can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        TreeSet<Integer> slots = new TreeSet<>();
+        for (int i = 0; i < n; i++) {
+            slots.add(Integer.parseInt(sc.next()));
+        }
+        int q = Integer.parseInt(sc.next());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            Integer found = slots.floor(Integer.parseInt(sc.next()));
+            out.append(found == null ? ""No appointment"" : String.valueOf(found)).append(""\n"");
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""5\n30 10 50 20 30\n4\n5 20 35 60"", ""output"": ""No appointment\n20\n30\n50"", ""is_hidden"": false}, {""input"": ""1\n10\n3\n9 10 11"", ""output"": ""No appointment\n10\n10"", ""is_hidden"": false}, {""input"": ""3\n-5 0 5\n3\n-6 -5 -2147483648"", ""output"": ""No appointment\n-5\nNo appointment"", ""is_hidden"": false}, {""input"": ""2\n2147483647 -2147483648\n2\n2147483647 0"", ""output"": ""2147483647\n-2147483648"", ""is_hidden"": true}, {""input"": ""4\n1 1 1 1\n2\n1 0"", ""output"": ""1\nNo appointment"", ""is_hidden"": true}, {""input"": ""5\n100 200 300 400 500\n4\n250 500 99 1000"", ""output"": ""200\n500\nNo appointment\n500"", ""is_hidden"": true}, {""input"": ""1\n0\n1\n0"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""3\n5 15 25\n3\n14 15 16"", ""output"": ""5\n15\n15"", ""is_hidden"": true}]"
+JP-M14-12,Customer Support Ticket Queue,Module 14: Generics and Collections,Medium,"Use ArrayDeque as a first-in, first-out queue and handle the empty case.",stdin/stdout,O(1),O(1),"Implement a first-in, first-out ticket queue using ArrayDeque<Integer>.
+
+Commands:
+- ADD id: append a ticket.
+- PROCESS: remove and print the front ticket, or print Queue empty.
+- NEXT: print the front ticket without removing it, or print Queue empty.
+- COUNT: print the number of waiting tickets.
+ADD produces no output.
+
+Performance hint: Buffer command outputs in a StringBuilder.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: NEXT leaves ticket 101 in the queue. PROCESS removes it, then the next processing command removes 102.","First line: integer Q.
+Next Q lines: one command per line.","Print one line for each PROCESS, NEXT, or COUNT command.","1 ≤ Q ≤ 100,000
+Ticket IDs fit in int.","7
+ADD 101
+ADD 102
+NEXT
+PROCESS
+COUNT
+PROCESS
+PROCESS","101
+101
+1
+102
+Queue empty","2
+PROCESS
+NEXT","Queue empty
+Queue empty",offer() adds at the back; poll() removes from the front; peek() reads the front.,"poll() and peek() return null on an empty deque instead of throwing, which makes the empty check easy.","Collect the output in a StringBuilder and print it once at the end; printing 100,000 lines one by one can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""ADD"")) {
+                queue.offer(Integer.parseInt(sc.next()));
+            } else if (cmd.equals(""PROCESS"")) {
+                Integer front = queue.poll();
+                out.append(front == null ? ""Queue empty"" : String.valueOf(front)).append(""\n"");
+            } else if (cmd.equals(""NEXT"")) {
+                Integer front = queue.peek();
+                out.append(front == null ? ""Queue empty"" : String.valueOf(front)).append(""\n"");
+            } else {
+                out.append(queue.size()).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""7\nADD 101\nADD 102\nNEXT\nPROCESS\nCOUNT\nPROCESS\nPROCESS"", ""output"": ""101\n101\n1\n102\nQueue empty"", ""is_hidden"": false}, {""input"": ""2\nPROCESS\nNEXT"", ""output"": ""Queue empty\nQueue empty"", ""is_hidden"": false}, {""input"": ""4\nADD 5\nCOUNT\nNEXT\nCOUNT"", ""output"": ""1\n5\n1"", ""is_hidden"": false}, {""input"": ""6\nADD -1\nADD 2147483647\nPROCESS\nPROCESS\nPROCESS\nCOUNT"", ""output"": ""-1\n2147483647\nQueue empty\n0"", ""is_hidden"": true}, {""input"": ""5\nADD 1\nADD 1\nCOUNT\nPROCESS\nNEXT"", ""output"": ""2\n1\n1"", ""is_hidden"": true}, {""input"": ""1\nCOUNT"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""7\nADD 3\nADD 2\nADD 1\nPROCESS\nADD 4\nPROCESS\nNEXT"", ""output"": ""3\n2\n1"", ""is_hidden"": true}, {""input"": ""3\nADD 9\nPROCESS\nNEXT"", ""output"": ""9\nQueue empty"", ""is_hidden"": true}]"
+JP-M14-13,Generic Stack for Undo Operations,Module 14: Generics and Collections,Medium,"Build a generic last-in, first-out stack on top of ArrayDeque.",stdin/stdout,O(1),O(1),"Implement ActionStack<T> using ArrayDeque<T>. Provide push(T action), pop(), peek(), and isEmpty().
+
+Commands are PUSH action, UNDO, PEEK, and EMPTY. UNDO removes and prints the most recently added action. PEEK prints it without removing it. If either is used on an empty stack, print Nothing to undo. EMPTY prints true or false.
+
+Actions are single tokens. Do not allow an empty-stack exception to terminate the program.
+
+Performance hint: Use StringBuilder to collect output.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The stack is last-in, first-out. TypeB is removed before TypeA.","First line: integer Q.
+Next Q lines: commands.","Print one line for each UNDO, PEEK, or EMPTY command. PUSH produces no output.","1 ≤ Q ≤ 100,000
+Action length: 1–100 characters.","6
+PUSH TypeA
+PUSH TypeB
+PEEK
+UNDO
+UNDO
+UNDO","TypeB
+TypeB
+TypeA
+Nothing to undo","2
+UNDO
+PEEK","Nothing to undo
+Nothing to undo","ArrayDeque's push and pop work at the front, which makes it behave as a stack.","ArrayDeque.pop() throws NoSuchElementException when empty, so check isEmpty() first.","Collect the output in a StringBuilder and print it once at the end; printing 100,000 lines one by one can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        ActionStack<String> stack = new ActionStack<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""PUSH"")) {
+                stack.push(sc.next());
+            } else if (cmd.equals(""UNDO"")) {
+                out.append(stack.isEmpty() ? ""Nothing to undo"" : stack.pop()).append(""\n"");
+            } else if (cmd.equals(""PEEK"")) {
+                out.append(stack.isEmpty() ? ""Nothing to undo"" : stack.peek()).append(""\n"");
+            } else {
+                out.append(stack.isEmpty()).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class ActionStack<T> {
+    private ArrayDeque<T> items = new ArrayDeque<>();
+
+    public void push(T action) {
+        items.push(action);
+    }
+
+    public T pop() {
+        return items.pop();
+    }
+
+    public T peek() {
+        return items.peek();
+    }
+
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+}","[{""input"": ""6\nPUSH TypeA\nPUSH TypeB\nPEEK\nUNDO\nUNDO\nUNDO"", ""output"": ""TypeB\nTypeB\nTypeA\nNothing to undo"", ""is_hidden"": false}, {""input"": ""2\nUNDO\nPEEK"", ""output"": ""Nothing to undo\nNothing to undo"", ""is_hidden"": false}, {""input"": ""3\nEMPTY\nPUSH a\nEMPTY"", ""output"": ""true\nfalse"", ""is_hidden"": false}, {""input"": ""5\nPUSH a\nPUSH a\nUNDO\nPEEK\nEMPTY"", ""output"": ""a\na\nfalse"", ""is_hidden"": true}, {""input"": ""6\nPUSH x\nUNDO\nEMPTY\nPUSH y\nPEEK\nUNDO"", ""output"": ""x\ntrue\ny\ny"", ""is_hidden"": true}, {""input"": ""4\nPUSH 1\nPUSH 2\nPUSH 3\nUNDO"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""1\nEMPTY"", ""output"": ""true"", ""is_hidden"": true}, {""input"": ""5\nPUSH Bold\nPUSH Italic\nUNDO\nUNDO\nEMPTY"", ""output"": ""Italic\nBold\ntrue"", ""is_hidden"": true}]"
+JP-M14-14,Find Common Products in Two Catalogues,Module 14: Generics and Collections,Medium,Intersect two lists with a HashSet lookup and collect sorted results in a TreeSet.,stdin/stdout,O(1),O(1),"Given two lists of product codes, find the codes that occur in both lists. The result must contain no duplicates and must be sorted in ascending lexicographical order.
+
+Store the first list in a HashSet<String>. Check each code in the second list against that set and insert matching codes into a TreeSet<String>. Codes are case-sensitive.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Only P100 and P300 appear in both catalogues. The TreeSet removes duplicates and sorts the results.","First line: integer N.
+Next N lines: first catalogue codes.
+Next line: integer M.
+Next M lines: second catalogue codes.","If matches exist, print Common products: <count> followed by each code on its own line. Otherwise, print No common products.","1 ≤ N, M ≤ 100,000
+Code length: 1–50 characters.","4
+P100
+P200
+P300
+P100
+3
+P300
+P100
+P400","Common products: 2
+P100
+P300","1
+A
+1
+B",No common products,Read both counts using Integer.parseInt(sc.nextLine()) before reading each list of full-line codes.,HashSet.contains() checks membership in constant time on average.,"Lexicographic order compares character by character, so B10 comes before B2.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.nextLine().trim());
+        Set<String> first = new HashSet<>();
+        for (int i = 0; i < n; i++) {
+            first.add(sc.nextLine());
+        }
+        int m = Integer.parseInt(sc.nextLine().trim());
+        TreeSet<String> common = new TreeSet<>();
+        for (int i = 0; i < m; i++) {
+            String code = sc.nextLine();
+            if (first.contains(code)) {
+                common.add(code);
+            }
+        }
+        if (common.isEmpty()) {
+            System.out.println(""No common products"");
+        } else {
+            StringBuilder out = new StringBuilder();
+            out.append(""Common products: "").append(common.size()).append(""\n"");
+            for (String code : common) {
+                out.append(code).append(""\n"");
+            }
+            System.out.print(out);
+        }
+    }
+}","[{""input"": ""4\nP100\nP200\nP300\nP100\n3\nP300\nP100\nP400"", ""output"": ""Common products: 2\nP100\nP300"", ""is_hidden"": false}, {""input"": ""1\nA\n1\nB"", ""output"": ""No common products"", ""is_hidden"": false}, {""input"": ""2\nA\nB\n2\nB\nA"", ""output"": ""Common products: 2\nA\nB"", ""is_hidden"": false}, {""input"": ""2\na\nA\n1\nA"", ""output"": ""Common products: 1\nA"", ""is_hidden"": true}, {""input"": ""3\nX\nX\nX\n3\nX\nX\nX"", ""output"": ""Common products: 1\nX"", ""is_hidden"": true}, {""input"": ""3\nP3\nP2\nP1\n3\nP1\nP2\nP3"", ""output"": ""Common products: 3\nP1\nP2\nP3"", ""is_hidden"": true}, {""input"": ""1\nZ9\n2\nz9\nZ9"", ""output"": ""Common products: 1\nZ9"", ""is_hidden"": true}, {""input"": ""4\nB10\nB2\nA1\nC3\n3\nB2\nB10\nC4"", ""output"": ""Common products: 2\nB10\nB2"", ""is_hidden"": true}]"
+JP-M14-15,Find the Latest Event at or Before a Timestamp,Module 14: Generics and Collections,Medium,Use TreeMap.floorKey() to look up the nearest earlier key and its value.,stdin/stdout,O(1),O(1),"A monitoring system records named events at integer timestamps. Store records in a TreeMap<Integer, String>. If the same timestamp appears again, the latest record replaces the earlier value.
+
+For each query timestamp, find the greatest recorded timestamp less than or equal to the query using floorKey(). Print that timestamp and its event name. If no qualifying timestamp exists, print No event.
+
+Event names are single tokens without spaces.
+
+Required technique: Use TreeMap.floorKey() to locate the timestamp.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The second record at timestamp 20 replaces Payment with Logout. For query 17, the latest recorded timestamp not exceeding it is 15.","First line: integer N.
+Next N lines: timestamp and event name.
+Next line: integer Q.
+Next Q lines: query timestamps.","Print <timestamp> <eventName> for a match, otherwise No event.","1 ≤ N, Q ≤ 100,000
+Timestamps fit in int.
+Event names contain 1–100 characters.","4
+10 Login
+20 Payment
+15 Search
+20 Logout
+3
+5
+17
+20","No event
+15 Search
+20 Logout","1
+10 A
+2
+9
+10","No event
+10 A","map.put() on an existing key replaces its value, which handles repeated timestamps.","floorKey(x) returns the greatest key ≤ x, or null if there is none.",Use the returned key with map.get(key) to get the event name.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        TreeMap<Integer, String> events = new TreeMap<>();
+        for (int i = 0; i < n; i++) {
+            int time = Integer.parseInt(sc.next());
+            events.put(time, sc.next());
+        }
+        int q = Integer.parseInt(sc.next());
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            Integer key = events.floorKey(Integer.parseInt(sc.next()));
+            if (key == null) {
+                out.append(""No event"");
+            } else {
+                out.append(key).append(' ').append(events.get(key));
+            }
+            out.append(""\n"");
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""4\n10 Login\n20 Payment\n15 Search\n20 Logout\n3\n5\n17\n20"", ""output"": ""No event\n15 Search\n20 Logout"", ""is_hidden"": false}, {""input"": ""1\n10 A\n2\n9\n10"", ""output"": ""No event\n10 A"", ""is_hidden"": false}, {""input"": ""3\n5 X\n5 Y\n5 Z\n1\n100"", ""output"": ""5 Z"", ""is_hidden"": false}, {""input"": ""2\n-2147483648 Min\n2147483647 Max\n3\n-2147483648\n0\n2147483647"", ""output"": ""-2147483648 Min\n-2147483648 Min\n2147483647 Max"", ""is_hidden"": true}, {""input"": ""3\n30 C\n10 A\n20 B\n3\n25\n10\n9"", ""output"": ""20 B\n10 A\nNo event"", ""is_hidden"": true}, {""input"": ""1\n0 Boot\n1\n-1"", ""output"": ""No event"", ""is_hidden"": true}, {""input"": ""2\n1 a\n3 c\n2\n2\n4"", ""output"": ""1 a\n3 c"", ""is_hidden"": true}, {""input"": ""4\n100 E1\n200 E2\n300 E3\n200 E2b\n2\n250\n199"", ""output"": ""200 E2b\n100 E1"", ""is_hidden"": true}]"
+JP-M14-16,Least Recently Used Cache,Module 14: Generics and Collections,Hard,Build an LRU cache with an access-ordered LinkedHashMap and removeEldestEntry().,stdin/stdout,O(1),O(1),"Implement a generic class LRUCache<K, V> using an access-ordered LinkedHashMap<K, V>. The cache has a fixed positive capacity.
+
+The class must provide:
+- get(K key): return the stored value and mark the key as most recently used. Return null if the key does not exist.
+- put(K key, V value): insert or update the entry. An updated key becomes most recently used. If insertion exceeds capacity, evict the least recently used entry.
+- size(): return the number of stored entries.
+Process commands in order. Keys and values are single tokens. GET prints the value or Not found; SIZE prints the current size; PUT produces no output.
+
+Required technique: Configure LinkedHashMap for access order and implement eviction through removeEldestEntry() or equivalent logic. An insertion-ordered map alone is insufficient.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Accessing A makes it more recently used than B. When C is inserted, B is evicted. Updating A changes its value without increasing the cache size.","First line: integers C and Q, representing capacity and command count.
+Next Q lines: PUT key value, GET key, or SIZE.",Print one line for each GET or SIZE command.,"1 ≤ C, Q ≤ 100,000
+Key and value lengths: 1–50 characters.","2 8
+PUT A apple
+PUT B banana
+GET A
+PUT C cherry
+GET B
+GET A
+PUT A apricot
+SIZE","apple
+Not found
+apple
+2","1 4
+PUT A a
+PUT B b
+GET A
+GET B","Not found
+b","The constructor new LinkedHashMap<>(16, 0.75f, true) orders entries by access instead of insertion.","Override removeEldestEntry(Map.Entry<K, V> eldest) to return size() > capacity; the map then evicts automatically after each put.",A failed GET must not change the order; LinkedHashMap.get() only reorders keys that exist.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int capacity = Integer.parseInt(sc.next());
+        int q = Integer.parseInt(sc.next());
+        LRUCache<String, String> cache = new LRUCache<>(capacity);
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""PUT"")) {
+                String key = sc.next();
+                cache.put(key, sc.next());
+            } else if (cmd.equals(""GET"")) {
+                String value = cache.get(sc.next());
+                out.append(value == null ? ""Not found"" : value).append(""\n"");
+            } else {
+                out.append(cache.size()).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class LRUCache<K, V> {
+    private final LinkedHashMap<K, V> map;
+
+    LRUCache(int capacity) {
+        map = new LinkedHashMap<K, V>(16, 0.75f, true) {
+            @Override
+            protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+                return size() > capacity;
+            }
+        };
+    }
+
+    public V get(K key) {
+        return map.get(key);
+    }
+
+    public void put(K key, V value) {
+        map.put(key, value);
+    }
+
+    public int size() {
+        return map.size();
+    }
+}","[{""input"": ""2 8\nPUT A apple\nPUT B banana\nGET A\nPUT C cherry\nGET B\nGET A\nPUT A apricot\nSIZE"", ""output"": ""apple\nNot found\napple\n2"", ""is_hidden"": false}, {""input"": ""1 4\nPUT A a\nPUT B b\nGET A\nGET B"", ""output"": ""Not found\nb"", ""is_hidden"": false}, {""input"": ""2 3\nGET X\nSIZE\nPUT X y"", ""output"": ""Not found\n0"", ""is_hidden"": false}, {""input"": ""3 7\nPUT a 1\nPUT b 2\nPUT c 3\nGET a\nPUT d 4\nGET b\nSIZE"", ""output"": ""1\nNot found\n3"", ""is_hidden"": true}, {""input"": ""2 6\nPUT a 1\nPUT b 2\nPUT a 3\nPUT c 4\nGET a\nGET b"", ""output"": ""3\nNot found"", ""is_hidden"": true}, {""input"": ""1 3\nPUT k v\nPUT k w\nGET k"", ""output"": ""w"", ""is_hidden"": true}, {""input"": ""2 5\nPUT a 1\nGET a\nGET a\nPUT b 2\nSIZE"", ""output"": ""1\n1\n2"", ""is_hidden"": true}, {""input"": ""100000 3\nPUT a 1\nPUT b 2\nSIZE"", ""output"": ""2"", ""is_hidden"": true}]"
+JP-M14-17,Emergency Ticket Priority Queue,Module 14: Generics and Collections,Hard,Order a PriorityQueue with a two-key comparator that cannot overflow.,stdin/stdout,O(1),O(1),"A hospital support desk processes tickets by urgency. Each ticket has an integer priority and an integer ID. A smaller priority value means greater urgency. If priorities match, the smaller ticket ID must be processed first.
+
+Create a Ticket class and use a PriorityQueue<Ticket> with a comparator that compares priority first and ID second. Use Integer.compare() instead of subtraction to prevent integer overflow.
+
+Commands:
+- ADD priority id: insert a ticket.
+- NEXT: remove and print the most urgent ticket, or print No pending tickets if empty.
+ADD produces no output.
+
+Performance hint: Buffer output in a StringBuilder.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: Priority 1 tickets come before priority 2. Within priority 1, ID 101 is processed before ID 110.","First line: integer Q.
+Next Q lines: ADD priority id or NEXT.","For a successful NEXT, print Priority: <priority>, ID: <id>. Otherwise, print No pending tickets.","1 ≤ Q ≤ 100,000
+Priorities and IDs fit in int.","6
+ADD 2 105
+ADD 1 110
+ADD 1 101
+NEXT
+NEXT
+NEXT","Priority: 1, ID: 101
+Priority: 1, ID: 110
+Priority: 2, ID: 105","2
+NEXT
+NEXT","No pending tickets
+No pending tickets",Pass the comparator to the PriorityQueue constructor.,"Compare priorities with Integer.compare(a.priority, b.priority); on a tie, compare IDs the same way.",poll() returns null on an empty queue.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        PriorityQueue<Ticket> queue = new PriorityQueue<>(new Comparator<Ticket>() {
+            @Override
+            public int compare(Ticket a, Ticket b) {
+                int byPriority = Integer.compare(a.priority, b.priority);
+                if (byPriority != 0) {
+                    return byPriority;
+                }
+                return Integer.compare(a.id, b.id);
+            }
+        });
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""ADD"")) {
+                int priority = Integer.parseInt(sc.next());
+                int id = Integer.parseInt(sc.next());
+                queue.add(new Ticket(priority, id));
+            } else {
+                Ticket t = queue.poll();
+                if (t == null) {
+                    out.append(""No pending tickets\n"");
+                } else {
+                    out.append(""Priority: "").append(t.priority).append("", ID: "").append(t.id).append(""\n"");
+                }
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class Ticket {
+    final int priority;
+    final int id;
+
+    Ticket(int priority, int id) {
+        this.priority = priority;
+        this.id = id;
+    }
+}","[{""input"": ""6\nADD 2 105\nADD 1 110\nADD 1 101\nNEXT\nNEXT\nNEXT"", ""output"": ""Priority: 1, ID: 101\nPriority: 1, ID: 110\nPriority: 2, ID: 105"", ""is_hidden"": false}, {""input"": ""2\nNEXT\nNEXT"", ""output"": ""No pending tickets\nNo pending tickets"", ""is_hidden"": false}, {""input"": ""4\nADD -2147483648 5\nADD 2147483647 1\nNEXT\nNEXT"", ""output"": ""Priority: -2147483648, ID: 5\nPriority: 2147483647, ID: 1"", ""is_hidden"": false}, {""input"": ""5\nADD 1 2147483647\nADD 1 -2147483648\nNEXT\nNEXT\nNEXT"", ""output"": ""Priority: 1, ID: -2147483648\nPriority: 1, ID: 2147483647\nNo pending tickets"", ""is_hidden"": true}, {""input"": ""4\nADD 3 3\nADD 3 3\nNEXT\nNEXT"", ""output"": ""Priority: 3, ID: 3\nPriority: 3, ID: 3"", ""is_hidden"": true}, {""input"": ""6\nADD 5 1\nNEXT\nADD 4 2\nADD 6 0\nNEXT\nNEXT"", ""output"": ""Priority: 5, ID: 1\nPriority: 4, ID: 2\nPriority: 6, ID: 0"", ""is_hidden"": true}, {""input"": ""3\nADD 0 0\nNEXT\nNEXT"", ""output"": ""Priority: 0, ID: 0\nNo pending tickets"", ""is_hidden"": true}, {""input"": ""5\nADD 2 2\nADD 1 3\nADD 2 1\nNEXT\nNEXT"", ""output"": ""Priority: 1, ID: 3\nPriority: 2, ID: 1"", ""is_hidden"": true}]"
+JP-M14-18,Sum Values From Any Numeric List,Module 14: Generics and Collections,Hard,Accept lists of different numeric types through an upper-bounded wildcard.,stdin/stdout,O(1),O(1),"Implement a generic method sum(List<? extends Number> values) that adds numeric values and returns the result as a double.
+
+The wildcard bound must allow the method to accept lists such as List<Integer>, List<Long>, and List<Double>. Iterate over the list and use doubleValue() for each element. Do not create separate summation methods for each numeric type.
+
+For this problem, support the input types INT and DOUBLE. Construct the corresponding list and pass it to the same summation method. Print the result with exactly two decimal places, using Locale.US.
+
+Required technique: Use List<? extends Number> and Number.doubleValue().
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The sum is 40. The same wildcard-based method can process both integer and decimal lists because their element types extend Number.","First line: INT or DOUBLE.
+Second line: integer N.
+Third line: N space-separated values.",Print Sum: followed by a space and the total with exactly two decimal places.,"1 ≤ N ≤ 100,000
+Integer values fit in int.
+Double values are finite and have absolute values no greater than 1,000,000.","INT
+4
+10 20 -5 15",Sum: 40.00,"DOUBLE
+3
+1.5 2.25 -0.75",Sum: 3.00,"A List<Integer> is not a List<Number>, but it is a List<? extends Number>.","Inside the method, you can read elements as Number and call doubleValue(); you cannot add elements to the list.",Summing as doubles also avoids int overflow when large integers are added.,"import java.util.*;
+
+public class Main {
+    static double sum(List<? extends Number> values) {
+        double total = 0;
+        for (Number value : values) {
+            total += value.doubleValue();
+        }
+        return total;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String type = sc.next();
+        int n = Integer.parseInt(sc.next());
+        double total;
+        if (type.equals(""INT"")) {
+            List<Integer> values = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                values.add(Integer.parseInt(sc.next()));
+            }
+            total = sum(values);
+        } else {
+            List<Double> values = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                values.add(Double.parseDouble(sc.next()));
+            }
+            total = sum(values);
+        }
+        System.out.println(""Sum: "" + String.format(Locale.US, ""%.2f"", total));
+    }
+}","[{""input"": ""INT\n4\n10 20 -5 15"", ""output"": ""Sum: 40.00"", ""is_hidden"": false}, {""input"": ""DOUBLE\n3\n1.5 2.25 -0.75"", ""output"": ""Sum: 3.00"", ""is_hidden"": false}, {""input"": ""INT\n1\n-2147483648"", ""output"": ""Sum: -2147483648.00"", ""is_hidden"": false}, {""input"": ""INT\n3\n2147483647 2147483647 2147483647"", ""output"": ""Sum: 6442450941.00"", ""is_hidden"": true}, {""input"": ""DOUBLE\n2\n1000000 1000000"", ""output"": ""Sum: 2000000.00"", ""is_hidden"": true}, {""input"": ""DOUBLE\n1\n0.1"", ""output"": ""Sum: 0.10"", ""is_hidden"": true}, {""input"": ""INT\n4\n0 0 0 0"", ""output"": ""Sum: 0.00"", ""is_hidden"": true}, {""input"": ""DOUBLE\n3\n0.1 0.2 0.3"", ""output"": ""Sum: 0.60"", ""is_hidden"": true}]"
+JP-M14-19,Group Employees by Department,Module 14: Generics and Collections,Hard,Write a generic grouping method that takes a key-extracting Function and returns a Map of lists.,stdin/stdout,O(1),O(1),"Implement a generic static method groupBy that accepts a list of records and a function that extracts a grouping key from each record. The method must return a Map<K, List<T>>.
+
+Use Function<T, K> from java.util.function. Create an Employee class containing a name and department. Group employees by department using the generic method.
+
+Use a TreeMap for the returned grouping map so departments are displayed in alphabetical order. Employees within each department must remain in their original input order. Do not sort employee names within a department.
+
+Import java.util.function.Function.
+
+Required technique: Use Function<T, K> to extract keys and TreeMap to order groups.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The generic method groups employee objects by their department. TreeMap sorts department keys alphabetically while each department's list retains the employees' input order.","First line: integer N.
+Next N lines: employee name and department, separated by one space. Names and departments are single tokens without spaces.","For each department, print Department: <department>, followed by one line Employee: <name> for each employee in that department.","1 ≤ N ≤ 100,000
+Names and departments contain 1–100 characters.","5
+Asha HR
+Ravi IT
+Meera HR
+Kiran IT
+Dev Finance","Department: Finance
+Employee: Dev
+Department: HR
+Employee: Asha
+Employee: Meera
+Department: IT
+Employee: Ravi
+Employee: Kiran","1
+A X","Department: X
+Employee: A","Declare it as static <T, K> Map<K, List<T>> groupBy(List<T> items, Function<T, K> keyFn); K must be comparable for a TreeMap, so you can bound it with K extends Comparable<K>.","For each item, computeIfAbsent(key, k -> new ArrayList<>()).add(item) creates the list on first use.","Call it with a lambda: groupBy(employees, e -> e.department).","import java.util.*;
+import java.util.function.Function;
+
+public class Main {
+    static <T, K extends Comparable<K>> Map<K, List<T>> groupBy(List<T> items, Function<T, K> keyFn) {
+        Map<K, List<T>> groups = new TreeMap<>();
+        for (T item : items) {
+            groups.computeIfAbsent(keyFn.apply(item), k -> new ArrayList<>()).add(item);
+        }
+        return groups;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        List<Employee> employees = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            String name = sc.next();
+            employees.add(new Employee(name, sc.next()));
+        }
+        Map<String, List<Employee>> groups = groupBy(employees, e -> e.department);
+        StringBuilder out = new StringBuilder();
+        for (Map.Entry<String, List<Employee>> entry : groups.entrySet()) {
+            out.append(""Department: "").append(entry.getKey()).append(""\n"");
+            for (Employee e : entry.getValue()) {
+                out.append(""Employee: "").append(e.name).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class Employee {
+    final String name;
+    final String department;
+
+    Employee(String name, String department) {
+        this.name = name;
+        this.department = department;
+    }
+}","[{""input"": ""5\nAsha HR\nRavi IT\nMeera HR\nKiran IT\nDev Finance"", ""output"": ""Department: Finance\nEmployee: Dev\nDepartment: HR\nEmployee: Asha\nEmployee: Meera\nDepartment: IT\nEmployee: Ravi\nEmployee: Kiran"", ""is_hidden"": false}, {""input"": ""1\nA X"", ""output"": ""Department: X\nEmployee: A"", ""is_hidden"": false}, {""input"": ""3\nC Z\nB Y\nA X"", ""output"": ""Department: X\nEmployee: A\nDepartment: Y\nEmployee: B\nDepartment: Z\nEmployee: C"", ""is_hidden"": false}, {""input"": ""4\nA D\nB D\nC D\nD D"", ""output"": ""Department: D\nEmployee: A\nEmployee: B\nEmployee: C\nEmployee: D"", ""is_hidden"": true}, {""input"": ""4\nZed Ops\nAmy Ops\nBob Dev\nCal Ops"", ""output"": ""Department: Dev\nEmployee: Bob\nDepartment: Ops\nEmployee: Zed\nEmployee: Amy\nEmployee: Cal"", ""is_hidden"": true}, {""input"": ""3\nA hr\nB HR\nC Hr"", ""output"": ""Department: HR\nEmployee: B\nDepartment: Hr\nEmployee: C\nDepartment: hr\nEmployee: A"", ""is_hidden"": true}, {""input"": ""2\nA A\nA A"", ""output"": ""Department: A\nEmployee: A\nEmployee: A"", ""is_hidden"": true}, {""input"": ""5\nE5 D2\nE4 D1\nE3 D2\nE2 D1\nE1 D2"", ""output"": ""Department: D1\nEmployee: E4\nEmployee: E2\nDepartment: D2\nEmployee: E5\nEmployee: E3\nEmployee: E1"", ""is_hidden"": true}]"
+JP-M14-20,Process a Task Queue Without Duplicates,Module 14: Generics and Collections,Hard,Coordinate a queue with two sets to reject duplicate and already-completed tasks in O(1).,stdin/stdout,O(1),O(1),"A job-processing service maintains pending tasks in a first-in, first-out queue and tracks completed tasks in a set.
+
+Use ArrayDeque<Integer> for pending task IDs and HashSet<Integer> for completed IDs. Also maintain a set of IDs currently pending so that duplicate pending tasks can be rejected efficiently.
+
+Commands:
+- ADD id: add the task only if it is neither pending nor completed.
+- PROCESS: remove the front task, mark it completed, and print Processed: <id>. If the queue is empty, print No pending tasks.
+- PENDING: print the number of waiting tasks.
+- DONE id: print true if the ID has completed, otherwise false.
+A completed task must never be added again. A task currently in the queue must not appear more than once. ADD produces no output.
+
+Performance hint: Use a StringBuilder for output.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.
+
+Explanation: The second ADD 10 is ignored because task 10 is already pending. After processing it, a later attempt to add it is ignored because it has completed. Task 20 is processed next, leaving the queue empty.","First line: integer Q.
+Next Q lines: ADD id, PROCESS, PENDING, or DONE id.","Print one line for each PROCESS, PENDING, or DONE command.","1 ≤ Q ≤ 100,000
+Task IDs fit in int.","9
+ADD 10
+ADD 20
+ADD 10
+PENDING
+PROCESS
+DONE 10
+ADD 10
+PROCESS
+PENDING","2
+Processed: 10
+true
+Processed: 20
+0","3
+PROCESS
+PENDING
+DONE 5","No pending tasks
+0
+false",Checking queue.contains(id) scans the whole queue; a pending set answers the same question in constant time.,"On PROCESS, remove the ID from the pending set and add it to the completed set.","Collect the output in a StringBuilder and print it once at the end; printing 100,000 lines one by one can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        ArrayDeque<Integer> queue = new ArrayDeque<>();
+        Set<Integer> pending = new HashSet<>();
+        Set<Integer> completed = new HashSet<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""ADD"")) {
+                int id = Integer.parseInt(sc.next());
+                if (!pending.contains(id) && !completed.contains(id)) {
+                    queue.offer(id);
+                    pending.add(id);
+                }
+            } else if (cmd.equals(""PROCESS"")) {
+                Integer id = queue.poll();
+                if (id == null) {
+                    out.append(""No pending tasks\n"");
+                } else {
+                    pending.remove(id);
+                    completed.add(id);
+                    out.append(""Processed: "").append(id).append(""\n"");
+                }
+            } else if (cmd.equals(""PENDING"")) {
+                out.append(queue.size()).append(""\n"");
+            } else {
+                out.append(completed.contains(Integer.parseInt(sc.next()))).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""9\nADD 10\nADD 20\nADD 10\nPENDING\nPROCESS\nDONE 10\nADD 10\nPROCESS\nPENDING"", ""output"": ""2\nProcessed: 10\ntrue\nProcessed: 20\n0"", ""is_hidden"": false}, {""input"": ""3\nPROCESS\nPENDING\nDONE 5"", ""output"": ""No pending tasks\n0\nfalse"", ""is_hidden"": false}, {""input"": ""5\nADD 1\nADD 1\nADD 1\nPENDING\nDONE 1"", ""output"": ""1\nfalse"", ""is_hidden"": false}, {""input"": ""6\nADD 1\nPROCESS\nADD 1\nPENDING\nDONE 1\nPROCESS"", ""output"": ""Processed: 1\n0\ntrue\nNo pending tasks"", ""is_hidden"": true}, {""input"": ""5\nADD -2147483648\nADD 2147483647\nPROCESS\nPROCESS\nDONE 2147483647"", ""output"": ""Processed: -2147483648\nProcessed: 2147483647\ntrue"", ""is_hidden"": true}, {""input"": ""4\nADD 3\nADD 2\nPROCESS\nPROCESS"", ""output"": ""Processed: 3\nProcessed: 2"", ""is_hidden"": true}, {""input"": ""4\nDONE 0\nADD 0\nPROCESS\nDONE 0"", ""output"": ""false\nProcessed: 0\ntrue"", ""is_hidden"": true}, {""input"": ""6\nADD 5\nADD 6\nPROCESS\nADD 5\nADD 6\nPENDING"", ""output"": ""Processed: 5\n1"", ""is_hidden"": true}]"

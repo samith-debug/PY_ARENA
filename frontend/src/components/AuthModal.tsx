@@ -102,7 +102,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
             <Code2 className="w-5 h-5 text-zinc-300" />
           </div>
           <h2 className="text-lg font-semibold tracking-tight text-zinc-100">
-            {isRegister ? 'Create an Account' : 'Sign In to PyArena'}
+            {isRegister ? 'Create an Account' : 'Sign In to CodeArena'}
           </h2>
           <p className="text-xs text-zinc-400 mt-1 max-w-xs mx-auto leading-relaxed">
             {isRegister

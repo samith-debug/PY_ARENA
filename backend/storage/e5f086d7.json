@@ -1,0 +1,1384 @@
+{
+  "id": "e5f086d7",
+  "filename": "JP_M1_Java_Fundamentals.csv",
+  "imported_at": "2026-10-23T19:03:05.542219Z",
+  "total_questions": 20,
+  "total_test_cases": 83,
+  "visible_test_cases": 38,
+  "hidden_test_cases": 45,
+  "questions": [
+    {
+      "question_id": "JP-M1-01",
+      "title": "Basic Java Program",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Write the smallest complete Java program: a class named Main with a main() method that prints one line.",
+      "problem_statement": "Task: Write a Java program using a class named Main and the standard main() method. Display the message Java is ready using System.out.println().",
+      "input_format": "No input.",
+      "output_format": "A single line: Java is ready",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Java is ready"
+      ],
+      "hints": [
+        "Every Java program needs a class; here it must be named Main.",
+        "Execution starts in public static void main(String[] args).",
+        "Inside main(), call System.out.println(\"Java is ready\");"
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Java is ready\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Java is ready",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: Java is ready"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-02",
+      "title": "Multiple Output Statements",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Use several println() statements and observe that each one prints on a new line.",
+      "problem_statement": "Task: Write a Java program that displays three predefined messages on separate lines using three System.out.println() statements. Print Learn Java, Practice Daily, and Build Projects in the given order.",
+      "input_format": "No input.",
+      "output_format": "Three lines:\nLearn Java\nPractice Daily\nBuild Projects",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Learn Java\nPractice Daily\nBuild Projects"
+      ],
+      "hints": [
+        "println() moves the cursor to the next line after printing.",
+        "Statements in main() run from top to bottom, so order matters.",
+        "Write three println() statements, one for each message, in the given order."
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Learn Java\");\n        System.out.println(\"Practice Daily\");\n        System.out.println(\"Build Projects\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Learn Java\nPractice Daily\nBuild Projects",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "Three lines:\nLearn Java\nPractice Daily\nBuild Projects"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-03",
+      "title": "Print Without a Line Break",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Understand the difference between print() and println() by joining two outputs on one line.",
+      "problem_statement": "Task: Write a Java program that displays Code and Mentor on the same line using two System.out.print() statements. Do not include a space between the words.",
+      "input_format": "No input.",
+      "output_format": "A single line: CodeMentor",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "CodeMentor"
+      ],
+      "hints": [
+        "print() does not add a newline after the text, while println() does.",
+        "Do not put a space at the end of \"Code\" or the start of \"Mentor\".",
+        "Use System.out.print(\"Code\"); followed by System.out.print(\"Mentor\");"
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.print(\"Code\");\n        System.out.print(\"Mentor\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "CodeMentor",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: CodeMentor"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-04",
+      "title": "Comment Types",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Use all three Java comment styles in one program and confirm that none of them appear in the output.",
+      "problem_statement": "Task: Write a Java program that uses all three kinds of Java comments:\n- A documentation comment (/** ... */) directly above the class declaration.\n- A block comment (/* ... */) inside the main() method.\n- A single-line comment (// ...) inside the main() method.\n\nThe program must display the following three lines and nothing else:\nSingle-line comment added\nBlock comment added\nDocumentation comment added\n\nComments are ignored by the compiler, so none of the comment text should appear in the output.",
+      "input_format": "No input.",
+      "output_format": "Three lines:\nSingle-line comment added\nBlock comment added\nDocumentation comment added",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Single-line comment added\nBlock comment added\nDocumentation comment added"
+      ],
+      "hints": [
+        "A single-line comment starts with // and ends at the end of the line.",
+        "A block comment starts with /* and ends with */; a documentation comment starts with /** and ends with */.",
+        "Place the /** */ comment above public class Main, put the other two comments inside main(), and add three println() statements."
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "/**\n * Demonstrates the three types of Java comments.\n */\npublic class Main {\n    public static void main(String[] args) {\n        // Single-line comment: prints the first message\n        System.out.println(\"Single-line comment added\");\n        /* Block comment:\n           prints the second message */\n        System.out.println(\"Block comment added\");\n        System.out.println(\"Documentation comment added\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Single-line comment added\nBlock comment added\nDocumentation comment added",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "Three lines:\nSingle-line comment added\nBlock comment added\nDocumentation comment added"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-05",
+      "title": "Print Quotation Marks",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Use the \\\" escape sequence to print double quotation marks inside a String literal.",
+      "problem_statement": "Task: Write a Java program that displays the following line exactly, including the double quotation marks:\nShe said \"Java is fun\"\n\nA double quote normally ends a String literal, so you need an escape sequence to print it.",
+      "input_format": "No input.",
+      "output_format": "A single line: She said \"Java is fun\"",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "She said \"Java is fun\""
+      ],
+      "hints": [
+        "Writing \"She said \"Java is fun\"\" causes a compile error because the second quote ends the String.",
+        "The escape sequence \\\" prints a double quotation mark.",
+        "Use System.out.println(\"She said \\\"Java is fun\\\"\");"
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"She said \\\"Java is fun\\\"\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "She said \"Java is fun\"",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: She said \"Java is fun\""
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-06",
+      "title": "Print a Windows Path",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Use the \\\\ escape sequence to print a backslash character.",
+      "problem_statement": "Task: Write a Java program that displays the following Windows folder path exactly:\nC:\\Program Files\\Java\\bin\n\nIn a Java String literal, a single backslash starts an escape sequence, so you need a special sequence to print one backslash.",
+      "input_format": "No input.",
+      "output_format": "A single line: C:\\Program Files\\Java\\bin",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "C:\\Program Files\\Java\\bin"
+      ],
+      "hints": [
+        "A single \\ followed by a letter is treated as an escape sequence, and \\P or \\J causes a compile error.",
+        "The escape sequence \\\\ prints one backslash.",
+        "Use System.out.println(\"C:\\\\Program Files\\\\Java\\\\bin\");"
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"C:\\\\Program Files\\\\Java\\\\bin\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "C:\\Program Files\\Java\\bin",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: C:\\Program Files\\Java\\bin"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-07",
+      "title": "Tab-Aligned Header",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Use the \\t escape sequence to separate values with tab characters.",
+      "problem_statement": "Task: Write a Java program that displays a two-line table. Separate the values on each line with a single tab character, not spaces.\n\nLine 1: Name, Dept, and Year\nLine 2: Alex, CSE, and 2026\n\nEach line should have exactly one tab between neighbouring values and no tab at the beginning or end.",
+      "input_format": "No input.",
+      "output_format": "Two lines:\nName<TAB>Dept<TAB>Year\nAlex<TAB>CSE<TAB>2026\nwhere <TAB> is a single tab character.",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Name\tDept\tYear\nAlex\tCSE\t2026"
+      ],
+      "hints": [
+        "The escape sequence \\t inserts a tab character.",
+        "Spaces and tabs look similar on screen but are different characters, so the judge treats them differently.",
+        "Use System.out.println(\"Name\\tDept\\tYear\"); and a similar statement for the second line."
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Name\\tDept\\tYear\");\n        System.out.println(\"Alex\\tCSE\\t2026\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Name\tDept\tYear\nAlex\tCSE\t2026",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "Two lines:\nName<TAB>Dept<TAB>Year\nAlex<TAB>CSE<TAB>2026\nwhere <TAB> is a single tab character."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-08",
+      "title": "Read a Full Name",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Easy",
+      "objective": "Read one complete line, including spaces, with Scanner.nextLine() and print it unchanged.",
+      "problem_statement": "Task: Write a Java program that reads one complete line of text using Scanner.nextLine() and displays it unchanged. The input may contain multiple words separated by spaces.",
+      "input_format": "A single line containing a full name.",
+      "output_format": "The name exactly as entered.",
+      "constraints": "1 <= length of name <= 100\nThe name does not begin or end with a space.",
+      "sample_inputs": [
+        "Alex Morgan",
+        "Priya"
+      ],
+      "sample_outputs": [
+        "Alex Morgan",
+        "Priya"
+      ],
+      "hints": [
+        "Import Scanner with import java.util.Scanner; at the top of the file.",
+        "Create it with Scanner sc = new Scanner(System.in);",
+        "Read the line with sc.nextLine() and print it with System.out.println()."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String line = sc.nextLine();\n        System.out.println(line);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Alex Morgan",
+          "output": "Alex Morgan",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Priya",
+          "output": "Priya",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Mohammed Abdul Rahman",
+          "output": "Mohammed Abdul Rahman",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Sneha P. Iyer",
+          "output": "Sneha P. Iyer",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Jean-Luc Picard",
+          "output": "Jean-Luc Picard",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "K. Venkata Lakshmi Narayana",
+          "output": "K. Venkata Lakshmi Narayana",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Ravi Kumar Reddy",
+          "output": "Ravi Kumar Reddy",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "O'Neil Smith",
+          "output": "O'Neil Smith",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing a full name.",
+        "output_format": "The name exactly as entered."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-09",
+      "title": "Personalized Greeting",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Join fixed text and an input value into one output line using the + operator.",
+      "problem_statement": "Task: Write a Java program that reads a person's full name and displays a greeting in this exact format:\nHello, <name>! Welcome to Java.\n\nReplace <name> with the name that was read. Keep the comma, the space after it, the exclamation mark, and the final full stop exactly as shown.",
+      "input_format": "A single line containing a full name.",
+      "output_format": "A single line: Hello, <name>! Welcome to Java.",
+      "constraints": "1 <= length of name <= 50\nThe name does not begin or end with a space.",
+      "sample_inputs": [
+        "Alex Morgan",
+        "Priya"
+      ],
+      "sample_outputs": [
+        "Hello, Alex Morgan! Welcome to Java.",
+        "Hello, Priya! Welcome to Java."
+      ],
+      "hints": [
+        "Read the full name with nextLine(), since it can contain spaces.",
+        "The + operator joins Strings: \"Hello, \" + name produces one combined String.",
+        "Print \"Hello, \" + name + \"! Welcome to Java.\" with System.out.println()."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String name = sc.nextLine();\n        System.out.println(\"Hello, \" + name + \"! Welcome to Java.\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Alex Morgan",
+          "output": "Hello, Alex Morgan! Welcome to Java.",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Priya",
+          "output": "Hello, Priya! Welcome to Java.",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Ravi Kumar",
+          "output": "Hello, Ravi Kumar! Welcome to Java.",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Mohammed Abdul Rahman",
+          "output": "Hello, Mohammed Abdul Rahman! Welcome to Java.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Sneha P. Iyer",
+          "output": "Hello, Sneha P. Iyer! Welcome to Java.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Li",
+          "output": "Hello, Li! Welcome to Java.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Ananya Rao",
+          "output": "Hello, Ananya Rao! Welcome to Java.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Jean-Luc Picard",
+          "output": "Hello, Jean-Luc Picard! Welcome to Java.",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing a full name.",
+        "output_format": "A single line: Hello, <name>! Welcome to Java."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-10",
+      "title": "Prompt and Read Input",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Combine print() for a prompt with Scanner input and println() for output on the same line.",
+      "problem_statement": "Task: Write a Java program that displays the prompt Enter your city: (followed by one space) using System.out.print(). Then read one complete line from standard input and display the entered city using System.out.println().\n\nBecause print() does not add a newline, the city appears on the same line as the prompt. For automated judging, the input you type is not shown in the output, so the expected output is the prompt followed directly by the city that your program prints.",
+      "input_format": "A single line containing a city name (may contain spaces).",
+      "output_format": "A single line: Enter your city: followed by one space and the city name.",
+      "constraints": "1 <= length of city name <= 50\nThe city name does not begin or end with a space.",
+      "sample_inputs": [
+        "Hyderabad",
+        "New Delhi"
+      ],
+      "sample_outputs": [
+        "Enter your city: Hyderabad",
+        "Enter your city: New Delhi"
+      ],
+      "hints": [
+        "System.out.print(\"Enter your city: \") prints the prompt and keeps the cursor on the same line.",
+        "Remember the single space after the colon inside the prompt string.",
+        "Read the city with nextLine() and print it with System.out.println(city)."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        System.out.print(\"Enter your city: \");\n        String city = sc.nextLine();\n        System.out.println(city);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Hyderabad",
+          "output": "Enter your city: Hyderabad",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "New Delhi",
+          "output": "Enter your city: New Delhi",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Pune",
+          "output": "Enter your city: Pune",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Navi Mumbai",
+          "output": "Enter your city: Navi Mumbai",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Thiruvananthapuram",
+          "output": "Enter your city: Thiruvananthapuram",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "San Francisco",
+          "output": "Enter your city: San Francisco",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Kochi",
+          "output": "Enter your city: Kochi",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Rio de Janeiro",
+          "output": "Enter your city: Rio de Janeiro",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing a city name (may contain spaces).",
+        "output_format": "A single line: Enter your city: followed by one space and the city name."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-11",
+      "title": "Read Multiple Text Fields",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Read three separate lines with nextLine() and print each on its own line in order.",
+      "problem_statement": "Task: Write a Java program that reads three separate lines containing a person's full name, department, and college name. Display each field on a separate line in the same order. Use Scanner.nextLine() for all three inputs.",
+      "input_format": "Three lines:\nLine 1: full name\nLine 2: department\nLine 3: college name",
+      "output_format": "The three fields on separate lines in the same order.",
+      "constraints": "1 <= length of each line <= 100\nNo line is empty.",
+      "sample_inputs": [
+        "Alex Morgan\nCSE\nCentral Engineering College",
+        "Ananya Rao\nAIML\nGreen Valley Institute of Technology"
+      ],
+      "sample_outputs": [
+        "Alex Morgan\nCSE\nCentral Engineering College",
+        "Ananya Rao\nAIML\nGreen Valley Institute of Technology"
+      ],
+      "hints": [
+        "Each call to nextLine() reads exactly one line.",
+        "Store the three lines in three String variables.",
+        "Print the variables in the same order with three println() statements."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String name = sc.nextLine();\n        String dept = sc.nextLine();\n        String college = sc.nextLine();\n        System.out.println(name);\n        System.out.println(dept);\n        System.out.println(college);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Alex Morgan\nCSE\nCentral Engineering College",
+          "output": "Alex Morgan\nCSE\nCentral Engineering College",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Ananya Rao\nAIML\nGreen Valley Institute of Technology",
+          "output": "Ananya Rao\nAIML\nGreen Valley Institute of Technology",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Li\nIT\nABC",
+          "output": "Li\nIT\nABC",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Mohammed Abdul Rahman\nElectronics and Communication\nState University College of Engineering",
+          "output": "Mohammed Abdul Rahman\nElectronics and Communication\nState University College of Engineering",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Sneha Iyer\nMECH\nSt. Joseph's College",
+          "output": "Sneha Iyer\nMECH\nSt. Joseph's College",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Arjun\nCivil Engineering\nNational Institute of Technology, Warangal",
+          "output": "Arjun\nCivil Engineering\nNational Institute of Technology, Warangal",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Sara Thomas\nData Science\nCity College (Autonomous)",
+          "output": "Sara Thomas\nData Science\nCity College (Autonomous)",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Ravi Kumar\nEEE\nSri Venkateswara College",
+          "output": "Ravi Kumar\nEEE\nSri Venkateswara College",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Three lines:\nLine 1: full name\nLine 2: department\nLine 3: college name",
+        "output_format": "The three fields on separate lines in the same order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-12",
+      "title": "Preserve an Empty Input Line",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Recognise that nextLine() returns an empty String for a blank line and that blank lines must still be printed.",
+      "problem_statement": "Task: Write a Java program that reads exactly three lines and displays them in the same order. The second line may be empty. Do not skip the empty line or replace it with text.",
+      "input_format": "Three lines. The second line may be empty.",
+      "output_format": "The same three lines in the same order, including an empty second line if present.",
+      "constraints": "0 <= length of line 2 <= 100\n1 <= length of lines 1 and 3 <= 100",
+      "sample_inputs": [
+        "Start\n\nEnd",
+        "One\nTwo\nThree"
+      ],
+      "sample_outputs": [
+        "Start\n\nEnd",
+        "One\nTwo\nThree"
+      ],
+      "hints": [
+        "An empty line is still a line; nextLine() returns \"\" for it.",
+        "Printing an empty String with println() produces a blank line.",
+        "Read three lines with nextLine() and print all three, without checking whether any is empty."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String first = sc.nextLine();\n        String second = sc.nextLine();\n        String third = sc.nextLine();\n        System.out.println(first);\n        System.out.println(second);\n        System.out.println(third);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Start\n\nEnd",
+          "output": "Start\n\nEnd",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "One\nTwo\nThree",
+          "output": "One\nTwo\nThree",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Header\n\nFooter text here",
+          "output": "Header\n\nFooter text here",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "A\n\nB",
+          "output": "A\n\nB",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Java\nis\nfun",
+          "output": "Java\nis\nfun",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "First line.\n\nLast line!",
+          "output": "First line.\n\nLast line!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Top\nMiddle line with spaces\nBottom",
+          "output": "Top\nMiddle line with spaces\nBottom",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Begin\n\nFinish",
+          "output": "Begin\n\nFinish",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Three lines. The second line may be empty.",
+        "output_format": "The same three lines in the same order, including an empty second line if present."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-13",
+      "title": "Read Word by Word",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Use Scanner.next() to read individual words (tokens) and see how it skips over spaces.",
+      "problem_statement": "Task: Write a Java program that reads one line containing exactly three words and displays each word on its own line, in the same order.\n\nThe words may be separated by one or more spaces. Use Scanner.next(), which reads one word at a time and skips any spaces before it.",
+      "input_format": "A single line containing exactly three words separated by one or more spaces.",
+      "output_format": "Three lines, each containing one word, in the original order.",
+      "constraints": "1 <= length of each word <= 20\nWords contain no spaces.",
+      "sample_inputs": [
+        "Learn Java Daily",
+        "Write Compile Run"
+      ],
+      "sample_outputs": [
+        "Learn\nJava\nDaily",
+        "Write\nCompile\nRun"
+      ],
+      "hints": [
+        "next() returns the next word and automatically skips the spaces in between.",
+        "Calling next() three times gives you the three words in order.",
+        "Print each word with its own System.out.println() statement."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String w1 = sc.next();\n        String w2 = sc.next();\n        String w3 = sc.next();\n        System.out.println(w1);\n        System.out.println(w2);\n        System.out.println(w3);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Learn Java Daily",
+          "output": "Learn\nJava\nDaily",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Write Compile Run",
+          "output": "Write\nCompile\nRun",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a b c",
+          "output": "a\nb\nc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Java   is    fun",
+          "output": "Java\nis\nfun",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Hello, Code-Mentor World!",
+          "output": "Hello,\nCode-Mentor\nWorld!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "JDK JRE JVM",
+          "output": "JDK\nJRE\nJVM",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2026 batch CSE",
+          "output": "2026\nbatch\nCSE",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "main() println() Scanner",
+          "output": "main()\nprintln()\nScanner",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing exactly three words separated by one or more spaces.",
+        "output_format": "Three lines, each containing one word, in the original order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-14",
+      "title": "Reverse Line Order",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Store several input lines in variables and print them in a different order from the one they were read in.",
+      "problem_statement": "Task: Write a Java program that reads exactly three lines of text and displays them in reverse order: the third line first, then the second line, and finally the first line.\n\nEach line must be printed exactly as it was read.",
+      "input_format": "Three lines of text.",
+      "output_format": "The same three lines in reverse order.",
+      "constraints": "1 <= length of each line <= 100\nNo line is empty.",
+      "sample_inputs": [
+        "Step 1\nStep 2\nStep 3",
+        "Write code\nCompile code\nRun code"
+      ],
+      "sample_outputs": [
+        "Step 3\nStep 2\nStep 1",
+        "Run code\nCompile code\nWrite code"
+      ],
+      "hints": [
+        "You must read all three lines before printing any of them.",
+        "Store each line in its own String variable, such as first, second, and third.",
+        "Print third, then second, then first."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String first = sc.nextLine();\n        String second = sc.nextLine();\n        String third = sc.nextLine();\n        System.out.println(third);\n        System.out.println(second);\n        System.out.println(first);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Step 1\nStep 2\nStep 3",
+          "output": "Step 3\nStep 2\nStep 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Write code\nCompile code\nRun code",
+          "output": "Run code\nCompile code\nWrite code",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a\nb\nc",
+          "output": "c\nb\na",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Alex Morgan\nCSE\nCentral Engineering College",
+          "output": "Central Engineering College\nCSE\nAlex Morgan",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Morning\nAfternoon\nEvening",
+          "output": "Evening\nAfternoon\nMorning",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "First line.\nSecond line, with comma.\nThird line!",
+          "output": "Third line!\nSecond line, with comma.\nFirst line.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "x\nx y\nx y z",
+          "output": "x y z\nx y\nx",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Go\nGo Go\nStop",
+          "output": "Stop\nGo Go\nGo",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Three lines of text.",
+        "output_format": "The same three lines in reverse order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-15",
+      "title": "Print Java Source Text",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Combine the \\\" and \\\\ escape sequences to print text that itself contains Java escape sequences.",
+      "problem_statement": "Task: Write a Java program that displays the following line of Java code exactly as shown:\nSystem.out.println(\"Hello\\nWorld\");\n\nThe output must contain the double quotation marks and the two characters backslash and n. It must not contain an actual line break between Hello and World.",
+      "input_format": "No input.",
+      "output_format": "A single line: System.out.println(\"Hello\\nWorld\");",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "System.out.println(\"Hello\\nWorld\");"
+      ],
+      "hints": [
+        "You need \\\" for each quotation mark and \\\\ for the backslash.",
+        "If you write \\n alone inside your String, Java prints a real line break instead of the two characters.",
+        "Build the literal piece by piece: \"System.out.println(\\\"Hello\\\\nWorld\\\");\""
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"System.out.println(\\\"Hello\\\\nWorld\\\");\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "System.out.println(\"Hello\\nWorld\");",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: System.out.println(\"Hello\\nWorld\");"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-16",
+      "title": "Commented-Out Code",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Disable a line of code by turning it into a comment, a common technique while debugging.",
+      "problem_statement": "Task: Write a Java program that contains three System.out.println() statements, which print Step 1: Start, Step 2: Debug, and Step 3: Finish in that order.\n\nDisable the statement that prints Step 2: Debug by turning it into a single-line comment (//) instead of deleting it. When the program runs, it must display only the first and third lines.",
+      "input_format": "No input.",
+      "output_format": "Two lines:\nStep 1: Start\nStep 3: Finish",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Step 1: Start\nStep 3: Finish"
+      ],
+      "hints": [
+        "A line that starts with // is ignored by the compiler.",
+        "Find the println() statement that prints Step 2: Debug.",
+        "Put // at the start of that statement and leave the other two unchanged."
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Step 1: Start\");\n        System.out.println(\"Step 2: Debug\");\n        System.out.println(\"Step 3: Finish\");\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Step 1: Start\");\n        // System.out.println(\"Step 2: Debug\");\n        System.out.println(\"Step 3: Finish\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Step 1: Start\nStep 3: Finish",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "Two lines:\nStep 1: Start\nStep 3: Finish"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-17",
+      "title": "Correct Main Method Declaration",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Medium",
+      "objective": "Identify the parts of the main method signature that the JVM requires and fix an incorrect declaration.",
+      "problem_statement": "Task: A beginner declared the program's entry point as public void Main(String args). The program compiles, but the JVM cannot run it because this is not a valid entry point. The declaration has three mistakes.\n\nWrite the program using the correct standard entry point public static void main(String[] args), and display Execution started.",
+      "input_format": "No input.",
+      "output_format": "A single line: Execution started",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Execution started"
+      ],
+      "hints": [
+        "Compare public void Main(String args) with public static void main(String[] args) word by word.",
+        "Java is case-sensitive, so Main and main are different names.",
+        "Add static, rename Main to main, and change String args to String[] args."
+      ],
+      "starter_code": "public class Main {\n    public void Main(String args) {\n        System.out.println(\"Execution started\");\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Execution started\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Execution started",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "A single line: Execution started"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-18",
+      "title": "Repair a Program with Three Errors",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Hard",
+      "objective": "Read compiler errors and fix several different syntax mistakes in one program.",
+      "problem_statement": "Task: A beginner wrote a program that should display Program repaired and All errors fixed on two separate lines, but the program does not compile because of three errors:\n- In the first print statement, System is written as system.\n- The first print statement is missing its semicolon.\n- The text in the second print statement is missing its closing double quotation mark.\n\nWrite the corrected program so that it compiles and displays both lines.\n\nThis is a source-code correction exercise, not a program that reads code from standard input.",
+      "input_format": "No input.",
+      "output_format": "Two lines:\nProgram repaired\nAll errors fixed",
+      "constraints": "No input is provided.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "Program repaired\nAll errors fixed"
+      ],
+      "hints": [
+        "Java is case-sensitive, and the class is called System with a capital S.",
+        "Every statement must end with a semicolon.",
+        "Every String literal needs both an opening and a closing double quotation mark."
+      ],
+      "starter_code": "public class Main {\n    public static void main(String[] args) {\n        system.out.println(\"Program repaired\")\n        System.out.println(\"All errors fixed);\n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Program repaired\");\n        System.out.println(\"All errors fixed\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "Program repaired\nAll errors fixed",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input.",
+        "output_format": "Two lines:\nProgram repaired\nAll errors fixed"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-19",
+      "title": "Correct Scanner Line Input",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Hard",
+      "objective": "Diagnose why next() reads only one word and fix the program by switching to nextLine().",
+      "problem_statement": "Task: A beginner program reads a sentence with Scanner.next() and prints it, but only the first word of the sentence appears in the output. This happens because next() reads only the next token and stops at the first space.\n\nCorrect the program so it uses Scanner.nextLine() instead, reads the complete sentence from standard input, and displays it unchanged.",
+      "input_format": "A single line containing a sentence.",
+      "output_format": "The sentence exactly as entered.",
+      "constraints": "1 <= length of sentence <= 200\nThe sentence does not begin or end with a space.",
+      "sample_inputs": [
+        "Java supports object oriented programming",
+        "Scanner reads input from the keyboard"
+      ],
+      "sample_outputs": [
+        "Java supports object oriented programming",
+        "Scanner reads input from the keyboard"
+      ],
+      "hints": [
+        "With next(), the input Java supports object oriented programming prints only Java.",
+        "next() stops reading at whitespace, while nextLine() reads until the end of the line.",
+        "Change sc.next() to sc.nextLine() and keep the rest of the program the same."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String sentence = sc.next();\n        System.out.println(sentence);\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String sentence = sc.nextLine();\n        System.out.println(sentence);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Java supports object oriented programming",
+          "output": "Java supports object oriented programming",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Scanner reads input from the keyboard",
+          "output": "Scanner reads input from the keyboard",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Two words",
+          "output": "Two words",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "The JVM executes compiled bytecode.",
+          "output": "The JVM executes compiled bytecode.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "next() stops at the first space!",
+          "output": "next() stops at the first space!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Practice makes a programmer better",
+          "output": "Practice makes a programmer better",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Java was released in 1995.",
+          "output": "Java was released in 1995.",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Strings, numbers, and symbols: all fine",
+          "output": "Strings, numbers, and symbols: all fine",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "A single line containing a sentence.",
+        "output_format": "The sentence exactly as entered."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M1-20",
+      "title": "Student Profile Card",
+      "module": "Module 01: Java Fundamentals",
+      "difficulty": "Hard",
+      "objective": "Combine line input, String joining, and the \\t and \\\" escape sequences to produce precisely formatted output.",
+      "problem_statement": "Task: Write a Java program that reads a student's name, course name, and city on three separate lines and displays a profile card in this exact format:\n\nSTUDENT PROFILE\nName:<TAB><name>\nCourse:<TAB>\"<course>\"\nCity:<TAB><city>\n\nRules:\n- <TAB> is a single tab character, not spaces.\n- The course name must be surrounded by double quotation marks.\n- Replace <name>, <course>, and <city> with the values that were read.",
+      "input_format": "Three lines:\nLine 1: student name\nLine 2: course name\nLine 3: city",
+      "output_format": "Four lines: the heading STUDENT PROFILE, then the Name, Course, and City lines in the format shown.",
+      "constraints": "1 <= length of each line <= 60\nNo line is empty, and no line begins or ends with a space.",
+      "sample_inputs": [
+        "Alex Morgan\nJava Fundamentals\nHyderabad",
+        "Ananya Rao\nData Analytics\nWarangal"
+      ],
+      "sample_outputs": [
+        "STUDENT PROFILE\nName:\tAlex Morgan\nCourse:\t\"Java Fundamentals\"\nCity:\tHyderabad",
+        "STUDENT PROFILE\nName:\tAnanya Rao\nCourse:\t\"Data Analytics\"\nCity:\tWarangal"
+      ],
+      "hints": [
+        "Read all three values with nextLine(), because each can contain spaces.",
+        "Use \\t for the tab and \\\" for each quotation mark inside String literals.",
+        "For the course line, print \"Course:\\t\\\"\" + course + \"\\\"\"."
+      ],
+      "starter_code": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Write your code here\n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String name = sc.nextLine();\n        String course = sc.nextLine();\n        String city = sc.nextLine();\n        System.out.println(\"STUDENT PROFILE\");\n        System.out.println(\"Name:\\t\" + name);\n        System.out.println(\"Course:\\t\\\"\" + course + \"\\\"\");\n        System.out.println(\"City:\\t\" + city);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Alex Morgan\nJava Fundamentals\nHyderabad",
+          "output": "STUDENT PROFILE\nName:\tAlex Morgan\nCourse:\t\"Java Fundamentals\"\nCity:\tHyderabad",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Ananya Rao\nData Analytics\nWarangal",
+          "output": "STUDENT PROFILE\nName:\tAnanya Rao\nCourse:\t\"Data Analytics\"\nCity:\tWarangal",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Li\nC\nPune",
+          "output": "STUDENT PROFILE\nName:\tLi\nCourse:\t\"C\"\nCity:\tPune",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Mohammed Abdul Rahman\nFull Stack Web Development\nNew Delhi",
+          "output": "STUDENT PROFILE\nName:\tMohammed Abdul Rahman\nCourse:\t\"Full Stack Web Development\"\nCity:\tNew Delhi",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Sneha P. Iyer\nCloud Computing & DevOps\nKochi",
+          "output": "STUDENT PROFILE\nName:\tSneha P. Iyer\nCourse:\t\"Cloud Computing & DevOps\"\nCity:\tKochi",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Arjun\nPython\nNavi Mumbai",
+          "output": "STUDENT PROFILE\nName:\tArjun\nCourse:\t\"Python\"\nCity:\tNavi Mumbai",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Sara Thomas\nUI/UX Design Basics\nBengaluru",
+          "output": "STUDENT PROFILE\nName:\tSara Thomas\nCourse:\t\"UI/UX Design Basics\"\nCity:\tBengaluru",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Ravi Kumar\nMachine Learning (Advanced)\nChennai",
+          "output": "STUDENT PROFILE\nName:\tRavi Kumar\nCourse:\t\"Machine Learning (Advanced)\"\nCity:\tChennai",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 01: Java Fundamentals",
+        "time_complexity": "O(L)",
+        "space_complexity": "O(L)",
+        "input_format": "Three lines:\nLine 1: student name\nLine 2: course name\nLine 3: city",
+        "output_format": "Four lines: the heading STUDENT PROFILE, then the Name, Course, and City lines in the format shown."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M1_Java_Fundamentals.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 83,
+    "visible_test_cases": 38,
+    "hidden_test_cases": 45,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

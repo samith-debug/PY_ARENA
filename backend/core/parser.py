@@ -13,19 +13,20 @@ from backend.models.schema import (
 
 COLUMN_ALIASES = {
     "question_id": ["question_id", "final_id", "id", "qid"],
-    "title": ["title", "question_title", "name"],
+    "title": ["title", "question_title", "name", "problem_name", "problem name"],
     "difficulty": ["difficulty", "level"],
-    "objective": ["objective", "learning_objective", "learning_objectives"],
-    "problem_statement": ["problem_statement", "statement", "description", "problem", "question"],
+    "objective": ["objective", "learning_objective", "learning_objectives", "category"],
+    "problem_statement": ["problem_statement", "statement", "description", "problem", "question", "problem_description", "problem description"],
     "constraints": ["constraints", "constraint"],
-    "sample_input": ["sample_input", "input_example", "sample_input_1"],
-    "sample_output": ["sample_output", "output_example", "sample_output_1"],
-    "starter_code": ["starter_code", "boilerplate", "template_code"],
+    "sample_input": ["sample_input", "input_example", "sample_input_1", "sample input", "input"],
+    "sample_output": ["sample_output", "output_example", "sample_output_1", "sample output", "output"],
+    "starter_code": ["starter_code", "boilerplate_code", "boilerplate", "template_code", "template"],
     "reference_solution": ["reference_solution", "solution", "reference_code", "answer_code"],
     "test_cases": ["test_cases", "tests", "testcases"],
     "execution_mode": ["execution_mode", "mode"],
     "function_name": ["function_name", "entry_point"],
-    "hints": ["hints", "progressive_hints"]
+    "hints": ["hints", "progressive_hints"],
+    "language": ["language", "lang", "programming_language"]
 }
 
 def resolve_field(row: Dict[str, str], canonical_name: str) -> Tuple[Optional[str], Optional[str]]:
@@ -35,6 +36,8 @@ def resolve_field(row: Dict[str, str], canonical_name: str) -> Tuple[Optional[st
     """
     aliases = COLUMN_ALIASES.get(canonical_name, [canonical_name])
     for col in row.keys():
+        if not col or not isinstance(col, str):
+            continue
         col_clean = col.strip().lower()
         for alias in aliases:
             if col_clean == alias.lower():
@@ -241,11 +244,27 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
         ref_solution, _ = resolve_field(row, "reference_solution")
         mode, _ = resolve_field(row, "execution_mode")
         func_name, _ = resolve_field(row, "function_name")
+        raw_lang, _ = resolve_field(row, "language")
 
         # Specific formatting fields if present
         input_format = row.get("input_format") or row.get("input_specification")
         output_format = row.get("output_format") or row.get("output_specification")
         module_name = row.get("module") or row.get("module_name")
+
+        # Detect language (explicit column or auto-detection from filename/code)
+        if raw_lang and raw_lang.strip():
+            lang = raw_lang.strip().lower()
+        elif "java" in filename.lower() or (module_name and "java" in module_name.lower()):
+            lang = "java"
+        elif (ref_solution and any(k in ref_solution for k in ["public class", "class Solution", "System.out.print", "import java.", "Scanner sc"])) or \
+             (starter_code and any(k in starter_code for k in ["public class", "class Solution", "System.out.print", "import java.", "Scanner sc"])):
+            lang = "java"
+        else:
+            lang = "python"
+
+        # Provide default starter code for Java if empty
+        if lang == "java" and (not starter_code or not starter_code.strip()):
+            starter_code = "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}"
 
         # Samples / Examples
         sample_inputs: List[str] = []
@@ -315,7 +334,7 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
                 else:
                     row_warnings.append(issue.message)
         else:
-            row_warnings.append("No test_cases column found for row")
+            row_warnings.append("No test_cases column found.")
             all_issues.append(ValidationIssue(
                 row_number=row_idx,
                 question_id=qid,
@@ -323,6 +342,17 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
                 severity="warning",
                 message="No test_cases column found."
             ))
+
+        # Fallback: if no test cases were parsed from JSON, but sample inputs/outputs exist, generate visible test cases
+        if not test_cases and sample_inputs and sample_outputs:
+            for s_idx, (s_in_val, s_out_val) in enumerate(zip(sample_inputs, sample_outputs)):
+                test_cases.append(TestCase(
+                    index=s_idx + 1,
+                    input=s_in_val,
+                    output=s_out_val,
+                    is_hidden=False,
+                    name=f"Sample Test Case {s_idx + 1}"
+                ))
 
         total_test_cases += len(test_cases)
         vis_count = sum(1 for t in test_cases if not t.is_hidden)
@@ -338,7 +368,8 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
         
         extra_fields = {
             k: v for k, v in row.items() 
-            if k not in matched_canonical_cols 
+            if k and isinstance(k, str)
+            and k not in matched_canonical_cols 
             and not k.startswith("hint_") 
             and not k.startswith("sample_input_") 
             and not k.startswith("sample_output_")
@@ -389,6 +420,7 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
             reference_solution=ref_solution,
             execution_mode=exec_mode,
             function_name=func_name,
+            language=lang,
             test_cases=test_cases,
             extra_fields=extra_fields,
             validation_errors=row_issues,
@@ -423,5 +455,6 @@ def parse_csv_content(csv_bytes_or_str: Any, filename: str) -> QuestionBank:
         visible_test_cases=visible_test_cases,
         hidden_test_cases=hidden_test_cases,
         questions=questions,
-        validation_report=report
+        validation_report=report,
+        language="java" if ("java" in filename.lower() or any(q.language == "java" for q in questions)) else "python"
     )

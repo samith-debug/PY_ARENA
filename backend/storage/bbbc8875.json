@@ -1,0 +1,1945 @@
+{
+  "id": "bbbc8875",
+  "filename": "JP_M12_Java_OOP.csv",
+  "imported_at": "2026-10-24T16:28:09.121769Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M12-01",
+      "title": "Student Record Using a Class",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Define a class with fields, create an object, and assign and read its fields.",
+      "problem_statement": "Create a class named Student with public fields name (String) and marks (int). In main(), read the student's details, create one Student object using the default constructor, assign the input values to the fields, and print them.\n\nThe name contains no spaces. Assume all input is valid.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The object stores the name and marks, which are printed with the required labels.",
+      "input_format": "Line 1: student name.\nLine 2: marks.",
+      "output_format": "Name: <name>\nMarks: <marks>",
+      "constraints": "Name length: 1–50 characters.\n0 ≤ marks ≤ 100",
+      "sample_inputs": [
+        "Ananya\n85",
+        "Bo\n0"
+      ],
+      "sample_outputs": [
+        "Name: Ananya\nMarks: 85",
+        "Name: Bo\nMarks: 0"
+      ],
+      "hints": [
+        "Declare class Student (without public) above class Main, with the fields String name; and int marks;.",
+        "Create the object with Student s = new Student(); then assign s.name and s.marks.",
+        "Print using the object's fields: \"Name: \" + s.name."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Student s = new Student();\n        s.name = sc.next();\n        s.marks = Integer.parseInt(sc.next());\n        System.out.println(\"Name: \" + s.name);\n        System.out.println(\"Marks: \" + s.marks);\n    }\n}\n\nclass Student {\n    public String name;\n    public int marks;\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Ananya\n85",
+          "output": "Name: Ananya\nMarks: 85",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Bo\n0",
+          "output": "Name: Bo\nMarks: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "X\n100",
+          "output": "Name: X\nMarks: 100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Ravi\n47",
+          "output": "Name: Ravi\nMarks: 47",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Alexandria\n99",
+          "output": "Name: Alexandria\nMarks: 99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Mia\n1",
+          "output": "Name: Mia\nMarks: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Zed\n50",
+          "output": "Name: Zed\nMarks: 50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Li\n73",
+          "output": "Name: Li\nMarks: 73",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: student name.\nLine 2: marks.",
+        "output_format": "Name: <name>\nMarks: <marks>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-02",
+      "title": "Rectangle Area and Perimeter",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Write instance methods that compute values from an object's fields.",
+      "problem_statement": "Create a class named Rectangle with double fields length and width. Implement calculateArea() returning length × width and calculatePerimeter() returning 2 × (length + width).\n\nRead the two dimensions, create a Rectangle object, assign the dimensions, and call both methods. Format both results to exactly two decimal places using Locale.US so the decimal separator is always a period.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The area is 5 × 3 = 15, and the perimeter is 2 × (5 + 3) = 16.",
+      "input_format": "Line 1: length.\nLine 2: width.",
+      "output_format": "Area: <area to 2 decimal places>\nPerimeter: <perimeter to 2 decimal places>",
+      "constraints": "0.01 ≤ length, width ≤ 10,000",
+      "sample_inputs": [
+        "5\n3",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "Area: 15.00\nPerimeter: 16.00",
+        "Area: 1.00\nPerimeter: 4.00"
+      ],
+      "hints": [
+        "Methods inside the class can use the fields directly: return length * width;.",
+        "Call the methods on the object: r.calculateArea().",
+        "Format with String.format(Locale.US, \"%.2f\", value) and import java.util.Locale."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Rectangle r = new Rectangle();\n        r.length = Double.parseDouble(sc.next());\n        r.width = Double.parseDouble(sc.next());\n        System.out.println(\"Area: \" + String.format(Locale.US, \"%.2f\", r.calculateArea()));\n        System.out.println(\"Perimeter: \" + String.format(Locale.US, \"%.2f\", r.calculatePerimeter()));\n    }\n}\n\nclass Rectangle {\n    double length;\n    double width;\n\n    double calculateArea() {\n        return length * width;\n    }\n\n    double calculatePerimeter() {\n        return 2 * (length + width);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n3",
+          "output": "Area: 15.00\nPerimeter: 16.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "Area: 1.00\nPerimeter: 4.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0.01\n0.01",
+          "output": "Area: 0.00\nPerimeter: 0.04",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "10000\n10000",
+          "output": "Area: 100000000.00\nPerimeter: 40000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2.5\n4",
+          "output": "Area: 10.00\nPerimeter: 13.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12.5\n4.2",
+          "output": "Area: 52.50\nPerimeter: 33.40",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n0.5",
+          "output": "Area: 3.50\nPerimeter: 15.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n0.25",
+          "output": "Area: 25.00\nPerimeter: 200.50",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: length.\nLine 2: width.",
+        "output_format": "Area: <area to 2 decimal places>\nPerimeter: <perimeter to 2 decimal places>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-03",
+      "title": "Bank Account with Encapsulation",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Protect a private field and change it only through validated methods.",
+      "problem_statement": "Create a class BankAccount with a private long field balance. Implement these public methods:\n- deposit(long amount): add the amount to the balance.\n- withdraw(long amount): subtract the amount only when amount is positive and amount <= balance. Otherwise, leave the balance unchanged.\n- getBalance(): return the current balance.\nRead the initial balance, then process all deposits in order, followed by all withdrawals in order. A withdrawal equal to the balance is valid and leaves the balance at zero.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: Deposits raise the balance to 1500. Withdrawals of 100 and 800 leave 600. The final withdrawal leaves 550.",
+      "input_format": "Line 1: initial balance.\nLine 2: number of deposits, D.\nNext D lines: deposit amounts.\nNext line: number of withdrawals, W.\nNext W lines: withdrawal amounts.",
+      "output_format": "Print the final balance as an integer.",
+      "constraints": "0 ≤ initial balance ≤ 10^12\n0 ≤ D, W ≤ 100\nEach transaction amount is between 1 and 10^9.\nThe balance never exceeds 10^15.",
+      "sample_inputs": [
+        "1000\n2\n200\n300\n3\n100\n800\n50",
+        "0\n0\n0"
+      ],
+      "sample_outputs": [
+        "550",
+        "0"
+      ],
+      "hints": [
+        "Give BankAccount a constructor that takes the initial balance, since the field is private.",
+        "In withdraw, check amount > 0 && amount <= balance before subtracting.",
+        "main() can only read the balance through getBalance()."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        BankAccount account = new BankAccount(Long.parseLong(sc.next()));\n        int d = Integer.parseInt(sc.next());\n        for (int i = 0; i < d; i++) {\n            account.deposit(Long.parseLong(sc.next()));\n        }\n        int w = Integer.parseInt(sc.next());\n        for (int i = 0; i < w; i++) {\n            account.withdraw(Long.parseLong(sc.next()));\n        }\n        System.out.println(account.getBalance());\n    }\n}\n\nclass BankAccount {\n    private long balance;\n\n    BankAccount(long initialBalance) {\n        balance = initialBalance;\n    }\n\n    public void deposit(long amount) {\n        balance += amount;\n    }\n\n    public void withdraw(long amount) {\n        if (amount > 0 && amount <= balance) {\n            balance -= amount;\n        }\n    }\n\n    public long getBalance() {\n        return balance;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000\n2\n200\n300\n3\n100\n800\n50",
+          "output": "550",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100\n0\n1\n100",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100\n0\n1\n101",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000000000\n2\n1000000000\n1000000000\n0",
+          "output": "1002000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "50\n1\n50\n2\n100\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "500\n0\n3\n100\n100\n100",
+          "output": "200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0\n1\n5\n1\n10",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: initial balance.\nLine 2: number of deposits, D.\nNext D lines: deposit amounts.\nNext line: number of withdrawals, W.\nNext W lines: withdrawal amounts.",
+        "output_format": "Print the final balance as an integer."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-04",
+      "title": "Constructor and Getter Methods",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Initialize private fields with a parameterized constructor and read them with getters.",
+      "problem_statement": "Create a class Employee with private fields id (int) and salary (double). Implement a parameterized constructor that initializes both fields, plus public methods getId() and getSalary().\n\nRead the employee's details, construct an Employee object using the parameterized constructor, and print its values using the getter methods. Format salary to exactly two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The constructor initializes the private fields. The getters provide controlled access to their values.",
+      "input_format": "Line 1: employee ID.\nLine 2: monthly salary.",
+      "output_format": "ID: <id>\nSalary: <salary to 2 decimal places>",
+      "constraints": "1 ≤ ID ≤ 1,000,000\n0 ≤ salary ≤ 10,000,000",
+      "sample_inputs": [
+        "204\n32500.5",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "ID: 204\nSalary: 32500.50",
+        "ID: 1\nSalary: 0.00"
+      ],
+      "hints": [
+        "Inside the constructor, use this.id = id; when the parameter has the same name as the field.",
+        "Create the object in one step: new Employee(id, salary).",
+        "Format the salary with String.format(Locale.US, \"%.2f\", e.getSalary())."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int id = Integer.parseInt(sc.next());\n        double salary = Double.parseDouble(sc.next());\n        Employee e = new Employee(id, salary);\n        System.out.println(\"ID: \" + e.getId());\n        System.out.println(\"Salary: \" + String.format(Locale.US, \"%.2f\", e.getSalary()));\n    }\n}\n\nclass Employee {\n    private int id;\n    private double salary;\n\n    Employee(int id, double salary) {\n        this.id = id;\n        this.salary = salary;\n    }\n\n    public int getId() {\n        return id;\n    }\n\n    public double getSalary() {\n        return salary;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "204\n32500.5",
+          "output": "ID: 204\nSalary: 32500.50",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "ID: 1\nSalary: 0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000000\n10000000",
+          "output": "ID: 1000000\nSalary: 10000000.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "42\n1234.567",
+          "output": "ID: 42\nSalary: 1234.57",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7\n99.9",
+          "output": "ID: 7\nSalary: 99.90",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "300\n0.01",
+          "output": "ID: 300\nSalary: 0.01",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "555\n45000",
+          "output": "ID: 555\nSalary: 45000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9\n12.3",
+          "output": "ID: 9\nSalary: 12.30",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: employee ID.\nLine 2: monthly salary.",
+        "output_format": "ID: <id>\nSalary: <salary to 2 decimal places>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-05",
+      "title": "Temperature Conversion Object",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Store a value in an object through its constructor and compute a derived value with a method.",
+      "problem_statement": "Create a class Temperature with a private double field celsius. Its constructor must initialize this field. Implement toFahrenheit(), which returns the converted temperature using:\n\nFahrenheit = Celsius × 9.0 / 5.0 + 32.0\n\nRead the Celsius value, construct the object, call the method, and print both temperatures to exactly two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: 25°C converts to 77°F.",
+      "input_format": "One line containing the Celsius temperature.",
+      "output_format": "Celsius: <value to 2 decimal places>\nFahrenheit: <value to 2 decimal places>",
+      "constraints": "−273.15 ≤ Celsius ≤ 100,000",
+      "sample_inputs": [
+        "25",
+        "0"
+      ],
+      "sample_outputs": [
+        "Celsius: 25.00\nFahrenheit: 77.00",
+        "Celsius: 0.00\nFahrenheit: 32.00"
+      ],
+      "hints": [
+        "Use 9.0 / 5.0, not 9 / 5: integer division would give 1.",
+        "Add a getter for celsius, because the field is private.",
+        "Format both values with String.format(Locale.US, \"%.2f\", value)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Temperature t = new Temperature(Double.parseDouble(sc.next()));\n        System.out.println(\"Celsius: \" + String.format(Locale.US, \"%.2f\", t.getCelsius()));\n        System.out.println(\"Fahrenheit: \" + String.format(Locale.US, \"%.2f\", t.toFahrenheit()));\n    }\n}\n\nclass Temperature {\n    private double celsius;\n\n    Temperature(double celsius) {\n        this.celsius = celsius;\n    }\n\n    public double getCelsius() {\n        return celsius;\n    }\n\n    public double toFahrenheit() {\n        return celsius * 9.0 / 5.0 + 32.0;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "25",
+          "output": "Celsius: 25.00\nFahrenheit: 77.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Celsius: 0.00\nFahrenheit: 32.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-40",
+          "output": "Celsius: -40.00\nFahrenheit: -40.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100",
+          "output": "Celsius: 100.00\nFahrenheit: 212.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-273.15",
+          "output": "Celsius: -273.15\nFahrenheit: -459.67",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "37",
+          "output": "Celsius: 37.00\nFahrenheit: 98.60",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100000",
+          "output": "Celsius: 100000.00\nFahrenheit: 180032.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "36.6",
+          "output": "Celsius: 36.60\nFahrenheit: 97.88",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing the Celsius temperature.",
+        "output_format": "Celsius: <value to 2 decimal places>\nFahrenheit: <value to 2 decimal places>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-06",
+      "title": "Method Overloading in a Calculator",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Easy",
+      "objective": "Declare overloaded instance methods that differ by parameter count and type.",
+      "problem_statement": "Create a class Calculator with these overloaded methods:\n- add(int a, int b) returns the sum of two integers.\n- add(int a, int b, int c) returns the sum of three integers.\n- add(double a, double b) returns the sum of two decimal numbers.\nRead the seven input values in the specified order. Call the matching overload for each group and print each result on a separate line. Format the decimal result to two places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: Java selects the correct overload based on the number and types of arguments.",
+      "input_format": "Lines 1–2: two integers.\nLines 3–5: three integers.\nLines 6–7: two decimal numbers.",
+      "output_format": "Print the first sum, second sum, and decimal sum on separate lines.",
+      "constraints": "−1,000,000 ≤ integer inputs ≤ 1,000,000\n−1,000,000.00 ≤ decimal inputs ≤ 1,000,000.00",
+      "sample_inputs": [
+        "4\n7\n1\n2\n3\n2.5\n3.25",
+        "0\n0\n0\n0\n0\n0\n0"
+      ],
+      "sample_outputs": [
+        "11\n6\n5.75",
+        "0\n0\n0.00"
+      ],
+      "hints": [
+        "All three methods are named add; Java tells them apart by their parameter lists.",
+        "Read the last two values as doubles so the add(double, double) version is chosen.",
+        "Only the decimal result is formatted with two places."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Calculator calc = new Calculator();\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        int c = Integer.parseInt(sc.next());\n        int d = Integer.parseInt(sc.next());\n        int e = Integer.parseInt(sc.next());\n        double x = Double.parseDouble(sc.next());\n        double y = Double.parseDouble(sc.next());\n        System.out.println(calc.add(a, b));\n        System.out.println(calc.add(c, d, e));\n        System.out.println(String.format(Locale.US, \"%.2f\", calc.add(x, y)));\n    }\n}\n\nclass Calculator {\n    int add(int a, int b) {\n        return a + b;\n    }\n\n    int add(int a, int b, int c) {\n        return a + b + c;\n    }\n\n    double add(double a, double b) {\n        return a + b;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n7\n1\n2\n3\n2.5\n3.25",
+          "output": "11\n6\n5.75",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n0\n0\n0\n0\n0\n0",
+          "output": "0\n0\n0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-5\n5\n1\n-1\n0\n-2.5\n-2.5",
+          "output": "0\n0\n-5.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000000\n1000000\n1000000\n1000000\n1000000\n1000000.00\n1000000.00",
+          "output": "2000000\n3000000\n2000000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n-7\n10\n20\n30\n0.1\n0.2",
+          "output": "-4\n60\n0.30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n2\n3\n4\n5\n1.5\n1.25",
+          "output": "3\n12\n2.75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1000000\n-1\n-5\n-5\n-5\n-0.75\n0.25",
+          "output": "-1000001\n-15\n-0.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9\n9\n9\n9\n9\n9.99\n0.01",
+          "output": "18\n27\n10.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Lines 1–2: two integers.\nLines 3–5: three integers.\nLines 6–7: two decimal numbers.",
+        "output_format": "Print the first sum, second sum, and decimal sum on separate lines."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-07",
+      "title": "Product Inventory with Validation",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Encapsulate state and allow changes only through a method that validates each request.",
+      "problem_statement": "Create a class Product with private fields name (String), price (long), and quantity (int). Initialize all fields through a constructor and provide public getters.\n\nImplement sell(int count). It must reduce quantity only when count is positive and no greater than the available quantity. Invalid requests must leave quantity unchanged.\n\nRead the product details and sale requests, process the requests in order, and print the final product details.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The sale of 20 is rejected because only 8 remain after the first sale. The final sale leaves 5 units.",
+      "input_format": "Line 1: product name, without spaces.\nLine 2: price.\nLine 3: initial quantity.\nLine 4: number of sale requests, N.\nNext N lines: requested quantities.",
+      "output_format": "Product: <name>\nPrice: <price>\nQuantity: <remaining quantity>",
+      "constraints": "Name length: 1–50\n0 ≤ price ≤ 10^12\n0 ≤ initial quantity ≤ 1,000,000\n0 ≤ N ≤ 100\n1 ≤ each sale request ≤ 1,000,000",
+      "sample_inputs": [
+        "Keyboard\n1500\n10\n3\n2\n20\n3",
+        "Pen\n10\n0\n1\n1"
+      ],
+      "sample_outputs": [
+        "Product: Keyboard\nPrice: 1500\nQuantity: 5",
+        "Product: Pen\nPrice: 10\nQuantity: 0"
+      ],
+      "hints": [
+        "Store price as a long, because it can reach 10^12.",
+        "In sell, check count > 0 && count <= quantity before subtracting.",
+        "A sale equal to the remaining quantity is valid and leaves 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String name = sc.next();\n        long price = Long.parseLong(sc.next());\n        int quantity = Integer.parseInt(sc.next());\n        Product p = new Product(name, price, quantity);\n        int n = Integer.parseInt(sc.next());\n        for (int i = 0; i < n; i++) {\n            p.sell(Integer.parseInt(sc.next()));\n        }\n        System.out.println(\"Product: \" + p.getName());\n        System.out.println(\"Price: \" + p.getPrice());\n        System.out.println(\"Quantity: \" + p.getQuantity());\n    }\n}\n\nclass Product {\n    private String name;\n    private long price;\n    private int quantity;\n\n    Product(String name, long price, int quantity) {\n        this.name = name;\n        this.price = price;\n        this.quantity = quantity;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public long getPrice() {\n        return price;\n    }\n\n    public int getQuantity() {\n        return quantity;\n    }\n\n    public void sell(int count) {\n        if (count > 0 && count <= quantity) {\n            quantity -= count;\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Keyboard\n1500\n10\n3\n2\n20\n3",
+          "output": "Product: Keyboard\nPrice: 1500\nQuantity: 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Pen\n10\n0\n1\n1",
+          "output": "Product: Pen\nPrice: 10\nQuantity: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "Mug\n250\n5\n2\n5\n1",
+          "output": "Product: Mug\nPrice: 250\nQuantity: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Lamp\n999\n100\n0",
+          "output": "Product: Lamp\nPrice: 999\nQuantity: 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Desk\n1000000000000\n1000000\n3\n1000000\n1\n1",
+          "output": "Product: Desk\nPrice: 1000000000000\nQuantity: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Cup\n0\n3\n3\n1\n1\n1",
+          "output": "Product: Cup\nPrice: 0\nQuantity: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Bag\n700\n10\n4\n11\n10\n1\n1",
+          "output": "Product: Bag\nPrice: 700\nQuantity: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Hat\n300\n7\n2\n3\n3",
+          "output": "Product: Hat\nPrice: 300\nQuantity: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: product name, without spaces.\nLine 2: price.\nLine 3: initial quantity.\nLine 4: number of sale requests, N.\nNext N lines: requested quantities.",
+        "output_format": "Product: <name>\nPrice: <price>\nQuantity: <remaining quantity>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-08",
+      "title": "Count Objects Using a Static Field",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Use a static field shared by all instances to count constructed objects.",
+      "problem_statement": "Create a class Ticket with a private instance field ticketId and a private static field createdCount, initially zero. Every time a Ticket object is constructed, increment createdCount by one.\n\nImplement a constructor to initialize ticketId and a public static method getCreatedCount() that returns the total number of constructed objects.\n\nRead N ticket IDs, construct one object for each ID, and print the count. Duplicate IDs still represent separate objects.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: Four objects were constructed, so the static count is 4.",
+      "input_format": "Line 1: integer N.\nNext N lines: ticket IDs.",
+      "output_format": "Print the number of constructed objects.",
+      "constraints": "0 ≤ N ≤ 1000\n1 ≤ ticket ID ≤ 1,000,000",
+      "sample_inputs": [
+        "4\n101\n102\n101\n103",
+        "0"
+      ],
+      "sample_outputs": [
+        "4",
+        "0"
+      ],
+      "hints": [
+        "A static field belongs to the class, so every Ticket object shares one createdCount.",
+        "Increase createdCount inside the constructor.",
+        "Call the static method on the class: Ticket.getCreatedCount()."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        for (int i = 0; i < n; i++) {\n            new Ticket(Integer.parseInt(sc.next()));\n        }\n        System.out.println(Ticket.getCreatedCount());\n    }\n}\n\nclass Ticket {\n    private int ticketId;\n    private static int createdCount = 0;\n\n    Ticket(int ticketId) {\n        this.ticketId = ticketId;\n        createdCount++;\n    }\n\n    public static int getCreatedCount() {\n        return createdCount;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n101\n102\n101\n103",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1\n1\n1\n1\n1",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n1000000\n1\n2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n7\n8",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n1\n2\n3\n4\n5\n6",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "10\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nNext N lines: ticket IDs.",
+        "output_format": "Print the number of constructed objects."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-09",
+      "title": "Inheritance: Vehicle Toll Calculation",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Override a base-class method in subclasses and call it through a base-class reference.",
+      "problem_statement": "Create a base class Vehicle with a protected field vehicleNumber (String) and a constructor that initializes it. Implement a public method calculateToll() that returns a default toll of 50.\n\nCreate two subclasses:\n- Car overrides calculateToll() to return 100.\n- Truck overrides calculateToll() to return 200.\nRead the vehicle type and number, create the corresponding object, and call calculateToll() through a Vehicle reference. Print the vehicle number and toll. This must demonstrate method overriding through inheritance.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The object is a Truck, so its overridden method returns 200 rather than the base class's default toll.",
+      "input_format": "Line 1: C for car or T for truck.\nLine 2: vehicle number, without spaces.",
+      "output_format": "Vehicle: <vehicle number>\nToll: <calculated toll>",
+      "constraints": "Vehicle number length: 1–20\nType is always C or T.",
+      "sample_inputs": [
+        "T\nTS09AB1234",
+        "C\nKA01X1"
+      ],
+      "sample_outputs": [
+        "Vehicle: TS09AB1234\nToll: 200",
+        "Vehicle: KA01X1\nToll: 100"
+      ],
+      "hints": [
+        "Each subclass constructor passes the number to the parent with super(vehicleNumber).",
+        "Declare the variable as Vehicle v and assign either new Car(...) or new Truck(...).",
+        "v.calculateToll() runs the subclass's version, chosen at runtime."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String type = sc.next();\n        String number = sc.next();\n        Vehicle v;\n        if (type.equals(\"C\")) {\n            v = new Car(number);\n        } else {\n            v = new Truck(number);\n        }\n        System.out.println(\"Vehicle: \" + v.vehicleNumber);\n        System.out.println(\"Toll: \" + v.calculateToll());\n    }\n}\n\nclass Vehicle {\n    protected String vehicleNumber;\n\n    Vehicle(String vehicleNumber) {\n        this.vehicleNumber = vehicleNumber;\n    }\n\n    public int calculateToll() {\n        return 50;\n    }\n}\n\nclass Car extends Vehicle {\n    Car(String vehicleNumber) {\n        super(vehicleNumber);\n    }\n\n    @Override\n    public int calculateToll() {\n        return 100;\n    }\n}\n\nclass Truck extends Vehicle {\n    Truck(String vehicleNumber) {\n        super(vehicleNumber);\n    }\n\n    @Override\n    public int calculateToll() {\n        return 200;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "T\nTS09AB1234",
+          "output": "Vehicle: TS09AB1234\nToll: 200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "C\nKA01X1",
+          "output": "Vehicle: KA01X1\nToll: 100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "C\nA",
+          "output": "Vehicle: A\nToll: 100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "T\nMH12ZZ9999",
+          "output": "Vehicle: MH12ZZ9999\nToll: 200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "C\nDL3C4567",
+          "output": "Vehicle: DL3C4567\nToll: 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "T\nT",
+          "output": "Vehicle: T\nToll: 200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "C\n12345",
+          "output": "Vehicle: 12345\nToll: 100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "T\nAB",
+          "output": "Vehicle: AB\nToll: 200",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: C for car or T for truck.\nLine 2: vehicle number, without spaces.",
+        "output_format": "Vehicle: <vehicle number>\nToll: <calculated toll>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-10",
+      "title": "Method Overriding: Shape Area",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Override a method in two subclasses with different fields and formulas.",
+      "problem_statement": "Create a class Shape with a public method area() that returns 0.0. Create two subclasses:\n- Circle stores a radius and overrides area() to return π × radius × radius.\n- Rectangle stores length and width and overrides area() to return length × width.\nRead the shape type and its dimensions, create the matching object, and invoke area() through a Shape reference. Use π = 3.141592653589793. Print the result to two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The circle's area is π × 2 × 2, which rounds to 12.57.",
+      "input_format": "Line 1: C or R.\nFor C, line 2 is the radius.\nFor R, line 2 is length and line 3 is width.",
+      "output_format": "Area: <area to 2 decimal places>",
+      "constraints": "0.01 ≤ each dimension ≤ 100,000",
+      "sample_inputs": [
+        "C\n2",
+        "R\n5\n3"
+      ],
+      "sample_outputs": [
+        "Area: 12.57",
+        "Area: 15.00"
+      ],
+      "hints": [
+        "Math.PI equals 3.141592653589793.",
+        "Read the dimensions inside the branch for the chosen type, because circles have one dimension and rectangles have two.",
+        "Store the object in a Shape variable and call area() on it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String type = sc.next();\n        Shape shape;\n        if (type.equals(\"C\")) {\n            shape = new Circle(Double.parseDouble(sc.next()));\n        } else {\n            double length = Double.parseDouble(sc.next());\n            double width = Double.parseDouble(sc.next());\n            shape = new Rectangle(length, width);\n        }\n        System.out.println(\"Area: \" + String.format(Locale.US, \"%.2f\", shape.area()));\n    }\n}\n\nclass Shape {\n    public double area() {\n        return 0.0;\n    }\n}\n\nclass Circle extends Shape {\n    private double radius;\n\n    Circle(double radius) {\n        this.radius = radius;\n    }\n\n    @Override\n    public double area() {\n        return Math.PI * radius * radius;\n    }\n}\n\nclass Rectangle extends Shape {\n    private double length;\n    private double width;\n\n    Rectangle(double length, double width) {\n        this.length = length;\n        this.width = width;\n    }\n\n    @Override\n    public double area() {\n        return length * width;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "C\n2",
+          "output": "Area: 12.57",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "R\n5\n3",
+          "output": "Area: 15.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "C\n1",
+          "output": "Area: 3.14",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "R\n0.5\n0.5",
+          "output": "Area: 0.25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "C\n0.01",
+          "output": "Area: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "R\n100000\n100000",
+          "output": "Area: 10000000000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "C\n10",
+          "output": "Area: 314.16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "R\n2.5\n4",
+          "output": "Area: 10.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: C or R.\nFor C, line 2 is the radius.\nFor R, line 2 is length and line 3 is width.",
+        "output_format": "Area: <area to 2 decimal places>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-11",
+      "title": "toString() for a Book Object",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Override toString() so that printing an object produces a custom description.",
+      "problem_statement": "Create a class Book with private fields title (String), author (String), and year (int). Implement a constructor that initializes all fields. Override toString() to return exactly this format:\n\nBook{title='<title>', author='<author>', year=<year>}\n\nIn main(), read the three values, create a Book object, and print the object directly using System.out.println(book). Do not manually reproduce the output string in main().\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: Printing the object invokes its overridden toString() method.",
+      "input_format": "Line 1: title, without spaces.\nLine 2: author, without spaces.\nLine 3: publication year.",
+      "output_format": "Print the exact string returned by toString().",
+      "constraints": "Title and author lengths: 1–50\n0 ≤ year ≤ 3000",
+      "sample_inputs": [
+        "Dune\nHerbert\n1965",
+        "It\nKing\n1986"
+      ],
+      "sample_outputs": [
+        "Book{title='Dune', author='Herbert', year=1965}",
+        "Book{title='It', author='King', year=1986}"
+      ],
+      "hints": [
+        "Declare it as @Override public String toString().",
+        "Build the string with concatenation, including the single quotes around title and author.",
+        "System.out.println(book) calls toString() automatically."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String title = sc.next();\n        String author = sc.next();\n        int year = Integer.parseInt(sc.next());\n        Book book = new Book(title, author, year);\n        System.out.println(book);\n    }\n}\n\nclass Book {\n    private String title;\n    private String author;\n    private int year;\n\n    Book(String title, String author, int year) {\n        this.title = title;\n        this.author = author;\n        this.year = year;\n    }\n\n    @Override\n    public String toString() {\n        return \"Book{title='\" + title + \"', author='\" + author + \"', year=\" + year + \"}\";\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Dune\nHerbert\n1965",
+          "output": "Book{title='Dune', author='Herbert', year=1965}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "It\nKing\n1986",
+          "output": "Book{title='It', author='King', year=1986}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "A\nB\n0",
+          "output": "Book{title='A', author='B', year=0}",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Hamlet\nShakespeare\n1603",
+          "output": "Book{title='Hamlet', author='Shakespeare', year=1603}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "X\nY\n3000",
+          "output": "Book{title='X', author='Y', year=3000}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "Emma\nAusten\n1815",
+          "output": "Book{title='Emma', author='Austen', year=1815}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "Ulysses\nJoyce\n1922",
+          "output": "Book{title='Ulysses', author='Joyce', year=1922}",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Neuromancer\nGibson\n1984",
+          "output": "Book{title='Neuromancer', author='Gibson', year=1984}",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: title, without spaces.\nLine 2: author, without spaces.\nLine 3: publication year.",
+        "output_format": "Print the exact string returned by toString()."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-12",
+      "title": "equals() for Comparing Points",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Override equals() to compare objects by their field values instead of their references.",
+      "problem_statement": "Create a class Point with private integer fields x and y. Implement a constructor that initializes both fields and override equals(Object obj) so that two Point objects are equal when their x-coordinates and y-coordinates are both equal.\n\nYour implementation must return false when the argument is null or is not a Point. It must compare coordinate values, not object references.\n\nIn main(), read two points, create two separate objects, and print EQUAL if the first object's equals() method returns true for the second; otherwise, print NOT EQUAL.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The two objects are separate instances, but both store the coordinates (3, 5). Therefore, they are equal according to the overridden method.",
+      "input_format": "Lines 1–2: coordinates x1 and y1.\nLines 3–4: coordinates x2 and y2.",
+      "output_format": "Print EQUAL or NOT EQUAL.",
+      "constraints": "−1,000,000 ≤ each coordinate ≤ 1,000,000",
+      "sample_inputs": [
+        "3\n5\n3\n5",
+        "3\n5\n5\n3"
+      ],
+      "sample_outputs": [
+        "EQUAL",
+        "NOT EQUAL"
+      ],
+      "hints": [
+        "The parameter type must be Object, not Point, or you overload equals instead of overriding it.",
+        "Return false if obj is not an instance of Point, using instanceof; this also handles null.",
+        "Cast obj to Point and compare both x and y."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        Point p1 = new Point(Integer.parseInt(sc.next()), Integer.parseInt(sc.next()));\n        Point p2 = new Point(Integer.parseInt(sc.next()), Integer.parseInt(sc.next()));\n        System.out.println(p1.equals(p2) ? \"EQUAL\" : \"NOT EQUAL\");\n    }\n}\n\nclass Point {\n    private int x;\n    private int y;\n\n    Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n\n    @Override\n    public boolean equals(Object obj) {\n        if (!(obj instanceof Point)) {\n            return false;\n        }\n        Point other = (Point) obj;\n        return x == other.x && y == other.y;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n5\n3\n5",
+          "output": "EQUAL",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n5\n5\n3",
+          "output": "NOT EQUAL",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n0\n0\n0",
+          "output": "EQUAL",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-1\n2\n-1\n2",
+          "output": "EQUAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000\n-1000000\n1000000\n-1000000",
+          "output": "EQUAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1\n1\n2",
+          "output": "NOT EQUAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-5\n-5\n5\n5",
+          "output": "NOT EQUAL",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n0\n0\n7",
+          "output": "NOT EQUAL",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Lines 1–2: coordinates x1 and y1.\nLines 3–4: coordinates x2 and y2.",
+        "output_format": "Print EQUAL or NOT EQUAL."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-13",
+      "title": "Constructor Chaining with this()",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Call one constructor from another with this() to avoid repeating initialization code.",
+      "problem_statement": "Create a class Box with private integer fields length, width, and height.\n\nImplement two constructors:\n- Box(int side): creates a cube by setting all three dimensions to side.\n- Box(int length, int width, int height): initializes each dimension independently.\nThe one-argument constructor must call the three-argument constructor using this(). Implement volume() returning length × width × height as a long. Convert to long before multiplying, because the volume can reach 10^12, which exceeds the int range.\n\nRead a mode. If the mode is C, read one side length and create a cube. If the mode is R, read three dimensions and create a rectangular box. Print the volume.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The one-argument constructor calls the three-argument constructor with dimensions 4, 4, and 4. The volume is 64.",
+      "input_format": "Line 1: C or R.\nFor C: line 2 contains side length.\nFor R: lines 2–4 contain length, width, and height.",
+      "output_format": "Print Volume: followed by a space and the volume as an integer.",
+      "constraints": "1 ≤ each dimension ≤ 10,000\nThe volume fits in a Java long.",
+      "sample_inputs": [
+        "C\n4",
+        "R\n2\n3\n4"
+      ],
+      "sample_outputs": [
+        "Volume: 64",
+        "Volume: 24"
+      ],
+      "hints": [
+        "Inside Box(int side), the first statement is this(side, side, side);.",
+        "this(...) must be the first statement in the constructor.",
+        "Return (long) length * width * height; casting first makes the whole multiplication use long."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String mode = sc.next();\n        Box box;\n        if (mode.equals(\"C\")) {\n            box = new Box(Integer.parseInt(sc.next()));\n        } else {\n            int length = Integer.parseInt(sc.next());\n            int width = Integer.parseInt(sc.next());\n            int height = Integer.parseInt(sc.next());\n            box = new Box(length, width, height);\n        }\n        System.out.println(\"Volume: \" + box.volume());\n    }\n}\n\nclass Box {\n    private int length;\n    private int width;\n    private int height;\n\n    Box(int side) {\n        this(side, side, side);\n    }\n\n    Box(int length, int width, int height) {\n        this.length = length;\n        this.width = width;\n        this.height = height;\n    }\n\n    public long volume() {\n        return (long) length * width * height;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "C\n4",
+          "output": "Volume: 64",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "R\n2\n3\n4",
+          "output": "Volume: 24",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "C\n1",
+          "output": "Volume: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "C\n10000",
+          "output": "Volume: 1000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "R\n10000\n10000\n10000",
+          "output": "Volume: 1000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "R\n1\n1\n1",
+          "output": "Volume: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "R\n5\n1\n7",
+          "output": "Volume: 35",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "C\n1291",
+          "output": "Volume: 2151685171",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: C or R.\nFor C: line 2 contains side length.\nFor R: lines 2–4 contain length, width, and height.",
+        "output_format": "Print Volume: followed by a space and the volume as an integer."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-14",
+      "title": "Interface: Payment Processing",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Implement an interface in two classes and call the method through an interface reference.",
+      "problem_statement": "Create an interface PaymentMethod declaring pay(long amount), which returns the final charge.\n\nImplement two classes:\n- CardPayment: charges a fee of 2% of the amount.\n- UPIPayment: charges no fee.\nFor card payments, calculate the fee as amount × 2 / 100 using integer arithmetic, truncating any fractional part. The final charge is the amount plus the fee.\n\nRead the payment type and amount, create the appropriate object, and call pay() through a PaymentMethod reference. Print the final charge.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The card fee is 20, so the final charge is 1020.",
+      "input_format": "Line 1: CARD or UPI.\nLine 2: amount.",
+      "output_format": "Print Final Charge: followed by a space and the final charge.",
+      "constraints": "1 ≤ amount ≤ 10^12\nThe final charge fits in a Java long.",
+      "sample_inputs": [
+        "CARD\n1000",
+        "UPI\n1000"
+      ],
+      "sample_outputs": [
+        "Final Charge: 1020",
+        "Final Charge: 1000"
+      ],
+      "hints": [
+        "Classes use implements PaymentMethod and must provide a public pay method.",
+        "Compare the type with .equals(\"CARD\"), not ==.",
+        "Integer division truncates the fee, so an amount of 49 has a fee of 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String type = sc.next();\n        long amount = Long.parseLong(sc.next());\n        PaymentMethod method;\n        if (type.equals(\"CARD\")) {\n            method = new CardPayment();\n        } else {\n            method = new UPIPayment();\n        }\n        System.out.println(\"Final Charge: \" + method.pay(amount));\n    }\n}\n\ninterface PaymentMethod {\n    long pay(long amount);\n}\n\nclass CardPayment implements PaymentMethod {\n    @Override\n    public long pay(long amount) {\n        return amount + amount * 2 / 100;\n    }\n}\n\nclass UPIPayment implements PaymentMethod {\n    @Override\n    public long pay(long amount) {\n        return amount;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "CARD\n1000",
+          "output": "Final Charge: 1020",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "UPI\n1000",
+          "output": "Final Charge: 1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "CARD\n1",
+          "output": "Final Charge: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "CARD\n49",
+          "output": "Final Charge: 49",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "CARD\n50",
+          "output": "Final Charge: 51",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "UPI\n1000000000000",
+          "output": "Final Charge: 1000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "CARD\n1000000000000",
+          "output": "Final Charge: 1020000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "CARD\n12345",
+          "output": "Final Charge: 12591",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: CARD or UPI.\nLine 2: amount.",
+        "output_format": "Print Final Charge: followed by a space and the final charge."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-15",
+      "title": "Calling super.method() in an Override",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Medium",
+      "objective": "Extend inherited behavior by calling super.method() inside an overriding method.",
+      "problem_statement": "Create a base class Notification with a method message() returning the string Notification received.\n\nCreate a subclass UrgentNotification that overrides message(). Its implementation must call super.message() and append the text \" - URGENT\" (beginning with a space) to the returned string, producing Notification received - URGENT.\n\nRead a notification type, create either a Notification object for type N or an UrgentNotification object for type U, and call message() through a Notification reference. Print the returned string.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The subclass uses super.message() to reuse the base implementation and adds its urgent suffix.",
+      "input_format": "One line containing N or U.",
+      "output_format": "Print the exact string returned by the selected object's message() method.",
+      "constraints": "The type is always N or U.",
+      "sample_inputs": [
+        "U",
+        "N"
+      ],
+      "sample_outputs": [
+        "Notification received - URGENT",
+        "Notification received"
+      ],
+      "hints": [
+        "In the subclass, return super.message() + \" - URGENT\";.",
+        "Do not copy the base text into the subclass; calling super keeps both in sync.",
+        "Store the object in a Notification variable for both types."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String type = sc.next();\n        Notification n;\n        if (type.equals(\"U\")) {\n            n = new UrgentNotification();\n        } else {\n            n = new Notification();\n        }\n        System.out.println(n.message());\n    }\n}\n\nclass Notification {\n    public String message() {\n        return \"Notification received\";\n    }\n}\n\nclass UrgentNotification extends Notification {\n    @Override\n    public String message() {\n        return super.message() + \" - URGENT\";\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "U",
+          "output": "Notification received - URGENT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "N",
+          "output": "Notification received",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "U",
+          "output": "Notification received - URGENT",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "N",
+          "output": "Notification received",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "N",
+          "output": "Notification received",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "U",
+          "output": "Notification received - URGENT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "U",
+          "output": "Notification received - URGENT",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "N",
+          "output": "Notification received",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing N or U.",
+        "output_format": "Print the exact string returned by the selected object's message() method."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-16",
+      "title": "Abstract Class: Subscription Billing",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Hard",
+      "objective": "Implement an abstract method in two subclasses and process an array of mixed objects polymorphically.",
+      "problem_statement": "Create an abstract class Subscription with private fields customerId (int) and monthlyFee (long). Its constructor initializes both fields, and it provides public getter methods. Declare an abstract method calculateBill(int months) returning a long.\n\nCreate two subclasses:\n- StandardSubscription: the bill is the monthly fee multiplied by the number of months.\n- PremiumSubscription: the bill is the monthly fee multiplied by the number of months, plus a one-time activation fee of 500 if the subscription period is greater than zero. If the number of months is zero, the bill is zero.\nRead N subscription records, create the corresponding subclass for each record, and store the objects in a Subscription array. Calculate and print each bill in input order, followed by the total bill. Invoke calculateBill() through a Subscription reference.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The standard subscription costs 3 × 1000 = 3000. The premium subscription costs 2 × 2000 + 500 = 4500. The third subscription has zero months, so its bill is zero.",
+      "input_format": "Line 1: integer N.\nFor each subscription:\n- Line 1: S for standard or P for premium.\n- Line 2: customer ID.\n- Line 3: monthly fee.\n- Line 4: number of months.",
+      "output_format": "For each subscription, print:\nCustomer <id>: <bill>\nAfter all records, print:\nTotal Bill: <total>\nIf N = 0, print Total Bill: 0.",
+      "constraints": "0 ≤ N ≤ 1000\n1 ≤ customer ID ≤ 1,000,000\n0 ≤ monthly fee ≤ 10^9\n0 ≤ months ≤ 120\nAll bills and the total fit in a Java long.",
+      "sample_inputs": [
+        "3\nS\n101\n1000\n3\nP\n102\n2000\n2\nP\n103\n1500\n0",
+        "0"
+      ],
+      "sample_outputs": [
+        "Customer 101: 3000\nCustomer 102: 4500\nCustomer 103: 0\nTotal Bill: 7500",
+        "Total Bill: 0"
+      ],
+      "hints": [
+        "Subclasses read the private monthlyFee through getMonthlyFee().",
+        "Store the months for each record alongside the object, for example in an int array of the same length.",
+        "In PremiumSubscription, return 0 when months is 0; otherwise add the 500 activation fee."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        Subscription[] subs = new Subscription[n];\n        int[] months = new int[n];\n        for (int i = 0; i < n; i++) {\n            String type = sc.next();\n            int id = Integer.parseInt(sc.next());\n            long fee = Long.parseLong(sc.next());\n            months[i] = Integer.parseInt(sc.next());\n            if (type.equals(\"S\")) {\n                subs[i] = new StandardSubscription(id, fee);\n            } else {\n                subs[i] = new PremiumSubscription(id, fee);\n            }\n        }\n        long total = 0;\n        for (int i = 0; i < n; i++) {\n            long bill = subs[i].calculateBill(months[i]);\n            total += bill;\n            System.out.println(\"Customer \" + subs[i].getCustomerId() + \": \" + bill);\n        }\n        System.out.println(\"Total Bill: \" + total);\n    }\n}\n\nabstract class Subscription {\n    private int customerId;\n    private long monthlyFee;\n\n    Subscription(int customerId, long monthlyFee) {\n        this.customerId = customerId;\n        this.monthlyFee = monthlyFee;\n    }\n\n    public int getCustomerId() {\n        return customerId;\n    }\n\n    public long getMonthlyFee() {\n        return monthlyFee;\n    }\n\n    public abstract long calculateBill(int months);\n}\n\nclass StandardSubscription extends Subscription {\n    StandardSubscription(int customerId, long monthlyFee) {\n        super(customerId, monthlyFee);\n    }\n\n    @Override\n    public long calculateBill(int months) {\n        return getMonthlyFee() * months;\n    }\n}\n\nclass PremiumSubscription extends Subscription {\n    PremiumSubscription(int customerId, long monthlyFee) {\n        super(customerId, monthlyFee);\n    }\n\n    @Override\n    public long calculateBill(int months) {\n        if (months == 0) {\n            return 0;\n        }\n        return getMonthlyFee() * months + 500;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nS\n101\n1000\n3\nP\n102\n2000\n2\nP\n103\n1500\n0",
+          "output": "Customer 101: 3000\nCustomer 102: 4500\nCustomer 103: 0\nTotal Bill: 7500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Total Bill: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nP\n5\n100\n1",
+          "output": "Customer 5: 600\nTotal Bill: 600",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nS\n5\n100\n0",
+          "output": "Customer 5: 0\nTotal Bill: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nS\n1\n0\n12\nP\n2\n0\n12",
+          "output": "Customer 1: 0\nCustomer 2: 500\nTotal Bill: 500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\nP\n9\n1000000000\n120",
+          "output": "Customer 9: 120000000500\nTotal Bill: 120000000500",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\nS\n1\n10\n1\nS\n2\n20\n2\nS\n3\n30\n3",
+          "output": "Customer 1: 10\nCustomer 2: 40\nCustomer 3: 90\nTotal Bill: 140",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nP\n7\n999\n1\nP\n8\n1\n0",
+          "output": "Customer 7: 1499\nCustomer 8: 0\nTotal Bill: 1499",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nFor each subscription:\n- Line 1: S for standard or P for premium.\n- Line 2: customer ID.\n- Line 3: monthly fee.\n- Line 4: number of months.",
+        "output_format": "For each subscription, print:\nCustomer <id>: <bill>\nAfter all records, print:\nTotal Bill: <total>\nIf N = 0, print Total Bill: 0."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-17",
+      "title": "Multiple Interfaces: Smart Device",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Hard",
+      "objective": "Implement two interfaces in one class and use the same object through either interface type.",
+      "problem_statement": "Create two interfaces:\n- Connectable, declaring connect(), which returns a string describing the connection status.\n- Controllable, declaring performAction(String action), which returns a string describing the performed action.\nCreate a class SmartSpeaker that implements both interfaces.\n\nIts connect() method must return SmartSpeaker connected.\n\nIts performAction(action) method must return Action performed: followed by a space and the supplied action, preserving the action's characters exactly.\n\nIn main(), create one SmartSpeaker object. Store it in a Connectable reference and call connect(). Then store the same object in a Controllable reference and call performAction().\n\nInput implementation hint: Read the action as a complete line. Avoid reading it with next() because that would discard everything after the first space.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The same object can be accessed through either interface reference because SmartSpeaker implements both interfaces.",
+      "input_format": "One line containing the action. The line may contain spaces.",
+      "output_format": "Print the connection result on the first line and the action result on the second line.",
+      "constraints": "Action length: 1–200 characters.\nAll characters are printable ASCII.",
+      "sample_inputs": [
+        "Play classical music",
+        "Volume up"
+      ],
+      "sample_outputs": [
+        "SmartSpeaker connected\nAction performed: Play classical music",
+        "SmartSpeaker connected\nAction performed: Volume up"
+      ],
+      "hints": [
+        "Declare the class as class SmartSpeaker implements Connectable, Controllable.",
+        "Create one object, then assign it to both a Connectable variable and a Controllable variable.",
+        "Read the action with sc.nextLine() so spaces are kept."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        String action = sc.nextLine();\n        SmartSpeaker speaker = new SmartSpeaker();\n        Connectable c = speaker;\n        Controllable ctrl = speaker;\n        System.out.println(c.connect());\n        System.out.println(ctrl.performAction(action));\n    }\n}\n\ninterface Connectable {\n    String connect();\n}\n\ninterface Controllable {\n    String performAction(String action);\n}\n\nclass SmartSpeaker implements Connectable, Controllable {\n    @Override\n    public String connect() {\n        return \"SmartSpeaker connected\";\n    }\n\n    @Override\n    public String performAction(String action) {\n        return \"Action performed: \" + action;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "Play classical music",
+          "output": "SmartSpeaker connected\nAction performed: Play classical music",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "Volume up",
+          "output": "SmartSpeaker connected\nAction performed: Volume up",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "x",
+          "output": "SmartSpeaker connected\nAction performed: x",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "Set alarm for 7:00 AM!",
+          "output": "SmartSpeaker connected\nAction performed: Set alarm for 7:00 AM!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "Turn off",
+          "output": "SmartSpeaker connected\nAction performed: Turn off",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "  leading spaces",
+          "output": "SmartSpeaker connected\nAction performed:   leading spaces",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "A b C d",
+          "output": "SmartSpeaker connected\nAction performed: A b C d",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "Call Mom @ 5:30pm",
+          "output": "SmartSpeaker connected\nAction performed: Call Mom @ 5:30pm",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One line containing the action. The line may contain spaces.",
+        "output_format": "Print the connection result on the first line and the action result on the second line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-18",
+      "title": "Composition: Shopping Cart Total",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Hard",
+      "objective": "Build a class that contains and operates on an array of objects of another class.",
+      "problem_statement": "Implement a shopping cart using composition.\n\nCreate a class CartItem with private fields productName (String), unitPrice (long), and quantity (int). Its constructor initializes all fields. Implement subtotal() to return unit price multiplied by quantity.\n\nCreate a class ShoppingCart that contains an array of CartItem objects. Its constructor receives the capacity of the array. Implement addItem(CartItem item) to add an item to the next available position and calculateTotal() to return the sum of all item subtotals.\n\nIn main(), read N items, create a ShoppingCart with capacity N, create one CartItem per input record, add each item to the cart, and print every item's subtotal followed by the cart total. This problem must use object composition: ShoppingCart contains and operates on CartItem objects.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The subtotals are 1000, 1500, and 600. Their sum is 3100.",
+      "input_format": "Line 1: integer N.\nFor each item:\n- Line 1: product name, without spaces.\n- Line 2: unit price.\n- Line 3: quantity.",
+      "output_format": "For each item, print:\n<product name>: <subtotal>\nAfter all items, print:\nCart Total: <total>\nIf N = 0, print Cart Total: 0.",
+      "constraints": "0 ≤ N ≤ 1000\nProduct name length: 1–50 characters.\n0 ≤ unit price ≤ 10^9\n0 ≤ quantity ≤ 1,000,000\nThe cart total fits in a Java long.",
+      "sample_inputs": [
+        "3\nMouse\n500\n2\nKeyboard\n1500\n1\nCable\n200\n3",
+        "0"
+      ],
+      "sample_outputs": [
+        "Mouse: 1000\nKeyboard: 1500\nCable: 600\nCart Total: 3100",
+        "Cart Total: 0"
+      ],
+      "hints": [
+        "ShoppingCart keeps a CartItem[] items array and an int count of items added so far.",
+        "addItem stores the item at items[count] and then increases count.",
+        "subtotal() multiplies a long by an int, so the result is a long; calculateTotal() adds the first count subtotals."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        ShoppingCart cart = new ShoppingCart(n);\n        for (int i = 0; i < n; i++) {\n            String name = sc.next();\n            long price = Long.parseLong(sc.next());\n            int quantity = Integer.parseInt(sc.next());\n            CartItem item = new CartItem(name, price, quantity);\n            cart.addItem(item);\n            System.out.println(item.getProductName() + \": \" + item.subtotal());\n        }\n        System.out.println(\"Cart Total: \" + cart.calculateTotal());\n    }\n}\n\nclass CartItem {\n    private String productName;\n    private long unitPrice;\n    private int quantity;\n\n    CartItem(String productName, long unitPrice, int quantity) {\n        this.productName = productName;\n        this.unitPrice = unitPrice;\n        this.quantity = quantity;\n    }\n\n    public String getProductName() {\n        return productName;\n    }\n\n    public long subtotal() {\n        return unitPrice * quantity;\n    }\n}\n\nclass ShoppingCart {\n    private CartItem[] items;\n    private int count;\n\n    ShoppingCart(int capacity) {\n        items = new CartItem[capacity];\n        count = 0;\n    }\n\n    public void addItem(CartItem item) {\n        items[count] = item;\n        count++;\n    }\n\n    public long calculateTotal() {\n        long total = 0;\n        for (int i = 0; i < count; i++) {\n            total += items[i].subtotal();\n        }\n        return total;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nMouse\n500\n2\nKeyboard\n1500\n1\nCable\n200\n3",
+          "output": "Mouse: 1000\nKeyboard: 1500\nCable: 600\nCart Total: 3100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Cart Total: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nPen\n0\n100",
+          "output": "Pen: 0\nCart Total: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nTV\n1000000000\n1000000",
+          "output": "TV: 1000000000000000\nCart Total: 1000000000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nA\n1\n1\nB\n2\n2",
+          "output": "A: 1\nB: 4\nCart Total: 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\nX\n5\n0\nY\n0\n5\nZ\n5\n5",
+          "output": "X: 0\nY: 0\nZ: 25\nCart Total: 25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nBook\n350\n2\nBook\n350\n1",
+          "output": "Book: 700\nBook: 350\nCart Total: 1050",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\nChair\n4999\n3",
+          "output": "Chair: 14997\nCart Total: 14997",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nFor each item:\n- Line 1: product name, without spaces.\n- Line 2: unit price.\n- Line 3: quantity.",
+        "output_format": "For each item, print:\n<product name>: <subtotal>\nAfter all items, print:\nCart Total: <total>\nIf N = 0, print Cart Total: 0."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-19",
+      "title": "Polymorphic Shipping Cost Calculator",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Hard",
+      "objective": "Use an abstract class with three subclasses to compute costs for a mixed array of objects.",
+      "problem_statement": "Create an abstract class ShippingService with a protected field weight (double), initialized by its constructor. Declare an abstract method calculateCost() that returns a double.\n\nImplement three subclasses:\n- StandardShipping: cost is 50 + 10 × weight.\n- ExpressShipping: cost is 100 + 20 × weight.\n- InternationalShipping: cost is 200 + 30 × weight.\nRead N shipping requests, create the appropriate subclass for each request, and store the objects in a ShippingService array. Call calculateCost() through a ShippingService reference for each object. Print each cost in input order and then the total cost, formatting all monetary values to exactly two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The three formulas produce 70, 140, and 260. Their total is 470.",
+      "input_format": "Line 1: integer N.\nFor each request:\n- Line 1: S for standard, E for express, or I for international.\n- Line 2: package weight in kilograms.",
+      "output_format": "For each request, print:\nShipping Cost: <cost to 2 decimal places>\nAfter all requests, print:\nTotal Shipping Cost: <total to 2 decimal places>\nIf N = 0, print Total Shipping Cost: 0.00.",
+      "constraints": "0 ≤ N ≤ 1000\n0.01 ≤ weight ≤ 1000, with at most two decimal places\nType is always S, E, or I.\nAll calculated values fit in a double.",
+      "sample_inputs": [
+        "3\nS\n2\nE\n2\nI\n2",
+        "0"
+      ],
+      "sample_outputs": [
+        "Shipping Cost: 70.00\nShipping Cost: 140.00\nShipping Cost: 260.00\nTotal Shipping Cost: 470.00",
+        "Total Shipping Cost: 0.00"
+      ],
+      "hints": [
+        "Each subclass constructor passes the weight to the parent with super(weight).",
+        "Create all objects first, storing them in a ShippingService[] array, then loop over the array to compute costs.",
+        "Add each unrounded cost to the total, and format only when printing."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Locale;\nimport java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        ShippingService[] services = new ShippingService[n];\n        for (int i = 0; i < n; i++) {\n            String type = sc.next();\n            double weight = Double.parseDouble(sc.next());\n            if (type.equals(\"S\")) {\n                services[i] = new StandardShipping(weight);\n            } else if (type.equals(\"E\")) {\n                services[i] = new ExpressShipping(weight);\n            } else {\n                services[i] = new InternationalShipping(weight);\n            }\n        }\n        double total = 0;\n        for (int i = 0; i < n; i++) {\n            double cost = services[i].calculateCost();\n            total += cost;\n            System.out.println(\"Shipping Cost: \" + String.format(Locale.US, \"%.2f\", cost));\n        }\n        System.out.println(\"Total Shipping Cost: \" + String.format(Locale.US, \"%.2f\", total));\n    }\n}\n\nabstract class ShippingService {\n    protected double weight;\n\n    ShippingService(double weight) {\n        this.weight = weight;\n    }\n\n    public abstract double calculateCost();\n}\n\nclass StandardShipping extends ShippingService {\n    StandardShipping(double weight) {\n        super(weight);\n    }\n\n    @Override\n    public double calculateCost() {\n        return 50 + 10 * weight;\n    }\n}\n\nclass ExpressShipping extends ShippingService {\n    ExpressShipping(double weight) {\n        super(weight);\n    }\n\n    @Override\n    public double calculateCost() {\n        return 100 + 20 * weight;\n    }\n}\n\nclass InternationalShipping extends ShippingService {\n    InternationalShipping(double weight) {\n        super(weight);\n    }\n\n    @Override\n    public double calculateCost() {\n        return 200 + 30 * weight;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nS\n2\nE\n2\nI\n2",
+          "output": "Shipping Cost: 70.00\nShipping Cost: 140.00\nShipping Cost: 260.00\nTotal Shipping Cost: 470.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "Total Shipping Cost: 0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nS\n0.01",
+          "output": "Shipping Cost: 50.10\nTotal Shipping Cost: 50.10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nI\n1000",
+          "output": "Shipping Cost: 30200.00\nTotal Shipping Cost: 30200.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nE\n1.5\nS\n2.25",
+          "output": "Shipping Cost: 130.00\nShipping Cost: 72.50\nTotal Shipping Cost: 202.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\nS\n1\nS\n1\nS\n1",
+          "output": "Shipping Cost: 60.00\nShipping Cost: 60.00\nShipping Cost: 60.00\nTotal Shipping Cost: 180.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\nE\n0.05",
+          "output": "Shipping Cost: 101.00\nTotal Shipping Cost: 101.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nI\n10.75\nE\n3.33",
+          "output": "Shipping Cost: 522.50\nShipping Cost: 166.60\nTotal Shipping Cost: 689.10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nFor each request:\n- Line 1: S for standard, E for express, or I for international.\n- Line 2: package weight in kilograms.",
+        "output_format": "For each request, print:\nShipping Cost: <cost to 2 decimal places>\nAfter all requests, print:\nTotal Shipping Cost: <total to 2 decimal places>\nIf N = 0, print Total Shipping Cost: 0.00."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M12-20",
+      "title": "Equality and Hashing for Unique Products",
+      "module": "Module 12: Object-Oriented Programming",
+      "difficulty": "Hard",
+      "objective": "Override equals() and hashCode() consistently and use equals() to count distinct objects.",
+      "problem_statement": "Create a class Product with private fields productId (int) and name (String). Its constructor initializes both fields.\n\nOverride equals(Object obj) so that two Product objects are considered equal if and only if their productId values match. The product names do not affect equality.\n\nAlso override hashCode() so that equal products have equal hash codes. You may use the product ID's integer value as the hash code.\n\nIn main(), read N product records, create one Product object per record, and count how many distinct product IDs occur. Do not use collections: compare each new product with the products already encountered using equals().\n\nWrite all classes in Main.java. Only class Main may be declared public; declare the other classes and interfaces without the public keyword.\n\nExplanation: The IDs are 101, 102, 101, 103, and 102. Only three distinct IDs exist. Different names do not make products with the same ID unequal.",
+      "input_format": "Line 1: integer N.\nFor each product:\n- Line 1: product ID.\n- Line 2: product name, without spaces.",
+      "output_format": "Print the number of distinct products according to the specified equality rule.",
+      "constraints": "0 ≤ N ≤ 1000\n1 ≤ product ID ≤ 1,000,000\nProduct name length: 1–50 characters.",
+      "sample_inputs": [
+        "5\n101\nMouse\n102\nKeyboard\n101\nWirelessMouse\n103\nCable\n102\nGamingKeyboard",
+        "0"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "equals must take an Object parameter and use instanceof before casting.",
+        "hashCode can simply return productId, so equal products always have equal hash codes.",
+        "Store the products in an array; a product is new if equals() is false for every earlier product."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        Product[] products = new Product[n];\n        int distinct = 0;\n        for (int i = 0; i < n; i++) {\n            products[i] = new Product(Integer.parseInt(sc.next()), sc.next());\n            boolean seen = false;\n            for (int j = 0; j < i; j++) {\n                if (products[i].equals(products[j])) {\n                    seen = true;\n                    break;\n                }\n            }\n            if (!seen) {\n                distinct++;\n            }\n        }\n        System.out.println(distinct);\n    }\n}\n\nclass Product {\n    private int productId;\n    private String name;\n\n    Product(int productId, String name) {\n        this.productId = productId;\n        this.name = name;\n    }\n\n    @Override\n    public boolean equals(Object obj) {\n        if (!(obj instanceof Product)) {\n            return false;\n        }\n        return productId == ((Product) obj).productId;\n    }\n\n    @Override\n    public int hashCode() {\n        return productId;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n101\nMouse\n102\nKeyboard\n101\nWirelessMouse\n103\nCable\n102\nGamingKeyboard",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5\nA",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n7\nA\n7\nB\n7\nC",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n1\nA\n2\nA\n3\nA\n4\nA",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n1000000\nX\n1\nX",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n1\nA\n2\nB\n1\nC\n3\nD\n2\nE\n4\nF",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n10\nP\n20\nQ\n10\nP",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 12: Object-Oriented Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: integer N.\nFor each product:\n- Line 1: product ID.\n- Line 2: product name, without spaces.",
+        "output_format": "Print the number of distinct products according to the specified equality rule."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M12_Java_OOP.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

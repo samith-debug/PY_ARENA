@@ -18,15 +18,19 @@ def run_tests_for_question(
     comparison_mode: str = "judge",
     normalize_crlf: bool = True,
     strict_newline_policy: Optional[str] = None,
-    timeout_per_test: float = 3.0
+    timeout_per_test: float = 3.0,
+    language: Optional[str] = None
 ) -> SubmitResult:
     """
-    Runs test cases against the user's submitted Python code.
+    Runs test cases against the user's submitted code (Python or Java).
     Enforces comparison mode:
     - "judge": Judge-compatible mode allowing at most 1 final newline difference
     - "exact": Exact byte/character match
     Enforces privacy: if is_owner is False, hidden test inputs & expected outputs are NOT returned.
     """
+    # Determine programming language
+    effective_lang = (language or getattr(question, "language", "python") or "python").lower()
+
     # Handle backward compatibility
     if strict_newline_policy == "exact":
         effective_mode = "exact"
@@ -52,7 +56,8 @@ def run_tests_for_question(
             stdin_data=tc.input,
             timeout_seconds=timeout_per_test,
             execution_mode=question.execution_mode,
-            function_name=question.function_name
+            function_name=question.function_name,
+            language=effective_lang
         )
 
         passed = False
@@ -64,6 +69,9 @@ def run_tests_for_question(
         if run_res.timed_out:
             failure_reason = f"Time Limit Exceeded ({timeout_per_test}s)"
             diagnostic = "Your program entered an infinite loop or exceeded the execution time limit."
+        elif run_res.error_message == "Compilation Error":
+            failure_reason = "Compilation Error"
+            diagnostic = run_res.stderr.strip() or "Compilation failed."
         elif run_res.exit_code != 0:
             failure_reason = f"Runtime Error ({run_res.error_message or 'Non-zero exit'})"
             diagnostic = run_res.stderr.strip() or "Program crashed during execution."

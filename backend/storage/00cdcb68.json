@@ -1,0 +1,1941 @@
+{
+  "id": "00cdcb68",
+  "filename": "JP_M2_Java_Data_Types_and_Type_Conversion.csv",
+  "imported_at": "2026-10-24T13:44:56.143320Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M2-01",
+      "title": "Employee Record Data Types",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Store an integer ID, a short age, and a double salary in suitable Java primitive types and print them.",
+      "problem_statement": "An organization stores an employee's identification number, age, and monthly salary. Read these three values and store them using suitable Java data types: int for the identification number, short for the age, and double for the salary. Display each value on a separate line in the same order.\n\nAssume the inputs are valid and fit within the selected data types. The salary is less than 10,000,000.",
+      "input_format": "Three separate lines:\nLine 1: Identification number (int)\nLine 2: Age (short)\nLine 3: Monthly salary (double)",
+      "output_format": "Three lines: the identification number, the age, and the salary, in the same order.",
+      "constraints": "0 <= id <= 2147483647\n0 <= age <= 150\n0 <= salary < 10,000,000",
+      "sample_inputs": [
+        "1042\n25\n28500.5",
+        "2001\n30\n45000.75"
+      ],
+      "sample_outputs": [
+        "1042\n25\n28500.5",
+        "2001\n30\n45000.75"
+      ],
+      "hints": [
+        "Use Integer.parseInt(), Short.parseShort(), and Double.parseDouble() to convert each input token.",
+        "Declare the variables as int, short, and double respectively.",
+        "Print each variable with System.out.println() on its own line."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int id = Integer.parseInt(sc.next());\n        short age = Short.parseShort(sc.next());\n        double salary = Double.parseDouble(sc.next());\n        System.out.println(id);\n        System.out.println(age);\n        System.out.println(salary);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1042\n25\n28500.5",
+          "output": "1042\n25\n28500.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2001\n30\n45000.75",
+          "output": "2001\n30\n45000.75",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n18\n10000.0",
+          "output": "1\n18\n10000.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2147483647\n150\n9999999.99",
+          "output": "2147483647\n150\n9999999.99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "500\n128\n0.5",
+          "output": "500\n128\n0.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "99999\n45\n123456.25",
+          "output": "99999\n45\n123456.25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n0\n35000.0",
+          "output": "7\n0\n35000.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "888\n101\n75000.125",
+          "output": "888\n101\n75000.125",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: Identification number (int)\nLine 2: Age (short)\nLine 3: Monthly salary (double)",
+        "output_format": "Three lines: the identification number, the age, and the salary, in the same order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-02",
+      "title": "Whole Number Storage with Long",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Store an integer that may exceed the int range in a long variable and print it.",
+      "problem_statement": "A city management system stores a population that may exceed the maximum value of an int. Read the population as a long and display it unchanged. Assume the input is within the valid long range.",
+      "input_format": "A single line containing the population (long).",
+      "output_format": "A single line containing the population.",
+      "constraints": "0 <= population <= 9223372036854775807",
+      "sample_inputs": [
+        "3500000000",
+        "8000000000"
+      ],
+      "sample_outputs": [
+        "3500000000",
+        "8000000000"
+      ],
+      "hints": [
+        "The int type can hold values only up to 2147483647.",
+        "Read the input with Long.parseLong(sc.next()).",
+        "Store the value in a long variable and print it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long population = Long.parseLong(sc.next());\n        System.out.println(population);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3500000000",
+          "output": "3500000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "8000000000",
+          "output": "8000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9223372036854775807",
+          "output": "9223372036854775807",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483648",
+          "output": "2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1400000000",
+          "output": "1400000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456789012",
+          "output": "123456789012",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing the population (long).",
+        "output_format": "A single line containing the population."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-03",
+      "title": "Student Result Record",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Store a roll number, a section letter, and a pass status in int, char, and boolean variables.",
+      "problem_statement": "A school stores a student's roll number, section, and whether the student passed. Read these three values and store them using suitable Java data types: int for the roll number, char for the section, and boolean for the pass status. Display each value on a separate line in the same order.\n\nThe section is a single uppercase letter, and the pass status is either true or false.",
+      "input_format": "Three separate lines:\nLine 1: Roll number (int)\nLine 2: Section (one uppercase letter)\nLine 3: Pass status (true or false)",
+      "output_format": "Three lines: the roll number, the section, and the pass status, in the same order.",
+      "constraints": "1 <= roll number <= 2147483647\nThe section is one letter from A to Z.\nThe pass status is exactly true or false (lowercase).",
+      "sample_inputs": [
+        "101\nB\ntrue",
+        "245\nA\nfalse"
+      ],
+      "sample_outputs": [
+        "101\nB\ntrue",
+        "245\nA\nfalse"
+      ],
+      "hints": [
+        "Scanner has no nextChar() method; use sc.next().charAt(0) for the section.",
+        "Use Boolean.parseBoolean(sc.next()) for the pass status.",
+        "Print each variable with System.out.println() on its own line."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int roll = Integer.parseInt(sc.next());\n        char section = sc.next().charAt(0);\n        boolean passed = Boolean.parseBoolean(sc.next());\n        System.out.println(roll);\n        System.out.println(section);\n        System.out.println(passed);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "101\nB\ntrue",
+          "output": "101\nB\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "245\nA\nfalse",
+          "output": "245\nA\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nZ\ntrue",
+          "output": "1\nZ\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2147483647\nC\nfalse",
+          "output": "2147483647\nC\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3050\nD\ntrue",
+          "output": "3050\nD\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "77\nE\nfalse",
+          "output": "77\nE\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "12\nK\ntrue",
+          "output": "12\nK\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "999\nM\nfalse",
+          "output": "999\nM\nfalse",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: Roll number (int)\nLine 2: Section (one uppercase letter)\nLine 3: Pass status (true or false)",
+        "output_format": "Three lines: the roll number, the section, and the pass status, in the same order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-04",
+      "title": "Variable Reassignment",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Initialize a variable, then assign it a new value and observe that it holds the latest value.",
+      "problem_statement": "A scoreboard stores a team's score in a single int variable. Read the initial score and the updated score. Declare the variable, initialize it with the initial score, and display it. Then assign the updated score to the same variable and display it again.\n\nDo not declare a second variable for the updated score.",
+      "input_format": "Two separate lines:\nLine 1: Initial score (int)\nLine 2: Updated score (int)",
+      "output_format": "Two lines: the score after initialization, then the score after reassignment.",
+      "constraints": "-2147483648 <= each score <= 2147483647",
+      "sample_inputs": [
+        "10\n25",
+        "0\n7"
+      ],
+      "sample_outputs": [
+        "10\n25",
+        "0\n7"
+      ],
+      "hints": [
+        "Declare and initialize in one statement: int score = Integer.parseInt(sc.next());",
+        "Reassign without the type name: score = Integer.parseInt(sc.next());",
+        "Print score once after initialization and once after reassignment."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int score = Integer.parseInt(sc.next());\n        System.out.println(score);\n        score = Integer.parseInt(sc.next());\n        System.out.println(score);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n25",
+          "output": "10\n25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0\n7",
+          "output": "0\n7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100\n100",
+          "output": "100\n100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-5\n3",
+          "output": "-5\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2147483647\n-2147483648",
+          "output": "2147483647\n-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "42\n0",
+          "output": "42\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999\n1000",
+          "output": "999\n1000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8\n-8",
+          "output": "8\n-8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Initial score (int)\nLine 2: Updated score (int)",
+        "output_format": "Two lines: the score after initialization, then the score after reassignment."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-05",
+      "title": "Declaring and Initializing Variables",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Declare variables of six primitive types and initialize them with correctly written literals.",
+      "problem_statement": "Declare and initialize the following variables in the main() method, then display each value on a separate line in the same order:\n- an int with the value 250\n- a long with the value 9000000000\n- a float with the value 3.5\n- a double with the value 2.75\n- a char with the value J\n- a boolean with the value true\n\nThe value 9000000000 is outside the int range, so its literal needs the L suffix. A decimal literal is a double by default, so the float literal needs the f suffix.",
+      "input_format": "No input is required.",
+      "output_format": "Six lines containing the six values in the order listed.",
+      "constraints": "Fixed output.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "250\n9000000000\n3.5\n2.75\nJ\ntrue"
+      ],
+      "hints": [
+        "Write the long literal as 9000000000L; without the L, the code does not compile.",
+        "Write the float literal as 3.5f; without the f, the code does not compile.",
+        "A char literal uses single quotes: 'J'."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        int count = 250;\n        long distance = 9000000000L;\n        float rating = 3.5f;\n        double weight = 2.75;\n        char code = 'J';\n        boolean active = true;\n        System.out.println(count);\n        System.out.println(distance);\n        System.out.println(rating);\n        System.out.println(weight);\n        System.out.println(code);\n        System.out.println(active);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "",
+          "output": "250\n9000000000\n3.5\n2.75\nJ\ntrue",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input is required.",
+        "output_format": "Six lines containing the six values in the order listed."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-06",
+      "title": "Widening Integer Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Assign an int value to a long variable using implicit widening conversion.",
+      "problem_statement": "Read an integer, store it in an int variable, and assign its value to a long variable without an explicit cast. Display the long value.\n\nAssume the input is a valid integer.",
+      "input_format": "A single line containing an integer (int).",
+      "output_format": "A single line containing the long value.",
+      "constraints": "-2147483648 <= n <= 2147483647",
+      "sample_inputs": [
+        "1250",
+        "-42"
+      ],
+      "sample_outputs": [
+        "1250",
+        "-42"
+      ],
+      "hints": [
+        "Read the input into an int variable.",
+        "Write long result = n; with no cast.",
+        "Print the long variable."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long result = n;\n        System.out.println(result);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1250",
+          "output": "1250",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-42",
+          "output": "-42",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2147483647",
+          "output": "2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-2147483648",
+          "output": "-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "99",
+          "output": "99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "100000",
+          "output": "100000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer (int).",
+        "output_format": "A single line containing the long value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-07",
+      "title": "Integer to Double Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Assign an int value to a double variable and observe the decimal representation.",
+      "problem_statement": "Read an integer, store it in an int variable, and assign it to a double variable. Display the resulting double value.\n\nAssume the input is between -9,999,999 and 9,999,999.",
+      "input_format": "A single line containing an integer (int).",
+      "output_format": "A single line containing the double value.",
+      "constraints": "-9,999,999 <= n <= 9,999,999",
+      "sample_inputs": [
+        "42",
+        "-7"
+      ],
+      "sample_outputs": [
+        "42.0",
+        "-7.0"
+      ],
+      "hints": [
+        "Read the input into an int variable.",
+        "Write double d = n; to convert it automatically.",
+        "Printing a double always shows at least one digit after the decimal point."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        double d = n;\n        System.out.println(d);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "42",
+          "output": "42.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-7",
+          "output": "-7.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "0.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9999999",
+          "output": "9999999.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-9999999",
+          "output": "-9999999.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "100",
+          "output": "100.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1234567",
+          "output": "1234567.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-1",
+          "output": "-1.0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer (int).",
+        "output_format": "A single line containing the double value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-08",
+      "title": "Double to Integer Truncation",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Cast positive and negative doubles to int and observe truncation toward zero.",
+      "problem_statement": "Read a decimal number as a double, explicitly cast it to int, and display the result. The number may be positive or negative. Java truncates the fractional part toward zero instead of rounding to the nearest integer, so positive values move down and negative values move up.",
+      "input_format": "A single line containing a decimal number (double), positive or negative.",
+      "output_format": "A single line containing the int value after the cast.",
+      "constraints": "-2147483648.0 <= d <= 2147483647.0",
+      "sample_inputs": [
+        "19.87",
+        "-8.6"
+      ],
+      "sample_outputs": [
+        "19",
+        "-8"
+      ],
+      "hints": [
+        "Read the input with Double.parseDouble(sc.next()).",
+        "Cast with (int) d; do not use Math.round() or Math.floor().",
+        "Truncation toward zero means 19.87 becomes 19 and -8.6 becomes -8, not -9."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        double d = Double.parseDouble(sc.next());\n        int result = (int) d;\n        System.out.println(result);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "19.87",
+          "output": "19",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-8.6",
+          "output": "-8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0.99",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-0.5",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100.0",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "-100.99",
+          "output": "-100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7.5",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-2147483648.0",
+          "output": "-2147483648",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal number (double), positive or negative.",
+        "output_format": "A single line containing the int value after the cast."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-09",
+      "title": "Character to Integer Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Convert a char to int to obtain its UTF-16 code unit value.",
+      "problem_statement": "Read a single basic English character, store it in a char variable, and explicitly convert it to an int. Display the numeric UTF-16 code unit value.",
+      "input_format": "A single line containing exactly one character.",
+      "output_format": "A single line containing the numeric code unit value.",
+      "constraints": "The input is one printable, non-space basic English character (code value 33 to 126).",
+      "sample_inputs": [
+        "A",
+        "B"
+      ],
+      "sample_outputs": [
+        "65",
+        "66"
+      ],
+      "hints": [
+        "Read the character with sc.next().charAt(0).",
+        "Convert it with (int) c.",
+        "Printing a char shows the character; printing an int shows the number."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        char c = sc.next().charAt(0);\n        int code = (int) c;\n        System.out.println(code);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "A",
+          "output": "65",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "B",
+          "output": "66",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "a",
+          "output": "97",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "z",
+          "output": "122",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0",
+          "output": "48",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9",
+          "output": "57",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "#",
+          "output": "35",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "~",
+          "output": "126",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing exactly one character.",
+        "output_format": "A single line containing the numeric code unit value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-10",
+      "title": "Integer to Character Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Cast an int code value to char and print the resulting character.",
+      "problem_statement": "Read an integer and explicitly cast it to char. Display the resulting character. For this exercise, the input is a valid UTF-16 code unit value that represents a printable basic character.",
+      "input_format": "A single line containing an integer code value.",
+      "output_format": "A single line containing the corresponding character.",
+      "constraints": "33 <= n <= 126",
+      "sample_inputs": [
+        "66",
+        "65"
+      ],
+      "sample_outputs": [
+        "B",
+        "A"
+      ],
+      "hints": [
+        "Read the input into an int variable.",
+        "Cast with (char) n.",
+        "Store the result in a char variable before printing so it displays as a character."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        char c = (char) n;\n        System.out.println(c);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "66",
+          "output": "B",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "65",
+          "output": "A",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "97",
+          "output": "a",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "122",
+          "output": "z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "48",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "57",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "33",
+          "output": "!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "126",
+          "output": "~",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer code value.",
+        "output_format": "A single line containing the corresponding character."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-11",
+      "title": "Float and Double Storage",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Easy",
+      "objective": "Store the same decimal value in float and double variables and print both.",
+      "problem_statement": "Read a decimal value and store it separately in float and double variables. Display the values on separate lines using Java's standard numeric-to-string conversion. The input is guaranteed to be a value that can be represented exactly by both types so the outputs are predictable. Read the input only once and assign it to both variables.",
+      "input_format": "A single line containing a decimal value.",
+      "output_format": "Two lines: the float value, then the double value.",
+      "constraints": "The input is exactly representable as both float and double.\n0.001 <= |value| < 10,000,000",
+      "sample_inputs": [
+        "12.5",
+        "0.25"
+      ],
+      "sample_outputs": [
+        "12.5\n12.5",
+        "0.25\n0.25"
+      ],
+      "hints": [
+        "Read the input once with Double.parseDouble(sc.next()).",
+        "Assign it to a double, then cast it with (float) for the float variable.",
+        "Print the float first and the double second."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        double d = Double.parseDouble(sc.next());\n        float f = (float) d;\n        System.out.println(f);\n        System.out.println(d);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12.5",
+          "output": "12.5\n12.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0.25",
+          "output": "0.25\n0.25",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3.0",
+          "output": "3.0\n3.0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-7.75",
+          "output": "-7.75\n-7.75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100.5",
+          "output": "100.5\n100.5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0.125",
+          "output": "0.125\n0.125",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1024.0",
+          "output": "1024.0\n1024.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2.5",
+          "output": "2.5\n2.5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal value.",
+        "output_format": "Two lines: the float value, then the double value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-12",
+      "title": "Product Inventory Record",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Choose the smallest suitable integer types for a barcode and a quantity, and a double for a price.",
+      "problem_statement": "A warehouse stores a product's 13-digit barcode, the quantity in stock, and the unit price. The barcode is too large for an int. The quantity is never more than 30,000. Read these three values and store the barcode and the quantity using the smallest Java integer types that can hold their full ranges, and the price using double. Display each value on a separate line in the same order.\n\nAssume the inputs are valid. The price is less than 10,000,000.",
+      "input_format": "Three separate lines:\nLine 1: Barcode (13-digit whole number)\nLine 2: Quantity in stock (whole number)\nLine 3: Unit price (decimal number)",
+      "output_format": "Three lines: the barcode, the quantity, and the price, in the same order.",
+      "constraints": "1000000000000 <= barcode <= 9999999999999\n0 <= quantity <= 30000\n0 <= price < 10,000,000",
+      "sample_inputs": [
+        "8901234567890\n250\n149.75",
+        "4006381333931\n1200\n99.99"
+      ],
+      "sample_outputs": [
+        "8901234567890\n250\n149.75",
+        "4006381333931\n1200\n99.99"
+      ],
+      "hints": [
+        "An int holds values up to 2147483647, so a 13-digit barcode needs long.",
+        "A byte holds values only up to 127, but a short holds values up to 32767, which covers 30,000.",
+        "Use Long.parseLong(), Short.parseShort(), and Double.parseDouble() to convert the inputs."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long barcode = Long.parseLong(sc.next());\n        short quantity = Short.parseShort(sc.next());\n        double price = Double.parseDouble(sc.next());\n        System.out.println(barcode);\n        System.out.println(quantity);\n        System.out.println(price);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8901234567890\n250\n149.75",
+          "output": "8901234567890\n250\n149.75",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4006381333931\n1200\n99.99",
+          "output": "4006381333931\n1200\n99.99",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000000000000\n0\n0.5",
+          "output": "1000000000000\n0\n0.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9999999999999\n30000\n9999999.99",
+          "output": "9999999999999\n30000\n9999999.99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5012345678900\n127\n1999.0",
+          "output": "5012345678900\n127\n1999.0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7622210449283\n128\n12.125",
+          "output": "7622210449283\n128\n12.125",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "8712345678906\n32\n250.25",
+          "output": "8712345678906\n32\n250.25",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4902430123459\n15000\n75.5",
+          "output": "4902430123459\n15000\n75.5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Three separate lines:\nLine 1: Barcode (13-digit whole number)\nLine 2: Quantity in stock (whole number)\nLine 3: Unit price (decimal number)",
+        "output_format": "Three lines: the barcode, the quantity, and the price, in the same order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-13",
+      "title": "Integer Literal Formats",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Write integer literals in hexadecimal, binary, octal, and underscore-separated forms and print their decimal values.",
+      "problem_statement": "Java lets you write an integer literal in several forms. Declare four int variables in the main() method and initialize them with these literals exactly as written:\n- the hexadecimal literal 0xFF\n- the binary literal 0b1010\n- the octal literal 017\n- the literal 1_000_000\n\nDisplay the four values on separate lines in the same order. Java always prints int values in decimal.",
+      "input_format": "No input is required.",
+      "output_format": "Four lines containing the decimal values of the four literals in the order listed.",
+      "constraints": "Fixed output.",
+      "sample_inputs": [
+        ""
+      ],
+      "sample_outputs": [
+        "255\n10\n15\n1000000"
+      ],
+      "hints": [
+        "The prefix 0x means base 16 and 0b means base 2.",
+        "A leading 0 on an integer literal means base 8, so 017 is not seventeen.",
+        "Underscores between digits are only for readability; they do not change the value."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "public class Main {\n    public static void main(String[] args) {\n        int hex = 0xFF;\n        int binary = 0b1010;\n        int octal = 017;\n        int million = 1_000_000;\n        System.out.println(hex);\n        System.out.println(binary);\n        System.out.println(octal);\n        System.out.println(million);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "",
+          "output": "255\n10\n15\n1000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "No input is required.",
+        "output_format": "Four lines containing the decimal values of the four literals in the order listed."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-14",
+      "title": "Explicit Narrowing to Byte",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Cast an int to byte and observe how out-of-range values change.",
+      "problem_statement": "Read an integer and explicitly cast it to Java's byte type. Display the resulting byte value. A byte can represent values from -128 to 127. When the input is outside this range, narrowing conversion can change the value.",
+      "input_format": "A single line containing an integer (int).",
+      "output_format": "A single line containing the byte value after the cast.",
+      "constraints": "-2147483648 <= n <= 2147483647",
+      "sample_inputs": [
+        "130",
+        "100"
+      ],
+      "sample_outputs": [
+        "-126",
+        "100"
+      ],
+      "hints": [
+        "Narrowing from int to byte requires an explicit cast: (byte) n.",
+        "The cast keeps only the lowest 8 bits of the value.",
+        "For values from 128 to 255, the result equals n - 256."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        byte b = (byte) n;\n        System.out.println(b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "130",
+          "output": "-126",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "100",
+          "output": "100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-129",
+          "output": "127",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "127",
+          "output": "127",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "255",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "256",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-200",
+          "output": "56",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000",
+          "output": "-24",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer (int).",
+        "output_format": "A single line containing the byte value after the cast."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-15",
+      "title": "Long to Integer Narrowing",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Cast a long to int and observe how values outside the int range change.",
+      "problem_statement": "Read a long value and explicitly cast it to int. Display the resulting integer. If the value is outside the int range, the conversion may discard higher-order bits and change the result.",
+      "input_format": "A single line containing a long value.",
+      "output_format": "A single line containing the int value after the cast.",
+      "constraints": "-9223372036854775808 <= n <= 9223372036854775807",
+      "sample_inputs": [
+        "2147483648",
+        "100"
+      ],
+      "sample_outputs": [
+        "-2147483648",
+        "100"
+      ],
+      "hints": [
+        "Read the input with Long.parseLong(sc.next()).",
+        "Narrowing from long to int requires an explicit cast: (int) n.",
+        "The cast keeps only the lowest 32 bits of the value."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        int result = (int) n;\n        System.out.println(result);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2147483648",
+          "output": "-2147483648",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "100",
+          "output": "100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "4294967296",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "-2147483649",
+          "output": "2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "9223372036854775807",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2147483647",
+          "output": "2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-1",
+          "output": "-1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3000000000",
+          "output": "-1294967296",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a long value.",
+        "output_format": "A single line containing the int value after the cast."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-16",
+      "title": "Float to Double Widening",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Widen a float to double and observe that the double shows the float's stored approximation.",
+      "problem_statement": "Read a decimal number and store it in a float variable. Assign the float to a double variable without an explicit cast. Display the float value first and the double value second.\n\nWidening from float to double never changes the stored value. However, the double's string conversion shows more digits, which reveals that the float stored only an approximation of many decimal inputs. Assume the input is between 0.001 and 10,000,000.",
+      "input_format": "A single line containing a decimal number.",
+      "output_format": "Two lines: the float value, then the double value.",
+      "constraints": "0.001 <= value < 10,000,000",
+      "sample_inputs": [
+        "0.1",
+        "2.5"
+      ],
+      "sample_outputs": [
+        "0.1\n0.10000000149011612",
+        "2.5\n2.5"
+      ],
+      "hints": [
+        "Read the input with Float.parseFloat(sc.next()).",
+        "Write double d = f; with no cast.",
+        "Values such as 0.5 or 2.25 are stored exactly in a float, so both lines match for those inputs."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        float f = Float.parseFloat(sc.next());\n        double d = f;\n        System.out.println(f);\n        System.out.println(d);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "0.1",
+          "output": "0.1\n0.10000000149011612",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2.5",
+          "output": "2.5\n2.5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3.14",
+          "output": "3.14\n3.140000104904175",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0.2",
+          "output": "0.2\n0.20000000298023224",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100.7",
+          "output": "100.7\n100.69999694824219",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "0.75",
+          "output": "0.75\n0.75",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "9.99",
+          "output": "9.99\n9.989999771118164",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1234.56",
+          "output": "1234.56\n1234.56005859375",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal number.",
+        "output_format": "Two lines: the float value, then the double value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-17",
+      "title": "Floating-Point Precision Comparison",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Medium",
+      "objective": "Store a high-precision decimal in float and double and compare their printed values.",
+      "problem_statement": "Read a decimal number and store it in both float and double variables. Display both values using Java's standard string conversion. The input is chosen to demonstrate the difference in precision between the two data types. Read the input only once and assign it to both variables.",
+      "input_format": "A single line containing a decimal number.",
+      "output_format": "Two lines: the float value, then the double value.",
+      "constraints": "The input has more significant digits than float can hold.\n0.001 <= |value| < 10,000,000",
+      "sample_inputs": [
+        "1.23456789",
+        "3.14159265"
+      ],
+      "sample_outputs": [
+        "1.2345679\n1.23456789",
+        "3.1415927\n3.14159265"
+      ],
+      "hints": [
+        "Read the input once with Double.parseDouble(sc.next()).",
+        "Cast the double to float with (float) d.",
+        "A float keeps about 7 significant digits; a double keeps about 15 to 16."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        double d = Double.parseDouble(sc.next());\n        float f = (float) d;\n        System.out.println(f);\n        System.out.println(d);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1.23456789",
+          "output": "1.2345679\n1.23456789",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3.14159265",
+          "output": "3.1415927\n3.14159265",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2.718281828",
+          "output": "2.7182817\n2.718281828",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9.87654321",
+          "output": "9.876543\n9.87654321",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "0.123456789",
+          "output": "0.12345679\n0.123456789",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "123.456789",
+          "output": "123.45679\n123.456789",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5.55555555",
+          "output": "5.5555553\n5.55555555",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "0.333333333",
+          "output": "0.33333334\n0.333333333",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal number.",
+        "output_format": "Two lines: the float value, then the double value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-18",
+      "title": "Saturating Double to Int Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Hard",
+      "objective": "Compare double-to-int and double-to-long casts for values outside the int range.",
+      "problem_statement": "Read a decimal number as a double. Cast it to int and, separately, to long. Display the int result first and the long result second.\n\nCasting a double to int does not wrap the way casting a long to int does. If the truncated value is larger than the maximum int value, the result is 2147483647; if it is smaller than the minimum int value, the result is -2147483648. Assume the input is within the long range.",
+      "input_format": "A single line containing a decimal number (double).",
+      "output_format": "Two lines: the double cast to int, then the double cast to long.",
+      "constraints": "-9,000,000,000,000,000,000 <= d <= 9,000,000,000,000,000,000",
+      "sample_inputs": [
+        "3000000000.5",
+        "123.9"
+      ],
+      "sample_outputs": [
+        "2147483647\n3000000000",
+        "123\n123"
+      ],
+      "hints": [
+        "Cast the same double twice: (int) d and (long) d.",
+        "Both casts truncate the fractional part toward zero first.",
+        "Compare with M02-15: (int) of the long 3000000000 wraps to -1294967296, but (int) of the double 3000000000.5 stops at 2147483647."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        double d = Double.parseDouble(sc.next());\n        int asInt = (int) d;\n        long asLong = (long) d;\n        System.out.println(asInt);\n        System.out.println(asLong);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3000000000.5",
+          "output": "2147483647\n3000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "123.9",
+          "output": "123\n123",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "-5000000000.7",
+          "output": "-2147483648\n-5000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2147483647.9",
+          "output": "2147483647\n2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-2147483648.5",
+          "output": "-2147483648\n-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9999999999.0",
+          "output": "2147483647\n9999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2147483648.0",
+          "output": "2147483647\n2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-42.5",
+          "output": "-42\n-42",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal number (double).",
+        "output_format": "Two lines: the double cast to int, then the double cast to long."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-19",
+      "title": "Chained Narrowing Conversion",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Hard",
+      "objective": "Narrow a double step by step through long, int, short, and byte, and observe each result.",
+      "problem_statement": "Read a decimal number as a double. Explicitly cast it to long, cast that long to int, cast that int to short, and cast that short to byte. Display the long, int, short, and byte values on separate lines in that order.\n\nEach cast keeps only the part of the value that fits in the smaller type, so a single input can produce several different results. Assume the input is within the long range.",
+      "input_format": "A single line containing a decimal number (double).",
+      "output_format": "Four lines: the long, int, short, and byte values, in that order.",
+      "constraints": "-9,000,000,000,000,000,000 <= d <= 9,000,000,000,000,000,000",
+      "sample_inputs": [
+        "12345678901.5",
+        "3000000000.75"
+      ],
+      "sample_outputs": [
+        "12345678901\n-539222987\n7221\n53",
+        "3000000000\n-1294967296\n24064\n0"
+      ],
+      "hints": [
+        "Casting the double to long discards the fractional part, truncating toward zero.",
+        "Cast each result to the next smaller type: (int) l, then (short) i, then (byte) s.",
+        "Store each result in its own variable so all four values can be printed."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        double d = Double.parseDouble(sc.next());\n        long l = (long) d;\n        int i = (int) l;\n        short s = (short) i;\n        byte b = (byte) s;\n        System.out.println(l);\n        System.out.println(i);\n        System.out.println(s);\n        System.out.println(b);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12345678901.5",
+          "output": "12345678901\n-539222987\n7221\n53",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3000000000.75",
+          "output": "3000000000\n-1294967296\n24064\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "70000.9",
+          "output": "70000\n70000\n4464\n112",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "300.5",
+          "output": "300\n300\n300\n44",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "-129.99",
+          "output": "-129\n-129\n-129\n127",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5000000000.0",
+          "output": "5000000000\n705032704\n-3584\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "65.4",
+          "output": "65\n65\n65\n65",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "-40000.25",
+          "output": "-40000\n-40000\n25536\n-64",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a decimal number (double).",
+        "output_format": "Four lines: the long, int, short, and byte values, in that order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M2-20",
+      "title": "Bank Account Type Selection",
+      "module": "Module 02: Java Data Types and Type Conversion",
+      "difficulty": "Hard",
+      "objective": "Choose integer types by range and a floating-point type by precision for a real record.",
+      "problem_statement": "A bank stores the following details for each account:\n- account number: a 12-digit whole number\n- branch code: a whole number from 1 to 5,000\n- account type: a single letter (S for savings, C for current)\n- balance: a decimal amount from 0.01 to 9,999,999.99 with at most two decimal places\n- active status: true or false\n\nRead these five values in the order listed and store each in the most suitable Java data type. Use the smallest integer type that can hold each whole-number range, and a floating-point type precise enough to keep every balance exactly as written. Display each value on a separate line in the same order.\n\nThe balance is written in Java's standard double format (for example, 1500.5 or 1000.0).",
+      "input_format": "Five separate lines:\nLine 1: Account number (12-digit whole number)\nLine 2: Branch code (whole number)\nLine 3: Account type (S or C)\nLine 4: Balance (decimal number)\nLine 5: Active status (true or false)",
+      "output_format": "Five lines: the account number, branch code, account type, balance, and active status, in the same order.",
+      "constraints": "100000000000 <= account number <= 999999999999\n1 <= branch code <= 5000\nAccount type is S or C.\n0.01 <= balance <= 9,999,999.99\nActive status is exactly true or false (lowercase).",
+      "sample_inputs": [
+        "123456789012\n4521\nS\n9876543.21\ntrue",
+        "987654321098\n128\nC\n1500.5\nfalse"
+      ],
+      "sample_outputs": [
+        "123456789012\n4521\nS\n9876543.21\ntrue",
+        "987654321098\n128\nC\n1500.5\nfalse"
+      ],
+      "hints": [
+        "Compare each whole-number range with the limits of byte (127), short (32767), int (2147483647), and long.",
+        "A float keeps only about 7 significant digits, but a balance such as 9876543.21 has 9.",
+        "Use sc.next().charAt(0) for the account type and Boolean.parseBoolean() for the status."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long accountNumber = Long.parseLong(sc.next());\n        short branchCode = Short.parseShort(sc.next());\n        char accountType = sc.next().charAt(0);\n        double balance = Double.parseDouble(sc.next());\n        boolean active = Boolean.parseBoolean(sc.next());\n        System.out.println(accountNumber);\n        System.out.println(branchCode);\n        System.out.println(accountType);\n        System.out.println(balance);\n        System.out.println(active);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "123456789012\n4521\nS\n9876543.21\ntrue",
+          "output": "123456789012\n4521\nS\n9876543.21\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "987654321098\n128\nC\n1500.5\nfalse",
+          "output": "987654321098\n128\nC\n1500.5\nfalse",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100000000000\n1\nS\n0.01\ntrue",
+          "output": "100000000000\n1\nS\n0.01\ntrue",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "999999999999\n5000\nC\n9999999.99\nfalse",
+          "output": "999999999999\n5000\nC\n9999999.99\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "555544443333\n127\nS\n250000.75\ntrue",
+          "output": "555544443333\n127\nS\n250000.75\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "314159265358\n3200\nC\n12.34\ntrue",
+          "output": "314159265358\n3200\nC\n12.34\ntrue",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "271828182845\n999\nS\n345678.9\nfalse",
+          "output": "271828182845\n999\nS\n345678.9\nfalse",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "112233445566\n42\nC\n1000.0\ntrue",
+          "output": "112233445566\n42\nC\n1000.0\ntrue",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 02: Java Data Types and Type Conversion",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Five separate lines:\nLine 1: Account number (12-digit whole number)\nLine 2: Branch code (whole number)\nLine 3: Account type (S or C)\nLine 4: Balance (decimal number)\nLine 5: Active status (true or false)",
+        "output_format": "Five lines: the account number, branch code, account type, balance, and active status, in the same order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M2_Java_Data_Types_and_Type_Conversion.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

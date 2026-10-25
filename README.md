@@ -1,21 +1,22 @@
-# ⚡ PyArena
+# ⚡ CodeArena
 
-> **Modern 18-Module Python Practice Lab & Sandboxed Assessment Workbench**  
-> An interactive, full-stack educational coding platform featuring sandboxed execution, real-time test case evaluation, cloud progress synchronization via Supabase PostgreSQL, and a Monaco-powered developer environment.
+> **Modern Multi-Language (Python & Java) Practice Lab & Sandboxed Assessment Workbench**  
+> An interactive, full-stack educational coding platform featuring multi-language sandboxed execution (Python & Java), real-time test case evaluation, cloud progress synchronization via Supabase PostgreSQL, and a Monaco-powered developer environment.
 
 ---
 
 ## ✨ Features
 
-- **🎓 Comprehensive 18-Module Curriculum**:
-  - Structured modules covering foundational Python to advanced algorithms.
+- **🎓 Comprehensive Multi-Language Curriculum**:
+  - Structured modules covering foundational to advanced Python and Java (20 full modules each).
   - Granular problem levels per module: **Easy**, **Medium**, and **Hard**.
-  - Detailed problem descriptions, sample test inputs/outputs, constraints, and hints.
+  - Detailed problem descriptions with rich visual guides/diagrams, sample test inputs/outputs, constraints, and hints.
 
-- **🛡️ Sandboxed Code Execution Engine**:
-  - Secure, dedicated subprocess isolation with network restrictions and CPU time limits.
-  - Fast execution runtime (<1ms overhead) with stdout/stderr capture and truncation defense.
-  - Supports both standard I/O (`stdin/stdout`) and programmatic function call evaluations.
+- **🛡️ Sandboxed Code Execution Engine (Python & Java)**:
+  - Secure, dedicated subprocess isolation with network restrictions, memory caps, and CPU time limits.
+  - Fast execution runtime with stdout/stderr capture and truncation defense.
+  - Native **Java (OpenJDK)** compilation and execution with auto-detected public classes (e.g. `Main` or `Solution`).
+  - Supports both standard I/O (`stdin/stdout`) and programmatic evaluations.
 
 - **🧪 Test Case Validation Suite**:
   - Evaluates both visible and hidden test cases.
@@ -31,14 +32,14 @@
   - Monaco Code Editor integration with syntax highlighting and bracket colorization.
   - In-module status filtering: Quick toggles for **All**, **Unsolved**, and **Solved** questions.
   - Problem status indicators: Green `</>` for solved problems, dark neutral for unsolved.
-  - Clean, distraction-free matte dark UI.
+  - Clean, distraction-free matte dark UI with full diagram lightbox zoom.
 
 ---
 
 ## 🏗️ Architecture
 
 ```
-pyarena/
+codearena/
 ├── backend/                  # FastAPI Application
 │   ├── api/routes.py         # Auth, Question Banks, and Sandbox endpoints
 │   ├── core/
@@ -134,7 +135,7 @@ pytest tests/
 
 ## 🔒 Security & Sandbox Isolation
 
-Code submitted to PyArena runs inside a sandboxed environment:
+Code submitted to CodeArena runs inside a sandboxed environment:
 - **Network Block**: Socket initialization is strictly restricted.
 - **Resource Constraints**: CPU execution limits enforced via `setrlimit`.
 - **Ephemeral Workspaces**: Every run generates and immediately destroys a clean temporary scratch directory.

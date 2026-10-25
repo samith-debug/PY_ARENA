@@ -1,0 +1,401 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M3-01,Arithmetic Expression Evaluator,Module 03: Java Operators and Bit Basics,Easy,"Apply +, -, *, /, and % to two integers, including negative operands.",stdin/stdout,O(1),O(1),"Read two integers a and b. Print their sum, difference (a - b), product, integer quotient (a / b), and remainder (a % b), each on a separate line and in that order. Both inputs may be negative, but b must not be zero. All results must fit in a Java int.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b","Five lines: a + b, a - b, a * b, a / b, and a % b, in that order.","b != 0
+All results fit in a Java int.","17
+5","22
+12
+85
+3
+2","-17
+5","-12
+-22
+-85
+-3
+-2","Use the five arithmetic operators +, -, *, /, and % on two int variables.","Integer division truncates toward zero, so -17 / 5 is -3, not -4.","The result of % takes the sign of the left operand, so -17 % 5 is -2.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        System.out.println(a + b);
+        System.out.println(a - b);
+        System.out.println(a * b);
+        System.out.println(a / b);
+        System.out.println(a % b);
+    }
+}","[{""input"": ""17\n5"", ""output"": ""22\n12\n85\n3\n2"", ""is_hidden"": false}, {""input"": ""-17\n5"", ""output"": ""-12\n-22\n-85\n-3\n-2"", ""is_hidden"": false}, {""input"": ""7\n-2"", ""output"": ""5\n9\n-14\n-3\n1"", ""is_hidden"": false}, {""input"": ""-7\n-2"", ""output"": ""-9\n-5\n14\n3\n-1"", ""is_hidden"": true}, {""input"": ""0\n3"", ""output"": ""3\n-3\n0\n0\n0"", ""is_hidden"": true}, {""input"": ""100\n7"", ""output"": ""107\n93\n700\n14\n2"", ""is_hidden"": true}, {""input"": ""46340\n46340"", ""output"": ""92680\n0\n2147395600\n1\n0"", ""is_hidden"": true}, {""input"": ""-1000\n33"", ""output"": ""-967\n-1033\n-33000\n-30\n-10"", ""is_hidden"": true}]"
+JP-M3-02,Relational Operator Results,Module 03: Java Operators and Bit Basics,Easy,Evaluate all six relational operators on two integers.,stdin/stdout,O(1),O(1),"Read integers a and b. Print the results of a < b, a <= b, a > b, a >= b, a == b, and a != b, in that order. Print each Boolean result on a separate line.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b","Six lines containing true or false, in the order listed.","-2147483648 <= a, b <= 2147483647","8
+12","true
+true
+false
+false
+false
+true","12
+8","false
+false
+true
+true
+false
+true",Each relational expression produces a boolean value.,You can print an expression directly: System.out.println(a < b);,Use == for equality; a single = is assignment.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        System.out.println(a < b);
+        System.out.println(a <= b);
+        System.out.println(a > b);
+        System.out.println(a >= b);
+        System.out.println(a == b);
+        System.out.println(a != b);
+    }
+}","[{""input"": ""8\n12"", ""output"": ""true\ntrue\nfalse\nfalse\nfalse\ntrue"", ""is_hidden"": false}, {""input"": ""12\n8"", ""output"": ""false\nfalse\ntrue\ntrue\nfalse\ntrue"", ""is_hidden"": false}, {""input"": ""5\n5"", ""output"": ""false\ntrue\nfalse\ntrue\ntrue\nfalse"", ""is_hidden"": false}, {""input"": ""-3\n-3"", ""output"": ""false\ntrue\nfalse\ntrue\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""-10\n4"", ""output"": ""true\ntrue\nfalse\nfalse\nfalse\ntrue"", ""is_hidden"": true}, {""input"": ""0\n-1"", ""output"": ""false\nfalse\ntrue\ntrue\nfalse\ntrue"", ""is_hidden"": true}, {""input"": ""2147483647\n-2147483648"", ""output"": ""false\nfalse\ntrue\ntrue\nfalse\ntrue"", ""is_hidden"": true}, {""input"": ""100\n101"", ""output"": ""true\ntrue\nfalse\nfalse\nfalse\ntrue"", ""is_hidden"": true}]"
+JP-M3-03,Logical Operator Evaluator,Module 03: Java Operators and Bit Basics,Easy,"Evaluate &&, ||, and ! on two boolean values.",stdin/stdout,O(1),O(1),"Read two Boolean values, a and b, each entered as true or false. Print a && b, a || b, and !a, in that order.","Two separate lines:
+Line 1: true or false
+Line 2: true or false","Three lines: a && b, a || b, and !a, in that order.",Each input is exactly true or false (lowercase).,"true
+false","false
+true
+false","false
+true","false
+true
+true",Read each value with Boolean.parseBoolean(sc.next()).,&& is true only when both values are true; || is true when at least one is true.,!a reverses the value of a.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        boolean a = Boolean.parseBoolean(sc.next());
+        boolean b = Boolean.parseBoolean(sc.next());
+        System.out.println(a && b);
+        System.out.println(a || b);
+        System.out.println(!a);
+    }
+}","[{""input"": ""true\nfalse"", ""output"": ""false\ntrue\nfalse"", ""is_hidden"": false}, {""input"": ""false\ntrue"", ""output"": ""false\ntrue\ntrue"", ""is_hidden"": false}, {""input"": ""true\ntrue"", ""output"": ""true\ntrue\nfalse"", ""is_hidden"": false}, {""input"": ""false\nfalse"", ""output"": ""false\nfalse\ntrue"", ""is_hidden"": true}, {""input"": ""true\nfalse"", ""output"": ""false\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""false\ntrue"", ""output"": ""false\ntrue\ntrue"", ""is_hidden"": true}, {""input"": ""true\ntrue"", ""output"": ""true\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""false\nfalse"", ""output"": ""false\nfalse\ntrue"", ""is_hidden"": true}]"
+JP-M3-04,Ternary Operator: Larger Number,Module 03: Java Operators and Bit Basics,Easy,Select the larger of two integers using the ternary operator.,stdin/stdout,O(1),O(1),"Read two integers a and b. Use the ternary operator ?: to print the larger value. If both values are equal, print that value. Do not use if-else.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b",A single line containing the larger value.,"-2147483648 <= a, b <= 2147483647","14
+9",14,"3
+3",3,The ternary operator has the form condition ? valueIfTrue : valueIfFalse.,Use a > b as the condition.,"When a and b are equal, either branch gives the correct answer.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        int larger = a > b ? a : b;
+        System.out.println(larger);
+    }
+}","[{""input"": ""14\n9"", ""output"": ""14"", ""is_hidden"": false}, {""input"": ""3\n3"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""-5\n-2"", ""output"": ""-2"", ""is_hidden"": false}, {""input"": ""0\n-1"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""2147483647\n-2147483648"", ""output"": ""2147483647"", ""is_hidden"": true}, {""input"": ""9\n14"", ""output"": ""14"", ""is_hidden"": true}, {""input"": ""-7\n-7"", ""output"": ""-7"", ""is_hidden"": true}, {""input"": ""100\n99"", ""output"": ""100"", ""is_hidden"": true}]"
+JP-M3-05,Prefix and Postfix Increment,Module 03: Java Operators and Bit Basics,Easy,Distinguish the value returned by x++ from the value returned by ++x.,stdin/stdout,O(1),O(1),"Read an integer x. Print the result of x++, then the updated value of x, then the result of ++x, and finally the updated value of x again. Assume no integer overflow occurs.",A single line containing an integer x.,"Four lines: x++, x, ++x, and x, in that order.",-2147483648 <= x <= 2147483645,5,"5
+6
+7
+7",0,"0
+1
+2
+2","System.out.println(x++); prints the old value, then increases x.","System.out.println(++x); increases x first, then prints the new value.",Print x on its own between the two increments to see the updated value.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = Integer.parseInt(sc.next());
+        System.out.println(x++);
+        System.out.println(x);
+        System.out.println(++x);
+        System.out.println(x);
+    }
+}","[{""input"": ""5"", ""output"": ""5\n6\n7\n7"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""0\n1\n2\n2"", ""is_hidden"": false}, {""input"": ""-1"", ""output"": ""-1\n0\n1\n1"", ""is_hidden"": false}, {""input"": ""-10"", ""output"": ""-10\n-9\n-8\n-8"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""100\n101\n102\n102"", ""is_hidden"": true}, {""input"": ""2147483645"", ""output"": ""2147483645\n2147483646\n2147483647\n2147483647"", ""is_hidden"": true}, {""input"": ""-2147483648"", ""output"": ""-2147483648\n-2147483647\n-2147483646\n-2147483646"", ""is_hidden"": true}, {""input"": ""42"", ""output"": ""42\n43\n44\n44"", ""is_hidden"": true}]"
+JP-M3-06,Operator Precedence Challenge,Module 03: Java Operators and Bit Basics,Easy,Compare an expression evaluated by default precedence with one changed by parentheses.,stdin/stdout,O(1),O(1),"Read integers a, b, and c. Print a + b * c and (a + b) * c, in that order. Assume both results fit in a Java int.","Three separate lines:
+Line 1: Integer a
+Line 2: Integer b
+Line 3: Integer c","Two lines: a + b * c, then (a + b) * c.",Both results fit in a Java int.,"4
+3
+2","10
+14","2
+5
+3","17
+21",Multiplication is evaluated before addition.,Parentheses force the expression inside them to be evaluated first.,Write both expressions exactly as shown; do not simplify them.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        int c = Integer.parseInt(sc.next());
+        System.out.println(a + b * c);
+        System.out.println((a + b) * c);
+    }
+}","[{""input"": ""4\n3\n2"", ""output"": ""10\n14"", ""is_hidden"": false}, {""input"": ""2\n5\n3"", ""output"": ""17\n21"", ""is_hidden"": false}, {""input"": ""-1\n4\n2"", ""output"": ""7\n6"", ""is_hidden"": false}, {""input"": ""0\n7\n7"", ""output"": ""49\n49"", ""is_hidden"": true}, {""input"": ""10\n-3\n4"", ""output"": ""-2\n28"", ""is_hidden"": true}, {""input"": ""100\n100\n100"", ""output"": ""10100\n20000"", ""is_hidden"": true}, {""input"": ""-5\n-5\n-5"", ""output"": ""20\n50"", ""is_hidden"": true}, {""input"": ""1\n2\n3"", ""output"": ""7\n9"", ""is_hidden"": true}]"
+JP-M3-07,Bitwise AND and OR,Module 03: Java Operators and Bit Basics,Easy,Apply the bitwise & and | operators to two non-negative integers.,stdin/stdout,O(1),O(1),"Read two non-negative integers a and b. Print a & b, followed by a | b. Both results must fit in a Java int.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b","Two lines: a & b, then a | b.","0 <= a, b <= 2147483647","6
+3","2
+7","12
+10","8
+14",Write each number in binary to see which bits are set.,& keeps a bit only when it is 1 in both numbers.,| keeps a bit when it is 1 in either number.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        System.out.println(a & b);
+        System.out.println(a | b);
+    }
+}","[{""input"": ""6\n3"", ""output"": ""2\n7"", ""is_hidden"": false}, {""input"": ""12\n10"", ""output"": ""8\n14"", ""is_hidden"": false}, {""input"": ""0\n5"", ""output"": ""0\n5"", ""is_hidden"": false}, {""input"": ""15\n15"", ""output"": ""15\n15"", ""is_hidden"": true}, {""input"": ""255\n256"", ""output"": ""0\n511"", ""is_hidden"": true}, {""input"": ""2147483647\n1"", ""output"": ""1\n2147483647"", ""is_hidden"": true}, {""input"": ""1023\n512"", ""output"": ""512\n1023"", ""is_hidden"": true}, {""input"": ""8\n7"", ""output"": ""0\n15"", ""is_hidden"": true}]"
+JP-M3-08,Left and Right Bit Shifts,Module 03: Java Operators and Bit Basics,Easy,Shift a non-negative integer left and right by k positions.,stdin/stdout,O(1),O(1),"Read a non-negative integer n and an integer k from 0 to 30. Print n << k and n >> k, in that order. The left-shift result must fit in a Java int.","Two separate lines:
+Line 1: Integer n
+Line 2: Shift distance k","Two lines: n << k, then n >> k.","n >= 0
+0 <= k <= 30
+n << k fits in a Java int.","12
+2","48
+3","1
+30","1073741824
+0",Shifting left by k positions multiplies a non-negative number by 2 to the power k.,"Shifting right by k positions divides a non-negative number by 2 to the power k, discarding the remainder.",Shifting by 0 leaves the value unchanged.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        System.out.println(n << k);
+        System.out.println(n >> k);
+    }
+}","[{""input"": ""12\n2"", ""output"": ""48\n3"", ""is_hidden"": false}, {""input"": ""1\n30"", ""output"": ""1073741824\n0"", ""is_hidden"": false}, {""input"": ""5\n0"", ""output"": ""5\n5"", ""is_hidden"": false}, {""input"": ""0\n10"", ""output"": ""0\n0"", ""is_hidden"": true}, {""input"": ""1000\n3"", ""output"": ""8000\n125"", ""is_hidden"": true}, {""input"": ""7\n1"", ""output"": ""14\n3"", ""is_hidden"": true}, {""input"": ""1\n0"", ""output"": ""1\n1"", ""is_hidden"": true}, {""input"": ""65535\n15"", ""output"": ""2147450880\n1"", ""is_hidden"": true}]"
+JP-M3-09,Integer Overflow with Increment and Decrement,Module 03: Java Operators and Bit Basics,Medium,Apply ++ and -- to an int and observe wraparound at the int limits.,stdin/stdout,O(1),O(1),"Read an integer x. Apply x++ and print x. Then apply x-- and print x. Apply x-- once more and print x.
+
+Java int arithmetic wraps around on overflow: one more than 2147483647 is -2147483648, and one less than -2147483648 is 2147483647. No error is reported when this happens.",A single line containing an integer x.,"Three lines: x after x++, after the first x--, and after the second x--.",-2147483648 <= x <= 2147483647,2147483647,"-2147483648
+2147483647
+2147483646",-2147483648,"-2147483647
+-2147483648
+2147483647","Use x++; and x--; as separate statements, then print x after each one.",Integer.MAX_VALUE is 2147483647 and Integer.MIN_VALUE is -2147483648.,Going one past either limit wraps around to the other limit.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = Integer.parseInt(sc.next());
+        x++;
+        System.out.println(x);
+        x--;
+        System.out.println(x);
+        x--;
+        System.out.println(x);
+    }
+}","[{""input"": ""2147483647"", ""output"": ""-2147483648\n2147483647\n2147483646"", ""is_hidden"": false}, {""input"": ""-2147483648"", ""output"": ""-2147483647\n-2147483648\n2147483647"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""11\n10\n9"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""1\n0\n-1"", ""is_hidden"": true}, {""input"": ""-2147483647"", ""output"": ""-2147483646\n-2147483647\n-2147483648"", ""is_hidden"": true}, {""input"": ""2147483646"", ""output"": ""2147483647\n2147483646\n2147483645"", ""is_hidden"": true}, {""input"": ""-1"", ""output"": ""0\n-1\n-2"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""101\n100\n99"", ""is_hidden"": true}]"
+JP-M3-10,Compound Assignment Sequence,Module 03: Java Operators and Bit Basics,Medium,Apply a sequence of compound assignments and track the variable after each one.,stdin/stdout,O(1),O(1),"Read an integer x. Apply these operations in order, printing the value after each operation: x += 8, x *= 3, x -= 5, x /= 2, and x %= 4. Each intermediate result must fit in a Java int.",A single line containing an integer x.,"Five lines: the value of x after each operation, in order.",-100000 <= x <= 100000,4,"12
+36
+31
+15
+3",-4,"4
+12
+7
+3
+3","Each compound assignment uses the current value of x, not the original input.","x /= 2 uses integer division, which truncates toward zero.","For a negative x, x %= 4 can produce a negative result.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int x = Integer.parseInt(sc.next());
+        x += 8;
+        System.out.println(x);
+        x *= 3;
+        System.out.println(x);
+        x -= 5;
+        System.out.println(x);
+        x /= 2;
+        System.out.println(x);
+        x %= 4;
+        System.out.println(x);
+    }
+}","[{""input"": ""4"", ""output"": ""12\n36\n31\n15\n3"", ""is_hidden"": false}, {""input"": ""-4"", ""output"": ""4\n12\n7\n3\n3"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""8\n24\n19\n9\n1"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""18\n54\n49\n24\n0"", ""is_hidden"": true}, {""input"": ""-20"", ""output"": ""-12\n-36\n-41\n-20\n0"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""108\n324\n319\n159\n3"", ""is_hidden"": true}, {""input"": ""-10"", ""output"": ""-2\n-6\n-11\n-5\n-1"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""15\n45\n40\n20\n0"", ""is_hidden"": true}]"
+JP-M3-11,Combined Relational and Logical Expressions,Module 03: Java Operators and Bit Basics,Medium,"Combine relational comparisons with &&, ||, and ! in compound Boolean expressions.",stdin/stdout,O(1),O(1),"Read an integer age, an integer score, and an integer attendance. Print the results of these expressions, one per line:
+1. age >= 18 && score >= 50
+2. score >= 75 || attendance >= 90
+3. !(age < 18)
+4. age >= 18 && score >= 50 && attendance >= 75
+Assume each input is between 0 and 150.","Three separate lines:
+Line 1: age
+Line 2: score
+Line 3: attendance","Four lines containing true or false, one for each expression in order.","0 <= age, score, attendance <= 150","20
+60
+80","true
+false
+true
+true","17
+80
+95","false
+true
+false
+false","Relational operators are evaluated before && and ||, so no extra parentheses are needed around comparisons.",!(age < 18) needs its parentheses because ! cannot be applied to an int.,"Evaluate each comparison by hand first, then combine the results.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int age = Integer.parseInt(sc.next());
+        int score = Integer.parseInt(sc.next());
+        int attendance = Integer.parseInt(sc.next());
+        System.out.println(age >= 18 && score >= 50);
+        System.out.println(score >= 75 || attendance >= 90);
+        System.out.println(!(age < 18));
+        System.out.println(age >= 18 && score >= 50 && attendance >= 75);
+    }
+}","[{""input"": ""20\n60\n80"", ""output"": ""true\nfalse\ntrue\ntrue"", ""is_hidden"": false}, {""input"": ""17\n80\n95"", ""output"": ""false\ntrue\nfalse\nfalse"", ""is_hidden"": false}, {""input"": ""18\n50\n75"", ""output"": ""true\nfalse\ntrue\ntrue"", ""is_hidden"": false}, {""input"": ""30\n40\n90"", ""output"": ""false\ntrue\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""16\n30\n50"", ""output"": ""false\nfalse\nfalse\nfalse"", ""is_hidden"": true}, {""input"": ""25\n75\n74"", ""output"": ""true\ntrue\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""18\n49\n100"", ""output"": ""false\ntrue\ntrue\nfalse"", ""is_hidden"": true}, {""input"": ""40\n100\n100"", ""output"": ""true\ntrue\ntrue\ntrue"", ""is_hidden"": true}]"
+JP-M3-12,Numeric Promotion in Arithmetic,Module 03: Java Operators and Bit Basics,Medium,Compare integer division with floating-point division after casting one operand to double.,stdin/stdout,O(1),O(1),"Read two integers a and b, where b is non-zero. Print the result of integer division a / b, then the result of floating-point division (double) a / b. Assume -1,000,000 <= a <= 1,000,000 and 1 <= |b| <= 1,000, so the floating-point result prints in ordinary decimal notation.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b","Two lines: a / b, then (double) a / b.","-1,000,000 <= a <= 1,000,000
+1 <= |b| <= 1,000","7
+2","3
+3.5","-7
+2","-3
+-3.5","When both operands are int, / performs integer division.",The cast in (double) a / b applies to a before the division happens.,"Once one operand is double, Java promotes the other operand to double as well.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        System.out.println(a / b);
+        System.out.println((double) a / b);
+    }
+}","[{""input"": ""7\n2"", ""output"": ""3\n3.5"", ""is_hidden"": false}, {""input"": ""-7\n2"", ""output"": ""-3\n-3.5"", ""is_hidden"": false}, {""input"": ""1\n3"", ""output"": ""0\n0.3333333333333333"", ""is_hidden"": false}, {""input"": ""10\n5"", ""output"": ""2\n2.0"", ""is_hidden"": true}, {""input"": ""1\n1000"", ""output"": ""0\n0.001"", ""is_hidden"": true}, {""input"": ""1000000\n7"", ""output"": ""142857\n142857.14285714287"", ""is_hidden"": true}, {""input"": ""-1000000\n-1"", ""output"": ""1000000\n1000000.0"", ""is_hidden"": true}, {""input"": ""5\n-1000"", ""output"": ""0\n-0.005"", ""is_hidden"": true}]"
+JP-M3-13,Character and Integer Promotion,Module 03: Java Operators and Bit Basics,Medium,Use a char in arithmetic and convert the result back to char.,stdin/stdout,O(1),O(1),"Read an uppercase English letter. Print its integer character code plus one, then print the character obtained by converting that incremented code back to char. The input letter must be between A and Y, inclusive. Read the letter with sc.next().charAt(0).",A single line containing one uppercase letter from A to Y.,"Two lines: the character code plus one, then the next character.",'A' <= letter <= 'Y',A,"66
+B",Y,"90
+Z","In c + 1, the char c is promoted to int, so the result is a number.",Store c + 1 in an int variable and print it.,Cast the int back with (char) to print it as a letter.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char c = sc.next().charAt(0);
+        int next = c + 1;
+        System.out.println(next);
+        System.out.println((char) next);
+    }
+}","[{""input"": ""A"", ""output"": ""66\nB"", ""is_hidden"": false}, {""input"": ""Y"", ""output"": ""90\nZ"", ""is_hidden"": false}, {""input"": ""M"", ""output"": ""78\nN"", ""is_hidden"": false}, {""input"": ""B"", ""output"": ""67\nC"", ""is_hidden"": true}, {""input"": ""C"", ""output"": ""68\nD"", ""is_hidden"": true}, {""input"": ""X"", ""output"": ""89\nY"", ""is_hidden"": true}, {""input"": ""H"", ""output"": ""73\nI"", ""is_hidden"": true}, {""input"": ""Q"", ""output"": ""82\nR"", ""is_hidden"": true}]"
+JP-M3-14,XOR Swap,Module 03: Java Operators and Bit Basics,Medium,Swap two integers using only XOR compound assignments and no temporary variable.,stdin/stdout,O(1),O(1),"Read two integers a and b. Swap their values without using a third variable by applying these three XOR compound assignments in order: a ^= b, b ^= a, a ^= b. Print a, then b.
+
+XOR sets a bit when the corresponding bits of the two operands are different. Applying XOR with the same value twice restores the original value, which is what makes the swap work.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b","Two lines: the new value of a, then the new value of b.","-2147483648 <= a, b <= 2147483647","10
+6","6
+10","-5
+12","12
+-5","After a ^= b, the variable a holds the combined bits of both values.",b ^= a then recovers the original a and stores it in b.,a ^= b finally recovers the original b and stores it in a.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        a ^= b;
+        b ^= a;
+        a ^= b;
+        System.out.println(a);
+        System.out.println(b);
+    }
+}","[{""input"": ""10\n6"", ""output"": ""6\n10"", ""is_hidden"": false}, {""input"": ""-5\n12"", ""output"": ""12\n-5"", ""is_hidden"": false}, {""input"": ""0\n0"", ""output"": ""0\n0"", ""is_hidden"": false}, {""input"": ""7\n7"", ""output"": ""7\n7"", ""is_hidden"": true}, {""input"": ""2147483647\n-2147483648"", ""output"": ""-2147483648\n2147483647"", ""is_hidden"": true}, {""input"": ""1\n2"", ""output"": ""2\n1"", ""is_hidden"": true}, {""input"": ""-1\n-100"", ""output"": ""-100\n-1"", ""is_hidden"": true}, {""input"": ""255\n0"", ""output"": ""0\n255"", ""is_hidden"": true}]"
+JP-M3-15,Bitwise Complement,Module 03: Java Operators and Bit Basics,Medium,Apply ~ to an int and interpret the result in 32-bit two's complement.,stdin/stdout,O(1),O(1),Read a Java int value n. Print ~n. The output is the signed decimal representation of the resulting 32-bit integer.,A single line containing an integer n.,A single line containing ~n.,-2147483648 <= n <= 2147483647,5,-6,-6,5,"~ flips every one of the 32 bits, including the sign bit.","Flipping the sign bit turns a non-negative number negative, and the reverse.","For any Java int, ~n equals -n - 1.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        System.out.println(~n);
+    }
+}","[{""input"": ""5"", ""output"": ""-6"", ""is_hidden"": false}, {""input"": ""-6"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""-1"", ""is_hidden"": false}, {""input"": ""-1"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""2147483647"", ""output"": ""-2147483648"", ""is_hidden"": true}, {""input"": ""-2147483648"", ""output"": ""2147483647"", ""is_hidden"": true}, {""input"": ""100"", ""output"": ""-101"", ""is_hidden"": true}, {""input"": ""-100"", ""output"": ""99"", ""is_hidden"": true}]"
+JP-M3-16,Signed and Unsigned Right Shift,Module 03: Java Operators and Bit Basics,Medium,Compare >> and >>> on negative and non-negative integers.,stdin/stdout,O(1),O(1),"Read a signed Java int value n and an integer k from 0 to 31. Print n >> k, followed by n >>> k. The first operator preserves the sign bit; the second fills the newly opened positions with zeros.","Two separate lines:
+Line 1: Integer n
+Line 2: Shift distance k","Two lines: n >> k, then n >>> k.","-2147483648 <= n <= 2147483647
+0 <= k <= 31","-8
+1","-4
+2147483644","16
+2","4
+4","For non-negative n, >> and >>> give the same result.",">> copies the sign bit into the opened positions, so a negative number stays negative.",">>> always fills with zeros, so a negative number becomes a large positive number when k > 0.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        System.out.println(n >> k);
+        System.out.println(n >>> k);
+    }
+}","[{""input"": ""-8\n1"", ""output"": ""-4\n2147483644"", ""is_hidden"": false}, {""input"": ""16\n2"", ""output"": ""4\n4"", ""is_hidden"": false}, {""input"": ""-1\n31"", ""output"": ""-1\n1"", ""is_hidden"": false}, {""input"": ""-1\n0"", ""output"": ""-1\n-1"", ""is_hidden"": true}, {""input"": ""2147483647\n31"", ""output"": ""0\n0"", ""is_hidden"": true}, {""input"": ""-2147483648\n31"", ""output"": ""-1\n1"", ""is_hidden"": true}, {""input"": ""100\n3"", ""output"": ""12\n12"", ""is_hidden"": true}, {""input"": ""-100\n4"", ""output"": ""-7\n268435449"", ""is_hidden"": true}]"
+JP-M3-17,Extract a Bit at a Given Position,Module 03: Java Operators and Bit Basics,Medium,Extract a single bit from an integer using a shift and a mask.,stdin/stdout,O(1),O(1),"Read a non-negative integer n and a bit position p from 0 to 30. Print the bit at position p, counting from the rightmost bit as position 0. Use bitwise operators to extract the bit.","Two separate lines:
+Line 1: Integer n
+Line 2: Bit position p",A single line containing 0 or 1.,"0 <= n <= 2147483647
+0 <= p <= 30","13
+2",1,"13
+1",0,Shift n right by p positions so the wanted bit moves to position 0.,AND the result with 1 to discard every other bit.,The full expression is (n >> p) & 1.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int p = Integer.parseInt(sc.next());
+        System.out.println((n >> p) & 1);
+    }
+}","[{""input"": ""13\n2"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""13\n1"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""0\n0"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1\n0"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""2147483647\n30"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""1073741824\n30"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""8\n3"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""8\n2"", ""output"": ""0"", ""is_hidden"": true}]"
+JP-M3-18,Short-Circuit Division Guard,Module 03: Java Operators and Bit Basics,Hard,Write a Boolean expression whose operand order uses short-circuit evaluation to avoid division by zero.,stdin/stdout,O(1),O(1),"Read integers a and b. Print true if b is not zero and a / b is greater than 2; otherwise, print false. Print the value of a single Boolean expression. Do not use if-else or the ternary operator.
+
+Your expression must not cause a division-by-zero error when b is 0.","Two separate lines:
+Line 1: Integer a
+Line 2: Integer b",A single line containing true or false.,"-2147483648 <= a <= 2147483647
+-2147483648 <= b <= 2147483647
+b may be 0.","10
+3",true,"10
+0",false,&& evaluates its right operand only when the left operand is true.,The order of the two conditions matters: put the check that protects the division first.,Using & instead of && evaluates both sides and throws ArithmeticException when b is 0.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        System.out.println(b != 0 && a / b > 2);
+    }
+}","[{""input"": ""10\n3"", ""output"": ""true"", ""is_hidden"": false}, {""input"": ""10\n0"", ""output"": ""false"", ""is_hidden"": false}, {""input"": ""9\n3"", ""output"": ""true"", ""is_hidden"": false}, {""input"": ""6\n3"", ""output"": ""false"", ""is_hidden"": true}, {""input"": ""0\n0"", ""output"": ""false"", ""is_hidden"": true}, {""input"": ""-10\n-3"", ""output"": ""true"", ""is_hidden"": true}, {""input"": ""100\n0"", ""output"": ""false"", ""is_hidden"": true}, {""input"": ""-9\n3"", ""output"": ""false"", ""is_hidden"": true}]"
+JP-M3-19,Compound Assignment and Narrowing Conversion,Module 03: Java Operators and Bit Basics,Hard,Compare the implicit narrowing in b += x with ordinary int addition b + x.,stdin/stdout,O(1),O(1),"Start with byte b = 10. Read an integer x, then apply b += x and print the resulting value. Also calculate b + x from the original value of b, using ordinary addition, and print that result on a second line. For the second calculation, use the original value 10, not the updated b. Assume -10,000 <= x <= 10,000.",A single line containing an integer x.,"Two lines: b after b += x, then 10 + x computed as an int.","-10,000 <= x <= 10,000",300,"54
+310",20,"30
+30","b += x compiles because it includes a hidden cast back to byte, like b = (byte) (b + x).","b + x on its own is promoted to int, so it does not wrap.","Calculate and store b + x before applying b += x, so you still have the original b.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        byte b = 10;
+        int x = Integer.parseInt(sc.next());
+        int sum = b + x;
+        b += x;
+        System.out.println(b);
+        System.out.println(sum);
+    }
+}","[{""input"": ""300"", ""output"": ""54\n310"", ""is_hidden"": false}, {""input"": ""20"", ""output"": ""30\n30"", ""is_hidden"": false}, {""input"": ""-138"", ""output"": ""-128\n-128"", ""is_hidden"": false}, {""input"": ""-139"", ""output"": ""127\n-129"", ""is_hidden"": true}, {""input"": ""117"", ""output"": ""127\n127"", ""is_hidden"": true}, {""input"": ""118"", ""output"": ""-128\n128"", ""is_hidden"": true}, {""input"": ""10000"", ""output"": ""26\n10010"", ""is_hidden"": true}, {""input"": ""-10000"", ""output"": ""-6\n-9990"", ""is_hidden"": true}]"
+JP-M3-20,Independent Bitwise Flag Operations,Module 03: Java Operators and Bit Basics,Hard,"Set, toggle, clear, and test masked bits using |, ^, & with ~, and a comparison.",stdin/stdout,O(1),O(1),"Read non-negative integers flags and mask. Print the following four results, each on a separate line:
+1. flags | mask
+2. flags ^ mask
+3. flags & ~mask
+4. (flags & mask) != 0
+Each operation must use the original input values; do not feed one operation's result into the next. All numeric results must fit in a Java int.","Two separate lines:
+Line 1: Integer flags
+Line 2: Integer mask",Four lines: three integers followed by true or false.,"0 <= flags, mask <= 2147483647","10
+6","14
+12
+8
+true","0
+0","0
+0
+0
+false","| sets the masked bits, and ^ toggles them.","~mask has 1s everywhere except the masked bits, so flags & ~mask clears those bits.",(flags & mask) != 0 needs its parentheses because != has higher precedence than &.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int flags = Integer.parseInt(sc.next());
+        int mask = Integer.parseInt(sc.next());
+        System.out.println(flags | mask);
+        System.out.println(flags ^ mask);
+        System.out.println(flags & ~mask);
+        System.out.println((flags & mask) != 0);
+    }
+}","[{""input"": ""10\n6"", ""output"": ""14\n12\n8\ntrue"", ""is_hidden"": false}, {""input"": ""0\n0"", ""output"": ""0\n0\n0\nfalse"", ""is_hidden"": false}, {""input"": ""15\n0"", ""output"": ""15\n15\n15\nfalse"", ""is_hidden"": false}, {""input"": ""0\n15"", ""output"": ""15\n15\n0\nfalse"", ""is_hidden"": true}, {""input"": ""5\n2"", ""output"": ""7\n7\n5\nfalse"", ""is_hidden"": true}, {""input"": ""255\n15"", ""output"": ""255\n240\n240\ntrue"", ""is_hidden"": true}, {""input"": ""2147483647\n1073741824"", ""output"": ""2147483647\n1073741823\n1073741823\ntrue"", ""is_hidden"": true}, {""input"": ""8\n7"", ""output"": ""15\n15\n8\nfalse"", ""is_hidden"": true}]"

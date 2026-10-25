@@ -1,0 +1,564 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M8-01,Right-Aligned Star Triangle,Module 08: Pattern Printing with Nested Loops,Easy,Use two inner loops per row: one for leading spaces and one for stars.,stdin/stdout,O(1),O(1),"Given N, print N rows. Row i contains i stars, preceded by N − i spaces. Do not print trailing spaces.",One integer N.,Print the right-aligned star triangle.,1 ≤ N ≤ 20,4,"   *
+  **
+ ***
+****",1,*,"The outer loop runs once per row, with i from 1 to N.","Inside it, one loop prints N − i spaces and a second loop prints i stars.",Use System.out.print inside the inner loops and System.out.println() at the end of each row.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int s = 1; s <= n - i; s++) {
+                System.out.print("" "");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(""*"");
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""   *\n  **\n ***\n****"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""*"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" *\n**"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""    *\n   **\n  ***\n ****\n*****"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""         *\n        **\n       ***\n      ****\n     *****\n    ******\n   *******\n  ********\n *********\n**********"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""                   *\n                  **\n                 ***\n                ****\n               *****\n              ******\n             *******\n            ********\n           *********\n          **********\n         ***********\n        ************\n       *************\n      **************\n     ***************\n    ****************\n   *****************\n  ******************\n *******************\n********************"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""  *\n **\n***"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""      *\n     **\n    ***\n   ****\n  *****\n ******\n*******"", ""is_hidden"": true}]"
+JP-M8-02,Hollow Square Frame,Module 08: Pattern Printing with Nested Loops,Easy,Decide between a star and a space for each cell based on whether it lies on the border.,stdin/stdout,O(1),O(1),"Print an N × N square. Print * on the first and last rows and at the first and last positions of every other row. Print spaces inside the border. For N = 1, print one star.",One integer N.,Print N rows of the hollow square.,1 ≤ N ≤ 20,4,"****
+*  *
+*  *
+****",1,*,"Use nested loops over rows i and columns j, both from 1 to N.","A cell is on the border when i == 1, i == N, j == 1, or j == N.",Print * for border cells and a space for all others.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (i == 1 || i == n || j == 1 || j == n) {
+                    System.out.print(""*"");
+                } else {
+                    System.out.print("" "");
+                }
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""****\n*  *\n*  *\n****"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""*"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""**\n**"", ""is_hidden"": false}, {""input"": ""3"", ""output"": ""***\n* *\n***"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""*****\n*   *\n*   *\n*   *\n*****"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""**********\n*        *\n*        *\n*        *\n*        *\n*        *\n*        *\n*        *\n*        *\n**********"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""********************\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n*                  *\n********************"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""******\n*    *\n*    *\n*    *\n*    *\n******"", ""is_hidden"": true}]"
+JP-M8-03,Repeated Row Number Triangle,Module 08: Pattern Printing with Nested Loops,Easy,"Print the row number repeatedly, placing spaces only between values.",stdin/stdout,O(1),O(1),"Print N rows. Row i contains the number i repeated exactly i times, with one space between adjacent values.",One integer N.,Print the repeated-number triangle.,1 ≤ N ≤ 9,4,"1
+2 2
+3 3 3
+4 4 4 4",1,1,The inner loop runs i times on row i.,"Print the row number i, not the column number.",Print a space before every value except the first one in the row.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(i);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""1\n2 2\n3 3 3\n4 4 4 4"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""1\n2 2"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""1\n2 2\n3 3 3\n4 4 4 4\n5 5 5 5 5\n6 6 6 6 6 6\n7 7 7 7 7 7 7\n8 8 8 8 8 8 8 8\n9 9 9 9 9 9 9 9 9"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""1\n2 2\n3 3 3"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""1\n2 2\n3 3 3\n4 4 4 4\n5 5 5 5 5"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""1\n2 2\n3 3 3\n4 4 4 4\n5 5 5 5 5\n6 6 6 6 6 6\n7 7 7 7 7 7 7"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""1\n2 2\n3 3 3\n4 4 4 4\n5 5 5 5 5\n6 6 6 6 6 6\n7 7 7 7 7 7 7\n8 8 8 8 8 8 8 8"", ""is_hidden"": true}]"
+JP-M8-04,Alternating Binary Triangle,Module 08: Pattern Printing with Nested Loops,Easy,Derive each value from its column position using the remainder operator.,stdin/stdout,O(1),O(1),"Print N rows. Every row starts with 1, and adjacent values alternate between 1 and 0. Separate values with one space.",One integer N.,Print the alternating binary triangle.,1 ≤ N ≤ 20,4,"1
+1 0
+1 0 1
+1 0 1 0",1,1,Row i contains i values.,The value at column j is 1 when j is odd and 0 when j is even.,j % 2 gives exactly that value.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(j % 2);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""1\n1 0\n1 0 1\n1 0 1 0"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""1\n1 0"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""1\n1 0\n1 0 1\n1 0 1 0\n1 0 1 0 1"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""1\n1 0\n1 0 1\n1 0 1 0\n1 0 1 0 1\n1 0 1 0 1 0\n1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""1\n1 0\n1 0 1\n1 0 1 0\n1 0 1 0 1\n1 0 1 0 1 0\n1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1\n1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""1\n1 0\n1 0 1"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""1\n1 0\n1 0 1\n1 0 1 0\n1 0 1 0 1\n1 0 1 0 1 0\n1 0 1 0 1 0 1"", ""is_hidden"": true}]"
+JP-M8-05,Palindromic Number Pyramid,Module 08: Pattern Printing with Nested Loops,Easy,Combine a leading-space loop with an ascending loop and a descending loop on each row.,stdin/stdout,O(1),O(1),"Print N rows. Row i contains the sequence 1, 2, …, i, followed by i − 1, i − 2, …, 1. Separate the digits with no spaces. Print N − i leading spaces before each row.",One integer N.,Print the palindromic number pyramid.,1 ≤ N ≤ 9,4,"   1
+  121
+ 12321
+1234321",1,1,"Each row needs three inner loops: spaces, ascending digits, and descending digits.",The ascending loop goes from 1 to i.,The descending loop goes from i − 1 down to 1.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int s = 1; s <= n - i; s++) {
+                System.out.print("" "");
+            }
+            for (int j = 1; j <= i; j++) {
+                System.out.print(j);
+            }
+            for (int j = i - 1; j >= 1; j--) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""   1\n  121\n 12321\n1234321"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" 1\n121"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""        1\n       121\n      12321\n     1234321\n    123454321\n   12345654321\n  1234567654321\n 123456787654321\n12345678987654321"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""  1\n 121\n12321"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""    1\n   121\n  12321\n 1234321\n123454321"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""      1\n     121\n    12321\n   1234321\n  123454321\n 12345654321\n1234567654321"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""       1\n      121\n     12321\n    1234321\n   123454321\n  12345654321\n 1234567654321\n123456787654321"", ""is_hidden"": true}]"
+JP-M8-06,Continuous Number Triangle,Module 08: Pattern Printing with Nested Loops,Easy,Keep a counter outside the nested loops so numbering continues across rows.,stdin/stdout,O(1),O(1),"Print consecutive integers beginning at 1. Row i contains exactly i integers. Continue the sequence across row boundaries, with one space between adjacent integers.",One integer N.,Print the continuous number triangle.,1 ≤ N ≤ 20,4,"1
+2 3
+4 5 6
+7 8 9 10",1,1,Declare int value = 1; before the outer loop.,Print value and then increase it inside the inner loop.,"Because value is never reset, row i + 1 continues where row i ended.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int value = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(value);
+                value++;
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""1\n2 3\n4 5 6\n7 8 9 10"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""1\n2 3"", ""is_hidden"": false}, {""input"": ""20"", ""output"": ""1\n2 3\n4 5 6\n7 8 9 10\n11 12 13 14 15\n16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31 32 33 34 35 36\n37 38 39 40 41 42 43 44 45\n46 47 48 49 50 51 52 53 54 55\n56 57 58 59 60 61 62 63 64 65 66\n67 68 69 70 71 72 73 74 75 76 77 78\n79 80 81 82 83 84 85 86 87 88 89 90 91\n92 93 94 95 96 97 98 99 100 101 102 103 104 105\n106 107 108 109 110 111 112 113 114 115 116 117 118 119 120\n121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136\n137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153\n154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171\n172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190\n191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""1\n2 3\n4 5 6"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""1\n2 3\n4 5 6\n7 8 9 10\n11 12 13 14 15"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""1\n2 3\n4 5 6\n7 8 9 10\n11 12 13 14 15\n16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30 31 32 33 34 35 36\n37 38 39 40 41 42 43 44 45\n46 47 48 49 50 51 52 53 54 55"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""1\n2 3\n4 5 6\n7 8 9 10\n11 12 13 14 15\n16 17 18 19 20 21\n22 23 24 25 26 27 28"", ""is_hidden"": true}]"
+JP-M8-07,X-Shaped Star Pattern,Module 08: Pattern Printing with Nested Loops,Easy,Place stars on both diagonals and stop each row after its last star.,stdin/stdout,O(1),O(1),Print an N × N visual grid. A star appears wherever the row and column positions are equal or their sum is N + 1. All other positions are spaces. Do not print trailing spaces.,One integer N.,Print the X-shaped pattern.,1 ≤ N ≤ 20,5,"*   *
+ * *
+  *
+ * *
+*   *",4,"*  *
+ **
+ **
+*  *",Row i has stars at columns i and N + 1 − i.,"Only loop up to the larger of those two columns, so no spaces follow the last star.","For even N, the diagonals never share a cell; for odd N, they meet in the middle row.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            int last = Math.max(i, n + 1 - i);
+            for (int j = 1; j <= last; j++) {
+                if (j == i || j == n + 1 - i) {
+                    System.out.print(""*"");
+                } else {
+                    System.out.print("" "");
+                }
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""5"", ""output"": ""*   *\n * *\n  *\n * *\n*   *"", ""is_hidden"": false}, {""input"": ""4"", ""output"": ""*  *\n **\n **\n*  *"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""*"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""**\n**"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""* *\n *\n* *"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""*    *\n *  *\n  **\n  **\n *  *\n*    *"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""*     *\n *   *\n  * *\n   *\n  * *\n *   *\n*     *"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""*                  *\n *                *\n  *              *\n   *            *\n    *          *\n     *        *\n      *      *\n       *    *\n        *  *\n         **\n         **\n        *  *\n       *    *\n      *      *\n     *        *\n    *          *\n   *            *\n  *              *\n *                *\n*                  *"", ""is_hidden"": true}]"
+JP-M8-08,Numbered Rectangle,Module 08: Pattern Printing with Nested Loops,Easy,Print a rectangle where the value depends only on the column.,stdin/stdout,O(1),O(1),"Print R rows and C columns. Every row contains the integers from 1 through C in increasing order, separated by one space.","R and C, each on a separate line.",Print the R × C numbered rectangle.,1 ≤ R ≤ 20 and 1 ≤ C ≤ 20,"3
+4","1 2 3 4
+1 2 3 4
+1 2 3 4","1
+1",1,The outer loop runs R times and the inner loop C times.,Print the column number j in each cell.,Put a space before every value except the first in each row.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int r = Integer.parseInt(sc.next());
+        int c = Integer.parseInt(sc.next());
+        for (int i = 1; i <= r; i++) {
+            for (int j = 1; j <= c; j++) {
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3\n4"", ""output"": ""1 2 3 4\n1 2 3 4\n1 2 3 4"", ""is_hidden"": false}, {""input"": ""1\n1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""1\n20"", ""output"": ""1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"", ""is_hidden"": false}, {""input"": ""20\n1"", ""output"": ""1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1"", ""is_hidden"": true}, {""input"": ""2\n2"", ""output"": ""1 2\n1 2"", ""is_hidden"": true}, {""input"": ""5\n3"", ""output"": ""1 2 3\n1 2 3\n1 2 3\n1 2 3\n1 2 3"", ""is_hidden"": true}, {""input"": ""20\n20"", ""output"": ""1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"", ""is_hidden"": true}, {""input"": ""4\n7"", ""output"": ""1 2 3 4 5 6 7\n1 2 3 4 5 6 7\n1 2 3 4 5 6 7\n1 2 3 4 5 6 7"", ""is_hidden"": true}]"
+JP-M8-09,Alternating Row Direction,Module 08: Pattern Printing with Nested Loops,Medium,Compute each row's start value and loop forward or backward depending on the row.,stdin/stdout,O(1),O(1),"Print N rows containing consecutive integers from 1 through N². Odd-numbered rows are printed left to right, while even-numbered rows are printed right to left. Separate values with one space. Do not store the grid in an array.",One integer N.,Print the alternating-direction number pattern.,1 ≤ N ≤ 20,3,"1 2 3
+6 5 4
+7 8 9",1,1,Row i covers the values (i − 1) × N + 1 through i × N.,"For odd rows, loop upward through that range; for even rows, loop downward.",Keep the single-space separator rule the same in both directions.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            int first = (i - 1) * n + 1;
+            int last = i * n;
+            if (i % 2 == 1) {
+                for (int v = first; v <= last; v++) {
+                    if (v > first) {
+                        System.out.print("" "");
+                    }
+                    System.out.print(v);
+                }
+            } else {
+                for (int v = last; v >= first; v--) {
+                    if (v < last) {
+                        System.out.print("" "");
+                    }
+                    System.out.print(v);
+                }
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""1 2 3\n6 5 4\n7 8 9"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""1 2\n4 3"", ""is_hidden"": false}, {""input"": ""4"", ""output"": ""1 2 3 4\n8 7 6 5\n9 10 11 12\n16 15 14 13"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""1 2 3 4 5\n10 9 8 7 6\n11 12 13 14 15\n20 19 18 17 16\n21 22 23 24 25"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""1 2 3 4 5 6 7 8 9 10\n20 19 18 17 16 15 14 13 12 11\n21 22 23 24 25 26 27 28 29 30\n40 39 38 37 36 35 34 33 32 31\n41 42 43 44 45 46 47 48 49 50\n60 59 58 57 56 55 54 53 52 51\n61 62 63 64 65 66 67 68 69 70\n80 79 78 77 76 75 74 73 72 71\n81 82 83 84 85 86 87 88 89 90\n100 99 98 97 96 95 94 93 92 91"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21\n41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60\n80 79 78 77 76 75 74 73 72 71 70 69 68 67 66 65 64 63 62 61\n81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100\n120 119 118 117 116 115 114 113 112 111 110 109 108 107 106 105 104 103 102 101\n121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140\n160 159 158 157 156 155 154 153 152 151 150 149 148 147 146 145 144 143 142 141\n161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180\n200 199 198 197 196 195 194 193 192 191 190 189 188 187 186 185 184 183 182 181\n201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220\n240 239 238 237 236 235 234 233 232 231 230 229 228 227 226 225 224 223 222 221\n241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260\n280 279 278 277 276 275 274 273 272 271 270 269 268 267 266 265 264 263 262 261\n281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300\n320 319 318 317 316 315 314 313 312 311 310 309 308 307 306 305 304 303 302 301\n321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340\n360 359 358 357 356 355 354 353 352 351 350 349 348 347 346 345 344 343 342 341\n361 362 363 364 365 366 367 368 369 370 371 372 373 374 375 376 377 378 379 380\n400 399 398 397 396 395 394 393 392 391 390 389 388 387 386 385 384 383 382 381"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""1 2 3 4 5 6 7\n14 13 12 11 10 9 8\n15 16 17 18 19 20 21\n28 27 26 25 24 23 22\n29 30 31 32 33 34 35\n42 41 40 39 38 37 36\n43 44 45 46 47 48 49"", ""is_hidden"": true}]"
+JP-M8-10,Pascal's Triangle,Module 08: Pattern Printing with Nested Loops,Medium,"Compute each Pascal value from the previous one in the same row, without storing rows.",stdin/stdout,O(1),O(1),"Print the first N rows of Pascal's triangle. Each row begins and ends with 1. Every interior value equals the sum of the two values directly above it.
+
+For row i, print exactly N − i leading spaces, followed by the row's values separated by single spaces. This spacing rule applies even when multi-digit values make the pattern look imperfectly centered. Do not print trailing spaces.",One integer N.,Print N rows of Pascal's triangle.,"1 ≤ N ≤ 15
+All values fit in a Java long.",5,"    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1",1,1,"Number the rows from 0; row r has r + 1 values, the first of which is 1.","Each next value in the same row is value * (r − k) / (k + 1), where k is the position of the current value.",Multiply before dividing so the division is always exact.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int r = 0; r < n; r++) {
+            for (int s = 1; s <= n - 1 - r; s++) {
+                System.out.print("" "");
+            }
+            long value = 1;
+            for (int k = 0; k <= r; k++) {
+                if (k > 0) {
+                    System.out.print("" "");
+                }
+                System.out.print(value);
+                value = value * (r - k) / (k + 1);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""5"", ""output"": ""    1\n   1 1\n  1 2 1\n 1 3 3 1\n1 4 6 4 1"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" 1\n1 1"", ""is_hidden"": false}, {""input"": ""15"", ""output"": ""              1\n             1 1\n            1 2 1\n           1 3 3 1\n          1 4 6 4 1\n         1 5 10 10 5 1\n        1 6 15 20 15 6 1\n       1 7 21 35 35 21 7 1\n      1 8 28 56 70 56 28 8 1\n     1 9 36 84 126 126 84 36 9 1\n    1 10 45 120 210 252 210 120 45 10 1\n   1 11 55 165 330 462 462 330 165 55 11 1\n  1 12 66 220 495 792 924 792 495 220 66 12 1\n 1 13 78 286 715 1287 1716 1716 1287 715 286 78 13 1\n1 14 91 364 1001 2002 3003 3432 3003 2002 1001 364 91 14 1"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""  1\n 1 1\n1 2 1"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""     1\n    1 1\n   1 2 1\n  1 3 3 1\n 1 4 6 4 1\n1 5 10 10 5 1"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""         1\n        1 1\n       1 2 1\n      1 3 3 1\n     1 4 6 4 1\n    1 5 10 10 5 1\n   1 6 15 20 15 6 1\n  1 7 21 35 35 21 7 1\n 1 8 28 56 70 56 28 8 1\n1 9 36 84 126 126 84 36 9 1"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""       1\n      1 1\n     1 2 1\n    1 3 3 1\n   1 4 6 4 1\n  1 5 10 10 5 1\n 1 6 15 20 15 6 1\n1 7 21 35 35 21 7 1"", ""is_hidden"": true}]"
+JP-M8-11,Consecutive Prime Triangle,Module 08: Pattern Printing with Nested Loops,Medium,Combine a prime-testing helper with a triangle layout and a running search position.,stdin/stdout,O(1),O(1),Print N rows of consecutive prime numbers. Row i contains exactly i primes. Continue generating primes from where the previous row ended. Separate primes with one space.,One integer N.,Print the consecutive-prime triangle.,1 ≤ N ≤ 10,3,"2
+3 5
+7 11 13",1,2,Write a static boolean isPrime(int n) helper.,Keep a candidate variable outside the loops and advance it until it is prime before printing.,"After printing a prime, move the candidate forward by one so the next search starts after it.","import java.util.Scanner;
+
+public class Main {
+    static boolean isPrime(int n) {
+        if (n < 2) {
+            return false;
+        }
+        for (int d = 2; d * d <= n; d++) {
+            if (n % d == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int candidate = 2;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                while (!isPrime(candidate)) {
+                    candidate++;
+                }
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(candidate);
+                candidate++;
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""2\n3 5\n7 11 13"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""2"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""2\n3 5"", ""is_hidden"": false}, {""input"": ""10"", ""output"": ""2\n3 5\n7 11 13\n17 19 23 29\n31 37 41 43 47\n53 59 61 67 71 73\n79 83 89 97 101 103 107\n109 113 127 131 137 139 149 151\n157 163 167 173 179 181 191 193 197\n199 211 223 227 229 233 239 241 251 257"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""2\n3 5\n7 11 13\n17 19 23 29"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""2\n3 5\n7 11 13\n17 19 23 29\n31 37 41 43 47"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""2\n3 5\n7 11 13\n17 19 23 29\n31 37 41 43 47\n53 59 61 67 71 73\n79 83 89 97 101 103 107"", ""is_hidden"": true}, {""input"": ""9"", ""output"": ""2\n3 5\n7 11 13\n17 19 23 29\n31 37 41 43 47\n53 59 61 67 71 73\n79 83 89 97 101 103 107\n109 113 127 131 137 139 149 151\n157 163 167 173 179 181 191 193 197"", ""is_hidden"": true}]"
+JP-M8-12,Multiplication Grid,Module 08: Pattern Printing with Nested Loops,Medium,Compute each cell from both loop indices.,stdin/stdout,O(1),O(1),"Given N, print an N × N multiplication grid. The value at row i and column j is i × j, where both indices start at 1. Separate values with one space.",One integer N.,Print the multiplication grid.,1 ≤ N ≤ 20,3,"1 2 3
+2 4 6
+3 6 9",1,1,Use nested loops with i for rows and j for columns.,Each cell is simply i * j.,"Values are not padded, so columns do not need to line up.","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (j > 1) {
+                    System.out.print("" "");
+                }
+                System.out.print(i * j);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""1 2 3\n2 4 6\n3 6 9"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""1 2\n2 4"", ""is_hidden"": false}, {""input"": ""4"", ""output"": ""1 2 3 4\n2 4 6 8\n3 6 9 12\n4 8 12 16"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""1 2 3 4 5 6 7 8 9 10\n2 4 6 8 10 12 14 16 18 20\n3 6 9 12 15 18 21 24 27 30\n4 8 12 16 20 24 28 32 36 40\n5 10 15 20 25 30 35 40 45 50\n6 12 18 24 30 36 42 48 54 60\n7 14 21 28 35 42 49 56 63 70\n8 16 24 32 40 48 56 64 72 80\n9 18 27 36 45 54 63 72 81 90\n10 20 30 40 50 60 70 80 90 100"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20\n2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40\n3 6 9 12 15 18 21 24 27 30 33 36 39 42 45 48 51 54 57 60\n4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80\n5 10 15 20 25 30 35 40 45 50 55 60 65 70 75 80 85 90 95 100\n6 12 18 24 30 36 42 48 54 60 66 72 78 84 90 96 102 108 114 120\n7 14 21 28 35 42 49 56 63 70 77 84 91 98 105 112 119 126 133 140\n8 16 24 32 40 48 56 64 72 80 88 96 104 112 120 128 136 144 152 160\n9 18 27 36 45 54 63 72 81 90 99 108 117 126 135 144 153 162 171 180\n10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200\n11 22 33 44 55 66 77 88 99 110 121 132 143 154 165 176 187 198 209 220\n12 24 36 48 60 72 84 96 108 120 132 144 156 168 180 192 204 216 228 240\n13 26 39 52 65 78 91 104 117 130 143 156 169 182 195 208 221 234 247 260\n14 28 42 56 70 84 98 112 126 140 154 168 182 196 210 224 238 252 266 280\n15 30 45 60 75 90 105 120 135 150 165 180 195 210 225 240 255 270 285 300\n16 32 48 64 80 96 112 128 144 160 176 192 208 224 240 256 272 288 304 320\n17 34 51 68 85 102 119 136 153 170 187 204 221 238 255 272 289 306 323 340\n18 36 54 72 90 108 126 144 162 180 198 216 234 252 270 288 306 324 342 360\n19 38 57 76 95 114 133 152 171 190 209 228 247 266 285 304 323 342 361 380\n20 40 60 80 100 120 140 160 180 200 220 240 260 280 300 320 340 360 380 400"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""1 2 3 4 5\n2 4 6 8 10\n3 6 9 12 15\n4 8 12 16 20\n5 10 15 20 25"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""1 2 3 4 5 6 7\n2 4 6 8 10 12 14\n3 6 9 12 15 18 21\n4 8 12 16 20 24 28\n5 10 15 20 25 30 35\n6 12 18 24 30 36 42\n7 14 21 28 35 42 49"", ""is_hidden"": true}]"
+JP-M8-13,Mirrored Number Pyramid,Module 08: Pattern Printing with Nested Loops,Medium,Print a descending run followed by an ascending run on each row.,stdin/stdout,O(1),O(1),"Print N rows. Row i contains the numbers i, i − 1, …, 1, 2, …, i. Separate values with no spaces between them. Print N − i leading spaces before each row, with no trailing spaces.",One integer N.,Print the mirrored number pyramid.,1 ≤ N ≤ 9,4,"   1
+  212
+ 32123
+4321234",1,1,"After the leading spaces, loop from i down to 1.","Then loop from 2 up to i, so the 1 in the middle is printed only once.",Row 1 contains only the digit 1.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            for (int s = 1; s <= n - i; s++) {
+                System.out.print("" "");
+            }
+            for (int j = i; j >= 1; j--) {
+                System.out.print(j);
+            }
+            for (int j = 2; j <= i; j++) {
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""   1\n  212\n 32123\n4321234"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" 1\n212"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""        1\n       212\n      32123\n     4321234\n    543212345\n   65432123456\n  7654321234567\n 876543212345678\n98765432123456789"", ""is_hidden"": true}, {""input"": ""3"", ""output"": ""  1\n 212\n32123"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""    1\n   212\n  32123\n 4321234\n543212345"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""      1\n     212\n    32123\n   4321234\n  543212345\n 65432123456\n7654321234567"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""       1\n      212\n     32123\n    4321234\n   543212345\n  65432123456\n 7654321234567\n876543212345678"", ""is_hidden"": true}]"
+JP-M8-14,Hollow Diamond,Module 08: Pattern Printing with Nested Loops,Medium,"Build each row from leading spaces, an outer star, inner spaces, and a second star.",stdin/stdout,O(1),O(1),"Given N, print a hollow diamond with 2N − 1 rows. In the upper half, row i (from 1 to N) has N − i leading spaces and then a star. For every row except the first, it also has 2i − 3 inner spaces followed by a second star. The lower half mirrors the upper half without repeating the middle row. Do not print trailing spaces.",One integer N.,Print the hollow diamond.,1 ≤ N ≤ 20,4,"   *
+  * *
+ *   *
+*     *
+ *   *
+  * *
+   *",2," *
+* *
+ *","Handle the upper half with i from 1 to N, and the lower half with i from N − 1 down to 1.","Writing the row logic once in a helper method, such as static void printRow(int n, int i), avoids repeating it.",Row 1 has a single star; every other row has two stars with 2i − 3 spaces between them.,"import java.util.Scanner;
+
+public class Main {
+    static void printRow(int n, int i) {
+        for (int s = 1; s <= n - i; s++) {
+            System.out.print("" "");
+        }
+        System.out.print(""*"");
+        if (i > 1) {
+            for (int s = 1; s <= 2 * i - 3; s++) {
+                System.out.print("" "");
+            }
+            System.out.print(""*"");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            printRow(n, i);
+        }
+        for (int i = n - 1; i >= 1; i--) {
+            printRow(n, i);
+        }
+    }
+}","[{""input"": ""4"", ""output"": ""   *\n  * *\n *   *\n*     *\n *   *\n  * *\n   *"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" *\n* *\n *"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""*"", ""is_hidden"": false}, {""input"": ""3"", ""output"": ""  *\n * *\n*   *\n * *\n  *"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""    *\n   * *\n  *   *\n *     *\n*       *\n *     *\n  *   *\n   * *\n    *"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""         *\n        * *\n       *   *\n      *     *\n     *       *\n    *         *\n   *           *\n  *             *\n *               *\n*                 *\n *               *\n  *             *\n   *           *\n    *         *\n     *       *\n      *     *\n       *   *\n        * *\n         *"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""                   *\n                  * *\n                 *   *\n                *     *\n               *       *\n              *         *\n             *           *\n            *             *\n           *               *\n          *                 *\n         *                   *\n        *                     *\n       *                       *\n      *                         *\n     *                           *\n    *                             *\n   *                               *\n  *                                 *\n *                                   *\n*                                     *\n *                                   *\n  *                                 *\n   *                               *\n    *                             *\n     *                           *\n      *                         *\n       *                       *\n        *                     *\n         *                   *\n          *                 *\n           *               *\n            *             *\n             *           *\n              *         *\n               *       *\n                *     *\n                 *   *\n                  * *\n                   *"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""      *\n     * *\n    *   *\n   *     *\n  *       *\n *         *\n*           *\n *         *\n  *       *\n   *     *\n    *   *\n     * *\n      *"", ""is_hidden"": true}]"
+JP-M8-15,Butterfly Pattern,Module 08: Pattern Printing with Nested Loops,Medium,Print two mirrored wings separated by a gap whose width depends on the row.,stdin/stdout,O(1),O(1),"Print 2N rows. In the upper half, row i (from 1 to N) contains i stars, then 2(N − i) + 1 spaces, then i more stars. The lower half repeats the upper-half rows in reverse order, so rows N and N + 1 are identical. Do not print trailing spaces.",One integer N.,Print the butterfly pattern.,1 ≤ N ≤ 20,3,"*     *
+**   **
+*** ***
+*** ***
+**   **
+*     *",1,"* *
+* *","Write the row logic once, for example in a helper method that takes N and i.","Each row is i stars, 2(N − i) + 1 spaces, and i stars.","Print rows i = 1 to N, then rows i = N down to 1.","import java.util.Scanner;
+
+public class Main {
+    static void printRow(int n, int i) {
+        for (int j = 1; j <= i; j++) {
+            System.out.print(""*"");
+        }
+        for (int s = 1; s <= 2 * (n - i) + 1; s++) {
+            System.out.print("" "");
+        }
+        for (int j = 1; j <= i; j++) {
+            System.out.print(""*"");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            printRow(n, i);
+        }
+        for (int i = n; i >= 1; i--) {
+            printRow(n, i);
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""*     *\n**   **\n*** ***\n*** ***\n**   **\n*     *"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""* *\n* *"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""*   *\n** **\n** **\n*   *"", ""is_hidden"": false}, {""input"": ""4"", ""output"": ""*       *\n**     **\n***   ***\n**** ****\n**** ****\n***   ***\n**     **\n*       *"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""*         *\n**       **\n***     ***\n****   ****\n***** *****\n***** *****\n****   ****\n***     ***\n**       **\n*         *"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""*                   *\n**                 **\n***               ***\n****             ****\n*****           *****\n******         ******\n*******       *******\n********     ********\n*********   *********\n********** **********\n********** **********\n*********   *********\n********     ********\n*******       *******\n******         ******\n*****           *****\n****             ****\n***               ***\n**                 **\n*                   *"", ""is_hidden"": true}, {""input"": ""20"", ""output"": ""*                                       *\n**                                     **\n***                                   ***\n****                                 ****\n*****                               *****\n******                             ******\n*******                           *******\n********                         ********\n*********                       *********\n**********                     **********\n***********                   ***********\n************                 ************\n*************               *************\n**************             **************\n***************           ***************\n****************         ****************\n*****************       *****************\n******************     ******************\n*******************   *******************\n******************** ********************\n******************** ********************\n*******************   *******************\n******************     ******************\n*****************       *****************\n****************         ****************\n***************           ***************\n**************             **************\n*************               *************\n************                 ************\n***********                   ***********\n**********                     **********\n*********                       *********\n********                         ********\n*******                           *******\n******                             ******\n*****                               *****\n****                                 ****\n***                                   ***\n**                                     **\n*                                       *"", ""is_hidden"": true}, {""input"": ""7"", ""output"": ""*             *\n**           **\n***         ***\n****       ****\n*****     *****\n******   ******\n******* *******\n******* *******\n******   ******\n*****     *****\n****       ****\n***         ***\n**           **\n*             *"", ""is_hidden"": true}]"
+JP-M8-16,Concentric Number Square,Module 08: Pattern Printing with Nested Loops,Medium,Compute each cell's layer from its distance to the nearest border.,stdin/stdout,O(1),O(1),"Given N, print a square of size (2N − 1) × (2N − 1). The outer border contains N, the next layer contains N − 1, and values decrease toward the center until reaching 1. Calculate each cell's value from its row and column positions without using arrays.
+
+Separate values with one space.",One integer N.,Print the concentric number square.,1 ≤ N ≤ 9,3,"3 3 3 3 3
+3 2 2 2 3
+3 2 1 2 3
+3 2 2 2 3
+3 3 3 3 3",1,1,Use 0-based indices i and j from 0 to 2N − 2.,"The distance to the nearest border is the smallest of i, j, 2N − 2 − i, and 2N − 2 − j.",The cell's value is N minus that distance.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int size = 2 * n - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int distance = Math.min(Math.min(i, j), Math.min(size - 1 - i, size - 1 - j));
+                if (j > 0) {
+                    System.out.print("" "");
+                }
+                System.out.print(n - distance);
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""3 3 3 3 3\n3 2 2 2 3\n3 2 1 2 3\n3 2 2 2 3\n3 3 3 3 3"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""2 2 2\n2 1 2\n2 2 2"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9\n9 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9\n9 8 7 7 7 7 7 7 7 7 7 7 7 7 7 8 9\n9 8 7 6 6 6 6 6 6 6 6 6 6 6 7 8 9\n9 8 7 6 5 5 5 5 5 5 5 5 5 6 7 8 9\n9 8 7 6 5 4 4 4 4 4 4 4 5 6 7 8 9\n9 8 7 6 5 4 3 3 3 3 3 4 5 6 7 8 9\n9 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8 9\n9 8 7 6 5 4 3 2 1 2 3 4 5 6 7 8 9\n9 8 7 6 5 4 3 2 2 2 3 4 5 6 7 8 9\n9 8 7 6 5 4 3 3 3 3 3 4 5 6 7 8 9\n9 8 7 6 5 4 4 4 4 4 4 4 5 6 7 8 9\n9 8 7 6 5 5 5 5 5 5 5 5 5 6 7 8 9\n9 8 7 6 6 6 6 6 6 6 6 6 6 6 7 8 9\n9 8 7 7 7 7 7 7 7 7 7 7 7 7 7 8 9\n9 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9\n9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""4 4 4 4 4 4 4\n4 3 3 3 3 3 4\n4 3 2 2 2 3 4\n4 3 2 1 2 3 4\n4 3 2 2 2 3 4\n4 3 3 3 3 3 4\n4 4 4 4 4 4 4"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""5 5 5 5 5 5 5 5 5\n5 4 4 4 4 4 4 4 5\n5 4 3 3 3 3 3 4 5\n5 4 3 2 2 2 3 4 5\n5 4 3 2 1 2 3 4 5\n5 4 3 2 2 2 3 4 5\n5 4 3 3 3 3 3 4 5\n5 4 4 4 4 4 4 4 5\n5 5 5 5 5 5 5 5 5"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""6 6 6 6 6 6 6 6 6 6 6\n6 5 5 5 5 5 5 5 5 5 6\n6 5 4 4 4 4 4 4 4 5 6\n6 5 4 3 3 3 3 3 4 5 6\n6 5 4 3 2 2 2 3 4 5 6\n6 5 4 3 2 1 2 3 4 5 6\n6 5 4 3 2 2 2 3 4 5 6\n6 5 4 3 3 3 3 3 4 5 6\n6 5 4 4 4 4 4 4 4 5 6\n6 5 5 5 5 5 5 5 5 5 6\n6 6 6 6 6 6 6 6 6 6 6"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""8 8 8 8 8 8 8 8 8 8 8 8 8 8 8\n8 7 7 7 7 7 7 7 7 7 7 7 7 7 8\n8 7 6 6 6 6 6 6 6 6 6 6 6 7 8\n8 7 6 5 5 5 5 5 5 5 5 5 6 7 8\n8 7 6 5 4 4 4 4 4 4 4 5 6 7 8\n8 7 6 5 4 3 3 3 3 3 4 5 6 7 8\n8 7 6 5 4 3 2 2 2 3 4 5 6 7 8\n8 7 6 5 4 3 2 1 2 3 4 5 6 7 8\n8 7 6 5 4 3 2 2 2 3 4 5 6 7 8\n8 7 6 5 4 3 3 3 3 3 4 5 6 7 8\n8 7 6 5 4 4 4 4 4 4 4 5 6 7 8\n8 7 6 5 5 5 5 5 5 5 5 5 6 7 8\n8 7 6 6 6 6 6 6 6 6 6 6 6 7 8\n8 7 7 7 7 7 7 7 7 7 7 7 7 7 8\n8 8 8 8 8 8 8 8 8 8 8 8 8 8 8"", ""is_hidden"": true}]"
+JP-M8-17,Symmetric Alphabet Diamond,Module 08: Pattern Printing with Nested Loops,Medium,Use char arithmetic to print mirrored letter sequences in a diamond.,stdin/stdout,O(1),O(1),"Print an alphabet diamond with 2N − 1 rows. The upper half grows from A to the Nth letter, and each row mirrors its letters back toward A. Mirror the upper half to form the lower half. Use no spaces between letters and no trailing spaces.",One integer N.,Print the alphabet diamond.,1 ≤ N ≤ 26,3,"  A
+ ABA
+ABCBA
+ ABA
+  A",1,A,Row i (from 1 to N) has N − i leading spaces.,"Print letters with (char) ('A' + k) for k from 0 to i − 1, then from i − 2 down to 0.","Print rows 1 to N, then rows N − 1 down to 1.","import java.util.Scanner;
+
+public class Main {
+    static void printRow(int n, int i) {
+        for (int s = 1; s <= n - i; s++) {
+            System.out.print("" "");
+        }
+        for (int k = 0; k < i; k++) {
+            System.out.print((char) ('A' + k));
+        }
+        for (int k = i - 2; k >= 0; k--) {
+            System.out.print((char) ('A' + k));
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        for (int i = 1; i <= n; i++) {
+            printRow(n, i);
+        }
+        for (int i = n - 1; i >= 1; i--) {
+            printRow(n, i);
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""  A\n ABA\nABCBA\n ABA\n  A"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""A"", ""is_hidden"": false}, {""input"": ""2"", ""output"": "" A\nABA\n A"", ""is_hidden"": false}, {""input"": ""26"", ""output"": ""                         A\n                        ABA\n                       ABCBA\n                      ABCDCBA\n                     ABCDEDCBA\n                    ABCDEFEDCBA\n                   ABCDEFGFEDCBA\n                  ABCDEFGHGFEDCBA\n                 ABCDEFGHIHGFEDCBA\n                ABCDEFGHIJIHGFEDCBA\n               ABCDEFGHIJKJIHGFEDCBA\n              ABCDEFGHIJKLKJIHGFEDCBA\n             ABCDEFGHIJKLMLKJIHGFEDCBA\n            ABCDEFGHIJKLMNMLKJIHGFEDCBA\n           ABCDEFGHIJKLMNONMLKJIHGFEDCBA\n          ABCDEFGHIJKLMNOPONMLKJIHGFEDCBA\n         ABCDEFGHIJKLMNOPQPONMLKJIHGFEDCBA\n        ABCDEFGHIJKLMNOPQRQPONMLKJIHGFEDCBA\n       ABCDEFGHIJKLMNOPQRSRQPONMLKJIHGFEDCBA\n      ABCDEFGHIJKLMNOPQRSTSRQPONMLKJIHGFEDCBA\n     ABCDEFGHIJKLMNOPQRSTUTSRQPONMLKJIHGFEDCBA\n    ABCDEFGHIJKLMNOPQRSTUVUTSRQPONMLKJIHGFEDCBA\n   ABCDEFGHIJKLMNOPQRSTUVWVUTSRQPONMLKJIHGFEDCBA\n  ABCDEFGHIJKLMNOPQRSTUVWXWVUTSRQPONMLKJIHGFEDCBA\n ABCDEFGHIJKLMNOPQRSTUVWXYXWVUTSRQPONMLKJIHGFEDCBA\nABCDEFGHIJKLMNOPQRSTUVWXYZYXWVUTSRQPONMLKJIHGFEDCBA\n ABCDEFGHIJKLMNOPQRSTUVWXYXWVUTSRQPONMLKJIHGFEDCBA\n  ABCDEFGHIJKLMNOPQRSTUVWXWVUTSRQPONMLKJIHGFEDCBA\n   ABCDEFGHIJKLMNOPQRSTUVWVUTSRQPONMLKJIHGFEDCBA\n    ABCDEFGHIJKLMNOPQRSTUVUTSRQPONMLKJIHGFEDCBA\n     ABCDEFGHIJKLMNOPQRSTUTSRQPONMLKJIHGFEDCBA\n      ABCDEFGHIJKLMNOPQRSTSRQPONMLKJIHGFEDCBA\n       ABCDEFGHIJKLMNOPQRSRQPONMLKJIHGFEDCBA\n        ABCDEFGHIJKLMNOPQRQPONMLKJIHGFEDCBA\n         ABCDEFGHIJKLMNOPQPONMLKJIHGFEDCBA\n          ABCDEFGHIJKLMNOPONMLKJIHGFEDCBA\n           ABCDEFGHIJKLMNONMLKJIHGFEDCBA\n            ABCDEFGHIJKLMNMLKJIHGFEDCBA\n             ABCDEFGHIJKLMLKJIHGFEDCBA\n              ABCDEFGHIJKLKJIHGFEDCBA\n               ABCDEFGHIJKJIHGFEDCBA\n                ABCDEFGHIJIHGFEDCBA\n                 ABCDEFGHIHGFEDCBA\n                  ABCDEFGHGFEDCBA\n                   ABCDEFGFEDCBA\n                    ABCDEFEDCBA\n                     ABCDEDCBA\n                      ABCDCBA\n                       ABCBA\n                        ABA\n                         A"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""   A\n  ABA\n ABCBA\nABCDCBA\n ABCBA\n  ABA\n   A"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""    A\n   ABA\n  ABCBA\n ABCDCBA\nABCDEDCBA\n ABCDCBA\n  ABCBA\n   ABA\n    A"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""         A\n        ABA\n       ABCBA\n      ABCDCBA\n     ABCDEDCBA\n    ABCDEFEDCBA\n   ABCDEFGFEDCBA\n  ABCDEFGHGFEDCBA\n ABCDEFGHIHGFEDCBA\nABCDEFGHIJIHGFEDCBA\n ABCDEFGHIHGFEDCBA\n  ABCDEFGHGFEDCBA\n   ABCDEFGFEDCBA\n    ABCDEFEDCBA\n     ABCDEDCBA\n      ABCDCBA\n       ABCBA\n        ABA\n         A"", ""is_hidden"": true}, {""input"": ""13"", ""output"": ""            A\n           ABA\n          ABCBA\n         ABCDCBA\n        ABCDEDCBA\n       ABCDEFEDCBA\n      ABCDEFGFEDCBA\n     ABCDEFGHGFEDCBA\n    ABCDEFGHIHGFEDCBA\n   ABCDEFGHIJIHGFEDCBA\n  ABCDEFGHIJKJIHGFEDCBA\n ABCDEFGHIJKLKJIHGFEDCBA\nABCDEFGHIJKLMLKJIHGFEDCBA\n ABCDEFGHIJKLKJIHGFEDCBA\n  ABCDEFGHIJKJIHGFEDCBA\n   ABCDEFGHIJIHGFEDCBA\n    ABCDEFGHIHGFEDCBA\n     ABCDEFGHGFEDCBA\n      ABCDEFGFEDCBA\n       ABCDEFEDCBA\n        ABCDEDCBA\n         ABCDCBA\n          ABCBA\n           ABA\n            A"", ""is_hidden"": true}]"
+JP-M8-18,Checkerboard Tiles,Module 08: Pattern Printing with Nested Loops,Hard,Map each character position to its tile with integer division and alternate the tile symbol.,stdin/stdout,O(1),O(1),"A floor designer prints a square checkerboard made of N × N tiles. Each tile is K characters wide and K rows tall. Number tile rows and tile columns from 0. A tile is filled with # when its tile-row plus tile-column is even, and with . when it is odd, so the top-left tile is #. Print N × K rows of N × K characters with no spaces between them. Calculate each character from its row and column positions without using arrays.",N and K on separate lines.,Print the checkerboard.,"1 ≤ N ≤ 10
+1 ≤ K ≤ 5","3
+2","##..##
+##..##
+..##..
+..##..
+##..##
+##..##","2
+1","#.
+.#","Loop over character rows i and character columns j, both from 0 to N × K − 1.",The tile containing a character is at tile-row i / K and tile-column j / K.,"Print # when (i / K + j / K) % 2 == 0, otherwise print .","import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        int size = n * k;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if ((i / k + j / k) % 2 == 0) {
+                    System.out.print(""#"");
+                } else {
+                    System.out.print(""."");
+                }
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3\n2"", ""output"": ""##..##\n##..##\n..##..\n..##..\n##..##\n##..##"", ""is_hidden"": false}, {""input"": ""2\n1"", ""output"": ""#.\n.#"", ""is_hidden"": false}, {""input"": ""1\n1"", ""output"": ""#"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""#####\n#####\n#####\n#####\n#####"", ""is_hidden"": true}, {""input"": ""10\n5"", ""output"": ""#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n#####.....#####.....#####.....#####.....#####.....\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####\n.....#####.....#####.....#####.....#####.....#####"", ""is_hidden"": true}, {""input"": ""4\n3"", ""output"": ""###...###...\n###...###...\n###...###...\n...###...###\n...###...###\n...###...###\n###...###...\n###...###...\n###...###...\n...###...###\n...###...###\n...###...###"", ""is_hidden"": true}, {""input"": ""5\n1"", ""output"": ""#.#.#\n.#.#.\n#.#.#\n.#.#.\n#.#.#"", ""is_hidden"": true}, {""input"": ""2\n4"", ""output"": ""####....\n####....\n####....\n####....\n....####\n....####\n....####\n....####"", ""is_hidden"": true}]"
+JP-M8-19,Prime Staircase With Alternating Direction,Module 08: Pattern Printing with Nested Loops,Hard,"Print a run of primes in reverse without storing them, by locating the run's end and stepping backward.",stdin/stdout,O(1),O(1),Generate consecutive prime numbers and print them in N rows. Row i contains i primes. Print odd-numbered rows in increasing order and even-numbered rows in decreasing order. Continue generating primes across rows; do not use arrays or collections to store them.,One integer N.,"Print the prime staircase, separating values with one space.",1 ≤ N ≤ 10,3,"2
+5 3
+7 11 13",1,2,"Write helpers isPrime, nextPrime (first prime above a value), and previousPrime (first prime below a value).","For each row, first find the row's last prime by calling nextPrime i times from where the previous row ended.","For an even row, print from that last prime downward using previousPrime; for an odd row, print upward from the first.","import java.util.Scanner;
+
+public class Main {
+    static boolean isPrime(int n) {
+        if (n < 2) {
+            return false;
+        }
+        for (int d = 2; d * d <= n; d++) {
+            if (n % d == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static int nextPrime(int p) {
+        int c = p + 1;
+        while (!isPrime(c)) {
+            c++;
+        }
+        return c;
+    }
+
+    static int previousPrime(int p) {
+        int c = p - 1;
+        while (!isPrime(c)) {
+            c--;
+        }
+        return c;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int lastPrinted = 1;
+        for (int i = 1; i <= n; i++) {
+            int first = nextPrime(lastPrinted);
+            int last = first;
+            for (int k = 2; k <= i; k++) {
+                last = nextPrime(last);
+            }
+            if (i % 2 == 1) {
+                int p = first;
+                for (int k = 1; k <= i; k++) {
+                    if (k > 1) {
+                        System.out.print("" "");
+                    }
+                    System.out.print(p);
+                    if (k < i) {
+                        p = nextPrime(p);
+                    }
+                }
+            } else {
+                int p = last;
+                for (int k = 1; k <= i; k++) {
+                    if (k > 1) {
+                        System.out.print("" "");
+                    }
+                    System.out.print(p);
+                    if (k < i) {
+                        p = previousPrime(p);
+                    }
+                }
+            }
+            System.out.println();
+            lastPrinted = last;
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""2\n5 3\n7 11 13"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""2"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""2\n5 3"", ""is_hidden"": false}, {""input"": ""4"", ""output"": ""2\n5 3\n7 11 13\n29 23 19 17"", ""is_hidden"": true}, {""input"": ""10"", ""output"": ""2\n5 3\n7 11 13\n29 23 19 17\n31 37 41 43 47\n73 71 67 61 59 53\n79 83 89 97 101 103 107\n151 149 139 137 131 127 113 109\n157 163 167 173 179 181 191 193 197\n257 251 241 239 233 229 227 223 211 199"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""2\n5 3\n7 11 13\n29 23 19 17\n31 37 41 43 47"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""2\n5 3\n7 11 13\n29 23 19 17\n31 37 41 43 47\n73 71 67 61 59 53"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""2\n5 3\n7 11 13\n29 23 19 17\n31 37 41 43 47\n73 71 67 61 59 53\n79 83 89 97 101 103 107\n151 149 139 137 131 127 113 109"", ""is_hidden"": true}]"
+JP-M8-20,Alternating Concentric Layers,Module 08: Pattern Printing with Nested Loops,Hard,Compute each cell's layer number and use its parity to choose a symbol.,stdin/stdout,O(1),O(1),"Print a square of size (2N − 1) × (2N − 1). The outermost layer contains 1, the next layer contains 2, and values increase toward the center. Print odd-numbered layers as * and even-numbered layers as #. The center belongs to layer N. Calculate each character from its row and column positions without using arrays. Separate characters with one space.",One integer N.,Print the layered character pattern without trailing spaces.,1 ≤ N ≤ 9,3,"* * * * *
+* # # # *
+* # * # *
+* # # # *
+* * * * *",1,*,Use 0-based indices i and j from 0 to 2N − 2.,"A cell's layer is 1 plus the smallest of i, j, 2N − 2 − i, and 2N − 2 − j.",Print * when the layer is odd and # when it is even.,"import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int size = 2 * n - 1;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int layer = 1 + Math.min(Math.min(i, j), Math.min(size - 1 - i, size - 1 - j));
+                if (j > 0) {
+                    System.out.print("" "");
+                }
+                if (layer % 2 == 1) {
+                    System.out.print(""*"");
+                } else {
+                    System.out.print(""#"");
+                }
+            }
+            System.out.println();
+        }
+    }
+}","[{""input"": ""3"", ""output"": ""* * * * *\n* # # # *\n* # * # *\n* # # # *\n* * * * *"", ""is_hidden"": false}, {""input"": ""1"", ""output"": ""*"", ""is_hidden"": false}, {""input"": ""2"", ""output"": ""* * *\n* # *\n* * *"", ""is_hidden"": false}, {""input"": ""9"", ""output"": ""* * * * * * * * * * * * * * * * *\n* # # # # # # # # # # # # # # # *\n* # * * * * * * * * * * * * * # *\n* # * # # # # # # # # # # # * # *\n* # * # * * * * * * * * * # * # *\n* # * # * # # # # # # # * # * # *\n* # * # * # * * * * * # * # * # *\n* # * # * # * # # # * # * # * # *\n* # * # * # * # * # * # * # * # *\n* # * # * # * # # # * # * # * # *\n* # * # * # * * * * * # * # * # *\n* # * # * # # # # # # # * # * # *\n* # * # * * * * * * * * * # * # *\n* # * # # # # # # # # # # # * # *\n* # * * * * * * * * * * * * * # *\n* # # # # # # # # # # # # # # # *\n* * * * * * * * * * * * * * * * *"", ""is_hidden"": true}, {""input"": ""4"", ""output"": ""* * * * * * *\n* # # # # # *\n* # * * * # *\n* # * # * # *\n* # * * * # *\n* # # # # # *\n* * * * * * *"", ""is_hidden"": true}, {""input"": ""5"", ""output"": ""* * * * * * * * *\n* # # # # # # # *\n* # * * * * * # *\n* # * # # # * # *\n* # * # * # * # *\n* # * # # # * # *\n* # * * * * * # *\n* # # # # # # # *\n* * * * * * * * *"", ""is_hidden"": true}, {""input"": ""6"", ""output"": ""* * * * * * * * * * *\n* # # # # # # # # # *\n* # * * * * * * * # *\n* # * # # # # # * # *\n* # * # * * * # * # *\n* # * # * # * # * # *\n* # * # * * * # * # *\n* # * # # # # # * # *\n* # * * * * * * * # *\n* # # # # # # # # # *\n* * * * * * * * * * *"", ""is_hidden"": true}, {""input"": ""8"", ""output"": ""* * * * * * * * * * * * * * *\n* # # # # # # # # # # # # # *\n* # * * * * * * * * * * * # *\n* # * # # # # # # # # # * # *\n* # * # * * * * * * * # * # *\n* # * # * # # # # # * # * # *\n* # * # * # * * * # * # * # *\n* # * # * # * # * # * # * # *\n* # * # * # * * * # * # * # *\n* # * # * # # # # # * # * # *\n* # * # * * * * * * * # * # *\n* # * # # # # # # # # # * # *\n* # * * * * * * * * * * * # *\n* # # # # # # # # # # # # # *\n* * * * * * * * * * * * * * *"", ""is_hidden"": true}]"

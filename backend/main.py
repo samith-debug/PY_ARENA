@@ -7,9 +7,9 @@ from backend.api.routes import router, BANKS, save_bank_to_disk
 from backend.core.parser import parse_csv_content
 
 app = FastAPI(
-    title="PyArena Practice Lab API",
-    description="Python CSV Parser, Sandboxed Execution Engine, and Test-Case Validation Workbench",
-    version="1.0.0"
+    title="CodeArena Practice Lab API",
+    description="Multi-Language (Python & Java) Practice Lab, Sandboxed Execution Engine, and Test-Case Validation Workbench",
+    version="2.0.0"
 )
 
 # Enable CORS for frontend
@@ -279,15 +279,60 @@ def preload_sample_banks():
         if not already_loaded_m18 and os.path.exists(m18_path):
             try:
                 with open(m18_path, "rb") as f:
-                    b19 = parse_csv_content(f.read(), "module_18_advanced_algorithms.csv")
+                    b19 = parse_csv_content(f.read(), "module_18_trees_and_heaps.csv")
                     BANKS[b19.id] = b19
                     save_bank_to_disk(b19)
                     print(f"Preloaded sample bank: {b19.filename} ({b19.total_questions} questions)")
             except Exception as e:
                 print(f"Failed to preload module 18 sample: {e}")
 
+        m19_path = os.path.join(sample_dir, "m19.csv")
+        already_loaded_m19 = any("module_19" in b.filename or "m19" in b.filename for b in BANKS.values())
+        if not already_loaded_m19 and os.path.exists(m19_path):
+            try:
+                with open(m19_path, "rb") as f:
+                    b20 = parse_csv_content(f.read(), "module_19_graph_algorithms.csv")
+                    BANKS[b20.id] = b20
+                    save_bank_to_disk(b20)
+                    print(f"Preloaded sample bank: {b20.filename} ({b20.total_questions} questions)")
+            except Exception as e:
+                print(f"Failed to preload module 19 sample: {e}")
+
+        m20_path = os.path.join(sample_dir, "m20.csv")
+        already_loaded_m20 = any("module_20" in b.filename or "m20" in b.filename for b in BANKS.values())
+        if not already_loaded_m20 and os.path.exists(m20_path):
+            try:
+                with open(m20_path, "rb") as f:
+                    b21 = parse_csv_content(f.read(), "module_20_greedy_and_dp.csv")
+                    BANKS[b21.id] = b21
+                    save_bank_to_disk(b21)
+                    print(f"Preloaded sample bank: {b21.filename} ({b21.total_questions} questions)")
+            except Exception as e:
+                print(f"Failed to preload module 20 sample: {e}")
+
+        # Preload Java modules if available
+        root_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+        for search_dir in [sample_dir, root_dir]:
+            if os.path.exists(search_dir):
+                for fname in sorted(os.listdir(search_dir)):
+                    if (fname.lower().startswith("jp_") or "java" in fname.lower()) and fname.endswith(".csv"):
+                        if not any(b.filename == fname for b in BANKS.values()):
+                            fpath = os.path.join(search_dir, fname)
+                            try:
+                                with open(fpath, "rb") as f:
+                                    jbank = parse_csv_content(f.read(), fname)
+                                    BANKS[jbank.id] = jbank
+                                    save_bank_to_disk(jbank)
+                                    print(f"Preloaded Java bank: {jbank.filename} ({jbank.total_questions} questions)")
+                            except Exception as e:
+                                print(f"Failed to preload Java bank {fname}: {e}")
+
 # Mount frontend build if available
 FRONTEND_DIST = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "frontend", "dist")
+PUBLIC_DIAGRAMS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "frontend", "public", "diagrams")
+if os.path.exists(PUBLIC_DIAGRAMS):
+    app.mount("/diagrams", StaticFiles(directory=PUBLIC_DIAGRAMS), name="diagrams")
+
 if os.path.exists(FRONTEND_DIST):
     app.mount("/assets", StaticFiles(directory=os.path.join(FRONTEND_DIST, "assets")), name="assets")
     

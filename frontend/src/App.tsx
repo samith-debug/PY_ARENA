@@ -51,6 +51,7 @@ export const App: React.FC = () => {
   const isOwnerMode = false;
 
   // Banks & Curriculum state
+  const [activeCourse, setActiveCourse] = useState<'python' | 'java'>('python');
   const [banks, setBanks] = useState<QuestionBankMeta[]>([]);
   const [curriculumModules, setCurriculumModules] = useState<ModuleItem[]>([]);
   const [isLoadingCurriculum, setIsLoadingCurriculum] = useState<boolean>(false);
@@ -59,6 +60,7 @@ export const App: React.FC = () => {
   const [questionDetail, setQuestionDetail] = useState<QuestionDetail | null>(null);
 
   // Editor & Sandbox state
+  const [selectedLanguage, setSelectedLanguage] = useState<'python' | 'java'>('python');
   const [code, setCode] = useState<string>('');
   const [customStdin, setCustomStdin] = useState<string>('');
   const [strictNewlinePolicy] = useState<string>('judge');
@@ -170,7 +172,7 @@ export const App: React.FC = () => {
     try {
       const sortedBanks = [...bankList].sort((a, b) => {
         const getNum = (name: string) => {
-          const m = name.match(/module[_\s]*0?(\d+)/i);
+          const m = name.match(/(?:module|jp[-_]?m)[_\s]*0?(\d+)/i);
           return m ? parseInt(m[1], 10) : 999;
         };
         return getNum(a.filename) - getNum(b.filename);
@@ -185,12 +187,19 @@ export const App: React.FC = () => {
           const sampleModule = qList.find((q) => q.module)?.module;
           const modName = sampleModule || formatBankTitle(bank.filename);
 
+          const isJavaBank =
+            (bank.language || '').toLowerCase() === 'java' ||
+            bank.filename.toLowerCase().startsWith('jp_') ||
+            bank.filename.toLowerCase().includes('java') ||
+            qList.some((q) => (q.language || '').toLowerCase() === 'java');
+          const course: 'python' | 'java' = isJavaBank ? 'java' : 'python';
+
           let modNum = 1;
-          const numMatch = (sampleModule || bank.filename).match(/module[_\s]*0?(\d+)/i);
+          const numMatch = (sampleModule || bank.filename).match(/(?:module|jp[-_]?m)[_\s]*0?(\d+)/i);
           if (numMatch) {
             modNum = parseInt(numMatch[1], 10);
           } else {
-            modNum = modulesData.length + 1;
+            modNum = modulesData.filter((m) => m.course === course).length + 1;
           }
 
           const diffRank: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
@@ -209,6 +218,7 @@ export const App: React.FC = () => {
             filename: bank.filename,
             moduleName: modName,
             moduleNumber: modNum,
+            course,
             questions: sortedQs
           });
         } catch (e) {
@@ -219,19 +229,22 @@ export const App: React.FC = () => {
       setCurriculumModules(modulesData);
 
       if (modulesData.length > 0) {
+        const activeCourseModules = modulesData.filter((m) => (m.course || 'python') === activeCourse);
+        const targetModules = activeCourseModules.length > 0 ? activeCourseModules : modulesData;
+
         setCurrentBankId((prevBankId) => {
-          if (prevBankId && modulesData.some((m) => m.bankId === prevBankId)) {
+          if (prevBankId && targetModules.some((m) => m.bankId === prevBankId)) {
             return prevBankId;
           }
-          return modulesData[0].bankId;
+          return targetModules[0].bankId;
         });
 
         setSelectedQuestionId((prevQId) => {
-          const allQs = modulesData.flatMap((m) => m.questions);
+          const allQs = targetModules.flatMap((m) => m.questions);
           if (prevQId && allQs.some((q) => q.question_id === prevQId)) {
             return prevQId;
           }
-          return modulesData[0].questions[0]?.question_id || null;
+          return targetModules[0].questions[0]?.question_id || null;
         });
       }
     } catch (err) {
@@ -239,7 +252,7 @@ export const App: React.FC = () => {
     } finally {
       setIsLoadingCurriculum(false);
     }
-  }, []);
+  }, [activeCourse]);
 
   // Load question banks and curriculum on start
   const loadBanks = useCallback(async () => {
@@ -277,11 +290,16 @@ export const App: React.FC = () => {
         const draftKey = `codementor_draft_${currentBankId}_${selectedQuestionId}`;
         const savedDraft = serverDraftsRef.current[selectedQuestionId] || localStorage.getItem(draftKey);
 
+        const isJavaQuestion = (detail.language || '').toLowerCase() === 'java';
+        setSelectedLanguage(isJavaQuestion ? 'java' : 'python');
+
         let initialCode = '';
         if (savedDraft && !savedDraft.includes('Welcome Banner')) {
           initialCode = savedDraft;
         } else if (detail.starter_code) {
           initialCode = detail.starter_code;
+        } else if (isJavaQuestion) {
+          initialCode = `import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution for ${detail.question_id}: ${detail.title} below\n        \n    }\n}\n`;
         } else {
           initialCode = `# Write your solution for ${detail.question_id}: ${detail.title} below\nimport sys\n\ndef main():\n    pass\n\nif __name__ == "__main__":\n    main()\n`;
         }
@@ -318,7 +336,7 @@ export const App: React.FC = () => {
     }
   }, [code, currentBankId, selectedQuestionId, currentUser]);
 
-  // Flattened ordered list of all curriculum questions across all modules
+  // Flattened ordered list of curriculum questions for current course
   const allCurriculumQuestions = useMemo(() => {
     const list: Array<{
       bankId: string;
@@ -328,7 +346,9 @@ export const App: React.FC = () => {
       displayIndex: string;
     }> = [];
 
-    curriculumModules.forEach((m) => {
+    const activeMods = curriculumModules.filter((m) => (m.course || 'python') === activeCourse);
+
+    activeMods.forEach((m) => {
       let easyCount = 0;
       let medCount = 0;
       let hardCount = 0;
@@ -358,7 +378,7 @@ export const App: React.FC = () => {
     });
 
     return list;
-  }, [curriculumModules]);
+  }, [curriculumModules, activeCourse]);
 
   // Map of question_id -> displayIndex
   const displayIndexMap = useMemo(() => {
@@ -410,6 +430,53 @@ export const App: React.FC = () => {
     }
   };
 
+  // Course counts
+  const courseModuleCounts = useMemo(() => {
+    const python = curriculumModules.filter((m) => (m.course || 'python') === 'python').length;
+    const java = curriculumModules.filter((m) => m.course === 'java').length;
+    return { python, java };
+  }, [curriculumModules]);
+
+  // Select Course (Python or Java)
+  const handleSelectCourse = (course: 'python' | 'java') => {
+    setActiveCourse(course);
+    setSelectedLanguage(course);
+
+    const courseMods = curriculumModules.filter((m) => (m.course || 'python') === course);
+    if (courseMods.length > 0 && courseMods[0].questions.length > 0) {
+      setCurrentBankId(courseMods[0].bankId);
+      setSelectedQuestionId(courseMods[0].questions[0].question_id);
+    }
+  };
+
+  // Select Question directly
+  const handleSelectQuestion = (bankId: string, qId: string) => {
+    const mod = curriculumModules.find((m) => m.bankId === bankId);
+    if (mod?.course && mod.course !== activeCourse) {
+      setActiveCourse(mod.course);
+    }
+    if (mod?.course) {
+      setSelectedLanguage(mod.course);
+    }
+    if (bankId !== currentBankId) {
+      setCurrentBankId(bankId);
+    }
+    setSelectedQuestionId(qId);
+    if (mobileTab === 'problem') setMobileTab('problem');
+  };
+
+  // Switch Language manually in editor
+  const handleChangeLanguage = (newLang: 'python' | 'java') => {
+    setSelectedLanguage(newLang);
+    const isDefaultPython = !code || code.includes('import sys\ndef main()') || code.trim() === '# Write your solution here';
+    const isDefaultJava = !code || (code.includes('public class Solution') && code.includes('Scanner sc'));
+    if (isDefaultPython && newLang === 'java') {
+      setCode(`import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}\n`);
+    } else if (isDefaultJava && newLang === 'python') {
+      setCode(`# Write your solution here\nimport sys\n\ndef main():\n    pass\n\nif __name__ == "__main__":\n    main()\n`);
+    }
+  };
+
   // Run Custom Code
   const handleRunCode = async () => {
     if (!code) return;
@@ -420,7 +487,8 @@ export const App: React.FC = () => {
         code,
         customStdin,
         questionDetail?.execution_mode || 'stdin/stdout',
-        questionDetail?.function_name
+        questionDetail?.function_name,
+        selectedLanguage
       );
       setRunResult(res);
     } catch (err: any) {
@@ -442,7 +510,9 @@ export const App: React.FC = () => {
         code,
         runAll,
         isOwnerMode,
-        strictNewlinePolicy
+        strictNewlinePolicy,
+        true,
+        selectedLanguage
       );
       setSubmitResult(res);
 
@@ -528,24 +598,56 @@ export const App: React.FC = () => {
 
   const currentBank = banks.find((b) => b.id === currentBankId);
   const currentBankIssuesCount = currentBank?.validation_report?.issues?.length || 0;
-  const totalSolvedCount = Object.values(questionStatuses).filter((s) => s === 'passed').length;
+  const totalSolvedCount = allCurriculumQuestions.filter(
+    (item) => questionStatuses[item.question.question_id] === 'passed'
+  ).length;
   const totalQuestionsCount = allCurriculumQuestions.length;
 
   return (
     <div className="h-screen w-screen flex flex-col bg-[#0b0e15] text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Application Bar */}
       <header className="h-12 bg-[#0e121a] border-b border-[#1b2333] px-3.5 flex items-center justify-between shrink-0 z-20">
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-3.5">
           <div className="flex items-center space-x-2">
             <div className="w-7 h-7 rounded-lg bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-200 font-mono text-xs font-bold shadow-sm">
-              {'<P/>'}
+              {'<C/>'}
             </div>
             <div className="flex items-center space-x-2">
-              <span className="font-bold text-zinc-100 text-sm tracking-tight">PyArena</span>
-              <span className="text-[10px] font-medium px-2 py-0.5 rounded-md bg-zinc-800/80 text-zinc-300 border border-zinc-700/70">
-                18 Modules Python Course
+              <span className="font-bold text-zinc-100 text-sm tracking-tight">CodeArena</span>
+              <span className={`text-[10px] font-medium px-2 py-0.5 rounded-md border ${
+                activeCourse === 'java'
+                  ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/30'
+                  : 'bg-amber-500/15 text-amber-300 border-amber-500/30'
+              }`}>
+                {activeCourse === 'java' ? 'Java Course' : 'Python Course'}
               </span>
             </div>
+          </div>
+
+          {/* Course Switcher in Header */}
+          <div className="flex items-center space-x-1 p-0.5 bg-zinc-900/90 rounded-lg border border-zinc-800 shadow-inner">
+            <button
+              onClick={() => handleSelectCourse('python')}
+              className={`flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-semibold transition ${
+                activeCourse === 'python'
+                  ? 'bg-zinc-800 text-amber-300 border border-amber-500/30 shadow-sm'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              <span>🐍</span>
+              <span>Python ({courseModuleCounts.python} Modules)</span>
+            </button>
+            <button
+              onClick={() => handleSelectCourse('java')}
+              className={`flex items-center space-x-1.5 px-3 py-1 rounded-md text-xs font-semibold transition ${
+                activeCourse === 'java'
+                  ? 'bg-zinc-800 text-cyan-300 border border-cyan-500/30 shadow-sm'
+                  : 'text-zinc-400 hover:text-zinc-200'
+              }`}
+            >
+              <span>☕</span>
+              <span>Java ({courseModuleCounts.java} {courseModuleCounts.java === 1 ? 'Module' : 'Modules'})</span>
+            </button>
           </div>
         </div>
 
@@ -651,13 +753,7 @@ export const App: React.FC = () => {
         <Sidebar
           modules={curriculumModules}
           selectedQuestionId={selectedQuestionId}
-          onSelectQuestion={(bankId, qId) => {
-            if (bankId !== currentBankId) {
-              setCurrentBankId(bankId);
-            }
-            setSelectedQuestionId(qId);
-            if (mobileTab === 'problem') setMobileTab('problem');
-          }}
+          onSelectQuestion={handleSelectQuestion}
           questionStatuses={questionStatuses}
           isLoading={isLoadingCurriculum}
           banks={banks}
@@ -665,6 +761,12 @@ export const App: React.FC = () => {
           onSelectBank={async (id) => {
             setCurrentBankId(id);
             const mod = curriculumModules.find((m) => m.bankId === id);
+            if (mod?.course && mod.course !== activeCourse) {
+              setActiveCourse(mod.course);
+            }
+            if (mod?.course) {
+              setSelectedLanguage(mod.course);
+            }
             if (mod && mod.questions.length > 0) {
               setSelectedQuestionId(mod.questions[0].question_id);
             }
@@ -676,6 +778,9 @@ export const App: React.FC = () => {
           currentUser={currentUser}
           onSignOut={handleSignOut}
           onOpenAuth={() => setIsAuthModalOpen(true)}
+          activeCourse={activeCourse}
+          onSelectCourse={handleSelectCourse}
+          courseModuleCounts={courseModuleCounts}
         />
 
         {/* Column 2 & 3 Container */}
@@ -734,6 +839,8 @@ export const App: React.FC = () => {
                 }}
                 isRunning={isRunning}
                 questionId={selectedQuestionId || ''}
+                language={selectedLanguage}
+                onChangeLanguage={handleChangeLanguage}
               />
             </div>
 

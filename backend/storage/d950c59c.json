@@ -1,0 +1,1943 @@
+{
+  "id": "d950c59c",
+  "filename": "JP_M5_Java_Loops.csv",
+  "imported_at": "2026-10-24T14:24:14.615047Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M5-01",
+      "title": "Employee Salary Processing",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Read N values in a loop and accumulate their sum in a long.",
+      "problem_statement": "A company needs to calculate its total salary expenditure. Read a positive integer N, followed by N non-negative integer salaries. Print the total salary expenditure. The total fits in a Java long.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: One salary per line",
+      "output_format": "A single line containing the total salary.",
+      "constraints": "1 <= N <= 1000\n0 <= salary <= 2,000,000,000",
+      "sample_inputs": [
+        "4\n25000\n30000\n28000\n35000",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "118000",
+        "0"
+      ],
+      "hints": [
+        "Declare long total = 0; before the loop.",
+        "Use a for loop that runs N times and reads one salary in each iteration.",
+        "Several salaries near 2,000,000,000 add up to more than an int can hold, so the total must be a long."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long total = 0;\n        for (int i = 0; i < n; i++) {\n            total += Long.parseLong(sc.next());\n        }\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n25000\n30000\n28000\n35000",
+          "output": "118000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n100\n200\n300",
+          "output": "600",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n0\n0\n0\n0\n0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n2000000000\n2000000000",
+          "output": "4000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n99999",
+          "output": "99999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n1\n2\n3\n4",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n1500000000\n1500000000\n1500000000",
+          "output": "4500000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: One salary per line",
+        "output_format": "A single line containing the total salary."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-02",
+      "title": "E-Commerce Revenue from Eligible Orders",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Add only the values that meet a condition inside a loop.",
+      "problem_statement": "An online store wants to calculate revenue from orders that qualify for a premium category. Read a positive integer N, followed by N non-negative integer order amounts. Add only amounts that are at least ₹2000 and print the total. If no order qualifies, print 0. The total fits in a Java long.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: One order amount per line",
+      "output_format": "A single line containing the total of the qualifying orders.",
+      "constraints": "1 <= N <= 1000\n0 <= amount <= 2,000,000,000",
+      "sample_inputs": [
+        "5\n500\n2500\n2000\n1800\n4200",
+        "3\n100\n1999\n500"
+      ],
+      "sample_outputs": [
+        "8700",
+        "0"
+      ],
+      "hints": [
+        "Start with long total = 0;.",
+        "Inside the loop, add the amount only when amount >= 2000.",
+        "If no amount qualifies, the total stays 0, so no extra check is needed."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long total = 0;\n        for (int i = 0; i < n; i++) {\n            long amount = Long.parseLong(sc.next());\n            if (amount >= 2000) {\n                total += amount;\n            }\n        }\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n500\n2500\n2000\n1800\n4200",
+          "output": "8700",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n100\n1999\n500",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n2000",
+          "output": "2000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n2000\n2000\n1999\n2001",
+          "output": "6001",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n2000000000\n2000000000",
+          "output": "4000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n0\n0\n0\n0\n0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n5000\n100\n3000",
+          "output": "8000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n1999",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: One order amount per line",
+        "output_format": "A single line containing the total of the qualifying orders."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-03",
+      "title": "Secure PIN Retry System",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Use a do-while loop that always runs at least once and stops on a matching value.",
+      "problem_statement": "A system accepts a user's PIN until the correct PIN is entered. Read the correct four-digit PIN, followed by attempted PINs. Use a do-while loop to process at least one attempt. Print the number of attempts made, including the successful attempt. The input is guaranteed to contain the correct PIN, and every PIN is a four-digit integer. Do not use arrays.",
+      "input_format": "Line 1: The correct PIN\nFollowing lines: One attempted PIN per line",
+      "output_format": "A single line containing the number of attempts.",
+      "constraints": "1000 <= every PIN <= 9999\nAt least one attempt matches the correct PIN.",
+      "sample_inputs": [
+        "4821\n1234\n4820\n4821",
+        "1111\n1111"
+      ],
+      "sample_outputs": [
+        "3",
+        "1"
+      ],
+      "hints": [
+        "Read the correct PIN before the loop and set int attempts = 0;.",
+        "Inside do { ... }, read one attempt and increase the counter.",
+        "The loop condition is while (attempt != correct); and attempt must be declared before the do so the condition can see it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int correct = Integer.parseInt(sc.next());\n        int attempts = 0;\n        int attempt;\n        do {\n            attempt = Integer.parseInt(sc.next());\n            attempts++;\n        } while (attempt != correct);\n        System.out.println(attempts);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4821\n1234\n4820\n4821",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1111\n1111",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "9999\n1000\n2000\n3000\n4000\n9999",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5000\n5001\n5000",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1234\n4321\n1234",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7777\n7776\n7778\n7777",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2468\n2468\n2468",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000\n9999\n1000\n1000",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: The correct PIN\nFollowing lines: One attempted PIN per line",
+        "output_format": "A single line containing the number of attempts."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-04",
+      "title": "Monthly Expense Tracker",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Track the maximum value seen so far while reading values in a loop.",
+      "problem_statement": "A budgeting application records expenses for N days. Read a positive integer N, followed by N non-negative integer expenses. Print the largest single-day expense.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: One expense per line",
+      "output_format": "A single line containing the largest expense.",
+      "constraints": "1 <= N <= 1000\n0 <= expense <= 2,000,000,000",
+      "sample_inputs": [
+        "5\n450\n1200\n800\n1750\n600",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "1750",
+        "0"
+      ],
+      "hints": [
+        "Keep a variable max for the largest value seen so far.",
+        "Because expenses are non-negative, max can start at 0; starting it at the first expense also works.",
+        "Update max whenever the current expense is greater than it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int max = 0;\n        for (int i = 0; i < n; i++) {\n            int expense = Integer.parseInt(sc.next());\n            if (expense > max) {\n                max = expense;\n            }\n        }\n        System.out.println(max);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n450\n1200\n800\n1750\n600",
+          "output": "1750",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n5\n5\n5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n900\n100\n50\n10",
+          "output": "900",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n0\n0\n0\n0\n1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n2000000000\n1999999999",
+          "output": "2000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n3\n9\n2\n9\n1\n8",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n7\n8\n6",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: One expense per line",
+        "output_format": "A single line containing the largest expense."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-05",
+      "title": "Production Line Arrangements",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Compute a factorial with a loop, using a long for the growing product.",
+      "problem_statement": "A factory can arrange N distinct products on a display line in N! (N factorial) different orders, where N! = 1 × 2 × ... × N and 0! = 1. Read an integer N from 0 to 20 and print N! using a loop. Use a long for the result, because 13! already exceeds the int range.",
+      "input_format": "A single line containing an integer N.",
+      "output_format": "A single line containing N!.",
+      "constraints": "0 <= N <= 20",
+      "sample_inputs": [
+        "5",
+        "0"
+      ],
+      "sample_outputs": [
+        "120",
+        "1"
+      ],
+      "hints": [
+        "Start with long result = 1;.",
+        "Multiply result by every integer from 1 through N.",
+        "When N is 0, the loop does not run, so the result stays 1, which is correct."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long result = 1;\n        for (int i = 1; i <= n; i++) {\n            result *= i;\n        }\n        System.out.println(result);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5",
+          "output": "120",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "3628800",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12",
+          "output": "479001600",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "13",
+          "output": "6227020800",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "20",
+          "output": "2432902008176640000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing an integer N.",
+        "output_format": "A single line containing N!."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-06",
+      "title": "Scheduled Countdown",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Write a loop that counts down by a variable step and stops before going below 1.",
+      "problem_statement": "A launch system displays a countdown from N toward 1, decreasing by a positive step K. Read positive integers N and K. Print each value on a separate line. Stop when the next subtraction would produce a value below 1.",
+      "input_format": "Two separate lines:\nLine 1: Positive integer N\nLine 2: Positive integer K",
+      "output_format": "One line for each countdown value.",
+      "constraints": "1 <= N <= 1000\n1 <= K <= 1000",
+      "sample_inputs": [
+        "10\n3",
+        "5\n1"
+      ],
+      "sample_outputs": [
+        "10\n7\n4\n1",
+        "5\n4\n3\n2\n1"
+      ],
+      "hints": [
+        "Start the loop variable at N.",
+        "Continue while the value is at least 1.",
+        "Update with value -= K instead of value--."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        for (int value = n; value >= 1; value -= k) {\n            System.out.println(value);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n3",
+          "output": "10\n7\n4\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n1",
+          "output": "5\n4\n3\n2\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n5",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "20\n5",
+          "output": "20\n15\n10\n5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9\n2",
+          "output": "9\n7\n5\n3\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n33",
+          "output": "100\n67\n34\n1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Positive integer N\nLine 2: Positive integer K",
+        "output_format": "One line for each countdown value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-07",
+      "title": "Multiplication Table Generator",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Print formatted lines from a counted for loop.",
+      "problem_statement": "A reporting tool generates a multiplication table. Read an integer N and a positive integer K. Print the first K multiples of N, one per line, in the format N x i = result, where i runs from 1 through K. Assume -10,000 <= N <= 10,000 and 1 <= K <= 100, so every product fits in an int.",
+      "input_format": "Two separate lines:\nLine 1: Integer N\nLine 2: Positive integer K",
+      "output_format": "K lines in the format N x i = result.",
+      "constraints": "-10,000 <= N <= 10,000\n1 <= K <= 100",
+      "sample_inputs": [
+        "7\n4",
+        "-3\n3"
+      ],
+      "sample_outputs": [
+        "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28",
+        "-3 x 1 = -3\n-3 x 2 = -6\n-3 x 3 = -9"
+      ],
+      "hints": [
+        "Use for (int i = 1; i <= k; i++).",
+        "Build each line with string concatenation: n + \" x \" + i + \" = \" + (n * i).",
+        "Put n * i in parentheses so it is calculated before being joined to the text."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        for (int i = 1; i <= k; i++) {\n            System.out.println(n + \" x \" + i + \" = \" + (n * i));\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n4",
+          "output": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "-3\n3",
+          "output": "-3 x 1 = -3\n-3 x 2 = -6\n-3 x 3 = -9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n2",
+          "output": "0 x 1 = 0\n0 x 2 = 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "12\n1",
+          "output": "12 x 1 = 12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10000\n100",
+          "output": "10000 x 1 = 10000\n10000 x 2 = 20000\n10000 x 3 = 30000\n10000 x 4 = 40000\n10000 x 5 = 50000\n10000 x 6 = 60000\n10000 x 7 = 70000\n10000 x 8 = 80000\n10000 x 9 = 90000\n10000 x 10 = 100000\n10000 x 11 = 110000\n10000 x 12 = 120000\n10000 x 13 = 130000\n10000 x 14 = 140000\n10000 x 15 = 150000\n10000 x 16 = 160000\n10000 x 17 = 170000\n10000 x 18 = 180000\n10000 x 19 = 190000\n10000 x 20 = 200000\n10000 x 21 = 210000\n10000 x 22 = 220000\n10000 x 23 = 230000\n10000 x 24 = 240000\n10000 x 25 = 250000\n10000 x 26 = 260000\n10000 x 27 = 270000\n10000 x 28 = 280000\n10000 x 29 = 290000\n10000 x 30 = 300000\n10000 x 31 = 310000\n10000 x 32 = 320000\n10000 x 33 = 330000\n10000 x 34 = 340000\n10000 x 35 = 350000\n10000 x 36 = 360000\n10000 x 37 = 370000\n10000 x 38 = 380000\n10000 x 39 = 390000\n10000 x 40 = 400000\n10000 x 41 = 410000\n10000 x 42 = 420000\n10000 x 43 = 430000\n10000 x 44 = 440000\n10000 x 45 = 450000\n10000 x 46 = 460000\n10000 x 47 = 470000\n10000 x 48 = 480000\n10000 x 49 = 490000\n10000 x 50 = 500000\n10000 x 51 = 510000\n10000 x 52 = 520000\n10000 x 53 = 530000\n10000 x 54 = 540000\n10000 x 55 = 550000\n10000 x 56 = 560000\n10000 x 57 = 570000\n10000 x 58 = 580000\n10000 x 59 = 590000\n10000 x 60 = 600000\n10000 x 61 = 610000\n10000 x 62 = 620000\n10000 x 63 = 630000\n10000 x 64 = 640000\n10000 x 65 = 650000\n10000 x 66 = 660000\n10000 x 67 = 670000\n10000 x 68 = 680000\n10000 x 69 = 690000\n10000 x 70 = 700000\n10000 x 71 = 710000\n10000 x 72 = 720000\n10000 x 73 = 730000\n10000 x 74 = 740000\n10000 x 75 = 750000\n10000 x 76 = 760000\n10000 x 77 = 770000\n10000 x 78 = 780000\n10000 x 79 = 790000\n10000 x 80 = 800000\n10000 x 81 = 810000\n10000 x 82 = 820000\n10000 x 83 = 830000\n10000 x 84 = 840000\n10000 x 85 = 850000\n10000 x 86 = 860000\n10000 x 87 = 870000\n10000 x 88 = 880000\n10000 x 89 = 890000\n10000 x 90 = 900000\n10000 x 91 = 910000\n10000 x 92 = 920000\n10000 x 93 = 930000\n10000 x 94 = 940000\n10000 x 95 = 950000\n10000 x 96 = 960000\n10000 x 97 = 970000\n10000 x 98 = 980000\n10000 x 99 = 990000\n10000 x 100 = 1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n10",
+          "output": "5 x 1 = 5\n5 x 2 = 10\n5 x 3 = 15\n5 x 4 = 20\n5 x 5 = 25\n5 x 6 = 30\n5 x 7 = 35\n5 x 8 = 40\n5 x 9 = 45\n5 x 10 = 50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "-10000\n5",
+          "output": "-10000 x 1 = -10000\n-10000 x 2 = -20000\n-10000 x 3 = -30000\n-10000 x 4 = -40000\n-10000 x 5 = -50000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n3",
+          "output": "1 x 1 = 1\n1 x 2 = 2\n1 x 3 = 3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer N\nLine 2: Positive integer K",
+        "output_format": "K lines in the format N x i = result."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-08",
+      "title": "First Failed Inspection",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Easy",
+      "objective": "Search for the first matching value and leave the loop early with break.",
+      "problem_statement": "A factory examines N products in order. Read a positive integer N, followed by N quality scores from 0 to 100. Find the position of the first product scoring below 60, using positions starting at 1. Print that position and stop reading further scores using break. If all products pass, print All Passed.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: One score per line",
+      "output_format": "A single line containing the position, or All Passed.",
+      "constraints": "1 <= N <= 1000\n0 <= score <= 100",
+      "sample_inputs": [
+        "5\n90\n75\n48\n82\n55",
+        "3\n60\n70\n80"
+      ],
+      "sample_outputs": [
+        "3",
+        "All Passed"
+      ],
+      "hints": [
+        "Use a variable such as int failedAt = 0; to remember whether a failure was found.",
+        "When score < 60, store the position i + 1 and break.",
+        "After the loop, print All Passed if failedAt is still 0; otherwise, print failedAt."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int failedAt = 0;\n        for (int i = 0; i < n; i++) {\n            int score = Integer.parseInt(sc.next());\n            if (score < 60) {\n                failedAt = i + 1;\n                break;\n            }\n        }\n        if (failedAt == 0) {\n            System.out.println(\"All Passed\");\n        } else {\n            System.out.println(failedAt);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n90\n75\n48\n82\n55",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n60\n70\n80",
+          "output": "All Passed",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n59",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n60",
+          "output": "All Passed",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n100\n0\n10\n20",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n61\n62\n63\n64\n59",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n59\n0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n100\n100\n100",
+          "output": "All Passed",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: One score per line",
+        "output_format": "A single line containing the position, or All Passed."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-09",
+      "title": "Sales Target with a Fixed Reporting Period",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Accumulate values and stop as soon as a running total reaches a target.",
+      "problem_statement": "A company tracks sales over a fixed reporting period. Read a positive integer target, then a positive integer N, followed by N non-negative daily sales amounts. Add the amounts in order and stop immediately when the total reaches or exceeds the target. Print the number of days processed and the cumulative total, each on a separate line. The input is guaranteed to reach the target, and the total fits in a Java long. Do not include amounts from later days.",
+      "input_format": "Line 1: Positive integer target\nLine 2: Positive integer N\nNext N lines: One sales amount per line",
+      "output_format": "Two lines: the number of days processed, then the cumulative total.",
+      "constraints": "1 <= target <= 2,000,000,000\n1 <= N <= 1000\n0 <= amount <= 2,000,000,000\nThe target is always reached.",
+      "sample_inputs": [
+        "1000\n5\n200\n300\n250\n400\n900",
+        "500\n3\n500\n100\n100"
+      ],
+      "sample_outputs": [
+        "4\n1150",
+        "1\n500"
+      ],
+      "hints": [
+        "Keep two variables: long total = 0; and int days = 0;.",
+        "Inside the loop, add the amount and increase days before checking the target.",
+        "break as soon as total >= target, so later amounts are never added."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long target = Long.parseLong(sc.next());\n        int n = Integer.parseInt(sc.next());\n        long total = 0;\n        int days = 0;\n        for (int i = 0; i < n; i++) {\n            total += Long.parseLong(sc.next());\n            days++;\n            if (total >= target) {\n                break;\n            }\n        }\n        System.out.println(days);\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000\n5\n200\n300\n250\n400\n900",
+          "output": "4\n1150",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "500\n3\n500\n100\n100",
+          "output": "1\n500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100\n4\n0\n0\n100\n50",
+          "output": "3\n100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n1\n5",
+          "output": "1\n5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10000\n4\n2500\n2500\n2500\n2500",
+          "output": "4\n10000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3000\n6\n1000\n999\n1000\n1\n500\n500",
+          "output": "4\n3000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2000000000\n3\n1500000000\n1500000000\n7",
+          "output": "2\n3000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "50\n5\n10\n10\n10\n10\n10",
+          "output": "5\n50",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer target\nLine 2: Positive integer N\nNext N lines: One sales amount per line",
+        "output_format": "Two lines: the number of days processed, then the cumulative total."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-10",
+      "title": "Payroll Overtime Calculator",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Apply a per-iteration calculation with a condition and accumulate the results.",
+      "problem_statement": "A company calculates weekly pay from daily working hours. Read a positive integer N, followed by N non-negative integer hour values. Regular pay is ₹200 per hour for up to 8 hours per day. Hours beyond 8 on any day are paid at ₹300 per hour. Calculate each day's pay separately and print the total weekly pay. The total fits in a Java long.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: Hours worked on each day",
+      "output_format": "A single line containing the total pay.",
+      "constraints": "1 <= N <= 31\n0 <= hours <= 24",
+      "sample_inputs": [
+        "3\n8\n10\n6",
+        "1\n8"
+      ],
+      "sample_outputs": [
+        "5000",
+        "1600"
+      ],
+      "hints": [
+        "Work out each day's pay inside the loop before adding it to the total.",
+        "If hours <= 8, the day's pay is hours * 200.",
+        "Otherwise, the day's pay is 8 * 200 + (hours - 8) * 300."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        long total = 0;\n        for (int i = 0; i < n; i++) {\n            int hours = Integer.parseInt(sc.next());\n            if (hours <= 8) {\n                total += hours * 200;\n            } else {\n                total += 8 * 200 + (hours - 8) * 300;\n            }\n        }\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n8\n10\n6",
+          "output": "5000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n8",
+          "output": "1600",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n9\n12",
+          "output": "4700",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n8\n8\n8\n8\n8",
+          "output": "8000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n24",
+          "output": "6400",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n7\n1\n0",
+          "output": "1600",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n10\n10\n10\n10\n10\n5\n0",
+          "output": "12000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: Hours worked on each day",
+        "output_format": "A single line containing the total pay."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-11",
+      "title": "Consecutive High-Value Transaction Pairs",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Compare each value with the previous one to count qualifying adjacent pairs.",
+      "problem_statement": "A bank analyzes a sequence of transactions. Read a positive integer N, followed by N positive integer amounts. Count adjacent pairs in which both amounts exceed ₹50000. A transaction can belong to two pairs if it is part of a longer consecutive sequence. Print the number of qualifying pairs.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: One amount per line",
+      "output_format": "A single line containing the number of qualifying pairs.",
+      "constraints": "1 <= N <= 1000\n1 <= amount <= 2,000,000,000",
+      "sample_inputs": [
+        "5\n60000\n70000\n20000\n80000\n90000",
+        "3\n60000\n70000\n80000"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "Remember the previous amount in a variable that is updated at the end of each iteration.",
+        "Starting at the second amount, count a pair when both previous > 50000 and current > 50000.",
+        "An amount of exactly 50000 does not exceed 50000."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int previous = Integer.parseInt(sc.next());\n        int pairs = 0;\n        for (int i = 1; i < n; i++) {\n            int current = Integer.parseInt(sc.next());\n            if (previous > 50000 && current > 50000) {\n                pairs++;\n            }\n            previous = current;\n        }\n        System.out.println(pairs);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n60000\n70000\n20000\n80000\n90000",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n60000\n70000\n80000",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n99999",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n50000\n50001",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n50001\n50001",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n10\n20\n30\n40\n50\n60",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n100000\n100000\n100000\n100000\n100000",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n60000\n1\n60000\n60000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: One amount per line",
+        "output_format": "A single line containing the number of qualifying pairs."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-12",
+      "title": "Product Code Digit Sum",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Extract digits with % 10 and / 10 in a while loop.",
+      "problem_statement": "A warehouse analyzes a positive integer product code. Calculate and print the sum of its decimal digits using a loop. Do not convert the number to a string. The input fits in a Java long.",
+      "input_format": "A single line containing a positive integer code.",
+      "output_format": "A single line containing the digit sum.",
+      "constraints": "1 <= code <= 9,223,372,036,854,775,807",
+      "sample_inputs": [
+        "58321",
+        "7"
+      ],
+      "sample_outputs": [
+        "19",
+        "7"
+      ],
+      "hints": [
+        "code % 10 gives the last digit.",
+        "code / 10 removes the last digit.",
+        "Repeat while code > 0, adding each last digit to a running sum."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long code = Long.parseLong(sc.next());\n        int sum = 0;\n        while (code > 0) {\n            sum += code % 10;\n            code /= 10;\n        }\n        System.out.println(sum);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "58321",
+          "output": "19",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000000",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9999999999",
+          "output": "90",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "9223372036854775807",
+          "output": "88",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "10",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "123456789",
+          "output": "45",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "505",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A single line containing a positive integer code.",
+        "output_format": "A single line containing the digit sum."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-13",
+      "title": "Efficient Greatest Common Divisor",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Implement the Euclidean algorithm with a while loop.",
+      "problem_statement": "A billing system needs to find the greatest common divisor (GCD) of two positive integers a and b. Use the Euclidean algorithm in a loop: repeatedly replace the pair with b and a % b until the second value becomes zero. Print the remaining first value. Both inputs are positive Java long values.",
+      "input_format": "Two separate lines:\nLine 1: Positive integer a\nLine 2: Positive integer b",
+      "output_format": "A single line containing the GCD.",
+      "constraints": "1 <= a, b <= 9,223,372,036,854,775,807",
+      "sample_inputs": [
+        "48\n18",
+        "18\n48"
+      ],
+      "sample_outputs": [
+        "6"
+      ],
+      "hints": [
+        "Loop while b != 0.",
+        "Save a % b in a temporary variable before changing a.",
+        "Then set a = b and b = remainder; when the loop ends, a holds the GCD."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long a = Long.parseLong(sc.next());\n        long b = Long.parseLong(sc.next());\n        while (b != 0) {\n            long remainder = a % b;\n            a = b;\n            b = remainder;\n        }\n        System.out.println(a);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "48\n18",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "18\n48",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "17\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100\n100",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n999",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1071\n462",
+          "output": "21",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000000\n250000000000",
+          "output": "250000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9223372036854775807\n2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Positive integer a\nLine 2: Positive integer b",
+        "output_format": "A single line containing the GCD."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-14",
+      "title": "First Number Divisible by Two Divisors",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Search a range for the first value meeting a combined condition, and report when none exists.",
+      "problem_statement": "A scheduling system searches for a number divisible by two specified divisors. Read four positive integers: start, end, d1, and d2, where start <= end. Find the smallest integer in the inclusive range that is divisible by both d1 and d2. Print the number if one exists; otherwise, print Not Found.",
+      "input_format": "Four separate lines: start, end, d1, and d2.",
+      "output_format": "A single line containing the number, or Not Found.",
+      "constraints": "1 <= start <= end <= 2,000,000\n1 <= d1, d2 <= 1,000,000",
+      "sample_inputs": [
+        "10\n30\n4\n5",
+        "1\n10\n4\n6"
+      ],
+      "sample_outputs": [
+        "20",
+        "Not Found"
+      ],
+      "hints": [
+        "Loop from start through end inclusive.",
+        "A number fits when number % d1 == 0 && number % d2 == 0.",
+        "Store the answer and break when it is found; if nothing was stored, print Not Found."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int start = Integer.parseInt(sc.next());\n        int end = Integer.parseInt(sc.next());\n        int d1 = Integer.parseInt(sc.next());\n        int d2 = Integer.parseInt(sc.next());\n        int found = -1;\n        for (int number = start; number <= end; number++) {\n            if (number % d1 == 0 && number % d2 == 0) {\n                found = number;\n                break;\n            }\n        }\n        if (found == -1) {\n            System.out.println(\"Not Found\");\n        } else {\n            System.out.println(found);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n30\n4\n5",
+          "output": "20",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n10\n4\n6",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "12\n12\n4\n6",
+          "output": "12",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n100\n7\n7",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "21\n100\n4\n6",
+          "output": "24",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1\n1\n1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50\n59\n10\n3",
+          "output": "Not Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000\n2000000\n999\n1000",
+          "output": "1998000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Four separate lines: start, end, d1, and d2.",
+        "output_format": "A single line containing the number, or Not Found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-15",
+      "title": "Multiples Skipped in a Report",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Skip iterations with continue and track whether anything was printed.",
+      "problem_statement": "A reporting tool must print the numbers from 1 through N, except numbers divisible by a specified positive integer K. Read positive integers N and K. Use continue to skip the excluded numbers and print each remaining number on a separate line. If every number is excluded, print No Values.",
+      "input_format": "Two separate lines:\nLine 1: Positive integer N\nLine 2: Positive integer K",
+      "output_format": "The remaining numbers, one per line, or No Values.",
+      "constraints": "1 <= N <= 1000\n1 <= K <= 1000",
+      "sample_inputs": [
+        "10\n3",
+        "5\n1"
+      ],
+      "sample_outputs": [
+        "1\n2\n4\n5\n7\n8\n10",
+        "No Values"
+      ],
+      "hints": [
+        "Inside the loop, if i % k == 0, call continue to skip the rest of that iteration.",
+        "Use a boolean such as printedAny, set to true whenever a number is printed.",
+        "After the loop, print No Values only if printedAny is still false."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        boolean printedAny = false;\n        for (int i = 1; i <= n; i++) {\n            if (i % k == 0) {\n                continue;\n            }\n            System.out.println(i);\n            printedAny = true;\n        }\n        if (!printedAny) {\n            System.out.println(\"No Values\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n3",
+          "output": "1\n2\n4\n5\n7\n8\n10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5\n1",
+          "output": "No Values",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7\n7",
+          "output": "1\n2\n3\n4\n5\n6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n2",
+          "output": "1\n3\n5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n10",
+          "output": "1\n2\n3\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n1",
+          "output": "No Values",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12\n4",
+          "output": "1\n2\n3\n5\n6\n7\n9\n10\n11",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Positive integer N\nLine 2: Positive integer K",
+        "output_format": "The remaining numbers, one per line, or No Values."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-16",
+      "title": "Manufacturing Defect Streak",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Track a current streak and a best streak while reading values.",
+      "problem_statement": "A factory records each product as 1 for defective or 0 for acceptable. Read a positive integer N, followed by exactly N values, each either 0 or 1. Find the longest consecutive streak of defective products and print its length. If no product is defective, print 0.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: 0 or 1",
+      "output_format": "A single line containing the longest streak length.",
+      "constraints": "1 <= N <= 1000\nEach value is 0 or 1.",
+      "sample_inputs": [
+        "8\n1\n1\n0\n1\n1\n1\n0\n1",
+        "3\n0\n0\n0"
+      ],
+      "sample_outputs": [
+        "3",
+        "0"
+      ],
+      "hints": [
+        "Keep two counters: current for the streak in progress and longest for the best so far.",
+        "On a 1, increase current and update longest if current is larger.",
+        "On a 0, reset current to 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int current = 0;\n        int longest = 0;\n        for (int i = 0; i < n; i++) {\n            int value = Integer.parseInt(sc.next());\n            if (value == 1) {\n                current++;\n                if (current > longest) {\n                    longest = current;\n                }\n            } else {\n                current = 0;\n            }\n        }\n        System.out.println(longest);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8\n1\n1\n0\n1\n1\n1\n0\n1",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n0\n0\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1\n1\n1\n1\n1",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n0\n1\n0\n1\n1\n0",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "7\n1\n0\n1\n1\n0\n1\n1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n0\n0\n1\n1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: 0 or 1",
+        "output_format": "A single line containing the longest streak length."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-17",
+      "title": "Nested-Loop Seating Plan",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Medium",
+      "objective": "Print a grid with nested loops and control the spacing between items.",
+      "problem_statement": "An event organizer creates a rectangular seating display. Read positive integers R and C, each between 1 and 20 inclusive. Print R rows, each containing C asterisks separated by a single space. Use nested loops and do not print extra spaces at the beginning or end of a row.",
+      "input_format": "Two separate lines:\nLine 1: Rows R\nLine 2: Columns C",
+      "output_format": "R lines, each with C asterisks separated by single spaces.",
+      "constraints": "1 <= R <= 20\n1 <= C <= 20",
+      "sample_inputs": [
+        "3\n4",
+        "1\n1"
+      ],
+      "sample_outputs": [
+        "* * * *\n* * * *\n* * * *",
+        "*"
+      ],
+      "hints": [
+        "The outer loop runs once per row, and the inner loop once per seat.",
+        "Print a space before every asterisk except the first one in the row.",
+        "Use System.out.print inside the inner loop and System.out.println() after it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int r = Integer.parseInt(sc.next());\n        int c = Integer.parseInt(sc.next());\n        for (int row = 1; row <= r; row++) {\n            for (int col = 1; col <= c; col++) {\n                if (col > 1) {\n                    System.out.print(\" \");\n                }\n                System.out.print(\"*\");\n            }\n            System.out.println();\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n4",
+          "output": "* * * *\n* * * *\n* * * *",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1",
+          "output": "*",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n5",
+          "output": "* * * * *\n* * * * *",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1",
+          "output": "*\n*\n*\n*\n*",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n20",
+          "output": "* * * * * * * * * * * * * * * * * * * *",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n4",
+          "output": "* * * *\n* * * *\n* * * *\n* * * *",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "20\n3",
+          "output": "* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *\n* * *",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n2",
+          "output": "* *\n* *\n* *",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Rows R\nLine 2: Columns C",
+        "output_format": "R lines, each with C asterisks separated by single spaces."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-18",
+      "title": "Revenue Target with Limited Attempts",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Hard",
+      "objective": "Handle two loop exits, reaching a target early or running out of input, and report each correctly.",
+      "problem_statement": "A company tracks its net revenue over a fixed number of days. Read a positive integer target, then a positive integer N, followed by N signed integer daily net amounts. Start with a total of zero and process amounts in order. Stop immediately when the total reaches or exceeds the target. If reached, print Target Reached, the number of days processed, and the total at that point, each on a separate line. If all N entries are processed without reaching the target, print Target Not Reached followed by the final total. The total fits in a Java long. Do not process any entries after the target is reached.",
+      "input_format": "Line 1: Positive integer target\nLine 2: Positive integer N\nNext N lines: One signed amount per line",
+      "output_format": "Either three lines (Target Reached, days, total) or two lines (Target Not Reached, final total).",
+      "constraints": "1 <= target <= 2,000,000,000\n1 <= N <= 1000\n-2,000,000,000 <= amount <= 2,000,000,000",
+      "sample_inputs": [
+        "1000\n5\n600\n-200\n300\n500\n700",
+        "1000\n3\n300\n250\n200"
+      ],
+      "sample_outputs": [
+        "Target Reached\n4\n1200",
+        "Target Not Reached\n750"
+      ],
+      "hints": [
+        "Use a boolean reached = false; together with total and days.",
+        "Inside the loop, update total and days, then set reached = true and break when total >= target.",
+        "After the loop, use reached to choose between the two output formats."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long target = Long.parseLong(sc.next());\n        int n = Integer.parseInt(sc.next());\n        long total = 0;\n        int days = 0;\n        boolean reached = false;\n        for (int i = 0; i < n; i++) {\n            total += Long.parseLong(sc.next());\n            days++;\n            if (total >= target) {\n                reached = true;\n                break;\n            }\n        }\n        if (reached) {\n            System.out.println(\"Target Reached\");\n            System.out.println(days);\n            System.out.println(total);\n        } else {\n            System.out.println(\"Target Not Reached\");\n            System.out.println(total);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000\n5\n600\n-200\n300\n500\n700",
+          "output": "Target Reached\n4\n1200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1000\n3\n300\n250\n200",
+          "output": "Target Not Reached\n750",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "100\n1\n100",
+          "output": "Target Reached\n1\n100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "500\n4\n-100\n-200\n300\n400",
+          "output": "Target Not Reached\n400",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10\n3\n20\n-5\n-5",
+          "output": "Target Reached\n1\n20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000\n5\n-1000\n1000\n1000\n500\n500",
+          "output": "Target Reached\n3\n1000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2000000000\n3\n1500000000\n1500000000\n-1",
+          "output": "Target Reached\n2\n3000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "50\n2\n-10\n-20",
+          "output": "Target Not Reached\n-30",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer target\nLine 2: Positive integer N\nNext N lines: One signed amount per line",
+        "output_format": "Either three lines (Target Reached, days, total) or two lines (Target Not Reached, final total)."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-19",
+      "title": "Prime Count with Divisor Testing",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Hard",
+      "objective": "Use an inner loop to test each number in a range for primality and count the primes.",
+      "problem_statement": "A data-validation system counts the prime numbers in a range. Read integers L and R, where 2 <= L <= R <= 1000. Count the prime numbers in the inclusive range. A number is prime if it is greater than 1 and has no positive divisors other than 1 and itself. Use nested loops to test divisors; do not use arrays, strings for number conversion, or custom methods. Print the count.",
+      "input_format": "Two separate lines:\nLine 1: Integer L\nLine 2: Integer R",
+      "output_format": "A single line containing the number of primes.",
+      "constraints": "2 <= L <= R <= 1000",
+      "sample_inputs": [
+        "10\n30",
+        "2\n2"
+      ],
+      "sample_outputs": [
+        "6",
+        "1"
+      ],
+      "hints": [
+        "The outer loop visits each number from L through R.",
+        "For each number, start with boolean isPrime = true; and test divisors from 2 upward.",
+        "You only need to test divisors d while d * d <= number; break as soon as one divides evenly."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int l = Integer.parseInt(sc.next());\n        int r = Integer.parseInt(sc.next());\n        int count = 0;\n        for (int number = l; number <= r; number++) {\n            boolean isPrime = true;\n            for (int d = 2; d * d <= number; d++) {\n                if (number % d == 0) {\n                    isPrime = false;\n                    break;\n                }\n            }\n            if (isPrime) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n30",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "2\n2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n10",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "14\n16",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n1000",
+          "output": "168",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "997\n1000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "90\n100",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "24\n28",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two separate lines:\nLine 1: Integer L\nLine 2: Integer R",
+        "output_format": "A single line containing the number of primes."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M5-20",
+      "title": "Payment System Failure Analysis",
+      "module": "Module 05: Java Loops",
+      "difficulty": "Hard",
+      "objective": "Track several related quantities in one pass, including a streak's start position and tie-breaking.",
+      "problem_statement": "A payment service records transaction outcomes as integers: 1 means success and 0 means failure. Read a positive integer N, followed by exactly N outcome values. Process the values in one pass without arrays. Print four results, each on a separate line:\n1. Total successful transactions.\n2. Total failed transactions.\n3. Length of the longest consecutive failure streak.\n4. Starting position of that streak, using positions starting at 1.\nIf no failures occur, print 0 for both the streak length and starting position. If multiple streaks have the same maximum length, report the earliest one. Each outcome is guaranteed to be 0 or 1.",
+      "input_format": "Line 1: Positive integer N\nNext N lines: 0 or 1",
+      "output_format": "Four lines: successes, failures, longest failure streak, and its starting position.",
+      "constraints": "1 <= N <= 1000\nEach value is 0 or 1.",
+      "sample_inputs": [
+        "12\n1\n0\n0\n1\n0\n0\n0\n1\n0\n0\n1\n1",
+        "3\n1\n1\n1"
+      ],
+      "sample_outputs": [
+        "5\n7\n3\n5",
+        "3\n0\n0\n0"
+      ],
+      "hints": [
+        "Track successes, failures, the current streak, the current streak's start, the best streak, and the best start.",
+        "When a failure begins a new streak (current is 0), record its position as the current start.",
+        "Update the best only when current > best, not >=, so the earliest streak wins a tie."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int successes = 0;\n        int failures = 0;\n        int current = 0;\n        int currentStart = 0;\n        int best = 0;\n        int bestStart = 0;\n        for (int i = 1; i <= n; i++) {\n            int outcome = Integer.parseInt(sc.next());\n            if (outcome == 1) {\n                successes++;\n                current = 0;\n            } else {\n                failures++;\n                if (current == 0) {\n                    currentStart = i;\n                }\n                current++;\n                if (current > best) {\n                    best = current;\n                    bestStart = currentStart;\n                }\n            }\n        }\n        System.out.println(successes);\n        System.out.println(failures);\n        System.out.println(best);\n        System.out.println(bestStart);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12\n1\n0\n0\n1\n0\n0\n0\n1\n0\n0\n1\n1",
+          "output": "5\n7\n3\n5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n1\n1\n1",
+          "output": "3\n0\n0\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n0\n0\n0",
+          "output": "0\n3\n3\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n0",
+          "output": "0\n1\n1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n0\n0\n1\n0\n0\n1",
+          "output": "2\n4\n2\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1\n0\n1\n0\n0",
+          "output": "2\n3\n2\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n1",
+          "output": "1\n0\n0\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "8\n1\n0\n1\n0\n0\n0\n0\n1",
+          "output": "3\n5\n4\n4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 05: Java Loops",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Line 1: Positive integer N\nNext N lines: 0 or 1",
+        "output_format": "Four lines: successes, failures, longest failure streak, and its starting position."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M5_Java_Loops.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

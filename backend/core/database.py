@@ -47,9 +47,9 @@ else:
     import sqlite3
     # In serverless environments like Vercel, the filesystem is read-only except /tmp
     if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
-        DB_PATH = "/tmp/pyarena.db"
+        DB_PATH = "/tmp/codearena.db"
     else:
-        DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "storage", "pyarena.db")
+        DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "storage", "codearena.db")
     print(f"💾 Using SQLite database ({DB_PATH})")
 
 def get_connection():

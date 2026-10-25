@@ -1,0 +1,1089 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M17-01,Build and Display a Singly Linked List,"Module 17: Linked Lists, Stacks, and Queues",Easy,Create linked nodes and append each new node at the tail.,stdin/stdout,O(1),O(1),"Read N integers and insert them at the end of a singly linked list in input order. Print the list from head to tail. Implement your own nodes; do not store the values in an array or collection.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Each new node is linked after the current tail, so the list preserves the original input order.","N, followed by N integers.","Print the values separated by single spaces. If N = 0, print an empty line.","0 ≤ N ≤ 100,000
+Values fit in int.","5
+10 20 30 40 50",10 20 30 40 50,"0
+",,A Node class holds an int value and a reference to the next node.,Keep a tail reference so each append takes O(1) time instead of walking the whole list.,A dummy head node avoids a special case for the first insertion.,"import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node head = build(sc, n);
+        System.out.println(listString(head));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""5\n10 20 30 40 50"", ""output"": ""10 20 30 40 50"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""1\n-5"", ""output"": ""-5"", ""is_hidden"": false}, {""input"": ""3\n2147483647 -2147483648 0"", ""output"": ""2147483647 -2147483648 0"", ""is_hidden"": true}, {""input"": ""4\n1 1 1 1"", ""output"": ""1 1 1 1"", ""is_hidden"": true}, {""input"": ""2\n9 8"", ""output"": ""9 8"", ""is_hidden"": true}, {""input"": ""6\n6 5 4 3 2 1"", ""output"": ""6 5 4 3 2 1"", ""is_hidden"": true}, {""input"": ""5\n0 0 0 0 1"", ""output"": ""0 0 0 0 1"", ""is_hidden"": true}]"
+JP-M17-02,Reverse a Singly Linked List,"Module 17: Linked Lists, Stacks, and Queues",Easy,Reverse a linked list in place by redirecting each node's next pointer.,stdin/stdout,O(1),O(1),"Reverse the links of a singly linked list in place. The original last node becomes the head. Do not create replacement data nodes or use an array to store the values.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Each node's next pointer is redirected to its previous node, reversing the traversal order.","N, followed by N integers.","Print the reversed list on one line. If N = 0, print an empty line.","0 ≤ N ≤ 100,000","4
+5 10 15 20",20 15 10 5,"0
+",,"Walk the list with three references: prev, cur, and next.","Save cur.next before overwriting it with prev, or the rest of the list is lost.","When cur becomes null, prev is the new head.","import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node head = build(sc, n);
+        Node prev = null;
+        Node cur = head;
+        while (cur != null) {
+            Node next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        System.out.println(listString(prev));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""4\n5 10 15 20"", ""output"": ""20 15 10 5"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""1\n7"", ""output"": ""7"", ""is_hidden"": false}, {""input"": ""2\n1 2"", ""output"": ""2 1"", ""is_hidden"": true}, {""input"": ""5\n1 2 3 4 5"", ""output"": ""5 4 3 2 1"", ""is_hidden"": true}, {""input"": ""3\n-1 0 1"", ""output"": ""1 0 -1"", ""is_hidden"": true}, {""input"": ""4\n9 9 8 8"", ""output"": ""8 8 9 9"", ""is_hidden"": true}, {""input"": ""6\n10 20 30 40 50 60"", ""output"": ""60 50 40 30 20 10"", ""is_hidden"": true}]"
+JP-M17-03,Find the Middle Node,"Module 17: Linked Lists, Stacks, and Queues",Easy,Locate the middle of a list in one pass with slow and fast pointers.,stdin/stdout,O(1),O(1),"Find the middle node of a singly linked list. For an even number of nodes, return the second middle node. Use slow and fast pointers without counting the nodes in a separate traversal.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The slow pointer advances one node for every two nodes traversed by the fast pointer. When the fast pointer reaches the end, the slow pointer is at the second middle node.","N, followed by N integers.","Print the middle value. If the list is empty, print EMPTY.","0 ≤ N ≤ 200,000","6
+4 8 12 16 20 24",16,"0
+",EMPTY,Start both pointers at the head.,"Loop while fast != null && fast.next != null, moving slow one step and fast two steps.","With this loop condition, an even-length list stops at the second middle node.","import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node head = build(sc, n);
+        if (head == null) {
+            System.out.println(""EMPTY"");
+        } else {
+            Node slow = head;
+            Node fast = head;
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            System.out.println(slow.val);
+        }
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""6\n4 8 12 16 20 24"", ""output"": ""16"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""EMPTY"", ""is_hidden"": false}, {""input"": ""1\n9"", ""output"": ""9"", ""is_hidden"": false}, {""input"": ""2\n1 2"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""3\n1 2 3"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""5\n5 4 3 2 1"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""4\n-1 -2 -3 -4"", ""output"": ""-3"", ""is_hidden"": true}, {""input"": ""7\n1 2 3 4 5 6 7"", ""output"": ""4"", ""is_hidden"": true}]"
+JP-M17-04,Implement a Stack Using a Linked List,"Module 17: Linked Lists, Stacks, and Queues",Easy,Implement push and pop at the head of a linked list in O(1) time.,stdin/stdout,O(1),O(1),"Implement a stack using your own singly linked nodes. Support PUSH x, POP, PEEK, and SIZE. PUSH adds an element to the top; POP removes and prints the top; PEEK prints the top without removing it; SIZE prints the current size. POP and PEEK on an empty stack print EMPTY. Each stack operation must take O(1) time, excluding output costs.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The stack is last-in, first-out (LIFO). The first POP removes 20, leaving only 10; the final POP finds the stack empty.","Q, followed by Q commands.","Print a result for each POP, PEEK, or SIZE command. PUSH produces no output.","1 ≤ Q ≤ 100,000
+Pushed values fit in int.","7
+PUSH 10
+PUSH 20
+PEEK
+POP
+SIZE
+POP
+POP","20
+20
+1
+10
+EMPTY","2
+POP
+PEEK","EMPTY
+EMPTY",The top of the stack is the head of the list: push creates a node pointing to the old head.,Keep a size counter instead of counting nodes for every SIZE command.,"Collect output in a StringBuilder and print once; 200,000 separate println calls can be slow.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        Node top = null;
+        int size = 0;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""PUSH"")) {
+                Node node = new Node(Integer.parseInt(sc.next()));
+                node.next = top;
+                top = node;
+                size++;
+            } else if (cmd.equals(""POP"")) {
+                if (top == null) {
+                    out.append(""EMPTY\n"");
+                } else {
+                    out.append(top.val).append(""\n"");
+                    top = top.next;
+                    size--;
+                }
+            } else if (cmd.equals(""PEEK"")) {
+                out.append(top == null ? ""EMPTY"" : String.valueOf(top.val)).append(""\n"");
+            } else {
+                out.append(size).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\nPUSH 10\nPUSH 20\nPEEK\nPOP\nSIZE\nPOP\nPOP"", ""output"": ""20\n20\n1\n10\nEMPTY"", ""is_hidden"": false}, {""input"": ""2\nPOP\nPEEK"", ""output"": ""EMPTY\nEMPTY"", ""is_hidden"": false}, {""input"": ""3\nSIZE\nPUSH -1\nSIZE"", ""output"": ""0\n1"", ""is_hidden"": false}, {""input"": ""5\nPUSH 1\nPUSH 2\nPUSH 3\nPOP\nPEEK"", ""output"": ""3\n2"", ""is_hidden"": true}, {""input"": ""4\nPUSH 2147483647\nPUSH -2147483648\nPOP\nPOP"", ""output"": ""-2147483648\n2147483647"", ""is_hidden"": true}, {""input"": ""6\nPUSH 5\nPOP\nPOP\nPUSH 6\nSIZE\nPEEK"", ""output"": ""5\nEMPTY\n1\n6"", ""is_hidden"": true}, {""input"": ""1\nSIZE"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""5\nPUSH 1\nPUSH 1\nSIZE\nPOP\nSIZE"", ""output"": ""2\n1\n1"", ""is_hidden"": true}]"
+JP-M17-05,Implement a Circular Queue,"Module 17: Linked Lists, Stacks, and Queues",Easy,Implement a fixed-size queue with wrap-around indices.,stdin/stdout,O(1),O(1),"Implement a fixed-capacity circular queue using an array. Support ENQUEUE x, DEQUEUE, and FRONT. If the queue is full, ENQUEUE prints FULL and changes nothing. If the queue is empty, DEQUEUE or FRONT prints EMPTY. Reuse freed array positions with circular indexing.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Removing 10 frees a slot. Enqueuing 40 reuses that slot through circular indexing, while 20 remains at the front.","C and Q, followed by Q commands.","Print a result for each command that produces a result, including failed operations.","1 ≤ C ≤ 100,000
+1 ≤ Q ≤ 100,000","3 8
+ENQUEUE 10
+ENQUEUE 20
+ENQUEUE 30
+DEQUEUE
+ENQUEUE 40
+FRONT
+DEQUEUE
+DEQUEUE","10
+20
+20
+30","1 4
+ENQUEUE 1
+ENQUEUE 2
+FRONT
+DEQUEUE","FULL
+1
+1",Track the front index and the current count; the rear position is (front + count) % C.,"After dequeuing, advance front with front = (front + 1) % C.","A count of 0 means empty and a count of C means full, so you never need to compare front with rear.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int c = Integer.parseInt(sc.next());
+        int q = Integer.parseInt(sc.next());
+        int[] data = new int[c];
+        int front = 0;
+        int count = 0;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""ENQUEUE"")) {
+                int x = Integer.parseInt(sc.next());
+                if (count == c) {
+                    out.append(""FULL\n"");
+                } else {
+                    data[(front + count) % c] = x;
+                    count++;
+                }
+            } else if (count == 0) {
+                out.append(""EMPTY\n"");
+            } else if (cmd.equals(""DEQUEUE"")) {
+                out.append(data[front]).append(""\n"");
+                front = (front + 1) % c;
+                count--;
+            } else {
+                out.append(data[front]).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""3 8\nENQUEUE 10\nENQUEUE 20\nENQUEUE 30\nDEQUEUE\nENQUEUE 40\nFRONT\nDEQUEUE\nDEQUEUE"", ""output"": ""10\n20\n20\n30"", ""is_hidden"": false}, {""input"": ""1 4\nENQUEUE 1\nENQUEUE 2\nFRONT\nDEQUEUE"", ""output"": ""FULL\n1\n1"", ""is_hidden"": false}, {""input"": ""2 3\nDEQUEUE\nFRONT\nENQUEUE 5"", ""output"": ""EMPTY\nEMPTY"", ""is_hidden"": false}, {""input"": ""2 9\nENQUEUE 1\nENQUEUE 2\nDEQUEUE\nENQUEUE 3\nDEQUEUE\nENQUEUE 4\nDEQUEUE\nDEQUEUE\nDEQUEUE"", ""output"": ""1\n2\n3\n4\nEMPTY"", ""is_hidden"": true}, {""input"": ""3 5\nENQUEUE 1\nENQUEUE 2\nENQUEUE 3\nENQUEUE 4\nFRONT"", ""output"": ""FULL\n1"", ""is_hidden"": true}, {""input"": ""1 6\nENQUEUE 7\nDEQUEUE\nENQUEUE 8\nFRONT\nENQUEUE 9\nDEQUEUE"", ""output"": ""7\n8\nFULL\n8"", ""is_hidden"": true}, {""input"": ""2 4\nENQUEUE -1\nENQUEUE 0\nDEQUEUE\nDEQUEUE"", ""output"": ""-1\n0"", ""is_hidden"": true}, {""input"": ""3 2\nFRONT\nDEQUEUE"", ""output"": ""EMPTY\nEMPTY"", ""is_hidden"": true}]"
+JP-M17-06,Check Balanced Brackets,"Module 17: Linked Lists, Stacks, and Queues",Easy,Match nested brackets with a stack.,stdin/stdout,O(1),O(1),"Given a string containing only (, ), [, ], {, and }, determine whether the brackets are balanced. Each closing bracket must match the most recent unmatched opening bracket. Use a stack.
+
+Input hint: Use nextLine() and check hasNextLine() so an empty string can be read correctly.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Every closing bracket matches the most recent unmatched opening bracket, and no opening brackets remain.",One line containing the bracket string. The line may be empty.,"Print YES if the brackets are balanced; otherwise, print NO.","String length is at most 200,000.",{[()]},YES,,YES,Push every opening bracket.,"For a closing bracket, the stack must be non-empty and its top must be the matching opening bracket; otherwise the string is unbalanced.","After the scan, the stack must be empty: a leftover opening bracket also means NO.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = sc.hasNextLine() ? sc.nextLine() : """";
+        ArrayDeque<Character> stack = new ArrayDeque<>();
+        boolean ok = true;
+        for (int i = 0; i < s.length() && ok; i++) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '[' || c == '{') {
+                stack.push(c);
+            } else {
+                char open = c == ')' ? '(' : c == ']' ? '[' : '{';
+                if (stack.isEmpty() || stack.pop() != open) {
+                    ok = false;
+                }
+            }
+        }
+        System.out.println(ok && stack.isEmpty() ? ""YES"" : ""NO"");
+    }
+}","[{""input"": ""{[()]}"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": """", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""("", ""output"": ""NO"", ""is_hidden"": false}, {""input"": ""([)]"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": "")"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""()[]{}"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""(((("", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""{[]}(())[{}]"", ""output"": ""YES"", ""is_hidden"": true}]"
+JP-M17-07,Remove the Nth Node from the End,"Module 17: Linked Lists, Stacks, and Queues",Medium,Use a gap of N nodes between two pointers to find a node counted from the end.,stdin/stdout,O(1),O(1),"Remove the Nth node from the end of a singly linked list. N is guaranteed to be between 1 and the list length. Use two pointers so the node can be located without first calculating the list length in a separate traversal.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The second node from the end is 40. Removing it connects node 30 directly to node 50.",The first line contains L and N. The second line contains L integers.,"Print the resulting list separated by single spaces. If the list becomes empty, print an empty line.","1 ≤ N ≤ L ≤ 200,000","5 2
+10 20 30 40 50",10 20 30 50,"1 1
+5",,Put a dummy node before the head so removing the head needs no special case.,"Move the fast pointer N steps ahead first, then move both pointers until fast reaches the last node.",The slow pointer is then just before the node to remove: slow.next = slow.next.next.,"import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int l = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        Node dummy = new Node(0);
+        dummy.next = build(sc, l);
+        Node fast = dummy;
+        Node slow = dummy;
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        System.out.println(listString(dummy.next));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""5 2\n10 20 30 40 50"", ""output"": ""10 20 30 50"", ""is_hidden"": false}, {""input"": ""1 1\n5"", ""output"": """", ""is_hidden"": false}, {""input"": ""5 5\n1 2 3 4 5"", ""output"": ""2 3 4 5"", ""is_hidden"": false}, {""input"": ""5 1\n1 2 3 4 5"", ""output"": ""1 2 3 4"", ""is_hidden"": true}, {""input"": ""2 1\n1 2"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""2 2\n1 2"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""3 2\n7 7 7"", ""output"": ""7 7"", ""is_hidden"": true}, {""input"": ""4 3\n-1 -2 -3 -4"", ""output"": ""-1 -3 -4"", ""is_hidden"": true}]"
+JP-M17-08,Detect a Cycle in a Linked List,"Module 17: Linked Lists, Stacks, and Queues",Medium,Detect a cycle with Floyd's tortoise-and-hare algorithm using O(1) extra space.,stdin/stdout,O(1),O(1),"A linked list has N nodes numbered from 0 to N − 1. Each node has a value and a next-node index. A next index of -1 means no next node. The head is node 0 when N is positive.
+
+Determine whether following links from the head eventually revisits a node. Use Floyd's slow-and-fast pointer technique or another method with O(1) auxiliary space. A cycle that cannot be reached from node 0 does not count.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Following node 0 leads to 1, then 2, then 3, and then back to 1. The traversal therefore repeats nodes indefinitely.",The first line contains N. Each of the next N lines contains a node value and its next-node index.,"Print CYCLE if a cycle is reachable from the head; otherwise, print NO CYCLE.","0 ≤ N ≤ 200,000
+Each next index is −1 or between 0 and N − 1.","4
+10 1
+20 2
+30 3
+40 1",CYCLE,0,NO CYCLE,"Create the N nodes first, then set each node's next reference from its index.","Move slow one step and fast two steps; if they ever meet, there is a cycle.","If fast reaches null, the list ends and there is no cycle. An empty list has no cycle.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node[] nodes = new Node[n];
+        int[] nextIndex = new int[n];
+        for (int i = 0; i < n; i++) {
+            nodes[i] = new Node(Integer.parseInt(sc.next()));
+            nextIndex[i] = Integer.parseInt(sc.next());
+        }
+        for (int i = 0; i < n; i++) {
+            nodes[i].next = nextIndex[i] == -1 ? null : nodes[nextIndex[i]];
+        }
+        boolean cycle = false;
+        if (n > 0) {
+            Node slow = nodes[0];
+            Node fast = nodes[0];
+            while (fast != null && fast.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+                if (slow == fast) {
+                    cycle = true;
+                    break;
+                }
+            }
+        }
+        System.out.println(cycle ? ""CYCLE"" : ""NO CYCLE"");
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""4\n10 1\n20 2\n30 3\n40 1"", ""output"": ""CYCLE"", ""is_hidden"": false}, {""input"": ""0"", ""output"": ""NO CYCLE"", ""is_hidden"": false}, {""input"": ""1\n5 0"", ""output"": ""CYCLE"", ""is_hidden"": false}, {""input"": ""1\n5 -1"", ""output"": ""NO CYCLE"", ""is_hidden"": true}, {""input"": ""3\n1 1\n2 2\n3 -1"", ""output"": ""NO CYCLE"", ""is_hidden"": true}, {""input"": ""3\n1 1\n2 2\n3 0"", ""output"": ""CYCLE"", ""is_hidden"": true}, {""input"": ""4\n1 -1\n2 2\n3 3\n4 1"", ""output"": ""NO CYCLE"", ""is_hidden"": true}, {""input"": ""5\n1 1\n2 2\n3 3\n4 4\n5 4"", ""output"": ""CYCLE"", ""is_hidden"": true}]"
+JP-M17-09,Merge Two Sorted Linked Lists,"Module 17: Linked Lists, Stacks, and Queues",Medium,Merge two sorted lists by relinking existing nodes.,stdin/stdout,O(1),O(1),"Merge two singly linked lists sorted in non-decreasing order into one sorted list. Reuse existing nodes by changing their links rather than creating a replacement data node for every element. The required time complexity is O(N + M).
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: Repeatedly select the smaller current node from the two lists and append it to the merged list. Continue with the remaining nodes when either list is exhausted.","The first line contains N and M. The second line contains N sorted integers, and the third line contains M sorted integers. Either list may be empty.","Print the merged list on one line. If both lists are empty, print an empty line.","0 ≤ N, M ≤ 100,000","4 3
+1 3 5 8
+2 3 9",1 2 3 3 5 8 9,"0 0
+
+",,Use a dummy head and a tail pointer for the merged list.,"Attach whichever current node is smaller, then advance in that list.","When one list runs out, attach the rest of the other list in a single step.","import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int m = Integer.parseInt(sc.next());
+        Node a = build(sc, n);
+        Node b = build(sc, m);
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        while (a != null && b != null) {
+            if (a.val <= b.val) {
+                tail.next = a;
+                a = a.next;
+            } else {
+                tail.next = b;
+                b = b.next;
+            }
+            tail = tail.next;
+        }
+        tail.next = a != null ? a : b;
+        System.out.println(listString(dummy.next));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""4 3\n1 3 5 8\n2 3 9"", ""output"": ""1 2 3 3 5 8 9"", ""is_hidden"": false}, {""input"": ""0 0\n\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""0 3\n\n1 2 3"", ""output"": ""1 2 3"", ""is_hidden"": false}, {""input"": ""2 0\n4 5\n"", ""output"": ""4 5"", ""is_hidden"": true}, {""input"": ""3 3\n1 1 1\n1 1 1"", ""output"": ""1 1 1 1 1 1"", ""is_hidden"": true}, {""input"": ""3 2\n-5 0 5\n-10 10"", ""output"": ""-10 -5 0 5 10"", ""is_hidden"": true}, {""input"": ""1 4\n100\n1 2 3 4"", ""output"": ""1 2 3 4 100"", ""is_hidden"": true}, {""input"": ""2 2\n-2147483648 2147483647\n0 0"", ""output"": ""-2147483648 0 0 2147483647"", ""is_hidden"": true}]"
+JP-M17-10,Remove Consecutive Duplicate Nodes,"Module 17: Linked Lists, Stacks, and Queues",Medium,Remove duplicates from a sorted list by skipping over equal neighbors.,stdin/stdout,O(1),O(1),"Given a sorted singly linked list, remove consecutive duplicate values so that each distinct value appears exactly once. Preserve the order of the remaining nodes and modify the links rather than storing the values in another collection.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: For each node, skip subsequent nodes with the same value. The values 1, 2, 4, and 5 each remain once.","N, followed by N integers in non-decreasing order.","Print the resulting list on one line. If N = 0, print an empty line.","0 ≤ N ≤ 200,000","8
+1 1 2 2 2 4 4 5",1 2 4 5,"0
+",,"Because the list is sorted, duplicates are always next to each other.","While cur.next has the same value as cur, unlink it with cur.next = cur.next.next.",Advance cur only when its next node has a different value.,"import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node head = build(sc, n);
+        Node cur = head;
+        while (cur != null && cur.next != null) {
+            if (cur.next.val == cur.val) {
+                cur.next = cur.next.next;
+            } else {
+                cur = cur.next;
+            }
+        }
+        System.out.println(listString(head));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""8\n1 1 2 2 2 4 4 5"", ""output"": ""1 2 4 5"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""5\n3 3 3 3 3"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""4\n1 2 3 4"", ""output"": ""1 2 3 4"", ""is_hidden"": true}, {""input"": ""6\n-5 -5 0 0 5 5"", ""output"": ""-5 0 5"", ""is_hidden"": true}, {""input"": ""3\n-2147483648 -2147483648 2147483647"", ""output"": ""-2147483648 2147483647"", ""is_hidden"": true}, {""input"": ""7\n1 1 2 3 3 3 4"", ""output"": ""1 2 3 4"", ""is_hidden"": true}]"
+JP-M17-11,Evaluate a Postfix Expression,"Module 17: Linked Lists, Stacks, and Queues",Medium,Evaluate postfix notation with a stack of operands.,stdin/stdout,O(1),O(1),"Evaluate a valid postfix expression containing integer operands and the binary operators +, -, *, and /. Tokens are separated by spaces. Use a stack: when an operator is encountered, pop the right operand first, then the left operand. Division truncates toward zero. Division by zero does not occur, and all intermediate results fit in a long.
+
+Input hint: A token is the subtraction operator only when it is exactly -. A token such as -3 is a negative number.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: First calculate 3 × 4 = 12. Then calculate 12 + 12 = 24, and finally 24 − 2 = 22.",One line containing the postfix expression.,Print the final integer result.,"At most 100,000 tokens.",12 3 4 * + 2 -,22,5,5,"Read the line and split it on whitespace: line.trim().split(""\\s+"").","Push numbers as long values. For an operator, pop b (the right operand) and then a, and push a op b.","Java's long division already truncates toward zero, so -7 / 2 is -3.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String[] tokens = sc.nextLine().trim().split(""\\s+"");
+        ArrayDeque<Long> stack = new ArrayDeque<>();
+        for (String t : tokens) {
+            if (t.equals(""+"") || t.equals(""-"") || t.equals(""*"") || t.equals(""/"")) {
+                long b = stack.pop();
+                long a = stack.pop();
+                long result;
+                if (t.equals(""+"")) {
+                    result = a + b;
+                } else if (t.equals(""-"")) {
+                    result = a - b;
+                } else if (t.equals(""*"")) {
+                    result = a * b;
+                } else {
+                    result = a / b;
+                }
+                stack.push(result);
+            } else {
+                stack.push(Long.parseLong(t));
+            }
+        }
+        System.out.println(stack.pop());
+    }
+}","[{""input"": ""12 3 4 * + 2 -"", ""output"": ""22"", ""is_hidden"": false}, {""input"": ""5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""-3"", ""output"": ""-3"", ""is_hidden"": false}, {""input"": ""2 3 -"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""-7 2 /"", ""output"": ""-3"", ""is_hidden"": true}, {""input"": ""7 -2 /"", ""output"": ""-3"", ""is_hidden"": true}, {""input"": ""1000000 1000000 * 1000000 *"", ""output"": ""1000000000000000000"", ""is_hidden"": true}, {""input"": ""3 4 + 2 * 7 /"", ""output"": ""2"", ""is_hidden"": true}]"
+JP-M17-12,Next Greater Element to the Right,"Module 17: Linked Lists, Stacks, and Queues",Medium,Find next greater elements in O(N) with a monotonic stack of indices.,stdin/stdout,O(1),O(1),"For each array element, find the first element to its right that is strictly greater. If no such element exists, return -1. Use a monotonic stack to solve the problem in O(N) time. Equal values are not greater.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The next greater values for 4, 5, and 2 are 5, 10, and 10 respectively. Neither 10 nor 8 has a greater value to its right.","N, followed by N integers.","Print N answers on one line, separated by single spaces.","1 ≤ N ≤ 200,000
+Values fit in int.","5
+4 5 2 10 8",5 10 10 -1 -1,"1
+5",-1,Keep a stack of indices whose next greater element hasn't been found yet.,"For each new value, pop every index whose value is strictly smaller and record the new value as its answer.","Indices still on the stack at the end have no greater element, so their answer is −1.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        long[] answer = new long[n];
+        Arrays.fill(answer, -1);
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && a[stack.peek()] < a[i]) {
+                answer[stack.pop()] = a[i];
+            }
+            stack.push(i);
+        }
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            if (i > 0) {
+                out.append(' ');
+            }
+            out.append(answer[i]);
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""5\n4 5 2 10 8"", ""output"": ""5 10 10 -1 -1"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""-1"", ""is_hidden"": false}, {""input"": ""4\n4 3 2 1"", ""output"": ""-1 -1 -1 -1"", ""is_hidden"": false}, {""input"": ""4\n1 2 3 4"", ""output"": ""2 3 4 -1"", ""is_hidden"": true}, {""input"": ""5\n2 2 2 2 3"", ""output"": ""3 3 3 3 -1"", ""is_hidden"": true}, {""input"": ""3\n-2147483648 2147483647 0"", ""output"": ""2147483647 -1 -1"", ""is_hidden"": true}, {""input"": ""6\n1 3 2 4 1 5"", ""output"": ""3 4 4 5 5 -1"", ""is_hidden"": true}, {""input"": ""2\n5 5"", ""output"": ""-1 -1"", ""is_hidden"": true}]"
+JP-M17-13,Queue Using Two Stacks,"Module 17: Linked Lists, Stacks, and Queues",Medium,Build a FIFO queue from two LIFO stacks with amortized O(1) operations.,stdin/stdout,O(1),O(1),"Implement a FIFO queue using two stacks. Support ENQUEUE x, DEQUEUE, and FRONT. Transfer elements to the output stack only when it is empty. An empty DEQUEUE or FRONT prints EMPTY. Each operation must have amortized O(1) time complexity.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The queue removes 10 first. After 30 is enqueued, 20 remains at the front, so both FRONT and the next DEQUEUE return 20.","Q, followed by Q commands.",Print one result for every DEQUEUE or FRONT command.,"1 ≤ Q ≤ 200,000
+Values fit in int.","6
+ENQUEUE 10
+ENQUEUE 20
+DEQUEUE
+ENQUEUE 30
+FRONT
+DEQUEUE","10
+20
+20","2
+DEQUEUE
+FRONT","EMPTY
+EMPTY",ENQUEUE always pushes onto the input stack.,"Before DEQUEUE or FRONT, if the output stack is empty, pop everything from the input stack onto it; this reverses the order.","Each element moves between stacks at most once, so the total cost stays linear.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        ArrayDeque<Integer> in = new ArrayDeque<>();
+        ArrayDeque<Integer> outStack = new ArrayDeque<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""ENQUEUE"")) {
+                in.push(Integer.parseInt(sc.next()));
+                continue;
+            }
+            if (outStack.isEmpty()) {
+                while (!in.isEmpty()) {
+                    outStack.push(in.pop());
+                }
+            }
+            if (outStack.isEmpty()) {
+                out.append(""EMPTY\n"");
+            } else if (cmd.equals(""DEQUEUE"")) {
+                out.append(outStack.pop()).append(""\n"");
+            } else {
+                out.append(outStack.peek()).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""6\nENQUEUE 10\nENQUEUE 20\nDEQUEUE\nENQUEUE 30\nFRONT\nDEQUEUE"", ""output"": ""10\n20\n20"", ""is_hidden"": false}, {""input"": ""2\nDEQUEUE\nFRONT"", ""output"": ""EMPTY\nEMPTY"", ""is_hidden"": false}, {""input"": ""5\nENQUEUE 1\nENQUEUE 2\nENQUEUE 3\nDEQUEUE\nDEQUEUE"", ""output"": ""1\n2"", ""is_hidden"": false}, {""input"": ""7\nENQUEUE 1\nDEQUEUE\nENQUEUE 2\nENQUEUE 3\nDEQUEUE\nENQUEUE 4\nDEQUEUE"", ""output"": ""1\n2\n3"", ""is_hidden"": true}, {""input"": ""4\nENQUEUE -2147483648\nFRONT\nDEQUEUE\nDEQUEUE"", ""output"": ""-2147483648\n-2147483648\nEMPTY"", ""is_hidden"": true}, {""input"": ""3\nENQUEUE 5\nFRONT\nFRONT"", ""output"": ""5\n5"", ""is_hidden"": true}, {""input"": ""1\nFRONT"", ""output"": ""EMPTY"", ""is_hidden"": true}, {""input"": ""6\nENQUEUE 1\nENQUEUE 2\nDEQUEUE\nENQUEUE 3\nDEQUEUE\nDEQUEUE"", ""output"": ""1\n2\n3"", ""is_hidden"": true}]"
+JP-M17-14,Reverse Nodes in Groups of K,"Module 17: Linked Lists, Stacks, and Queues",Medium,Reverse fixed-size segments of a list in place and reconnect them.,stdin/stdout,O(1),O(1),"Reverse the nodes of a singly linked list in consecutive groups of K. If the final group contains fewer than K nodes, leave that group unchanged. Reverse links in place without changing node values or creating replacement data nodes.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The first two groups of three are reversed. The final group contains only node 7, so it remains unchanged.",The first line contains N and K. The second line contains N integers.,"Print the resulting list on one line. If N = 0, print an empty line.","0 ≤ N ≤ 100,000
+1 ≤ K ≤ 100,000","7 3
+1 2 3 4 5 6 7",3 2 1 6 5 4 7,"0 3
+",,"Before reversing a group, check that K nodes remain; if not, stop.","Keep a pointer to the node just before the group, so the reversed group can be linked back in.","After reversing, the group's old first node becomes its last node and is the 'before' pointer for the next group.","import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        Node dummy = new Node(0);
+        dummy.next = build(sc, n);
+        Node before = dummy;
+        while (true) {
+            Node check = before;
+            for (int i = 0; i < k && check != null; i++) {
+                check = check.next;
+            }
+            if (check == null) {
+                break;
+            }
+            Node groupStart = before.next;
+            Node prev = check.next;
+            Node cur = groupStart;
+            for (int i = 0; i < k; i++) {
+                Node next = cur.next;
+                cur.next = prev;
+                prev = cur;
+                cur = next;
+            }
+            before.next = prev;
+            before = groupStart;
+        }
+        System.out.println(listString(dummy.next));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7 3\n1 2 3 4 5 6 7"", ""output"": ""3 2 1 6 5 4 7"", ""is_hidden"": false}, {""input"": ""0 3\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""5 1\n1 2 3 4 5"", ""output"": ""1 2 3 4 5"", ""is_hidden"": false}, {""input"": ""5 5\n1 2 3 4 5"", ""output"": ""5 4 3 2 1"", ""is_hidden"": true}, {""input"": ""5 6\n1 2 3 4 5"", ""output"": ""1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""6 2\n1 2 3 4 5 6"", ""output"": ""2 1 4 3 6 5"", ""is_hidden"": true}, {""input"": ""4 3\n1 2 3 4"", ""output"": ""3 2 1 4"", ""is_hidden"": true}, {""input"": ""8 4\n1 2 3 4 5 6 7 8"", ""output"": ""4 3 2 1 8 7 6 5"", ""is_hidden"": true}]"
+JP-M17-15,Sliding Window Maximum Using a Deque,"Module 17: Linked Lists, Stacks, and Queues",Medium,Maintain a monotonic deque of indices to report each window's maximum in O(N).,stdin/stdout,O(1),O(1),"Given an array of N integers and a window size K, find the maximum in each contiguous window of exactly K elements. Use a deque of indices, maintaining decreasing values from front to back and removing indices that leave the current window. The required time complexity is O(N).
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The windows are [1,3,-1], [3,-1,-3], [-1,-3,5], [-3,5,3], [5,3,6], and [3,6,7]. Their maximum values are 3, 3, 5, 5, 6, and 7.",The first line contains N and K. The second line contains N integers.,Print N − K + 1 maximum values on one line.,"1 ≤ K ≤ N ≤ 200,000
+Values fit in int.","8 3
+1 3 -1 -3 5 3 6 7",3 3 5 5 6 7,"1 1
+5",5,"Before adding index i, remove indices from the back whose values are less than or equal to a[i]; they can never be a maximum again.","Remove the front index if it is i − K or earlier, because it has left the window.","Once i ≥ K − 1, the value at the front index is the current window's maximum.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        ArrayDeque<Integer> dq = new ArrayDeque<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            while (!dq.isEmpty() && a[dq.peekLast()] <= a[i]) {
+                dq.pollLast();
+            }
+            dq.addLast(i);
+            if (dq.peekFirst() <= i - k) {
+                dq.pollFirst();
+            }
+            if (i >= k - 1) {
+                if (out.length() > 0) {
+                    out.append(' ');
+                }
+                out.append(a[dq.peekFirst()]);
+            }
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""8 3\n1 3 -1 -3 5 3 6 7"", ""output"": ""3 3 5 5 6 7"", ""is_hidden"": false}, {""input"": ""1 1\n5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""5 1\n1 2 3 4 5"", ""output"": ""1 2 3 4 5"", ""is_hidden"": false}, {""input"": ""5 5\n3 1 4 1 5"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""5 2\n5 4 3 2 1"", ""output"": ""5 4 3 2"", ""is_hidden"": true}, {""input"": ""4 2\n2 2 2 2"", ""output"": ""2 2 2"", ""is_hidden"": true}, {""input"": ""6 3\n-2147483648 -1 -2147483648 2147483647 0 0"", ""output"": ""-1 2147483647 2147483647 2147483647"", ""is_hidden"": true}, {""input"": ""7 3\n1 3 1 2 0 5 4"", ""output"": ""3 3 2 5 5"", ""is_hidden"": true}]"
+JP-M17-16,Check Whether a Linked List Is a Palindrome,"Module 17: Linked Lists, Stacks, and Queues",Hard,Compare a list with its reversed second half using O(1) extra space.,stdin/stdout,O(1),O(1),"Determine whether the values of a singly linked list read the same forward and backward. Solve the problem in O(N) time and O(1) auxiliary space. Do not copy the values into an array or stack. You may reverse part of the list temporarily, but restore the original list before finishing.
+
+Implementation requirement: Use in-place pointer manipulation.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The sequence is identical in both directions. The first and last values match, as do the second and fourth values, with 3 at the center.","N, followed by N integers.","Print YES if the list is a palindrome; otherwise, print NO. For N = 0, print YES.","0 ≤ N ≤ 200,000
+Values fit in int.","5
+1 2 3 2 1",YES,"0
+",YES,Find the middle with slow and fast pointers.,"Reverse the second half, then compare it node by node with the first half.",Reverse the second half again and reattach it to restore the original list.,"import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static Node reverse(Node head) {
+        Node prev = null;
+        while (head != null) {
+            Node next = head.next;
+            head.next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node head = build(sc, n);
+        boolean palindrome = true;
+        if (head != null && head.next != null) {
+            Node slow = head;
+            Node fast = head;
+            while (fast.next != null && fast.next.next != null) {
+                slow = slow.next;
+                fast = fast.next.next;
+            }
+            Node second = reverse(slow.next);
+            Node p = head;
+            Node r = second;
+            while (r != null) {
+                if (p.val != r.val) {
+                    palindrome = false;
+                    break;
+                }
+                p = p.next;
+                r = r.next;
+            }
+            slow.next = reverse(second);
+        }
+        System.out.println(palindrome ? ""YES"" : ""NO"");
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""5\n1 2 3 2 1"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""1\n7"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""2\n1 2"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""2\n3 3"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""4\n1 2 2 1"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""6\n1 2 3 3 2 2"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""5\n-1 0 2147483647 0 -1"", ""output"": ""YES"", ""is_hidden"": true}]"
+JP-M17-17,Design a Minimum Stack,"Module 17: Linked Lists, Stacks, and Queues",Hard,Support constant-time minimum queries by storing the running minimum with each element.,stdin/stdout,O(1),O(1),"Design a stack that supports PUSH x, POP, TOP, and MIN. PUSH adds an integer to the stack. POP removes and prints the top value. TOP prints the top without removing it. MIN prints the smallest value currently in the stack.
+
+All operations must run in O(1) time. In particular, MIN must not scan all stack elements. For POP, TOP, or MIN on an empty stack, print EMPTY.
+
+Implementation requirement: Maintain enough auxiliary information to retrieve the current minimum in constant time, including when the previous minimum is removed.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: After pushing 5, 2, and 7, the minimum is 2. The first POP removes 7 and prints it, leaving the minimum at 2. The second POP removes 2 and prints it, so both TOP and MIN then return 5.","Q, followed by Q commands.","Print one result for every POP, TOP, or MIN command. PUSH produces no output.","1 ≤ Q ≤ 200,000
+Pushed values fit in int.","9
+PUSH 5
+PUSH 2
+PUSH 7
+MIN
+POP
+MIN
+POP
+TOP
+MIN","2
+7
+2
+2
+5
+5","3
+POP
+TOP
+MIN","EMPTY
+EMPTY
+EMPTY",Store each element together with the minimum of the stack at the moment it was pushed.,The new element's minimum is the smaller of its value and the previous top's minimum.,"Popping restores the previous minimum automatically, because it is stored in the new top.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int q = Integer.parseInt(sc.next());
+        MinNode top = null;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            if (cmd.equals(""PUSH"")) {
+                int x = Integer.parseInt(sc.next());
+                int min = top == null ? x : Math.min(x, top.min);
+                top = new MinNode(x, min, top);
+            } else if (top == null) {
+                out.append(""EMPTY\n"");
+            } else if (cmd.equals(""POP"")) {
+                out.append(top.val).append(""\n"");
+                top = top.next;
+            } else if (cmd.equals(""TOP"")) {
+                out.append(top.val).append(""\n"");
+            } else {
+                out.append(top.min).append(""\n"");
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class MinNode {
+    final int val;
+    final int min;
+    final MinNode next;
+
+    MinNode(int val, int min, MinNode next) {
+        this.val = val;
+        this.min = min;
+        this.next = next;
+    }
+}","[{""input"": ""9\nPUSH 5\nPUSH 2\nPUSH 7\nMIN\nPOP\nMIN\nPOP\nTOP\nMIN"", ""output"": ""2\n7\n2\n2\n5\n5"", ""is_hidden"": false}, {""input"": ""3\nPOP\nTOP\nMIN"", ""output"": ""EMPTY\nEMPTY\nEMPTY"", ""is_hidden"": false}, {""input"": ""6\nPUSH 3\nPUSH 3\nMIN\nPOP\nMIN\nPOP"", ""output"": ""3\n3\n3\n3"", ""is_hidden"": false}, {""input"": ""7\nPUSH -2147483648\nPUSH 2147483647\nMIN\nPOP\nMIN\nPOP\nMIN"", ""output"": ""-2147483648\n2147483647\n-2147483648\n-2147483648\nEMPTY"", ""is_hidden"": true}, {""input"": ""6\nPUSH 1\nPUSH 2\nPUSH 3\nMIN\nTOP\nPOP"", ""output"": ""1\n3\n3"", ""is_hidden"": true}, {""input"": ""8\nPUSH 5\nPUSH 4\nPUSH 3\nPOP\nPOP\nMIN\nPOP\nMIN"", ""output"": ""3\n4\n5\n5\nEMPTY"", ""is_hidden"": true}, {""input"": ""2\nPUSH 0\nMIN"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""5\nPUSH 2\nPUSH 1\nPUSH 1\nPOP\nMIN"", ""output"": ""1\n1"", ""is_hidden"": true}]"
+JP-M17-18,Largest Rectangle in a Histogram,"Module 17: Linked Lists, Stacks, and Queues",Hard,Find each bar's widest span with a monotonic stack to get the largest rectangle in O(N).,stdin/stdout,O(1),O(1),"A histogram has N adjacent bars, each of width 1 and with a positive integer height. Find the maximum area of a rectangle spanning one or more consecutive bars. The rectangle height cannot exceed the height of any bar it covers.
+
+Use a monotonic stack to solve the problem in O(N) time. Use long for area calculations.
+
+Implementation requirement: Use long because a rectangle spanning 200,000 bars of height 1,000,000,000 has area 200,000,000,000,000.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The bars with heights 5 and 6 form a rectangle of width 2 and height 5, giving area 10. No other contiguous group produces a larger area.","N, followed by N positive integers representing the bar heights.",Print the maximum rectangle area.,"1 ≤ N ≤ 200,000
+1 ≤ each height ≤ 1,000,000,000","6
+2 1 5 6 2 3",10,"1
+5",5,Keep a stack of indices with increasing heights.,"When a shorter bar arrives, pop taller bars; each popped bar's rectangle extends from just after the new stack top to just before the current index.",Process a final height of 0 after the last bar so every remaining bar is popped and measured.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int[] h = new int[n];
+        for (int i = 0; i < n; i++) {
+            h[i] = Integer.parseInt(sc.next());
+        }
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        long best = 0;
+        for (int i = 0; i <= n; i++) {
+            int cur = i == n ? 0 : h[i];
+            while (!stack.isEmpty() && h[stack.peek()] >= cur) {
+                int height = h[stack.pop()];
+                int left = stack.isEmpty() ? -1 : stack.peek();
+                best = Math.max(best, (long) height * (i - left - 1));
+            }
+            stack.push(i);
+        }
+        System.out.println(best);
+    }
+}","[{""input"": ""6\n2 1 5 6 2 3"", ""output"": ""10"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""3\n1 1 1"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""4\n1 2 3 4"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""4\n4 3 2 1"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""5\n2 4 2 4 2"", ""output"": ""10"", ""is_hidden"": true}, {""input"": ""3\n1000000000 1000000000 1000000000"", ""output"": ""3000000000"", ""is_hidden"": true}, {""input"": ""6\n6 2 5 4 5 1"", ""output"": ""12"", ""is_hidden"": true}]"
+JP-M17-19,Merge K Sorted Linked Lists,"Module 17: Linked Lists, Stacks, and Queues",Hard,Merge K sorted lists with a min-priority queue of their current heads.,stdin/stdout,O(1),O(1),"You are given K singly linked lists, each sorted in non-decreasing order. Merge all the lists into one sorted list. Reuse existing nodes instead of creating replacement data nodes for every value.
+
+Use a min-priority queue containing the current smallest available node from each non-empty list. The required time complexity is O(T log K) when K is greater than 1, where T is the total number of nodes.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: The priority queue repeatedly supplies the smallest available node among the list heads. After a node is appended, the next node from that same list becomes a candidate.","The first line contains K.
+Each of the next K lines begins with the length of that list, followed by its values in sorted order.
+An empty list is represented by 0.","Print the merged list on one line, with values separated by single spaces. If all lists are empty or K = 0, print an empty line.","0 ≤ K ≤ 100,000
+Total number of nodes T ≤ 200,000
+Values fit in int.","3
+3 1 4 7
+3 2 5 8
+2 3 9",1 2 3 4 5 7 8 9,0,,"Build each list from its line, then add every non-null head to a PriorityQueue<Node> ordered by Integer.compare(a.val, b.val).","Poll the smallest node, append it to the result, and offer its next node if there is one.","Compare with Integer.compare, not subtraction, because values span the full int range.","import java.util.*;
+
+public class Main {
+    static Node build(Scanner sc, int n) {
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        for (int i = 0; i < n; i++) {
+            tail.next = new Node(Integer.parseInt(sc.next()));
+            tail = tail.next;
+        }
+        return dummy.next;
+    }
+
+    static String listString(Node head) {
+        StringBuilder sb = new StringBuilder();
+        for (Node cur = head; cur != null; cur = cur.next) {
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(cur.val);
+        }
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = Integer.parseInt(sc.next());
+        PriorityQueue<Node> pq = new PriorityQueue<>((x, y) -> Integer.compare(x.val, y.val));
+        for (int i = 0; i < k; i++) {
+            int len = Integer.parseInt(sc.next());
+            Node head = build(sc, len);
+            if (head != null) {
+                pq.add(head);
+            }
+        }
+        Node dummy = new Node(0);
+        Node tail = dummy;
+        while (!pq.isEmpty()) {
+            Node node = pq.poll();
+            tail.next = node;
+            tail = node;
+            if (node.next != null) {
+                pq.add(node.next);
+            }
+        }
+        tail.next = null;
+        System.out.println(listString(dummy.next));
+    }
+}
+
+class Node {
+    int val;
+    Node next;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""3\n3 1 4 7\n3 2 5 8\n2 3 9"", ""output"": ""1 2 3 4 5 7 8 9"", ""is_hidden"": false}, {""input"": ""0"", ""output"": """", ""is_hidden"": false}, {""input"": ""2\n0\n0"", ""output"": """", ""is_hidden"": false}, {""input"": ""1\n3 1 2 3"", ""output"": ""1 2 3"", ""is_hidden"": true}, {""input"": ""3\n0\n2 -1 1\n0"", ""output"": ""-1 1"", ""is_hidden"": true}, {""input"": ""2\n3 1 1 1\n2 1 1"", ""output"": ""1 1 1 1 1"", ""is_hidden"": true}, {""input"": ""3\n1 5\n1 4\n1 6"", ""output"": ""4 5 6"", ""is_hidden"": true}, {""input"": ""2\n2 -2147483648 2147483647\n1 0"", ""output"": ""-2147483648 0 2147483647"", ""is_hidden"": true}]"
+JP-M17-20,Implement an LRU Cache Using a Doubly Linked List,"Module 17: Linked Lists, Stacks, and Queues",Hard,Combine a HashMap with your own doubly linked list for O(1) LRU operations.,stdin/stdout,O(1),O(1),"Implement a Least Recently Used (LRU) cache with capacity C. Each entry stores an integer key and integer value. When the cache is full and a new key is inserted, evict the least recently used entry.
+
+Support these commands:
+- PUT key value: insert a new entry or update an existing entry. The key becomes the most recently used.
+- GET key: print the value if the key exists; otherwise, print -1. A successful access makes the key most recently used.
+Unlike a library-based LRU implementation such as an access-ordered LinkedHashMap, use java.util.HashMap only for key lookup and build the recency order with your own doubly linked list. GET and PUT must take O(1) average time. Updating an existing key must not create a duplicate entry or evict another key. If C = 0, ignore every PUT and return -1 for every GET.
+
+Implementation requirement: Use the hash map for direct lookup and the doubly linked list to move entries to the most-recently-used position and remove the least-recently-used entry efficiently.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+Explanation: GET 1 makes key 1 most recently used. Inserting key 3 evicts key 2, the least recently used entry. Key 1 remains available, and key 3 can be retrieved.",The first line contains C and Q. The next Q lines contain either PUT key value or GET key.,Print one line for each GET command. PUT produces no output.,"0 ≤ C ≤ 100,000
+1 ≤ Q ≤ 200,000
+Keys and values fit in int.","2 7
+PUT 1 10
+PUT 2 20
+GET 1
+PUT 3 30
+GET 2
+GET 3
+GET 1","10
+-1
+30
+10","0 3
+PUT 1 1
+GET 1
+GET 2","-1
+-1",Use sentinel head and tail nodes so insertions and removals never deal with null neighbors.,"To mark a node as most recently used, unlink it and insert it right after the head.","When inserting a new key into a full cache, remove the node just before the tail and delete its key from the map.","import java.util.*;
+
+public class Main {
+    static void unlink(DNode node) {
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
+    }
+
+    static void insertFront(DNode head, DNode node) {
+        node.next = head.next;
+        node.prev = head;
+        head.next.prev = node;
+        head.next = node;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int c = Integer.parseInt(sc.next());
+        int q = Integer.parseInt(sc.next());
+        Map<Integer, DNode> map = new HashMap<>();
+        DNode head = new DNode(0, 0);
+        DNode tail = new DNode(0, 0);
+        head.next = tail;
+        tail.prev = head;
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < q; i++) {
+            String cmd = sc.next();
+            int key = Integer.parseInt(sc.next());
+            if (cmd.equals(""GET"")) {
+                DNode node = map.get(key);
+                if (node == null) {
+                    out.append(""-1\n"");
+                } else {
+                    unlink(node);
+                    insertFront(head, node);
+                    out.append(node.value).append(""\n"");
+                }
+            } else {
+                int value = Integer.parseInt(sc.next());
+                if (c == 0) {
+                    continue;
+                }
+                DNode node = map.get(key);
+                if (node != null) {
+                    node.value = value;
+                    unlink(node);
+                    insertFront(head, node);
+                } else {
+                    if (map.size() == c) {
+                        DNode lru = tail.prev;
+                        unlink(lru);
+                        map.remove(lru.key);
+                    }
+                    node = new DNode(key, value);
+                    map.put(key, node);
+                    insertFront(head, node);
+                }
+            }
+        }
+        System.out.print(out);
+    }
+}
+
+class DNode {
+    final int key;
+    int value;
+    DNode prev;
+    DNode next;
+
+    DNode(int key, int value) {
+        this.key = key;
+        this.value = value;
+    }
+}","[{""input"": ""2 7\nPUT 1 10\nPUT 2 20\nGET 1\nPUT 3 30\nGET 2\nGET 3\nGET 1"", ""output"": ""10\n-1\n30\n10"", ""is_hidden"": false}, {""input"": ""0 3\nPUT 1 1\nGET 1\nGET 2"", ""output"": ""-1\n-1"", ""is_hidden"": false}, {""input"": ""1 5\nPUT 1 1\nPUT 2 2\nGET 1\nGET 2\nPUT 2 3"", ""output"": ""-1\n2"", ""is_hidden"": false}, {""input"": ""2 7\nPUT 1 1\nPUT 2 2\nPUT 1 10\nPUT 3 3\nGET 1\nGET 2\nGET 3"", ""output"": ""10\n-1\n3"", ""is_hidden"": true}, {""input"": ""2 6\nPUT 1 1\nPUT 2 2\nGET 5\nPUT 3 3\nGET 1\nGET 2"", ""output"": ""-1\n-1\n2"", ""is_hidden"": true}, {""input"": ""3 7\nPUT 1 1\nPUT 2 2\nPUT 3 3\nGET 1\nGET 2\nPUT 4 4\nGET 3"", ""output"": ""1\n2\n-1"", ""is_hidden"": true}, {""input"": ""1 3\nPUT -5 -5\nGET -5\nGET 5"", ""output"": ""-5\n-1"", ""is_hidden"": true}, {""input"": ""2 4\nGET 1\nPUT 1 2147483647\nGET 1\nGET 1"", ""output"": ""-1\n2147483647\n2147483647"", ""is_hidden"": true}]"

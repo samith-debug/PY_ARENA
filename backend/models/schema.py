@@ -47,6 +47,7 @@ class Question(BaseModel):
     function_name: Optional[str] = None
     test_cases: List[TestCase] = []
     extra_fields: Dict[str, Any] = {}
+    language: str = "python"
     validation_errors: List[str] = []
     validation_warnings: List[str] = []
 
@@ -60,6 +61,7 @@ class QuestionBank(BaseModel):
     hidden_test_cases: int
     questions: List[Question]
     validation_report: ValidationReport
+    language: Optional[str] = None
 
 class RunRequest(BaseModel):
     code: str
@@ -67,6 +69,7 @@ class RunRequest(BaseModel):
     timeout_seconds: float = 3.0
     execution_mode: str = "stdin/stdout"
     function_name: Optional[str] = None
+    language: str = "python"
 
 class RunResult(BaseModel):
     stdout: str
@@ -119,6 +122,7 @@ class SubmitRequest(BaseModel):
     comparison_mode: str = "judge"  # "judge" (Judge-compatible: allows at most 1 final newline) or "exact" (byte-for-byte)
     normalize_crlf: bool = True
     strict_newline_policy: Optional[str] = None  # Backward-compatible alias
+    language: Optional[str] = None
 
 class SubmitResult(BaseModel):
     bank_id: str

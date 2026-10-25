@@ -1,0 +1,1577 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+M18-01,Build a Binary Tree and Print Preorder,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Build linked tree nodes from level-order input and visit them in preorder.,stdin/stdout,O(1),O(1),"Build a binary tree from its level-order representation. Print its preorder traversal: visit the root, then the left subtree, then the right subtree. Create your own linked tree nodes.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-01 — Build a Binary Tree and Print Preorder](/diagrams/m18/m18_01.png)
+
+Explanation: Visit 1 first, then its left subtree (2, 4, 5), and then its right subtree (3, 6).","N, followed by N level-order entries.","Print the preorder values separated by single spaces. If the tree is empty, print an empty line.","0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6",1 2 4 5 3 6,"0
+",,Build the tree with a queue: each node taken from the queue receives the next two entries as its children.,Only add a child to the queue when its entry is not -1.,"Preorder is recursive: print the node, then recurse left, then recurse right.","import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static void preorder(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        add(sb, node.val);
+        preorder(node.left, sb);
+        preorder(node.right, sb);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        StringBuilder sb = new StringBuilder();
+        preorder(root, sb);
+        System.out.println(sb);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""1 2 4 5 3 6"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""1\n42"", ""output"": ""42"", ""is_hidden"": false}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""7\n-5 -3 -8 2147483647 -1 -2147483648 0"", ""output"": ""-5 -3 2147483647 -8 -2147483648 0"", ""is_hidden"": true}, {""input"": ""15\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"", ""output"": ""1 2 4 8 9 5 10 11 3 6 12 13 7 14 15"", ""is_hidden"": true}, {""input"": ""6\n1 2 -1 3 -1 4"", ""output"": ""1 2 3 4"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""10 20 30 40 50 60"", ""is_hidden"": true}]"
+M18-02,Print Inorder and Postorder Traversals,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Compare inorder and postorder traversal of the same binary tree.,stdin/stdout,O(1),O(1),"Build a binary tree from level-order input. Print its inorder traversal (left subtree, root, right subtree) on the first line and its postorder traversal (left subtree, right subtree, root) on the second line.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-02 — Print Inorder and Postorder Traversals](/diagrams/m18/m18_02.png)
+
+Explanation: Inorder visits the left subtree before the root; postorder visits the root only after both subtrees.","N, followed by N level-order entries.",Print the inorder traversal on the first line and the postorder traversal on the second line. An empty tree produces two empty lines.,"0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6","4 2 5 1 3 6
+4 5 2 6 3 1","4
+1 -1 2 3","1 3 2
+3 2 1",Both traversals use the same recursive shape; only the position of the 'visit' step changes.,"Inorder: recurse left, visit, recurse right.","Postorder: recurse left, recurse right, visit.","import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static void inorder(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left, sb);
+        add(sb, node.val);
+        inorder(node.right, sb);
+    }
+
+    static void postorder(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        postorder(node.left, sb);
+        postorder(node.right, sb);
+        add(sb, node.val);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        StringBuilder in = new StringBuilder();
+        StringBuilder post = new StringBuilder();
+        inorder(root, in);
+        postorder(root, post);
+        System.out.println(in);
+        System.out.println(post);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""4 2 5 1 3 6\n4 5 2 6 3 1"", ""is_hidden"": false}, {""input"": ""4\n1 -1 2 3"", ""output"": ""1 3 2\n3 2 1"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""1 2 3 4 5\n5 4 3 2 1"", ""is_hidden"": true}, {""input"": ""7\n4 2 6 1 3 5 7"", ""output"": ""1 2 3 4 5 6 7\n1 3 2 5 7 6 4"", ""is_hidden"": true}, {""input"": ""7\n-5 -3 -8 2147483647 -1 -2147483648 0"", ""output"": ""2147483647 -3 -5 -2147483648 -8 0\n2147483647 -3 -2147483648 0 -8 -5"", ""is_hidden"": true}, {""input"": ""1\n9"", ""output"": ""9\n9"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""10 30 50 40 60 20\n50 60 40 30 20 10"", ""is_hidden"": true}]"
+M18-03,Count Nodes and Leaf Nodes,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Use recursion to count all nodes and the leaves of a binary tree.,stdin/stdout,O(1),O(1),"Count the actual nodes and the leaf nodes in a binary tree. A leaf is a node with neither a left nor a right child. The -1 missing-child markers are not nodes.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-03 — Count Nodes and Leaf Nodes](/diagrams/m18/m18_03.png)
+
+Explanation: The actual nodes are 1, 2, 3, 4, 5, and 6. Nodes 4, 5, and 6 are leaves.","N, followed by N level-order entries.","Print the number of actual nodes and the number of leaves, separated by one space.","0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6",6 3,"0
+",0 0,An empty subtree contributes 0 nodes and 0 leaves.,A node counts as a leaf only when both of its children are null.,Total nodes = 1 + nodes in the left subtree + nodes in the right subtree.,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static int countNodes(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + countNodes(node.left) + countNodes(node.right);
+    }
+
+    static int countLeaves(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        if (node.left == null && node.right == null) {
+            return 1;
+        }
+        return countLeaves(node.left) + countLeaves(node.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        System.out.println(countNodes(root) + "" "" + countLeaves(root));
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""6 3"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""0 0"", ""is_hidden"": false}, {""input"": ""1\n7"", ""output"": ""1 1"", ""is_hidden"": false}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""5 1"", ""is_hidden"": true}, {""input"": ""15\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"", ""output"": ""15 8"", ""is_hidden"": true}, {""input"": ""3\n1 -1 -1"", ""output"": ""1 1"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""6 2"", ""is_hidden"": true}, {""input"": ""7\n1 2 3 -1 4 5 -1"", ""output"": ""5 2"", ""is_hidden"": true}]"
+M18-04,Search in a Binary Search Tree,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Insert values into a BST and search it by following the ordering property.,stdin/stdout,O(1),O(1),"Insert N distinct integers into an initially empty binary search tree (BST) in the given order. Smaller values go to the left; larger values go to the right. Search for target X.
+
+Input hint: When N = 0, the values line may be empty or omitted, so read the input token by token.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-04 — Search in a Binary Search Tree](/diagrams/m18/m18_04.png)
+
+Explanation: Starting at 8, the search moves left to 4 and then right to 6, where the target is found.",The first line contains N and X. The second line contains N distinct integers.,"Print FOUND if X is in the BST; otherwise, print NOT FOUND.","0 ≤ N ≤ 2,000
+Values and X fit in int.
+Resulting tree height ≤ 1,000.","5 6
+8 4 10 2 6",FOUND,"5 7
+8 4 10 2 6",NOT FOUND,Insert by walking down from the root until you reach the empty spot where the new value belongs.,"To search, compare X with the current node: go left if smaller, right if larger.","If you reach null, X is not in the tree.","import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int x = Integer.parseInt(sc.next());
+        Node root = buildBst(sc, n);
+        Node cur = root;
+        while (cur != null && cur.val != x) {
+            cur = x < cur.val ? cur.left : cur.right;
+        }
+        System.out.println(cur != null ? ""FOUND"" : ""NOT FOUND"");
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""5 6\n8 4 10 2 6"", ""output"": ""FOUND"", ""is_hidden"": false}, {""input"": ""5 7\n8 4 10 2 6"", ""output"": ""NOT FOUND"", ""is_hidden"": false}, {""input"": ""0 5\n"", ""output"": ""NOT FOUND"", ""is_hidden"": false}, {""input"": ""1 3\n3"", ""output"": ""FOUND"", ""is_hidden"": true}, {""input"": ""6 -1\n0 -5 5 -1 -10 3"", ""output"": ""FOUND"", ""is_hidden"": true}, {""input"": ""4 2147483647\n-2147483648 0 2147483647 100"", ""output"": ""FOUND"", ""is_hidden"": true}, {""input"": ""5 4\n1 2 3 4 5"", ""output"": ""FOUND"", ""is_hidden"": true}, {""input"": ""5 9\n50 30 70 20 40"", ""output"": ""NOT FOUND"", ""is_hidden"": true}]"
+M18-05,Find Minimum and Maximum in a BST,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Locate the extreme values of a BST by following only left or only right links.,stdin/stdout,O(1),O(1),"Insert N distinct integers into a BST in the given order. Find the minimum and maximum values. The minimum is the leftmost node; the maximum is the rightmost node.
+
+Input hint: When N = 0, the values line may be empty or omitted, so read the input token by token.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-05 — Find Minimum and Maximum in a BST](/diagrams/m18/m18_05.png)
+
+Explanation: Following left links from 8 reaches 4 and then 2. Following right links reaches 12.","N, followed by N distinct integers.",Print the minimum and maximum separated by one space. Print EMPTY if N = 0.,"0 ≤ N ≤ 2,000
+Values fit in int.
+Resulting tree height ≤ 1,000.","6
+8 4 12 2 6 10",2 12,"0
+",EMPTY,You do not need to visit every node.,Start at the root and keep moving left while a left child exists; that node holds the minimum.,Do the same with right children for the maximum.,"import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildBst(sc, n);
+        if (root == null) {
+            System.out.println(""EMPTY"");
+            return;
+        }
+        Node min = root;
+        while (min.left != null) {
+            min = min.left;
+        }
+        Node max = root;
+        while (max.right != null) {
+            max = max.right;
+        }
+        System.out.println(min.val + "" "" + max.val);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""6\n8 4 12 2 6 10"", ""output"": ""2 12"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""EMPTY"", ""is_hidden"": false}, {""input"": ""1\n-7"", ""output"": ""-7 -7"", ""is_hidden"": false}, {""input"": ""5\n5 4 3 2 1"", ""output"": ""1 5"", ""is_hidden"": true}, {""input"": ""5\n1 2 3 4 5"", ""output"": ""1 5"", ""is_hidden"": true}, {""input"": ""4\n-2147483648 2147483647 0 -1"", ""output"": ""-2147483648 2147483647"", ""is_hidden"": true}, {""input"": ""7\n50 30 70 20 40 60 80"", ""output"": ""20 80"", ""is_hidden"": true}, {""input"": ""3\n10 -20 15"", ""output"": ""-20 15"", ""is_hidden"": true}]"
+M18-06,Find the Kth Smallest Value in a BST,"Module 18: Trees, Binary Search Trees, and Heaps",Easy,Use inorder traversal to visit BST values in ascending order.,stdin/stdout,O(1),O(1),"Insert N distinct integers into a BST in the given order. Find the Kth smallest value, where K is one-based. An inorder traversal of a BST visits its values in ascending order; stop once the Kth value has been visited.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-06 — Find the Kth Smallest Value in a BST](/diagrams/m18/m18_06.png)
+
+Explanation: The inorder sequence is 2 4 6 8 10 12, so the third value is 6.",The first line contains N and K. The second line contains N distinct integers.,Print the Kth smallest value.,"1 ≤ K ≤ N ≤ 2,000
+Values fit in int.
+Resulting tree height ≤ 1,000.","6 3
+8 4 12 2 6 10",6,"1 1
+5",5,"Inorder traversal visits left subtree, node, right subtree.",Keep a counter of how many nodes have been visited so far.,"When the counter reaches K, record the value and stop the traversal.","import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    static int remaining;
+    static int answer;
+
+    static void inorder(Node node) {
+        if (node == null || remaining == 0) {
+            return;
+        }
+        inorder(node.left);
+        if (remaining == 0) {
+            return;
+        }
+        remaining--;
+        if (remaining == 0) {
+            answer = node.val;
+            return;
+        }
+        inorder(node.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        Node root = buildBst(sc, n);
+        remaining = k;
+        inorder(root);
+        System.out.println(answer);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""6 3\n8 4 12 2 6 10"", ""output"": ""6"", ""is_hidden"": false}, {""input"": ""1 1\n5"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""6 6\n8 4 12 2 6 10"", ""output"": ""12"", ""is_hidden"": false}, {""input"": ""6 1\n8 4 12 2 6 10"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""5 2\n5 4 3 2 1"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""5 4\n1 2 3 4 5"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""4 2\n0 -2147483648 2147483647 -5"", ""output"": ""-5"", ""is_hidden"": true}, {""input"": ""7 5\n50 30 70 20 40 60 80"", ""output"": ""60"", ""is_hidden"": true}]"
+M18-07,Calculate the Height of a Binary Tree,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Compute tree height recursively from the heights of the two subtrees.,stdin/stdout,O(1),O(1),"Calculate the height of a binary tree, defined as the number of nodes on its longest root-to-leaf path. An empty tree has height 0.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-07 — Calculate the Height of a Binary Tree](/diagrams/m18/m18_07.png)
+
+Explanation: A longest root-to-leaf path, such as 1 → 2 → 4, contains three nodes.","N, followed by N level-order entries.",Print the height.,"0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6",3,"0
+",0,The height of an empty tree is 0.,The height of a node is 1 plus the larger of its two subtree heights.,"Count nodes, not edges: a single-node tree has height 1.","import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        return 1 + Math.max(height(node.left), height(node.right));
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        System.out.println(height(root));
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""15\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""7\n1 2 3 -1 4 5 -1"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""1998\n1 2 -1 3 -1 4 -1 5 -1 6 -1 7 -1 8 -1 9 -1 10 -1 11 -1 12 -1 13 -1 14 -1 15 -1 16 -1 17 -1 18 -1 19 -1 20 -1 21 -1 22 -1 23 -1 24 -1 25 -1 26 -1 27 -1 28 -1 29 -1 30 -1 31 -1 32 -1 33 -1 34 -1 35 -1 36 -1 37 -1 38 -1 39 -1 40 -1 41 -1 42 -1 43 -1 44 -1 45 -1 46 -1 47 -1 48 -1 49 -1 50 -1 51 -1 52 -1 53 -1 54 -1 55 -1 56 -1 57 -1 58 -1 59 -1 60 -1 61 -1 62 -1 63 -1 64 -1 65 -1 66 -1 67 -1 68 -1 69 -1 70 -1 71 -1 72 -1 73 -1 74 -1 75 -1 76 -1 77 -1 78 -1 79 -1 80 -1 81 -1 82 -1 83 -1 84 -1 85 -1 86 -1 87 -1 88 -1 89 -1 90 -1 91 -1 92 -1 93 -1 94 -1 95 -1 96 -1 97 -1 98 -1 99 -1 100 -1 101 -1 102 -1 103 -1 104 -1 105 -1 106 -1 107 -1 108 -1 109 -1 110 -1 111 -1 112 -1 113 -1 114 -1 115 -1 116 -1 117 -1 118 -1 119 -1 120 -1 121 -1 122 -1 123 -1 124 -1 125 -1 126 -1 127 -1 128 -1 129 -1 130 -1 131 -1 132 -1 133 -1 134 -1 135 -1 136 -1 137 -1 138 -1 139 -1 140 -1 141 -1 142 -1 143 -1 144 -1 145 -1 146 -1 147 -1 148 -1 149 -1 150 -1 151 -1 152 -1 153 -1 154 -1 155 -1 156 -1 157 -1 158 -1 159 -1 160 -1 161 -1 162 -1 163 -1 164 -1 165 -1 166 -1 167 -1 168 -1 169 -1 170 -1 171 -1 172 -1 173 -1 174 -1 175 -1 176 -1 177 -1 178 -1 179 -1 180 -1 181 -1 182 -1 183 -1 184 -1 185 -1 186 -1 187 -1 188 -1 189 -1 190 -1 191 -1 192 -1 193 -1 194 -1 195 -1 196 -1 197 -1 198 -1 199 -1 200 -1 201 -1 202 -1 203 -1 204 -1 205 -1 206 -1 207 -1 208 -1 209 -1 210 -1 211 -1 212 -1 213 -1 214 -1 215 -1 216 -1 217 -1 218 -1 219 -1 220 -1 221 -1 222 -1 223 -1 224 -1 225 -1 226 -1 227 -1 228 -1 229 -1 230 -1 231 -1 232 -1 233 -1 234 -1 235 -1 236 -1 237 -1 238 -1 239 -1 240 -1 241 -1 242 -1 243 -1 244 -1 245 -1 246 -1 247 -1 248 -1 249 -1 250 -1 251 -1 252 -1 253 -1 254 -1 255 -1 256 -1 257 -1 258 -1 259 -1 260 -1 261 -1 262 -1 263 -1 264 -1 265 -1 266 -1 267 -1 268 -1 269 -1 270 -1 271 -1 272 -1 273 -1 274 -1 275 -1 276 -1 277 -1 278 -1 279 -1 280 -1 281 -1 282 -1 283 -1 284 -1 285 -1 286 -1 287 -1 288 -1 289 -1 290 -1 291 -1 292 -1 293 -1 294 -1 295 -1 296 -1 297 -1 298 -1 299 -1 300 -1 301 -1 302 -1 303 -1 304 -1 305 -1 306 -1 307 -1 308 -1 309 -1 310 -1 311 -1 312 -1 313 -1 314 -1 315 -1 316 -1 317 -1 318 -1 319 -1 320 -1 321 -1 322 -1 323 -1 324 -1 325 -1 326 -1 327 -1 328 -1 329 -1 330 -1 331 -1 332 -1 333 -1 334 -1 335 -1 336 -1 337 -1 338 -1 339 -1 340 -1 341 -1 342 -1 343 -1 344 -1 345 -1 346 -1 347 -1 348 -1 349 -1 350 -1 351 -1 352 -1 353 -1 354 -1 355 -1 356 -1 357 -1 358 -1 359 -1 360 -1 361 -1 362 -1 363 -1 364 -1 365 -1 366 -1 367 -1 368 -1 369 -1 370 -1 371 -1 372 -1 373 -1 374 -1 375 -1 376 -1 377 -1 378 -1 379 -1 380 -1 381 -1 382 -1 383 -1 384 -1 385 -1 386 -1 387 -1 388 -1 389 -1 390 -1 391 -1 392 -1 393 -1 394 -1 395 -1 396 -1 397 -1 398 -1 399 -1 400 -1 401 -1 402 -1 403 -1 404 -1 405 -1 406 -1 407 -1 408 -1 409 -1 410 -1 411 -1 412 -1 413 -1 414 -1 415 -1 416 -1 417 -1 418 -1 419 -1 420 -1 421 -1 422 -1 423 -1 424 -1 425 -1 426 -1 427 -1 428 -1 429 -1 430 -1 431 -1 432 -1 433 -1 434 -1 435 -1 436 -1 437 -1 438 -1 439 -1 440 -1 441 -1 442 -1 443 -1 444 -1 445 -1 446 -1 447 -1 448 -1 449 -1 450 -1 451 -1 452 -1 453 -1 454 -1 455 -1 456 -1 457 -1 458 -1 459 -1 460 -1 461 -1 462 -1 463 -1 464 -1 465 -1 466 -1 467 -1 468 -1 469 -1 470 -1 471 -1 472 -1 473 -1 474 -1 475 -1 476 -1 477 -1 478 -1 479 -1 480 -1 481 -1 482 -1 483 -1 484 -1 485 -1 486 -1 487 -1 488 -1 489 -1 490 -1 491 -1 492 -1 493 -1 494 -1 495 -1 496 -1 497 -1 498 -1 499 -1 500 -1 501 -1 502 -1 503 -1 504 -1 505 -1 506 -1 507 -1 508 -1 509 -1 510 -1 511 -1 512 -1 513 -1 514 -1 515 -1 516 -1 517 -1 518 -1 519 -1 520 -1 521 -1 522 -1 523 -1 524 -1 525 -1 526 -1 527 -1 528 -1 529 -1 530 -1 531 -1 532 -1 533 -1 534 -1 535 -1 536 -1 537 -1 538 -1 539 -1 540 -1 541 -1 542 -1 543 -1 544 -1 545 -1 546 -1 547 -1 548 -1 549 -1 550 -1 551 -1 552 -1 553 -1 554 -1 555 -1 556 -1 557 -1 558 -1 559 -1 560 -1 561 -1 562 -1 563 -1 564 -1 565 -1 566 -1 567 -1 568 -1 569 -1 570 -1 571 -1 572 -1 573 -1 574 -1 575 -1 576 -1 577 -1 578 -1 579 -1 580 -1 581 -1 582 -1 583 -1 584 -1 585 -1 586 -1 587 -1 588 -1 589 -1 590 -1 591 -1 592 -1 593 -1 594 -1 595 -1 596 -1 597 -1 598 -1 599 -1 600 -1 601 -1 602 -1 603 -1 604 -1 605 -1 606 -1 607 -1 608 -1 609 -1 610 -1 611 -1 612 -1 613 -1 614 -1 615 -1 616 -1 617 -1 618 -1 619 -1 620 -1 621 -1 622 -1 623 -1 624 -1 625 -1 626 -1 627 -1 628 -1 629 -1 630 -1 631 -1 632 -1 633 -1 634 -1 635 -1 636 -1 637 -1 638 -1 639 -1 640 -1 641 -1 642 -1 643 -1 644 -1 645 -1 646 -1 647 -1 648 -1 649 -1 650 -1 651 -1 652 -1 653 -1 654 -1 655 -1 656 -1 657 -1 658 -1 659 -1 660 -1 661 -1 662 -1 663 -1 664 -1 665 -1 666 -1 667 -1 668 -1 669 -1 670 -1 671 -1 672 -1 673 -1 674 -1 675 -1 676 -1 677 -1 678 -1 679 -1 680 -1 681 -1 682 -1 683 -1 684 -1 685 -1 686 -1 687 -1 688 -1 689 -1 690 -1 691 -1 692 -1 693 -1 694 -1 695 -1 696 -1 697 -1 698 -1 699 -1 700 -1 701 -1 702 -1 703 -1 704 -1 705 -1 706 -1 707 -1 708 -1 709 -1 710 -1 711 -1 712 -1 713 -1 714 -1 715 -1 716 -1 717 -1 718 -1 719 -1 720 -1 721 -1 722 -1 723 -1 724 -1 725 -1 726 -1 727 -1 728 -1 729 -1 730 -1 731 -1 732 -1 733 -1 734 -1 735 -1 736 -1 737 -1 738 -1 739 -1 740 -1 741 -1 742 -1 743 -1 744 -1 745 -1 746 -1 747 -1 748 -1 749 -1 750 -1 751 -1 752 -1 753 -1 754 -1 755 -1 756 -1 757 -1 758 -1 759 -1 760 -1 761 -1 762 -1 763 -1 764 -1 765 -1 766 -1 767 -1 768 -1 769 -1 770 -1 771 -1 772 -1 773 -1 774 -1 775 -1 776 -1 777 -1 778 -1 779 -1 780 -1 781 -1 782 -1 783 -1 784 -1 785 -1 786 -1 787 -1 788 -1 789 -1 790 -1 791 -1 792 -1 793 -1 794 -1 795 -1 796 -1 797 -1 798 -1 799 -1 800 -1 801 -1 802 -1 803 -1 804 -1 805 -1 806 -1 807 -1 808 -1 809 -1 810 -1 811 -1 812 -1 813 -1 814 -1 815 -1 816 -1 817 -1 818 -1 819 -1 820 -1 821 -1 822 -1 823 -1 824 -1 825 -1 826 -1 827 -1 828 -1 829 -1 830 -1 831 -1 832 -1 833 -1 834 -1 835 -1 836 -1 837 -1 838 -1 839 -1 840 -1 841 -1 842 -1 843 -1 844 -1 845 -1 846 -1 847 -1 848 -1 849 -1 850 -1 851 -1 852 -1 853 -1 854 -1 855 -1 856 -1 857 -1 858 -1 859 -1 860 -1 861 -1 862 -1 863 -1 864 -1 865 -1 866 -1 867 -1 868 -1 869 -1 870 -1 871 -1 872 -1 873 -1 874 -1 875 -1 876 -1 877 -1 878 -1 879 -1 880 -1 881 -1 882 -1 883 -1 884 -1 885 -1 886 -1 887 -1 888 -1 889 -1 890 -1 891 -1 892 -1 893 -1 894 -1 895 -1 896 -1 897 -1 898 -1 899 -1 900 -1 901 -1 902 -1 903 -1 904 -1 905 -1 906 -1 907 -1 908 -1 909 -1 910 -1 911 -1 912 -1 913 -1 914 -1 915 -1 916 -1 917 -1 918 -1 919 -1 920 -1 921 -1 922 -1 923 -1 924 -1 925 -1 926 -1 927 -1 928 -1 929 -1 930 -1 931 -1 932 -1 933 -1 934 -1 935 -1 936 -1 937 -1 938 -1 939 -1 940 -1 941 -1 942 -1 943 -1 944 -1 945 -1 946 -1 947 -1 948 -1 949 -1 950 -1 951 -1 952 -1 953 -1 954 -1 955 -1 956 -1 957 -1 958 -1 959 -1 960 -1 961 -1 962 -1 963 -1 964 -1 965 -1 966 -1 967 -1 968 -1 969 -1 970 -1 971 -1 972 -1 973 -1 974 -1 975 -1 976 -1 977 -1 978 -1 979 -1 980 -1 981 -1 982 -1 983 -1 984 -1 985 -1 986 -1 987 -1 988 -1 989 -1 990 -1 991 -1 992 -1 993 -1 994 -1 995 -1 996 -1 997 -1 998 -1 999 -1 1000"", ""output"": ""1000"", ""is_hidden"": true}]"
+M18-08,Check Whether Two Binary Trees Are Identical,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Compare two trees node by node with simultaneous recursion.,stdin/stdout,O(1),O(1),"Determine whether two binary trees have the same structure and the same value at every corresponding node. Two empty trees are identical. If one tree has a node where the other has no corresponding node, the trees are not identical. Compare the trees themselves, not their input text: different entry lists can describe the same tree.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-08 — Check Whether Two Binary Trees Are Identical](/diagrams/m18/m18_08.png)
+
+Explanation: The structures match, but the right-child values differ: 3 in tree A and 4 in tree B.",The first line contains N and M. The second line contains N level-order entries for tree A. The third line contains M level-order entries for tree B.,"Print YES if the trees are identical; otherwise, print NO.","0 ≤ N, M ≤ 100,000
+Actual values fit in int and cannot be -1.
+Each tree's height ≤ 1,000.","3 3
+1 2 3
+1 2 4",NO,"0 0
+
+",YES,"If both nodes are null, they match; if exactly one is null, they do not.","Otherwise, the values must be equal and both pairs of subtrees must match.",Read tree A's N entries and then tree B's M entries token by token; an empty values line is possible.,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static boolean identical(Node a, Node b) {
+        if (a == null || b == null) {
+            return a == b;
+        }
+        return a.val == b.val && identical(a.left, b.left) && identical(a.right, b.right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int m = Integer.parseInt(sc.next());
+        Node a = buildTree(sc, n);
+        Node b = buildTree(sc, m);
+        System.out.println(identical(a, b) ? ""YES"" : ""NO"");
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""3 3\n1 2 3\n1 2 4"", ""output"": ""NO"", ""is_hidden"": false}, {""input"": ""0 0\n\n"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""3 2\n1 2 -1\n1 2"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""2 3\n1 2\n1 -1 2"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""0 1\n\n5"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""7 7\n1 2 3 4 5 -1 6\n1 2 3 4 5 -1 6"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""7 6\n1 2 3 4 5 -1 6\n1 2 3 4 5 6"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""3 3\n-2147483648 2147483647 0\n-2147483648 2147483647 0"", ""output"": ""YES"", ""is_hidden"": true}]"
+M18-09,Level-Order Traversal by Line,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Use breadth-first search with a queue and process one level at a time.,stdin/stdout,O(1),O(1),"Print a binary tree level by level using breadth-first traversal. Each level must appear on its own line.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-09 — Level-Order Traversal by Line](/diagrams/m18/m18_09.png)
+
+Explanation: The root is level one; 2 and 3 are level two; 4, 5, and 6 are level three.","N, followed by N level-order entries.","Print each non-empty level on a separate line, with values separated by single spaces. An empty tree produces no output.","0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6","1
+2 3
+4 5 6","4
+1 -1 2 3","1
+2
+3",Start with the root in a queue.,"At the start of each level, record the queue's size; exactly that many nodes belong to the current level.",Add each removed node's non-null children to the queue for the next level.,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        StringBuilder out = new StringBuilder();
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        if (root != null) {
+            queue.add(root);
+        }
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            StringBuilder line = new StringBuilder();
+            for (int i = 0; i < size; i++) {
+                Node cur = queue.poll();
+                add(line, cur.val);
+                if (cur.left != null) {
+                    queue.add(cur.left);
+                }
+                if (cur.right != null) {
+                    queue.add(cur.right);
+                }
+            }
+            out.append(line).append('\n');
+        }
+        System.out.print(out);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""1\n2 3\n4 5 6"", ""is_hidden"": false}, {""input"": ""4\n1 -1 2 3"", ""output"": ""1\n2\n3"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""15\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"", ""output"": ""1\n2 3\n4 5 6 7\n8 9 10 11 12 13 14 15"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""10\n20\n30\n40\n50 60"", ""is_hidden"": true}, {""input"": ""1\n7"", ""output"": ""7"", ""is_hidden"": true}, {""input"": ""7\n1 2 3 -1 4 5 -1"", ""output"": ""1\n2 3\n4 5"", ""is_hidden"": true}, {""input"": ""7\n-5 -3 -8 2147483647 -1 -2147483648 0"", ""output"": ""-5\n-3 -8\n2147483647 -2147483648 0"", ""is_hidden"": true}]"
+M18-10,Validate a Binary Search Tree,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Check the BST property using value bounds inherited from all ancestors.,stdin/stdout,O(1),O(1),"Determine whether a binary tree satisfies the strict BST property: every value in a node's left subtree must be smaller than the node's value, and every value in its right subtree must be larger. Duplicate values make the tree invalid. An empty tree is valid.
+
+Check all ancestor bounds, not just immediate parent-child relationships. Use bounds that work correctly for values near the int limits.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-10 — Validate a Binary Search Tree](/diagrams/m18/m18_10.png)
+
+Explanation: Node 10 is in the left subtree of 8 but is greater than 8, which violates the BST property even though 10 is a valid right child of 4.","N, followed by N level-order entries.","Print VALID if the tree is a strict BST; otherwise, print INVALID.","0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+8 4 12 2 10 9 14",INVALID,"7
+8 4 12 2 6 10 14",VALID,Comparing each node only with its parent is not enough.,"Pass down an allowed open range (low, high); going left sets high to the node's value, and going right sets low.",Use long bounds starting at Long.MIN_VALUE and Long.MAX_VALUE so nodes holding Integer.MIN_VALUE or Integer.MAX_VALUE are handled correctly.,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static boolean valid(Node node, long low, long high) {
+        if (node == null) {
+            return true;
+        }
+        if (node.val <= low || node.val >= high) {
+            return false;
+        }
+        return valid(node.left, low, node.val) && valid(node.right, node.val, high);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        System.out.println(valid(root, Long.MIN_VALUE, Long.MAX_VALUE) ? ""VALID"" : ""INVALID"");
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n8 4 12 2 10 9 14"", ""output"": ""INVALID"", ""is_hidden"": false}, {""input"": ""7\n8 4 12 2 6 10 14"", ""output"": ""VALID"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""VALID"", ""is_hidden"": false}, {""input"": ""3\n5 5 7"", ""output"": ""INVALID"", ""is_hidden"": true}, {""input"": ""3\n-2147483648 -1 2147483647"", ""output"": ""VALID"", ""is_hidden"": true}, {""input"": ""7\n10 5 15 -1 -1 6 20"", ""output"": ""INVALID"", ""is_hidden"": true}, {""input"": ""7\n10 5 15 -1 -1 12 20"", ""output"": ""VALID"", ""is_hidden"": true}, {""input"": ""7\n8 4 12 2 8 10 14"", ""output"": ""INVALID"", ""is_hidden"": true}]"
+M18-11,Find the Lowest Common Ancestor in a BST,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Use BST ordering to find the split point between two values.,stdin/stdout,O(1),O(1),"Insert N distinct integers into a BST in the given order. Given two distinct values A and B that are guaranteed to exist in the tree, find their lowest common ancestor (LCA). A node may be its own ancestor.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-11 — Find the Lowest Common Ancestor in a BST](/diagrams/m18/m18_11.png)
+
+Explanation: Both 2 and 6 are smaller than 8, so move left to 4. Node 4 lies between them, so 2 and 6 are in different branches of 4, which makes 4 their LCA.","The first line contains N, A, and B. The second line contains N distinct integers.",Print the value of the LCA.,"2 ≤ N ≤ 2,000
+A and B are distinct and both exist in the tree.
+Values fit in int.
+Tree height ≤ 1,000.","6 2 6
+8 4 12 2 6 10",4,"6 4 2
+8 4 12 2 6 10",4,"If both A and B are smaller than the current node, the LCA is in the left subtree.","If both are larger, the LCA is in the right subtree.","Otherwise, the current node is the LCA, including the case where it equals A or B.","import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int a = Integer.parseInt(sc.next());
+        int b = Integer.parseInt(sc.next());
+        Node cur = buildBst(sc, n);
+        while (true) {
+            if (a < cur.val && b < cur.val) {
+                cur = cur.left;
+            } else if (a > cur.val && b > cur.val) {
+                cur = cur.right;
+            } else {
+                break;
+            }
+        }
+        System.out.println(cur.val);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""6 2 6\n8 4 12 2 6 10"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""6 4 2\n8 4 12 2 6 10"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""6 2 10\n8 4 12 2 6 10"", ""output"": ""8"", ""is_hidden"": false}, {""input"": ""2 1 2\n1 2"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""5 4 5\n1 2 3 4 5"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""7 20 40\n50 30 70 20 40 60 80"", ""output"": ""30"", ""is_hidden"": true}, {""input"": ""7 60 80\n50 30 70 20 40 60 80"", ""output"": ""70"", ""is_hidden"": true}, {""input"": ""4 -2147483648 2147483647\n0 -2147483648 2147483647 5"", ""output"": ""0"", ""is_hidden"": true}]"
+M18-12,Delete a Value from a BST,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,"Implement BST deletion for leaf, one-child, and two-child cases.",stdin/stdout,O(1),O(1),"Insert N distinct integers into a BST in the given order, then delete X. If X has two children, replace its value with its inorder successor (the smallest value in its right subtree), then remove that successor from its original position. If X has zero or one child, remove it and connect its child, if any, to its parent. If X is absent, leave the tree unchanged.
+
+Input hint: When N = 0, the values line may be empty or omitted, so read the input token by token.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-12 — Delete a Value from a BST](/diagrams/m18/m18_12.png)
+
+Explanation: Node 4 has two children. Its inorder successor is 6, so 6 replaces 4 and the original 6 node is removed. The resulting tree is 8 with left subtree 6 → 2 and right subtree 12 → 10, which gives preorder 8 6 2 12 10.",The first line contains N and X. The second line contains N distinct integers.,"Print the resulting tree's preorder traversal, with values separated by single spaces. Print an empty line if the resulting tree is empty.","0 ≤ N ≤ 2,000
+Values and X fit in int.
+Tree height before deletion ≤ 1,000.","6 4
+8 4 12 2 6 10",8 6 2 12 10,"6 7
+8 4 12 2 6 10",8 4 2 6 12 10,"Write delete(node, x) to return the new root of that subtree, and assign the result back to the parent's link.","If the node has no left child, return its right child; if it has no right child, return its left child.","For two children, find the leftmost node of the right subtree, copy its value, then delete that value from the right subtree.","import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static Node delete(Node node, int x) {
+        if (node == null) {
+            return null;
+        }
+        if (x < node.val) {
+            node.left = delete(node.left, x);
+        } else if (x > node.val) {
+            node.right = delete(node.right, x);
+        } else {
+            if (node.left == null) {
+                return node.right;
+            }
+            if (node.right == null) {
+                return node.left;
+            }
+            Node successor = node.right;
+            while (successor.left != null) {
+                successor = successor.left;
+            }
+            node.val = successor.val;
+            node.right = delete(node.right, successor.val);
+        }
+        return node;
+    }
+
+    static void preorder(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        add(sb, node.val);
+        preorder(node.left, sb);
+        preorder(node.right, sb);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int x = Integer.parseInt(sc.next());
+        Node root = buildBst(sc, n);
+        root = delete(root, x);
+        StringBuilder sb = new StringBuilder();
+        preorder(root, sb);
+        System.out.println(sb);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""6 4\n8 4 12 2 6 10"", ""output"": ""8 6 2 12 10"", ""is_hidden"": false}, {""input"": ""6 7\n8 4 12 2 6 10"", ""output"": ""8 4 2 6 12 10"", ""is_hidden"": false}, {""input"": ""1 5\n5"", ""output"": """", ""is_hidden"": false}, {""input"": ""0 3\n"", ""output"": """", ""is_hidden"": true}, {""input"": ""6 2\n8 4 12 2 6 10"", ""output"": ""8 4 6 12 10"", ""is_hidden"": true}, {""input"": ""6 12\n8 4 12 2 6 10"", ""output"": ""8 4 2 6 10"", ""is_hidden"": true}, {""input"": ""7 50\n50 30 70 20 40 60 80"", ""output"": ""60 30 20 40 70 80"", ""is_hidden"": true}, {""input"": ""8 50\n50 30 70 20 40 60 80 65"", ""output"": ""60 30 20 40 70 65 80"", ""is_hidden"": true}]"
+M18-13,Build a Max Heap,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Build a heap in O(N) time with bottom-up sift-down instead of repeated insertion.,stdin/stdout,O(1),O(1),"Build a max heap from the given array using bottom-up heap construction, not sequential insertion. Every parent must be greater than or equal to its children. For index i, the children are at 2i + 1 and 2i + 2.
+
+Process parent indices from N / 2 − 1 down to 0, applying sift-down to each. During sift-down, swap only when a child is strictly greater than the parent. If both children are equal and greater than the parent, choose the left child.
+
+Input hint: When N = 0, the values line may be empty or omitted, so read the input token by token.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-13 — Build a Max Heap](/diagrams/m18/m18_13.png)
+
+Explanation: Index 1 holds 2, and its larger child is 5, so they swap. Index 0 holds 1; it swaps with 5 and then with 4, giving 5 4 3 1 2. Inserting the values one at a time would produce 5 4 2 1 3 instead.","N, followed by N integers.","Print the heap's internal array representation, separated by single spaces. Print an empty line when N = 0.","0 ≤ N ≤ 200,000
+Values fit in int.","5
+1 2 3 4 5",5 4 3 1 2,"0
+",,"Leaves are already valid heaps, so start from the last parent at index N / 2 − 1.","Sift-down: compare the node with its children, swap with the larger child if that child is strictly greater, and continue from the child's index.",Check the left child first and replace it only when the right child is strictly greater; this applies the tie rule automatically.,"import java.util.*;
+
+public class Main {
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static void siftDown(int[] a, int n, int i) {
+        while (true) {
+            int left = 2 * i + 1;
+            int right = 2 * i + 2;
+            int largest = i;
+            if (left < n && a[left] > a[largest]) {
+                largest = left;
+            }
+            if (right < n && a[right] > a[largest]) {
+                largest = right;
+            }
+            if (largest == i) {
+                return;
+            }
+            int tmp = a[i];
+            a[i] = a[largest];
+            a[largest] = tmp;
+            i = largest;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        for (int i = n / 2 - 1; i >= 0; i--) {
+            siftDown(a, n, i);
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int v : a) {
+            add(sb, v);
+        }
+        System.out.println(sb);
+    }
+}","[{""input"": ""5\n1 2 3 4 5"", ""output"": ""5 4 3 1 2"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": """", ""is_hidden"": false}, {""input"": ""6\n3 1 6 5 2 4"", ""output"": ""6 5 4 1 2 3"", ""is_hidden"": false}, {""input"": ""3\n1 5 5"", ""output"": ""5 1 5"", ""is_hidden"": true}, {""input"": ""3\n5 5 5"", ""output"": ""5 5 5"", ""is_hidden"": true}, {""input"": ""7\n1 2 3 4 5 6 7"", ""output"": ""7 5 6 4 2 1 3"", ""is_hidden"": true}, {""input"": ""6\n-2147483648 2147483647 0 -1 2147483647 5"", ""output"": ""2147483647 2147483647 5 -1 -2147483648 0"", ""is_hidden"": true}, {""input"": ""8\n2 7 7 3 9 1 4 9"", ""output"": ""9 9 7 7 2 1 4 3"", ""is_hidden"": true}]"
+M18-14,Find the Running Median of a Data Stream,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Maintain the lower and upper halves of a stream with two balanced heaps.,stdin/stdout,O(1),O(1),"Integers arrive one at a time. After each insertion, report the median of all values received so far.
+
+Use a max heap for the lower half and a min heap for the upper half. Keep the lower heap the same size as the upper heap or one element larger. For an odd number of values, the median is the lower heap's root. For an even number, it is the average of both heap roots.
+
+Output hint: Convert the roots to long before adding them so the sum cannot overflow. If you use String.format, pass Locale.US so the decimal separator is a dot; for 200,000 lines, a StringBuilder is much faster than printing each line separately.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-14 — Find the Running Median of a Data Stream](/diagrams/m18/m18_14.png)
+
+Explanation: After 5 and 2 arrive, the sorted values are 2 and 5, so the median is 3.5. After all five values arrive, the sorted values are 2 4 5 8 10, so the median is 5.0.","N, followed by N integers in arrival order.","Print N medians, one per line, with exactly one digit after the decimal point and a dot as the decimal separator.","1 ≤ N ≤ 200,000
+Values fit in int.","5
+5 2 10 4 8","5.0
+3.5
+5.0
+4.5
+5.0","1
+-3",-3.0,"Insert into the lower (max) heap if the value is at most its root; otherwise, insert into the upper (min) heap.","After each insertion, move one root across if the size rule is broken.",Adding two int roots can overflow; compute ((long) a + b) / 2.0.,"import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        PriorityQueue<Integer> lower = new PriorityQueue<>(Collections.reverseOrder());
+        PriorityQueue<Integer> upper = new PriorityQueue<>();
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            int x = Integer.parseInt(sc.next());
+            if (lower.isEmpty() || x <= lower.peek()) {
+                lower.add(x);
+            } else {
+                upper.add(x);
+            }
+            if (lower.size() > upper.size() + 1) {
+                upper.add(lower.poll());
+            } else if (upper.size() > lower.size()) {
+                lower.add(upper.poll());
+            }
+            // twice is 2 * median, which is always an integer; using long avoids overflow.
+            long twice;
+            if (lower.size() > upper.size()) {
+                twice = 2L * lower.peek();
+            } else {
+                twice = (long) lower.peek() + (long) upper.peek();
+            }
+            if (twice < 0) {
+                out.append('-');
+                twice = -twice;
+            }
+            out.append(twice / 2).append(twice % 2 == 0 ? "".0"" : "".5"").append('\n');
+        }
+        System.out.print(out);
+    }
+}","[{""input"": ""5\n5 2 10 4 8"", ""output"": ""5.0\n3.5\n5.0\n4.5\n5.0"", ""is_hidden"": false}, {""input"": ""1\n-3"", ""output"": ""-3.0"", ""is_hidden"": false}, {""input"": ""4\n1 1 1 1"", ""output"": ""1.0\n1.0\n1.0\n1.0"", ""is_hidden"": false}, {""input"": ""2\n2147483647 2147483646"", ""output"": ""2147483647.0\n2147483646.5"", ""is_hidden"": true}, {""input"": ""2\n-2147483648 -2147483647"", ""output"": ""-2147483648.0\n-2147483647.5"", ""is_hidden"": true}, {""input"": ""6\n6 5 4 3 2 1"", ""output"": ""6.0\n5.5\n5.0\n4.5\n4.0\n3.5"", ""is_hidden"": true}, {""input"": ""5\n-1 0 1 -2 2"", ""output"": ""-1.0\n-0.5\n0.0\n-0.5\n0.0"", ""is_hidden"": true}, {""input"": ""7\n3 -4 8 -4 0 10 -10"", ""output"": ""3.0\n-0.5\n3.0\n-0.5\n0.0\n1.5\n0.0"", ""is_hidden"": true}]"
+M18-15,Merge Two BSTs into a Sorted Sequence,"Module 18: Trees, Binary Search Trees, and Heaps",Medium,Combine two inorder traversals with a linear merge.,stdin/stdout,O(1),O(1),"Build two BSTs by inserting each list's values into an initially empty BST in the given order. Print all values from both trees in ascending order. Each tree contains distinct values, but a value may appear in both trees; if it does, include both occurrences.
+
+Input hint: When a count is 0, its values line may be empty or omitted, so read the input token by token.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-15 — Merge Two BSTs into a Sorted Sequence](/diagrams/m18/m18_15.png)
+
+Explanation: The two inorder sequences are 1 3 5 7 and 2 6 8. Merging them gives 1 2 3 5 6 7 8.",The first line contains N and M. The second line contains N values for the first BST. The third line contains M values for the second BST.,"Print the combined sorted sequence separated by single spaces. If both trees are empty, print an empty line.","0 ≤ N, M ≤ 2,000
+Values fit in int.
+Each BST's height ≤ 1,000.","4 3
+5 3 7 1
+6 2 8",1 2 3 5 6 7 8,"0 3
+
+6 2 8",2 6 8,An inorder traversal of each BST gives that tree's values in ascending order.,"Merge the two sorted lists with two indexes, always taking the smaller current value.","When one list is exhausted, append the rest of the other list.","import java.util.*;
+
+public class Main {
+    static Node insert(Node root, int v) {
+        Node node = new Node(v);
+        if (root == null) {
+            return node;
+        }
+        Node cur = root;
+        while (true) {
+            if (v < cur.val) {
+                if (cur.left == null) {
+                    cur.left = node;
+                    return root;
+                }
+                cur = cur.left;
+            } else {
+                if (cur.right == null) {
+                    cur.right = node;
+                    return root;
+                }
+                cur = cur.right;
+            }
+        }
+    }
+
+    static Node buildBst(Scanner sc, int n) {
+        Node root = null;
+        for (int i = 0; i < n; i++) {
+            root = insert(root, Integer.parseInt(sc.next()));
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static void inorder(Node node, List<Integer> out) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left, out);
+        out.add(node.val);
+        inorder(node.right, out);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int m = Integer.parseInt(sc.next());
+        Node a = buildBst(sc, n);
+        Node b = buildBst(sc, m);
+        List<Integer> x = new ArrayList<>();
+        List<Integer> y = new ArrayList<>();
+        inorder(a, x);
+        inorder(b, y);
+        StringBuilder sb = new StringBuilder();
+        int i = 0;
+        int j = 0;
+        while (i < x.size() || j < y.size()) {
+            if (j == y.size() || (i < x.size() && x.get(i) <= y.get(j))) {
+                add(sb, x.get(i++));
+            } else {
+                add(sb, y.get(j++));
+            }
+        }
+        System.out.println(sb);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""4 3\n5 3 7 1\n6 2 8"", ""output"": ""1 2 3 5 6 7 8"", ""is_hidden"": false}, {""input"": ""0 3\n\n6 2 8"", ""output"": ""2 6 8"", ""is_hidden"": false}, {""input"": ""3 3\n2 1 3\n3 2 1"", ""output"": ""1 1 2 2 3 3"", ""is_hidden"": false}, {""input"": ""0 0\n\n"", ""output"": """", ""is_hidden"": true}, {""input"": ""2 0\n5 -5\n"", ""output"": ""-5 5"", ""is_hidden"": true}, {""input"": ""5 4\n1 2 3 4 5\n10 9 8 7"", ""output"": ""1 2 3 4 5 7 8 9 10"", ""is_hidden"": true}, {""input"": ""3 3\n-2147483648 0 2147483647\n2147483647 -1 0"", ""output"": ""-2147483648 -1 0 0 2147483647 2147483647"", ""is_hidden"": true}, {""input"": ""4 4\n40 20 60 10\n15 35 55 5"", ""output"": ""5 10 15 20 35 40 55 60"", ""is_hidden"": true}]"
+M18-16,Serialize and Deserialize a Binary Tree,"Module 18: Trees, Binary Search Trees, and Heaps",Hard,Encode a tree's full structure with null markers and rebuild it from the encoding.,stdin/stdout,O(1),O(1),"Serialize the input tree in preorder: root, left subtree, right subtree. Output # for each missing child. Then reconstruct a new tree from that serialization and print the reconstructed tree's inorder traversal.
+
+A tree with T actual nodes produces exactly 2T + 1 serialization tokens.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-16 — Serialize and Deserialize a Binary Tree](/diagrams/m18/m18_16.png)
+
+Explanation: Node 2 has two missing children, written as # #, and so does node 3. Reconstructing the serialization gives the original tree, whose inorder traversal is 2 1 3.","N, followed by N level-order entries.","Print the preorder serialization on the first line and the reconstructed tree's inorder traversal on the second line. For an empty tree, print # on the first line and an empty second line.","0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","3
+1 2 3","1 2 # # 3 # #
+2 1 3","0
+",#,Serialization is a preorder traversal that writes # instead of returning silently at null.,"To deserialize, read tokens with a shared index: # returns null; otherwise, create a node and build its left and then its right subtree.","Print the inorder traversal of the rebuilt tree, not the original one, so the reconstruction is actually tested.","import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static void serialize(Node node, StringBuilder sb) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        if (node == null) {
+            sb.append('#');
+            return;
+        }
+        sb.append(node.val);
+        serialize(node.left, sb);
+        serialize(node.right, sb);
+    }
+
+    static int pos;
+
+    static Node deserialize(String[] tokens) {
+        String t = tokens[pos++];
+        if (t.equals(""#"")) {
+            return null;
+        }
+        Node node = new Node(Integer.parseInt(t));
+        node.left = deserialize(tokens);
+        node.right = deserialize(tokens);
+        return node;
+    }
+
+    static void inorder(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left, sb);
+        add(sb, node.val);
+        inorder(node.right, sb);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        StringBuilder data = new StringBuilder();
+        serialize(root, data);
+        pos = 0;
+        Node rebuilt = deserialize(data.toString().split("" ""));
+        StringBuilder in = new StringBuilder();
+        inorder(rebuilt, in);
+        System.out.println(data);
+        System.out.println(in);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""3\n1 2 3"", ""output"": ""1 2 # # 3 # #\n2 1 3"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""#"", ""is_hidden"": false}, {""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""1 2 4 # # 5 # # 3 # 6 # #\n4 2 5 1 3 6"", ""is_hidden"": false}, {""input"": ""1\n-7"", ""output"": ""-7 # #\n-7"", ""is_hidden"": true}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""1 # 2 # 3 # 4 # 5 # #\n1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""9\n10 -1 20 30 -1 -1 40 50 60"", ""output"": ""10 # 20 30 # 40 50 # # 60 # # #\n10 30 50 40 60 20"", ""is_hidden"": true}, {""input"": ""4\n1 -1 2 3"", ""output"": ""1 # 2 3 # # #\n1 3 2"", ""is_hidden"": true}, {""input"": ""7\n-5 -3 -8 2147483647 -1 -2147483648 0"", ""output"": ""-5 -3 2147483647 # # # -8 -2147483648 # # 0 # #\n2147483647 -3 -5 -2147483648 -8 0"", ""is_hidden"": true}]"
+M18-17,Find the Diameter of a Binary Tree,"Module 18: Trees, Binary Search Trees, and Heaps",Hard,Compute the longest path in O(N) by combining subtree heights in one postorder pass.,stdin/stdout,O(1),O(1),"Find the diameter of a binary tree, defined as the maximum number of edges on any path between two nodes. The path does not have to pass through the root.
+
+Compute the result in O(T) time, where T is the number of actual nodes, by combining subtree heights during a postorder traversal. An empty tree or a single-node tree has diameter 0.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-17 — Find the Diameter of a Binary Tree](/diagrams/m18/m18_17.png)
+
+Explanation: The path 4 → 2 → 1 → 3 → 6 contains five nodes and therefore four edges.","N, followed by N level-order entries.",Print the diameter in edges.,"0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","7
+1 2 3 4 5 -1 6",4,"1
+5",0,"The longest path through a given node uses left height + right height edges, where height counts nodes.",Return the height from each recursive call and update a global best diameter along the way.,Do not call a separate height function for every node; that makes the solution O(N²).,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static int best;
+
+    static int height(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = height(node.left);
+        int right = height(node.right);
+        best = Math.max(best, left + right);
+        return 1 + Math.max(left, right);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        best = 0;
+        height(root);
+        System.out.println(best);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n1 2 3 4 5 -1 6"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""1\n5"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""13\n1 2 -1 3 4 5 -1 -1 6 7 -1 -1 8"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""9\n1 -1 2 -1 3 -1 4 -1 5"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""15\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""2\n1 2"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""1998\n1 2 -1 3 -1 4 -1 5 -1 6 -1 7 -1 8 -1 9 -1 10 -1 11 -1 12 -1 13 -1 14 -1 15 -1 16 -1 17 -1 18 -1 19 -1 20 -1 21 -1 22 -1 23 -1 24 -1 25 -1 26 -1 27 -1 28 -1 29 -1 30 -1 31 -1 32 -1 33 -1 34 -1 35 -1 36 -1 37 -1 38 -1 39 -1 40 -1 41 -1 42 -1 43 -1 44 -1 45 -1 46 -1 47 -1 48 -1 49 -1 50 -1 51 -1 52 -1 53 -1 54 -1 55 -1 56 -1 57 -1 58 -1 59 -1 60 -1 61 -1 62 -1 63 -1 64 -1 65 -1 66 -1 67 -1 68 -1 69 -1 70 -1 71 -1 72 -1 73 -1 74 -1 75 -1 76 -1 77 -1 78 -1 79 -1 80 -1 81 -1 82 -1 83 -1 84 -1 85 -1 86 -1 87 -1 88 -1 89 -1 90 -1 91 -1 92 -1 93 -1 94 -1 95 -1 96 -1 97 -1 98 -1 99 -1 100 -1 101 -1 102 -1 103 -1 104 -1 105 -1 106 -1 107 -1 108 -1 109 -1 110 -1 111 -1 112 -1 113 -1 114 -1 115 -1 116 -1 117 -1 118 -1 119 -1 120 -1 121 -1 122 -1 123 -1 124 -1 125 -1 126 -1 127 -1 128 -1 129 -1 130 -1 131 -1 132 -1 133 -1 134 -1 135 -1 136 -1 137 -1 138 -1 139 -1 140 -1 141 -1 142 -1 143 -1 144 -1 145 -1 146 -1 147 -1 148 -1 149 -1 150 -1 151 -1 152 -1 153 -1 154 -1 155 -1 156 -1 157 -1 158 -1 159 -1 160 -1 161 -1 162 -1 163 -1 164 -1 165 -1 166 -1 167 -1 168 -1 169 -1 170 -1 171 -1 172 -1 173 -1 174 -1 175 -1 176 -1 177 -1 178 -1 179 -1 180 -1 181 -1 182 -1 183 -1 184 -1 185 -1 186 -1 187 -1 188 -1 189 -1 190 -1 191 -1 192 -1 193 -1 194 -1 195 -1 196 -1 197 -1 198 -1 199 -1 200 -1 201 -1 202 -1 203 -1 204 -1 205 -1 206 -1 207 -1 208 -1 209 -1 210 -1 211 -1 212 -1 213 -1 214 -1 215 -1 216 -1 217 -1 218 -1 219 -1 220 -1 221 -1 222 -1 223 -1 224 -1 225 -1 226 -1 227 -1 228 -1 229 -1 230 -1 231 -1 232 -1 233 -1 234 -1 235 -1 236 -1 237 -1 238 -1 239 -1 240 -1 241 -1 242 -1 243 -1 244 -1 245 -1 246 -1 247 -1 248 -1 249 -1 250 -1 251 -1 252 -1 253 -1 254 -1 255 -1 256 -1 257 -1 258 -1 259 -1 260 -1 261 -1 262 -1 263 -1 264 -1 265 -1 266 -1 267 -1 268 -1 269 -1 270 -1 271 -1 272 -1 273 -1 274 -1 275 -1 276 -1 277 -1 278 -1 279 -1 280 -1 281 -1 282 -1 283 -1 284 -1 285 -1 286 -1 287 -1 288 -1 289 -1 290 -1 291 -1 292 -1 293 -1 294 -1 295 -1 296 -1 297 -1 298 -1 299 -1 300 -1 301 -1 302 -1 303 -1 304 -1 305 -1 306 -1 307 -1 308 -1 309 -1 310 -1 311 -1 312 -1 313 -1 314 -1 315 -1 316 -1 317 -1 318 -1 319 -1 320 -1 321 -1 322 -1 323 -1 324 -1 325 -1 326 -1 327 -1 328 -1 329 -1 330 -1 331 -1 332 -1 333 -1 334 -1 335 -1 336 -1 337 -1 338 -1 339 -1 340 -1 341 -1 342 -1 343 -1 344 -1 345 -1 346 -1 347 -1 348 -1 349 -1 350 -1 351 -1 352 -1 353 -1 354 -1 355 -1 356 -1 357 -1 358 -1 359 -1 360 -1 361 -1 362 -1 363 -1 364 -1 365 -1 366 -1 367 -1 368 -1 369 -1 370 -1 371 -1 372 -1 373 -1 374 -1 375 -1 376 -1 377 -1 378 -1 379 -1 380 -1 381 -1 382 -1 383 -1 384 -1 385 -1 386 -1 387 -1 388 -1 389 -1 390 -1 391 -1 392 -1 393 -1 394 -1 395 -1 396 -1 397 -1 398 -1 399 -1 400 -1 401 -1 402 -1 403 -1 404 -1 405 -1 406 -1 407 -1 408 -1 409 -1 410 -1 411 -1 412 -1 413 -1 414 -1 415 -1 416 -1 417 -1 418 -1 419 -1 420 -1 421 -1 422 -1 423 -1 424 -1 425 -1 426 -1 427 -1 428 -1 429 -1 430 -1 431 -1 432 -1 433 -1 434 -1 435 -1 436 -1 437 -1 438 -1 439 -1 440 -1 441 -1 442 -1 443 -1 444 -1 445 -1 446 -1 447 -1 448 -1 449 -1 450 -1 451 -1 452 -1 453 -1 454 -1 455 -1 456 -1 457 -1 458 -1 459 -1 460 -1 461 -1 462 -1 463 -1 464 -1 465 -1 466 -1 467 -1 468 -1 469 -1 470 -1 471 -1 472 -1 473 -1 474 -1 475 -1 476 -1 477 -1 478 -1 479 -1 480 -1 481 -1 482 -1 483 -1 484 -1 485 -1 486 -1 487 -1 488 -1 489 -1 490 -1 491 -1 492 -1 493 -1 494 -1 495 -1 496 -1 497 -1 498 -1 499 -1 500 -1 501 -1 502 -1 503 -1 504 -1 505 -1 506 -1 507 -1 508 -1 509 -1 510 -1 511 -1 512 -1 513 -1 514 -1 515 -1 516 -1 517 -1 518 -1 519 -1 520 -1 521 -1 522 -1 523 -1 524 -1 525 -1 526 -1 527 -1 528 -1 529 -1 530 -1 531 -1 532 -1 533 -1 534 -1 535 -1 536 -1 537 -1 538 -1 539 -1 540 -1 541 -1 542 -1 543 -1 544 -1 545 -1 546 -1 547 -1 548 -1 549 -1 550 -1 551 -1 552 -1 553 -1 554 -1 555 -1 556 -1 557 -1 558 -1 559 -1 560 -1 561 -1 562 -1 563 -1 564 -1 565 -1 566 -1 567 -1 568 -1 569 -1 570 -1 571 -1 572 -1 573 -1 574 -1 575 -1 576 -1 577 -1 578 -1 579 -1 580 -1 581 -1 582 -1 583 -1 584 -1 585 -1 586 -1 587 -1 588 -1 589 -1 590 -1 591 -1 592 -1 593 -1 594 -1 595 -1 596 -1 597 -1 598 -1 599 -1 600 -1 601 -1 602 -1 603 -1 604 -1 605 -1 606 -1 607 -1 608 -1 609 -1 610 -1 611 -1 612 -1 613 -1 614 -1 615 -1 616 -1 617 -1 618 -1 619 -1 620 -1 621 -1 622 -1 623 -1 624 -1 625 -1 626 -1 627 -1 628 -1 629 -1 630 -1 631 -1 632 -1 633 -1 634 -1 635 -1 636 -1 637 -1 638 -1 639 -1 640 -1 641 -1 642 -1 643 -1 644 -1 645 -1 646 -1 647 -1 648 -1 649 -1 650 -1 651 -1 652 -1 653 -1 654 -1 655 -1 656 -1 657 -1 658 -1 659 -1 660 -1 661 -1 662 -1 663 -1 664 -1 665 -1 666 -1 667 -1 668 -1 669 -1 670 -1 671 -1 672 -1 673 -1 674 -1 675 -1 676 -1 677 -1 678 -1 679 -1 680 -1 681 -1 682 -1 683 -1 684 -1 685 -1 686 -1 687 -1 688 -1 689 -1 690 -1 691 -1 692 -1 693 -1 694 -1 695 -1 696 -1 697 -1 698 -1 699 -1 700 -1 701 -1 702 -1 703 -1 704 -1 705 -1 706 -1 707 -1 708 -1 709 -1 710 -1 711 -1 712 -1 713 -1 714 -1 715 -1 716 -1 717 -1 718 -1 719 -1 720 -1 721 -1 722 -1 723 -1 724 -1 725 -1 726 -1 727 -1 728 -1 729 -1 730 -1 731 -1 732 -1 733 -1 734 -1 735 -1 736 -1 737 -1 738 -1 739 -1 740 -1 741 -1 742 -1 743 -1 744 -1 745 -1 746 -1 747 -1 748 -1 749 -1 750 -1 751 -1 752 -1 753 -1 754 -1 755 -1 756 -1 757 -1 758 -1 759 -1 760 -1 761 -1 762 -1 763 -1 764 -1 765 -1 766 -1 767 -1 768 -1 769 -1 770 -1 771 -1 772 -1 773 -1 774 -1 775 -1 776 -1 777 -1 778 -1 779 -1 780 -1 781 -1 782 -1 783 -1 784 -1 785 -1 786 -1 787 -1 788 -1 789 -1 790 -1 791 -1 792 -1 793 -1 794 -1 795 -1 796 -1 797 -1 798 -1 799 -1 800 -1 801 -1 802 -1 803 -1 804 -1 805 -1 806 -1 807 -1 808 -1 809 -1 810 -1 811 -1 812 -1 813 -1 814 -1 815 -1 816 -1 817 -1 818 -1 819 -1 820 -1 821 -1 822 -1 823 -1 824 -1 825 -1 826 -1 827 -1 828 -1 829 -1 830 -1 831 -1 832 -1 833 -1 834 -1 835 -1 836 -1 837 -1 838 -1 839 -1 840 -1 841 -1 842 -1 843 -1 844 -1 845 -1 846 -1 847 -1 848 -1 849 -1 850 -1 851 -1 852 -1 853 -1 854 -1 855 -1 856 -1 857 -1 858 -1 859 -1 860 -1 861 -1 862 -1 863 -1 864 -1 865 -1 866 -1 867 -1 868 -1 869 -1 870 -1 871 -1 872 -1 873 -1 874 -1 875 -1 876 -1 877 -1 878 -1 879 -1 880 -1 881 -1 882 -1 883 -1 884 -1 885 -1 886 -1 887 -1 888 -1 889 -1 890 -1 891 -1 892 -1 893 -1 894 -1 895 -1 896 -1 897 -1 898 -1 899 -1 900 -1 901 -1 902 -1 903 -1 904 -1 905 -1 906 -1 907 -1 908 -1 909 -1 910 -1 911 -1 912 -1 913 -1 914 -1 915 -1 916 -1 917 -1 918 -1 919 -1 920 -1 921 -1 922 -1 923 -1 924 -1 925 -1 926 -1 927 -1 928 -1 929 -1 930 -1 931 -1 932 -1 933 -1 934 -1 935 -1 936 -1 937 -1 938 -1 939 -1 940 -1 941 -1 942 -1 943 -1 944 -1 945 -1 946 -1 947 -1 948 -1 949 -1 950 -1 951 -1 952 -1 953 -1 954 -1 955 -1 956 -1 957 -1 958 -1 959 -1 960 -1 961 -1 962 -1 963 -1 964 -1 965 -1 966 -1 967 -1 968 -1 969 -1 970 -1 971 -1 972 -1 973 -1 974 -1 975 -1 976 -1 977 -1 978 -1 979 -1 980 -1 981 -1 982 -1 983 -1 984 -1 985 -1 986 -1 987 -1 988 -1 989 -1 990 -1 991 -1 992 -1 993 -1 994 -1 995 -1 996 -1 997 -1 998 -1 999 -1 1000"", ""output"": ""999"", ""is_hidden"": true}]"
+M18-18,Recover a BST with Two Swapped Values,"Module 18: Trees, Binary Search Trees, and Heaps",Hard,Find the two out-of-order values in an inorder traversal and swap them back.,stdin/stdout,O(1),O(1),"A BST originally contained distinct values, but exactly two node values were swapped. Restore the BST by swapping those two values back without changing the tree structure. The input is guaranteed to be recoverable by one swap.
+
+The swapped values may be adjacent or far apart in the inorder sequence.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-18 — Recover a BST with Two Swapped Values](/diagrams/m18/m18_18.png)
+
+Explanation: The inorder sequence is 1 3 2, which is not increasing. Swapping 3 and 2 restores the sorted inorder sequence 1 2 3.","N, followed by N level-order entries.","Print the corrected BST's inorder traversal, with values separated by single spaces.","N ≤ 100,000
+The tree contains at least two actual nodes.
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.","3
+3 1 2",1 2 3,"2
+1 2",1 2,Track the previously visited node during inorder traversal; a drop occurs when prev.val > cur.val.,"At the first drop, the first misplaced node is prev. At every drop, update the second misplaced node to cur.","If the swapped values are adjacent, there is only one drop; your logic must still work.","import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static void add(StringBuilder sb, long v) {
+        if (sb.length() > 0) {
+            sb.append(' ');
+        }
+        sb.append(v);
+    }
+
+    static Node prev;
+    static Node first;
+    static Node second;
+
+    static void inorder(Node node) {
+        if (node == null) {
+            return;
+        }
+        inorder(node.left);
+        if (prev != null && prev.val > node.val) {
+            if (first == null) {
+                first = prev;
+            }
+            second = node;
+        }
+        prev = node;
+        inorder(node.right);
+    }
+
+    static void collect(Node node, StringBuilder sb) {
+        if (node == null) {
+            return;
+        }
+        collect(node.left, sb);
+        add(sb, node.val);
+        collect(node.right, sb);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        inorder(root);
+        if (first != null) {
+            int tmp = first.val;
+            first.val = second.val;
+            second.val = tmp;
+        }
+        StringBuilder sb = new StringBuilder();
+        collect(root, sb);
+        System.out.println(sb);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""3\n3 1 2"", ""output"": ""1 2 3"", ""is_hidden"": false}, {""input"": ""2\n1 2"", ""output"": ""1 2"", ""is_hidden"": false}, {""input"": ""7\n4 2 6 1 7 5 3"", ""output"": ""1 2 3 4 5 6 7"", ""is_hidden"": false}, {""input"": ""7\n4 3 6 1 2 5 7"", ""output"": ""1 2 3 4 5 6 7"", ""is_hidden"": true}, {""input"": ""3\n0 2147483647 -2147483648"", ""output"": ""-2147483648 0 2147483647"", ""is_hidden"": true}, {""input"": ""9\n5 -1 2 -1 3 -1 4 -1 1"", ""output"": ""1 2 3 4 5"", ""is_hidden"": true}, {""input"": ""7\n10 5 15 2 20 12 7"", ""output"": ""2 5 7 10 12 15 20"", ""is_hidden"": true}, {""input"": ""3\n2 3 1"", ""output"": ""1 2 3"", ""is_hidden"": true}]"
+M18-19,Find the Kth Largest Element in a Data Stream,"Module 18: Trees, Binary Search Trees, and Heaps",Hard,Track the K largest values of a stream with a bounded min heap.,stdin/stdout,O(1),O(1),"Integers arrive one at a time. After each insertion, report the Kth largest value among all values received so far. If fewer than K values have arrived, report NONE. Duplicate values count as separate occurrences.
+
+A min heap holding at most K values is sufficient. Input values may include -1; it has no special meaning in this problem.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-19 — Find the Kth Largest Element in a Data Stream](/diagrams/m18/m18_19.png)
+
+Explanation: After the first two insertions, fewer than three values exist. After 8 arrives, the third-largest value is 4. It stays 4 after 2 arrives, becomes 5 after 10 arrives, and becomes 8 after 9 arrives.",The first line contains N and K. The second line contains N integers in arrival order.,"Print N answers on one line, separated by single spaces. The i-th answer is the Kth largest value after the first i insertions, or NONE if fewer than K values have arrived.","1 ≤ K ≤ N ≤ 200,000
+Values fit in int.","6 3
+4 5 8 2 10 9",NONE NONE 4 4 5 8,"3 1
+-1 -5 3",-1 -1 3,Keep only the K largest values seen so far in a min heap.,"After adding a value, remove the heap's root if the heap holds more than K values.","When the heap holds exactly K values, its root is the Kth largest.","import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        int k = Integer.parseInt(sc.next());
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            heap.add(Integer.parseInt(sc.next()));
+            if (heap.size() > k) {
+                heap.poll();
+            }
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(heap.size() < k ? ""NONE"" : String.valueOf(heap.peek()));
+        }
+        System.out.println(sb);
+    }
+}","[{""input"": ""6 3\n4 5 8 2 10 9"", ""output"": ""NONE NONE 4 4 5 8"", ""is_hidden"": false}, {""input"": ""3 1\n-1 -5 3"", ""output"": ""-1 -1 3"", ""is_hidden"": false}, {""input"": ""4 4\n1 2 3 4"", ""output"": ""NONE NONE NONE 1"", ""is_hidden"": false}, {""input"": ""5 2\n5 5 5 5 5"", ""output"": ""NONE 5 5 5 5"", ""is_hidden"": true}, {""input"": ""6 2\n-1 -1 -2 0 -1 -3"", ""output"": ""NONE -1 -1 -1 -1 -1"", ""is_hidden"": true}, {""input"": ""4 2\n2147483647 -2147483648 2147483647 0"", ""output"": ""NONE -2147483648 2147483647 2147483647"", ""is_hidden"": true}, {""input"": ""7 3\n10 9 8 7 6 5 4"", ""output"": ""NONE NONE 8 8 8 8 8"", ""is_hidden"": true}, {""input"": ""6 3\n1 2 3 4 5 6"", ""output"": ""NONE NONE 1 2 3 4"", ""is_hidden"": true}]"
+M18-20,Find the Maximum Sum of a BST Subtree,"Module 18: Trees, Binary Search Trees, and Heaps",Hard,"Combine validity, range, and sum information from both subtrees in one postorder pass.",stdin/stdout,O(1),O(1),"Find the maximum sum among all valid, non-empty BST subtrees of a binary tree. A subtree consists of a node and all of its descendants. A subtree is a valid BST when its left and right subtrees are both valid BSTs, every value in its left subtree is smaller than its root, and every value in its right subtree is larger.
+
+Use postorder traversal to determine each subtree's validity, minimum, maximum, and sum. The answer is the maximum of 0 and all valid non-empty subtree sums, so an empty tree, or a tree whose valid subtree sums are all negative, produces 0.
+
+Tree input rule: N counts every entry, including -1 markers. The first entry is the root and is not -1 when N > 0. Process the present nodes in level order; for each one, read the next two entries as its left and right children. An entry of -1 means that child is missing, and missing nodes have no child entries. If the entries run out, the remaining children are missing. No entries are left over, and N = 0 means the tree is empty.
+
+Write all classes in Main.java. Only class Main may be declared public; declare any other classes, such as a Node class, without the public keyword.
+
+![M18-20 — Find the Maximum Sum of a BST Subtree](/diagrams/m18/m18_20.png)
+
+Explanation: The entire tree is a valid BST, and its sum is 5 + 2 + 8 + 1 + 3 + 6 + 9 = 34.","N, followed by N level-order entries.",Print the maximum sum.,"0 ≤ N ≤ 100,000
+Actual values fit in int and cannot be -1.
+Tree height ≤ 1,000.
+Use long for subtree sums.","7
+5 2 8 1 3 6 9",34,"3
+-5 -10 -2",0,"For each node, return four facts about its subtree: whether it is a BST, its minimum, its maximum, and its sum.","A node forms a BST only if both children do, the left maximum is smaller than the node, and the right minimum is larger.",Treat an empty subtree as a BST with minimum +∞ and maximum −∞ so leaves need no special case.,"import java.util.*;
+
+public class Main {
+    static Node buildTree(Scanner sc, int n) {
+        int[] a = new int[n];
+        for (int i = 0; i < n; i++) {
+            a[i] = Integer.parseInt(sc.next());
+        }
+        if (n == 0 || a[0] == -1) {
+            return null;
+        }
+        Node root = new Node(a[0]);
+        ArrayDeque<Node> queue = new ArrayDeque<>();
+        queue.add(root);
+        int i = 1;
+        while (!queue.isEmpty() && i < n) {
+            Node cur = queue.poll();
+            if (i < n && a[i] != -1) {
+                cur.left = new Node(a[i]);
+                queue.add(cur.left);
+            }
+            i++;
+            if (i < n && a[i] != -1) {
+                cur.right = new Node(a[i]);
+                queue.add(cur.right);
+            }
+            i++;
+        }
+        return root;
+    }
+
+    static long best;
+
+    // Returns {isBst (1/0), min, max, sum}; an empty subtree is a BST with min = +inf and max = -inf.
+    static long[] solve(Node node) {
+        if (node == null) {
+            return new long[] {1, Long.MAX_VALUE, Long.MIN_VALUE, 0};
+        }
+        long[] left = solve(node.left);
+        long[] right = solve(node.right);
+        if (left[0] == 1 && right[0] == 1 && left[2] < node.val && node.val < right[1]) {
+            long sum = left[3] + right[3] + node.val;
+            best = Math.max(best, sum);
+            return new long[] {1, Math.min(left[1], node.val), Math.max(right[2], node.val), sum};
+        }
+        return new long[] {0, 0, 0, 0};
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = Integer.parseInt(sc.next());
+        Node root = buildTree(sc, n);
+        best = 0;
+        solve(root);
+        System.out.println(best);
+    }
+}
+
+class Node {
+    int val;
+    Node left;
+    Node right;
+
+    Node(int val) {
+        this.val = val;
+    }
+}","[{""input"": ""7\n5 2 8 1 3 6 9"", ""output"": ""34"", ""is_hidden"": false}, {""input"": ""3\n-5 -10 -2"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""4\n5 3 -1 4"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""0\n"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""15\n1 4 3 2 4 2 5 -1 -1 -1 -1 -1 -1 4 6"", ""output"": ""20"", ""is_hidden"": true}, {""input"": ""3\n2147483646 2147483645 2147483647"", ""output"": ""6442450938"", ""is_hidden"": true}, {""input"": ""6\n10 5 15 1 8 7"", ""output"": ""22"", ""is_hidden"": true}, {""input"": ""3\n-3 -5 2"", ""output"": ""2"", ""is_hidden"": true}]"

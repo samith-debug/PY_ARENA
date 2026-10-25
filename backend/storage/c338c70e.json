@@ -1,0 +1,1945 @@
+{
+  "id": "c338c70e",
+  "filename": "JP_M7_Java_Number_Problems.csv",
+  "imported_at": "2026-10-24T14:48:49.040860Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M7-01",
+      "title": "Product Code Digit Analysis",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Extract digits arithmetically to compute a count, a sum, and a maximum in one loop.",
+      "problem_statement": "A warehouse needs to analyze a positive numeric product code. Given an integer N, print its digit count, digit sum, and largest digit on separate lines. Do not convert the number to a string.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10⁹.",
+      "output_format": "Three lines containing the digit count, digit sum, and largest digit.",
+      "constraints": "1 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "583204",
+        "7"
+      ],
+      "sample_outputs": [
+        "6\n22\n8",
+        "1\n7\n7"
+      ],
+      "hints": [
+        "n % 10 gives the last digit and n / 10 removes it.",
+        "Update three variables in the same loop: count, sum, and max.",
+        "Because N is at least 1, the loop runs at least once."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int count = 0;\n        int sum = 0;\n        int max = 0;\n        while (n > 0) {\n            int digit = n % 10;\n            count++;\n            sum += digit;\n            if (digit > max) {\n                max = digit;\n            }\n            n /= 10;\n        }\n        System.out.println(count);\n        System.out.println(sum);\n        System.out.println(max);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "583204",
+          "output": "6\n22\n8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7",
+          "output": "1\n7\n7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000000000",
+          "output": "10\n1\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "999999999",
+          "output": "9\n81\n9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "2\n1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1",
+          "output": "1\n1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "90817",
+          "output": "5\n25\n9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "123456789",
+          "output": "9\n45\n9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10⁹.",
+        "output_format": "Three lines containing the digit count, digit sum, and largest digit."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-02",
+      "title": "Alternating Digit Balance",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Alternate between two running sums while extracting digits from the right.",
+      "problem_statement": "A numeric code is balanced when the sum of digits at odd positions from the right equals the sum of digits at even positions from the right. Positions begin at 1. Read N as an integer and determine whether it is balanced.",
+      "input_format": "One positive integer N, where 1 ≤ N ≤ 10⁹.",
+      "output_format": "Print Balanced or Not Balanced.",
+      "constraints": "1 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "2475",
+        "1212"
+      ],
+      "sample_outputs": [
+        "Balanced",
+        "Not Balanced"
+      ],
+      "hints": [
+        "Keep a position counter that starts at 1 and increases with every digit.",
+        "Add the digit to oddSum when the position is odd and to evenSum when it is even.",
+        "Compare the two sums after the loop."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int oddSum = 0;\n        int evenSum = 0;\n        int position = 1;\n        while (n > 0) {\n            int digit = n % 10;\n            if (position % 2 == 1) {\n                oddSum += digit;\n            } else {\n                evenSum += digit;\n            }\n            position++;\n            n /= 10;\n        }\n        if (oddSum == evenSum) {\n            System.out.println(\"Balanced\");\n        } else {\n            System.out.println(\"Not Balanced\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "2475",
+          "output": "Balanced",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1212",
+          "output": "Not Balanced",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Not Balanced",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "11",
+          "output": "Balanced",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "121",
+          "output": "Balanced",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000",
+          "output": "Not Balanced",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "909",
+          "output": "Not Balanced",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5555",
+          "output": "Balanced",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One positive integer N, where 1 ≤ N ≤ 10⁹.",
+        "output_format": "Print Balanced or Not Balanced."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-03",
+      "title": "Numeric Palindrome Validator",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Reverse a number arithmetically and compare it with the original.",
+      "problem_statement": "A numeric identifier is a palindrome if it reads the same forward and backward. Determine whether a non-negative integer is a palindrome using arithmetic operations, without converting it to a string. Leading zeros are not part of an integer's representation.",
+      "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+      "output_format": "Print Palindrome or Not Palindrome.",
+      "constraints": "0 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "12321",
+        "123"
+      ],
+      "sample_outputs": [
+        "Palindrome",
+        "Not Palindrome"
+      ],
+      "hints": [
+        "Keep a copy of N, because the loop will reduce the working value to 0.",
+        "Build the reverse with reversed = reversed * 10 + digit.",
+        "Store the reverse in a long: reversing 1000000000 is safe, but other 10-digit values can exceed int."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        long original = n;\n        long reversed = 0;\n        while (n > 0) {\n            reversed = reversed * 10 + n % 10;\n            n /= 10;\n        }\n        if (reversed == original) {\n            System.out.println(\"Palindrome\");\n        } else {\n            System.out.println(\"Not Palindrome\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12321",
+          "output": "Palindrome",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "123",
+          "output": "Not Palindrome",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "Palindrome",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "7",
+          "output": "Palindrome",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "Not Palindrome",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000",
+          "output": "Not Palindrome",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1221",
+          "output": "Palindrome",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "123454321",
+          "output": "Palindrome",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+        "output_format": "Print Palindrome or Not Palindrome."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-04",
+      "title": "Prime Number Validator",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Test primality efficiently by checking divisors only up to the square root.",
+      "problem_statement": "An identifier is prime if it is greater than 1 and has exactly two positive divisors. Given N, determine whether it is prime. Use divisor checks and handle values below 2 correctly.",
+      "input_format": "One integer N, where 0 ≤ N ≤ 10⁷.",
+      "output_format": "Print Prime or Not Prime.",
+      "constraints": "0 <= N <= 10,000,000",
+      "sample_inputs": [
+        "29",
+        "1"
+      ],
+      "sample_outputs": [
+        "Prime",
+        "Not Prime"
+      ],
+      "hints": [
+        "Return Not Prime immediately for N < 2.",
+        "A composite number always has a divisor d with d * d <= N.",
+        "Stop at the first divisor you find."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean isPrime(long n) {\n        if (n < 2) {\n            return false;\n        }\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        if (isPrime(n)) {\n            System.out.println(\"Prime\");\n        } else {\n            System.out.println(\"Not Prime\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "29",
+          "output": "Prime",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "Not Prime",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "Not Prime",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "Prime",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4",
+          "output": "Not Prime",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "9999991",
+          "output": "Prime",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000000",
+          "output": "Not Prime",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "9",
+          "output": "Not Prime",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 0 ≤ N ≤ 10⁷.",
+        "output_format": "Print Prime or Not Prime."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-05",
+      "title": "Power-of-Two Batch Size",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Use repeated division to test whether a number is a power of two.",
+      "problem_statement": "A storage system only accepts batch sizes that are powers of two: 1, 2, 4, 8, 16, and so on. Determine whether N is a power of two by repeatedly dividing it by 2. Do not use logarithms or built-in methods.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10¹⁸.",
+      "output_format": "Print Power of Two or Not Power of Two.",
+      "constraints": "1 <= N <= 1,000,000,000,000,000,000",
+      "sample_inputs": [
+        "64",
+        "1000"
+      ],
+      "sample_outputs": [
+        "Power of Two",
+        "Not Power of Two"
+      ],
+      "hints": [
+        "Read N as a long.",
+        "While N is even, divide it by 2.",
+        "N is a power of two exactly when the loop ends with N equal to 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        while (n % 2 == 0) {\n            n /= 2;\n        }\n        if (n == 1) {\n            System.out.println(\"Power of Two\");\n        } else {\n            System.out.println(\"Not Power of Two\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "64",
+          "output": "Power of Two",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1000",
+          "output": "Not Power of Two",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Power of Two",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "Power of Two",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3",
+          "output": "Not Power of Two",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1024",
+          "output": "Power of Two",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "576460752303423488",
+          "output": "Power of Two",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000000000000000",
+          "output": "Not Power of Two",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10¹⁸.",
+        "output_format": "Print Power of Two or Not Power of Two."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-06",
+      "title": "Greatest Common Divisor and Least Common Multiple",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Compute a GCD with the Euclidean algorithm and derive the LCM without overflow.",
+      "problem_statement": "Given two positive integers A and B, calculate their greatest common divisor (GCD) and least common multiple (LCM). Use the Euclidean algorithm for GCD. Calculate the LCM using (A / GCD) * B and store it in a long, because the result may exceed the int range.",
+      "input_format": "Two positive integers A and B, each on a separate line, where 1 ≤ A, B ≤ 10⁹.",
+      "output_format": "Print the GCD on the first line and the LCM on the second line.",
+      "constraints": "1 <= A, B <= 1,000,000,000",
+      "sample_inputs": [
+        "48\n18",
+        "7\n13"
+      ],
+      "sample_outputs": [
+        "6\n144",
+        "1\n91"
+      ],
+      "hints": [
+        "Keep the original A and B; the Euclidean loop changes its working copies.",
+        "Loop while b != 0: remainder = a % b; a = b; b = remainder;.",
+        "Divide before multiplying: (A / gcd) * B, computed in long."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long gcd(long a, long b) {\n        while (b != 0) {\n            long remainder = a % b;\n            a = b;\n            b = remainder;\n        }\n        return a;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long a = Long.parseLong(sc.next());\n        long b = Long.parseLong(sc.next());\n        long g = gcd(a, b);\n        long lcm = (a / g) * b;\n        System.out.println(g);\n        System.out.println(lcm);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "48\n18",
+          "output": "6\n144",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "7\n13",
+          "output": "1\n91",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1000000000\n999999999",
+          "output": "1\n999999999000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "12\n12",
+          "output": "12\n12",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n1",
+          "output": "1\n1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "21\n6",
+          "output": "3\n42",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000000\n1000000000",
+          "output": "1000000000\n1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "17\n34",
+          "output": "17\n34",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "Two positive integers A and B, each on a separate line, where 1 ≤ A, B ≤ 10⁹.",
+        "output_format": "Print the GCD on the first line and the LCM on the second line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-07",
+      "title": "Perfect-Square Detector",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Search for an integer square root with a loop instead of Math.sqrt().",
+      "problem_statement": "A non-negative integer is a perfect square if it equals k × k for some non-negative integer k. Determine whether N is a perfect square without using Math.sqrt() or floating-point calculations.",
+      "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+      "output_format": "Print Perfect Square or Not Perfect Square.",
+      "constraints": "0 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "144",
+        "145"
+      ],
+      "sample_outputs": [
+        "Perfect Square",
+        "Not Perfect Square"
+      ],
+      "hints": [
+        "Try k = 0, 1, 2, ... while k * k <= N.",
+        "If k * k == N for some k, N is a perfect square.",
+        "Use long for k * k so the comparison never overflows."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        boolean found = false;\n        for (long k = 0; k * k <= n; k++) {\n            if (k * k == n) {\n                found = true;\n                break;\n            }\n        }\n        if (found) {\n            System.out.println(\"Perfect Square\");\n        } else {\n            System.out.println(\"Not Perfect Square\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "144",
+          "output": "Perfect Square",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "145",
+          "output": "Not Perfect Square",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0",
+          "output": "Perfect Square",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1",
+          "output": "Perfect Square",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2",
+          "output": "Not Perfect Square",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000",
+          "output": "Not Perfect Square",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999950884",
+          "output": "Perfect Square",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "15",
+          "output": "Not Perfect Square",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+        "output_format": "Print Perfect Square or Not Perfect Square."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-08",
+      "title": "Armstrong Number Validator",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Easy",
+      "objective": "Count digits first, then raise each digit to that power in a second pass.",
+      "problem_statement": "A positive integer is an Armstrong number if the sum of its digits, each raised to the total number of digits, equals the original number. Determine whether N satisfies this property.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+      "output_format": "Print Armstrong or Not Armstrong.",
+      "constraints": "1 <= N <= 1,000,000",
+      "sample_inputs": [
+        "153",
+        "154"
+      ],
+      "sample_outputs": [
+        "Armstrong",
+        "Not Armstrong"
+      ],
+      "hints": [
+        "Count the digits in a first loop using a copy of N.",
+        "In a second loop, raise each digit to that power with a small inner loop rather than Math.pow().",
+        "Every single-digit number is an Armstrong number, because d to the power 1 is d."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long power(int base, int exponent) {\n        long result = 1;\n        for (int i = 0; i < exponent; i++) {\n            result *= base;\n        }\n        return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int digits = 0;\n        int temp = n;\n        while (temp > 0) {\n            digits++;\n            temp /= 10;\n        }\n        long sum = 0;\n        temp = n;\n        while (temp > 0) {\n            sum += power(temp % 10, digits);\n            temp /= 10;\n        }\n        if (sum == n) {\n            System.out.println(\"Armstrong\");\n        } else {\n            System.out.println(\"Not Armstrong\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "153",
+          "output": "Armstrong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "154",
+          "output": "Not Armstrong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Armstrong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "9",
+          "output": "Armstrong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "10",
+          "output": "Not Armstrong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "370",
+          "output": "Armstrong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "9474",
+          "output": "Armstrong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1000000",
+          "output": "Not Armstrong",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+        "output_format": "Print Armstrong or Not Armstrong."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-09",
+      "title": "Prime Neighbours Within a Range",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Search a range in both directions for the nearest primes, handling the empty case.",
+      "problem_statement": "Given A and B, find the smallest prime strictly greater than A and the largest prime strictly less than B. Both primes must lie strictly inside the interval (A, B). If no prime exists in the interval, print Not Found for both results.",
+      "input_format": "A and B on separate lines, where 0 ≤ A < B ≤ 10⁶.",
+      "output_format": "Print the smallest qualifying prime on the first line and the largest on the second line. If none exists, print Not Found on both lines.",
+      "constraints": "0 <= A < B <= 1,000,000",
+      "sample_inputs": [
+        "20\n22",
+        "10\n20"
+      ],
+      "sample_outputs": [
+        "Not Found\nNot Found",
+        "11\n19"
+      ],
+      "hints": [
+        "Search upward from A + 1 and stop at the first prime below B.",
+        "Search downward from B - 1 and stop at the first prime above A.",
+        "If the upward search finds nothing, the downward search will not either, so both lines are Not Found."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean isPrime(long n) {\n        if (n < 2) {\n            return false;\n        }\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int a = Integer.parseInt(sc.next());\n        int b = Integer.parseInt(sc.next());\n        int smallest = -1;\n        for (int x = a + 1; x < b; x++) {\n            if (isPrime(x)) {\n                smallest = x;\n                break;\n            }\n        }\n        if (smallest == -1) {\n            System.out.println(\"Not Found\");\n            System.out.println(\"Not Found\");\n        } else {\n            int largest = smallest;\n            for (int x = b - 1; x > a; x--) {\n                if (isPrime(x)) {\n                    largest = x;\n                    break;\n                }\n            }\n            System.out.println(smallest);\n            System.out.println(largest);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "20\n22",
+          "output": "Not Found\nNot Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "10\n20",
+          "output": "11\n19",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n3",
+          "output": "2\n2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "0\n2",
+          "output": "Not Found\nNot Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "13\n17",
+          "output": "Not Found\nNot Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1000000",
+          "output": "2\n999983",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999980\n1000000",
+          "output": "999983\n999983",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n4",
+          "output": "3\n3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "A and B on separate lines, where 0 ≤ A < B ≤ 10⁶.",
+        "output_format": "Print the smallest qualifying prime on the first line and the largest on the second line. If none exists, print Not Found on both lines."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-10",
+      "title": "Strong Number Detector",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Combine digit extraction with a factorial helper method.",
+      "problem_statement": "A positive integer is strong if the sum of the factorials of its digits equals the number itself. Define 0! as 1. Determine whether N is a strong number.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10⁷.",
+      "output_format": "Print Strong or Not Strong.",
+      "constraints": "1 <= N <= 10,000,000",
+      "sample_inputs": [
+        "145",
+        "146"
+      ],
+      "sample_outputs": [
+        "Strong",
+        "Not Strong"
+      ],
+      "hints": [
+        "Write a helper method static int factorial(int d) for a single digit.",
+        "Add factorial(digit) for each digit, using a copy of N in the loop.",
+        "The factorial loop returns 1 when d is 0, which matches 0! = 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static int factorial(int d) {\n        int result = 1;\n        for (int i = 2; i <= d; i++) {\n            result *= i;\n        }\n        return result;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int temp = n;\n        long sum = 0;\n        while (temp > 0) {\n            sum += factorial(temp % 10);\n            temp /= 10;\n        }\n        if (sum == n) {\n            System.out.println(\"Strong\");\n        } else {\n            System.out.println(\"Not Strong\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "145",
+          "output": "Strong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "146",
+          "output": "Not Strong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Strong",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "Strong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "40585",
+          "output": "Strong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3",
+          "output": "Not Strong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10000000",
+          "output": "Not Strong",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "40584",
+          "output": "Not Strong",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10⁷.",
+        "output_format": "Print Strong or Not Strong."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-11",
+      "title": "Digital Root Calculator",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Nest a digit-sum loop inside a loop that repeats until one digit remains.",
+      "problem_statement": "Repeatedly add the digits of a positive integer until the result is a single digit. Print that final digit. Use arithmetic operations rather than string conversion.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10¹⁸.",
+      "output_format": "Print the digital root.",
+      "constraints": "1 <= N <= 1,000,000,000,000,000,000",
+      "sample_inputs": [
+        "9875",
+        "9"
+      ],
+      "sample_outputs": [
+        "2",
+        "9"
+      ],
+      "hints": [
+        "Read N as a long.",
+        "The outer loop runs while n > 9.",
+        "The inner loop replaces n with the sum of its digits."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        while (n > 9) {\n            long sum = 0;\n            while (n > 0) {\n                sum += n % 10;\n                n /= 10;\n            }\n            n = sum;\n        }\n        System.out.println(n);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "9875",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "9",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "10",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000000000000000000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "999999999999999999",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "38",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "123456789",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10¹⁸.",
+        "output_format": "Print the digital root."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-12",
+      "title": "Fibonacci Threshold Monitor",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Generate a sequence with two rolling variables and track the position of each term.",
+      "problem_statement": "The Fibonacci sequence begins with 0 and 1, and each subsequent term is the sum of the previous two terms. Find the first term greater than or equal to a target T. Print the term and its zero-based position, with the initial 0 at position 0.\n\nUse long for the sequence values. For every allowed T, the answer is reached before the sequence exceeds the long range.",
+      "input_format": "One integer T, where 0 ≤ T ≤ 10¹⁸.",
+      "output_format": "Print the first qualifying Fibonacci term and its position, separated by a space.",
+      "constraints": "0 <= T <= 1,000,000,000,000,000,000",
+      "sample_inputs": [
+        "20",
+        "0"
+      ],
+      "sample_outputs": [
+        "21 8",
+        "0 0"
+      ],
+      "hints": [
+        "Keep the current term, the next term, and the position in three variables.",
+        "Loop while current < T; in each step, shift the pair forward and increase the position.",
+        "T = 0 is answered immediately by the term 0 at position 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long t = Long.parseLong(sc.next());\n        long current = 0;\n        long next = 1;\n        int position = 0;\n        while (current < t) {\n            long sum = current + next;\n            current = next;\n            next = sum;\n            position++;\n        }\n        System.out.println(current + \" \" + position);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "20",
+          "output": "21 8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "1 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2",
+          "output": "2 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "21",
+          "output": "21 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000000000000",
+          "output": "1100087778366101931 88",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4",
+          "output": "5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100",
+          "output": "144 12",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer T, where 0 ≤ T ≤ 10¹⁸.",
+        "output_format": "Print the first qualifying Fibonacci term and its position, separated by a space."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-13",
+      "title": "Prime Factorization of a Number",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Divide out each factor repeatedly and stop trial division at the square root.",
+      "problem_statement": "Express a positive integer as a product of prime factors. Print all prime factors in non-decreasing order, repeating a factor as many times as it occurs. Do not use arrays or built-in prime-factorization libraries.",
+      "input_format": "One integer N, where 2 ≤ N ≤ 10⁹.",
+      "output_format": "Print the prime factors separated by single spaces.",
+      "constraints": "2 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "360",
+        "97"
+      ],
+      "sample_outputs": [
+        "2 2 2 3 3 5",
+        "97"
+      ],
+      "hints": [
+        "Try divisors d starting at 2, and divide N by d for as long as it divides evenly.",
+        "Only test while d * d <= N; whatever remains above 1 afterwards is itself a prime factor.",
+        "Build the output with a space before every factor except the first."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        StringBuilder result = new StringBuilder();\n        for (long d = 2; d * d <= n; d++) {\n            while (n % d == 0) {\n                if (result.length() > 0) {\n                    result.append(\" \");\n                }\n                result.append(d);\n                n /= d;\n            }\n        }\n        if (n > 1) {\n            if (result.length() > 0) {\n                result.append(\" \");\n            }\n            result.append(n);\n        }\n        System.out.println(result);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "360",
+          "output": "2 2 2 3 3 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "97",
+          "output": "97",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1024",
+          "output": "2 2 2 2 2 2 2 2 2 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "999999937",
+          "output": "999999937",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1000000000",
+          "output": "2 2 2 2 2 2 2 2 2 5 5 5 5 5 5 5 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "999999938",
+          "output": "2 7 7 10204081",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "30",
+          "output": "2 3 5",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 2 ≤ N ≤ 10⁹.",
+        "output_format": "Print the prime factors separated by single spaces."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-14",
+      "title": "Collatz Sequence Step Counter",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Loop until a condition is met when the number of iterations is not known in advance.",
+      "problem_statement": "Start with a positive integer N. If it is even, divide it by 2. If it is odd, replace it with 3 × N + 1. Repeat until the value becomes 1. Count the number of transformations, not the number of terms. Use long for intermediate values.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+      "output_format": "Print the number of transformations required to reach 1.",
+      "constraints": "1 <= N <= 1,000,000",
+      "sample_inputs": [
+        "6",
+        "1"
+      ],
+      "sample_outputs": [
+        "8",
+        "0"
+      ],
+      "hints": [
+        "Use a while loop that runs until the value equals 1.",
+        "Store the value in a long; some starting values below 10⁶ climb past the int range.",
+        "For N = 1, no transformation is needed, so the answer is 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        int steps = 0;\n        while (n != 1) {\n            if (n % 2 == 0) {\n                n /= 2;\n            } else {\n                n = 3 * n + 1;\n            }\n            steps++;\n        }\n        System.out.println(steps);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6",
+          "output": "8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "27",
+          "output": "111",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "7",
+          "output": "16",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "837799",
+          "output": "524",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "152",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+        "output_format": "Print the number of transformations required to reach 1."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-15",
+      "title": "Count Numbers With Exactly Three Divisors",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Use a number-theory property to replace a slow brute-force search.",
+      "problem_statement": "Count the integers in the inclusive range [L, R] that have exactly three positive divisors. A number has exactly three positive divisors if and only if it is the square of a prime number. Use this property to avoid checking every possible divisor of every number.",
+      "input_format": "L and R on separate lines, where 1 ≤ L ≤ R ≤ 10⁹.",
+      "output_format": "Print the count of numbers with exactly three positive divisors.",
+      "constraints": "1 <= L <= R <= 1,000,000,000",
+      "sample_inputs": [
+        "1\n100",
+        "1\n10"
+      ],
+      "sample_outputs": [
+        "4",
+        "2"
+      ],
+      "hints": [
+        "Loop over candidate primes p instead of over the numbers in the range.",
+        "Continue while p * p <= R, using long for p * p.",
+        "Count p when it is prime and p * p >= L."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean isPrime(long n) {\n        if (n < 2) {\n            return false;\n        }\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long l = Long.parseLong(sc.next());\n        long r = Long.parseLong(sc.next());\n        int count = 0;\n        for (long p = 2; p * p <= r; p++) {\n            if (p * p >= l && isPrime(p)) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1\n100",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n10",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n8",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n4",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n1000000000",
+          "output": "3401",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "26\n48",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "49\n49",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "999950000\n1000000000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "L and R on separate lines, where 1 ≤ L ≤ R ≤ 10⁹.",
+        "output_format": "Print the count of numbers with exactly three positive divisors."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-16",
+      "title": "Decimal to Octal Converter",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Convert to another base with repeated division, building the digits in the right order.",
+      "problem_statement": "Convert a non-negative decimal integer to its octal (base-8) representation using repeated division and remainders. Do not use built-in base-conversion methods. You may use a String to store and reverse the generated digits. The output must not contain leading zeros, except that input 0 produces output 0.",
+      "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+      "output_format": "Print the octal representation.",
+      "constraints": "0 <= N <= 1,000,000,000",
+      "sample_inputs": [
+        "83",
+        "0"
+      ],
+      "sample_outputs": [
+        "123",
+        "0"
+      ],
+      "hints": [
+        "n % 8 gives the next octal digit from the right, and n / 8 removes it.",
+        "Prepend each digit to a String: result = digit + result;.",
+        "Handle N = 0 separately, because the loop does not run for it."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        if (n == 0) {\n            System.out.println(0);\n        } else {\n            String result = \"\";\n            while (n > 0) {\n                result = (n % 8) + result;\n                n /= 8;\n            }\n            System.out.println(result);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "83",
+          "output": "123",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "8",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1000000000",
+          "output": "7346545000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "64",
+          "output": "100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "511",
+          "output": "777",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 0 ≤ N ≤ 10⁹.",
+        "output_format": "Print the octal representation."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-17",
+      "title": "Abundant, Perfect, or Deficient",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Medium",
+      "objective": "Sum proper divisors efficiently in divisor pairs and classify the result.",
+      "problem_statement": "For a positive integer N, calculate the sum of its proper divisors (positive divisors smaller than N). Classify the number as:\n- Abundant if the sum is greater than N.\n- Perfect if the sum equals N.\n- Deficient if the sum is less than N.",
+      "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+      "output_format": "Print the corresponding classification.",
+      "constraints": "1 <= N <= 1,000,000",
+      "sample_inputs": [
+        "12",
+        "28"
+      ],
+      "sample_outputs": [
+        "Abundant",
+        "Perfect"
+      ],
+      "hints": [
+        "Divisors come in pairs: if d divides N, so does N / d.",
+        "Loop d from 2 while d * d <= N, adding both d and N / d, but add a square root only once.",
+        "Start the sum at 1 for N > 1, and remember that 1 has no proper divisors, so its sum is 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long properDivisorSum(long n) {\n        if (n == 1) {\n            return 0;\n        }\n        long sum = 1;\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                sum += d;\n                long other = n / d;\n                if (other != d) {\n                    sum += other;\n                }\n            }\n        }\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        long n = Long.parseLong(sc.next());\n        long sum = properDivisorSum(n);\n        if (sum > n) {\n            System.out.println(\"Abundant\");\n        } else if (sum == n) {\n            System.out.println(\"Perfect\");\n        } else {\n            System.out.println(\"Deficient\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "12",
+          "output": "Abundant",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "28",
+          "output": "Perfect",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1",
+          "output": "Deficient",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "6",
+          "output": "Perfect",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "8",
+          "output": "Deficient",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "945",
+          "output": "Abundant",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1000000",
+          "output": "Abundant",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "13",
+          "output": "Deficient",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 1 ≤ N ≤ 10⁶.",
+        "output_format": "Print the corresponding classification."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-18",
+      "title": "Consecutive Prime Sum Counter",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Hard",
+      "objective": "Combine nested loops and a prime helper to enumerate runs of consecutive primes.",
+      "problem_statement": "A mathematical analysis tool investigates whether N can be represented as the sum of two or more consecutive prime numbers. Count all distinct representations. The primes must appear in increasing order, and no prime may be skipped within a representation.\n\nFor example, 2 + 3 + 5 is valid, but 2 + 5 is not because 3 is skipped.",
+      "input_format": "One integer N, where 2 ≤ N ≤ 10⁵.",
+      "output_format": "Print the number of valid representations.",
+      "constraints": "2 <= N <= 100,000",
+      "sample_inputs": [
+        "41",
+        "5"
+      ],
+      "sample_outputs": [
+        "2",
+        "1"
+      ],
+      "hints": [
+        "Write an isPrime helper and a nextPrime helper that returns the first prime greater than its argument.",
+        "For each starting prime p, keep adding the following primes until the sum reaches or passes N.",
+        "Count a run only if the sum equals N exactly and the run has at least two primes."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean isPrime(long n) {\n        if (n < 2) {\n            return false;\n        }\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    static int nextPrime(int p) {\n        int candidate = p + 1;\n        while (!isPrime(candidate)) {\n            candidate++;\n        }\n        return candidate;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int count = 0;\n        for (int start = 2; start < n; start = nextPrime(start)) {\n            int sum = start;\n            int terms = 1;\n            int p = start;\n            while (sum < n) {\n                p = nextPrime(p);\n                sum += p;\n                terms++;\n            }\n            if (sum == n && terms >= 2) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "41",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "17",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "100000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "963",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "53",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "311",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 2 ≤ N ≤ 10⁵.",
+        "output_format": "Print the number of valid representations."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-19",
+      "title": "Amicable Number Pair Search",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Hard",
+      "objective": "Reuse a divisor-sum method to find and print each amicable pair exactly once.",
+      "problem_statement": "Two distinct positive integers A and B form an amicable pair if the sum of the proper divisors of A equals B and the sum of the proper divisors of B equals A.\n\nGiven an upper limit N, find all amicable pairs for which both numbers are at most N. Print each pair once, with the smaller number first, ordered by increasing smaller number. Do not use arrays or collections.",
+      "input_format": "One integer N, where 2 ≤ N ≤ 5000.",
+      "output_format": "Print each pair as A B on a separate line. If no pair exists, print No Pairs.",
+      "constraints": "2 <= N <= 5000",
+      "sample_inputs": [
+        "300",
+        "283"
+      ],
+      "sample_outputs": [
+        "220 284",
+        "No Pairs"
+      ],
+      "hints": [
+        "Write a method that returns the sum of the proper divisors of a number.",
+        "For each a, let b = properDivisorSum(a); a pair exists when b > a, b <= N, and properDivisorSum(b) == a.",
+        "Requiring b > a prints each pair once and skips perfect numbers, where b equals a."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static long properDivisorSum(long n) {\n        if (n == 1) {\n            return 0;\n        }\n        long sum = 1;\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                sum += d;\n                long other = n / d;\n                if (other != d) {\n                    sum += other;\n                }\n            }\n        }\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        boolean found = false;\n        for (int a = 2; a <= n; a++) {\n            long b = properDivisorSum(a);\n            if (b > a && b <= n && properDivisorSum(b) == a) {\n                System.out.println(a + \" \" + b);\n                found = true;\n            }\n        }\n        if (!found) {\n            System.out.println(\"No Pairs\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "300",
+          "output": "220 284",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "283",
+          "output": "No Pairs",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "284",
+          "output": "220 284",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1210",
+          "output": "220 284\n1184 1210",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2",
+          "output": "No Pairs",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5000",
+          "output": "220 284\n1184 1210\n2620 2924",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2620",
+          "output": "220 284\n1184 1210",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2924",
+          "output": "220 284\n1184 1210\n2620 2924",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer N, where 2 ≤ N ≤ 5000.",
+        "output_format": "Print each pair as A B on a separate line. If no pair exists, print No Pairs."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M7-20",
+      "title": "Range-Wide Digit Property Analyzer",
+      "module": "Module 07: Number Problems with Loops and Methods",
+      "difficulty": "Hard",
+      "objective": "Combine digit-sum and prime-test helpers to filter every number in a range.",
+      "problem_statement": "A positive integer qualifies when both conditions hold:\n1. Its digit sum is a prime number.\n2. The integer is divisible by its digit sum.\nCount all qualifying integers in the inclusive range [L, R]. Do not convert the numbers to strings or use arrays.",
+      "input_format": "L and R on separate lines, where 1 ≤ L ≤ R ≤ 10⁵.",
+      "output_format": "Print the number of qualifying integers.",
+      "constraints": "1 <= L <= R <= 100,000",
+      "sample_inputs": [
+        "10\n20",
+        "1\n10"
+      ],
+      "sample_outputs": [
+        "2",
+        "4"
+      ],
+      "hints": [
+        "Write two helpers: digitSum(int n) and isPrime(int n).",
+        "For each number, compute the digit sum once and store it in a variable.",
+        "Check primality of the digit sum, then check number % digitSum == 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static boolean isPrime(long n) {\n        if (n < 2) {\n            return false;\n        }\n        for (long d = 2; d * d <= n; d++) {\n            if (n % d == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n\n    static int digitSum(int n) {\n        int sum = 0;\n        while (n > 0) {\n            sum += n % 10;\n            n /= 10;\n        }\n        return sum;\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int l = Integer.parseInt(sc.next());\n        int r = Integer.parseInt(sc.next());\n        int count = 0;\n        for (int x = l; x <= r; x++) {\n            int s = digitSum(x);\n            if (isPrime(s) && x % s == 0) {\n                count++;\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "10\n20",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n10",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "100000\n100000",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n100000",
+          "output": "1430",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "21\n21",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "50000\n60000",
+          "output": "132",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "12\n12",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 07: Number Problems with Loops and Methods",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "L and R on separate lines, where 1 ≤ L ≤ R ≤ 10⁵.",
+        "output_format": "Print the number of qualifying integers."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M7_Java_Number_Problems.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

@@ -17,16 +17,22 @@ def execute_code_sandboxed(
     timeout_seconds: float = 3.0,
     execution_mode: str = "stdin/stdout",
     function_name: Optional[str] = None,
-    max_output_bytes: int = 65536
+    max_output_bytes: int = 65536,
+    language: str = "python"
 ) -> RunResult:
     """
-    Executes Python code in an isolated dedicated subprocess worker.
-    - No network access
-    - Timeout enforcement with SIGKILL
-    - Cleaned-up temporary directory
-    - Sanitized environment (no parent secrets/tokens exposed)
-    - Captures stdout/stderr with truncation limits
+    Executes Python or Java code in an isolated dedicated sandbox environment.
     """
+    if (language or "python").strip().lower() == "java":
+        from backend.core.java_sandbox import execute_java_sandboxed
+        return execute_java_sandboxed(
+            code=code,
+            stdin_data=stdin_data,
+            timeout_seconds=timeout_seconds,
+            execution_mode=execution_mode,
+            function_name=function_name,
+            max_output_bytes=max_output_bytes
+        )
     start_time = time.perf_counter()
     temp_dir = tempfile.mkdtemp(prefix="codementor_sandbox_")
 

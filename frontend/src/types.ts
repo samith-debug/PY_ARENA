@@ -74,6 +74,7 @@ export interface QuestionSummary {
   hidden_tests: number;
   has_starter_code: boolean;
   has_reference_solution: boolean;
+  language?: string;
   has_validation_errors: boolean;
   validation_errors: string[];
   validation_warnings: string[];
@@ -97,6 +98,7 @@ export interface QuestionDetail {
   execution_mode: string;
   function_name?: string | null;
   test_cases: TestCase[];
+  language?: string;
   extra_fields: Record<string, any>;
   validation_errors: string[];
   validation_warnings: string[];
@@ -139,6 +141,7 @@ export interface QuestionBankMeta {
   visible_test_cases: number;
   hidden_test_cases: number;
   validation_report: ValidationReport;
+  language?: string;
 }
 
 export interface ModuleItem {
@@ -146,6 +149,7 @@ export interface ModuleItem {
   filename: string;
   moduleName: string;
   moduleNumber: number;
+  course?: 'python' | 'java';
   questions: QuestionSummary[];
 }
 

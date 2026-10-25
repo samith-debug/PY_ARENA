@@ -33,6 +33,8 @@ interface NavbarProps {
   onOpenAuth: () => void;
   solvedCount?: number;
   totalQuestionsCount?: number;
+  activeCourse?: 'python' | 'java';
+  onSelectCourse?: (course: 'python' | 'java') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -51,7 +53,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   onSignOut,
   onOpenAuth,
   solvedCount = 0,
-  totalQuestionsCount = 0
+  totalQuestionsCount = 0,
+  activeCourse = 'python',
+  onSelectCourse
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -76,8 +80,8 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="h-14 border-b border-slate-700/60 bg-slate-900/90 backdrop-blur px-4 flex items-center justify-between z-20 select-none">
-      {/* Brand & Bank Switcher */}
-      <div className="flex items-center space-x-4">
+      {/* Brand, Course Selector & Bank Switcher */}
+      <div className="flex items-center space-x-3.5">
         <div className="flex items-center space-x-2.5">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/20">
             <Code2 className="w-5 h-5" />
@@ -85,13 +89,43 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div>
             <div className="flex items-center space-x-1.5">
               <span className="font-bold text-slate-100 text-sm tracking-wide">
-                PyArena
+                CodeArena
               </span>
-              <span className="text-[11px] font-semibold px-1.5 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
-                Practice Lab
+              <span className={`text-[11px] font-semibold px-1.5 py-0.5 rounded border ${
+                activeCourse === 'java'
+                  ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30'
+                  : 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+              }`}>
+                {activeCourse === 'java' ? 'Java Course' : 'Python Course'}
               </span>
             </div>
           </div>
+        </div>
+
+        {/* Quick Course Switcher in Navbar */}
+        <div className="flex items-center space-x-1 p-0.5 bg-slate-800/80 rounded-lg border border-slate-700/60 shadow-inner">
+          <button
+            onClick={() => onSelectCourse?.('python')}
+            className={`px-2.5 py-1 rounded-md text-xs font-semibold flex items-center space-x-1.5 transition ${
+              activeCourse === 'python'
+                ? 'bg-slate-700 text-amber-300 shadow-sm border border-amber-500/30'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span>🐍</span>
+            <span>Python</span>
+          </button>
+          <button
+            onClick={() => onSelectCourse?.('java')}
+            className={`px-2.5 py-1 rounded-md text-xs font-semibold flex items-center space-x-1.5 transition ${
+              activeCourse === 'java'
+                ? 'bg-slate-700 text-cyan-300 shadow-sm border border-cyan-500/30'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <span>☕</span>
+            <span>Java</span>
+          </button>
         </div>
 
         <div className="h-4 w-px bg-slate-700 mx-1" />

@@ -1,0 +1,1945 @@
+{
+  "id": "2993db00",
+  "filename": "JP_M9_Java_Arrays.csv",
+  "imported_at": "2026-10-24T15:17:04.770217Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M9-01",
+      "title": "Array Statistics Report",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Traverse an array once to compute a sum, a minimum, a maximum, and a conditional count.",
+      "problem_statement": "Given an integer array, calculate its sum, minimum value, maximum value, and number of even elements. Zero counts as even, and duplicate values must be counted separately when calculating the sum and even-element count.",
+      "input_format": "N on the first line, followed by N space-separated integers on the second line.",
+      "output_format": "Print the sum, minimum, maximum, and even-element count on four separate lines, in that order.",
+      "constraints": "1 ≤ N ≤ 1000\n−10⁶ ≤ each element ≤ 10⁶\nUse long for the sum.",
+      "sample_inputs": [
+        "5\n4 -3 8 0 7",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "16\n-3\n8\n3",
+        "0\n0\n0\n1"
+      ],
+      "hints": [
+        "Read the values into an int array with a for loop.",
+        "Start min and max at a[0], not at 0, so all-negative and all-positive arrays work.",
+        "An element is even when a[i] % 2 == 0, which is also true for negative even numbers."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long sum = 0;\n        int min = a[0];\n        int max = a[0];\n        int evens = 0;\n        for (int i = 0; i < n; i++) {\n            sum += a[i];\n            if (a[i] < min) {\n                min = a[i];\n            }\n            if (a[i] > max) {\n                max = a[i];\n            }\n            if (a[i] % 2 == 0) {\n                evens++;\n            }\n        }\n        System.out.println(sum);\n        System.out.println(min);\n        System.out.println(max);\n        System.out.println(evens);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n4 -3 8 0 7",
+          "output": "16\n-3\n8\n3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0\n0\n0\n1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n-5 -5 -5",
+          "output": "-15\n-5\n-5\n0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1000000 1000000 1000000 1000000",
+          "output": "4000000\n1000000\n1000000\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n1 3 5 7 9 11",
+          "output": "36\n1\n11\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n-1000000 0 999999 -2 2",
+          "output": "-1\n-1000000\n999999\n4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n7 7",
+          "output": "14\n7\n7\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n-4 -7 -1 -8",
+          "output": "-20\n-8\n-1\n2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, followed by N space-separated integers on the second line.",
+        "output_format": "Print the sum, minimum, maximum, and even-element count on four separate lines, in that order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-02",
+      "title": "Reverse an Array In Place",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Reverse an array by swapping elements from both ends toward the middle.",
+      "problem_statement": "Reverse the order of the array by swapping elements within the original array. The last element must become the first, the second-last must become the second, and so on. Do not create a second array.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the reversed array on one line, with single spaces between elements.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "5\n10 20 30 40 50",
+        "1\n42"
+      ],
+      "sample_outputs": [
+        "50 40 30 20 10",
+        "42"
+      ],
+      "hints": [
+        "Use two indices: left starting at 0 and right starting at N − 1.",
+        "Swap a[left] and a[right] using a temporary variable, then move both indices inward.",
+        "Stop when left is no longer less than right."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int left = 0;\n        int right = n - 1;\n        while (left < right) {\n            int temp = a[left];\n            a[left] = a[right];\n            a[right] = temp;\n            left++;\n            right--;\n        }\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            if (i > 0) {\n                out.append(\" \");\n            }\n            out.append(a[i]);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n10 20 30 40 50",
+          "output": "50 40 30 20 10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n42",
+          "output": "42",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n1 2",
+          "output": "2 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n-1 -2 -3 -4",
+          "output": "-4 -3 -2 -1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n5 5 5",
+          "output": "5 5 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n1000000000 -1000000000 0 7 8 9",
+          "output": "9 8 7 0 -1000000000 1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n1 2 3 4 5 6 7",
+          "output": "7 6 5 4 3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n0 -1",
+          "output": "-1 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the reversed array on one line, with single spaces between elements."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-03",
+      "title": "Find All Occurrences",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Search an entire array and report every matching index.",
+      "problem_statement": "Given an array and a target X, print every zero-based index at which X occurs, in increasing order. If X occurs more than once, print all matching indices. If it does not occur, print Not Found.",
+      "input_format": "N on the first line, N space-separated integers on the second line, and X on the third line.",
+      "output_format": "Print the matching indices separated by single spaces, or print Not Found.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element and X ≤ 10⁹",
+      "sample_inputs": [
+        "6\n4 2 4 7 4 9\n4",
+        "3\n1 2 3\n5"
+      ],
+      "sample_outputs": [
+        "0 2 4",
+        "Not Found"
+      ],
+      "hints": [
+        "Loop through every index; do not break at the first match.",
+        "Append each matching index to a StringBuilder, adding a space before all but the first.",
+        "If nothing was appended, print Not Found."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int x = Integer.parseInt(sc.next());\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            if (a[i] == x) {\n                if (out.length() > 0) {\n                    out.append(\" \");\n                }\n                out.append(i);\n            }\n        }\n        if (out.length() == 0) {\n            System.out.println(\"Not Found\");\n        } else {\n            System.out.println(out);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n4 2 4 7 4 9\n4",
+          "output": "0 2 4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n1 2 3\n5",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n7\n7",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n9 9 9 9 9\n9",
+          "output": "0 1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n-1 0 -1 0\n-1",
+          "output": "0 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n1 2 3 4 5 6\n6",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n1000000000 -1000000000 1000000000\n-1000000000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n3 4\n-3",
+          "output": "Not Found",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N space-separated integers on the second line, and X on the third line.",
+        "output_format": "Print the matching indices separated by single spaces, or print Not Found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-04",
+      "title": "Count Distinct Values",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Count distinct values by checking whether each value already appeared earlier in the array.",
+      "problem_statement": "Count the number of different integer values in the array. Multiple occurrences of the same value count as one distinct value. Do not modify the input array or use collections or sets.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the number of distinct values.",
+      "constraints": "1 ≤ N ≤ 2000\n−10⁶ ≤ each element ≤ 10⁶",
+      "sample_inputs": [
+        "7\n3 5 3 2 5 8 2",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "4",
+        "1"
+      ],
+      "hints": [
+        "Count a[i] only if it is the first occurrence of its value.",
+        "a[i] is a first occurrence when no index j < i has a[j] == a[i].",
+        "An inner loop over j from 0 to i − 1 performs that check; N ≤ 2000 keeps it fast enough."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int distinct = 0;\n        for (int i = 0; i < n; i++) {\n            boolean seenBefore = false;\n            for (int j = 0; j < i; j++) {\n                if (a[j] == a[i]) {\n                    seenBefore = true;\n                    break;\n                }\n            }\n            if (!seenBefore) {\n                distinct++;\n            }\n        }\n        System.out.println(distinct);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n3 5 3 2 5 8 2",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n2 2 2 2 2",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n-1 1 -1 1 0 0",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n1000000 -1000000 1000000 0",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "8\n4 4 3 3 2 2 1 1",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n0 0 1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the number of distinct values."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-05",
+      "title": "Second-Largest Distinct Element",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Track the two largest distinct values in a single pass.",
+      "problem_statement": "Find the second-largest distinct value. Duplicate copies of the largest value do not count as a separate distinct value. If the array contains fewer than two distinct values, print Not Found.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the second-largest distinct value, or Not Found.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "6\n12 35 35 8 27 12",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "27",
+        "Not Found"
+      ],
+      "hints": [
+        "Keep largest and second, plus a boolean that records whether second has been set.",
+        "When a value exceeds largest, the old largest becomes second.",
+        "When a value is below largest but above second (or second is unset), it becomes second; ignore values equal to largest."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int largest = a[0];\n        int second = 0;\n        boolean hasSecond = false;\n        for (int i = 1; i < n; i++) {\n            if (a[i] > largest) {\n                second = largest;\n                hasSecond = true;\n                largest = a[i];\n            } else if (a[i] < largest && (!hasSecond || a[i] > second)) {\n                second = a[i];\n                hasSecond = true;\n            }\n        }\n        if (hasSecond) {\n            System.out.println(second);\n        } else {\n            System.out.println(\"Not Found\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n12 35 35 8 27 12",
+          "output": "27",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n7 7 7",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n1 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n-5 -1 -1 -3",
+          "output": "-3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n10 9 8 7 6",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n1000000000 1000000000 -1000000000 999999999 5 5",
+          "output": "999999999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n-1000000000 -1000000000 -999999999",
+          "output": "-1000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the second-largest distinct value, or Not Found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-06",
+      "title": "Move Zeros to the End",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Compact nonzero elements to the front in place, then fill the rest with zeros.",
+      "problem_statement": "Move every zero to the end while preserving the relative order of all nonzero elements. Keep all original elements, including every zero. Modify the original array without creating a second array.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the rearranged array with single spaces between elements.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "7\n0 4 0 -2 5 0 3",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "4 -2 5 3 0 0 0",
+        "0"
+      ],
+      "hints": [
+        "Keep a write index that marks where the next nonzero element should go.",
+        "Copy each nonzero element to a[write] and increase write.",
+        "After the pass, set every position from write to N − 1 to 0."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int write = 0;\n        for (int i = 0; i < n; i++) {\n            if (a[i] != 0) {\n                a[write] = a[i];\n                write++;\n            }\n        }\n        while (write < n) {\n            a[write] = 0;\n            write++;\n        }\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            if (i > 0) {\n                out.append(\" \");\n            }\n            out.append(a[i]);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n0 4 0 -2 5 0 3",
+          "output": "4 -2 5 3 0 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n0 0 0",
+          "output": "0 0 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1 2 3 4",
+          "output": "1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n0 0 1 0 2",
+          "output": "1 2 0 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\n5 0 0 -5",
+          "output": "5 -5 0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 7",
+          "output": "7 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n-1 0 -2 0 -3 0",
+          "output": "-1 -2 -3 0 0 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the rearranged array with single spaces between elements."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-07",
+      "title": "Check Whether an Array Is Sorted",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Compare every adjacent pair to verify non-decreasing order.",
+      "problem_statement": "Determine whether the array is sorted in non-decreasing order. Every element must be less than or equal to the next element. Equal adjacent elements are allowed.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print Sorted if the array satisfies the condition; otherwise print Not Sorted.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "5\n-3 0 0 7 12",
+        "6\n1 2 2 3 3 2"
+      ],
+      "sample_outputs": [
+        "Sorted",
+        "Not Sorted"
+      ],
+      "hints": [
+        "Loop i from 1 to N − 1 and compare a[i − 1] with a[i].",
+        "The array is not sorted as soon as a[i − 1] > a[i].",
+        "A one-element array is always sorted."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        boolean sorted = true;\n        for (int i = 1; i < n; i++) {\n            if (a[i - 1] > a[i]) {\n                sorted = false;\n                break;\n            }\n        }\n        if (sorted) {\n            System.out.println(\"Sorted\");\n        } else {\n            System.out.println(\"Not Sorted\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n-3 0 0 7 12",
+          "output": "Sorted",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "6\n1 2 2 3 3 2",
+          "output": "Not Sorted",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5",
+          "output": "Sorted",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n2 1",
+          "output": "Not Sorted",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n1 1 1 1",
+          "output": "Sorted",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1 2 3 5 4",
+          "output": "Not Sorted",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n-1000000000 0 1000000000",
+          "output": "Sorted",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n5 4 3 2 1",
+          "output": "Not Sorted",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print Sorted if the array satisfies the condition; otherwise print Not Sorted."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-08",
+      "title": "Find a Missing Number",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Easy",
+      "objective": "Find a missing value by comparing the expected sum of a range with the actual sum.",
+      "problem_statement": "The array contains N distinct integers selected from the inclusive range 0 through N. Exactly one integer from that range is missing. Find the missing integer. Every other value in the range appears exactly once.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the missing integer.",
+      "constraints": "1 ≤ N ≤ 10⁵\nEvery array element is between 0 and N, inclusive.\nIf using the arithmetic-sum formula, use long for the expected sum and the resulting difference.",
+      "sample_inputs": [
+        "5\n3 0 1 5 2",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "4",
+        "1"
+      ],
+      "hints": [
+        "The sum of 0 through N is N × (N + 1) / 2.",
+        "Compute it as a long: (long) n * (n + 1) / 2.",
+        "Subtract the sum of the array elements; the difference is the missing number."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long expected = (long) n * (n + 1) / 2;\n        long actual = 0;\n        for (int i = 0; i < n; i++) {\n            actual += a[i];\n        }\n        System.out.println(expected - actual);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n3 0 1 5 2",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n0 1 2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n4 3 2 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n0 1 2 3 4 6",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "10\n9 8 7 6 5 4 3 2 1 0",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n7 6 5 3 2 1 0",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the missing integer."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-09",
+      "title": "Merge Two Sorted Arrays",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Merge two sorted arrays in one pass using two indices.",
+      "problem_statement": "Given two arrays sorted in non-decreasing order, merge their elements into one sorted sequence. Preserve all duplicates. The result must contain every element from both input arrays.",
+      "input_format": "N on the first line, N sorted integers on the second line, M on the third line, and M sorted integers on the fourth line.",
+      "output_format": "Print the merged sequence in non-decreasing order, separated by single spaces.",
+      "constraints": "1 ≤ N, M ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "4\n1 5 5 9\n3\n2 5 10",
+        "1\n1\n1\n1"
+      ],
+      "sample_outputs": [
+        "1 2 5 5 5 9 10",
+        "1 1"
+      ],
+      "hints": [
+        "Keep index i for the first array and j for the second, both starting at 0.",
+        "While both have elements left, output the smaller of a[i] and b[j] and advance that index.",
+        "When one array runs out, output the rest of the other array."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int m = Integer.parseInt(sc.next());\n        int[] b = new int[m];\n        for (int k = 0; k < m; k++) {\n            b[k] = Integer.parseInt(sc.next());\n        }\n        StringBuilder out = new StringBuilder();\n        int i = 0;\n        int j = 0;\n        while (i < n || j < m) {\n            int next;\n            if (j >= m || (i < n && a[i] <= b[j])) {\n                next = a[i];\n                i++;\n            } else {\n                next = b[j];\n                j++;\n            }\n            if (out.length() > 0) {\n                out.append(\" \");\n            }\n            out.append(next);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 5 5 9\n3\n2 5 10",
+          "output": "1 2 5 5 5 9 10",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n1\n1\n1",
+          "output": "1 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n1 2 3\n3\n4 5 6",
+          "output": "1 2 3 4 5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n4 5 6\n2\n1 2",
+          "output": "1 2 4 5 6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n-5 -5\n3\n-5 0 5",
+          "output": "-5 -5 -5 0 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1000000000\n1\n-1000000000",
+          "output": "-1000000000 1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n1 3 5 7\n4\n2 4 6 8",
+          "output": "1 2 3 4 5 6 7 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n0 0\n2\n0 0",
+          "output": "0 0 0 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N sorted integers on the second line, M on the third line, and M sorted integers on the fourth line.",
+        "output_format": "Print the merged sequence in non-decreasing order, separated by single spaces."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-10",
+      "title": "Rotate an Array Right by K Positions",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Rotate an array in place in O(N) time using three reversals.",
+      "problem_statement": "Rotate an array to the right by K positions. Each right rotation moves the last element to the first position. If K is greater than N, only the equivalent number of rotations modulo N is needed.\n\nModify the array in place without creating a second array. Your solution must run in O(N) time; repeatedly shifting every element once per rotation is not sufficient. One suitable approach is to reverse the entire array, reverse its first K effective positions, and then reverse the remaining positions.",
+      "input_format": "N on the first line, N space-separated integers on the second line, and K on the third line.",
+      "output_format": "Print the rotated array with single spaces between elements.",
+      "constraints": "1 ≤ N ≤ 10⁵\n0 ≤ K ≤ 10⁹\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "5\n1 2 3 4 5\n7",
+        "1\n9\n1000000000"
+      ],
+      "sample_outputs": [
+        "4 5 1 2 3",
+        "9"
+      ],
+      "hints": [
+        "Reduce K first with k = k % n.",
+        "Write a helper static void reverse(int[] a, int from, int to) that swaps inward between two indices.",
+        "Reverse the whole array, then positions 0 to k − 1, then positions k to n − 1."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    static void reverse(int[] a, int from, int to) {\n        while (from < to) {\n            int temp = a[from];\n            a[from] = a[to];\n            a[to] = temp;\n            from++;\n            to--;\n        }\n    }\n\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int k = Integer.parseInt(sc.next()) % n;\n        reverse(a, 0, n - 1);\n        reverse(a, 0, k - 1);\n        reverse(a, k, n - 1);\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            if (i > 0) {\n                out.append(\" \");\n            }\n            out.append(a[i]);\n        }\n        System.out.println(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n1 2 3 4 5\n7",
+          "output": "4 5 1 2 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n9\n1000000000",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n1 2 3 4 5\n0",
+          "output": "1 2 3 4 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5\n5",
+          "output": "1 2 3 4 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 2 3 4 5\n1",
+          "output": "5 1 2 3 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n-1 0 1\n1000000000",
+          "output": "1 -1 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n1 2 3 4 5 6\n4",
+          "output": "3 4 5 6 1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\n7 8\n3",
+          "output": "8 7",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N space-separated integers on the second line, and K on the third line.",
+        "output_format": "Print the rotated array with single spaces between elements."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-11",
+      "title": "Range Sum Queries",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Precompute prefix sums so each range query is answered in constant time.",
+      "problem_statement": "Given an integer array and Q queries, each query specifies two zero-based indices L and R. For every query, calculate the sum of the elements from index L through index R, including both endpoints. Answer queries in the order given without modifying the array.",
+      "input_format": "N on the first line, N space-separated integers on the second line, Q on the third line, followed by Q lines containing L and R separated by a space.",
+      "output_format": "Print one sum per query, each on a separate line.",
+      "constraints": "1 ≤ N ≤ 10⁵\n1 ≤ Q ≤ 10⁵\n0 ≤ L ≤ R < N\n−10⁶ ≤ each element ≤ 10⁶\nUse long for sums.",
+      "sample_inputs": [
+        "5\n2 4 -1 6 3\n3\n0 2\n1 3\n2 4",
+        "1\n5\n1\n0 0"
+      ],
+      "sample_outputs": [
+        "5\n9\n8",
+        "5"
+      ],
+      "hints": [
+        "Summing each range with a loop takes up to 10¹⁰ steps in the worst case, which is too slow.",
+        "Build a long array prefix of length N + 1, where prefix[i + 1] = prefix[i] + a[i].",
+        "The sum from L to R is prefix[R + 1] − prefix[L]."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long[] prefix = new long[n + 1];\n        for (int i = 0; i < n; i++) {\n            prefix[i + 1] = prefix[i] + a[i];\n        }\n        int queries = Integer.parseInt(sc.next());\n        StringBuilder out = new StringBuilder();\n        for (int t = 0; t < queries; t++) {\n            int l = Integer.parseInt(sc.next());\n            int r = Integer.parseInt(sc.next());\n            out.append(prefix[r + 1] - prefix[l]).append(\"\\n\");\n        }\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 4 -1 6 3\n3\n0 2\n1 3\n2 4",
+          "output": "5\n9\n8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5\n1\n0 0",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n-1 -2 -3\n2\n0 2\n1 1",
+          "output": "-6\n-2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1000000 1000000 1000000 1000000\n1\n0 3",
+          "output": "4000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 2 3 4 5\n5\n0 0\n4 4\n0 4\n1 3\n2 2",
+          "output": "1\n5\n15\n9\n3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n-1000000 1000000\n2\n0 1\n1 1",
+          "output": "0\n1000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "6\n3 -3 3 -3 3 -3\n3\n0 5\n0 4\n2 3",
+          "output": "0\n3\n0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n0 0 0\n1\n0 2",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N space-separated integers on the second line, Q on the third line, followed by Q lines containing L and R separated by a space.",
+        "output_format": "Print one sum per query, each on a separate line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-12",
+      "title": "Maximum Sum of a Fixed-Length Window",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Slide a fixed-size window across an array, updating its sum in constant time.",
+      "problem_statement": "Given an integer array and an integer K, find the maximum sum among all contiguous subarrays containing exactly K elements. A contiguous subarray uses consecutive positions in the original array. Negative values are allowed.",
+      "input_format": "N on the first line, N space-separated integers on the second line, and K on the third line.",
+      "output_format": "Print the maximum window sum. Use long for sums.",
+      "constraints": "1 ≤ K ≤ N ≤ 10⁵\n−10⁶ ≤ each element ≤ 10⁶",
+      "sample_inputs": [
+        "6\n2 -1 5 1 -3 4\n3",
+        "1\n-5\n1"
+      ],
+      "sample_outputs": [
+        "6",
+        "-5"
+      ],
+      "hints": [
+        "Compute the sum of the first K elements.",
+        "To slide the window one step, add a[i] and subtract a[i − K].",
+        "Start the best value at the first window's sum, not at 0, because every window can be negative."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int k = Integer.parseInt(sc.next());\n        long window = 0;\n        for (int i = 0; i < k; i++) {\n            window += a[i];\n        }\n        long best = window;\n        for (int i = k; i < n; i++) {\n            window += a[i] - a[i - k];\n            if (window > best) {\n                best = window;\n            }\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n2 -1 5 1 -3 4\n3",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n-5\n1",
+          "output": "-5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n-1 -2 -3 -4 -5\n2",
+          "output": "-3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1 2 3 4\n4",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1000000 1000000 1000000 1000000 1000000\n5",
+          "output": "5000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n5 -10 5 5 -10 5\n2",
+          "output": "10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n0 0 0\n1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n1 -1 1 -1 1 -1 1\n3",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N space-separated integers on the second line, and K on the third line.",
+        "output_format": "Print the maximum window sum. Use long for sums."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-13",
+      "title": "Longest Strictly Increasing Contiguous Segment",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Track the current and best run lengths while comparing adjacent elements.",
+      "problem_statement": "Find the length of the longest contiguous segment in which every element is strictly greater than the preceding element. Elements in a segment must occupy consecutive positions in the original array. Equal adjacent values break the increasing segment.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the maximum segment length.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "8\n1 2 4 4 5 7 8 3",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "4",
+        "1"
+      ],
+      "hints": [
+        "Start both current and best at 1.",
+        "If a[i] > a[i − 1], increase current; otherwise reset it to 1.",
+        "Update best after every step."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int current = 1;\n        int best = 1;\n        for (int i = 1; i < n; i++) {\n            if (a[i] > a[i - 1]) {\n                current++;\n            } else {\n                current = 1;\n            }\n            if (current > best) {\n                best = current;\n            }\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8\n1 2 4 4 5 7 8 3",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "5\n5 4 3 2 1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5",
+          "output": "5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n2 2 2 2",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n1 3 2 4 6 8",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n-1000000000 0 1000000000",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n1 2 1 2 3 1 2",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the maximum segment length."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-14",
+      "title": "First Repeating Element",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "For each element in order, search the rest of the array for a later copy.",
+      "problem_statement": "Find the element whose first occurrence has the smallest index among all elements that appear at least twice. Print the value, not its index. If no element repeats, print No Repeating Element.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the first repeating element according to the definition, or No Repeating Element.",
+      "constraints": "1 ≤ N ≤ 2000\n−10⁹ ≤ each element ≤ 10⁹\nDo not use collections or sets.",
+      "sample_inputs": [
+        "7\n10 5 3 4 3 5 6",
+        "4\n1 2 3 4"
+      ],
+      "sample_outputs": [
+        "5",
+        "No Repeating Element"
+      ],
+      "hints": [
+        "Check indices i from left to right.",
+        "For each i, look for any j > i with a[j] == a[i].",
+        "The first i that has a later copy gives the answer, so stop searching there."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        boolean found = false;\n        int answer = 0;\n        for (int i = 0; i < n && !found; i++) {\n            for (int j = i + 1; j < n; j++) {\n                if (a[j] == a[i]) {\n                    answer = a[i];\n                    found = true;\n                    break;\n                }\n            }\n        }\n        if (found) {\n            System.out.println(answer);\n        } else {\n            System.out.println(\"No Repeating Element\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n10 5 3 4 3 5 6",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "4\n1 2 3 4",
+          "output": "No Repeating Element",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n7 7",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "6\n1 2 3 3 2 1",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n4 5 6 5 4",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n-1000000000 5 -1000000000",
+          "output": "-1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n0",
+          "output": "No Repeating Element",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n9 8 7 8 9 7 7",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the first repeating element according to the definition, or No Repeating Element."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-15",
+      "title": "Equilibrium Index",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Use a total sum and a running left sum to test every index in one pass.",
+      "problem_statement": "Find the smallest zero-based index where the sum of all elements strictly to the left equals the sum of all elements strictly to the right. The element at the candidate index is excluded from both sums. If no index satisfies the condition, print Not Found.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the smallest qualifying index, or Not Found.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁶ ≤ each element ≤ 10⁶\nUse long for the total, left, and right sums.",
+      "sample_inputs": [
+        "5\n1 3 5 2 2",
+        "3\n1 2 3"
+      ],
+      "sample_outputs": [
+        "2",
+        "Not Found"
+      ],
+      "hints": [
+        "Compute the total of the whole array first.",
+        "Walking left to right, the right sum at index i is total − left − a[i].",
+        "Add a[i] to left only after checking index i."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long total = 0;\n        for (int i = 0; i < n; i++) {\n            total += a[i];\n        }\n        long left = 0;\n        int answer = -1;\n        for (int i = 0; i < n; i++) {\n            long right = total - left - a[i];\n            if (left == right) {\n                answer = i;\n                break;\n            }\n            left += a[i];\n        }\n        if (answer == -1) {\n            System.out.println(\"Not Found\");\n        } else {\n            System.out.println(answer);\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n1 3 5 2 2",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n1 2 3",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n0 0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n-1 3 -4 5",
+          "output": "Not Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1000000 1000000 1000000 1000000 1000000",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 5",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n2 -2 7 1 -1 0",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the smallest qualifying index, or Not Found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-16",
+      "title": "Pair With a Given Sum in a Sorted Array",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Use two pointers moving inward to search a sorted array for a target pair sum.",
+      "problem_statement": "Given an array sorted in non-decreasing order and a target T, determine whether two elements at different indices sum to T. Each element may be used at most once. Print Found if such a pair exists; otherwise, print Not Found.",
+      "input_format": "N on the first line, N sorted integers on the second line, and T on the third line.",
+      "output_format": "Print Found or Not Found.",
+      "constraints": "1 ≤ N ≤ 10⁵\n−10⁹ ≤ each element and T ≤ 10⁹\nCalculate the pair sum as a long to avoid integer overflow.",
+      "sample_inputs": [
+        "6\n-4 -1 2 4 7 11\n6",
+        "1\n5\n10"
+      ],
+      "sample_outputs": [
+        "Found",
+        "Not Found"
+      ],
+      "hints": [
+        "Start one pointer at the left end and one at the right end.",
+        "If the pair sum is too small, move the left pointer right; if too large, move the right pointer left.",
+        "Compute the sum as (long) a[left] + a[right], and stop when the pointers meet."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long t = Long.parseLong(sc.next());\n        int left = 0;\n        int right = n - 1;\n        boolean found = false;\n        while (left < right) {\n            long sum = (long) a[left] + a[right];\n            if (sum == t) {\n                found = true;\n                break;\n            } else if (sum < t) {\n                left++;\n            } else {\n                right--;\n            }\n        }\n        if (found) {\n            System.out.println(\"Found\");\n        } else {\n            System.out.println(\"Not Found\");\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n-4 -1 2 4 7 11\n6",
+          "output": "Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5\n10",
+          "output": "Not Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n5 5\n10",
+          "output": "Found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1 2 3\n7",
+          "output": "Not Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n-3 -1 0 2\n-4",
+          "output": "Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n1000000000 1000000000\n-294967296",
+          "output": "Not Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n1 2 3 4 5\n9",
+          "output": "Found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n-1000000000 0 1000000000\n0",
+          "output": "Found",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N sorted integers on the second line, and T on the third line.",
+        "output_format": "Print Found or Not Found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-17",
+      "title": "Maximum Sum Contiguous Subarray",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Medium",
+      "objective": "Apply Kadane's algorithm to find the best subarray sum in linear time.",
+      "problem_statement": "Given an integer array that may contain positive values, negative values, and zeros, find the maximum sum of any non-empty contiguous subarray. You must select at least one element, even when every element is negative.\n\nYour solution must run in O(N) time. Use long for running and maximum sums.",
+      "input_format": "N on the first line and N space-separated integers on the second line.",
+      "output_format": "Print the maximum contiguous-subarray sum.",
+      "constraints": "1 ≤ N ≤ 200,000\n−10⁹ ≤ each element ≤ 10⁹",
+      "sample_inputs": [
+        "8\n-2 -3 4 -1 -2 1 5 -3",
+        "1\n-5"
+      ],
+      "sample_outputs": [
+        "7",
+        "-5"
+      ],
+      "hints": [
+        "Track the best sum of a subarray ending at the current index.",
+        "At each element, either extend the previous subarray or start fresh: current = max(a[i], current + a[i]).",
+        "Initialize both current and best to a[0], not 0, so all-negative arrays work."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long current = a[0];\n        long best = a[0];\n        for (int i = 1; i < n; i++) {\n            current = Math.max(a[i], current + a[i]);\n            best = Math.max(best, current);\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8\n-2 -3 4 -1 -2 1 5 -3",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n-5",
+          "output": "-5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n-3 -1 -2",
+          "output": "-1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n1 2 3 4 5",
+          "output": "15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n1000000000 1000000000 1000000000 1000000000",
+          "output": "4000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n5 -9 6 -2 3 -10",
+          "output": "7",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 0",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n-1000000000 -1000000000 1 -1000000000 -1000000000",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated integers on the second line.",
+        "output_format": "Print the maximum contiguous-subarray sum."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-18",
+      "title": "Count Subarrays With a Target Sum",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Hard",
+      "objective": "Enumerate every subarray with a running sum so that each is checked in constant time.",
+      "problem_statement": "Given an integer array and a target T, count all non-empty contiguous subarrays whose elements sum exactly to T. Two subarrays count as different when their starting or ending indices differ, even if their values are identical.\n\nThe array may contain negative numbers, positive numbers, and zeros. Do not use collections, maps, or sets. Use nested loops and running sums to examine every possible starting position and extend each subarray to the right. This approach takes O(N²) time.",
+      "input_format": "N on the first line, N space-separated integers on the second line, and T on the third line.",
+      "output_format": "Print the number of qualifying subarrays. Use long for the count.",
+      "constraints": "1 ≤ N ≤ 2000\n−10⁶ ≤ each element and T ≤ 10⁶",
+      "sample_inputs": [
+        "5\n1 -1 0 2 -2\n0",
+        "1\n5\n5"
+      ],
+      "sample_outputs": [
+        "6",
+        "1"
+      ],
+      "hints": [
+        "The outer loop chooses a starting index; reset the running sum to 0 for each start.",
+        "The inner loop extends the end index and adds one element at a time.",
+        "Do not stop when the sum equals T: with negative values and zeros, longer subarrays can match again."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        long t = Long.parseLong(sc.next());\n        long count = 0;\n        for (int start = 0; start < n; start++) {\n            long sum = 0;\n            for (int end = start; end < n; end++) {\n                sum += a[end];\n                if (sum == t) {\n                    count++;\n                }\n            }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n1 -1 0 2 -2\n0",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5\n5",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n0 0 0\n0",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1 2 3 4\n100",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 1 1 1 1\n2",
+          "output": "4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n3 -3 3 -3 3 -3\n0",
+          "output": "9",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\n1000000 -1000000 1000000 -1000000\n1000000",
+          "output": "3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n-1 -1 -1\n-2",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line, N space-separated integers on the second line, and T on the third line.",
+        "output_format": "Print the number of qualifying subarrays. Use long for the count."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-19",
+      "title": "Longest Subarray With Equal Zeros and Ones",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Hard",
+      "objective": "Track the earliest index of each prefix sum in an offset array to find the longest zero-sum span.",
+      "problem_statement": "Given an array containing only 0 and 1, find the length of the longest non-empty contiguous subarray containing an equal number of zeros and ones. If no such subarray exists, print 0.\n\nYour solution must run in O(N) time and must not use collections, maps, or sets. A useful approach is to treat each 0 as −1 and each 1 as +1. A subarray contains equal numbers of zeros and ones precisely when its transformed sum is zero. Use prefix sums and an integer array with an offset to track the earliest occurrence of each prefix sum.",
+      "input_format": "N on the first line and N space-separated binary values on the second line.",
+      "output_format": "Print the maximum length.",
+      "constraints": "1 ≤ N ≤ 200,000\nEvery element is either 0 or 1.",
+      "sample_inputs": [
+        "7\n0 1 0 0 1 1 0",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "6",
+        "0"
+      ],
+      "hints": [
+        "Prefix sums range from −N to N, so an array of size 2N + 1 indexed by sum + N can store the earliest index of each sum.",
+        "Fill that array with −2 to mean \"not seen\", and record that sum 0 is seen at index −1, before any element.",
+        "When a prefix sum repeats, the elements between its earliest index and the current index balance out; compare that length with the best."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int[] first = new int[2 * n + 1];\n        for (int i = 0; i < first.length; i++) {\n            first[i] = -2;\n        }\n        first[n] = -1;\n        int sum = 0;\n        int best = 0;\n        for (int i = 0; i < n; i++) {\n            if (a[i] == 1) {\n                sum++;\n            } else {\n                sum--;\n            }\n            if (first[sum + n] == -2) {\n                first[sum + n] = i;\n            } else if (i - first[sum + n] > best) {\n                best = i - first[sum + n];\n            }\n        }\n        System.out.println(best);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "7\n0 1 0 0 1 1 0",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n0 1",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n1 1 1 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "6\n0 0 1 1 0 1",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1 0 1 1 1",
+          "output": "2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "8\n0 1 0 1 0 1 0 1",
+          "output": "8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "7\n1 1 0 0 0 1 1",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated binary values on the second line.",
+        "output_format": "Print the maximum length."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M9-20",
+      "title": "Trapping Rainwater",
+      "module": "Module 09: Java Arrays",
+      "difficulty": "Hard",
+      "objective": "Use two pointers with running maxima to total trapped water in O(N) time and O(1) extra space.",
+      "problem_statement": "An array represents vertical bars of width 1, with each array value giving a bar's non-negative height. After rainfall, water may collect between the bars. At each position, the water level is limited by the tallest bar on its left and the tallest bar on its right, including the current bar when determining those maxima.\n\nCalculate the total number of water units trapped across all positions. Water cannot be trapped outside the first and last bars. Your solution must run in O(N) time and use O(1) additional space, excluding the input array. Use long for the total because the answer can exceed the Java int range.",
+      "input_format": "N on the first line and N space-separated non-negative heights on the second line.",
+      "output_format": "Print the total trapped water.",
+      "constraints": "1 ≤ N ≤ 200,000\n0 ≤ each height ≤ 10⁹",
+      "sample_inputs": [
+        "6\n3 0 2 0 4 1",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "7",
+        "0"
+      ],
+      "hints": [
+        "Move two pointers inward from both ends, keeping leftMax and rightMax.",
+        "Always move the side with the smaller current height: its water level is limited by its own side's maximum.",
+        "At the moved position, add max − height to the total, where max is that side's running maximum."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) {\n            a[i] = Integer.parseInt(sc.next());\n        }\n        int left = 0;\n        int right = n - 1;\n        long leftMax = 0;\n        long rightMax = 0;\n        long total = 0;\n        while (left < right) {\n            if (a[left] <= a[right]) {\n                leftMax = Math.max(leftMax, a[left]);\n                total += leftMax - a[left];\n                left++;\n            } else {\n                rightMax = Math.max(rightMax, a[right]);\n                total += rightMax - a[right];\n                right--;\n            }\n        }\n        System.out.println(total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n3 0 2 0 4 1",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n5 5",
+          "output": "0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1000000000 0 1000000000",
+          "output": "1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n0 1 0 2 0",
+          "output": "1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "12\n0 1 0 2 1 0 1 3 2 1 2 1",
+          "output": "6",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\n5 4 3 2 1",
+          "output": "0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "5\n1000000000 0 0 0 1000000000",
+          "output": "3000000000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 09: Java Arrays",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "N on the first line and N space-separated non-negative heights on the second line.",
+        "output_format": "Print the total trapped water."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M9_Java_Arrays.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

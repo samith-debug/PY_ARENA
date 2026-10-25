@@ -1,0 +1,648 @@
+question_id,title,module,difficulty,objective,execution_mode,time_complexity,space_complexity,description,input_format,output_format,constraints,sample_input_1,sample_output_1,sample_input_2,sample_output_2,hint_1,hint_2,hint_3,reference_solution,test_cases
+JP-M10-01,Count Characters in a String,Module 10: Java Strings,Easy,"Read a whole line, including spaces, and report its length.",stdin/stdout,O(1),O(1),"Given a string S, count every character in it, including letters, digits, spaces, and punctuation. Do not count the newline that terminates the input line. If S is empty, the answer is 0.",One line containing S; it may be empty.,Print the length of S.,"0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",Java Programming!,17,,0,"Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",s.length() returns the number of characters in the string.,"nextLine() does not include the line's newline, so no adjustment is needed.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        System.out.println(s.length());
+    }
+}","[{""input"": ""Java Programming!"", ""output"": ""17"", ""is_hidden"": false}, {""input"": """", ""output"": ""0"", ""is_hidden"": false}, {""input"": "" "", ""output"": ""1"", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""   leading"", ""output"": ""10"", ""is_hidden"": true}, {""input"": ""Hello, World! 123"", ""output"": ""17"", ""is_hidden"": true}, {""input"": ""abcdefghijklmnopqrstuvwxyz0123456789"", ""output"": ""36"", ""is_hidden"": true}, {""input"": ""!@#$%^&*()"", ""output"": ""10"", ""is_hidden"": true}]"
+JP-M10-02,Count Vowels and Consonants,Module 10: Java Strings,Easy,Classify each character with char comparisons.,stdin/stdout,O(1),O(1),"Given a string S, count its English vowels and consonants. The vowels are A, E, I, O, U in uppercase or lowercase. Count only the 52 uppercase and lowercase English letters. Ignore spaces, digits, punctuation, and all other characters.",One line containing S; it may be empty.,Print two integers separated by one space: vowel count followed by consonant count.,"0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",Java 123!,2 2,,0 0,Loop over the string with s.charAt(i).,A character is an English letter when it lies between 'a' and 'z' or between 'A' and 'Z'.,Check for a vowel first; any other English letter is a consonant.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    static boolean isVowel(char c) {
+        return c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+            || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int vowels = 0;
+        int consonants = 0;
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            boolean letter = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+            if (letter) {
+                if (isVowel(c)) {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            }
+        }
+        System.out.println(vowels + "" "" + consonants);
+    }
+}","[{""input"": ""Java 123!"", ""output"": ""2 2"", ""is_hidden"": false}, {""input"": """", ""output"": ""0 0"", ""is_hidden"": false}, {""input"": ""AEIOUaeiou"", ""output"": ""10 0"", ""is_hidden"": false}, {""input"": ""BCDFG xyz"", ""output"": ""0 8"", ""is_hidden"": true}, {""input"": ""12345 !?"", ""output"": ""0 0"", ""is_hidden"": true}, {""input"": ""Hello World"", ""output"": ""3 7"", ""is_hidden"": true}, {""input"": ""Programming is FUN"", ""output"": ""5 11"", ""is_hidden"": true}, {""input"": ""y Y"", ""output"": ""0 2"", ""is_hidden"": true}]"
+JP-M10-03,Count a Specific Character,Module 10: Java Strings,Easy,Read a character that may be a space and count its occurrences.,stdin/stdout,O(1),O(1),"Given a string S and a character C, count the occurrences of C in S. Matching is case-sensitive. C may be a letter, digit, punctuation mark, or ordinary space.
+
+Implementation note: To read C when it is a space, read the entire line and access its first character. Do not use next().charAt(0), because next() skips whitespace.","Line 1: S, possibly empty.
+Line 2: exactly one character C. This line may contain a single space.",Print the number of occurrences of C in S.,"0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).","banana
+a",3,"banana
+A",0,Read both lines with nextLine().,C is the first character of the second line: readLine(sc).charAt(0).,Compare each character of S with C using ==.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        char c = readLine(sc).charAt(0);
+        int count = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == c) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}","[{""input"": ""banana\na"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""banana\nA"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""\na"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""a b c d\n "", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""Mississippi\ns"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""...!\n."", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""aaaa\na"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""Hello World\no"", ""output"": ""2"", ""is_hidden"": true}]"
+JP-M10-04,Toggle Letter Case,Module 10: Java Strings,Easy,Change letter case with char arithmetic instead of library methods.,stdin/stdout,O(1),O(1),"Given a string S, change every lowercase English letter to uppercase and every uppercase English letter to lowercase. Leave all other characters unchanged. Do not use built-in case-conversion methods.",One line containing S; it may be empty.,Print the converted string on one line.,"0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",Java 123!,jAVA 123!,,,Build the result with a StringBuilder.,Lowercase and uppercase codes differ by 32: (char) (c - 32) turns 'a' into 'A'.,Append every non-letter character unchanged.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (c >= 'a' && c <= 'z') {
+                out.append((char) (c - 32));
+            } else if (c >= 'A' && c <= 'Z') {
+                out.append((char) (c + 32));
+            } else {
+                out.append(c);
+            }
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""Java 123!"", ""output"": ""jAVA 123!"", ""is_hidden"": false}, {""input"": """", ""output"": """", ""is_hidden"": false}, {""input"": ""ABC"", ""output"": ""abc"", ""is_hidden"": false}, {""input"": ""abc"", ""output"": ""ABC"", ""is_hidden"": true}, {""input"": ""Hello, World!"", ""output"": ""hELLO, wORLD!"", ""is_hidden"": true}, {""input"": ""123 !?"", ""output"": ""123 !?"", ""is_hidden"": true}, {""input"": ""jAvA"", ""output"": ""JaVa"", ""is_hidden"": true}, {""input"": ""MiXeD CaSe 42"", ""output"": ""mIxEd cAsE 42"", ""is_hidden"": true}]"
+JP-M10-05,Reverse a String,Module 10: Java Strings,Easy,Build a reversed string by reading characters from the end.,stdin/stdout,O(1),O(1),"Given a string S, print its characters in reverse order. Include every space and punctuation mark. Do not remove, replace, or rearrange characters beyond reversing their order. Do not use a built-in reverse method.",One line containing S; it may be empty.,"Print the reversed string. If S is empty, print an empty line.","0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",hello,olleh,,,"Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",Loop from index s.length() − 1 down to 0.,Append each character to a StringBuilder instead of using StringBuilder.reverse().,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        StringBuilder out = new StringBuilder();
+        for (int i = s.length() - 1; i >= 0; i--) {
+            out.append(s.charAt(i));
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""hello"", ""output"": ""olleh"", ""is_hidden"": false}, {""input"": """", ""output"": """", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""a"", ""is_hidden"": false}, {""input"": ""ab "", ""output"": "" ba"", ""is_hidden"": true}, {""input"": ""racecar"", ""output"": ""racecar"", ""is_hidden"": true}, {""input"": ""Hello, World!"", ""output"": ""!dlroW ,olleH"", ""is_hidden"": true}, {""input"": ""12 34"", ""output"": ""43 21"", ""is_hidden"": true}, {""input"": ""A man"", ""output"": ""nam A"", ""is_hidden"": true}]"
+JP-M10-06,Check for a Palindrome,Module 10: Java Strings,Easy,Compare characters from both ends moving inward.,stdin/stdout,O(1),O(1),"A string is a palindrome if it reads identically from left to right and right to left. Given S, determine whether it is a palindrome using exact, case-sensitive comparison. Spaces and punctuation are significant; do not remove or ignore them. An empty string is a palindrome.",One line containing S; it may be empty.,"Print YES if S is a palindrome; otherwise, print NO.","0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",madam,YES,Madam,NO,"Use two indices, one at each end.","Compare s.charAt(left) with s.charAt(right), then move both inward.","If the loop finishes without a mismatch, the string is a palindrome; this also covers the empty string.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        boolean palindrome = true;
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                palindrome = false;
+                break;
+            }
+            left++;
+            right--;
+        }
+        System.out.println(palindrome ? ""YES"" : ""NO"");
+    }
+}","[{""input"": ""madam"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""Madam"", ""output"": ""NO"", ""is_hidden"": false}, {""input"": """", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""ab"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""abba"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""a b a"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""a ba"", ""output"": ""NO"", ""is_hidden"": true}]"
+JP-M10-07,Remove All Ordinary Spaces,Module 10: Java Strings,Easy,"Filter characters into a StringBuilder, skipping spaces.",stdin/stdout,O(1),O(1),"Given a string S, remove every ordinary space character (ASCII 32). Preserve the order of every remaining character, including punctuation and digits.",One line containing S; it may be empty.,"Print the resulting string. If every character is a space or S is empty, print an empty line.","0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",Java is fun,Javaisfun,,,"Read the line with sc.nextLine(), not sc.next(), so spaces are kept and an empty line is read correctly.",Append each character to a StringBuilder unless it equals ' '.,Do not use replace(); building the result yourself is the point of the exercise.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != ' ') {
+                out.append(s.charAt(i));
+            }
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""Java is fun"", ""output"": ""Javaisfun"", ""is_hidden"": false}, {""input"": """", ""output"": """", ""is_hidden"": false}, {""input"": ""   "", ""output"": """", ""is_hidden"": false}, {""input"": ""nospaces"", ""output"": ""nospaces"", ""is_hidden"": true}, {""input"": "" a b c "", ""output"": ""abc"", ""is_hidden"": true}, {""input"": ""Hello,  World!"", ""output"": ""Hello,World!"", ""is_hidden"": true}, {""input"": ""1 2 3"", ""output"": ""123"", ""is_hidden"": true}, {""input"": ""  x  "", ""output"": ""x"", ""is_hidden"": true}]"
+JP-M10-08,Replace a Character,Module 10: Java Strings,Easy,"Rebuild a string, substituting one character for another.",stdin/stdout,O(1),O(1),"Given S and two characters A and B, replace every occurrence of A in S with B. Matching is case-sensitive. If A equals B, the string remains unchanged. A and B may be ordinary spaces. Do not use a built-in replacement method.
+
+Implementation note: Read A and B as complete lines and access their first characters. Do not use next().charAt(0) when a character can be a space.","Line 1: S; it may be empty.
+Line 2: exactly one character A.
+Line 3: exactly one character B.
+Each character input line may contain a single space.",Print the modified string on one line.,"0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).","banana
+a
+o",bonono,"banana
+b
+b",banana,"Read all three lines with nextLine(), and take charAt(0) of lines 2 and 3.",Append B whenever the current character equals A; otherwise append the character itself.,Use a StringBuilder to collect the result.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        char a = readLine(sc).charAt(0);
+        char b = readLine(sc).charAt(0);
+        StringBuilder out = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            out.append(c == a ? b : c);
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""banana\na\no"", ""output"": ""bonono"", ""is_hidden"": false}, {""input"": ""banana\nb\nb"", ""output"": ""banana"", ""is_hidden"": false}, {""input"": ""a b c\n \n_"", ""output"": ""a_b_c"", ""is_hidden"": false}, {""input"": ""hello world\no\n "", ""output"": ""hell  w rld"", ""is_hidden"": true}, {""input"": ""\na\nb"", ""output"": """", ""is_hidden"": true}, {""input"": ""AaAa\na\nA"", ""output"": ""AAAA"", ""is_hidden"": true}, {""input"": ""x\ny\nz"", ""output"": ""x"", ""is_hidden"": true}, {""input"": ""Mississippi\ns\nS"", ""output"": ""MiSSiSSippi"", ""is_hidden"": true}]"
+JP-M10-09,Count Words in a Sentence,Module 10: Java Strings,Medium,Count words by detecting where each word begins.,stdin/stdout,O(1),O(1),"A word is a maximal sequence of characters that are not ordinary spaces. Given S, count its words. One or more consecutive spaces separate words. Leading and trailing spaces are allowed and do not count as words. An empty line or a line containing only spaces has zero words.",One line containing S; it may be empty.,Print the number of words.,"0 ≤ length of S ≤ 2000
+All characters are printable ASCII (codes 32–126).",  Java   is fun  ,3,,0,A word starts at a non-space character that is either at index 0 or follows a space.,Count those starting positions in one pass.,"If you use split("" +""), note that leading spaces produce an empty first element, which must not be counted.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int words = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != ' ' && (i == 0 || s.charAt(i - 1) == ' ')) {
+                words++;
+            }
+        }
+        System.out.println(words);
+    }
+}","[{""input"": ""  Java   is fun  "", ""output"": ""3"", ""is_hidden"": false}, {""input"": """", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""     "", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""Hello"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""one two three four"", ""output"": ""4"", ""is_hidden"": true}, {""input"": "" a"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""a b  c   d"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""Hello,world! and   more"", ""output"": ""3"", ""is_hidden"": true}]"
+JP-M10-10,Run-Length Encoding,Module 10: Java Strings,Medium,Group consecutive identical characters and output each group's character and length.,stdin/stdout,O(1),O(1),"A storage system compresses text with run-length encoding. Replace each maximal run of identical consecutive characters with the character followed by the run length, written in decimal. A character that is not repeated gets a count of 1. Matching is case-sensitive, and spaces are ordinary characters.",One line containing S; it may be empty.,"Print the encoded string. If S is empty, print an empty line.","0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",aaabcc,a3b1c2,,,"Walk through the string, counting how many times the current character repeats in a row.","When the next character differs, or the string ends, append the character and its count.","Counts can have more than one digit, so append the int itself, for example a12.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        StringBuilder out = new StringBuilder();
+        int i = 0;
+        while (i < s.length()) {
+            char c = s.charAt(i);
+            int run = 0;
+            while (i < s.length() && s.charAt(i) == c) {
+                run++;
+                i++;
+            }
+            out.append(c).append(run);
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""aaabcc"", ""output"": ""a3b1c2"", ""is_hidden"": false}, {""input"": """", ""output"": """", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""a1"", ""is_hidden"": false}, {""input"": ""abc"", ""output"": ""a1b1c1"", ""is_hidden"": true}, {""input"": ""aaaaaaaaaaaa"", ""output"": ""a12"", ""is_hidden"": true}, {""input"": ""aAaA"", ""output"": ""a1A1a1A1"", ""is_hidden"": true}, {""input"": ""  xx"", ""output"": "" 2x2"", ""is_hidden"": true}, {""input"": ""zzzz  yy"", ""output"": ""z4 2y2"", ""is_hidden"": true}]"
+JP-M10-11,Find the First Non-Repeating Character,Module 10: Java Strings,Medium,"Count character frequencies in an array, then scan the string again in order.",stdin/stdout,O(1),O(1),"Given S, find the first character that appears exactly once in the entire string. Matching is case-sensitive, and spaces and punctuation count as characters. If no character appears exactly once, print NONE.",One line containing S; it may be empty.,"Print the first non-repeating character, or NONE if none exists.","0 ≤ length of S ≤ 1000
+All characters are printable ASCII (codes 32–126).",swiss,w,aabb,NONE,Use an int array of size 128 indexed by character code to count every character.,"Then loop through the string again, from the start.",The first character whose count is 1 is the answer.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int[] freq = new int[128];
+        for (int i = 0; i < s.length(); i++) {
+            freq[s.charAt(i)]++;
+        }
+        String answer = ""NONE"";
+        for (int i = 0; i < s.length(); i++) {
+            if (freq[s.charAt(i)] == 1) {
+                answer = String.valueOf(s.charAt(i));
+                break;
+            }
+        }
+        System.out.println(answer);
+    }
+}","[{""input"": ""swiss"", ""output"": ""w"", ""is_hidden"": false}, {""input"": ""aabb"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": """", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""x"", ""output"": ""x"", ""is_hidden"": true}, {""input"": ""aAbB"", ""output"": ""a"", ""is_hidden"": true}, {""input"": ""  a b"", ""output"": ""a"", ""is_hidden"": true}, {""input"": ""stress"", ""output"": ""t"", ""is_hidden"": true}, {""input"": ""abcabcd"", ""output"": ""d"", ""is_hidden"": true}]"
+JP-M10-12,Check Whether Two Strings Are Anagrams,Module 10: Java Strings,Medium,Compare two strings' character frequencies with a counting array.,stdin/stdout,O(1),O(1),"Two strings are anagrams if they contain exactly the same characters with exactly the same frequencies, regardless of order. Given A and B, determine whether they are anagrams. Matching is case-sensitive. Spaces and punctuation count as characters and must match in frequency too.","Line 1: string A; it may be empty.
+Line 2: string B; it may be empty.","Print YES if A and B are anagrams; otherwise, print NO.","0 ≤ length of A, length of B ≤ 1000
+All characters are printable ASCII (codes 32–126).","listen
+silent",YES,"Listen
+silent",NO,Strings of different lengths can never be anagrams.,Add 1 to a frequency array for each character of A and subtract 1 for each character of B.,The strings are anagrams exactly when every count ends at 0.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String a = readLine(sc);
+        String b = readLine(sc);
+        boolean anagram = a.length() == b.length();
+        if (anagram) {
+            int[] freq = new int[128];
+            for (int i = 0; i < a.length(); i++) {
+                freq[a.charAt(i)]++;
+                freq[b.charAt(i)]--;
+            }
+            for (int i = 0; i < 128; i++) {
+                if (freq[i] != 0) {
+                    anagram = false;
+                    break;
+                }
+            }
+        }
+        System.out.println(anagram ? ""YES"" : ""NO"");
+    }
+}","[{""input"": ""listen\nsilent"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""Listen\nsilent"", ""output"": ""NO"", ""is_hidden"": false}, {""input"": ""\n"", ""output"": ""YES"", ""is_hidden"": false}, {""input"": ""abc\nab"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""a b\nb a"", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""a b\nab "", ""output"": ""YES"", ""is_hidden"": true}, {""input"": ""aab\nabb"", ""output"": ""NO"", ""is_hidden"": true}, {""input"": ""dormitory\ndirtyroom"", ""output"": ""YES"", ""is_hidden"": true}]"
+JP-M10-13,Find the First Occurrence of a Substring,Module 10: Java Strings,Medium,Implement substring search by comparing the pattern at each starting position.,stdin/stdout,O(1),O(1),"Given text T and pattern P, find the smallest zero-based index where P occurs as a contiguous substring of T. If P is empty, return index 0. If P is non-empty but does not occur in T, return -1. Do not use indexOf() or contains().","Line 1: T; it may be empty.
+Line 2: P; it may be empty.",Print the smallest matching index or -1.,"0 ≤ length of T ≤ 2000
+0 ≤ length of P ≤ 2000
+All characters are printable ASCII (codes 32–126).","programming
+gram",3,"abc
+",0,Try every start index from 0 to T.length() − P.length().,"At each start, compare P character by character and stop at the first mismatch.","If P is longer than T, the loop never runs, so the answer is −1; an empty P matches at index 0.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    static boolean matchesAt(String t, String p, int start) {
+        for (int j = 0; j < p.length(); j++) {
+            if (t.charAt(start + j) != p.charAt(j)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String t = readLine(sc);
+        String p = readLine(sc);
+        int answer = -1;
+        for (int start = 0; start + p.length() <= t.length(); start++) {
+            if (matchesAt(t, p, start)) {
+                answer = start;
+                break;
+            }
+        }
+        System.out.println(answer);
+    }
+}","[{""input"": ""programming\ngram"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""abc\n"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""\n"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""\na"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""abc\nabcd"", ""output"": ""-1"", ""is_hidden"": true}, {""input"": ""aaaa\naa"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""hello world\no w"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""abcabd\nabd"", ""output"": ""3"", ""is_hidden"": true}]"
+JP-M10-14,Count Substring Occurrences,Module 10: Java Strings,Medium,"Count every starting position where a pattern matches, including overlapping matches.",stdin/stdout,O(1),O(1),"Given text T and a non-empty pattern P, count the number of starting positions at which P matches a contiguous substring of T. Overlapping occurrences count separately. For example, aa occurs three times in aaaa, starting at indices 0, 1, and 2.","Line 1: T; it may be empty.
+Line 2: non-empty P.",Print the total number of occurrences. Print 0 if P is longer than T.,"0 ≤ length of T ≤ 2000
+1 ≤ length of P ≤ 2000
+All characters are printable ASCII (codes 32–126).","aaaa
+aa",3,"
+a",0,Check every start index from 0 to T.length() − P.length().,"After a match, move to the next start index, not past the end of the match, so overlaps are counted.",A helper method that tests a match at one position keeps the loop simple.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    static boolean matchesAt(String t, String p, int start) {
+        for (int j = 0; j < p.length(); j++) {
+            if (t.charAt(start + j) != p.charAt(j)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String t = readLine(sc);
+        String p = readLine(sc);
+        int count = 0;
+        for (int start = 0; start + p.length() <= t.length(); start++) {
+            if (matchesAt(t, p, start)) {
+                count++;
+            }
+        }
+        System.out.println(count);
+    }
+}","[{""input"": ""aaaa\naa"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""\na"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""abc\nabcd"", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""abababa\naba"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""hello\nl"", ""output"": ""2"", ""is_hidden"": true}, {""input"": ""aaaaa\na"", ""output"": ""5"", ""is_hidden"": true}, {""input"": ""a b a b\n "", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""xyz\nq"", ""output"": ""0"", ""is_hidden"": true}]"
+JP-M10-15,Reverse the Order of Words,Module 10: Java Strings,Medium,Extract words from a line and output them in reverse order with normalized spacing.,stdin/stdout,O(1),O(1),"Given a sentence S, print its words in reverse order. A word is a maximal sequence of non-space characters separated by one or more ordinary spaces. Remove leading and trailing spaces from the output and separate the output words with exactly one space. Do not reverse the characters inside a word. If there are no words, print an empty line.",One line containing S; it may be empty.,"Print the words in reverse order, separated by exactly one space.","0 ≤ length of S ≤ 2000
+All characters are printable ASCII (codes 32–126).",  Java   is fun  ,fun is Java,Java is very useful,useful very is Java,Scan from the end of the string toward the start.,"Skip spaces, then find where the current word begins and append that word with s.substring(start, end).",Add a single space before every word except the first one appended.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        StringBuilder out = new StringBuilder();
+        int i = s.length() - 1;
+        while (i >= 0) {
+            while (i >= 0 && s.charAt(i) == ' ') {
+                i--;
+            }
+            if (i < 0) {
+                break;
+            }
+            int end = i + 1;
+            while (i >= 0 && s.charAt(i) != ' ') {
+                i--;
+            }
+            if (out.length() > 0) {
+                out.append(' ');
+            }
+            out.append(s.substring(i + 1, end));
+        }
+        System.out.println(out);
+    }
+}","[{""input"": ""  Java   is fun  "", ""output"": ""fun is Java"", ""is_hidden"": false}, {""input"": ""Java is very useful"", ""output"": ""useful very is Java"", ""is_hidden"": false}, {""input"": """", ""output"": """", ""is_hidden"": false}, {""input"": ""    "", ""output"": """", ""is_hidden"": true}, {""input"": ""single"", ""output"": ""single"", ""is_hidden"": true}, {""input"": ""a b"", ""output"": ""b a"", ""is_hidden"": true}, {""input"": "" x  y  z "", ""output"": ""z y x"", ""is_hidden"": true}, {""input"": ""Hello, world!"", ""output"": ""world! Hello,"", ""is_hidden"": true}]"
+JP-M10-16,Count Palindromic Substrings,Module 10: Java Strings,Medium,Expand around every possible center to count palindromic substrings.,stdin/stdout,O(1),O(1),"Given a string S, count all non-empty contiguous substrings that are palindromes. Two occurrences at different starting or ending positions count separately, even if their character sequences are identical.
+
+For example, aaa contains six palindromic substrings: three occurrences of a, two occurrences of aa, and one occurrence of aaa.",One line containing S; it may be empty.,Print the total number of palindromic substring occurrences.,"0 ≤ length of S ≤ 2000
+All characters are printable ASCII (codes 32–126).",aaa,6,abc,3,Every palindrome has a center: a single character (odd length) or the gap between two characters (even length).,"From each center, expand outward while the characters on both sides match, counting one palindrome per step.","There are 2N − 1 centers, so the total work is O(N²); store the count in a long to be safe.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    static long expand(String s, int left, int right) {
+        long count = 0;
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            count++;
+            left--;
+            right++;
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        long total = 0;
+        for (int center = 0; center < s.length(); center++) {
+            total += expand(s, center, center);
+            total += expand(s, center, center + 1);
+        }
+        System.out.println(total);
+    }
+}","[{""input"": ""aaa"", ""output"": ""6"", ""is_hidden"": false}, {""input"": ""abc"", ""output"": ""3"", ""is_hidden"": false}, {""input"": """", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""abba"", ""output"": ""6"", ""is_hidden"": true}, {""input"": ""aba"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""a a"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""racecar"", ""output"": ""10"", ""is_hidden"": true}]"
+JP-M10-17,Longest Palindromic Substring,Module 10: Java Strings,Medium,Expand around each center and track the longest palindrome found.,stdin/stdout,O(1),O(1),"Given S, find the length of the longest contiguous substring that is a palindrome. A substring is a palindrome when it reads identically in both directions. Matching is case-sensitive, and spaces and punctuation are significant.
+
+If multiple substrings have the maximum length, print only that length. The solution must run in O(N²) time or better. An empty string has answer 0.",One line containing S; it may be empty.,Print the length of the longest palindromic substring.,"0 ≤ length of S ≤ 2000
+All characters are printable ASCII (codes 32–126).",babad,3,cbbd,2,Reuse the expand-around-center idea: try every single character and every adjacent pair as a center.,Expand while both sides match; the palindrome's length is right − left − 1 after the loop stops.,Keep the maximum length across all centers.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    static int expand(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        return right - left - 1;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int best = 0;
+        for (int center = 0; center < s.length(); center++) {
+            best = Math.max(best, expand(s, center, center));
+            best = Math.max(best, expand(s, center, center + 1));
+        }
+        System.out.println(best);
+    }
+}","[{""input"": ""babad"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""cbbd"", ""output"": ""2"", ""is_hidden"": false}, {""input"": """", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""a"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""racecar"", ""output"": ""7"", ""is_hidden"": true}, {""input"": ""abcde"", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""aaaa"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""a b a"", ""output"": ""5"", ""is_hidden"": true}]"
+JP-M10-18,Longest Substring Without Repeating Characters,Module 10: Java Strings,Hard,Maintain a sliding window with the last-seen index of each character.,stdin/stdout,O(1),O(1),"Given S, find the maximum length of a contiguous substring in which no character appears more than once. Matching is case-sensitive, and spaces and punctuation count as characters. The substring must contain consecutive characters from S.
+
+The solution must run in O(N) time, where N is the length of S. If S is empty, print 0.",One line containing S; it may be empty.,Print the maximum valid substring length.,"0 ≤ N ≤ 100,000
+All characters are printable ASCII (codes 32–126).",abcabcbb,3,bbbbb,1,"Keep the window's left edge and an int array of size 128 storing each character's last index, filled with −1.","When the current character was last seen inside the window, move the left edge just past that position.","After updating the last-seen index, compare the window length right − left + 1 with the best so far.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int[] last = new int[128];
+        for (int i = 0; i < 128; i++) {
+            last[i] = -1;
+        }
+        int left = 0;
+        int best = 0;
+        for (int right = 0; right < s.length(); right++) {
+            char c = s.charAt(right);
+            if (last[c] >= left) {
+                left = last[c] + 1;
+            }
+            last[c] = right;
+            best = Math.max(best, right - left + 1);
+        }
+        System.out.println(best);
+    }
+}","[{""input"": ""abcabcbb"", ""output"": ""3"", ""is_hidden"": false}, {""input"": ""bbbbb"", ""output"": ""1"", ""is_hidden"": false}, {""input"": """", ""output"": ""0"", ""is_hidden"": false}, {""input"": ""pwwkew"", ""output"": ""3"", ""is_hidden"": true}, {""input"": "" "", ""output"": ""1"", ""is_hidden"": true}, {""input"": ""abc def"", ""output"": ""7"", ""is_hidden"": true}, {""input"": ""dvdf"", ""output"": ""3"", ""is_hidden"": true}, {""input"": ""abba"", ""output"": ""2"", ""is_hidden"": true}]"
+JP-M10-19,Longest Substring with Exactly K Distinct Characters,Module 10: Java Strings,Hard,Shrink and grow a sliding window while counting distinct characters with a frequency array.,stdin/stdout,O(1),O(1),"Given a string S and an integer K, find the maximum length of a contiguous substring containing exactly K distinct characters. Character matching is case-sensitive, and spaces and punctuation count as characters.
+
+If K is zero or greater than the number of distinct characters in S, print 0. The solution must run in O(N) time using a fixed-size frequency array rather than collections.","Line 1: string S; it may be empty.
+Line 2: integer K.","Print the maximum valid substring length, or 0 if no such substring exists.","0 ≤ N ≤ 100,000
+0 ≤ K ≤ 95
+All characters are printable ASCII (codes 32–126).","araaci
+2",4,"araaci
+1",2,Read K with Integer.parseInt(readLine(sc).trim()) after reading S with nextLine().,"Expand the right edge, updating a frequency array and a distinct counter; while distinct > K, move the left edge and decrease counts.",Record the window length only when distinct is exactly K.,"import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        int k = Integer.parseInt(readLine(sc).trim());
+        int[] freq = new int[128];
+        int distinct = 0;
+        int left = 0;
+        int best = 0;
+        if (k > 0) {
+            for (int right = 0; right < s.length(); right++) {
+                char c = s.charAt(right);
+                if (freq[c] == 0) {
+                    distinct++;
+                }
+                freq[c]++;
+                while (distinct > k) {
+                    char d = s.charAt(left);
+                    freq[d]--;
+                    if (freq[d] == 0) {
+                        distinct--;
+                    }
+                    left++;
+                }
+                if (distinct == k) {
+                    best = Math.max(best, right - left + 1);
+                }
+            }
+        }
+        System.out.println(best);
+    }
+}","[{""input"": ""araaci\n2"", ""output"": ""4"", ""is_hidden"": false}, {""input"": ""araaci\n1"", ""output"": ""2"", ""is_hidden"": false}, {""input"": ""cbbebi\n3"", ""output"": ""5"", ""is_hidden"": false}, {""input"": ""\n0"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""abc\n0"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""abc\n4"", ""output"": ""0"", ""is_hidden"": true}, {""input"": ""aaaa\n1"", ""output"": ""4"", ""is_hidden"": true}, {""input"": ""a b c\n2"", ""output"": ""3"", ""is_hidden"": true}]"
+JP-M10-20,Minimum Window Containing All Target Characters,Module 10: Java Strings,Hard,Find the shortest window covering a target multiset with two pointers and frequency arrays.,stdin/stdout,O(1),O(1),"Given a source string S and a target string T, find the shortest contiguous substring of S containing every character in T with at least the same frequency as in T.
+
+Character matching is case-sensitive. Spaces and punctuation are ordinary characters. If multiple windows have the same minimum length, choose the one with the smallest starting index in S.
+
+If T is empty, print an empty line. If no valid window exists, print NONE.
+
+The solution must run in O(N + M) time, where N is the length of S and M is the length of T. Use fixed-size character-frequency arrays rather than collections.","Line 1: source string S; it may be empty.
+Line 2: target string T; it may be empty.","Print the shortest valid substring, preserving its original characters. Print an empty line if T is empty, or NONE if no valid window exists.","0 ≤ N, M ≤ 100,000
+All characters are printable ASCII (codes 32–126).","ADOBECODEBANC
+ABC",BANC,"a
+a",a,"Count the characters of T in a need array, and track how many of T's characters the window still lacks.","Expand the right edge; once nothing is missing, shrink from the left while the window stays valid, recording the shortest window.","Only replace the best window when a strictly shorter one is found, so ties keep the smallest starting index.","import java.util.Scanner;
+
+public class Main {
+    static String readLine(Scanner sc) {
+        if (sc.hasNextLine()) {
+            return sc.nextLine();
+        }
+        return """";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String s = readLine(sc);
+        String t = readLine(sc);
+        if (t.length() == 0) {
+            System.out.println();
+        } else {
+            int[] need = new int[128];
+            for (int i = 0; i < t.length(); i++) {
+                need[t.charAt(i)]++;
+            }
+            int missing = t.length();
+            int left = 0;
+            int bestStart = -1;
+            int bestLength = Integer.MAX_VALUE;
+            for (int right = 0; right < s.length(); right++) {
+                char c = s.charAt(right);
+                if (need[c] > 0) {
+                    missing--;
+                }
+                need[c]--;
+                while (missing == 0) {
+                    if (right - left + 1 < bestLength) {
+                        bestLength = right - left + 1;
+                        bestStart = left;
+                    }
+                    char d = s.charAt(left);
+                    need[d]++;
+                    if (need[d] > 0) {
+                        missing++;
+                    }
+                    left++;
+                }
+            }
+            if (bestStart == -1) {
+                System.out.println(""NONE"");
+            } else {
+                System.out.println(s.substring(bestStart, bestStart + bestLength));
+            }
+        }
+    }
+}","[{""input"": ""ADOBECODEBANC\nABC"", ""output"": ""BANC"", ""is_hidden"": false}, {""input"": ""a\na"", ""output"": ""a"", ""is_hidden"": false}, {""input"": ""a\naa"", ""output"": ""NONE"", ""is_hidden"": false}, {""input"": ""abc\n"", ""output"": """", ""is_hidden"": true}, {""input"": ""\na"", ""output"": ""NONE"", ""is_hidden"": true}, {""input"": ""aaflslflsldkalskaaa\naaa"", ""output"": ""aaa"", ""is_hidden"": true}, {""input"": ""this is a test string\ntist"", ""output"": ""t stri"", ""is_hidden"": true}, {""input"": ""abcab\nab"", ""output"": ""ab"", ""is_hidden"": true}]"

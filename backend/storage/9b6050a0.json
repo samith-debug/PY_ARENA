@@ -1,0 +1,1944 @@
+{
+  "id": "9b6050a0",
+  "filename": "JP_M15_Java_Lambdas_Functional_Interfaces_and_Streams.csv",
+  "imported_at": "2026-10-24T17:21:03.158848Z",
+  "total_questions": 20,
+  "total_test_cases": 160,
+  "visible_test_cases": 60,
+  "hidden_test_cases": 100,
+  "questions": [
+    {
+      "question_id": "JP-M15-01",
+      "title": "Apply a Discount Using a Lambda",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Declare a functional interface and implement it with a lambda.",
+      "problem_statement": "Create a functional interface PriceOperation with a method double apply(double price). Read a whole-number price in rupees and a whole-number discount percentage. Create a lambda that calculates the discounted price using price * (100 - discount) / 100.0.\n\nFor this problem, all input prices and percentages are integers, so the input has no fractional-cent rounding ambiguity. Print the final price with exactly two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: A 15% discount on 1000 is 150, leaving a final price of 850.00.",
+      "input_format": "First line: integer price.\nSecond line: integer discount percentage.",
+      "output_format": "Print Final price: <price> with two digits after the decimal point.",
+      "constraints": "0 \u2264 price \u2264 1,000,000\n0 \u2264 discount percentage \u2264 100",
+      "sample_inputs": [
+        "1000\n15",
+        "999\n0"
+      ],
+      "sample_outputs": [
+        "Final price: 850.00",
+        "Final price: 999.00"
+      ],
+      "hints": [
+        "A functional interface has exactly one abstract method; @FunctionalInterface documents that.",
+        "The lambda can use the discount variable from main, because it is effectively final.",
+        "Format with String.format(Locale.US, \"%.2f\", result)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int price = Integer.parseInt(sc.next());\n        int discount = Integer.parseInt(sc.next());\n        PriceOperation applyDiscount = p -> p * (100 - discount) / 100.0;\n        double result = applyDiscount.apply(price);\n        System.out.println(\"Final price: \" + String.format(Locale.US, \"%.2f\", result));\n    }\n}\n\n@FunctionalInterface\ninterface PriceOperation {\n    double apply(double price);\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "1000\n15",
+          "output": "Final price: 850.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "999\n0",
+          "output": "Final price: 999.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "0\n50",
+          "output": "Final price: 0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1000000\n100",
+          "output": "Final price: 0.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1234\n15",
+          "output": "Final price: 1048.90",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n1",
+          "output": "Final price: 0.99",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n33",
+          "output": "Final price: 4.69",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "100\n99",
+          "output": "Final price: 1.00",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer price.\nSecond line: integer discount percentage.",
+        "output_format": "Print Final price: <price> with two digits after the decimal point."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-02",
+      "title": "Filter Eligible Applicants",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Filter a list with a Predicate lambda and format the result with Collectors.joining.",
+      "problem_statement": "Read applicant ages and a minimum eligible age. Use a Predicate<Integer> lambda to select ages greater than or equal to the minimum. Preserve the input order.\n\nPrint the eligible count and the eligible ages on a second line. If no applicants qualify, print an empty second line.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: Four ages meet the minimum requirement. Use Collectors.joining(\" \") to format the selected ages without trailing spaces.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated ages.\nThird line: minimum eligible age.",
+      "output_format": "Eligible: <count>\n<eligible ages separated by one space>",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach age and the minimum age are between 0 and 120.",
+      "sample_inputs": [
+        "6\n17 21 18 16 25 18\n18",
+        "3\n10 11 12\n18"
+      ],
+      "sample_outputs": [
+        "Eligible: 4\n21 18 25 18",
+        "Eligible: 0"
+      ],
+      "hints": [
+        "Define the predicate as age -> age >= minimum.",
+        "Pass it to stream().filter(...) and collect the result into a list.",
+        "Map each age to a String before Collectors.joining(\" \")."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Integer> values = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            values.add(Integer.parseInt(sc.next()));\n        }\n        int minimum = Integer.parseInt(sc.next());\n        Predicate<Integer> eligible = age -> age >= minimum;\n        List<Integer> selected = values.stream().filter(eligible).collect(Collectors.toList());\n        System.out.println(\"Eligible: \" + selected.size());\n        if (!selected.isEmpty()) {\n            System.out.println(selected.stream().map(String::valueOf).collect(Collectors.joining(\" \")));\n        }\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n17 21 18 16 25 18\n18",
+          "output": "Eligible: 4\n21 18 25 18",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\n10 11 12\n18",
+          "output": "Eligible: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n18\n18",
+          "output": "Eligible: 1\n18",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\n0 120 60 59\n60",
+          "output": "Eligible: 2\n120 60",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "5\n1 2 3 4 5\n0",
+          "output": "Eligible: 5\n1 2 3 4 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n120 120\n120",
+          "output": "Eligible: 2\n120 120",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n50 40 30\n35",
+          "output": "Eligible: 2\n50 40",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\n0\n1",
+          "output": "Eligible: 0",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated ages.\nThird line: minimum eligible age.",
+        "output_format": "Eligible: <count>\n<eligible ages separated by one space>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-03",
+      "title": "Convert Names to Uppercase",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Transform each element with a Function lambda.",
+      "problem_statement": "Read N complete names and use a Function<String, String> lambda to convert each name to uppercase with toUpperCase(Locale.ROOT). Preserve the order and internal spaces of each name.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The function transforms each complete name without changing the order of the records.",
+      "input_format": "First line: integer N.\nNext N lines: one name per line.",
+      "output_format": "Print each converted name on its own line.",
+      "constraints": "1 \u2264 N \u2264 10,000\nEach name contains 1\u2013100 characters.",
+      "sample_inputs": [
+        "3\nAsha Rao\nRavi Kumar\nMeera Shah",
+        "1\nasha"
+      ],
+      "sample_outputs": [
+        "ASHA RAO\nRAVI KUMAR\nMEERA SHAH",
+        "ASHA"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Define Function<String, String> toUpper = s -> s.toUpperCase(Locale.ROOT);.",
+        "Call toUpper.apply(name) for each name, or pass the function to stream().map()."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        Function<String, String> toUpper = s -> s.toUpperCase(Locale.ROOT);\n        System.out.println(lines.stream().map(toUpper).collect(Collectors.joining(\"\\n\")));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nAsha Rao\nRavi Kumar\nMeera Shah",
+          "output": "ASHA RAO\nRAVI KUMAR\nMEERA SHAH",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nasha",
+          "output": "ASHA",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nmIxEd CaSe\nALREADY UPPER",
+          "output": "MIXED CASE\nALREADY UPPER",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\n123 abc!",
+          "output": "123 ABC!",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\na\nb\nc",
+          "output": "A\nB\nC",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\nO'Brien-Smith",
+          "output": "O'BRIEN-SMITH",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nx y z\nhello world",
+          "output": "X Y Z\nHELLO WORLD",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\nZ",
+          "output": "Z",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: one name per line.",
+        "output_format": "Print each converted name on its own line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-04",
+      "title": "Sort Numbers Using a Method Reference",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Pass a static method reference as a Comparator.",
+      "problem_statement": "Read integers and sort them in ascending order using a method reference. Preserve duplicate values. Use list.sort(Integer::compare) rather than writing a manual sorting algorithm.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The method reference supplies the comparison operation used by the list's sorting method.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated integers.",
+      "output_format": "Print the sorted values on one line separated by one space.",
+      "constraints": "1 \u2264 N \u2264 100,000\nEvery value fits in Java's int range.",
+      "sample_inputs": [
+        "6\n8 -2 5 8 0 -1",
+        "1\n5"
+      ],
+      "sample_outputs": [
+        "-2 -1 0 5 8 8",
+        "5"
+      ],
+      "hints": [
+        "Integer::compare matches Comparator<Integer>'s compare(a, b) method, so it can be passed directly.",
+        "list.sort(...) sorts the list in place.",
+        "Format the output with values.stream().map(String::valueOf).collect(Collectors.joining(\" \"))."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Integer> values = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            values.add(Integer.parseInt(sc.next()));\n        }\n        values.sort(Integer::compare);\n        System.out.println(values.stream().map(String::valueOf).collect(Collectors.joining(\" \")));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6\n8 -2 5 8 0 -1",
+          "output": "-2 -1 0 5 8 8",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n5",
+          "output": "5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n3 3 3",
+          "output": "3 3 3",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "5\n5 4 3 2 1",
+          "output": "1 2 3 4 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n2147483647 -2147483648 0 -1",
+          "output": "-2147483648 -1 0 2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "6\n1 3 2 3 1 2",
+          "output": "1 1 2 2 3 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 -0",
+          "output": "0 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\n100 -100 0",
+          "output": "-100 0 100",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated integers.",
+        "output_format": "Print the sorted values on one line separated by one space."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-05",
+      "title": "Calculate Total Sales With a Stream",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Sum values with LongStream.sum().",
+      "problem_statement": "Read whole-number sales amounts and calculate their total using the Stream API. Convert the values to a LongStream and use sum(). The total fits in a Java long.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The stream's sum() operation adds all five amounts.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated non-negative amounts.",
+      "output_format": "Print Total sales: <total>.",
+      "constraints": "1 \u2264 N \u2264 100,000\n0 \u2264 each amount \u2264 1,000,000,000",
+      "sample_inputs": [
+        "5\n100 250 50 400 200",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "Total sales: 1000",
+        "Total sales: 0"
+      ],
+      "hints": [
+        "Store the amounts in a List<Long>, or read them into a long[] array.",
+        "list.stream().mapToLong(Long::longValue).sum() adds them as long values.",
+        "An IntStream sum would overflow: three amounts of 10\u2079 exceed the int range."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Long> amounts = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            amounts.add(Long.parseLong(sc.next()));\n        }\n        long total = amounts.stream().mapToLong(Long::longValue).sum();\n        System.out.println(\"Total sales: \" + total);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n100 250 50 400 200",
+          "output": "Total sales: 1000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "Total sales: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\n1000000000 1000000000 1000000000",
+          "output": "Total sales: 3000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n5 5",
+          "output": "Total sales: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "4\n0 0 0 1",
+          "output": "Total sales: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1 2 3 4 5",
+          "output": "Total sales: 15",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n1000000000",
+          "output": "Total sales: 1000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n10 20 30 40 50 60",
+          "output": "Total sales: 210",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated non-negative amounts.",
+        "output_format": "Print Total sales: <total>."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-06",
+      "title": "Find the First Matching Product",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Easy",
+      "objective": "Combine filter(), findFirst(), and Optional.orElse().",
+      "problem_statement": "Read product codes and a prefix. Use filter() and findFirst() to find the first code beginning with the prefix, preserving input order. Product codes are case-sensitive and contain no spaces.\n\nUse Optional<String> to represent the possible result. Print the matching code or use orElse(\"Not found\") when no match exists. Do not use an explicit isPresent() check.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: findFirst() produces an Optional containing AB100, so orElse() returns that value.",
+      "input_format": "First line: integer N.\nNext N lines: product codes.\nFinal line: prefix.",
+      "output_format": "Print the first matching code or Not found.",
+      "constraints": "1 \u2264 N \u2264 100,000\nCode and prefix lengths: 1\u201350 characters.",
+      "sample_inputs": [
+        "5\nAB100\nCD200\nAB300\nAB400\nXY500\nAB",
+        "3\nAB\nab\nAb\nab"
+      ],
+      "sample_outputs": [
+        "AB100",
+        "ab"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Filter with code -> code.startsWith(prefix).",
+        "findFirst() returns an Optional<String>; orElse(\"Not found\") supplies the fallback."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        String prefix = sc.nextLine();\n        Optional<String> match = lines.stream().filter(code -> code.startsWith(prefix)).findFirst();\n        System.out.println(match.orElse(\"Not found\"));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\nAB100\nCD200\nAB300\nAB400\nXY500\nAB",
+          "output": "AB100",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nAB\nab\nAb\nab",
+          "output": "ab",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nX1\nY2\nZ",
+          "output": "Not found",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nABC\nABC",
+          "output": "ABC",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nA\nAB\nAB",
+          "output": "AB",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\nxyz\nxy\nx\nxy",
+          "output": "xyz",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nab\nAB\nB",
+          "output": "Not found",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\nP\nPQ",
+          "output": "Not found",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: product codes.\nFinal line: prefix.",
+        "output_format": "Print the first matching code or Not found."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-07",
+      "title": "Find the Highest Bid for Each Item",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Use Collectors.toMap() with a merge function to resolve duplicate keys.",
+      "problem_statement": "An auction receives bids identified by item name and bid amount. Use Collectors.toMap() with a merge function to retain the highest bid for each item. If two bids are equal, the retained amount is still that same value.\n\nDisplay item names in alphabetical order. Item names are single tokens, and amounts are non-negative long values.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The merge function keeps the greater of the existing and incoming bids. Sorting the resulting keys produces the required order.",
+      "input_format": "First line: integer N.\nNext N lines: item name and bid amount.",
+      "output_format": "Print <item>: <highestBid> for each item in alphabetical order.",
+      "constraints": "1 \u2264 N \u2264 100,000\nItem names contain 1\u201350 characters.\nBid amounts fit in long.",
+      "sample_inputs": [
+        "5\nPhone 500\nTablet 700\nPhone 650\nLaptop 1200\nTablet 600",
+        "1\nA 0"
+      ],
+      "sample_outputs": [
+        "Laptop: 1200\nPhone: 650\nTablet: 700",
+        "A: 0"
+      ],
+      "hints": [
+        "Without a merge function, toMap() throws IllegalStateException on a duplicate key.",
+        "Long::max works as the merge function, keeping the larger of two bids.",
+        "Pass TreeMap::new as the fourth argument to get the keys in alphabetical order."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<String[]> bids = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            bids.add(new String[] {sc.next(), sc.next()});\n        }\n        Map<String, Long> highest = bids.stream().collect(Collectors.toMap(\n                b -> b[0], b -> Long.parseLong(b[1]), Long::max, TreeMap::new));\n        StringBuilder out = new StringBuilder();\n        highest.forEach((item, bid) -> out.append(item).append(\": \").append(bid).append(\"\\n\"));\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\nPhone 500\nTablet 700\nPhone 650\nLaptop 1200\nTablet 600",
+          "output": "Laptop: 1200\nPhone: 650\nTablet: 700",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nA 0",
+          "output": "A: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nX 5\nX 5\nX 5",
+          "output": "X: 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\nb 1\na 2\nB 3\nA 4",
+          "output": "A: 4\nB: 3\na: 2\nb: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nItem 9223372036854775807\nItem 1",
+          "output": "Item: 9223372036854775807",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\nZ 1\nY 2\nX 3",
+          "output": "X: 3\nY: 2\nZ: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nPen 10\nPen 20",
+          "output": "Pen: 20",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nCar 300\nCar 100\nCar 200",
+          "output": "Car: 300",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: item name and bid amount.",
+        "output_format": "Print <item>: <highestBid> for each item in alphabetical order."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-08",
+      "title": "Check Order Delivery Conditions",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Answer any/all/none questions with anyMatch(), allMatch(), and noneMatch().",
+      "problem_statement": "A delivery system records the destination city for each order. Read the city names and answer three questions using stream matching operations:\n- Does any order go to the requested city?\n- Do all orders go to the requested city?\n- Do none of the orders go to the requested city?\nUse anyMatch(), allMatch(), and noneMatch() respectively. City comparisons are case-sensitive.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: At least one order goes to Hyderabad, but not every order does. Therefore, anyMatch() is true and both allMatch() and noneMatch() are false.",
+      "input_format": "First line: integer N.\nNext N lines: destination city.\nFinal line: target city.",
+      "output_format": "Any: <true or false>\nAll: <true or false>\nNone: <true or false>",
+      "constraints": "1 \u2264 N \u2264 100,000\nCity names contain 1\u2013100 characters and may contain spaces.",
+      "sample_inputs": [
+        "4\nHyderabad\nDelhi\nHyderabad\nMumbai\nHyderabad",
+        "1\nDelhi\nDelhi"
+      ],
+      "sample_outputs": [
+        "Any: true\nAll: false\nNone: false",
+        "Any: true\nAll: true\nNone: false"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Use one predicate, city -> city.equals(target), with all three matching operations.",
+        "Each matching operation needs its own stream, because a stream can only be used once."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        String target = sc.nextLine();\n        Predicate<String> isTarget = city -> city.equals(target);\n        System.out.println(\"Any: \" + lines.stream().anyMatch(isTarget));\n        System.out.println(\"All: \" + lines.stream().allMatch(isTarget));\n        System.out.println(\"None: \" + lines.stream().noneMatch(isTarget));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nHyderabad\nDelhi\nHyderabad\nMumbai\nHyderabad",
+          "output": "Any: true\nAll: false\nNone: false",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nDelhi\nDelhi",
+          "output": "Any: true\nAll: true\nNone: false",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nA\nB\nC",
+          "output": "Any: false\nAll: false\nNone: true",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nNew York\nNew York\nNew York\nNew York",
+          "output": "Any: true\nAll: true\nNone: false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\ndelhi\nDelhi\nDelhi",
+          "output": "Any: true\nAll: false\nNone: false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\nPune\npune",
+          "output": "Any: false\nAll: false\nNone: true",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\nSan Jose\nSan Jose\nSan  Jose\nSan Jose",
+          "output": "Any: true\nAll: false\nNone: false",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nX\nX\nY",
+          "output": "Any: false\nAll: false\nNone: true",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: destination city.\nFinal line: target city.",
+        "output_format": "Any: <true or false>\nAll: <true or false>\nNone: <true or false>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-09",
+      "title": "Calculate Average Marks",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Compute an average with IntStream.average() and handle its OptionalDouble result.",
+      "problem_statement": "Read integer marks and calculate their average using an IntStream aggregation operation. The input list is non-empty. Print the average with exactly two decimal places using Locale.US.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The total is 300. Dividing by four gives an average of 75.00.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated marks.",
+      "output_format": "Print Average: <average> with two decimal places.",
+      "constraints": "1 \u2264 N \u2264 100,000\n0 \u2264 each mark \u2264 100",
+      "sample_inputs": [
+        "4\n70 80 90 60",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "Average: 75.00",
+        "Average: 0.00"
+      ],
+      "hints": [
+        "mapToInt(Integer::intValue) turns a Stream<Integer> into an IntStream.",
+        "average() returns an OptionalDouble; getAsDouble() is safe here because the list is non-empty.",
+        "Format with String.format(Locale.US, \"%.2f\", average)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Integer> values = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            values.add(Integer.parseInt(sc.next()));\n        }\n        double average = values.stream().mapToInt(Integer::intValue).average().getAsDouble();\n        System.out.println(\"Average: \" + String.format(Locale.US, \"%.2f\", average));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n70 80 90 60",
+          "output": "Average: 75.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "Average: 0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n100",
+          "output": "Average: 100.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1 2 2",
+          "output": "Average: 1.67",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n0 100",
+          "output": "Average: 50.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\n100 100 99",
+          "output": "Average: 99.67",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "7\n1 2 3 4 5 6 7",
+          "output": "Average: 4.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "6\n10 20 30 40 50 61",
+          "output": "Average: 35.17",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated marks.",
+        "output_format": "Print Average: <average> with two decimal places."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-10",
+      "title": "Partition Orders by Delivery Status",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Split a stream into two groups with Collectors.partitioningBy().",
+      "problem_statement": "Each order status is either DELIVERED or PENDING. Use Collectors.partitioningBy() to divide the statuses into two groups and print the count of each group.\n\nThe report must print both groups even if one group is empty. In particular, when all orders are delivered, the pending count must still be printed as zero.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The collector partitions the records according to whether the status is DELIVERED.",
+      "input_format": "First line: integer N.\nNext N lines: one status per line.",
+      "output_format": "Delivered: <count>\nPending: <count>",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach status is exactly DELIVERED or PENDING.",
+      "sample_inputs": [
+        "5\nDELIVERED\nPENDING\nDELIVERED\nDELIVERED\nPENDING",
+        "3\nDELIVERED\nDELIVERED\nDELIVERED"
+      ],
+      "sample_outputs": [
+        "Delivered: 3\nPending: 2",
+        "Delivered: 3\nPending: 0"
+      ],
+      "hints": [
+        "partitioningBy(s -> s.equals(\"DELIVERED\"), Collectors.counting()) counts each group directly.",
+        "The result is a Map<Boolean, Long>; get(true) is the delivered count and get(false) the pending count.",
+        "partitioningBy always contains both keys, so an empty group gives 0 rather than null."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        Map<Boolean, Long> parts = lines.stream()\n                .collect(Collectors.partitioningBy(s -> s.equals(\"DELIVERED\"), Collectors.counting()));\n        System.out.println(\"Delivered: \" + parts.get(true));\n        System.out.println(\"Pending: \" + parts.get(false));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\nDELIVERED\nPENDING\nDELIVERED\nDELIVERED\nPENDING",
+          "output": "Delivered: 3\nPending: 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "3\nDELIVERED\nDELIVERED\nDELIVERED",
+          "output": "Delivered: 3\nPending: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nPENDING\nPENDING",
+          "output": "Delivered: 0\nPending: 2",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "1\nDELIVERED",
+          "output": "Delivered: 1\nPending: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\nPENDING",
+          "output": "Delivered: 0\nPending: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nPENDING\nDELIVERED\nPENDING\nDELIVERED",
+          "output": "Delivered: 2\nPending: 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5\nPENDING\nPENDING\nPENDING\nPENDING\nDELIVERED",
+          "output": "Delivered: 1\nPending: 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nDELIVERED\nPENDING",
+          "output": "Delivered: 1\nPending: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: one status per line.",
+        "output_format": "Delivered: <count>\nPending: <count>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-11",
+      "title": "Find the Most Expensive Product",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Use reduce() with an explicit tie rule that keeps the earlier element.",
+      "problem_statement": "Each product has a name and an integer price. Find the product with the highest price using a stream and a comparator.\n\nIf multiple products share the maximum price, choose the one that appears earliest in the input. Implement this tie rule explicitly: process products in encounter order and use reduce() to retain the earlier product when prices are equal. Do not rely on unspecified tie behavior.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: Keyboard and Monitor share the maximum price. The explicit tie rule retains Keyboard because it appears first.",
+      "input_format": "First line: integer N.\nNext N lines: product name and price.",
+      "output_format": "Product: <name>\nPrice: <price>",
+      "constraints": "1 \u2264 N \u2264 100,000\nPrices are non-negative Java integers.\nProduct names contain 1\u2013100 characters and no spaces.",
+      "sample_inputs": [
+        "4\nMouse 500\nKeyboard 1200\nMonitor 1200\nCable 200",
+        "1\nA 0"
+      ],
+      "sample_outputs": [
+        "Product: Keyboard\nPrice: 1200",
+        "Product: A\nPrice: 0"
+      ],
+      "hints": [
+        "reduce((a, b) -> ...) combines elements two at a time, in encounter order for a sequential stream.",
+        "Return b only when b's price is strictly greater than a's; on a tie, keep a.",
+        "reduce returns an Optional; get() is safe here because the list is non-empty."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Product> products = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            String name = sc.next();\n            products.add(new Product(name, Integer.parseInt(sc.next())));\n        }\n        Product best = products.stream()\n                .reduce((a, b) -> Integer.compare(b.price, a.price) > 0 ? b : a)\n                .get();\n        System.out.println(\"Product: \" + best.name);\n        System.out.println(\"Price: \" + best.price);\n    }\n}\n\nclass Product {\n    final String name;\n    final int price;\n\n    Product(String name, int price) {\n        this.name = name;\n        this.price = price;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nMouse 500\nKeyboard 1200\nMonitor 1200\nCable 200",
+          "output": "Product: Keyboard\nPrice: 1200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nA 0",
+          "output": "Product: A\nPrice: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nX 5\nY 5\nZ 5",
+          "output": "Product: X\nPrice: 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nA 1\nB 3\nC 2",
+          "output": "Product: B\nPrice: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nCheap 0\nFree 0",
+          "output": "Product: Cheap\nPrice: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nA 2147483647\nB 0\nC 2147483647\nD 1",
+          "output": "Product: A\nPrice: 2147483647",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\nP 10\nQ 20\nR 30",
+          "output": "Product: R\nPrice: 30",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nLate 99\nEarly 100",
+          "output": "Product: Early\nPrice: 100",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: product name and price.",
+        "output_format": "Product: <name>\nPrice: <price>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-12",
+      "title": "Convert Transactions With a BiFunction",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Use a BiFunction that takes two arguments of different types.",
+      "problem_statement": "A payment system converts whole-number rupee amounts to paise and attaches a currency label. Create a BiFunction<Long, String, String> that accepts an amount in rupees and a label. It must return the label followed by the amount in paise.\n\nUse long arithmetic for conversion: one rupee equals 100 paise. Read each rupee amount, apply the same function with the label PAISE-, and print the returned string.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: Twelve rupees equals 1200 paise. The BiFunction receives both the amount and the output label.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated non-negative amounts in rupees.",
+      "output_format": "Print one converted value per line.",
+      "constraints": "1 \u2264 N \u2264 100,000\n0 \u2264 each amount \u2264 1,000,000,000",
+      "sample_inputs": [
+        "3\n12 50 105",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "PAISE-1200\nPAISE-5000\nPAISE-10500",
+        "PAISE-0"
+      ],
+      "hints": [
+        "Define BiFunction<Long, String, String> convert = (rupees, label) -> label + (rupees * 100);.",
+        "Read amounts with Long.parseLong; 10\u2079 rupees is 10\u00b9\u00b9 paise, which does not fit in an int.",
+        "Call convert.apply(amount, \"PAISE-\") for each amount."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        BiFunction<Long, String, String> convert = (rupees, label) -> label + (rupees * 100);\n        StringBuilder out = new StringBuilder();\n        for (int i = 0; i < n; i++) {\n            out.append(convert.apply(Long.parseLong(sc.next()), \"PAISE-\")).append(\"\\n\");\n        }\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n12 50 105",
+          "output": "PAISE-1200\nPAISE-5000\nPAISE-10500",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "PAISE-0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1000000000",
+          "output": "PAISE-100000000000",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\n1 2",
+          "output": "PAISE-100\nPAISE-200",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n7 70 700",
+          "output": "PAISE-700\nPAISE-7000\nPAISE-70000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\n999999999",
+          "output": "PAISE-99999999900",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n0 1",
+          "output": "PAISE-0\nPAISE-100",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n5 10 15 20",
+          "output": "PAISE-500\nPAISE-1000\nPAISE-1500\nPAISE-2000",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated non-negative amounts in rupees.",
+        "output_format": "Print one converted value per line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-13",
+      "title": "Sort Names by Length and Alphabetically",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Build a two-key comparator with Comparator.comparing().thenComparing().",
+      "problem_statement": "Read complete names and sort them by increasing length. If two names have equal lengths, sort them alphabetically using Java's natural string ordering.\n\nUse Comparator.comparing() followed by thenComparing() to define both ordering rules. Preserve duplicate names.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: Asha and Ravi both have four characters and are ordered alphabetically. Meera has five characters, and Christopher is longer.",
+      "input_format": "First line: integer N.\nNext N lines: one name per line. Names may contain spaces.",
+      "output_format": "Print one sorted name per line.",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach name contains 1\u2013100 characters.",
+      "sample_inputs": [
+        "4\nChristopher\nAsha\nRavi\nMeera",
+        "1\nX"
+      ],
+      "sample_outputs": [
+        "Asha\nRavi\nMeera\nChristopher",
+        "X"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Comparator.comparing(String::length) orders by length.",
+        "Add .thenComparing(Comparator.naturalOrder()) for the alphabetical tie-break; uppercase letters sort before lowercase."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        lines.sort(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()));\n        System.out.println(String.join(\"\\n\", lines));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nChristopher\nAsha\nRavi\nMeera",
+          "output": "Asha\nRavi\nMeera\nChristopher",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nX",
+          "output": "X",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nbb\naa\ncc",
+          "output": "aa\nbb\ncc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4\nAb\naB\nAB\nab",
+          "output": "AB\nAb\naB\nab",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\nAnn Lee\nBo\nAnn",
+          "output": "Bo\nAnn\nAnn Lee",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3\ndup\ndup\nab",
+          "output": "ab\ndup\ndup",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nlonger name\nshort",
+          "output": "short\nlonger name",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\nd\nc\nb\na",
+          "output": "a\nb\nc\nd",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: one name per line. Names may contain spaces.",
+        "output_format": "Print one sorted name per line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-14",
+      "title": "Find the Longest Product Name With Reduce",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Use reduce() to select one element, keeping the earliest on ties.",
+      "problem_statement": "Read product names and use the stream's reduce() operation to find the longest name. If multiple names have the same maximum length, retain the earliest name in input order.\n\nPrint the selected name. Names are complete lines and may contain spaces. At least one name is provided.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: Wireless Keyboard has the greatest length among the supplied names, so reduce() returns it.",
+      "input_format": "First line: integer N.\nNext N lines: product names.",
+      "output_format": "Print the longest product name.",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach name contains 1\u2013100 characters.",
+      "sample_inputs": [
+        "4\nMouse\nWireless Keyboard\nMonitor\nGaming Mouse",
+        "1\nX"
+      ],
+      "sample_outputs": [
+        "Wireless Keyboard",
+        "X"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Write the reducer as (a, b) -> b.length() > a.length() ? b : a.",
+        "Using > rather than >= keeps the earlier name when lengths are equal."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        String longest = lines.stream().reduce((a, b) -> b.length() > a.length() ? b : a).get();\n        System.out.println(longest);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nMouse\nWireless Keyboard\nMonitor\nGaming Mouse",
+          "output": "Wireless Keyboard",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nX",
+          "output": "X",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nabc\ndef\nghi",
+          "output": "abc",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nshort\nlonger one",
+          "output": "longer one",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\na\nbb\ncc",
+          "output": "bb",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "4\nA B C\nABCDE\nxyz\n12345",
+          "output": "A B C",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\nsame\nsize",
+          "output": "same",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nMouse\nMouse Pad\nPad",
+          "output": "Mouse Pad",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: product names.",
+        "output_format": "Print the longest product name."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-15",
+      "title": "Build a Report With Collectors.joining",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Medium",
+      "objective": "Combine stream elements into one string with a delimiter and a prefix.",
+      "problem_statement": "A reporting tool receives a list of employee names and must generate one formatted line containing all names, separated by a comma followed by a space. Use Collectors.joining(\", \") to combine the names into a single string.\n\nPreserve the input order and repeated names. Do not add a comma before the first name or after the last name.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The joining collector combines the names using the specified delimiter, without a trailing separator.",
+      "input_format": "First line: integer N.\nNext N lines: employee names.",
+      "output_format": "Print Employees: followed by a space and the names joined with a comma and a space.",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach name contains 1\u2013100 characters.",
+      "sample_inputs": [
+        "4\nAsha\nRavi\nMeera\nKiran",
+        "1\nAsha"
+      ],
+      "sample_outputs": [
+        "Employees: Asha, Ravi, Meera, Kiran",
+        "Employees: Asha"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "Collectors.joining(\", \") places the delimiter only between elements.",
+        "joining also has a three-argument form, joining(\", \", \"Employees: \", \"\"), that adds the prefix for you."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        System.out.println(lines.stream().collect(Collectors.joining(\", \", \"Employees: \", \"\")));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nAsha\nRavi\nMeera\nKiran",
+          "output": "Employees: Asha, Ravi, Meera, Kiran",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nAsha",
+          "output": "Employees: Asha",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3\nA\nA\nB",
+          "output": "Employees: A, A, B",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nAnn Lee\nBo Smith",
+          "output": "Employees: Ann Lee, Bo Smith",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\nx\ny\nz",
+          "output": "Employees: x, y, z",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nSame\nSame",
+          "output": "Employees: Same, Same",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\nD\nC\nB\nA",
+          "output": "Employees: D, C, B, A",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "1\nMary-Jane",
+          "output": "Employees: Mary-Jane",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: employee names.",
+        "output_format": "Print Employees: followed by a space and the names joined with a comma and a space."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-16",
+      "title": "Flatten Nested Course Modules",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Hard",
+      "objective": "Flatten a list of lists into one ordered stream with flatMap().",
+      "problem_statement": "A learning platform stores several modules, each containing a list of lesson IDs. Use flatMap() to convert the nested lists into one stream of lesson IDs. Preserve the module order and the original order of lessons within each module.\n\nUse Collectors.joining(\" \") to format the result without trailing spaces. If there are no lessons across all modules, print an empty line.\n\nRequired technique: Use flatMap() and Collectors.joining(\" \"). Do not manually copy each module into a combined list.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: flatMap() converts each module's stream into a single stream. The joining collector formats the flattened IDs with one space between values.",
+      "input_format": "First line: integer M, the number of modules.\nFor each module: one line containing K, the number of lessons, then one line containing K space-separated lesson IDs. If K is zero, the following line is still present and empty.",
+      "output_format": "Print all lesson IDs on one line, separated by one space. If there are no lessons, print an empty line.",
+      "constraints": "1 \u2264 M \u2264 1,000\n0 \u2264 K \u2264 1,000 for each module\nTotal number of lessons \u2264 100,000\nLesson IDs fit in int.",
+      "sample_inputs": [
+        "3\n3\n101 102 103\n2\n201 202\n3\n301 302 303",
+        "1\n0\n"
+      ],
+      "sample_outputs": [
+        "101 102 103 201 202 301 302 303"
+      ],
+      "hints": [
+        "Build a List<List<Integer>>, one inner list per module; sc.next() skips the empty line of a module with zero lessons.",
+        "modules.stream().flatMap(List::stream) produces one stream of every lesson ID in order.",
+        "Map the IDs to strings before joining with \" \"."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int m = Integer.parseInt(sc.next());\n        List<List<Integer>> modules = new ArrayList<>();\n        for (int i = 0; i < m; i++) {\n            int k = Integer.parseInt(sc.next());\n            List<Integer> lessons = new ArrayList<>();\n            for (int j = 0; j < k; j++) {\n                lessons.add(Integer.parseInt(sc.next()));\n            }\n            modules.add(lessons);\n        }\n        System.out.println(modules.stream()\n                .flatMap(List::stream)\n                .map(String::valueOf)\n                .collect(Collectors.joining(\" \")));\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n3\n101 102 103\n2\n201 202\n3\n301 302 303",
+          "output": "101 102 103 201 202 301 302 303",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0\n",
+          "output": "",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\n0\n\n2\n5 6",
+          "output": "5 6",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1\n7\n0\n\n1\n8",
+          "output": "7 8",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "1\n1\n-2147483648",
+          "output": "-2147483648",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\n2\n1 2\n2\n1 2",
+          "output": "1 2 1 2",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "2\n3\n3 2 1\n0\n",
+          "output": "3 2 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n0\n\n0\n\n0\n\n0\n",
+          "output": "",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer M, the number of modules.\nFor each module: one line containing K, the number of lessons, then one line containing K space-separated lesson IDs. If K is zero, the following line is still present and empty.",
+        "output_format": "Print all lesson IDs on one line, separated by one space. If there are no lessons, print an empty line."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-17",
+      "title": "Generate a Product With a Constructor Reference",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Hard",
+      "objective": "Create objects through a constructor reference and process them with a Consumer.",
+      "problem_statement": "An inventory system receives product records containing a product name and an integer price. Create a Product class with a constructor accepting the name and price, and a toString() method returning the product in this format:\n\n<name>: <price>\n\nCreate a BiFunction<String, Integer, Product> using a constructor reference so the function creates a Product from its two inputs. Use the function to create one object for each input record.\n\nThen use a Consumer<Product> to print each product. Preserve input order. Product names are single tokens without spaces.\n\nRequired technique: Use BiFunction<String, Integer, Product> with Product::new and a Consumer<Product> to print each object.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The constructor reference creates a Product from the name and price. The consumer prints each object using its toString() representation.",
+      "input_format": "First line: integer N.\nNext N lines: product name and price, separated by one space.",
+      "output_format": "Print one product per line as <name>: <price>.",
+      "constraints": "1 \u2264 N \u2264 100,000\nProduct names contain 1\u201350 characters.\nPrices are non-negative Java integers.",
+      "sample_inputs": [
+        "3\nMouse 500\nKeyboard 1200\nCable 200",
+        "1\nX 0"
+      ],
+      "sample_outputs": [
+        "Mouse: 500\nKeyboard: 1200\nCable: 200",
+        "X: 0"
+      ],
+      "hints": [
+        "Product::new matches BiFunction<String, Integer, Product> because the constructor takes a String and an int.",
+        "Override toString() to return name + \": \" + price.",
+        "list.forEach(printer) passes each product to the Consumer in order."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        BiFunction<String, Integer, Product> factory = Product::new;\n        List<Product> products = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            String name = sc.next();\n            products.add(factory.apply(name, Integer.parseInt(sc.next())));\n        }\n        StringBuilder out = new StringBuilder();\n        Consumer<Product> printer = p -> out.append(p).append(\"\\n\");\n        products.forEach(printer);\n        System.out.print(out);\n    }\n}\n\nclass Product {\n    private final String name;\n    private final int price;\n\n    Product(String name, int price) {\n        this.name = name;\n        this.price = price;\n    }\n\n    @Override\n    public String toString() {\n        return name + \": \" + price;\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\nMouse 500\nKeyboard 1200\nCable 200",
+          "output": "Mouse: 500\nKeyboard: 1200\nCable: 200",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nX 0",
+          "output": "X: 0",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "2\nA 2147483647\nB 1",
+          "output": "A: 2147483647\nB: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\nZ 3\nY 2\nX 1",
+          "output": "Z: 3\nY: 2\nX: 1",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\nDup 5\nDup 5",
+          "output": "Dup: 5\nDup: 5",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "1\nLongProductName 999",
+          "output": "LongProductName: 999",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "4\na 1\nb 2\nc 3\nd 4",
+          "output": "a: 1\nb: 2\nc: 3\nd: 4",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "2\nPen 10\npen 20",
+          "output": "Pen: 10\npen: 20",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: product name and price, separated by one space.",
+        "output_format": "Print one product per line as <name>: <price>."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-18",
+      "title": "Compose Reusable Username Validation Rules",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Hard",
+      "objective": "Add a default method to a functional interface and use it to combine lambdas.",
+      "problem_statement": "A registration system validates usernames using reusable rules. Define a functional interface ValidationRule with a method boolean test(String value) and a default method and(ValidationRule other) that returns a new rule accepting a value only when both rules accept it.\n\nCreate two lambda-based rules:\n- The username contains at least five characters.\n- Every character is an English letter (A\u2013Z or a\u2013z) or a digit (0\u20139).\nCombine the rules using and(). Read usernames and print VALID or INVALID for each. A username containing a space or punctuation is invalid.\n\nRequired technique: Implement the functional interface's default and() method and compose two separate lambda-based rules.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: samith123 and Java2026 satisfy both rules. abc is too short, while user_01 contains an underscore.",
+      "input_format": "First line: integer N.\nNext N lines: one username per line.",
+      "output_format": "Print one VALID or INVALID line for each username.",
+      "constraints": "1 \u2264 N \u2264 100,000\nEach username contains 1\u2013100 characters.",
+      "sample_inputs": [
+        "4\nsamith123\nabc\nuser_01\nJava2026",
+        "1\nabcde"
+      ],
+      "sample_outputs": [
+        "VALID\nINVALID\nINVALID\nVALID",
+        "VALID"
+      ],
+      "hints": [
+        "Read the count with Integer.parseInt(sc.nextLine()) before reading full-line values.",
+        "The default method can return a lambda: return value -> this.test(value) && other.test(value);.",
+        "Check characters with explicit ranges ('a'\u2013'z', 'A'\u2013'Z', '0'\u2013'9'); Character.isLetterOrDigit also accepts non-English letters."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.nextLine().trim());\n        List<String> lines = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            lines.add(sc.nextLine());\n        }\n        ValidationRule longEnough = s -> s.length() >= 5;\n        ValidationRule alphanumeric = s -> s.chars().allMatch(c ->\n                (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'));\n        ValidationRule valid = longEnough.and(alphanumeric);\n        StringBuilder out = new StringBuilder();\n        for (String name : lines) {\n            out.append(valid.test(name) ? \"VALID\" : \"INVALID\").append(\"\\n\");\n        }\n        System.out.print(out);\n    }\n}\n\n@FunctionalInterface\ninterface ValidationRule {\n    boolean test(String value);\n\n    default ValidationRule and(ValidationRule other) {\n        return value -> this.test(value) && other.test(value);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\nsamith123\nabc\nuser_01\nJava2026",
+          "output": "VALID\nINVALID\nINVALID\nVALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\nabcde",
+          "output": "VALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\nabcd",
+          "output": "INVALID",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "2\nab cde\nabcde ",
+          "output": "INVALID\nINVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "3\n12345\nABCDE\nA1b2C",
+          "output": "VALID\nVALID\nVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "2\nhello!\nhello-world",
+          "output": "INVALID\nINVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "1\n_____",
+          "output": "INVALID",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "3\nabcdefghijklmnopqrstuvwxyz\nUSER1\nuser 1",
+          "output": "VALID\nVALID\nINVALID",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nNext N lines: one username per line.",
+        "output_format": "Print one VALID or INVALID line for each username."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-19",
+      "title": "Generate a Summary Using Supplier and Consumer",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Hard",
+      "objective": "Use Supplier and Consumer explicitly alongside stream aggregation.",
+      "problem_statement": "A reporting system reads a list of integer scores. Create a Supplier<String> that returns the fixed heading Score Report. Create a Consumer<Integer> that prints each score in the format Score: <score>.\n\nUse the supplier to print the heading, then pass each score to the consumer in the original input order. Calculate the total and average using stream operations. Print the total and the average with exactly two decimal places using Locale.US.\n\nThe list is non-empty.\n\nRequired technique: Use Supplier<String> and Consumer<Integer> explicitly. Use stream operations to calculate the total and average.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The supplier generates the report heading. The consumer handles each score's output. Stream aggregation calculates a total of 300 and an average of 75.00.",
+      "input_format": "First line: integer N.\nSecond line: N space-separated integer scores.",
+      "output_format": "Score Report\nScore: <score 1>\nScore: <score 2>\n...\nTotal: <total>\nAverage: <average with two decimal places>",
+      "constraints": "1 \u2264 N \u2264 100,000\n0 \u2264 each score \u2264 1,000,000\nThe total fits in a Java long.",
+      "sample_inputs": [
+        "4\n70 80 90 60",
+        "1\n0"
+      ],
+      "sample_outputs": [
+        "Score Report\nScore: 70\nScore: 80\nScore: 90\nScore: 60\nTotal: 300\nAverage: 75.00",
+        "Score Report\nScore: 0\nTotal: 0\nAverage: 0.00"
+      ],
+      "hints": [
+        "Supplier<String> heading = () -> \"Score Report\"; is called with heading.get().",
+        "values.forEach(consumer) passes each score to the Consumer.",
+        "Sum with mapToLong so the total can exceed the int range, then divide by the count for the average."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        List<Integer> values = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            values.add(Integer.parseInt(sc.next()));\n        }\n        StringBuilder out = new StringBuilder();\n        Supplier<String> heading = () -> \"Score Report\";\n        Consumer<Integer> printScore = s -> out.append(\"Score: \").append(s).append(\"\\n\");\n        out.append(heading.get()).append(\"\\n\");\n        values.forEach(printScore);\n        long total = values.stream().mapToLong(Integer::longValue).sum();\n        double average = values.stream().mapToInt(Integer::intValue).average().getAsDouble();\n        out.append(\"Total: \").append(total).append(\"\\n\");\n        out.append(\"Average: \").append(String.format(Locale.US, \"%.2f\", average)).append(\"\\n\");\n        System.out.print(out);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n70 80 90 60",
+          "output": "Score Report\nScore: 70\nScore: 80\nScore: 90\nScore: 60\nTotal: 300\nAverage: 75.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1\n0",
+          "output": "Score Report\nScore: 0\nTotal: 0\nAverage: 0.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "1\n1000000",
+          "output": "Score Report\nScore: 1000000\nTotal: 1000000\nAverage: 1000000.00",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "3\n1 2 2",
+          "output": "Score Report\nScore: 1\nScore: 2\nScore: 2\nTotal: 5\nAverage: 1.67",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2\n5 6",
+          "output": "Score Report\nScore: 5\nScore: 6\nTotal: 11\nAverage: 5.50",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "5\n1000000 1000000 1000000 1000000 1000000",
+          "output": "Score Report\nScore: 1000000\nScore: 1000000\nScore: 1000000\nScore: 1000000\nScore: 1000000\nTotal: 5000000\nAverage: 1000000.00",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "3\n0 0 1",
+          "output": "Score Report\nScore: 0\nScore: 0\nScore: 1\nTotal: 1\nAverage: 0.33",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4\n10 20 30 41",
+          "output": "Score Report\nScore: 10\nScore: 20\nScore: 30\nScore: 41\nTotal: 101\nAverage: 25.25",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integer N.\nSecond line: N space-separated integer scores.",
+        "output_format": "Score Report\nScore: <score 1>\nScore: <score 2>\n...\nTotal: <total>\nAverage: <average with two decimal places>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "JP-M15-20",
+      "title": "Build a Top-K Product Report",
+      "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+      "difficulty": "Hard",
+      "objective": "Aggregate with groupingBy and summingLong, then rank with a two-key comparator and limit().",
+      "problem_statement": "An online store receives sales records containing a product name and the number of units sold. Multiple records may refer to the same product. Calculate total units sold per product using Collectors.groupingBy() with a summing collector.\n\nRank products by total units sold in descending order. If totals are equal, order products by name in ascending lexicographical order. Use Comparator.comparing() and thenComparing() to express the ordering rules. Return at most K products; if fewer than K distinct products exist, print all available products.\n\nUse long for aggregated quantities. Product names are single tokens.\n\nRequired technique: Use a grouping collector, a summing operation, and Comparator.comparing(...).thenComparing(...).\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes and interfaces without the public keyword.\n\nExplanation: The totals are Mouse = 30, Keyboard = 20, Monitor = 15, and Cable = 3. The first three products are selected by descending total. When totals tie, the product name determines the order.",
+      "input_format": "First line: integers N and K.\nNext N lines: product name and quantity sold.",
+      "output_format": "Print one line per selected product:\n<product>: <totalQuantity>",
+      "constraints": "1 \u2264 N \u2264 100,000\n1 \u2264 K \u2264 100,000\n0 \u2264 quantity sold \u2264 1,000,000,000\nProduct names contain 1\u2013100 characters.\nEach product's total fits in a Java long.",
+      "sample_inputs": [
+        "6 3\nMouse 10\nKeyboard 15\nMouse 20\nMonitor 15\nKeyboard 5\nCable 3",
+        "1 1\nA 5"
+      ],
+      "sample_outputs": [
+        "Mouse: 30\nKeyboard: 20\nMonitor: 15",
+        "A: 5"
+      ],
+      "hints": [
+        "groupingBy(r -> r[0], Collectors.summingLong(r -> Long.parseLong(r[1]))) gives a Map<String, Long>.",
+        "Java often can't infer the entry type for a chained comparator; declaring Comparator<Map.Entry<String, Long>> byTotal = Comparator.comparing(Map.Entry::getValue); first helps.",
+        "Sort the entry stream with byTotal.reversed().thenComparing(Map.Entry::getKey), then call limit(k)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\nimport java.util.function.*;\nimport java.util.stream.*;\n\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        int n = Integer.parseInt(sc.next());\n        int k = Integer.parseInt(sc.next());\n        List<String[]> records = new ArrayList<>();\n        for (int i = 0; i < n; i++) {\n            records.add(new String[] {sc.next(), sc.next()});\n        }\n        Map<String, Long> totals = records.stream()\n                .collect(Collectors.groupingBy(r -> r[0], Collectors.summingLong(r -> Long.parseLong(r[1]))));\n        Comparator<Map.Entry<String, Long>> byTotal = Comparator.comparing(Map.Entry::getValue);\n        Comparator<Map.Entry<String, Long>> ranking = byTotal.reversed().thenComparing(Map.Entry::getKey);\n        String report = totals.entrySet().stream()\n                .sorted(ranking)\n                .limit(k)\n                .map(e -> e.getKey() + \": \" + e.getValue())\n                .collect(Collectors.joining(\"\\n\"));\n        System.out.println(report);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "6 3\nMouse 10\nKeyboard 15\nMouse 20\nMonitor 15\nKeyboard 5\nCable 3",
+          "output": "Mouse: 30\nKeyboard: 20\nMonitor: 15",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 2,
+          "input": "1 1\nA 5",
+          "output": "A: 5",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 3,
+          "input": "3 5\nA 1\nB 1\nC 1",
+          "output": "A: 1\nB: 1\nC: 1",
+          "is_hidden": false,
+          "name": null
+        },
+        {
+          "index": 4,
+          "input": "4 2\nX 5\nY 10\nZ 5\nX 5",
+          "output": "X: 10\nY: 10",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 5,
+          "input": "2 1\nP 1000000000\nP 1000000000",
+          "output": "P: 2000000000",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 6,
+          "input": "3 3\nb 0\na 0\nc 0",
+          "output": "a: 0\nb: 0\nc: 0",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 7,
+          "input": "5 1\nM 1\nN 2\nM 2\nN 1\nO 3",
+          "output": "M: 3",
+          "is_hidden": true,
+          "name": null
+        },
+        {
+          "index": 8,
+          "input": "4 4\nZed 4\nAmy 3\nBob 2\nCal 1",
+          "output": "Zed: 4\nAmy: 3\nBob: 2\nCal: 1",
+          "is_hidden": true,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 15: Lambdas, Functional Interfaces, and Streams",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: integers N and K.\nNext N lines: product name and quantity sold.",
+        "output_format": "Print one line per selected product:\n<product>: <totalQuantity>"
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M15_Java_Lambdas_Functional_Interfaces_and_Streams.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 160,
+    "visible_test_cases": 60,
+    "hidden_test_cases": 100,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}

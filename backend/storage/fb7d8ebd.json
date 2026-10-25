@@ -1,0 +1,925 @@
+{
+  "id": "fb7d8ebd",
+  "filename": "JP_M20_Java_Greedy_and_DP.csv",
+  "imported_at": "2026-10-25T09:47:34.805044Z",
+  "total_questions": 20,
+  "total_test_cases": 20,
+  "visible_test_cases": 20,
+  "hidden_test_cases": 0,
+  "questions": [
+    {
+      "question_id": "M20-01",
+      "title": "Activity Selection",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Easy",
+      "objective": "Greedy Algorithms: Timeline showing compatible activities",
+      "problem_statement": "You are given N activities. Each activity has a start time and a finish time. Select the maximum number of activities that one person can complete, assuming a person can attend only one activity at a time. An activity can be selected if its start time is greater than or equal to the finish time of the previously selected activity. Sort activities by finish time before selecting them.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-01 — Activity Selection](/diagrams/m20/m20_01.png)\n\nExplanation: Choose (1,3), then (4,6), then (6,8). Each selected activity starts when or after the previous one finishes.",
+      "input_format": "First line: integer N. Next N lines: two integers S and F, the start and finish times of one activity.",
+      "output_format": "Print the maximum number of non-overlapping activities.",
+      "constraints": "1 ≤ N ≤ 100000; 0 ≤ S < F ≤ 1000000000",
+      "sample_inputs": [
+        "4\n1 3\n2 5\n4 6\n6 8"
+      ],
+      "sample_outputs": [
+        "3"
+      ],
+      "hints": [
+        "Timeline showing compatible activities",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    static class Activity implements Comparable<Activity> {\n        int s, f;\n        Activity(int s, int f) { this.s = s; this.f = f; }\n        public int compareTo(Activity o) { return Integer.compare(this.f, o.f); }\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        Activity[] arr = new Activity[n];\n        for (int i = 0; i < n; i++) arr[i] = new Activity(sc.nextInt(), sc.nextInt());\n        Arrays.sort(arr);\n        int count = 0, lastEnd = -1;\n        for (Activity a : arr) {\n            if (a.s >= lastEnd) { count++; lastEnd = a.f; }\n        }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 3\n2 5\n4 6\n6 8",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: integer N. Next N lines: two integers S and F, the start and finish times of one activity.",
+        "output_format": "Print the maximum number of non-overlapping activities."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-02",
+      "title": "Merge Overlapping Intervals",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Easy",
+      "objective": "Greedy Algorithms: Before/after interval merging diagram",
+      "problem_statement": "You are given N intervals [L, R]. Merge every pair of intervals that overlap or touch at an endpoint. Print the resulting intervals in increasing order of their start values. Two intervals [a,b] and [c,d] overlap or touch when c ≤ b after sorting by start.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-02 — Merge Overlapping Intervals](/diagrams/m20/m20_02.png)\n\nExplanation: [1,3] overlaps [2,6], so they become [1,6]. The intervals [8,10] and [10,12] touch at 10, so they become [8,12].",
+      "input_format": "First line: integer N. Next N lines: L and R for each interval.",
+      "output_format": "Print each merged interval on its own line as L R.",
+      "constraints": "1 ≤ N ≤ 100000; -1000000000 ≤ L ≤ R ≤ 1000000000",
+      "sample_inputs": [
+        "4\n1 3\n2 6\n8 10\n10 12"
+      ],
+      "sample_outputs": [
+        "1 6\n8 12"
+      ],
+      "hints": [
+        "Before/after interval merging diagram",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[][] intervals = new int[n][2];\n        for (int i = 0; i < n; i++) {\n            intervals[i][0] = sc.nextInt();\n            intervals[i][1] = sc.nextInt();\n        }\n        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));\n        List<int[]> merged = new ArrayList<>();\n        for (int[] cur : intervals) {\n            if (merged.isEmpty() || merged.get(merged.size() - 1)[1] < cur[0]) {\n                merged.add(new int[]{cur[0], cur[1]});\n            } else {\n                merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], cur[1]);\n            }\n        }\n        for (int[] inv : merged) System.out.println(inv[0] + \" \" + inv[1]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 3\n2 6\n8 10\n10 12",
+          "output": "1 6\n8 12",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: integer N. Next N lines: L and R for each interval.",
+        "output_format": "Print each merged interval on its own line as L R."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-03",
+      "title": "Minimum Number of Platforms",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Easy",
+      "objective": "Greedy Algorithms: Arrival/departure event timeline",
+      "problem_statement": "A railway station has N trains. Each train has an arrival time and a departure time written as an integer in 24-hour HHMM format (for example, 900 means 09:00 and 1430 means 14:30). Find the minimum number of platforms needed so that every train can arrive and depart without waiting for a platform. If a train arrives at exactly the time another train departs, the arriving train needs a separate platform at that moment; the departing train still occupies its platform at its departure time.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-03 — Minimum Number of Platforms](/diagrams/m20/m20_03.png)\n\nExplanation: The first train leaves at 9:10. The trains arriving at 9:40 and 9:50 overlap until the second train leaves at 12:00, so the maximum simultaneous trains is 2.",
+      "input_format": "First line: integer N. Second line: N arrival times. Third line: N departure times.",
+      "output_format": "Print the minimum number of platforms required.",
+      "constraints": "1 ≤ N ≤ 100000; 0 ≤ time ≤ 2359; the last two digits of every time must be ≤ 59; each arrival is earlier than its departure on the same day",
+      "sample_inputs": [
+        "3\n900 940 950\n910 1200 1120"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "Arrival/departure event timeline",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        for (int i = 0; i < n; i++) arr[i] = sc.nextInt();\n        int[] dep = new int[n];\n        for (int i = 0; i < n; i++) dep[i] = sc.nextInt();\n        Arrays.sort(arr);\n        Arrays.sort(dep);\n        int plat = 0, maxPlat = 0, i = 0, j = 0;\n        while (i < n && j < n) {\n            if (arr[i] <= dep[j]) { plat++; maxPlat = Math.max(maxPlat, plat); i++; }\n            else { plat--; j++; }\n        }\n        System.out.println(maxPlat);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n900 940 950\n910 1200 1120",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: integer N. Second line: N arrival times. Third line: N departure times.",
+        "output_format": "Print the minimum number of platforms required."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-04",
+      "title": "Fractional Knapsack",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Easy",
+      "objective": "Greedy Algorithms: Value-to-weight ratio table",
+      "problem_statement": "A bag can carry at most W units of weight. Each of N items has a positive weight and value. You may take an entire item or any fraction of it, and the value of a fraction is proportional to the fraction taken. Choose portions of items to maximize the total value without exceeding W. Print the result rounded to exactly two decimal places using round-half-up: if the third decimal digit is 5 or greater, increase the second decimal digit by one (carrying to the integer part if needed). In Java, use Locale.US when formatting so the decimal separator is a dot.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-04 — Fractional Knapsack](/diagrams/m20/m20_04.png)\n\nExplanation: Take the first item (value 60), the second item (value 100), and 20 of the third item’s 30 weight, worth 80. The total value is 240.00. For Java formatting, use Locale.US to ensure a dot decimal separator.",
+      "input_format": "First line: N W. Next N lines: weight and value of each item.",
+      "output_format": "Print the maximum value rounded half-up to exactly two digits after the decimal point, using a dot as the decimal separator (for example, 240.00).",
+      "constraints": "1 ≤ N ≤ 100000; 1 ≤ weight,value,W ≤ 1000000000",
+      "sample_inputs": [
+        "3 50\n10 60\n20 100\n30 120"
+      ],
+      "sample_outputs": [
+        "240.00"
+      ],
+      "hints": [
+        "Value-to-weight ratio table",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    static class Item {\n        double w, v, r;\n        Item(double w, double v) { this.w = w; this.v = v; this.r = v / w; }\n    }\n    public static void main(String[] args) {\n        Locale.setDefault(Locale.US);\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        double cap = sc.nextDouble();\n        Item[] items = new Item[n];\n        for (int i = 0; i < n; i++) items[i] = new Item(sc.nextDouble(), sc.nextDouble());\n        Arrays.sort(items, (a, b) -> Double.compare(b.r, a.r));\n        double totalVal = 0.0;\n        for (Item it : items) {\n            if (cap >= it.w) { totalVal += it.v; cap -= it.w; }\n            else if (cap > 0) { totalVal += it.r * cap; break; }\n        }\n        System.out.printf(\"%.2f\\n\", totalVal);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 50\n10 60\n20 100\n30 120",
+          "output": "240.00",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N W. Next N lines: weight and value of each item.",
+        "output_format": "Print the maximum value rounded half-up to exactly two digits after the decimal point, using a dot as the decimal separator (for example, 240.00)."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-05",
+      "title": "Job Sequencing with Deadlines",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Greedy Algorithms: Deadline slots with chosen jobs",
+      "problem_statement": "Each job takes exactly one unit of time and has a deadline and a positive profit. Only one job can be performed in each time slot, and a job earns its profit only if it is completed on or before its deadline. Schedule a subset of jobs to maximize total profit. Report the number of jobs in a maximum-profit schedule and that schedule’s total profit.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-05 — Job Sequencing with Deadlines](/diagrams/m20/m20_05.png)\n\nExplanation: Schedule the job with profit 100 in slot 2 and the job with profit 27 in slot 1. Both jobs finish on or before their deadlines, so the number of jobs is 2 and the total profit is 127.",
+      "input_format": "First line: N. Next N lines: deadline and profit for each job.",
+      "output_format": "Print two integers: the number of jobs in a maximum-profit schedule, followed by its total profit.",
+      "constraints": "1 ≤ N ≤ 100000; 1 ≤ deadline ≤ 100000; 1 ≤ profit ≤ 1000000000",
+      "sample_inputs": [
+        "4\n2 100\n1 19\n2 27\n1 25"
+      ],
+      "sample_outputs": [
+        "2 127"
+      ],
+      "hints": [
+        "Deadline slots with chosen jobs",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N^2)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    static class Job {\n        int d, p;\n        Job(int d, int p) { this.d = d; this.p = p; }\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        Job[] jobs = new Job[n];\n        int maxD = 0;\n        for (int i = 0; i < n; i++) {\n            jobs[i] = new Job(sc.nextInt(), sc.nextInt());\n            maxD = Math.max(maxD, jobs[i].d);\n        }\n        Arrays.sort(jobs, (a, b) -> Integer.compare(b.p, a.p));\n        boolean[] slot = new boolean[maxD + 1];\n        int count = 0, totalProfit = 0;\n        for (Job j : jobs) {\n            for (int s = j.d; s >= 1; s--) {\n                if (!slot[s]) { slot[s] = true; count++; totalProfit += j.p; break; }\n            }\n        }\n        System.out.println(count + \" \" + totalProfit);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n2 100\n1 19\n2 27\n1 25",
+          "output": "2 127",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N^2)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N. Next N lines: deadline and profit for each job.",
+        "output_format": "Print two integers: the number of jobs in a maximum-profit schedule, followed by its total profit."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-06",
+      "title": "Minimum Arrows to Burst Balloons",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Greedy Algorithms: Intervals and arrow positions",
+      "problem_statement": "Each balloon is represented by a horizontal interval [L, R]. An arrow shot vertically at coordinate X bursts every balloon whose interval contains X. Find the minimum number of arrows needed to burst all balloons. Since endpoints can be as large as 10^9 in magnitude, avoid subtracting coordinates in a sorting comparator; in Java, use Integer.compare(a[1], b[1]) to compare end coordinates safely.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-06 — Minimum Arrows to Burst Balloons](/diagrams/m20/m20_06.png)\n\nExplanation: Place one arrow at coordinate 6 to burst [1,6] and [2,8]. Place another at 12 to burst [7,12] and [10,16].",
+      "input_format": "First line: N. Next N lines: L R for each balloon.",
+      "output_format": "Print the minimum number of arrows.",
+      "constraints": "1 ≤ N ≤ 100000; -1000000000 ≤ L ≤ R ≤ 1000000000",
+      "sample_inputs": [
+        "4\n1 6\n2 8\n7 12\n10 16"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "Intervals and arrow positions",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[][] pts = new int[n][2];\n        for (int i = 0; i < n; i++) { pts[i][0] = sc.nextInt(); pts[i][1] = sc.nextInt(); }\n        Arrays.sort(pts, (a, b) -> Integer.compare(a[1], b[1]));\n        int arrows = 1, end = pts[0][1];\n        for (int i = 1; i < n; i++) {\n            if (pts[i][0] > end) { arrows++; end = pts[i][1]; }\n        }\n        System.out.println(arrows);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 6\n2 8\n7 12\n10 16",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N. Next N lines: L R for each balloon.",
+        "output_format": "Print the minimum number of arrows."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-07",
+      "title": "Assign Cookies",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Easy",
+      "objective": "Greedy Algorithms: Sorted child needs and cookie sizes",
+      "problem_statement": "There are N children with minimum cookie sizes they will accept and M cookies with given sizes. Each child can receive at most one cookie, and each cookie can be given to at most one child. Maximize the number of satisfied children.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-07 — Assign Cookies](/diagrams/m20/m20_07.png)\n\nExplanation: Only one cookie can satisfy a child: both cookies have size 1, and only the child requiring size 1 can accept one.",
+      "input_format": "First line: N M. Second line: N minimum sizes. Third line: M cookie sizes.",
+      "output_format": "Print the maximum number of satisfied children.",
+      "constraints": "1 ≤ N,M ≤ 100000; all sizes are positive integers ≤ 1000000000",
+      "sample_inputs": [
+        "3 2\n1 2 3\n1 1"
+      ],
+      "sample_outputs": [
+        "1"
+      ],
+      "hints": [
+        "Sorted child needs and cookie sizes",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(N log N + M log M)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt(), m = sc.nextInt();\n        int[] g = new int[n];\n        for (int i = 0; i < n; i++) g[i] = sc.nextInt();\n        int[] s = new int[m];\n        for (int i = 0; i < m; i++) s[i] = sc.nextInt();\n        Arrays.sort(g);\n        Arrays.sort(s);\n        int i = 0, j = 0;\n        while (i < n && j < m) {\n            if (s[j] >= g[i]) i++;\n            j++;\n        }\n        System.out.println(i);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 2\n1 2 3\n1 1",
+          "output": "1",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N + M log M)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N M. Second line: N minimum sizes. Third line: M cookie sizes.",
+        "output_format": "Print the maximum number of satisfied children."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-08",
+      "title": "Coin Change with Fewest Coins (Canonical Coins)",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Greedy Algorithms: Coin stack breakdown",
+      "problem_statement": "You are given a target amount A and an unlimited supply of coins with denominations 1, 5, 10, and 25. Find the minimum number of coins needed to make exactly A. For this coin system, repeatedly taking the largest coin that does not exceed the remaining amount gives an optimal answer. Since a coin of value 1 is always available, every non-negative amount can be formed and the answer is never -1. To process large amounts efficiently, use integer division (A / coin) to count how many coins of a denomination can be taken, rather than subtracting the coin repeatedly.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-08 — Coin Change with Fewest Coins (Canonical Coins)](/diagrams/m20/m20_08.png)\n\nExplanation: Take 25 + 25 + 10 + 1 + 1 + 1 = 63, using six coins.",
+      "input_format": "One integer A.",
+      "output_format": "Print the minimum number of coins.",
+      "constraints": "0 ≤ A ≤ 1000000000",
+      "sample_inputs": [
+        "63"
+      ],
+      "sample_outputs": [
+        "6"
+      ],
+      "hints": [
+        "Coin stack breakdown",
+        "Consider Greedy Algorithms paradigm.",
+        "Time complexity target is O(1)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int amount = sc.nextInt();\n        int[] coins = {25, 10, 5, 1};\n        int count = 0;\n        for (int c : coins) { count += amount / c; amount %= c; }\n        System.out.println(count);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "63",
+          "output": "6",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(1)",
+        "space_complexity": "O(1)",
+        "input_format": "One integer A.",
+        "output_format": "Print the minimum number of coins."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-09",
+      "title": "0/1 Knapsack Maximum Value",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: DP capacity table",
+      "problem_statement": "There are N items. Item i has weight Wi and value Vi. A bag can carry total weight at most W. Each item can be chosen at most once. Find the maximum total value possible.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-09 — 0/1 Knapsack Maximum Value](/diagrams/m20/m20_09.png)\n\nExplanation: Choose the items with weights 3 and 4 and values 4 and 5. Their total weight is 7 and value is 9.",
+      "input_format": "First line: N W. Next N lines: Wi Vi.",
+      "output_format": "Print the maximum achievable value.",
+      "constraints": "1 ≤ N ≤ 100; 0 ≤ W ≤ 100000; 1 ≤ Wi ≤ 100000; 0 ≤ Vi ≤ 1000000000",
+      "sample_inputs": [
+        "4 7\n1 1\n3 4\n4 5\n5 7"
+      ],
+      "sample_outputs": [
+        "9"
+      ],
+      "hints": [
+        "DP capacity table",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * W)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt(), wCap = sc.nextInt();\n        int[] wt = new int[n], val = new int[n];\n        for (int i = 0; i < n; i++) { wt[i] = sc.nextInt(); val[i] = sc.nextInt(); }\n        int[] dp = new int[wCap + 1];\n        for (int i = 0; i < n; i++) {\n            for (int w = wCap; w >= wt[i]; w--) {\n                dp[w] = Math.max(dp[w], dp[w - wt[i]] + val[i]);\n            }\n        }\n        System.out.println(dp[wCap]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4 7\n1 1\n3 4\n4 5\n5 7",
+          "output": "9",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * W)",
+        "space_complexity": "O(W)",
+        "input_format": "First line: N W. Next N lines: Wi Vi.",
+        "output_format": "Print the maximum achievable value."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-10",
+      "title": "Count Ways to Make an Amount",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: Coin-combination DP table",
+      "problem_statement": "Given coin denominations and a target amount A, count the number of combinations that make A. Each denomination can be used unlimited times, and combinations that differ only in coin order count as the same combination.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-10 — Count Ways to Make an Amount](/diagrams/m20/m20_10.png)\n\nExplanation: The four combinations are 1+1+1+1+1, 1+1+1+2, 1+2+2, and 5.",
+      "input_format": "First line: N A. Second line: N distinct positive denominations.",
+      "output_format": "Print the number of combinations modulo 1000000007.",
+      "constraints": "1 ≤ N ≤ 100; 0 ≤ A ≤ 100000; denominations are distinct and ≤ 100000",
+      "sample_inputs": [
+        "3 5\n1 2 5"
+      ],
+      "sample_outputs": [
+        "4"
+      ],
+      "hints": [
+        "Coin-combination DP table",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * amount)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt(), amount = sc.nextInt();\n        int[] coins = new int[n];\n        for (int i = 0; i < n; i++) coins[i] = sc.nextInt();\n        long[] dp = new long[amount + 1];\n        dp[0] = 1;\n        for (int c : coins) {\n            for (int a = c; a <= amount; a++) dp[a] += dp[a - c];\n        }\n        System.out.println(dp[amount]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 5\n1 2 5",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * amount)",
+        "space_complexity": "O(amount)",
+        "input_format": "First line: N A. Second line: N distinct positive denominations.",
+        "output_format": "Print the number of combinations modulo 1000000007."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-11",
+      "title": "Longest Common Subsequence Length",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: LCS grid/table with selected subsequence",
+      "problem_statement": "Given two strings A and B, find the length of their longest common subsequence. A subsequence preserves character order but does not need to use consecutive characters. Character comparison is case-sensitive, so uppercase and lowercase letters are different (for example, “A” is not the same as “a”).\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-11 — Longest Common Subsequence Length](/diagrams/m20/m20_11.png)\n\nExplanation: One longest common subsequence is BCBA, which has length 4.",
+      "input_format": "Two lines, each containing one string.",
+      "output_format": "Print the length of the longest common subsequence.",
+      "constraints": "1 ≤ length(A), length(B) ≤ 2000; strings contain English letters",
+      "sample_inputs": [
+        "ABCBDAB\nBDCABA"
+      ],
+      "sample_outputs": [
+        "4"
+      ],
+      "hints": [
+        "LCS grid/table with selected subsequence",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * M)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextLine()) return;\n        String s1 = sc.nextLine().trim();\n        while (s1.isEmpty() && sc.hasNextLine()) s1 = sc.nextLine().trim();\n        String s2 = sc.hasNextLine() ? sc.nextLine().trim() : \"\";\n        int m = s1.length(), n = s2.length();\n        int[][] dp = new int[m + 1][n + 1];\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (s1.charAt(i - 1) == s2.charAt(j - 1)) dp[i][j] = dp[i - 1][j - 1] + 1;\n                else dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);\n            }\n        }\n        System.out.println(dp[m][n]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "ABCBDAB\nBDCABA",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * M)",
+        "space_complexity": "O(N * M)",
+        "input_format": "Two lines, each containing one string.",
+        "output_format": "Print the length of the longest common subsequence."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-12",
+      "title": "House Robber",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: House line with robbed houses highlighted",
+      "problem_statement": "Houses are arranged in a line. Each house contains a non-negative amount of money. You may not rob two adjacent houses. Find the maximum total amount you can collect. The total can exceed the range of a 32-bit integer, so use Java long for the total and dynamic-programming values.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-12 — House Robber](/diagrams/m20/m20_12.png)\n\nExplanation: Rob houses containing 2, 9, and 1 for a total of 12; no two selected houses are adjacent.",
+      "input_format": "First line: N. Second line: N non-negative integers.",
+      "output_format": "Print the maximum amount that can be collected.",
+      "constraints": "1 ≤ N ≤ 100000; 0 ≤ amount[i] ≤ 1000000000; use a 64-bit integer (Java long) for the total",
+      "sample_inputs": [
+        "5\n2 7 9 3 1"
+      ],
+      "sample_outputs": [
+        "12"
+      ],
+      "hints": [
+        "House line with robbed houses highlighted",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        if (n == 0) { System.out.println(0); return; }\n        int[] nums = new int[n];\n        for (int i = 0; i < n; i++) nums[i] = sc.nextInt();\n        int prev2 = 0, prev1 = 0;\n        for (int x : nums) {\n            int cur = Math.max(prev1, prev2 + x);\n            prev2 = prev1; prev1 = cur;\n        }\n        System.out.println(prev1);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "5\n2 7 9 3 1",
+          "output": "12",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N)",
+        "space_complexity": "O(1)",
+        "input_format": "First line: N. Second line: N non-negative integers.",
+        "output_format": "Print the maximum amount that can be collected."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-13",
+      "title": "Longest Increasing Subsequence Length",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: Array with increasing subsequence highlighted",
+      "problem_statement": "Given an integer array, find the length of the longest strictly increasing subsequence. The selected elements must keep their original order, but they do not need to be adjacent.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-13 — Longest Increasing Subsequence Length](/diagrams/m20/m20_13.png)\n\nExplanation: One longest increasing subsequence is 2, 3, 7, 101, with length 4.",
+      "input_format": "First line: N. Second line: N integers.",
+      "output_format": "Print the length of the longest strictly increasing subsequence.",
+      "constraints": "1 ≤ N ≤ 200000; -1000000000 ≤ values[i] ≤ 1000000000",
+      "sample_inputs": [
+        "8\n10 9 2 5 3 7 101 18"
+      ],
+      "sample_outputs": [
+        "4"
+      ],
+      "hints": [
+        "Array with increasing subsequence highlighted",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[] a = new int[n];\n        for (int i = 0; i < n; i++) a[i] = sc.nextInt();\n        List<Integer> tails = new ArrayList<>();\n        for (int x : a) {\n            int idx = Collections.binarySearch(tails, x);\n            if (idx < 0) idx = -(idx + 1);\n            if (idx == tails.size()) tails.add(x);\n            else tails.set(idx, x);\n        }\n        System.out.println(tails.size());\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "8\n10 9 2 5 3 7 101 18",
+          "output": "4",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N. Second line: N integers.",
+        "output_format": "Print the length of the longest strictly increasing subsequence."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-14",
+      "title": "Edit Distance",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Hard",
+      "objective": "Dynamic Programming: Edit-distance DP matrix",
+      "problem_statement": "Given two strings, find the minimum number of single-character operations needed to transform the first string into the second. Allowed operations are insertion, deletion, and replacement of one character.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-14 — Edit Distance](/diagrams/m20/m20_14.png)\n\nExplanation: One transformation is kitten → sitten (replace k with s) → sittin (replace e with i) → sitting (insert g).",
+      "input_format": "Two lines containing strings A and B.",
+      "output_format": "Print the minimum edit distance.",
+      "constraints": "0 ≤ length(A), length(B) ≤ 2000; strings contain lowercase English letters",
+      "sample_inputs": [
+        "kitten\nsitting"
+      ],
+      "sample_outputs": [
+        "3"
+      ],
+      "hints": [
+        "Edit-distance DP matrix",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * M)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextLine()) return;\n        String s1 = sc.nextLine().trim();\n        while (s1.isEmpty() && sc.hasNextLine()) s1 = sc.nextLine().trim();\n        String s2 = sc.hasNextLine() ? sc.nextLine().trim() : \"\";\n        int m = s1.length(), n = s2.length();\n        int[][] dp = new int[m + 1][n + 1];\n        for (int i = 0; i <= m; i++) dp[i][0] = i;\n        for (int j = 0; j <= n; j++) dp[0][j] = j;\n        for (int i = 1; i <= m; i++) {\n            for (int j = 1; j <= n; j++) {\n                if (s1.charAt(i - 1) == s2.charAt(j - 1)) dp[i][j] = dp[i - 1][j - 1];\n                else dp[i][j] = 1 + Math.min(dp[i - 1][j - 1], Math.min(dp[i - 1][j], dp[i][j - 1]));\n            }\n        }\n        System.out.println(dp[m][n]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "kitten\nsitting",
+          "output": "3",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * M)",
+        "space_complexity": "O(N * M)",
+        "input_format": "Two lines containing strings A and B.",
+        "output_format": "Print the minimum edit distance."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-15",
+      "title": "Minimum Path Sum in a Grid",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: Grid with minimum-sum path highlighted",
+      "problem_statement": "Given an R × C grid of non-negative numbers, move from the top-left cell to the bottom-right cell. You may move only right or down. Find the minimum sum of values along the visited cells, including both endpoints.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-15 — Minimum Path Sum in a Grid](/diagrams/m20/m20_15.png)\n\nExplanation: One minimum route is 1 → 3 → 1 → 1 → 1, with sum 7.",
+      "input_format": "First line: R C. Next R lines: C integers each.",
+      "output_format": "Print the minimum path sum.",
+      "constraints": "1 ≤ R,C ≤ 1000; 0 ≤ grid[r][c] ≤ 1000000",
+      "sample_inputs": [
+        "3 3\n1 3 1\n1 5 1\n4 2 1"
+      ],
+      "sample_outputs": [
+        "7"
+      ],
+      "hints": [
+        "Grid with minimum-sum path highlighted",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * M)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int m = sc.nextInt(), n = sc.nextInt();\n        int[][] grid = new int[m][n];\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) grid[i][j] = sc.nextInt();\n        }\n        int[][] dp = new int[m][n];\n        dp[0][0] = grid[0][0];\n        for (int j = 1; j < n; j++) dp[0][j] = dp[0][j - 1] + grid[0][j];\n        for (int i = 1; i < m; i++) dp[i][0] = dp[i - 1][0] + grid[i][0];\n        for (int i = 1; i < m; i++) {\n            for (int j = 1; j < n; j++) dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];\n        }\n        System.out.println(dp[m - 1][n - 1]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 3\n1 3 1\n1 5 1\n4 2 1",
+          "output": "7",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * M)",
+        "space_complexity": "O(N * M)",
+        "input_format": "First line: R C. Next R lines: C integers each.",
+        "output_format": "Print the minimum path sum."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-16",
+      "title": "Partition Equal Subset Sum",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Hard",
+      "objective": "Dynamic Programming: Subset-sum reachable totals",
+      "problem_statement": "Given an array of positive integers, determine whether it can be divided into two subsets with equal sums. Every element must belong to exactly one subset.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-16 — Partition Equal Subset Sum](/diagrams/m20/m20_16.png)\n\nExplanation: The total sum is 22, so each subset must sum to 11. One subset can be {11}; the other is {1,5,5}.",
+      "input_format": "First line: N. Second line: N positive integers.",
+      "output_format": "Print YES if an equal partition exists; otherwise print NO.",
+      "constraints": "1 ≤ N ≤ 200; 1 ≤ values[i] ≤ 1000",
+      "sample_inputs": [
+        "4\n1 5 11 5"
+      ],
+      "sample_outputs": [
+        "YES"
+      ],
+      "hints": [
+        "Subset-sum reachable totals",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * sum)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[] arr = new int[n];\n        int sum = 0;\n        for (int i = 0; i < n; i++) { arr[i] = sc.nextInt(); sum += arr[i]; }\n        if (sum % 2 != 0) { System.out.println(\"NO\"); return; }\n        int target = sum / 2;\n        boolean[] dp = new boolean[target + 1];\n        dp[0] = true;\n        for (int num : arr) {\n            for (int j = target; j >= num; j--) dp[j] = dp[j] || dp[j - num];\n        }\n        System.out.println(dp[target] ? \"YES\" : \"NO\");\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 5 11 5",
+          "output": "YES",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * sum)",
+        "space_complexity": "O(sum)",
+        "input_format": "First line: N. Second line: N positive integers.",
+        "output_format": "Print YES if an equal partition exists; otherwise print NO."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-17",
+      "title": "Matrix Chain Multiplication",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Hard",
+      "objective": "Dynamic Programming: Matrix parenthesization tree",
+      "problem_statement": "You are given dimensions for a chain of N matrices. Matrix i has dimensions dims[i-1] × dims[i]. Choose the parenthesization that minimizes the number of scalar multiplications. Matrix order cannot be changed.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-17 — Matrix Chain Multiplication](/diagrams/m20/m20_17.png)\n\nExplanation: ((A1 × A2) × A3) costs 10×30×5 + 10×5×60 = 1500 + 3000 = 4500, less than multiplying A2 × A3 first.",
+      "input_format": "First line: N, the number of matrices. Second line: N+1 positive dimensions.",
+      "output_format": "Print the minimum number of scalar multiplications.",
+      "constraints": "1 ≤ N ≤ 200; 1 ≤ dims[i] ≤ 1000",
+      "sample_inputs": [
+        "3\n10 30 5 60"
+      ],
+      "sample_outputs": [
+        "4500"
+      ],
+      "hints": [
+        "Matrix parenthesization tree",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N^3)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        int[] p = new int[n + 1];\n        for (int i = 0; i <= n; i++) p[i] = sc.nextInt();\n        int[][] dp = new int[n + 1][n + 1];\n        for (int len = 2; len <= n; len++) {\n            for (int i = 1; i <= n - len + 1; i++) {\n                int j = i + len - 1;\n                dp[i][j] = Integer.MAX_VALUE;\n                for (int k = i; k < j; k++) {\n                    int cost = dp[i][k] + dp[k + 1][j] + p[i - 1] * p[k] * p[j];\n                    dp[i][j] = Math.min(dp[i][j], cost);\n                }\n            }\n        }\n        System.out.println(dp[1][n]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3\n10 30 5 60",
+          "output": "4500",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N^3)",
+        "space_complexity": "O(N^2)",
+        "input_format": "First line: N, the number of matrices. Second line: N+1 positive dimensions.",
+        "output_format": "Print the minimum number of scalar multiplications."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-18",
+      "title": "Minimum Coins for Arbitrary Denominations",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Hard",
+      "objective": "Dynamic Programming: DP amount table contrasting greedy vs optimal",
+      "problem_statement": "You are given distinct positive coin denominations and an amount A. Find the minimum number of coins needed to make exactly A, or print -1 if it is impossible. Each denomination may be used unlimited times. Unlike canonical coin systems, greedy choice is not guaranteed to be optimal.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-18 — Minimum Coins for Arbitrary Denominations](/diagrams/m20/m20_18.png)\n\nExplanation: Use two coins of value 3. Greedy would choose 4, then 1, then 1, using three coins.",
+      "input_format": "First line: N A. Second line: N distinct positive denominations.",
+      "output_format": "Print the minimum coin count, or -1 if no combination makes A.",
+      "constraints": "1 ≤ N ≤ 100; 0 ≤ A ≤ 100000; denominations are positive integers ≤ 100000",
+      "sample_inputs": [
+        "3 6\n1 3 4"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "DP amount table contrasting greedy vs optimal",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * amount)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt(), amount = sc.nextInt();\n        int[] coins = new int[n];\n        for (int i = 0; i < n; i++) coins[i] = sc.nextInt();\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, amount + 1);\n        dp[0] = 0;\n        for (int c : coins) {\n            for (int a = c; a <= amount; a++) dp[a] = Math.min(dp[a], dp[a - c] + 1);\n        }\n        System.out.println(dp[amount] > amount ? -1 : dp[amount]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 6\n1 3 4",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * amount)",
+        "space_complexity": "O(amount)",
+        "input_format": "First line: N A. Second line: N distinct positive denominations.",
+        "output_format": "Print the minimum coin count, or -1 if no combination makes A."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-19",
+      "title": "Maximum Profit from Non-overlapping Jobs",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Hard",
+      "objective": "Dynamic Programming: Job timeline plus DP decisions",
+      "problem_statement": "Each job has a start time, finish time, and positive profit. Choose a set of non-overlapping jobs to maximize total profit. A job may start exactly when another selected job finishes. The maximum total profit can exceed the range of a 32-bit integer, so use Java long for the total and dynamic-programming values.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-19 — Maximum Profit from Non-overlapping Jobs](/diagrams/m20/m20_19.png)\n\nExplanation: Choose jobs [1,3] with profit 50, [4,6] with profit 70, and [6,7] with profit 60. Total profit is 180.",
+      "input_format": "First line: N. Next N lines: start, finish, profit.",
+      "output_format": "Print the maximum total profit.",
+      "constraints": "1 ≤ N ≤ 100000; 0 ≤ start < finish ≤ 1000000000; 1 ≤ profit ≤ 1000000000; use a 64-bit integer (Java long) for the total profit",
+      "sample_inputs": [
+        "4\n1 3 50\n2 5 20\n4 6 70\n6 7 60"
+      ],
+      "sample_outputs": [
+        "180"
+      ],
+      "hints": [
+        "Job timeline plus DP decisions",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N log N)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    static class Job {\n        int s, e, p;\n        Job(int s, int e, int p) { this.s = s; this.e = e; this.p = p; }\n    }\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int n = sc.nextInt();\n        Job[] jobs = new Job[n];\n        for (int i = 0; i < n; i++) jobs[i] = new Job(sc.nextInt(), sc.nextInt(), sc.nextInt());\n        Arrays.sort(jobs, (a, b) -> Integer.compare(a.e, b.e));\n        long[] dp = new long[n];\n        dp[0] = jobs[0].p;\n        for (int i = 1; i < n; i++) {\n            long incl = jobs[i].p;\n            int l = 0, r = i - 1, latest = -1;\n            while (l <= r) {\n                int mid = (l + r) / 2;\n                if (jobs[mid].e <= jobs[i].s) { latest = mid; l = mid + 1; }\n                else r = mid - 1;\n            }\n            if (latest != -1) incl += dp[latest];\n            dp[i] = Math.max(dp[i - 1], incl);\n        }\n        System.out.println(dp[n - 1]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "4\n1 3 50\n2 5 20\n4 6 70\n6 7 60",
+          "output": "180",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N log N)",
+        "space_complexity": "O(N)",
+        "input_format": "First line: N. Next N lines: start, finish, profit.",
+        "output_format": "Print the maximum total profit."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    },
+    {
+      "question_id": "M20-20",
+      "title": "Count Paths in a Grid with Obstacles",
+      "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+      "difficulty": "Medium",
+      "objective": "Dynamic Programming: Grid showing blocked cell and two routes",
+      "problem_statement": "A grid contains 0 for an open cell and 1 for a blocked cell. Starting at the top-left cell, count paths to the bottom-right cell using only right and down moves. You cannot enter blocked cells. If the start or destination is blocked, the answer is 0.\n\nWrite all classes in Main.java. Only class Main may be declared public; declare any other classes without the public keyword.\n\n![M20-20 — Count Paths in a Grid with Obstacles](/diagrams/m20/m20_20.png)\n\nExplanation: The center cell is blocked, leaving two valid routes around it: right-right-down-down and down-down-right-right.",
+      "input_format": "First line: R C. Next R lines: C values, each 0 or 1.",
+      "output_format": "Print the number of paths modulo 1000000007.",
+      "constraints": "1 ≤ R,C ≤ 1000",
+      "sample_inputs": [
+        "3 3\n0 0 0\n0 1 0\n0 0 0"
+      ],
+      "sample_outputs": [
+        "2"
+      ],
+      "hints": [
+        "Grid showing blocked cell and two routes",
+        "Consider Dynamic Programming paradigm.",
+        "Time complexity target is O(N * M)."
+      ],
+      "starter_code": "import java.util.*;\n\npublic class Solution {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        // Write your solution here\n        \n    }\n}",
+      "reference_solution": "import java.util.*;\npublic class Main {\n    public static void main(String[] args) {\n        Scanner sc = new Scanner(System.in);\n        if (!sc.hasNextInt()) return;\n        int m = sc.nextInt(), n = sc.nextInt();\n        int[][] grid = new int[m][n];\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) grid[i][j] = sc.nextInt();\n        }\n        if (grid[0][0] == 1 || grid[m - 1][n - 1] == 1) { System.out.println(0); return; }\n        long[][] dp = new long[m][n];\n        dp[0][0] = 1;\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                if (grid[i][j] == 1) continue;\n                if (i > 0) dp[i][j] += dp[i - 1][j];\n                if (j > 0) dp[i][j] += dp[i][j - 1];\n            }\n        }\n        System.out.println(dp[m - 1][n - 1]);\n    }\n}",
+      "execution_mode": "stdin/stdout",
+      "function_name": null,
+      "test_cases": [
+        {
+          "index": 1,
+          "input": "3 3\n0 0 0\n0 1 0\n0 0 0",
+          "output": "2",
+          "is_hidden": false,
+          "name": null
+        }
+      ],
+      "extra_fields": {
+        "module": "Module 20: Greedy Algorithms and Dynamic Programming",
+        "time_complexity": "O(N * M)",
+        "space_complexity": "O(N * M)",
+        "input_format": "First line: R C. Next R lines: C values, each 0 or 1.",
+        "output_format": "Print the number of paths modulo 1000000007."
+      },
+      "language": "java",
+      "validation_errors": [],
+      "validation_warnings": []
+    }
+  ],
+  "validation_report": {
+    "filename": "JP_M20_Java_Greedy_and_DP.csv",
+    "total_rows": 20,
+    "total_questions": 20,
+    "valid_questions": 20,
+    "total_test_cases": 20,
+    "visible_test_cases": 20,
+    "hidden_test_cases": 0,
+    "duplicate_ids": [],
+    "missing_required_fields": [],
+    "malformed_json_cells": [],
+    "issues": []
+  },
+  "language": "java"
+}
